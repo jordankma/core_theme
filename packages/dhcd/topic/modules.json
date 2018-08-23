@@ -1,0 +1,46 @@
+{
+  "package": "dhcd",
+  "module": "topic",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý thảo luận",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.topic.topic.log",
+            "dhcd.topic.topic.data",
+            "dhcd.topic.topic.manage",
+            "dhcd.topic.topic.status",
+            "dhcd.topic.topic.confirm-status",
+            "dhcd.topic.topic.add_all_member",
+            "dhcd.topic.topic.confirm_add_all_member",
+            "dhcd.topic.topic.create.member"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.topic.topic.create",
+            "dhcd.topic.topic.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.topic.topic.show",
+            "dhcd.topic.topic.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.topic.topic.delete",
+            "dhcd.topic.topic.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

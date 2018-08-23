@@ -1,0 +1,32 @@
+{
+    "name": "vendor_name/package_name",
+    "description": "package_name",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "electric",
+            "email": "huydien.it@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "vendor_namespace\\package_namespace\\": "src"
+        }
+    },
+    "autoload-dev": {
+
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

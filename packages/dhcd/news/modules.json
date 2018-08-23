@@ -1,0 +1,77 @@
+{
+  "package": "dhcd",
+  "module": "news",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý news",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.news.news.manager",
+            "dhcd.news.news.data",
+            "dhcd.news.news.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.news.news.create",
+            "dhcd.news.news.add",
+            "dhcd.news.news.alias",
+            "dhcd.news.tag.ajax.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.news.news.show",
+            "dhcd.news.news.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.news.news.delete",
+            "dhcd.news.news.confirm-delete"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quản lý news_cat",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.news.cat.manager",
+            "dhcd.news.cat.data",
+            "dhcd.news.tag.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.news.cat.create",
+            "dhcd.news.cat.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.news.cat.show",
+            "dhcd.news.cat.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.news.cat.delete",
+            "dhcd.news.cat.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

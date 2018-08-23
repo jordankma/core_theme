@@ -1,0 +1,162 @@
+<?php
+
+namespace vendor_namespace\package_namespace\App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Adtech\Application\Cms\Controllers\Controller as Controller;
+use vendor_namespace\package_namespace\App\Repositories\controller_namespaceRepository;
+use vendor_namespace\package_namespace\App\Models\controller_namespace;
+use Spatie\Activitylog\Models\Activity;
+use Yajra\Datatables\Datatables;
+use Validator;
+
+class controller_namespaceController extends Controller
+{
+    private $messages = array(
+        'name.regex' => "Sai định dạng",
+        'required' => "Bắt buộc",
+        'numeric'  => "Phải là số"
+    );
+
+    public function __construct(controller_namespaceRepository $controller_nameRepository)
+    {
+        parent::__construct();
+        $this->controller_name = $controller_nameRepository;
+    }
+
+    public function add(Request $request)
+    {
+        $controller_names = new controller_namespace($request->all());
+        $controller_names->save();
+
+        if ($controller_names->controller_name_id) {
+
+            activity('demo')
+                ->performedOn($controller_names)
+                ->withProperties($request->all())
+                ->log('User: :causer.email - Add Demo - name: :properties.name, demo_id: ' . $controller_names->demo_id);
+
+            return redirect()->route('vendor_name.package_name.controller_name.manage')->with('success', trans('vendor_name-package_name::language.messages.success.create'));
+        } else {
+            return redirect()->route('vendor_name.package_name.controller_name.manage')->with('error', trans('vendor_name-package_name::language.messages.error.create'));
+        }
+    }
+
+    public function create()
+    {
+        return view('vendor_nameup-package_nameup::modules.package_name.controller_name.create');
+    }
+
+    public function delete(Request $request)
+    {
+        $controller_name_id = $request->input('controller_name_id');
+        $controller_name = $this->controller_name->find($controller_name_id);
+
+        if (null != $controller_name) {
+            $this->controller_name->delete($controller_name_id);
+
+            activity('demo')
+                ->performedOn($controller_name)
+                ->withProperties($request->all())
+                ->log('User: :causer.email - Delete Demo - demo_id: :properties.demo_id, name: ' . $controller_name->name);
+
+            return redirect()->route('vendor_name.package_name.controller_name.manage')->with('success', trans('vendor_name-package_name::language.messages.success.delete'));
+        } else {
+            return redirect()->route('vendor_name.package_name.controller_name.manage')->with('error', trans('vendor_name-package_name::language.messages.error.delete'));
+        }
+    }
+
+    public function manage()
+    {
+        return view('vendor_nameup-package_nameup::modules.package_name.controller_name.manage');
+    }
+
+    public function show(Request $request)
+    {
+        $controller_name_id = $request->input('controller_name_id');
+        $controller_name = $this->controller_name->find($controller_name_id);
+        $data = [
+            'controller_name' => $controller_name
+        ];
+
+        return view('vendor_nameup-package_nameup::modules.package_name.controller_name.edit', $data);
+    }
+
+    public function update(Request $request)
+    {
+        $controller_name_id = $request->input('controller_name_id');
+
+        $controller_name = $this->controller_name->find($controller_name_id);
+        $controller_name->name = $request->input('name');
+
+        if ($controller_name->save()) {
+
+            activity('demo')
+                ->performedOn($controller_name)
+                ->withProperties($request->all())
+                ->log('User: :causer.email - Update Demo - demo_id: :properties.demo_id, name: :properties.name');
+
+            return redirect()->route('vendor_name.package_name.controller_name.manage')->with('success', trans('vendor_name-package_name::language.messages.success.update'));
+        } else {
+            return redirect()->route('vendor_name.package_name.controller_name.show', ['controller_name_id' => $request->input('controller_name_id')])->with('error', trans('vendor_name-package_name::language.messages.error.update'));
+        }
+    }
+
+    public function getModalDelete(Request $request)
+    {
+        $model = 'controller_name';
+        $confirm_route = $error = null;
+        $validator = Validator::make($request->all(), [
+            'controller_name_id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+            try {
+                $confirm_route = route('vendor_name.package_name.controller_name.delete', ['controller_name_id' => $request->input('controller_name_id')]);
+                return view('includes.modal_confirmation', compact('error', 'model', 'confirm_route'));
+            } catch (GroupNotFoundException $e) {
+                return view('includes.modal_confirmation', compact('error', 'model', 'confirm_route'));
+            }
+        } else {
+            return $validator->messages();
+        }
+    }
+
+    public function log(Request $request)
+    {
+        $model = 'controller_name';
+        $confirm_route = $error = null;
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+            try {
+                $logs = Activity::where([
+                    ['log_name', $model],
+                    ['subject_id', $request->input('id')]
+                ])->get();
+                return view('includes.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
+            } catch (GroupNotFoundException $e) {
+                return view('includes.modal_table', compact('error', 'model', 'confirm_route'));
+            }
+        } else {
+            return $validator->messages();
+        }
+    }
+
+    //Table Data to index page
+    public function data()
+    {
+        return Datatables::of($this->controller_name->findAll())
+            ->addColumn('actions', function ($controller_names) {
+                $actions = '<a href=' . route('vendor_name.package_name.controller_name.log', ['type' => 'controller_name', 'id' => $controller_names->controller_name_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log controller_name"></i></a>
+                        <a href=' . route('vendor_name.package_name.controller_name.show', ['controller_name_id' => $controller_names->controller_name_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update controller_name"></i></a>
+                        <a href=' . route('vendor_name.package_name.controller_name.confirm-delete', ['controller_name_id' => $controller_names->controller_name_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete controller_name"></i></a>';
+
+                return $actions;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['actions'])
+            ->make();
+    }
+}

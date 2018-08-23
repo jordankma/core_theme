@@ -1,0 +1,41 @@
+{
+  "package": "dhcd",
+  "module": "car",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý khách sạn",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.car.manage",
+            "dhcd.car.data",
+            "dhcd.car.detail"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.car.create",
+            "dhcd.car.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.car.show",
+            "dhcd.car.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.car.delete",
+            "dhcd.car.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

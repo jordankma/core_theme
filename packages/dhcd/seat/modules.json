@@ -1,0 +1,41 @@
+{
+  "package": "dhcd",
+  "module": "seat",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý chỗ ngồi",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.seat.manage",
+            "dhcd.seat.data",
+            "dhcd.seat.detail"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.seat.create",
+            "dhcd.seat.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.seat.show",
+            "dhcd.seat.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.seat.delete",
+            "dhcd.seat.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

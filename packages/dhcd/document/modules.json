@@ -1,0 +1,106 @@
+{
+  "package": "package",
+  "module": "module",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý tài liệu",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.document.cate.manage",
+            "dhcd.document.doc.log",
+            "dhcd.document.tag.manage" 
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.document.cate.add", 
+            "dhcd.document.cate.create",
+            "dhcd.document.doc.create",
+            "dhcd.document.doc.add",
+            "dhcd.document.tag.create",
+            "dhcd.document.tag.add"  
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.document.cate.edit", 
+            "dhcd.document.cate.update",
+            "dhcd.document.doc.edit",
+            "dhcd.document.doc.update",
+            "dhcd.document.tag.edit",
+            "dhcd.document.tag.update" 
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.document.cate.delete",
+            "dhcd.document.doc.delete",
+            "dhcd.document.tag.delete"             
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cấu hình kiểu tài liệu",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": []
+        },
+        {
+          "name": "Create",
+          "routes": []
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.document.type.edit", 
+            "dhcd.document.type.update" 
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": []
+        }
+      ]
+    },
+    {
+      "name": "Quản lý tài liệu",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.document.doc.manage",
+            "dhcd.document.doc.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.document.doc.add", 
+            "dhcd.document.doc.create" 
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.document.doc.edit", 
+            "dhcd.document.doc.update" 
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.document.doc.delete"             
+          ]
+        }
+      ]
+    }
+  ]
+}

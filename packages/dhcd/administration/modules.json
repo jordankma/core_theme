@@ -1,0 +1,41 @@
+{
+  "package": "dhcd",
+  "module": "administration",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý tỉnh thành",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.administration.provine-city.manage",
+            "dhcd.administration.provine-city.data",
+            "dhcd.administration.provine-city.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.administration.provine-city.create",
+            "dhcd.administration.provine-city.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.administration.provine-city.show",
+            "dhcd.administration.provine-city.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.administration.provine-city.delete",
+            "dhcd.administration.provine-city.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

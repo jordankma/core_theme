@@ -1,0 +1,47 @@
+{
+  "package": "dhcd",
+  "module": "notification",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Quản lý thông báo",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "dhcd.notification.notification.log",
+            "dhcd.notification.notification.data",
+            "dhcd.notification.notification.manage",
+            "dhcd.notification.log-sent.data",
+            "dhcd.notification.log-sent.manage"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "dhcd.notification.notification.create",
+            "dhcd.notification.notification.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "dhcd.notification.notification.show",
+            "dhcd.notification.notification.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "dhcd.notification.notification.delete",
+            "dhcd.notification.notification.confirm-delete",
+            "dhcd.notification.notification.sent",
+            "dhcd.notification.notification.confirm-sent",
+            "dhcd.notification.log-sent.delete",
+            "dhcd.notification.log-sent.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}
