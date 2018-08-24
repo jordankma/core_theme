@@ -1,0 +1,17 @@
+README.md
+.terraform
+.env/
+.venv/
+.git
+.gitignore
+.retry
+ansible/
+/.bundle
+
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+/log/*
+!/log/.keep
+/tmp
+/vendor/
