@@ -20,7 +20,7 @@ services:
   - docker:dind
 
 before_script:
-#  - docker login -u jenkinsci -p $CI_JOB_TOKEN portus.egame.vn
+  - docker login -u jenkinsci -p $CI_JOB_TOKEN portus.egame.vn
   -  docker info
 
 build-dev:
