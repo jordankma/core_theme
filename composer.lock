@@ -4,104 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd8a4fdd01d58ce0702753e54d4fbfca",
+    "content-hash": "e5d881570a0ae41709f70b8d1a16377b",
     "packages": [
-        {
-            "name": "adtech/api",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/adtech/api",
-                "reference": "c3bdb82acb606094079fc383004bf7a41fdeead8",
-                "shasum": null
-            },
-            "require": {
-                "illuminate/notifications": "^5.4",
-                "illuminate/support": "^5.1|^5.2|^5.3|^5.4",
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9.5",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Adtech\\Api\\App\\": "src/app/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Adtech\\Api\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "Manage API",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "adtech/core",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/adtech/core",
-                "reference": "b3b5ae64968d07fa3930703a34bf3b581df9f32a",
-                "shasum": null
-            },
-            "require": {
-                "illuminate/notifications": "^5.4",
-                "illuminate/support": "^5.4",
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "^0.9.5",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Adtech\\Core\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Adtech\\Core\\Test\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "core",
-            "transport-options": {
-                "symlink": true
-            }
-        },
         {
             "name": "anahkiasen/underscore-php",
             "version": "2.0.0",
@@ -412,482 +316,6 @@
             "time": "2017-02-23T12:05:30+00:00"
         },
         {
-            "name": "dhcd/administration",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/administration",
-                "reference": "ed3bcc24da549ddc82435ff00a05ba7b94bbab08",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Administration\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "administration",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/api",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/api",
-                "reference": "7d266a36d00502e5ba5460f6ccff98ae24393e4c",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Api\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "api",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/banner",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/banner",
-                "reference": "37f9183d85fc058df606efcd571d6ab35737201e",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Banner\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "banner",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/car",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/car",
-                "reference": "881e484368c7366fbd354255c0b001865521b511",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Car\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "car",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/document",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/document",
-                "reference": "aea13300b03df992614bb19aef42640e72b9bff6",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Document\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "document",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/events",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/events",
-                "reference": "f9ba3772c696522e0be00e062e6b8d80c2000a1e",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Events\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "events",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/filedoc",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/filedoc",
-                "reference": "f592e934c9b8de09a9e38fceea9d51653f57b445",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Filedoc\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "filedoc",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/groupmanager",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/groupmanager",
-                "reference": "7c29978500a515c4dfa2d45f3c3f1e90a2732b9e",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Groupmanager\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "groupmanager",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/hotel",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/hotel",
-                "reference": "640dd1df69c69f98f3e88664aabed5868987cafa",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Hotel\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "hotel",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/member",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/member",
-                "reference": "698a1abf0e8c42b53e18697e4de820e9d1b4d4b1",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Member\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "member",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/news",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/news",
-                "reference": "560ceea338e63149715257fc6afa370a03bac175",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\News\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "news",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/notification",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/notification",
-                "reference": "d21d875890949add19a82cd19dd45d651277884f",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Notification\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "notification",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/seat",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/seat",
-                "reference": "b3b7e003510061151d56aa57ea93942c679e86d1",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Seat\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "seat",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
-            "name": "dhcd/topic",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "packages/dhcd/topic",
-                "reference": "30a2e92d81a03bae037a281bee36a07261534d83",
-                "shasum": null
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Dhcd\\Topic\\": "src"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "electric",
-                    "email": "huydien.it@gmail.com"
-                }
-            ],
-            "description": "topic",
-            "transport-options": {
-                "symlink": true
-            }
-        },
-        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -1092,16 +520,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.4",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "8790f594151ca6a2010c6218e09d96df67173ad3"
+                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/8790f594151ca6a2010c6218e09d96df67173ad3",
-                "reference": "8790f594151ca6a2010c6218e09d96df67173ad3",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/54859fabea8b3beecbb1a282888d5c990036b9e3",
+                "reference": "54859fabea8b3beecbb1a282888d5c990036b9e3",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +573,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-04-10T10:11:19+00:00"
+            "time": "2018-08-16T20:49:45+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -1354,16 +782,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.65",
+            "version": "v0.66",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/google-api-php-client-services.git",
-                "reference": "cc7299c4a12a09b379a2d952d2a28ad32396275d"
+                "reference": "357a13e6f59e5590071b1d455c0ead482fac65db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/cc7299c4a12a09b379a2d952d2a28ad32396275d",
-                "reference": "cc7299c4a12a09b379a2d952d2a28ad32396275d",
+                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/357a13e6f59e5590071b1d455c0ead482fac65db",
+                "reference": "357a13e6f59e5590071b1d455c0ead482fac65db",
                 "shasum": ""
             },
             "require": {
@@ -1387,7 +815,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-07-12T00:23:02+00:00"
+            "time": "2018-08-21T20:23:38+00:00"
         },
         {
             "name": "google/auth",
@@ -1776,16 +1204,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.33",
+            "version": "v5.6.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8a708b989adc320c451ee639d812af81f884666b"
+                "reference": "66c9cf8119b422b71273271db1f12e20d74ad49b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8a708b989adc320c451ee639d812af81f884666b",
-                "reference": "8a708b989adc320c451ee639d812af81f884666b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/66c9cf8119b422b71273271db1f12e20d74ad49b",
+                "reference": "66c9cf8119b422b71273271db1f12e20d74ad49b",
                 "shasum": ""
             },
             "require": {
@@ -1911,7 +1339,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-08-09T20:36:39+00:00"
+            "time": "2018-08-21T13:44:37+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2046,16 +1474,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.45",
+            "version": "1.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6"
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
-                "reference": "a99f94e63b512d75f851b181afcdf0ee9ebef7e6",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
                 "shasum": ""
             },
             "require": {
@@ -2067,7 +1495,7 @@
             "require-dev": {
                 "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
-                "phpunit/phpunit": "^5.7"
+                "phpunit/phpunit": "^5.7.10"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -2126,7 +1554,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-05-07T08:44:23+00:00"
+            "time": "2018-08-22T07:45:22+00:00"
         },
         {
             "name": "madewithlove/illuminate-psr-cache-bridge",
@@ -3204,22 +2632,21 @@
         },
         {
             "name": "spatie/laravel-analytics",
-            "version": "3.6.1",
+            "version": "3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-analytics.git",
-                "reference": "a939043be66c1cc1976a8ec9b90b7157f8bdb682"
+                "reference": "8dff6dc7fb43cb6013f3d9fc57917462edded9e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/a939043be66c1cc1976a8ec9b90b7157f8bdb682",
-                "reference": "a939043be66c1cc1976a8ec9b90b7157f8bdb682",
+                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/8dff6dc7fb43cb6013f3d9fc57917462edded9e1",
+                "reference": "8dff6dc7fb43cb6013f3d9fc57917462edded9e1",
                 "shasum": ""
             },
             "require": {
                 "google/apiclient": "^2.0",
-                "illuminate/contracts": "~5.4.0|~5.5.0|~5.6.0",
-                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0",
+                "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
                 "madewithlove/illuminate-psr-cache-bridge": "^1.0",
                 "nesbot/carbon": "^1.21",
                 "php": "^7.0"
@@ -3227,7 +2654,7 @@
             "require-dev": {
                 "league/flysystem": ">=1.0.8",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.4.6|~3.5.0|~3.6.0",
+                "orchestra/testbench": "~3.4.6|~3.5.0|~3.6.0|~5.7.0",
                 "phpunit/phpunit": "^6.1|^7.0"
             },
             "type": "library",
@@ -3268,7 +2695,7 @@
                 "retrieve",
                 "spatie"
             ],
-            "time": "2018-05-04T07:47:45+00:00"
+            "time": "2018-08-24T21:31:14+00:00"
         },
         {
             "name": "spatie/string",
@@ -5512,16 +4939,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.3.1",
+            "version": "7.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f9b14c17860eccb440a0352a117a81eb754cff5a"
+                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f9b14c17860eccb440a0352a117a81eb754cff5a",
-                "reference": "f9b14c17860eccb440a0352a117a81eb754cff5a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
+                "reference": "34705f81bddc3f505b9599a2ef96e2b4315ba9b8",
                 "shasum": ""
             },
             "require": {
@@ -5592,7 +5019,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-08-07T06:44:28+00:00"
+            "time": "2018-08-22T06:39:21+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -6250,24 +5677,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "adtech/core": 20,
-        "adtech/api": 20,
-        "dhcd/notification": 20,
-        "dhcd/topic": 20,
-        "dhcd/banner": 20,
-        "dhcd/events": 20,
-        "dhcd/news": 20,
-        "dhcd/filedoc": 20,
-        "dhcd/document": 20,
-        "dhcd/member": 20,
-        "dhcd/api": 20,
-        "dhcd/administration": 20,
-        "dhcd/car": 20,
-        "dhcd/groupmanager": 20,
-        "dhcd/hotel": 20,
-        "dhcd/seat": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

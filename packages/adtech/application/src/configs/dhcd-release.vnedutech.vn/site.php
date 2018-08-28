@@ -26,6 +26,7 @@ if ($host) {
         }
     }
 }
+$modulesConfig['adtech'] = ['core', 'api'];
 krsort($modulesConfig);
 
 return [
