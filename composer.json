@@ -119,7 +119,21 @@
     "spatie/laravel-analytics": "^3.3",
     "unisharp/laravel-filemanager": "~1.8",
     "yajra/laravel-datatables-oracle": "~8.0",
-    "phpoffice/phpspreadsheet": "^1.3"
+    "phpoffice/phpspreadsheet": "^1.3",
+    "adtech/core": "dev-master",
+    "adtech/api": "dev-master",
+    "dhcd/topic": "dev-master",
+    "dhcd/banner": "dev-master",
+    "dhcd/events": "dev-master",
+    "dhcd/administration": "dev-master",
+    "dhcd/car": "dev-master",
+    "dhcd/hotel": "dev-master",
+    "dhcd/seat": "dev-master",
+    "dhcd/document": "dev-master",
+    "dhcd/sessionseat": "dev-master",
+    "dhcd/member": "dev-master",
+    "dhcd/notification": "dev-master",
+    "dhcd/api": "dev-master"
   },
   "require-dev": {
     "filp/whoops": "^2.0",
