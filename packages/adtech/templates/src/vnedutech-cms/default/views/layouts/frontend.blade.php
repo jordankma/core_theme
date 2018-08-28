@@ -14,16 +14,16 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{ asset('/js/html5shiv.js?t=').time() }}"></script>
-    <script src="{{ asset('/js/respond.min.js?t=').time() }}"></script>
+    <script src="{{ config('site.url_static') . '/js/html5shiv.js?t='.time() }}"></script>
+    <script src="{{ config('site.url_static') . '/js/respond.min.js?t='.time() }}"></script>
     <![endif]-->
 
     {{--CSRF Token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- global css -->
-    <link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/app.css?t=' . time()) }}"/>
-    <link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/global.css?t=' . time()) }}"/>
+    <link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/css/app.css?t=' . time() }}"/>
+    <link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/css/global.css?t=' . time() }}"/>
     <!-- end of global css -->
 
     <!--page css-->
@@ -49,7 +49,7 @@
                 {{--@include('includes._notifications')--}}
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{!! asset('/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg') !!}" alt="img" height="35px" width="35px"
+                            <img src="{!! config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg' !!}" alt="img" height="35px" width="35px"
                                  class="img-circle img-responsive pull-left"/>
                         <div class="riot">
                             <div>
@@ -63,7 +63,7 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
-                            <img src="{!! asset('/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg') !!}" alt="img" height="35px" width="35px"
+                            <img src="{!! config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg' !!}" alt="img" height="35px" width="35px"
                                  class="img-circle img-responsive pull-left"/>
                         </li>
                         <!-- Menu Body -->
@@ -132,7 +132,7 @@
     <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
 </a>
 <!-- global js -->
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/app.js?t=').time() }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/app.js?t='.time() }}"></script>
 <!-- end of global js -->
 <!-- begin page level js -->
 @yield('footer_scripts')

@@ -68,7 +68,8 @@ return [
     | Website backend url
     |--------------------------------------------------------------------------
     */
-    'url_storage' => 'http://dev.local.vn',
+    'url_storage' => 'http://dhcd-release.vnedutech.vn',
+    'url_static' => 'http://static.dhcd.vnedutech.vn',
     'api_prefix' => '/resource/dev/get',
     'admin_prefix' => '/admin',
     'homepage' => [
@@ -76,13 +77,13 @@ return [
             'method' => 'get',
             'uri' => '/',
             'middleware' => [],
-            'action' => 'Dhcd\Index\App\Http\Controllers\IndexController@index',
+            'action' => 'Adtech\Core\App\Http\Controllers\DashboardController@frontend',
         ],
         'backend' => [
             'method' => 'get',
             'uri' => '/',
             'middleware' => [],
-            'action' => 'Adtech\Core\App\Http\Controllers\DashboardController@index',
+            'action' => 'Adtech\Core\App\Http\Controllers\DashboardController@backend',
         ],
     ],
 

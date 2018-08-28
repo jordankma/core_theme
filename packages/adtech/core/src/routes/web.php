@@ -37,7 +37,7 @@ Route::group(array('prefix' => $adminPrefix), function () {
     //
     Route::group(['middleware' => ['adtech.auth', 'adtech.acl']], function () {
 
-        Route::get('', 'DashboardController@index')
+        Route::get('', 'DashboardController@backend')
             ->where('as', 'Trang quản trị')
             ->name('backend.homepage');
 

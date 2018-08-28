@@ -11,12 +11,12 @@ use Auth;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function backend(Request $request)
     {
         return view('ADTECH-CORE::modules.core.dashboard.backend');
     }
 
-    public function home(Request $request)
+    public function frontend(Request $request)
     {
         return redirect()->route('backend.homepage');
 //        return view('ADTECH-CORE::modules.core.dashboard.frontend');

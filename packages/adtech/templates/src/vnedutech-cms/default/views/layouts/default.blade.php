@@ -14,16 +14,16 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{ asset('/js/html5shiv.js?t=').time() }}"></script>
-    <script src="{{ asset('/js/respond.min.js?t=').time() }}"></script>
+    <script src="{{ config('site.url_static') . '/js/html5shiv.js' }}"></script>
+    <script src="{{ config('site.url_static') . '/js/respond.min.js' }}"></script>
     <![endif]-->
 
     {{--CSRF Token--}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- global css -->
-    <link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/app.css?t=' . time()) }}"/>
-    <link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/global.css?t=' . time()) }}"/>
+    <link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/css/app.css' }}"/>
+    <link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/css/global.css' }}"/>
     <!-- end of global css -->
 
     <!--page css-->
@@ -169,14 +169,15 @@
     <i class="livicon" data-name="plane-up" data-size="18" data-loop="true" data-c="#fff" data-hc="white"></i>
 </a>
 <!-- global js -->
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/jquery-1.11.1.min.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/jquery-ui.min.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/raphael-min.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/livicons-1.4.min.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/metisMenu.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/josh.js?t=').time() }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/holder.min.js?t=').time() }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/jquery-1.11.1.min.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/jquery-ui.min.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/raphael-min.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/livicons-1.4.min.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/metisMenu.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/josh.js' }}"></script>
+<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/js/holder.min.js' }}"></script>
+
 <!-- end of global js -->
 <!-- begin page level js -->
 @yield('footer_scripts')
