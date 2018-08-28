@@ -217,8 +217,8 @@ class PackageController extends Controller
 
         if (null != $domainsPackage) {
 
-            shell_exec('cd ../ && /egserver/php/bin/php artisan view:clear');
-            shell_exec('cd ../ && /egserver/php/bin/php artisan route:clear');
+            shell_exec('cd ../ && php artisan view:clear');
+            shell_exec('cd ../ && php artisan route:clear');
 
             if ($request->has('public')) {
                 if ($domainsPackage->status == 1) {
@@ -243,7 +243,7 @@ class PackageController extends Controller
                             $db_connection = "mysql_" . $package->package_alias;
                             $pathDatabase = 'packages/' . $package->package_alias . '/' . $package->module_alias . '/src/database/migrations';
                             if ($this->files->isDirectory('../' . $pathDatabase)) {
-                                shell_exec('cd ../ && /egserver/php/bin/php artisan migrate:refresh --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
+                                shell_exec('cd ../ && php artisan migrate:refresh --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
 //                                shell_exec('cd ../ && php artisan migrate:refresh --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
                             }
                         }
@@ -317,12 +317,12 @@ class PackageController extends Controller
                         $db_connection = "mysql_" . $package->package_alias;
                         $pathDatabase = 'packages/' . $package->package_alias . '/' . $package->module_alias . '/src/database/migrations';
                         if ($this->files->isDirectory('../' . $pathDatabase)) {
-//                            shell_exec('cd ../ && /egserver/php/bin/php artisan migrate --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
+//                            shell_exec('cd ../ && php artisan migrate --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
 //                            shell_exec('cd ../ && php artisan migrate --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
                         }
                         // Dump autoload.
 //                        $this->composer->dumpAutoloads();
-                        shell_exec('cd ../ && /egserver/php/bin/php /egserver/php/bin/composer dump-autoload');
+                        shell_exec('cd ../ && php /egserver/php/bin/composer dump-autoload');
 //                        shell_exec('cd ../ && composer dump-autoload');
 
                         //bung file /views/publics module
@@ -407,7 +407,7 @@ class PackageController extends Controller
                 $db_connection = "mysql_" . $package->package_alias;
                 $pathDatabase = 'packages/' . $package->package_alias . '/' . $package->module_alias . '/src/database/migrations';
                 if ($this->files->isDirectory('../' . $pathDatabase)) {
-//                    shell_exec('cd ../ && /egserver/php/bin/php artisan migrate:reset --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
+//                    shell_exec('cd ../ && php artisan migrate:reset --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
 //                    shell_exec('cd ../ && php artisan migrate:reset --path="' . $pathDatabase . '" --database="' . $db_connection . '"');
                 }
                 //Delete folder package

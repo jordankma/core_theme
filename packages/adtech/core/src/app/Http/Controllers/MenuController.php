@@ -176,10 +176,10 @@ class MenuController extends Controller
             $type = $request->input('type');
         }
 
-        shell_exec('cd ../ && /egserver/php/bin/php artisan view:clear');
-//        shell_exec('cd ../ && /egserver/php/bin/php artisan route:clear');
-//        shell_exec('cd ../ && /egserver/php/bin/php artisan config:clear');
-//        shell_exec('cd ../ && /egserver/php/bin/php /egserver/php/bin/composer dump-autoload');
+        shell_exec('cd ../ && php artisan view:clear');
+//        shell_exec('cd ../ && php artisan route:clear');
+//        shell_exec('cd ../ && php artisan config:clear');
+//        shell_exec('cd ../ && php /egserver/php/bin/composer dump-autoload');
 
         return view('ADTECH-CORE::modules.core.menu.manage', compact('domains', 'domain_id', 'type'));
     }
