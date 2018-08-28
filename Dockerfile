@@ -9,4 +9,4 @@ COPY . ./
 RUN composer dump-autoload --optimize \
     && touch  /src/storage/logs/lumen.log \
     && chown -R www-data: /src \
-    && chmod -R 777 /storage /bootstrap/cache
+    && chmod -R 777 /src/storage /src/bootstrap/cache
