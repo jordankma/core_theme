@@ -58,8 +58,8 @@ class LoginController extends Controller
         if ($request->isMethod('post')) {
             return $this->_authenticate($request);
         }
-        
-        return view('modules.core.auth.login');
+
+        return view('ADTECH-CORE::modules.core.auth.login');
     }
 
     public function logout(Request $request)
@@ -72,6 +72,6 @@ class LoginController extends Controller
 
         \Session::flash('flash_messenger', trans('adtech-core::messages.logout_success'));
 
-        return redirect(route('adtech.core.auth.login'));
+        return redirect(route('ADTECH-CORE::adtech.core.auth.login'));
     }
 }
