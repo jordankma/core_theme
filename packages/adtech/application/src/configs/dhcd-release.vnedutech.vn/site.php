@@ -26,7 +26,7 @@ if ($host) {
         }
     }
 }
-$modulesConfig['adtech'] = ['core', 'api'];
+//$modulesConfig['adtech'] = ['core', 'api'];
 krsort($modulesConfig);
 
 return [
@@ -93,14 +93,14 @@ return [
         'template' => 'default',
         'skin' => 'default'
     ],
-    'modules' => $modulesConfig,
-//    'modules' => [
-//        /**
-//         * vendor => [packages or modules]
-//         * example: 'adtech' => ['core', 'blog']
-//         */
-//        'adtech' => ['core']
-//    ],
+//    'modules' => $modulesConfig,
+    'modules' => [
+        /**
+         * vendor => [packages or modules]
+         * example: 'adtech' => ['core', 'blog']
+         */
+        'adtech' => ['core']
+    ],
     'firebase' => [
         'domain' => '',
         'app_key' => '',
