@@ -1,0 +1,22 @@
+image: docker:stable
+
+before_script:
+  - docker login -u jenkinsci -p $CI_JOB_TOKEN portus.egame.vn
+  -  docker info
+
+build-dev:
+  stage: build
+  script:
+    - docker build -t portus.egame.vn/ci/dhcd:dev .
+    - docker push portus.egame.vn/ci/dhcd:dev
+  only:
+    - dev
+
+## should have unitest stage before build and push master image
+build-master:
+  stage: build
+  script:
+    - docker build -t portus.egame.vn/ci/dhcd:master .
+    - docker push portus.egame.vn/ci/dhcd:master
+  only:
+    - master
