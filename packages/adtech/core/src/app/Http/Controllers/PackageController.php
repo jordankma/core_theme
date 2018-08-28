@@ -444,7 +444,7 @@ class PackageController extends Controller
                     }
                 }
                 $myfile .= '.tar.gz';
-                shell_exec('cd ../ && tar -zcvf public/' . $myfile . '' . $mydir);
+                shell_exec('cd ../ && tar -zcvf public/' . $myfile . ' ' . $mydir);
 
                 header("Cache-Control: public");
                 header("Content-Description: File Transfer");
@@ -739,7 +739,10 @@ class PackageController extends Controller
         }
 
         //
-        $packages = Package::with('domains')
+        $packages = Package::with(['domains' => function ($query) use ($domain_id) {
+            $query->where('adtech_core_domains_package.domain_id', $domain_id);
+            $query->where('adtech_core_domains_package.deleted_at', null);
+        }])
             ->whereHas('domains', function ($query) use ($domain_id) {
                 $query->where('adtech_core_domains_package.domain_id', $domain_id);
                 $query->where('adtech_core_domains_package.deleted_at', null);
@@ -763,27 +766,35 @@ class PackageController extends Controller
             }
         }
 
-        $newString = '';
-        foreach ($arrModules as $k => $modules) {
-            $newString .= $k . '.' . implode(',', $modules) . '_';
+        $domain = $this->domain->find($domain_id);
+        if (null != $domain) {
+            $host = $domain->name;
+            $variable = 'APP_MODULES_' . strtoupper(str_replace('.', '_', $host));
+            $path = base_path('modules/' . $variable . '.json');
+            $this->files->put($path, json_encode($arrModules));
         }
-        $newString = substr($newString, 0, -1);
-        $path = base_path('.env');
-        if (file_exists($path)) {
-            $domain = $this->domain->find($domain_id);
-            if (null != $domain) {
-                $host = $domain->name;
-                $variable = 'APP_MODULES_' . strtoupper(str_replace('.', '_', $host));
-                if (strpos(file_get_contents($path), $variable . '=') > 0) {
-                    file_put_contents($path, str_replace(
-                        $variable . '='.env($variable), $variable . '='.$newString,
-                        file_get_contents($path)
-                    ));
-                } else {
-                    file_put_contents($path, file_get_contents($path) . "\r\n" . $variable . '=' . $newString);
-                }
-            }
-        }
+
+//        $newString = '';
+//        foreach ($arrModules as $k => $modules) {
+//            $newString .= $k . '.' . implode(',', $modules) . '_';
+//        }
+//        $newString = substr($newString, 0, -1);
+//        $path = base_path('.env');
+//        if (file_exists($path)) {
+//            $domain = $this->domain->find($domain_id);
+//            if (null != $domain) {
+//                $host = $domain->name;
+//                $variable = 'APP_MODULES_' . strtoupper(str_replace('.', '_', $host));
+//                if (strpos(file_get_contents($path), $variable . '=') > 0) {
+//                    file_put_contents($path, str_replace(
+//                        $variable . '=' . env($variable), $variable . '=' . $newString,
+//                        file_get_contents($path)
+//                    ));
+//                } else {
+//                    file_put_contents($path, file_get_contents($path) . "\r\n" . $variable . '=' . $newString);
+//                }
+//            }
+//        }
         \Artisan::call('config:clear');
 
         return Datatables::of($packages)
