@@ -70,6 +70,6 @@ class LoginController extends Controller
 
         \Session::flash('flash_messenger', trans('adtech-core::messages.logout_success'));
 
-        return redirect(route('ADTECH-CORE::adtech.core.auth.login'));
+        return redirect(route('adtech.core.auth.login'));
     }
 }
