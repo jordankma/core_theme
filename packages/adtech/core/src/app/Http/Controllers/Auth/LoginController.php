@@ -31,6 +31,7 @@ class LoginController extends Controller
         if ($this->_guard()->attempt(['email' => $email, 'password' => $password], $remember)) {
             $request->session()->regenerateToken();
             \Session::flash('flash_messenger', trans('adtech-core::messages.login_success'));
+            dd($request->session());
             $routeName = $routePrefix == config('site.admin_prefix') ? 'backend.homepage' : 'frontend.homepage';
             shell_exec('cd ../ && php artisan view:clear');
             return redirect()->intended(route($routeName));
@@ -44,7 +45,6 @@ class LoginController extends Controller
                     'inputPassword' => trans('adtech-core::messages.login_failed')
                 ]);
         }
-
         return null;
     }
 
