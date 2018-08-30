@@ -5,7 +5,7 @@
 
 {{-- page styles --}}
 @section('header_styles')
-    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
 @stop
 <!--end of page css-->
 
@@ -77,7 +77,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
     <!-- begining of page js -->
-    <script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
+    <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
     <!--end of page js-->
     <script>
         $(function () {
