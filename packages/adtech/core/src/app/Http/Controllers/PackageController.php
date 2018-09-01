@@ -322,7 +322,7 @@ class PackageController extends Controller
                         }
                         // Dump autoload.
 //                        $this->composer->dumpAutoloads();
-                        shell_exec('cd ../ && php /egserver/php/bin/composer dump-autoload');
+                        shell_exec('cd ../ && composer dump-autoload');
 //                        shell_exec('cd ../ && composer dump-autoload');
 
                         //bung file /views/publics module
