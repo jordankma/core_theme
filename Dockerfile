@@ -6,7 +6,7 @@ WORKDIR /src
 RUN apt-get update -y \
     && apt-get install openjdk-8-jdk -y \
     && apt-get autoclean \
-    && rm -vf /var/lib/apt/lists/*.* /tmp/* /var/tmp/*
+    && rm -vrf /var/lib/apt/lists/*.* /tmp/* /var/tmp/*
 
 ## Add custom service to supervisor
 COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
