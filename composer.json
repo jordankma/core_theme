@@ -59,13 +59,6 @@
     },
     {
       "type": "path",
-      "url": "packages/dhcd/api",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
       "url": "packages/dhcd/car",
       "options": {
         "symlink": true
@@ -139,7 +132,6 @@
       "Adtech\\Core\\": "packages/adtech/core/src/",
       "Adtech\\Api\\": "packages/adtech/api/src/",
       "Dhcd\\Document\\": "packages/dhcd/document/src/",
-      "Dhcd\\Api\\": "packages/dhcd/api/src/",
       "Dhcd\\Car\\": "packages/dhcd/car/src/",
       "Dhcd\\Hotel\\": "packages/dhcd/hotel/src/",
       "Dhcd\\Member\\": "packages/dhcd/member/src/",
@@ -166,7 +158,6 @@
       "packages/dhcd/banner/src/",
       "packages/dhcd/events/src/",
       "packages/dhcd/administration/src/",
-      "packages/dhcd/api/src/",
       "packages/dhcd/car/src/",
       "packages/dhcd/hotel/src/",
       "packages/dhcd/seat/src/",
