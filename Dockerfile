@@ -11,7 +11,7 @@ RUN apt-get update -y \
 ## Add custom service to supervisor
 COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
 RUN echo "[include]" >> /etc/supervisord.conf \
-    && echo "files = /etc/supervisor.d/*.conf" >> /etc/supervisord.conf
+    && echo "files = /etc/supervisor/conf.d/*.conf" >> /etc/supervisord.conf
 
 COPY composer.* ./
 RUN composer update --no-scripts --no-autoloader --no-ansi
