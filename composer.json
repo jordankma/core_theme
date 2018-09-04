@@ -45,20 +45,6 @@
     },
     {
       "type": "path",
-      "url": "packages/dhcd/api",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "packages/dhcd/member",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
       "url": "packages/dhcd/document",
       "options": {
         "symlink": true
@@ -88,6 +74,20 @@
     {
       "type": "path",
       "url": "packages/dhcd/sessionseat",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/api",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/member",
       "options": {
         "symlink": true
       }
@@ -153,13 +153,13 @@
       "packages/dhcd/notification/src/",
       "packages/dhcd/events/src/",
       "packages/dhcd/administration/src/",
-      "packages/dhcd/api/src/",
-      "packages/dhcd/member/src/",
       "packages/dhcd/document/src/",
       "packages/dhcd/car/src/",
       "packages/dhcd/hotel/src/",
       "packages/dhcd/seat/src/",
-      "packages/dhcd/sessionseat/src/"
+      "packages/dhcd/sessionseat/src/",
+      "packages/dhcd/api/src/",
+      "packages/dhcd/member/src/"
     ],
     "psr-4": {
       "Tests\\": "tests/"
