@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Collection;
 use Adtech\Core\App\Models\Domain;
 use Adtech\Core\App\Models\Menu;
+use Adtech\Core\App\Models\Locale;
 use Adtech\Core\App\Models\Setting;
 use Session;
 use Cache;
@@ -43,6 +44,7 @@ class Controller extends BaseController
             $domain_id = $_GET["domain_id"];
         }
 
+        $this->_menuTop = [];
         self::getMenu($this->domainDefault);
         $arrColor = ['#4089C7', '#00BB8D', '#58BEDC', '#F99928', '#F06E6B', '#A7B4BA'];
 
@@ -52,18 +54,10 @@ class Controller extends BaseController
                 $checkGroup = 1;
                 $menuGroups = [];
                 foreach ($this->_menuList as $key => $item) {
-
-                    if ($item->parent == 0) {
-                        if ($item->route_name != '#') {
-                            if (!$this->user->canAccess($item->route_name)) {
-                                $this->_menuList->forget($key);
-                                continue;
-                            } else {
-                                if (!in_array($item->group, $menuGroups)) {
-                                    $tab = ($tab == '') ? $item->group : $tab;
-                                    $menuGroups[] = $item->group;
-                                }
-                            }
+                    if ($item->route_name != '#') {
+                        if (!$this->user->canAccess($item->route_name)) {
+                            $this->_menuList->forget($key);
+                            continue;
                         } else {
                             if (!in_array($item->group, $menuGroups)) {
                                 $tab = ($tab == '') ? $item->group : $tab;
@@ -97,17 +91,12 @@ class Controller extends BaseController
                     }
                 }
 
-                $stt = 1;
                 $menuTops = [];
                 if (count($menuGroups) > 0) {
-                    foreach (array_filter($menuGroups) as $group) {
-
-                        if ($stt > 5) continue;
-
+                    foreach ($menuGroups as $group) {
                         $object = new \stdClass();
                         $object->group = $group;
                         $menuTops[] = $object;
-                        $stt++;
                     }
                 }
 
@@ -123,7 +112,19 @@ class Controller extends BaseController
         }
 
         //get setting value
-//        Cache::forget('settings' . $this->domainDefault);
+        $locales = [];
+
+        Cache::forget('locales' . $this->domainDefault);
+        if (Cache::has('locales' . $this->domainDefault)) {
+            $locales = Cache::get('locales' . $this->domainDefault);
+        } else {
+            $locales = Locale::where('domain_id', $this->domainDefault)->get();
+            Cache::put('locales' . $this->domainDefault, $locales);
+        }
+
+        //get setting value
+        $settings = [];
+        Cache::forget('settings' . $this->domainDefault);
         if (Cache::has('settings' . $this->domainDefault)) {
             $settings = Cache::get('settings' . $this->domainDefault);
         } else {
@@ -183,6 +184,7 @@ class Controller extends BaseController
             'MENU_TOP' => $this->_menuTop,
             'COLOR_LIST' => $arrColor,
             'SETTING' => $settingView,
+            'LOCALES' => $locales,
             'DATATABLE_TRANS' => json_encode(trans('adtech-core::datatable'), JSON_UNESCAPED_UNICODE),
             'group_name'  => config('site.group_name'),
             'template'  => config('site.desktop.template'),
@@ -195,7 +197,7 @@ class Controller extends BaseController
     }
 
     function getMenu($domain_id = 0) {
-        Cache::forget('menus' . $domain_id);
+//        Cache::forget('menus' . $domain_id);
         if (Cache::has('menus' . $domain_id)) {
             $menus = Cache::get('menus' . $domain_id);
         } else {
@@ -206,6 +208,7 @@ class Controller extends BaseController
         $this->_menuList = new Collection();
         if (count($menus) > 0) {
             foreach ($menus as $menu) {
+
                 $parent_id = $menu->parent;
                 $menu_id = $menu->menu_id;
 
@@ -223,10 +226,6 @@ class Controller extends BaseController
             foreach ($menuData['parents'][$parentId] as $itemId)
             {
                 $item = $menuData['items'][$itemId];
-
-                if (self::checkSpecial($item->name)) continue;
-                if (self::checkSpecial($item->group)) continue;
-
                 $item->level = 1;
                 if ($parentId == 0)
                     $item->level = 0;
@@ -255,14 +254,5 @@ class Controller extends BaseController
         );
         foreach($unicode as $nonUnicode=>$uni) $str = preg_replace("/($uni)/i",$nonUnicode,$str);
         return $str;
-    }
-
-    function checkSpecial($str) {
-        $illegal = "#$%^&*()+=-[]';,.\/{}|:<>?~";
-        if (false != strpbrk($str, $illegal)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

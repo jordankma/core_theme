@@ -25,6 +25,8 @@ class LogSent extends Model {
     }
 
     public function notification(){
-        return $this->hasOne('Dhcd\Notification\App\Models\Notification', 'notification_id');
+        return $this->hasOne('Dhcd\Notification\App\Models\Notification', 'notification_id', 'notification_id');
     }
+
+    
 }

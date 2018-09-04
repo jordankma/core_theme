@@ -15,7 +15,7 @@ return [
     ],
     "table" => [
         "id" => "#",
-        "created_at" => "Created at",
+        "created_at" => "Ngày gửi",
         "updated_at" => "Updated at",
         "action" => "Actions",
         "notification" => [

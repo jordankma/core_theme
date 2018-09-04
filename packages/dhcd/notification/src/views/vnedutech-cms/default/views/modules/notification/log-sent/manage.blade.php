@@ -5,8 +5,8 @@
 
 {{-- page level styles --}}
 @section('header_styles')
-    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
 
@@ -45,7 +45,6 @@
                             <tr class="filters">
                                 <th class="fit-content">#</th>
                                 <th>{{ trans('dhcd-notification::language.table.log_sent.create_by') }}</th>
-                                <th>{{ trans('dhcd-notification::language.table.log_sent.group') }}</th>
                                 <th>{{ trans('dhcd-notification::language.table.log_sent.notification') }}</th>
                                 <th style="width: 120px">{{ trans('dhcd-notification::language.table.created_at') }}</th>
                                 <th>{{ trans('dhcd-notification::language.table.action') }}</th>
@@ -61,8 +60,8 @@
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
-    <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
     <script>
         $(function () {
@@ -71,9 +70,8 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.notification.log-sent.data') }}',
                 columns: [
-                    { data: 'rownum', name: 'rownum' },
+                    { data: 'DT_Row_Index', name: 'DT_Row_Index' },
                     { data: 'create_by', name: 'create_by' },
-                    { data: 'group_id', name: 'group_id' },
                     { data: 'notification_id', name: 'notification_id' },
                     { data: 'created_at', name: 'created_at'},
                     { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}

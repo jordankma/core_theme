@@ -40,10 +40,10 @@ class DocumentCate extends Model {
             if($item['parent_id'] == $prarent_id){
                 if($item['document_cate_id'] == $parent_current )
                 {
-                    echo  '<option value="'.$item['document_cate_id'].'" selected>'.$char.' '.$item['name'].'</option>';                
+                    echo  '<option value="'.$item['document_cate_id'].'" selected>'.$char.' '.htmlspecialchars($item['name']).'</option>';                
                 }
                 else{
-                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.$item['name'].'</option>';  
+                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.htmlspecialchars($item['name']).'</option>';  
                 }
                 unset($cates[$key]);
                 self::showCategories($cates,$parent_current,$item['document_cate_id'],$char.'|--');
@@ -58,20 +58,20 @@ class DocumentCate extends Model {
             if($item['parent_id'] == $prarent_id){
                 if(in_array($item['document_cate_id'], $document_cate_id))
                 {
-                    echo  '<option  value="'.$item['document_cate_id'].'" selected>'.$char.' '.$item['name'].'</option>';                
+                    echo  '<option  value="'.$item['document_cate_id'].'" selected>'.$char.' '.htmlspecialchars($item['name']).'</option>';                
                 }
                 else{
-                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.$item['name'].'</option>';  
+                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.htmlspecialchars($item['name']).'</option>';  
                 }
                  
             }
             else{
                 if(in_array($item['document_cate_id'], $document_cate_id))
                 {
-                    echo  '<option  value="'.$item['document_cate_id'].'" selected>'.$char.' '.$item['name'].'</option>';                
+                    echo  '<option  value="'.$item['document_cate_id'].'" selected>'.$char.' '.htmlspecialchars($item['name']).'</option>';                
                 }
                 else{
-                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.$item['name'].'</option>';  
+                    echo  '<option value="'.$item['document_cate_id'].'" >'.$char.' '.htmlspecialchars($item['name']).'</option>';  
                 } 
             }
             unset($cates[$key]);
@@ -95,7 +95,7 @@ class DocumentCate extends Model {
                         echo "<img width='50px' src='".$item["icon"]."' >";
                     echo '</td>';               
                     echo '<td>';
-                        echo $char . ' '.$item['name'];
+                        echo $char . ' '.htmlspecialchars($item['name']);
                     echo '</td>';               
                     echo '<td>';
                         echo !empty($parents[$item['parent_id']]) ? $parents[$item['parent_id']]['name'] : 'Root';

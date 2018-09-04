@@ -14,7 +14,7 @@ class AdtechCoreAclTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('adtech_core_acl')->insert([
+        DB::connection('mysql_core')->table('adtech_core_acl')->insert([
             'object_id' => 1,
             'object_type' => 'role',
             'created_user_id' => 1,

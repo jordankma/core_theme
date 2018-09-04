@@ -5,8 +5,8 @@
 
 {{-- page styles --}}
 @section('header_styles')
-    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-switch/css/bootstrap-switch.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-switch/css/bootstrap-switch.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
 @stop
 <!--end of page css-->
 <style type="text/css">
@@ -93,11 +93,11 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
     <!-- begining of page js -->
-    <script src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-switch/js/bootstrap-switch.js') }}" type="text/javascript"></script>
-    <script src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
-    <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
-    <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/typeahead/js/bloodhound.min.js') }}"></script><script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/typeahead/js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-switch/js/bootstrap-switch.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/typeahead/js/bloodhound.min.js') }}"></script><script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/typeahead/js/typeahead.bundle.min.js') }}"></script>
     <!--end of page js-->
     <script>
         $(function () {
@@ -184,7 +184,7 @@
                     var obj_data = JSON.parse(data);
                     if(obj_data.length>0){
                         for (i in obj_data) {
-                            text += '<li class="list-group-item"><input id="m-del-' + obj_data[i].member_id + '" type="checkbox" name="list_members[]" value="'+obj_data[i].member_id+'">  <label for="m-del-' + obj_data[i].member_id + '">' + '  ' + obj_data[i].name + ' - ' + obj_data[i].position_current + '</label></li>';
+                            text += '<li class="list-group-item"><input id="m-del-' + obj_data[i].member_id + '" type="checkbox" name="list_members[]" value="'+obj_data[i].member_id+'">  <label for="m-del-' + obj_data[i].member_id + '">' + '  ' + escapeHtml(obj_data[i].name) + ' - ' + obj_data[i].position_current + '</label></li>';
                         }
                         $('#list_members').html('');
                         $('#list_members').append(text);
@@ -195,6 +195,16 @@
                 });
             }, 500 );
         });
+        function escapeHtml(text) {
+            var map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
         //end add member
     </script>
     <div class="modal fade" id="delete_member_topic_confirm" tabindex="-1" role="dialog" aria-labelledby="delete_member_topic_confirm"

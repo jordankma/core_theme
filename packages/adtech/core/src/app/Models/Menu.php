@@ -2,13 +2,14 @@
 
 namespace Adtech\Core\App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use \Adtech\Application\Cms\Libraries\Acl as AdtechAcl;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use Dimsav\Translatable\Translatable;
 
 class Menu extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Translatable;
+
     /**
      * The database table used by the model.
      *
@@ -20,7 +21,11 @@ class Menu extends Model
 
     protected $primaryKey = 'menu_id';
 
-    protected $fillable = ['type', 'parent', 'name', 'route_name', 'domain_id', 'group'];
+    public $translatedAttributes = ['name'];
+
+    public $translationModel = 'Adtech\Core\App\Models\MenuLocale';
+
+    protected $fillable = ['type', 'parent', 'route_name', 'domain_id', 'group', 'typeData', 'typeView'];
 
     protected $dates = ['deleted_at'];
 

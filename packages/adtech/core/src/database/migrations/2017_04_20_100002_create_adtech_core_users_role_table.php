@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -24,6 +25,13 @@ class CreateAdtechCoreUsersRoleTable extends Migration
             $table->foreign('user_id')->references('user_id')->on('adtech_core_users')->onDelete('cascade');
             $table->foreign('role_id')->references('role_id')->on('adtech_core_roles')->onDelete('cascade');
         });
+
+        DB::connection('mysql_core')->table('adtech_core_users_role')->insert([
+            'user_id' => 1,
+            'role_id' => 1,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
     }
 
     /**

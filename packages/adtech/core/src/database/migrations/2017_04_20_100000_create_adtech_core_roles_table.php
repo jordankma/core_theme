@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -24,6 +25,33 @@ class CreateAdtechCoreRolesTable extends Migration
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });
+
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
+            'name' => 'Super Administrator',
+            'permission_locked' => 1,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'sort' => 1,
+            'status' => 1,
+        ]);
+
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
+            'name' => 'Administrator',
+            'permission_locked' => 0,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'sort' => 2,
+            'status' => 1,
+        ]);
+
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
+            'name' => 'User',
+            'permission_locked' => 0,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'sort' => 3,
+            'status' => 1,
+        ]);
     }
 
     /**

@@ -10,16 +10,16 @@
         </li>
         @endif
 
-        @if ($menu->route_name != '#')
-            @if (!Illuminate\Support\Facades\Route::has($menu->route_name))
-                @continue
-            @endif
-            @if (!$USER_LOGGED->canAccess($menu->route_name))
-                @continue
-            @endif
-        @endif
-
         @if ($menu->parent == 0)
+            @if ($menu->route_name != '#')
+                @if (!Illuminate\Support\Facades\Route::has($menu->route_name))
+                    @continue
+                @endif
+                @if (!$USER_LOGGED->canAccess($menu->route_name))
+                    @continue
+                @endif
+            @endif
+
             <li class="menu_more">
                 <a href="{{ ($menu->route_name != '#') ? ($menu->route_params) ? route($menu->route_name, [$menu->route_params]) : route($menu->route_name) : '#' }}">
                     <i class="livicon" data-name="{{ ($menu->icon != '') ? $menu->icon : 'question' }}" data-size="18" data-c="{{ $COLOR_LIST[rand(0, 5)] }}" data-hc="{{ $COLOR_LIST[rand(0, 5)] }}"
@@ -63,6 +63,7 @@
     <script>
         $(function () {
             $( "li.menu_more" ).each(function( i, element ) {
+
                 var sub_menu = element.querySelector('ul.sub-menu');
                 if (sub_menu) {
                     if (sub_menu.children.length > 0) {
@@ -81,7 +82,7 @@
                 } else {
                     element.querySelector('a > span.fa').remove();
                     var link = element.querySelector('a');
-                    if (link.getAttribute("href") == '#') {
+                    if (link.getAttribute("href") === '#') {
                         element.remove();
                     }
                 }

@@ -5,7 +5,7 @@
 
 {{-- page styles --}}
 @section('header_styles')
-    <link href="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
     <!--end of page css-->
 @stop
 
@@ -41,18 +41,29 @@
                         </div>
                     </div>
                     <div class="col-sm-8">
+
                         <label>Sơ đồ chỗ ngồi phiên :</label>
-                        <div class="input-group {{ $errors->first('sessionseat_img', 'has-error') }}">
-                           <span class="input-group-btn">
-                             <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                               <i class="fa fa-picture-o"></i> Choose
-                             </a>
-                           </span>
-                            <input id="thumbnail" class="form-control" type="text" name="sessionseat_img" value="{{$sessionseat->sessionseat_img}}" required>
+
+                        @if (count($sessionseat_img) > 0)
+                            @foreach($sessionseat_img as $key => $value)
+                                <div class="input-group">
+                                   <span class="input-group-btn">
+                                     <a data-input="thumbnail" data-preview="holder" class="btn lfm btn-primary">
+                                       <i class="fa fa-picture-o"></i> Choose
+                                     </a>
+                                   </span>
+                                    <input id="thumbnail" class="form-control" type="text" name="sessionseat_img[]" value="{{ $value }}" required>
+                                </div>
+                                <img id="holder" src="{{ $value }}" style="margin-top:15px;max-height:100px;">
+                                <br><br>
+                            @endforeach
+                        @endif
+
+                        <div id="boxMusicResource">
+
                         </div>
-                        <img id="holder" src="{{asset($sessionseat->sessionseat_img)}}" style="margin-top:15px;max-height:100px;">
-                        <span class="help-block">{{ $errors->first('sessionseat_img', ':message') }}</span>
-                        <br>
+
+                        <a href="#" onclick="funcCreate()"><i class="livicon" data-name="plus" data-size="80" data-loop="true" data-c="#333" data-hc="#333"></i></a>
                     </div>
                     <!-- /.col-sm-8 -->
                     <div class="col-sm-4">
@@ -75,10 +86,76 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
     <!-- begining of page js -->
-    <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
-    <script>
+    <script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
+    <!--end of page js-->
+    <script type="text/javascript">
         $(function () {
-            $('#lfm').filemanager('image');
-        })
+            $('.lfm').filemanager('image');
+        });
+
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
+        function funcCreate() {
+            var div = document.createElement('div');
+            div.className = 'col-sm-12';
+            var randStr = makeid();
+            var randStr1 = makeid();
+            div.innerHTML =
+                '<label>Chọn ảnh</label>\n' +
+                '                            <a href="#" onclick="removeRow(this)" class="pull-right">\n' +
+                '                                <i class="livicon" data-name="trash" data-size="20" data-loop="true" data-c="#333" data-hc="#333"></i>\n' +
+                '                            </a>\n' +
+                '                            <div class="input-group">\n' +
+                '                               <span class="input-group-btn">\n' +
+                '                                 <a data-input="'+ randStr +'" data-preview="'+ randStr1 +'" class="btn lfm btn-primary">\n' +
+                '                                   <i class="fa fa-picture-o"></i> Choose\n' +
+                '                                 </a>\n' +
+                '                               </span>\n' +
+                '                                <input id="'+ randStr +'" class="form-control" type="text" name="sessionseat_img[]" value="" required>\n' +
+                '                            </div>\n' +
+                '                            <img id="'+ randStr1 +'" src="" style="margin-top:15px;max-height:100px;">\n' +
+                '                            <br><br>';
+
+            if (validateForm()) {
+                document.getElementById('boxMusicResource').appendChild(div);
+                $('.lfm').filemanager('image');
+                $('.livicon').each(function () {
+                    $(this).updateLivicon();
+                });
+            }
+        }
+
+        function removeRow(input) {
+            document.getElementById('boxMusicResource').removeChild(input.parentNode);
+        }
+
+        function validateForm()
+        {
+            return true;
+            var container, inputs, index;
+
+            // Get the container element
+            container = document.getElementById('sessionseatForm');
+
+            // Find its child `input` elements
+            inputs = container.getElementsByTagName('input');
+            for (index = 0; index < inputs.length; ++index) {
+                if (inputs[index].value === '') {
+                    inputs[index].focus();
+                    alert("Yêu cầu nhập đủ thông tin!");
+                    return false;
+                }
+                // deal with inputs[index] element.
+            }
+            return true;
+        }
     </script>
 @stop

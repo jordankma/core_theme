@@ -14,7 +14,7 @@ class AdtechCoreUsersRoleTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('adtech_core_users_role')->insert([
+        DB::connection('mysql_core')->table('adtech_core_users_role')->insert([
             'user_id' => 1,
             'role_id' => 1,
             'created_at' => new DateTime(),

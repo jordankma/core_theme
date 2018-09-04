@@ -366,11 +366,12 @@ class MemberController extends Controller
                 return $actions;
             })
             ->addColumn('position', function ($members) {
-                $position = $members->position_current;
+                $position = htmlspecialchars($members->position_current);
                 return $position;
             })
             ->addColumn('group', function ($members) {
-                $group = $members->group[0]->name;
+                $group = '';
+                $group = htmlspecialchars($members->group[0]->name);
                 return $group;
             })
             ->rawColumns(['actions','status','group'])

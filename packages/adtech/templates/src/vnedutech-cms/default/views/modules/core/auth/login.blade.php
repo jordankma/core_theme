@@ -17,11 +17,6 @@
     <link rel="stylesheet" href=" {{ asset('/vendor/' . $group_name . '/' . $skin . '/css/font-awesome.min.css') }}">
     <!--end of page level css-->
 
-    <style type="text/css">
-        body {
-            background:url('/vendor/vnedutech-cms/default/images/background.png') no-repeat center center fixed !important;
-        }
-    </style>
 </head>
 <body>
 <div class="container">

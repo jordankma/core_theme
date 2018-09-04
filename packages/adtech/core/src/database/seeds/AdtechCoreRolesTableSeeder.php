@@ -14,7 +14,7 @@ class AdtechCoreRolesTableSeeder extends Seeder
     public function run()
     {
 
-        DB::table('adtech_core_roles')->insert([
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
             'name' => 'Super Administrator',
             'permission_locked' => 1,
             'created_at' => new DateTime(),
@@ -23,7 +23,7 @@ class AdtechCoreRolesTableSeeder extends Seeder
             'status' => 1,
         ]);
 
-        DB::table('adtech_core_roles')->insert([
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
             'name' => 'Administrator',
             'permission_locked' => 0,
             'created_at' => new DateTime(),
@@ -32,7 +32,7 @@ class AdtechCoreRolesTableSeeder extends Seeder
             'status' => 1,
         ]);
 
-        DB::table('adtech_core_roles')->insert([
+        DB::connection('mysql_core')->table('adtech_core_roles')->insert([
             'name' => 'User',
             'permission_locked' => 0,
             'created_at' => new DateTime(),

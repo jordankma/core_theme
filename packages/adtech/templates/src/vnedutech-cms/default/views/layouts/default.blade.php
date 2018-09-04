@@ -45,58 +45,10 @@
 
         <div class="navbar-right">
             <ul class="nav navbar-nav">
-                {{--@include('includes._messages')--}}
+                @include('includes._locales')
+                @include('includes._users')
                 {{--@include('includes._notifications')--}}
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{!! config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg') !!}" alt="img" height="35px" width="35px"
-                                 class="img-circle img-responsive pull-left"/>
-                        <div class="riot">
-                            <div>
-                                <p class="user_name_max">{{ $USER_LOGGED->contact_name }}</p>
-                                <span>
-                                    <i class="caret"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header bg-light-blue">
-                            <img src="{!! config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/images/authors/no_avatar.jpg') !!}" alt="img" height="35px" width="35px"
-                                 class="img-circle img-responsive pull-left"/>
-                        </li>
-                        <!-- Menu Body -->
-                        {{--<li>--}}
-                            {{--<a href="#">--}}
-                                {{--<i class="livicon" data-name="user" data-s="18"></i>--}}
-                                {{--My Profile--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li role="presentation"></li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#">--}}
-                                {{--<i class="livicon" data-name="gears" data-s="18"></i>--}}
-                                {{--Account Settings--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            {{--<div class="pull-left">--}}
-                                {{--<a href="{{ URL::route('adtech.core.auth.logout',$USER_LOGGED_ID) }}">--}}
-                                    {{--<i class="livicon" data-name="lock" data-size="16" data-c="#555555" data-hc="#555555" data-loop="true"></i>--}}
-                                    {{--Lock--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                            <div class="pull-right">
-                                <a href="{{ URL::route('adtech.core.auth.logout') }}">
-                                    <i class="livicon" data-name="sign-out" data-s="15"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+
             </ul>
         </div>
 

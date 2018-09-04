@@ -8,18 +8,9 @@
           <div>{!! $error !!}</div>
       @else
           <div class="col-md-8">
-            <label>{{trans('dhcd-notification::language.label.group_sent') }}</label>
+            {{ trans('dhcd-notification::confirm.' . $model .'.'.$type. '.body') }}
+            {{-- <label>{{trans('dhcd-notification::language.label.time_sent') }}</label>
             <div class="form-group">
-                <select class="form-control" id="group_id" name="group_id" required="">
-                @if(!empty($groups))
-                @foreach($groups as $group)
-                    <option value="{{$group->group_id}}">{{$group->name}} </option>
-                @endforeach
-                @endif
-                </select>
-            </div>
-            <label>{{trans('dhcd-notification::language.label.time_sent') }}</label>
-             <div class="form-group">
                 <div class='input-group date'>
                     <input type='text' class="form-control" name="time_sent" id="time_sent" placeholder="{{trans('dhcd-notification::language.placeholder.notification.time_sent_here') }}"/>
                     <span class="input-group-addon">
@@ -27,7 +18,7 @@
                     </span>
                 </div>
                 <p style="color: red">Không chọn mặc định là gửi luôn</p>
-            </div>
+            </div> --}}
             </div>
           </div>
       @endif

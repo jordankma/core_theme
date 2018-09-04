@@ -8,6 +8,8 @@ use Adtech\Core\App\Repositories\MenuRepository;
 use Adtech\Core\App\Http\Requests\MenuRequest;
 use Adtech\Core\App\Models\Menu;
 use Adtech\Core\App\Models\Domain;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Collection;
 use Spatie\Activitylog\Models\Activity;
@@ -59,7 +61,6 @@ class MenuController extends Controller
                 }
             }
 
-            $icon = (string) $icon;
             $menu = new Menu($request->all());
             $menu->domain_id = $domain_id;
             $menu->route_params = ($route_params == 0 && $route_params == '') ? $route_params_detail : $route_params;
@@ -67,7 +68,7 @@ class MenuController extends Controller
             $menu->typeView = $typeView;
             $menu->group = $group;
             $menu->sort = (int) $sort;
-            $menu->icon = (strlen($icon) < 4) ? 'adjust' : $icon;
+            $menu->icon = (string) $icon;
             $menu->alias = $alias;
             $menu->save();
 
@@ -188,7 +189,6 @@ class MenuController extends Controller
     {
         $menu_id = $request->input('menu_id');
         $menu = $this->menu->find($menu_id);
-        $listRouteType = $listRouteView = [];
 
         if ($menu) {
             self::getMenu($menu->domain_id);
@@ -196,10 +196,10 @@ class MenuController extends Controller
 
             //get route name list
             $app = app();
+            $listRouteType = $listRouteView = array();
             $type = $menu->type;
             $typeData = $menu->typeData;
             $typeView = $menu->typeView;
-            $route_name = $menu->route_name;
             $route_params = null;
 
 
@@ -283,7 +283,6 @@ class MenuController extends Controller
                 return redirect()->route('adtech.core.menu.manage', ['domain_id' => $domain_id, 'type' => $type])->with('error', trans('adtech-core::messages.error.create'));
         }
 
-        $icon = (string) $icon;
         $menu = $this->menu->find($menu_id);
         $group = ($request->has('group')) ? $request->input('group') : $menu->group;
 
@@ -296,7 +295,7 @@ class MenuController extends Controller
         $menu->route_name = $route_name;
         $menu->route_params = ($route_params == 0 && $route_params == '') ? $route_params_detail : $route_params;
         $menu->sort = (int) $sort;
-        $menu->icon = (strlen($icon) < 4) ? 'adjust' : $icon;
+        $menu->icon = (string) $icon;
 
         if ($menu->save()) {
 
@@ -378,7 +377,8 @@ class MenuController extends Controller
             return Datatables::of($menus)
                 ->addIndexColumn()
                 ->editColumn('name', function ($menus) {
-                    $name = str_repeat('---', $menus->level) . $menus->name;
+                    $name = '<span class="flagTxt">' . $menus->getTranslation()->locale .'</span>';
+                    $name .= str_repeat('---', $menus->level) . $menus->name;
                     return $name;
                 })
                 ->editColumn('icon', function ($menus) {
@@ -440,10 +440,6 @@ class MenuController extends Controller
             foreach ($menuData['parents'][$parentId] as $itemId)
             {
                 $item = $menuData['items'][$itemId];
-
-                if (self::checkSpecial($item->name)) continue;
-                if (self::checkSpecial($item->group)) continue;
-
                 $item->level = 1;
                 if ($parentId == 0)
                     $item->level = 0;

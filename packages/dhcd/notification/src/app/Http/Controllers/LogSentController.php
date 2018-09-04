@@ -15,6 +15,7 @@ use Dhcd\Notification\App\Models\LogSent;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator,DateTime;
+// use Curl\Curl;
 
 class LogSentController extends Controller
 {
@@ -77,8 +78,9 @@ class LogSentController extends Controller
     //Table Data to index page
     public function data()
     {
-        $log_sents = $this->log_sent->findAll()->with('group','notification');
+        $log_sents = LogSent::orderBy('log_sent_id', 'desc')->with('notification')->get();
         return Datatables::of($log_sents)
+            ->addIndexColumn()
             ->addColumn('actions', function ($log_sents) {
                 $actions = '<a href=' . route('dhcd.notification.log-sent.confirm-delete', ['log_sent_id' => $log_sents->log_sent_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete log_sent"></i></a>';
                 return $actions;
@@ -88,15 +90,11 @@ class LogSentController extends Controller
                 $created_at = date_format($date, 'd-m-Y');
                 return $created_at;   
             })
-            ->addColumn('group_id', function ($log_sents) {
-                $group_id = $log_sents->group_id;
-                return $group_id;   
-            })
             ->addColumn('notification_id', function ($log_sents) {
-                $notification_id = $log_sents->notification_id;
+                $notification_id = htmlspecialchars($log_sents->notification->name);
                 return $notification_id;   
             })
-            ->rawColumns(['actions','created_at','group_id','notification_id'])
+            ->rawColumns(['actions','created_at','notification_id'])
             ->make();
     }
 }

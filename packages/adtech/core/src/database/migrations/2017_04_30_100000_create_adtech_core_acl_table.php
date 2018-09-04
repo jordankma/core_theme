@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -30,6 +31,15 @@ class CreateAdtechCoreAclTable extends Migration
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });
+
+        DB::connection('mysql_core')->table('adtech_core_acl')->insert([
+            'object_id' => 1,
+            'object_type' => 'role',
+            'created_user_id' => 1,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+            'allow' => null,
+        ]);
     }
 
     /**

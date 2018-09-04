@@ -20,6 +20,7 @@ class AdtechCoreSettings extends Migration
             $table->string('value');
             $table->tinyInteger('status', false, true)->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

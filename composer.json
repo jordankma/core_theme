@@ -31,20 +31,6 @@
     },
     {
       "type": "path",
-      "url": "packages/dhcd/topic",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "packages/dhcd/banner",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
       "url": "packages/dhcd/events",
       "options": {
         "symlink": true
@@ -53,6 +39,27 @@
     {
       "type": "path",
       "url": "packages/dhcd/administration",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/api",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/member",
+      "options": {
+        "symlink": true
+      }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/document",
       "options": {
         "symlink": true
       }
@@ -84,24 +91,10 @@
       "options": {
         "symlink": true
       }
-    },
-    {
-      "type": "path",
-      "url": "packages/dhcd/document",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
-      "url": "packages/dhcd/member",
-      "options": {
-        "symlink": true
-      }
     }
   ],
   "require": {
-    "php": "^7.1.10",
+    "php": "^7.1.3",
     "barryvdh/laravel-ide-helper": "^2.3",
     "cartalyst/sentinel": "^2.0",
     "fideloper/proxy": "^4.0",
@@ -112,7 +105,14 @@
     "spatie/laravel-analytics": "^3.3",
     "unisharp/laravel-filemanager": "~1.8",
     "yajra/laravel-datatables-oracle": "~8.0",
-    "phpoffice/phpspreadsheet": "^1.3"
+    "phpoffice/phpspreadsheet": "^1.3",
+    "dimsav/laravel-translatable": "^9.0",
+    "google/protobuf": "v3.6.0.1",
+    "guzzle/guzzle": "~3.0",
+    "maatwebsite/excel": "^3.0",
+    "tymon/jwt-auth": "^1.0.0",
+    "unisharp/laravel-fileapi": "^1.0",
+    "elasticquent/elasticquent": "dev-master"
   },
   "require-dev": {
     "filp/whoops": "^2.0",
@@ -131,17 +131,16 @@
       "Adtech\\Templates\\": "packages/adtech/templates/src/",
       "Adtech\\Core\\": "packages/adtech/core/src/",
       "Adtech\\Api\\": "packages/adtech/api/src/",
+      "Dhcd\\Notification\\": "packages/dhcd/notification/src/",
+      "Dhcd\\Events\\": "packages/dhcd/events/src/",
+      "Dhcd\\Administration\\": "packages/dhcd/administration/src/",
+      "Dhcd\\Api\\": "packages/dhcd/api/src/",
+      "Dhcd\\Member\\": "packages/dhcd/member/src/",
       "Dhcd\\Document\\": "packages/dhcd/document/src/",
       "Dhcd\\Car\\": "packages/dhcd/car/src/",
       "Dhcd\\Hotel\\": "packages/dhcd/hotel/src/",
-      "Dhcd\\Member\\": "packages/dhcd/member/src/",
       "Dhcd\\Seat\\": "packages/dhcd/seat/src/",
-      "Dhcd\\Sessionseat\\": "packages/dhcd/sessionseat/src/",
-      "Dhcd\\Notification\\": "packages/dhcd/notification/src/",
-      "Dhcd\\Topic\\": "packages/dhcd/topic/src/",
-      "Dhcd\\Banner\\": "packages/dhcd/banner/src/",
-      "Dhcd\\Events\\": "packages/dhcd/events/src/",
-      "Dhcd\\Administration\\": "packages/dhcd/administration/src/"
+      "Dhcd\\Sessionseat\\": "packages/dhcd/sessionseat/src/"
     }
   },
   "autoload-dev": {
@@ -151,19 +150,16 @@
       "packages/adtech/templates/src/",
       "packages/adtech/core/src/",
       "packages/adtech/api/src/",
-      "packages/adtech/core/src/",
-      "packages/adtech/api/src/",
       "packages/dhcd/notification/src/",
-      "packages/dhcd/topic/src/",
-      "packages/dhcd/banner/src/",
       "packages/dhcd/events/src/",
       "packages/dhcd/administration/src/",
+      "packages/dhcd/api/src/",
+      "packages/dhcd/member/src/",
+      "packages/dhcd/document/src/",
       "packages/dhcd/car/src/",
       "packages/dhcd/hotel/src/",
       "packages/dhcd/seat/src/",
-      "packages/dhcd/sessionseat/src/",
-      "packages/dhcd/document/src/",
-      "packages/dhcd/member/src/"
+      "packages/dhcd/sessionseat/src/"
     ],
     "psr-4": {
       "Tests\\": "tests/"

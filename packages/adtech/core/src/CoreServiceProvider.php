@@ -64,6 +64,7 @@ class CoreServiceProvider extends ServiceProvider
         /** load translations **/
         $this->loadTranslationsFrom(__DIR__ . '/translations', $this->vendor . '-' . $this->package);
 
+        $this->app['router']->middlewareGroup('adtech.locale', ['\Adtech\Core\App\Middleware\LocaleMiddleware']);
         $this->app['router']->middlewareGroup('adtech.auth', ['\Adtech\Core\App\Middleware\AuthMiddleware']);
         $this->app['router']->middlewareGroup('adtech.acl', ['\Adtech\Core\App\Middleware\AclMiddleware']);
     }

@@ -24,6 +24,7 @@ class NotificationController extends Controller
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
+    private $api_key_firebase = "AIzaSyC7QR88yMT5sFP-AXiTBCuhPcxbdHTVVR8";
 
     public function __construct(NotificationRepository $notificationRepository,GroupRepository $groupRepository)
     {
@@ -245,26 +246,28 @@ class NotificationController extends Controller
         if (!$validator->fails()) {
             $notification_id = $request->input('notification_id');
             $notification = $this->notification->find($notification_id);
-            $time_sent = $request->input('time_sent');
-            if($time_sent != null || $time_sent != ''){
-                $date = new DateTime($request->input('time_sent'));
-                $time_sent = $date->format('Y-m-d H:i:s');
-            }
-            
+            // $time_sent = $request->input('time_sent');
+            // if($time_sent != null || $time_sent != ''){
+            //     $date = new DateTime($request->input('time_sent'));
+            //     $time_sent = $date->format('Y-m-d H:i:s');
+            // }
             $log_sent = new LogSent();
             $log_sent->notification_id = $request->input('notification_id');
-            $log_sent->group_id = $request->input('group_id');
             $log_sent->create_by = $this->user->email;
-            $log_sent->time_sent = $time_sent;
+            // $log_sent->time_sent = $time_sent;
             $log_sent->created_at = new DateTime();
             $log_sent->updated_at = new DateTime();
             if ($log_sent->save()) {
-
+                $message = [
+                    'title' => $notification->name,
+                    'body' => $notification->content
+                ];
+                $this->sendGCM( $message );
                 activity('notification')
                     ->performedOn($notification)
                     ->withProperties($request->all())
                     ->log('User: :causer.email - Sent notification - notification_id: :properties.notification_id, name: :properties.name');
-
+                    
                 return redirect()->route('dhcd.notification.notification.manage')->with('success', trans('dhcd-notification::language.messages.success.sent'));
             } else {
                 return redirect()->route('dhcd.notification.notification.manage')->with('error', trans('dhcd-notification::language.messages.error.sent'));
@@ -273,5 +276,52 @@ class NotificationController extends Controller
             return $validator->messages();
         }
     }
+    private function sendGCM($message=null) {
+        $list_topic = array('global','global1','global2','global3','global4','global5','global6','global7','global8','global9');
+        if($message==null){
+            $msg = array(
+                'title' => 'Thông báo',
+                'body'  => 'Nội dung thông báo'
+            );
+        } else {
+            $msg = $message;  
+        }
+        foreach ($list_topic as $key => $value) {
+            $this->actionSendGCM($value,$msg);
+        }
+    }
+    private function actionSendGCM($topic_name,$msg) {
+        $fields = array (
+          'to' => '/topics/'.$topic_name,
+          'notification' => $msg
+        );
+        $headers = array
+        (
+            'Authorization: key=' . $this->api_key_firebase,
+            'Content-Type: application/json'
+        );
+        #Send Reponse To FireBase Server    
+        $ch = curl_init();
+        curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+        curl_setopt( $ch,CURLOPT_POST, true );
+        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+        $result = curl_exec( $ch );
+        curl_close( $ch );
+        #Echo Result Of FireBase Server
+    }
 
+    public function notificationList(){
+        $notifications = Notification::all();
+        $list_notification = array();
+        foreach ($notifications as $key => $value) {
+            $list_notification[] = [
+                'name' => $value->name,
+                'content' => $value->content
+            ];    
+        } 
+        return json_encode($list_notification);   
+    }
 }

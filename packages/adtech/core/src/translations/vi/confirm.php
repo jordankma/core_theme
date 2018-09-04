@@ -30,5 +30,9 @@ return [
     "star" => [
         "title" => "Delete Gift",
         "body" => "Are you sure to delete this gift? This operation is irreversible."
+    ],
+    "locale" => [
+        "title" => "Delete Locale",
+        "body" => "Are you sure to delete this locale? This operation is irreversible."
     ]
 ];

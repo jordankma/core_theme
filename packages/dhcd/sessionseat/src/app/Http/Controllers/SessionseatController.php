@@ -29,7 +29,7 @@ class SessionseatController extends Controller
     {
         $sessionseat = new Sessionseat($request->all());
         $sessionseat->sessionseat_name = $request->input('sessionseat_name');
-        $sessionseat->sessionseat_img = $request->input('sessionseat_img');
+        $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
 
         $sessionseat->save();
         if ($sessionseat->sessionseat_id) {
@@ -74,8 +74,10 @@ class SessionseatController extends Controller
         $sessionseat_id = $request->input('sessionseat_id');
         $sessionseat = $this->sessionseat->find($sessionseat_id);
         if(null!=$sessionseat){
+            $sessionseat_img = json_decode($sessionseat->sessionseat_img);
             $data = [
-                'sessionseat' => $sessionseat
+                'sessionseat' => $sessionseat,
+                'sessionseat_img' => $sessionseat_img
             ];
             return view('DHCD-SESSIONSEAT::modules.sessionseat.edit', $data);
         }
@@ -88,7 +90,7 @@ class SessionseatController extends Controller
         $sessionseat = $this->sessionseat->find($sessionseat_id);
         if(null!=$sessionseat){
             $sessionseat->sessionseat_name = $request->input('sessionseat_name');
-            $sessionseat->sessionseat_img = $request->input('sessionseat_img');
+            $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
             if ($sessionseat->save()) {
                 activity('sessionseat')
                     ->performedOn($sessionseat)
@@ -147,7 +149,7 @@ class SessionseatController extends Controller
     {
         return Datatables::of($this->sessionseat->findAll())
             ->editColumn('img',function ($sessionseat){
-                $img = $sessionseat->sessionseat_img;
+                $img = json_decode($sessionseat->sessionseat_img)[0];
                 return '<img src='.$img.' height="auto" width="200px">';
             })
             ->addColumn('actions', function ($sessionseat) {

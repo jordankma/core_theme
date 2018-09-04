@@ -61,4 +61,8 @@ class Member extends Model implements AuthenticatableContract, CanResetPasswordC
     public function group(){
         return $this->belongsToMany('Dhcd\Member\App\Models\Group', 'dhcd_group_has_member', 'member_id', 'group_id');    
     }
+
+    public function documentCate(){
+        return $this->belongsToMany('Dhcd\Document\App\Models\DocumentCate', 'dhcd_document_cate_has_member', 'member_id', 'document_cate_id');
+    }
 }

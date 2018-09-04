@@ -217,9 +217,6 @@ class PackageController extends Controller
 
         if (null != $domainsPackage) {
 
-            shell_exec('cd ../ && php artisan view:clear');
-            shell_exec('cd ../ && php artisan route:clear');
-
             if ($request->has('public')) {
                 if ($domainsPackage->status == 1) {
                     $package = $this->package->find($package_id);
@@ -299,7 +296,7 @@ class PackageController extends Controller
                             $arrAutoload_psr4[$str_psr4] = 'packages/' . $package->package_alias . '/' . $package->module_alias . '/src/';
 
                             $composerObject->repositories = $repositories;
-                            $composerObject->require = array_merge((array) $require, $arrRequire);
+//                            $composerObject->require = array_merge((array) $require, $arrRequire);
                             $composerObject->autoload__dev->classmap = $autoload_dev_classmap;
                             $composerObject->autoload->psr__4 = array_merge((array) $autoload_psr4, $arrAutoload_psr4);
 
@@ -394,7 +391,7 @@ class PackageController extends Controller
                     $autoload_psr4 = (object) $arrAutoload_psr4;
                     $autoload_dev_classmap = $arrAutoload_dev_classmap;
 
-                    $composerObject->require = $require;
+//                    $composerObject->require = $require;
                     $composerObject->repositories = $repositoriesEmpty;
                     $composerObject->autoload__dev->classmap = array_values($autoload_dev_classmap);
                     $composerObject->autoload->psr__4 = $autoload_psr4;
