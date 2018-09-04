@@ -31,6 +31,7 @@
   array (
     'title_here' => 'Nhập tiêu đề trang tại đây...',
     'logo_link_here' => 'Liên kết logo tại đây...',
+    'app_version_here' => 'Phiên bản app tại đây...',
     'company_name_here' => 'Nhập tên công ty tại đây...',
     'address_here' => 'Nhập địa chỉ công ty tại đây...',
     'email_here' => 'Nhập email tại đây...',

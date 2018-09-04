@@ -73,13 +73,16 @@ class SettingController extends Controller
 //        $languageArr = config('translatable.locales');
         $languageArr = Locale::where('status', 1)->get();
         $settings = Setting::where('domain_id', $this->domainDefault)->get();
-        $title = $logo = $logo_mini = $logo_link = $favicon = $company_name = $address = $email = $phone = $hotline = $ga_code = $chat_code = $slogan = '';
+        $title = $logo = $logo_mini = $logo_link = $favicon = $company_name = $address = $email = $phone = $hotline = $ga_code = $chat_code = $slogan = $app_version = '';
 
         if (count($settings) > 0) {
             foreach ($settings as $setting) {
                 switch ($setting->name) {
                     case 'logo':
                         $logo = $setting->value;
+                        break;
+                    case 'app_version':
+                        $app_version = $setting->value;
                         break;
                     case 'logo_mini':
                         $logo_mini = $setting->value;
@@ -129,6 +132,7 @@ class SettingController extends Controller
             'title' => $title,
             'tab' => $tab,
             'logo' => $logo,
+            'app_version' => $app_version,
             'company_name' => $company_name,
             'logo_mini' => $logo_mini,
             'logo_link' => $logo_link,

@@ -52,7 +52,6 @@
                                 <th class="fit-content">{{ trans('dhcd-events::language.table.stt') }}</th>
                                 <th>{{ trans('dhcd-events::language.table.events.name') }}</th>
                                 <th>{{ trans('dhcd-events::language.table.events.date') }}</th>
-                                <th style="width: 120px">{{ trans('dhcd-events::language.table.content') }}</th>
                                 <th style="width: 120px">{{ trans('dhcd-events::language.table.detail') }}</th>
                                 <th>{{ trans('dhcd-events::language.table.action') }}</th>
                             </tr>
@@ -84,7 +83,6 @@
                     { data: 'rownum', name: 'rownum' },
                     { data: 'name', name: 'name' , },
                     { data: 'date', name:'date'},
-                    { data: 'content', name: 'content'},
                     { data: 'event_detail', name: 'event_detail'},
                     { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
                 ]

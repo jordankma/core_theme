@@ -38,6 +38,11 @@
                 <div class="row">
                     <div class="col-sm-8">
 
+                        <label>App Version</label>
+                        <div class="form-group">
+                            {!! Form::text('app_version', $app_version, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.app_version_here'))) !!}
+                        </div>
+
                         <label>{{ trans('adtech-core::labels.setting.title_page') }}</label>
                         <div class="form-group">
                             {!! Form::text('title', $title, array('class' => 'form-control', 'autofocus'=>'autofocus', 'placeholder'=> trans('adtech-core::common.setting.title_here'))) !!}

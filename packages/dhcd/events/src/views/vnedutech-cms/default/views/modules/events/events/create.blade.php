@@ -72,12 +72,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group {{ $errors->first('content', 'has-error') }}">
-                                        <label class="control-label col-md-3">{{trans('dhcd-events::language.titles.events.content')}} (<span class="red">*</span>):</label>
-                                        <div class="col-md-9">
-                                            {!! Form::textarea('content', null, array('class' => 'form-control', 'placeholder'=> trans('dhcd-events::language.placeholder.events.content_here'))) !!}
-                                        </div>
-                                    </div>
+                                    {{--<div class="form-group {{ $errors->first('content', 'has-error') }}">--}}
+                                        {{--<label class="control-label col-md-3">{{trans('dhcd-events::language.titles.events.content')}} (<span class="red">*</span>):</label>--}}
+                                        {{--<div class="col-md-9">--}}
+                                            {{--{!! Form::textarea('content', null, array('class' => 'form-control', 'placeholder'=> trans('dhcd-events::language.placeholder.events.content_here'))) !!}--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
 
                                     <div class="form-group form-actions">
                                         <div class="row">
