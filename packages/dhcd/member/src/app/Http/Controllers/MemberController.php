@@ -15,6 +15,9 @@ use Dhcd\Member\App\Models\Position;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator,Auth,DateTime,DB,Cache;
+
+use Dhcd\Member\App\Elastic\MemberElastic;
+
 class MemberController extends Controller
 {
     private $messages = array(
@@ -115,6 +118,8 @@ class MemberController extends Controller
                     DB::table('dhcd_group_has_member')->insert($data_insert);
                 }
                 Cache::forget('member');
+                $member_elastic = new MemberElastic();
+                $member_elastic->saveDocument($members->member_id);
                 activity('member')
                     ->performedOn($members)
                     ->withProperties($request->all())
@@ -224,6 +229,8 @@ class MemberController extends Controller
                     DB::table('dhcd_group_has_member')->insert($data_insert);
                 }
                 Cache::forget('member');
+                $member_elastic = new MemberElastic();
+                $member_elastic->saveDocument($member->member_id);
                 activity('member')
                     ->performedOn($member)
                     ->withProperties($request->all())
@@ -244,6 +251,8 @@ class MemberController extends Controller
         $member = $this->member->find($member_id);
         if (null != $member) {
             $this->member->delete($member_id);
+            $member_elastic = new MemberElastic();
+            $member_elastic->saveDocument($member_id);
             DB::table('dhcd_group_has_member')->where(['member_id' => $member_id])->delete();
             Cache::forget('member');
             activity('member')
@@ -454,6 +463,8 @@ class MemberController extends Controller
                     if($member->save()){
                         $group_id = (int)$value[8];
                         $member_id = $member->member_id;
+                        $member_elastic = new MemberElastic();
+                        $member_elastic->saveDocument($member_id);
                         if (!GroupHasMember::where([
                             'group_id' => $group_id,
                             'member_id' => $member_id
@@ -469,6 +480,23 @@ class MemberController extends Controller
             return redirect()->route('dhcd.member.member.manage')->with('success', trans('dhcd-member::language.messages.success.import'));
         } else {
             return $validator->messages(); 
+        }
+    }
+
+    public function sync(Request $request, $type){
+        if ($type == 0) {
+            MemberElastic::syncDocuments(95);
+            $redirectUrl = $request->fullUrl();
+            echo "<script>window.location.href = '{$redirectUrl}';</script>";
+        } else {
+            if (MemberElastic::getMapping()) {
+                MemberElastic::deleteMapping();
+            }
+            MemberElastic::putMapping();
+            Member::where(['sync_es' => 'done'])->update(['sync_es' => 'pending']);
+            
+            $url = route('sync',0);
+            echo "<script>window.location.href = '{$url}';</script>";
         }
     }
 }

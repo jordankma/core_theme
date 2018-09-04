@@ -27,12 +27,12 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/test?time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/search?time='.time()*1000 .'&keyword=lê', 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
-//        echo $encrypted.'<br>';
-//        echo $decrypted.'<br>';die;
+       // echo $encrypted.'<br>';
+       // echo $decrypted.'<br>';die;
 
         $query = [];
         if (count($parts) > 0) {
@@ -62,9 +62,6 @@ class GlobalController extends Controller
                         }
                         case 'dev/get/session-seat': {
                             return $this->getSessionSeat();
-                        }
-                        case 'dev/get/version': {
-                            return $this->getVersion();
                         }
                         case 'dev/get/domain-api': {
                             return $this->getDomainApi();

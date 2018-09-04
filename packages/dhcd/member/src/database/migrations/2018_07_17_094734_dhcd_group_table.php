@@ -22,7 +22,7 @@ class DhcdGroupTable extends Migration
             $table->longText('members')->nullable();        
             $table->tinyInteger('type', false, true)->comment('1 doan binh thuong 2 doan bau cu')->default(2);
             $table->tinyInteger('status', false, true)->comment('trang thai')->default(1);
-            
+            $table->string('sync_es')->nullable()->default('pending');
             $table->timestamps();
             $table->softDeletes();
         });

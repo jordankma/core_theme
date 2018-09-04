@@ -41,6 +41,7 @@ class DhcdMemberTable extends Migration
             $table->string('reg_ip')->nullable();
             $table->datetime('last_login')->nullable();
             $table->string('last_ip')->nullable();
+            $table->string('sync_es')->nullable()->default('pending');
             
             $table->tinyInteger('status', false, true)->comment('trang thai')->default(1);
             
