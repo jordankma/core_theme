@@ -22,7 +22,7 @@ trait Document
     public function getMenuDocument()
     {
         $cache_name = 'api_document_cate';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $menus = Cache::get($cache_name);
         } else {
@@ -60,7 +60,7 @@ trait Document
     public function getAllDocument()
     {
         $cache_name = 'api_all_document_cate';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $documentCates = Cache::get($cache_name);
         } else {
@@ -78,7 +78,7 @@ trait Document
                 $alias = $cate->alias;
 
                 $cache_name = 'api_doc_document_page_' . $alias . '_all';
-                Cache::forget($cache_name);
+//                Cache::forget($cache_name);
                 if (Cache::has($cache_name)) {
                     $filesDoc = Cache::get($cache_name);
                 } else {
@@ -159,7 +159,7 @@ trait Document
 
             //doc child
             $cache_name = 'api_doc_document_page_' . $alias . '_all';
-            Cache::forget($cache_name);
+//            Cache::forget($cache_name);
             if (Cache::has($cache_name)) {
                 $filesDoc = Cache::get($cache_name);
             } else {
@@ -259,17 +259,18 @@ trait Document
                 return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
 
             } else {
-                Cache::forget('api_doc_document_page_' . $alias . '_' . $page);
-                if (Cache::has('api_doc_document_page_' . $alias . '_' . $page)) {
-                    $filesDoc = Cache::get('api_doc_document_page_' . $alias . '_' . $page);
+                $cache_name = 'api_doc_document_page_' . $alias . '_' . $page;
+//                Cache::forget('api_doc_document_page_' . $alias . '_' . $page);
+                if (Cache::has($cache_name)) {
+                    $filesDoc = Cache::get($cache_name);
                 } else {
                     $filesDoc = DocModel::with('getDocumentCate')
                         ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
                             $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
-                        })->paginate(10);
+                        })->get();
 
                     $expiresAt = now()->addMinutes(3600);
-                    Cache::put('api_doc_document_page_' . $alias . '_' . $page, $filesDoc, $expiresAt);
+                    Cache::put($cache_name, $filesDoc, $expiresAt);
                 }
 
                 if (count($filesDoc) > 0) {
@@ -309,8 +310,8 @@ trait Document
                     "type": "detail",
                     "data": {
                         "list_document": '. json_encode($list_document) .',
-                        "total_page": ' . $total_page . ',
-                        "current_page": '. $page .'
+                        "total_page": 1,
+                        "current_page": 1
                     },
                     "success" : true,
                     "message" : "ok!"
@@ -325,7 +326,7 @@ trait Document
         $alias = $request->input('alias', '');
 
         $cache_name = 'api_doc_document_detail_' . $alias;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $filesDoc = Cache::get($cache_name);
         } else {

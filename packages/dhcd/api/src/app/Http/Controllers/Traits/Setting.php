@@ -45,7 +45,7 @@ trait Setting
             }
         }
 
-        Cache::forget('settings' . $domain_id);
+//        Cache::forget('settings' . $domain_id);
         if (Cache::has('settings' . $domain_id)) {
             $settings = Cache::get('settings' . $domain_id);
         } else {
@@ -92,7 +92,7 @@ trait Setting
             }
         }
 
-        Cache::forget('settings' . $domain_id);
+//        Cache::forget('settings' . $domain_id);
         if (Cache::has('settings' . $domain_id)) {
             $settings = Cache::get('settings' . $domain_id);
         } else {

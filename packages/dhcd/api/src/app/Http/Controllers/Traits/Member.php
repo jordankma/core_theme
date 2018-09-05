@@ -19,7 +19,7 @@ trait Member
         $doan_id = $request->input('doan_id');
 
         $cache_name = 'car_' . $doan_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $cars = Cache::get($cache_name);
         } else {
@@ -76,7 +76,7 @@ trait Member
         $doan_id = $request->input('doan_id');
 
         $cache_name = 'hotel_' . $doan_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $hotels = Cache::get($cache_name);
         } else {
@@ -131,7 +131,7 @@ trait Member
     public function getHotels()
     {
         $cache_name = 'hotels';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $hotels = Cache::get($cache_name);
         } else {
@@ -185,7 +185,7 @@ trait Member
         $sessionseat_id = $request->input('sessionseat_id');
 
         $cache_name = 'seat_' . $doan_id . '_' . $sessionseat_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $seats = Cache::get($cache_name);
         } else {
@@ -237,8 +237,6 @@ trait Member
 //        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $sessionSeat = Cache::get($cache_name);
-            echo '123';
-            dd($sessionSeat);
         } else {
             $sessionSeat = Sessionseat::all();
             $expiresAt = now()->addMinutes(3600);
@@ -283,7 +281,7 @@ trait Member
     public function getMemberGroup($request)
     {
         $cache_name = 'member_group';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $memberGroup = Cache::get($cache_name);
         } else {
@@ -331,7 +329,7 @@ trait Member
             $alias = $request->input('alias');
 
             $cache_name = 'member_by_category_' . $alias;
-            Cache::forget($cache_name);
+//            Cache::forget($cache_name);
             if (Cache::has($cache_name)) {
                 $members = Cache::get($cache_name);
             } else {
@@ -383,7 +381,7 @@ trait Member
             $alias = $request->input('alias');
 
             $cache_name = 'member_by_group_' . $alias;
-            Cache::forget($cache_name);
+//            Cache::forget($cache_name);
             if (Cache::has($cache_name)) {
                 $members = Cache::get($cache_name);
             } else {

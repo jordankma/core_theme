@@ -21,7 +21,7 @@ trait Menu
         }
 
         $cache_name = 'api_menus_frontend_' . $domain_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $menus = Cache::get($cache_name);
         } else {
@@ -73,7 +73,7 @@ trait Menu
         }
 
         $cache_name = 'api_menus_frontend_home_' . $domain_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $menus = Cache::get($cache_name);
         } else {
@@ -125,7 +125,7 @@ trait Menu
         }
 
         $cache_name = 'api_menus_frontend_member_' . $domain_id;
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $menus = Cache::get($cache_name);
         } else {

@@ -11,7 +11,7 @@ trait Events
     public function getEvents()
     {
         $cache_name = 'api_events';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $events = Cache::get($cache_name);
         } else {
