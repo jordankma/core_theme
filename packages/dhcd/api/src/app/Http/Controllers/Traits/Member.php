@@ -237,7 +237,7 @@ trait Member
 //        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $sessionSeat = Cache::get($cache_name);
-            dd($cache_name);
+            dd($sessionSeat);
         } else {
             $sessionSeat = Sessionseat::all();
             $expiresAt = now()->addMinutes(3600);
