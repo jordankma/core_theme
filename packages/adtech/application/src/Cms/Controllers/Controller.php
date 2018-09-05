@@ -114,7 +114,7 @@ class Controller extends BaseController
         //get setting value
         $locales = [];
 
-        Cache::forget('locales' . $this->domainDefault);
+//        Cache::forget('locales' . $this->domainDefault);
         if (Cache::has('locales' . $this->domainDefault)) {
             $locales = Cache::get('locales' . $this->domainDefault);
         } else {
@@ -124,7 +124,7 @@ class Controller extends BaseController
 
         //get setting value
         $settings = [];
-        Cache::forget('settings' . $this->domainDefault);
+//        Cache::forget('settings' . $this->domainDefault);
         if (Cache::has('settings' . $this->domainDefault)) {
             $settings = Cache::get('settings' . $this->domainDefault);
         } else {

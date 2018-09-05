@@ -73,8 +73,6 @@ class MenuController extends Controller
             $menu->save();
 
             if ($menu->menu_id) {
-
-                Cache::forget('menuGroups' . $domain_id);
                 Cache::forget('menus' . $domain_id);
 
                 activity('menu')
@@ -299,7 +297,6 @@ class MenuController extends Controller
 
         if ($menu->save()) {
 
-            Cache::forget('menuGroups' . $domain_id);
             Cache::forget('menus' . $domain_id);
 
             activity('menu')
