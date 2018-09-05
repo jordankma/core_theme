@@ -149,7 +149,7 @@ class MenuController extends Controller
 
         if ($menu->delete()) {
 
-            Cache::forget('menuGroups' . $menu->domain_id);
+//            Cache::forget('menuGroups' . $menu->domain_id);
             Cache::forget('menus' . $menu->domain_id);
 
             activity('menu')
