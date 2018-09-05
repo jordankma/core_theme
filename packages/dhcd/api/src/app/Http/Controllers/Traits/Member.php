@@ -234,9 +234,10 @@ trait Member
     public function getSessionSeat()
     {
         $cache_name = 'session_seat';
-        Cache::forget($cache_name);
+//        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $sessionSeat = Cache::get($cache_name);
+            dd($cache_name);
         } else {
             $sessionSeat = Sessionseat::all();
             $expiresAt = now()->addMinutes(3600);
