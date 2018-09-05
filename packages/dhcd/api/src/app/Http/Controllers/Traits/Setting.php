@@ -79,4 +79,45 @@ trait Setting
                 }';
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
+
+    public function getVersion()
+    {
+        //get setting value
+        $domain_id = 0;
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+        if ($host) {
+            $domain = Domain::where('name', $host)->first();
+            if (null != $domain) {
+                $domain_id = $domain->domain_id;
+            }
+        }
+
+        Cache::forget('settings' . $domain_id);
+        if (Cache::has('settings' . $domain_id)) {
+            $settings = Cache::get('settings' . $domain_id);
+        } else {
+            $settings = SettingModel::where('domain_id', $domain_id)->get();
+            Cache::put('settings' . $domain_id, $settings);
+        }
+
+        $settingView = array('app_version' => '');
+        if (count($settings) > 0) {
+            foreach ($settings as $setting) {
+                switch ($setting->name) {
+                    case 'app_version':
+                        $settingView['app_version'] = $setting->value;
+                        break;
+                }
+            }
+        }
+        $data = '{
+                    "data": {
+                        "app_version": "' . $settingView['app_version'] . '",
+                        "path": "http://dhcd.vnedutech.vn/apk/app-debug"
+                    },
+                    "success" : true,
+                    "message" : "ok!"
+                }';
+        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+    }
 }

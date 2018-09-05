@@ -69,6 +69,9 @@ class GlobalController extends Controller
                         case 'dev/get/config-text': {
                             return $this->getConfigText();
                         }
+                        case 'dev/get/app-version': {
+                            return $this->getVersion();
+                        }
                         case 'dev/get/seat': {
                             return $this->getSeat($request);
                         }
