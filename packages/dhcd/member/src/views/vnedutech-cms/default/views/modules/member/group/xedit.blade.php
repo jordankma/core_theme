@@ -8,12 +8,12 @@ Advanced Data Tables
 
 {{-- page level styles --}}
 @section('header_styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/buttons.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/colReorder.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/rowReorder.bootstrap.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/scroller.bootstrap.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/buttons.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/colReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/rowReorder.bootstrap.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/scroller.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css') }}" />
 
     <style>
 
@@ -293,10 +293,10 @@ Advanced Data Tables
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/jeditable/js/jquery.jeditable.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.colReorder.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.responsive.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin .'/js/pages/table-advanced.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/jeditable/js/jquery.jeditable.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.colReorder.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.responsive.js') }}" ></script>
+    <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin .'/js/pages/table-advanced.js') }}" ></script>
 @stop
