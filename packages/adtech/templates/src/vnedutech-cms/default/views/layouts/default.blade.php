@@ -62,10 +62,10 @@
             <div class="page-sidebar  sidebar-nav">
                 <div class="nav_icons">
                     <ul class="sidebar_threeicons">
-                        @if ($USER_LOGGED->canAccess('adtech.core.package.manage'))
+                        @if ($USER_LOGGED->canAccess('backend.homepage'))
                             <li>
-                                <a href="{{ route('adtech.core.package.manage') }}">
-                                    <i class="livicon" data-name="table" title="Packages" data-loop="true"
+                                <a href="{{ route('backend.homepage') }}">
+                                    <i class="livicon" data-name="table" title="Backend" data-loop="true"
                                        data-color="#418BCA" data-hc="#418BCA" data-s="25"></i>
                                 </a>
                             </li>
