@@ -237,6 +237,7 @@ trait Member
 //        Cache::forget($cache_name);
         if (Cache::has($cache_name)) {
             $sessionSeat = Cache::get($cache_name);
+            echo '123';
             dd($sessionSeat);
         } else {
             $sessionSeat = Sessionseat::all();
