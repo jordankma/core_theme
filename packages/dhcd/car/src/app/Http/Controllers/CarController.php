@@ -183,8 +183,8 @@ class CarController extends Controller
             $car->car_staff= $staff;
             if ($car->save()) {
 
-                if (count($request->has('doan_id')) > 0) {
-                    foreach ($request->has('doan_id') as $doan_id) {
+                if ($request->has('doan_id')) {
+                    foreach ($request->input('doan_id') as $doan_id) {
                         Cache::forget('car_' . $doan_id);
                     }
                 }

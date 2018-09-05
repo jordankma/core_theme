@@ -189,8 +189,8 @@ class HotelController extends Controller
             if ($hotel->save()) {
 
                 Cache::forget('hotels');
-                if (count($request->has('doan_id')) > 0) {
-                    foreach ($request->has('doan_id') as $doan_id) {
+                if ($request->has('doan_id')) {
+                    foreach ($request->input('doan_id') as $doan_id) {
                         Cache::forget('hotel_' . $doan_id);
                     }
                 }
