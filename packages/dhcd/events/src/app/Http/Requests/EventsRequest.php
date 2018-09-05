@@ -33,16 +33,14 @@ class EventsRequest extends FormRequest
             }
             case 'POST': {
                 return [
-                    'name' => 'required|min:5|max:255',
-                    'content' => 'required|min:5|max:255',
-                    'date'=>'required|date_format:"d/m/Y"|after:' . date("d/m/Y", strtotime("yesterday"))
+                    'name' => 'required',
+                    'date'=>'required'
                 ];
             }
             case 'PUT':{
                 return [
                     'event_id'=>'required|numeric',
-                    'name' => 'required|min:5|max:255',
-                    'content' => 'required|min:5|max:255',
+                    'name' => 'required|min:5|max:191',
                     'date'=>'required|date_format:"d/m/Y"|after:' . date("d/m/Y", strtotime("yesterday"))
                 ];
             }

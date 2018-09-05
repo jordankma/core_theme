@@ -7,7 +7,6 @@
 @section('header_styles')
     <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/pages/form_layouts.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/clockface/css/clockface.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/daterangepicker/css/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .label {
@@ -15,6 +14,9 @@
         }
 
         #myTable td {
+            padding: 3px 5px;
+        }
+        #myTable1 td {
             padding: 3px 5px;
         }
 
@@ -26,8 +28,12 @@
             height: 250px;
             overflow: auto;
         }
+        #boxMyTable1 {
+            height: 250px;
+            overflow: auto;
+        }
         .fa-trash{
-            cursor:pointer! important;
+            cursor:pointer !important;
         }
     </style>
 @stop
@@ -73,13 +79,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group {{ $errors->first('content', 'has-error') }}">
-                                    <label class="control-label col-md-3">{{trans('dhcd-events::language.titles.events.content')}} (<span class="red">*</span>):</label>
-                                    <div class="col-md-9">
-                                        {!! Form::textarea('content', null, array('class' => 'form-control', 'placeholder'=> trans('dhcd-events::language.placeholder.events.content_here'))) !!}
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     {!! Form::hidden('event_id') !!}
                                 </div>
@@ -93,23 +92,44 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <fieldset class="scheduler-border">
-                                    <legend class="scheduler-border">
-                                        <div class="col-md-12" style="padding-right: 0px">
-                                                <span class="scheduler-border">
-                                                    {{$title = trans('dhcd-events::language.titles.events.event_detail')}} :
-                                                    <button type="button" class="btn btn-success pull-right" onclick="myFunction()">{{ trans('dhcd-events::language.buttons.create') }}</button>
-                                                </span>
+                                <div class="col-lg-12">
+                                    <fieldset class="scheduler-border">
+                                        <legend class="scheduler-border">
+                                            <div class="col-md-12" style="padding-right: 0px">
+                                                    <span class="scheduler-border">
+                                                        {{$title = trans('dhcd-events::language.titles.events.event_detail')}} :
+                                                        <button type="button" class="btn btn-success pull-right btn_new">{{ trans('dhcd-events::language.buttons.create') }}</button>
+                                                    </span>
+                                            </div>
+                                        </legend>
+                                        <div class="col-md-12">
+                                            <div class="form-group" id="boxMyTable">
+                                                <table id="myTable" >
+                                                    <tr id="beforeID"></tr>
+                                                </table>
+                                            </div >
                                         </div>
-                                    </legend>
-                                    <div class="col-md-12">
-                                        <div class="form-group" id="boxMyTable">
-                                            <table id="myTable" >
-                                                <tr id="beforeID"></tr>
-                                            </table>
-                                        </div >
-                                    </div>
-                                </fieldset>
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset class="scheduler-border">
+                                        <legend class="scheduler-border">
+                                            <div class="col-md-12" style="padding-right: 0px">
+                                                    <span class="scheduler-border">
+                                                        {{$title = trans('dhcd-events::language.titles.events.event_detail')}} :
+                                                        <button type="button" class="btn btn-success pull-right btn_new1">{{ trans('dhcd-events::language.buttons.create') }}</button>
+                                                    </span>
+                                            </div>
+                                        </legend>
+                                        <div class="col-md-12">
+                                            <div class="form-group" id="boxMyTable1">
+                                                <table id="myTable1" >
+                                                    <tr id="beforeID1"></tr>
+                                                </table>
+                                            </div >
+                                        </div>
+                                    </fieldset>
+                                </div>
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -125,11 +145,55 @@
     <!-- begining of page js -->
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/moment/js/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/daterangepicker/js/daterangepicker.js') }}" type="text/javascript"></script>
-    <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/clockface/js/clockface.js') }}" type="text/javascript"></script>
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
     <!--end of page js-->
     <script>
         $(function () {
+            $('.btn_new').click(function () {
+                var $input = $('#myTable').find('input[name="event_content[]"]');
+                // console.log($input.length);
+                // var $input = document.getElementsByName("start_time[]");
+                if($input.length!=0) {
+                    var idx=0;
+                    $input.each(function () {
+                        if($(this).val()==''){
+                            idx=1;
+                        }
+                    });
+                    if(idx!=1){
+                        myFunction();
+                    }
+                    // else{
+                    //     console.log('thieu du lieu');
+                    // }
+                }
+                else{
+                    myFunction();
+                }
+            });
+            $('.btn_new1').click(function () {
+                var $input = $('#myTable1').find('input[name="event_content1[]"]');
+                // console.log($input.length);
+                // var $input = document.getElementsByName("start_time[]");
+                if($input.length!=0) {
+                    var idx=0;
+                    $input.each(function () {
+                        if($(this).val()==''){
+                            idx=1;
+                        }
+                    });
+                    if(idx!=1){
+                        myFunction1();
+                    }
+                    // else{
+                    //     console.log('thieu du lieu');
+                    // }
+                }
+                else{
+                    myFunction1();
+                }
+            });
+
             var dataAction = $.parseJSON('{!! $dataAction !!}');
             if (dataAction.length > 0) {
                 dataAction.forEach(function(element) {
@@ -143,15 +207,41 @@
                     var cell6 = row.insertCell(5);
                     var cell7 = row.insertCell(6);
                     // cell1.innerHTML = "";
-                    cell2.innerHTML = "<label class='label'>Từ :      </label><input type='text' class='form-control clockface1' name='start_time[]' value='" + element.start_time + "'>";
-                    // cell3.innerHTML = "";
-                    cell4.innerHTML = "<label class='label'>Đến :     </label><input type='text' class='form-control clockface2' name='end_time[]' value='" + element.end_time + "'>";
+                    cell2.innerHTML = "<label class='label'>Thời gian :      </label><input type='text' class='form-control' name='start_time[]' value='" + element.start_time + "'>";
                     // cell5.innerHTML = "";
-                    cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control content_details' name='event_content[]' value='" + element.content + "'>";
-                    cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow(this)' class='fa fa-trash'></i>";
+                    cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control' name='event_content[]' value='" + element.content + "'>";
+                    cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow1(this)' class='fa fa-trash'></i>";
                     $('#beforeID').before(row);
-                    $(".clockface1").clockface();
-                    $(".clockface2").clockface();
+                });
+            }
+
+            $(".singledate").daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minDate: new Date(),
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            });
+
+            var dataAction1 = $.parseJSON('{!! $dataAction1 !!}');
+            if (dataAction1.length > 0) {
+                dataAction1.forEach(function(element) {
+                    var table = document.getElementById("myTable1");
+                    var row = table.insertRow(0);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+                    var cell7 = row.insertCell(6);
+                    // cell1.innerHTML = "";
+                    cell2.innerHTML = "<label class='label'>Thời gian :      </label><input type='text' class='form-control' name='start_time1[]' value='" + element.start_time + "'>";
+                    // cell5.innerHTML = "";
+                    cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control' name='event_content1[]' value='" + element.content + "'>";
+                    cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow1(this)' class='fa fa-trash'></i>";
+                    $('#beforeID1').before(row);
                 });
             }
 
@@ -177,19 +267,37 @@
             var cell6 = row.insertCell(5);
             var cell7 = row.insertCell(6);
             // cell1.innerHTML = "";
-            cell2.innerHTML = "<label class='label'>Từ :      </label><input type='text' class='form-control clockface1' name='start_time[]'>";
-            // cell3.innerHTML = "";
-            cell4.innerHTML = "<label class='label'>Đến :     </label><input type='text' class='form-control clockface2' name='end_time[]'>";
+            cell2.innerHTML = "<label class='label'>Thời gian :      </label><input type='text' class='form-control clockface1' name='start_time[]'>";
             // cell5.innerHTML = "";
-            cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control content_details' name='event_content[]'>";
+            cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control' name='event_content[]'>";
             cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow(this)' class='fa fa-trash'></i>";
             $('#beforeID').before(row);
-            $(".clockface1").clockface();
-            $(".clockface2").clockface();
         }
         function deleteRow(r) {
             var i = r.parentNode.parentNode.rowIndex;
             document.getElementById("myTable").deleteRow(i);
+        }
+
+        function myFunction1() {
+            var table = document.getElementById("myTable1");
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+            var cell6 = row.insertCell(5);
+            var cell7 = row.insertCell(6);
+            // cell1.innerHTML = "";
+            cell2.innerHTML = "<label class='label'>Thời gian :      </label><input type='text' class='form-control' name='start_time1[]'>";
+            // cell5.innerHTML = "";
+            cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control' name='event_content1[]'>";
+            cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow1(this)' class='fa fa-trash'></i>";
+            $('#beforeID1').before(row);
+        }
+        function deleteRow1(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+            document.getElementById("myTable1").deleteRow(i);
         }
     </script>
 @stop

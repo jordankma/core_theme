@@ -34,32 +34,49 @@ class EventsController extends Controller
     public function add(EventsRequest $request)
     {
         $start_time = $request->input('start_time');
-        $end_time = $request->input('end_time');
         $event_content = $request->input('event_content');
-        if(empty($start_time)) {
+        $start_time1 = $request->input('start_time1');
+        $event_content1 = $request->input('event_content1');
+        $event_detail = $event_detail1 = [];
+        if(empty($event_content) && empty($event_content1)) {
            return redirect()->route('dhcd.events.events.create')->with('error', trans('dhcd-events::language.messages.error.start_time'));
         } else {
             $result = [];
-            for ($i = 0; $i < sizeof($start_time); $i++){
-                if(!$start_time[$i] || !$end_time[$i] || !$event_content[$i])
+            for ($i = 0; $i < sizeof($event_content); $i++){
+                if(!$event_content[$i])
                 {
                      return redirect()->route('dhcd.events.events.create')
                          ->with('start_time', $start_time)
-                         ->with('end_time', $end_time)
                          ->with('content', $event_content)
                          ->with('error', trans('dhcd-events::language.messages.error.create'));
                 }
                 $result[$i] = [
                     "start_time" => $start_time[$i],
-                    "end_time" => $end_time[$i],
                     "content" => $event_content[$i]
                 ];
             }
             $event_detail = json_encode($result,JSON_UNESCAPED_UNICODE);
+
+            $result1 = [];
+            for ($i = 0; $i < sizeof($event_content1); $i++){
+                if(!$event_content1[$i])
+                {
+                     return redirect()->route('dhcd.events.events.create')
+                         ->with('start_time', $start_time1)
+                         ->with('content', $event_content1)
+                         ->with('error', trans('dhcd-events::language.messages.error.create'));
+                }
+                $result1[$i] = [
+                    "start_time" => $start_time1[$i],
+                    "content" => $event_content1[$i]
+                ];
+            }
+            $event_detail1 = json_encode($result1,JSON_UNESCAPED_UNICODE);
         }
         $events = new Events($request->all());
         $events->date = date("Y-m-d", strtotime(str_replace('/', '-', $request->input('date'))));
         $events->event_detail = $event_detail;
+        $events->event_detail1 = $event_detail1;
         $events->save();
         if ($events->event_id) {
 
@@ -76,7 +93,7 @@ class EventsController extends Controller
     }
 
     public function create(Request $request)
-    { 
+    {
         $start_times = session()->get('start_time');
         $end_times = session()->get('end_time');
         $contents = session()->get('content');
@@ -134,6 +151,7 @@ class EventsController extends Controller
             $event_id = $request->input('event_id');
             $eventDetail = Events::find($event_id);
             $event_detail  = json_decode($eventDetail->event_detail, true);
+            $event_detail1  = json_decode($eventDetail->event_detail1, true);
             $eventDetail->date = date("d/m/Y", strtotime($eventDetail->date));
 
             $dataAction = [];
@@ -142,16 +160,28 @@ class EventsController extends Controller
 
                     $dataAction[$k] = [
                         "start_time" => ($event['start_time']) ? $event['start_time'] : '',
-                        "end_time" => ($event['end_time']) ? $event['end_time'] : '',
                         "content" => ($event['content']) ? $event['content'] : ''
                     ];
                 }
             }
             $dataAction = json_encode($dataAction);
 
+            $dataAction1 = [];
+            if ($event_detail1) {
+                foreach ($event_detail1 as $k => $event) {
+
+                    $dataAction1[$k] = [
+                        "start_time" => ($event['start_time']) ? $event['start_time'] : '',
+                        "content" => ($event['content']) ? $event['content'] : ''
+                    ];
+                }
+            }
+            $dataAction1 = json_encode($dataAction1);
+
             $data = [
                 'event' => $eventDetail,
-                'dataAction' => $dataAction
+                'dataAction' => $dataAction,
+                'dataAction1' => $dataAction1
             ];
 
             return view('DHCD-EVENTS::modules.events.events.edit', $data);
@@ -164,32 +194,45 @@ class EventsController extends Controller
     {
         $event_id = $request->input('event_id');
         $start_time = $request->input('start_time');
-        $end_time = $request->input('end_time');
         $event_content = $request->input('event_content');
-        if(!$start_time){
+        $start_time1 = $request->input('start_time1');
+        $event_content1 = $request->input('event_content1');
+        if(empty($event_content) && empty($event_content1)){
             return redirect()->route('dhcd.events.events.show',['event_id' => $event_id])->with('error', trans('dhcd-events::language.messages.error.update'));
         }
         else{
             $result = [];
-            for ($i = 0; $i < sizeof($start_time); $i++){
-                if(!$start_time[$i] || !$end_time[$i] || !$event_content[$i])
+            for ($i = 0; $i < sizeof($event_content); $i++){
+                if(!$event_content[$i])
                 {
                      return redirect()->route('dhcd.events.events.show',['event_id' => $event_id])->with('error', trans('dhcd-events::language.messages.error.update'));
                 }
                 $result["$i"] = [
                     "start_time" => $start_time[$i],
-                    "end_time" => $end_time[$i],
                     "content" => $event_content[$i]
                 ];
             }
             $event_detail = json_encode($result,JSON_UNESCAPED_UNICODE);
+
+            $result1 = [];
+            for ($i = 0; $i < sizeof($event_content1); $i++){
+                if(!$event_content1[$i])
+                {
+                     return redirect()->route('dhcd.events.events.show',['event_id' => $event_id])->with('error', trans('dhcd-events::language.messages.error.update'));
+                }
+                $result1["$i"] = [
+                    "start_time" => $start_time1[$i],
+                    "content" => $event_content1[$i]
+                ];
+            }
+            $event_detail1 = json_encode($result1,JSON_UNESCAPED_UNICODE);
         }
         $event = Events::find($event_id);
         if (null != $event) {
             $event->name = $request->input('name');
             $event->date = date("Y-m-d", strtotime(str_replace('/', '-', $request->input('date'))));
-            $event->content = $request->input('content');
             $event->event_detail = $event_detail;
+            $event->event_detail1 = $event_detail1;
             if ($event->save()) {
 
                 Cache::forget('api_events');
@@ -293,7 +336,8 @@ class EventsController extends Controller
             $event_id = $request->input('event_id');
             $events=Events::find($event_id);
             $event_detail  = json_decode($events->event_detail);
-            return view('DHCD-EVENTS::modules.events.events.modal_event', compact('event_detail'));
+            $event_detail1  = json_decode($events->event_detail1);
+            return view('DHCD-EVENTS::modules.events.events.modal_event', compact('event_detail', 'event_detail1'));
         } else {
             return $validator->messages();
         }

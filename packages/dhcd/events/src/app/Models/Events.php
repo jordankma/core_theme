@@ -20,7 +20,7 @@ class Events extends Model {
 
     protected $guarded = ['event_id'];
 
-    protected $fillable = ['name', 'date', 'content'];
+    protected $fillable = ['name', 'date'];
 
     protected $dates = ['deleted_at'];
     

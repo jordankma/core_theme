@@ -19,7 +19,7 @@ class DhcdEvents extends Migration
             $table->string('name');
             $table->date('date');
             $table->longText('event_detail');
-            $table->text('content');
+            $table->longText('event_detail1');
             $table->tinyInteger('status')->default('1')->comment('0 la an 1 la hien');
             $table->timestamps();
             $table->softDeletes();

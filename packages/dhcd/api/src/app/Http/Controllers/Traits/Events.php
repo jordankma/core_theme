@@ -30,10 +30,20 @@ trait Events
 
                         $item = new \stdClass();
                         $item->start_time = base64_encode($detail['start_time']);
-                        $item->end_time = base64_encode($detail['end_time']);
                         $item->content = base64_encode($detail['content']);
 
                         $arrDetail[$k] = $item;
+                    }
+                }
+                $arrDetail1 = json_decode($event->event_detail1, true);
+                if (count($arrDetail1) > 0) {
+                    foreach ($arrDetail1 as $k => $detail) {
+
+                        $item = new \stdClass();
+                        $item->start_time = base64_encode($detail['start_time']);
+                        $item->content = base64_encode($detail['content']);
+
+                        $arrDetail1[$k] = $item;
                     }
                 }
 
@@ -41,8 +51,8 @@ trait Events
                 $item->id = $event->event_id;
                 $item->title_day = base64_encode($event->name);
                 $item->date = base64_encode(date("d-m-Y", strtotime($event->date)));
-                $item->content = base64_encode($event->content);
                 $item->events = $arrDetail;
+                $item->events1 = $arrDetail1;
 
                 $list_events[] = $item;
             }

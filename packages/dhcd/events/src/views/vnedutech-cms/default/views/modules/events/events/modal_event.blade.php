@@ -6,8 +6,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <td>Bắt Đầu</td>
-            <td>Kết Thúc</td>
+            <td>Thời gian</td>
             <td>Nội Dung</td>
         </tr>
         </thead>
@@ -16,7 +15,14 @@
         @foreach($event_detail as $key=>$value)
             <tr>
                 <td>  {{ $value->start_time }} </td>
-                <td>  {{ $value->end_time }} </td>
+                <td>  {{ $value->content}} </td>
+            </tr>
+        @endforeach
+        @endif
+        @if(isset($event_detail1))
+        @foreach($event_detail1 as $key=>$value)
+            <tr>
+                <td>  {{ $value->start_time }} </td>
                 <td>  {{ $value->content}} </td>
             </tr>
         @endforeach
