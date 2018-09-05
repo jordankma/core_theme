@@ -94,7 +94,7 @@
                     { data: 'DT_Row_Index', name: 'DT_Row_Index' },
                     { data: 'name', name: 'name' },
                     { data: 'route_name', name: 'route_name' },
-                    { data: 'group', name: 'group', className: 'fit-content'},
+                    { data: 'group', name: 'group' },
                     { data: 'icon', name: 'icon' },
                     { data: 'created_at', name: 'created_at'},
                     { data: 'updated_at', name: 'updated_at'},

@@ -70,11 +70,11 @@
                             <div class="form-group">
                                 <select class="form-control select2" title="Select category name..." name="route_params" id="category_name">
                                     @foreach($listCate as $category)
-                                        @if (isset($category['news_cat_id']))
+                                        @if (isset($category->news_cat_id))
                                         <option value="{{ $category->news_cat_id }}" {{ ($category->news_cat_id == $menu->route_params) ? ' selected="selected"' : '' }}>{{ $category->name }}</option>
                                         @endif
-                                        @if (isset($category['document_cate_id']))
-                                            <option value="{{ $category['alias'] }}" {{ ($category['alias'] == $menu->route_params) ? ' selected="selected"' : '' }}>{{ $category['name'] }}</option>
+                                        @if (isset($category->document_cate_id))
+                                            <option value="{{ $category->alias }}" {{ ($category->alias == $menu->route_params) ? ' selected="selected"' : '' }}>{{ $category->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -101,7 +101,6 @@
                             {!! Form::hidden('typeView', null, ['id' => 'btn_typeView']) !!}
                         </div>
 
-                        @if ($type == 0)
                         <label>Nhóm</label>
                         <div class="form-group input-group {{ $errors->first('group', 'has-error') }}">
                             {!! Form::text('group', null, array('class' => 'form-control', 'id' => 'group_name_txt', 'disabled' => true, 'placeholder'=> trans('adtech-core::common.menu.group_name_here'))) !!}
@@ -120,7 +119,6 @@
                                 </button>
                             </span>
                         </div>
-                        @endif
 
                         <label>Tên menu</label>
                         <div class="form-group {{ $errors->first('name', 'has-error') }}">
@@ -1472,19 +1470,19 @@
                     case 'tintuc-detail':
                         txtUrl = '';
                         txtModal = 'tintuc-detail';
-                        {{--txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.news.detail') ? route('dhcd.api.news.detail') : '' }}';--}}
-                            break;
+                        break;
                     case 'tailieu-list':
                         txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.tailieu.category') ? route('dhcd.api.tailieu.category') : '' }}';
-                            break;
+                        break;
                     case 'tailieu-detail':
-                        {{--                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.tailieu.detail') ? route('dhcd.api.tailieu.detail') : '' }}';--}}
-                            break;
+                        txtUrl = '';
+                        txtModal = 'tailieu-detail';
+                        break;
                     default:
                         txtUrl = '';
                 }
 
-                if (txtUrl != '') {
+                if (txtUrl !== '') {
                     $.ajax({
                         url: txtUrl,
                         type: 'get',
@@ -1513,7 +1511,7 @@
                     });
                 }
 
-                if (txtModal != '') {
+                if (txtModal !== '') {
                     $("#boxParams_detail").css('display', '');
                     $("#btn_typeData").attr('value', typeData);
                     $("#btn_typeView").attr('value', typeView);

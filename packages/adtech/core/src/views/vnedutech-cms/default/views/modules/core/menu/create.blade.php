@@ -93,7 +93,6 @@
                             {!! Form::hidden('typeView', null, ['id' => 'btn_typeView']) !!}
                         </div>
 
-                        @if ($type == 0)
                         <label>Nhóm</label>
                         <div class="form-group input-group {{ $errors->first('group', 'has-error') }}">
                             {!! Form::text('group', null, array('class' => 'form-control', 'id' => 'group_name_txt', 'disabled' => true, 'style' => 'display:none', 'placeholder'=> trans('adtech-core::common.menu.group_name_here'))) !!}
@@ -112,7 +111,6 @@
                                 </button>
                             </span>
                         </div>
-                        @endif
 
                         <label>Tên menu</label>
                         <div class="form-group {{ $errors->first('name', 'has-error') }}">
@@ -1458,13 +1456,14 @@
                         txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.tailieu.category') ? route('dhcd.api.tailieu.category') : '' }}';
                         break;
                     case 'tailieu-detail':
-{{--                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.tailieu.detail') ? route('dhcd.api.tailieu.detail') : '' }}';--}}
+                        txtUrl = '';
+                        txtModal = 'tailieu-detail';
                         break;
                     default:
                         txtUrl = '';
                 }
 
-                if (txtUrl != '') {
+                if (txtUrl !== '') {
                     $.ajax({
                         url: txtUrl,
                         type: 'get',
@@ -1494,7 +1493,7 @@
                     });
                 }
 
-                if (txtModal != '') {
+                if (txtModal !== '') {
                     $("#boxParams_detail").css('display', '');
                     $("#btn_typeData").attr('value', typeData);
                     $("#btn_typeView").attr('value', typeView);
