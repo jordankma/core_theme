@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/app-version?time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/menu/all_files?time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
@@ -125,6 +125,9 @@ class GlobalController extends Controller
                         }
                         case 'dev/get/files/all': {
                             return $this->getAllDocument();
+                        }
+                        case 'dev/get/menu/all_files': {
+                            return $this->getMenuAll($request);
                         }
                         case 'dev/get/files/document': {
                             return $this->getFilesDocument($request);
