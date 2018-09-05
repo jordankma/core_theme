@@ -10,6 +10,7 @@ use Adtech\Core\App\Repositories\SettingRepository;
 use Adtech\Core\App\Models\Setting;
 use Adtech\Core\App\Models\Locale;
 use Validator;
+use Cache;
 use Auth;
 
 class SettingController extends Controller
@@ -204,6 +205,7 @@ class SettingController extends Controller
 
                 }
             }
+            Cache::forget('settings' . $this->domainDefault);
             return redirect()->route('adtech.core.setting.manage')->with('success', trans('adtech-core::messages.success.create'));
         }
     }

@@ -155,7 +155,16 @@ trait Document
         $documentCate = DocumentCate::where('alias', $alias)->first();
         if (null != $documentCate) {
             //cat child
-            $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
+            $cache_name = 'api_doc_document_children_' . $alias . '_all';
+//            Cache::forget($cache_name);
+            if (Cache::has($cache_name)) {
+                $cateChildren = Cache::get($cache_name);
+            } else {
+                $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
+
+                $expiresAt = now()->addMinutes(3600);
+                Cache::put($cache_name, $cateChildren, $expiresAt);
+            }
 
             //doc child
             $cache_name = 'api_doc_document_page_' . $alias . '_all';
@@ -259,19 +268,6 @@ trait Document
                 return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
 
             } else {
-                $cache_name = 'api_doc_document_page_' . $alias . '_' . $page;
-//                Cache::forget('api_doc_document_page_' . $alias . '_' . $page);
-                if (Cache::has($cache_name)) {
-                    $filesDoc = Cache::get($cache_name);
-                } else {
-                    $filesDoc = DocModel::with('getDocumentCate')
-                        ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
-                            $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
-                        })->get();
-
-                    $expiresAt = now()->addMinutes(3600);
-                    Cache::put($cache_name, $filesDoc, $expiresAt);
-                }
 
                 if (count($filesDoc) > 0) {
                     foreach ($filesDoc as $file) {
@@ -303,7 +299,6 @@ trait Document
                         }
                         //
                     }
-                    $total_page = $filesDoc->lastPage();
                 }
 
                 $data = '{

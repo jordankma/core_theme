@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Tên Đoàn (<span class="red">*</span>):</label>
-                        <div class="form-group {{ $errors->first('doan', 'has-error') }}">
+                        <div class="form-group {{ $errors->first('doan_id', 'has-error') }}">
                             <select class="form-control select2" id="doan_id" name="doan_id" required >
                             @if(!empty($doan))
                                 @foreach($doan as $val)
@@ -78,7 +78,7 @@
                                 @endforeach
                             @endif
                             </select>
-                            <span class="help-block">{{ $errors->first('doan', ':message') }}</span>
+                            <span class="help-block">{{ $errors->first('doan_id', ':message') }}</span>
                         </div>
 
                         <label>Phiên làm việc (<span class="red">*</span>):</label>

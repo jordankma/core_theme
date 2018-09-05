@@ -10,6 +10,7 @@ use Dhcd\Hotel\App\Http\Requests\HotelRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator;
+use Cache;
 
 class HotelController extends Controller
 {
@@ -54,6 +55,9 @@ class HotelController extends Controller
         $hotel->save();
 
         if ($hotel->hotel_id) {
+
+            Cache::forget('hotels');
+
             activity('hotel')
                 ->performedOn($hotel)
                 ->withProperties($request->all())
@@ -83,6 +87,15 @@ class HotelController extends Controller
             $hotel = Hotel::find($hotel_id);
             if (null != $hotel) {
                 $hotel->delete($hotel_id);
+
+                Cache::forget('hotels');
+                $doan_arr = implode(',', $hotel->doan_id);
+                if (count($doan_arr) > 0) {
+                    foreach ($doan_arr as $doan_id) {
+                        Cache::forget('hotel_' . $doan_id);
+                    }
+                }
+
                 activity('hotel')
                     ->performedOn($hotel)
                     ->withProperties($request->all())
@@ -174,6 +187,14 @@ class HotelController extends Controller
             $hotel->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
             $hotel->hotel_staff = $staff;
             if ($hotel->save()) {
+
+                Cache::forget('hotels');
+                if (count($request->has('doan_id')) > 0) {
+                    foreach ($request->has('doan_id') as $doan_id) {
+                        Cache::forget('hotel_' . $doan_id);
+                    }
+                }
+
                 activity('hotel')
                     ->performedOn($hotel)
                     ->withProperties($request->all())

@@ -82,6 +82,13 @@ class DocumentCateController extends Controller {
                     }
                 }
                 $this->resetCache();
+
+                $cateParent = $this->documentCate->find($cate->parent_id);
+                if (null != $cateParent) {
+                    Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+                    Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                }
+
                 activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Add document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
                 return redirect()->route('dhcd.document.cate.add')->with('success', 'Thêm danh mục thành công');
             }
@@ -127,6 +134,13 @@ class DocumentCateController extends Controller {
                 $cate->icon = $request->icon;
             }
             $cate->save();
+
+            $cateParent = $this->documentCate->find($cate->parent_id);
+            if (null != $cateParent) {
+                Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+                Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+            }
+
             // save tag
             if(!empty($request->tag)){
                 TagItem::where('document_cate_id',$cate->document_cate_id)->delete();
@@ -162,6 +176,12 @@ class DocumentCateController extends Controller {
         $cate->status = 0;
         $cate->deleted_at = date('Y-m-d H:s:i');
         $cate->save();
+
+        $cateParent = $this->documentCate->find($cate->parent_id);
+        if (null != $cateParent) {
+            Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+            Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+        }
 
         activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Delete document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
         $this->resetCache();

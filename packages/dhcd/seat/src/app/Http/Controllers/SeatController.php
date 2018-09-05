@@ -11,6 +11,7 @@ use Dhcd\Sessionseat\App\Models\Sessionseat;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator;
+use Cache;
 
 class SeatController extends Controller
 {
@@ -56,6 +57,9 @@ class SeatController extends Controller
         $seat->save();
 
         if ($seat->seat_id) {
+
+            Cache::forget('seat_' . $request->input('doan_id') . '_' . $request->input('sessionseat_id'));
+
             activity('seat')
                 ->performedOn($seat)
                 ->withProperties($request->all())
@@ -84,6 +88,9 @@ class SeatController extends Controller
             $seat = Seat::find($seat_id);
             if (null != $seat) {
                 $seat->delete($seat_id);
+
+                Cache::forget('seat_' . $seat->doan_id . '_' . $seat->sessionseat_id);
+
                 activity('seat')
                     ->performedOn($seat)
                     ->withProperties($request->all())
@@ -190,6 +197,9 @@ class SeatController extends Controller
                 $seat->seat_staff = $staff;
 
                 if ($seat->save()) {
+
+                    Cache::forget('seat_' . $seat->doan_id . '_' . $seat->sessionseat_id);
+
                     activity('seat')
                         ->performedOn($seat)
                         ->withProperties($request->all())

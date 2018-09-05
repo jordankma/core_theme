@@ -30,9 +30,12 @@ class SessionseatController extends Controller
         $sessionseat = new Sessionseat($request->all());
         $sessionseat->sessionseat_name = $request->input('sessionseat_name');
         $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
-
         $sessionseat->save();
+
         if ($sessionseat->sessionseat_id) {
+
+            Cache::forget('session_seat');
+
             activity('sessionseat')
                 ->performedOn($sessionseat)
                 ->withProperties($request->all())
@@ -54,6 +57,9 @@ class SessionseatController extends Controller
         $sessionseat = $this->sessionseat->find($sessionseat_id);
         if (null != $sessionseat) {
             $this->sessionseat->delete($sessionseat_id);
+
+            Cache::forget('session_seat');
+
             activity('sessionseat')
                 ->performedOn($sessionseat)
                 ->withProperties($request->all())
@@ -92,6 +98,9 @@ class SessionseatController extends Controller
             $sessionseat->sessionseat_name = $request->input('sessionseat_name');
             $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
             if ($sessionseat->save()) {
+
+                Cache::forget('session_seat');
+
                 activity('sessionseat')
                     ->performedOn($sessionseat)
                     ->withProperties($request->all())

@@ -10,7 +10,7 @@ use Dhcd\Events\App\Models\Events;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator;
-
+use Cache;
 
 class EventsController extends Controller
 {
@@ -62,6 +62,9 @@ class EventsController extends Controller
         $events->event_detail = $event_detail;
         $events->save();
         if ($events->event_id) {
+
+            Cache::forget('api_events');
+
             activity('events')
                 ->performedOn($events)
                 ->withProperties($request->all())
@@ -105,6 +108,9 @@ class EventsController extends Controller
             $events = Events::find($event_id);
             if (null != $events) {
                 $events->delete($event_id);
+
+                Cache::forget('api_events');
+
                 activity('events')
                     ->performedOn($events)
                     ->withProperties($request->all())
@@ -184,8 +190,10 @@ class EventsController extends Controller
             $event->date = date("Y-m-d", strtotime(str_replace('/', '-', $request->input('date'))));
             $event->content = $request->input('content');
             $event->event_detail = $event_detail;
-            $event->save();
             if ($event->save()) {
+
+                Cache::forget('api_events');
+
                 activity('events')
                     ->performedOn($event)
                     ->withProperties($request->all())

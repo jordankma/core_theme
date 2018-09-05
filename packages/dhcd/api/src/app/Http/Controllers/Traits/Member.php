@@ -329,7 +329,7 @@ trait Member
             $alias = $request->input('alias');
 
             $cache_name = 'member_by_category_' . $alias;
-//            Cache::forget($cache_name);
+            Cache::forget($cache_name);
             if (Cache::has($cache_name)) {
                 $members = Cache::get($cache_name);
             } else {

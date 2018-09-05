@@ -126,6 +126,12 @@ class DocumentController extends Controller
                             'document_id' => $document->document_id,
                             'document_cate_id' => $cate_id
                         ];
+
+                        $cateParent = $this->documentCateRepository->find($cate_id);
+                        if (null != $cateParent) {
+                            Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+                            Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                        }
                     }
 
                     if (!empty($dochascate)) {
@@ -142,7 +148,6 @@ class DocumentController extends Controller
             
              return redirect()->back()->withInput()->withErrors(['Vui lòng kiểm tra lại dữ liệu nhập vào']);
         }
-        
     }
     
     public function edit(Request $request){
@@ -224,6 +229,27 @@ class DocumentController extends Controller
                   ]);
                   $document->save();
 
+                 Cache::forget('api_doc_document_detail_' . $this->to_slug($request->name));
+
+                 $document_id = $document->document_id;
+                 $alias = $this->to_slug($request->name);
+                 Cache::forget('api_doc_document_detail_' . $alias);
+                 $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
+                     $query->where('dhcd_document_has_cate.document_id', $document_id);
+                 }])->get();
+
+                 if (count($arrParent) > 0) {
+                     foreach ($arrParent as $item) {
+
+                         if (count($item->getDocumentCate) > 0) {
+                             foreach ($item->getDocumentCate as $cate) {
+                                 Cache::forget('api_doc_document_page_' . $cate->alias . '_all');
+                             }
+                         }
+
+                     }
+                 }
+
                      // save tag
                      if(!empty($request->tag)){
                         TagItem::where('document_id',$document->document_id)->delete();
@@ -250,6 +276,12 @@ class DocumentController extends Controller
                             'document_id' => $document->document_id,
                             'document_cate_id' => $cate_id
                         ];
+
+                        $cateParent = $this->documentCateRepository->find($cate_id);
+                        if (null != $cateParent) {
+                            Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+                            Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                        }
                     }
 
                     if (!empty($dochascate)) {
@@ -271,7 +303,6 @@ class DocumentController extends Controller
     }
     
     public function delete(Request $request){
-        
         if(empty($request->only('document_id'))){
             return redirect()->route('dhcd.document.doc.manage')->withErrors(['Không tìm thấy tài liệu cần xóa']);
         }
@@ -279,6 +310,24 @@ class DocumentController extends Controller
         $document->status = 0;
         $document->deleted_at = date('Y-m-d H:s:i');        
         $document->save();
+
+        $document_id = $request->document_id;
+        Cache::forget('api_doc_document_detail_' . $document->alias);
+        $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
+            $query->where('dhcd_document_has_cate.document_id', $document_id);
+        }])->get();
+
+        if (count($arrParent) > 0) {
+            foreach ($arrParent as $item) {
+
+                if (count($item->getDocumentCate) > 0) {
+                    foreach ($item->getDocumentCate as $cate) {
+                        Cache::forget('api_doc_document_page_' . $cate->alias . '_all');
+                    }
+                }
+
+            }
+        }
         
         activity('documents')->performedOn($document)->withProperties($request->all())->log('User: :'.Auth::user()->email.' - Delete document - document: '.$document->document_id.', name: '.$document->name);
         

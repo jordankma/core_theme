@@ -7,10 +7,10 @@ use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Dhcd\Car\App\Repositories\CarRepository;
 use Dhcd\Car\App\Models\Car;
 use Dhcd\Car\App\Http\Requests\CarRequest;
-use Dhcd\Groupmanager\App\Models\Group;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator;
+use Cache;
 
 class CarController extends Controller
 {
@@ -86,6 +86,14 @@ class CarController extends Controller
             $car = Car::find($car_id);
             if (null != $car) {
                 $car->delete($car_id);
+
+                $doan_arr = implode(',', $car->doan_id);
+                if (count($doan_arr) > 0) {
+                    foreach ($doan_arr as $doan_id) {
+                        Cache::forget('car_' . $doan_id);
+                    }
+                }
+
                 activity('car')
                     ->performedOn($car)
                     ->withProperties($request->all())
@@ -174,6 +182,13 @@ class CarController extends Controller
             $car->note = $request->input('note');
             $car->car_staff= $staff;
             if ($car->save()) {
+
+                if (count($request->has('doan_id')) > 0) {
+                    foreach ($request->has('doan_id') as $doan_id) {
+                        Cache::forget('car_' . $doan_id);
+                    }
+                }
+
                 activity('car')
                     ->performedOn($car)
                     ->withProperties($request->all())
