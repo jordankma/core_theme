@@ -113,7 +113,8 @@ trait Setting
         $data = '{
                     "data": {
                         "app_version": "' . $settingView['app_version'] . '",
-                        "path": "http://dhcd.vnedutech.vn/apk/app-debug"
+                        "path": "http://dhcd.vnedutech.vn/apk/app-debug",
+                        "current_time": "' . time() * 1000 . '"
                     },
                     "success" : true,
                     "message" : "ok!"
