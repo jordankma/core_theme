@@ -71,7 +71,7 @@ class CarController extends Controller
 
     public function create()
     {
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
         return view('DHCD-CAR::modules.car.create',['doan'=>$doan]);
     }
@@ -132,7 +132,7 @@ class CarController extends Controller
                     }
                 }
                 $doan_id = explode("," , $car->doan_id);
-                $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+                $url = config('app.url') . '/admin/api/member/group-list';
                 $doan = json_decode(file_get_contents($url),true);
                     $data = [
                         'doan_id' => $doan_id,
@@ -247,7 +247,7 @@ class CarController extends Controller
     //Table Data to index page
     public function data()
     { 
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
         return Datatables::of($this->car->findAll())
             ->editColumn('img',function ($car){

@@ -239,6 +239,7 @@ class NotificationController extends Controller
             return $validator->messages();
         }    
     }
+
     public function sent(Request $request) {
         $validator = Validator::make($request->all(), [
             'notification_id' => 'required|numeric',
@@ -276,6 +277,7 @@ class NotificationController extends Controller
             return $validator->messages();
         }
     }
+
     private function sendGCM($message=null) {
         $list_topic = array('global','global1','global2','global3','global4','global5','global6','global7','global8','global9');
         if($message==null){
@@ -290,6 +292,7 @@ class NotificationController extends Controller
             $this->actionSendGCM($value,$msg);
         }
     }
+
     private function actionSendGCM($topic_name,$msg) {
         $fields = array (
           'to' => '/topics/'.$topic_name,

@@ -71,7 +71,7 @@ class HotelController extends Controller
 
     public function create()
     {
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
 
         return view('DHCD-HOTEL::modules.hotel.create', ['doan'=>$doan]);
@@ -133,7 +133,7 @@ class HotelController extends Controller
                     }
                 }
                 $doan_id = explode("," , $hotel->doan_id);
-                $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+                $url = config('app.url') . '/admin/api/member/group-list';
                 $doan = json_decode(file_get_contents($url),true);
 
                 $data = [
@@ -232,7 +232,7 @@ class HotelController extends Controller
 
     public function data()
     {
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
     return Datatables::of($this->hotel->findAll())
         ->editColumn('img',function ($hotel){

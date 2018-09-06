@@ -72,7 +72,7 @@ class SeatController extends Controller
 
     public function create()
     {
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
         $sessionseat = Sessionseat::all();
         return view('DHCD-SEAT::modules.seat.create', compact('doan', 'sessionseat'));
@@ -133,7 +133,7 @@ class SeatController extends Controller
                 }
 
                 $doan_id = $seat->doan_id;
-                $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+                $url = config('app.url') . '/admin/api/member/group-list';
                 $group = json_decode(file_get_contents($url),true);
                 $doan='';
                 foreach ($group as $val){
@@ -261,7 +261,7 @@ class SeatController extends Controller
 
     public function data()
     {
-        $url = 'http://dhcd.vnedutech.vn/admin/api/member/group-list';
+        $url = config('app.url') . '/admin/api/member/group-list';
         $doan = json_decode(file_get_contents($url),true);
 
         return Datatables::of($this->seat->findAll())
