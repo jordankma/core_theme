@@ -219,7 +219,10 @@ class MenuController extends Controller
                 $checkDisplay = '';
             }
             if ($typeData == 'tintuc' && $typeView == 'detail') {
-//                $listCate = app('Dhcd\News\App\Http\Controllers\NewsCatController')->getCateApi();
+                $route_params = $menu->route_params;
+                $checkDisplayDetail = '';
+            }
+            if ($typeData == 'tailieu' && $typeView == 'detail') {
                 $route_params = $menu->route_params;
                 $checkDisplayDetail = '';
             }
