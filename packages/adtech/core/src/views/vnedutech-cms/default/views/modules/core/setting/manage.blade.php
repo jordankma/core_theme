@@ -163,9 +163,10 @@
     <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
     <script>
         $(function () {
-            $('#lfm').filemanager('image');
-            $('#lfm1').filemanager('image');
-            $('#lfm2').filemanager('image');
+            var domain = "http://dhcd.vnedutech.vn/admin/laravel-filemanager/";
+            $('#lfm').filemanager('image', {prefix: domain});
+            $('#lfm1').filemanager('image', {prefix: domain});
+            $('#lfm2').filemanager('image', {prefix: domain});
         })
     </script>
 @stop
