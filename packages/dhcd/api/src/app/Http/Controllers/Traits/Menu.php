@@ -50,7 +50,7 @@ trait Menu
                         $request->merge(['page' => 1, 'alias' => $menu->alias]);
                         $result = $this->getFilesDocumentByMenu($request);
                     } elseif ($menu->typeView == 'detail') {
-                        $request->merge(['alias' => $menu->alias]);
+                        $request->merge(['alias' => $menu->route_params]);
                         $result = $this->getFilesDetailByMenu($request);
                     }
                 }
