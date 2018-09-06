@@ -41,6 +41,8 @@ trait Menu
                 $item->icon = base64_encode(config('site.url_storage') . $menu->icon);
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
+                $item->date_created = strtotime($menu->created_at) * 1000;
+                $item->date_modified = strtotime($menu->updated_at) * 1000;
 
                 $result = [];
                 if ($menu->typeData == 'tailieu') {

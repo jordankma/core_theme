@@ -194,6 +194,8 @@ trait Document
                         $item->type_api = base64_encode(1);
                         $item->type_view = base64_encode('category');
                         $item->icon = config('site.url_storage') . $child->icon;
+                        $item->date_created = strtotime($child->created_at) * 1000;
+                        $item->date_modified = strtotime($child->updated_at) * 1000;
                         $list_document[] = $item;
                     }
                 }
@@ -253,6 +255,8 @@ trait Document
                         $item->type_api = base64_encode(1);
                         $item->type_view = base64_encode('category');
                         $item->icon = base64_encode(config('site.url_storage') . $child->icon);
+                        $item->date_created = strtotime($child->created_at) * 1000;
+                        $item->date_modified = strtotime($child->updated_at) * 1000;
                         $list_document[] = $item;
                     }
                 }
