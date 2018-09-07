@@ -253,8 +253,8 @@
                 check_chuyenmon++;
             });    
 
-            var domain = "/admin/laravel-filemanager/";
-            $('#lfm').filemanager('image', {prefix: domain});
+            // var domain = "/admin/laravel-filemanager/";
+            $('#lfm').filemanager('image');
             $('#form-add-member').bootstrapValidator({
                 feedbackIcons: {
                     // validating: 'glyphicon glyphicon-refresh'

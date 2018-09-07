@@ -59,7 +59,7 @@ class DocumentController extends Controller
     
     public function add(Request $request){
 //        $this->pushFileFtp(['files', 'test'], 'chap01.pdf');
-        Storage::putFileAs('/document/images/test/img', new File('files/background_fr.jpg'), 'background_fr.jpg');
+//        Storage::putFileAs('/document/images/test/img', new File('files/background_fr.jpg'), 'background_fr.jpg');
 
         $cateObj = new DocumentCate();        
         $cates = $this->documentCateRepository->getCates();

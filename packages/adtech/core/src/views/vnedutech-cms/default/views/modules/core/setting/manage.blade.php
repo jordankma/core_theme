@@ -163,25 +163,10 @@
     <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
     <script>
         $(function () {
-            var domain = "http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager";
-            $('#lfm').filemanager('image', {prefix: domain});
-            $('#lfm1').filemanager('image', {prefix: domain});
-            $('#lfm2').filemanager('image', {prefix: domain});
-
-            window.addEventListener('message', function(event) {
-
-                // IMPORTANT: Check the origin of the data!
-                if (~event.origin.indexOf('http://dhcd.vnedutech.vn')) {
-                    // The data has been sent from your site
-
-                    // The data sent with postMessage is stored in event.data
-                    console.log(event.data);
-                } else {
-                    // The data hasn't been sent from your site!
-                    // Be careful! Do not use it.
-                    return;
-                }
-            });
+            // var domain = "http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager";
+            $('#lfm').filemanager('image');
+            $('#lfm1').filemanager('image');
+            $('#lfm2').filemanager('image');
         })
     </script>
 @stop

@@ -6,7 +6,6 @@
 {{-- page styles --}}
 @section('header_styles')
 @stop
-<!--end of page css-->
 
 
 {{-- Page content --}}

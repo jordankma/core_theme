@@ -207,9 +207,9 @@ $(function () {
     $("[name='permission_locked']").bootstrapSwitch();
 });
      
-var domain = "/admin/laravel-filemanager/";
-$('#icon_doc').filemanager2('image', {prefix: domain  });  
-$('#lfm').filemanager2('application', {prefix: domain});
+// var domain = "http://dhcd.vnedutech.vn/admin/laravel-filemanager/";
+$('#icon_doc').filemanager2('image');
+$('#lfm').filemanager2('application');
 $(document).ready(function () {
 
     $("#document_cate_id").multiselect({

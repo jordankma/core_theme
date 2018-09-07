@@ -116,8 +116,8 @@
                     $(this).updateLivicon();
                 });
             });
-            var domain = "/admin/laravel-filemanager/";
-            $('#lfm').filemanager('file', {prefix: domain});
+            // var domain = "/admin/laravel-filemanager/";
+            $('#lfm').filemanager('file');
         });
 
     </script>

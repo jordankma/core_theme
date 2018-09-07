@@ -24,6 +24,7 @@ class DashboardController extends Controller
 
     public function filemanage()
     {
+
         return view('ADTECH-CORE::modules.core.file.manage');
     }
 

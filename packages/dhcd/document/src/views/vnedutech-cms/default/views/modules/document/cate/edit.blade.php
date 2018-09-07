@@ -157,8 +157,8 @@ if(!empty($cate->getTags->toArray())){
         $(function () {
             $("[name='permission_locked']").bootstrapSwitch();
         });
-        var domain = "/admin/laravel-filemanager/";
-        $('#lfm').filemanager('image', {prefix: domain});
+        // var domain = "/admin/laravel-filemanager/";
+        $('#lfm').filemanager('image');
         
         $("#form-edit").bootstrapValidator({
                 excluded: ':disabled',

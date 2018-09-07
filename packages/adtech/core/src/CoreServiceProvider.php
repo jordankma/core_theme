@@ -67,6 +67,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->app['router']->middlewareGroup('adtech.locale', ['\Adtech\Core\App\Middleware\LocaleMiddleware']);
         $this->app['router']->middlewareGroup('adtech.auth', ['\Adtech\Core\App\Middleware\AuthMiddleware']);
         $this->app['router']->middlewareGroup('adtech.acl', ['\Adtech\Core\App\Middleware\AclMiddleware']);
+//        $this->app['router']->middlewareGroup('adtech.cors', ['\Adtech\Core\App\Middleware\CorsMiddleware']);
     }
 
     /**
