@@ -31,8 +31,8 @@ class GlobalController extends Controller
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
-        echo $encrypted.'<br>';
-        echo $decrypted.'<br>';die;
+//        echo $encrypted.'<br>';
+//        echo $decrypted.'<br>';die;
 
         $query = [];
         if (count($parts) > 0) {
