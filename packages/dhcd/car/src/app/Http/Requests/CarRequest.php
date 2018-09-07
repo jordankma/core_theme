@@ -34,7 +34,6 @@ class CarRequest extends FormRequest
             case 'POST': {
                 $rules=[
                     'car_num' => 'required|numeric',
-                    'car_bs' => 'required|max:255',
                     'note' => 'required'
                 ];
                  $staffname = $request->input('staffname');
@@ -49,7 +48,6 @@ class CarRequest extends FormRequest
                 $rules=[
                     'car_id' => 'required|numeric',
                     'car_num' => 'required|numeric',
-                    'car_bs' => 'required|max:255',
                     'note' => 'required',
                 ];
                  $staffname = $request->input('staffname');
