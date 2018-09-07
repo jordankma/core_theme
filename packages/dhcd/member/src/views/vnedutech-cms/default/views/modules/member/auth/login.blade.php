@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ trans('adtech-core::titles.login.login') }} {{ (!empty($SETTING['title'])) ? '| ' . $SETTING['title'] : '' }}</title>
     <!--global css starts-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
     <link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? asset($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
     <!--end of global css-->
     <!--page level css starts-->
-    <link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/app.css?t=' . time()) }}"/>
+    <link rel="stylesheet" href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/app.css?t=' . time()) }}"/>
 
-    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/frontend/login.css') }}">
-    <link rel="stylesheet" href=" {{ asset('/vendor/' . $group_name . '/' . $skin . '/css/font-awesome.min.css') }}">
+    <link href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/frontend/login.css') }}">
+    <link rel="stylesheet" href=" {{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/font-awesome.min.css') }}">
     <!--end of page level css-->
     <style type="text/css">
         body{
@@ -55,10 +55,10 @@
     <!-- //Content Section End -->
 </div>
 <!--global js starts-->
-<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/frontend/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/frontend/bootstrap.min.js') }}"></script>
-<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/frontend/login_custom1.js') }}"></script>
+<script type="text/javascript" src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/frontend/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/frontend/bootstrap.min.js') }}"></script>
+<script src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/frontend/login_custom1.js') }}"></script>
 <!--global js end-->
 </body>
 </html>

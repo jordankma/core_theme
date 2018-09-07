@@ -4,10 +4,10 @@
     <title>Admin Login | Josh Admin Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- global level css -->
-    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}" rel="stylesheet"/>
     <!-- end of global level css -->
     <!-- page level css -->
-    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/login2.css') }}" rel="stylesheet"/>
+    <link href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/pages/login2.css') }}" rel="stylesheet"/>
     <!-- styles of the page ends-->
 </head>
 
@@ -55,11 +55,11 @@
         </div>
     </div>
     <!-- global js -->
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/jquery-1.11.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/jquery-1.11.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
     <!-- end of global js -->
     <!-- begining of page level js-->
-    <script src="{{ asset('assets/js/TweenLite.min.js') }}"></script>
+    <script src="{{config('site.url_static') .('assets/js/TweenLite.min.js') }}"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $(document).mousemove(function(event) {
