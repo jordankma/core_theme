@@ -156,7 +156,7 @@
 @section('footer_scripts')
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-multiselect/js/bootstrap-multiselect.js') }}" language="javascript" type="text/javascript"></script>
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
-    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
+    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js?t=' . time()) }}" ></script>
     <script>
         $(document).ready(function () {
             $('.addstaff').on('click',function(){

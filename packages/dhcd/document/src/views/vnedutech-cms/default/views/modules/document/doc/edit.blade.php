@@ -250,7 +250,7 @@ if(!empty($document->getTags->toArray())){
 <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-multiselect/js/bootstrap-multiselect.js') }}" type="text/javascript"></script>
 
-<script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm2.js') }}" type="text/javascript" ></script>
+<script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm2.js?t=' . time()) }}" type="text/javascript" ></script>
 <!--end of page js-->
 <script>
 

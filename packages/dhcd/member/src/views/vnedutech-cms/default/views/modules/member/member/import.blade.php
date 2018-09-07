@@ -53,7 +53,7 @@
 @section('footer_scripts')
     <!-- begining of page js -->
     <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js') }}" type="text/javascript" ></script>
+    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js?t=' . time()) }}" type="text/javascript" ></script>
     <!--end of page js-->
     <script type="text/javascript">
         $(document).ready(function() {

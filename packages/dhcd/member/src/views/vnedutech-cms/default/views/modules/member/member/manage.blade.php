@@ -94,7 +94,7 @@
 @section('footer_scripts')
     <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
     <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js') }}" type="text/javascript" ></script>
+    <script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm.js?t=' . time()) }}" type="text/javascript" ></script>
     <script>
         $(function () {
             var table = $('#table').DataTable({

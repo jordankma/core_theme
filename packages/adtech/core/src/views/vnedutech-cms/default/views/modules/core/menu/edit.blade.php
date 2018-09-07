@@ -1416,7 +1416,7 @@
 @section('footer_scripts')
     <!-- begining of page js -->
     <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/select2/js/select2.js') }}"></script>
-    <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js') }}" ></script>
+    <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js?t=' . time()) }}" ></script>
     <script>
         $(function () {
             $('#lfm').filemanager('image');
