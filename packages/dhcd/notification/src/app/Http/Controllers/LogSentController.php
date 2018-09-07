@@ -78,9 +78,7 @@ class LogSentController extends Controller
     //Table Data to index page
     public function data()
     {
-        $log_sents = LogSent::with(['notification' => function ($query) {
-            $query->where('dhcd_notification.deleted_at', null);
-        }])->orderBy('log_sent_id', 'desc')->get();
+        $log_sents = LogSent::with('notification')->orderBy('log_sent_id', 'desc')->get();
 
         return Datatables::of($log_sents)
             ->addIndexColumn()
@@ -94,7 +92,7 @@ class LogSentController extends Controller
                 return $created_at;   
             })
             ->addColumn('notification_id', function ($log_sents) {
-                $notification_id = htmlspecialchars($log_sents->notification->name);
+                $notification_id = (isset($log_sents->notification)) ? htmlspecialchars($log_sents->notification->name) : '';
                 return $notification_id;   
             })
             ->rawColumns(['actions','created_at','notification_id'])
