@@ -16,39 +16,39 @@ trait Search
     );
 
     public function getSearch($request){
-        $keyword = $this->to_slug($request->keyword);
-        if($keyword != ''){
-            $keyword = explode(" ",$keyword)[0];
-        }
-        $params = [
-            'name' => $keyword
-        ];
-        $member = new MemberElastic();
-        $data_members = $member->customSearch($params)->paginate(20);
-        $group = new GroupElastic();
-        $data_groups = $group->customSearch($params)->paginate(20);
-        $groups = $members = array();
-        if(count($data_groups)>0){
-            foreach ($data_groups as $key => $group) {
-                if($group->deleted_at == ''){
-                    $groups[] = [
-                        'group_id' => $group->group_id,
-                        'name' => base64_encode($group->name)
-                    ];
-                }
-            }
-        }
-        if(count($data_members)>0){
-            foreach ($data_members as $key => $member) {
-                if($member->deleted_at == ''){
-                    $members[] = [
-                        'member_id' => $member->member_id,
-                        'name' => base64_encode($member->name)
-                    ];
-                }
-            }
-        }
-        $data = '{
+       $keyword = $this->to_slug($request->keyword);
+       if($keyword != ''){
+           $keyword = explode(" ",$keyword)[0];
+       }
+       $params = [
+           'name' => $keyword
+       ];
+       $member = new MemberElastic();
+       $data_members = $member->customSearch($params)->paginate(20);
+       $group = new GroupElastic();
+       $data_groups = $group->customSearch($params)->paginate(20);
+       $groups = $members = array();
+       if(count($data_groups)>0){
+           foreach ($data_groups as $key => $group) {
+               if($group->deleted_at == ''){
+                   $groups[] = [
+                       'group_id' => $group->group_id,
+                       'name' => base64_encode($group->name)
+                   ];
+               }
+           }
+       }
+       if(count($data_members)>0){
+           foreach ($data_members as $key => $member) {
+               if($member->deleted_at == ''){
+                   $members[] = [
+                       'member_id' => $member->member_id,
+                       'name' => base64_encode($member->name)
+                   ];
+               }
+           }
+       }
+       $data = '{
                    "data": {
                        "members": '. json_encode($members) .',
                        "groups": '. json_encode($groups) .'
@@ -56,9 +56,9 @@ trait Search
                    "success" : true,
                    "message" : "ok!"
                }';
-        $data = str_replace('null', '""', $data);
-        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
-    }
+       $data = str_replace('null', '""', $data);
+       return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+   }
 
     protected function to_slug($str) {
         $str = trim(mb_strtolower($str));
