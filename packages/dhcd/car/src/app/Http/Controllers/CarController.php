@@ -31,6 +31,7 @@ class CarController extends Controller
         $staffname = $request->input('staffname');
         $staffpos = $request->input('staffpos');
         $phone = $request->input('phone');
+        $img = $request->input('img');
         if(empty($staffname)) {
             return redirect()->route('dhcd.car.create')->with('error', trans('dhcd-car::language.messages.error.missstaff'));
         } else {
@@ -56,6 +57,7 @@ class CarController extends Controller
         $car = new Car($request->all());
         $car->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $car->car_staff= $staff;
+        $car->img= $this->toURLFriendly($img);
         $car->save();
 
         if ($car->car_id) {
@@ -178,7 +180,7 @@ class CarController extends Controller
             $car->doan_id = implode("," , $request->input('doan_id'));
             $car->car_num = $request->input('car_num');
             $car->car_bs = $request->input('car_bs');
-            $car->img = $request->input('img');
+            $car->img = $this->toURLFriendly($request->input('img'));
             $car->note = $request->input('note');
             $car->car_staff= $staff;
             if ($car->save()) {
@@ -252,7 +254,7 @@ class CarController extends Controller
         return Datatables::of($this->car->findAll())
             ->editColumn('img',function ($car){
                 $img = $car->img;
-                return '<img src='.$img.' height="120" width="120">';
+                return '<img src='.config('site.url_storage') . $img.' height="120" width="120">';
             })
             ->editColumn('doan_id', function ($car) use($doan) {
             $doan_id = explode("," , $car->doan_id);

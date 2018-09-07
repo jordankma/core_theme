@@ -92,7 +92,7 @@ if(!empty($cate->getTags->toArray())){
                             <label class="col-md-2 control-label" for="name">{{ trans('dhcd-document::language.document_cate.form.icon_current') }}</label>
                             <div class="col-md-6">
                                 @if($cate->icon)
-                                    <img src="{{$cate->icon}}" width="75px">
+                                    <img src="{{ config('site.url_storage') . $cate->icon }}" width="75px">
                                 @else
                                     <label class="control-label" for="name">{{ trans('dhcd-document::language.document_cate.form.icon_empty') }}</label>
                                 @endif

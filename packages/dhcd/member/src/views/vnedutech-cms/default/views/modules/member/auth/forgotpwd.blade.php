@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ trans('adtech-core::titles.login.forgot_password') }} {{ (!empty($SETTING['title'])) ? '| ' . $SETTING['title'] : '' }}</title>
     <!--global css starts-->
-    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
-    <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
-    <link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? config('site.url_static') .($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
+    <link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? asset($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
     <!--end of global css-->
     <!--page level css starts-->
-    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/frontend/forgot.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/frontend/forgot.css') }}">
     <!--end of page level css-->
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="box animation flipInX">
-            <img src="{{ (!empty($SETTING['logo'])) ? config('site.url_static') .($SETTING['logo']) : '' }}" alt="logo" class="img-responsive mar"><br>
+            <img src="{{ (!empty($SETTING['logo'])) ? asset($SETTING['logo']) : '' }}" alt="logo" class="img-responsive mar"><br>
             <h3 class="text-primary">{{ trans('adtech-core::titles.login.forgot_password') }}</h3>
             <p>{{ trans('adtech-core::titles.login.forgot_password_mess') }}</p>
             <div id="notific">
@@ -41,10 +41,10 @@
     </div>
 </div>
 <!--global js starts-->
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/jquery.min.js') }}"></script>
-<script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/frontend/forgotpwd_custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/frontend/forgotpwd_custom.js') }}"></script>
 <!--global js end-->
 </body>
 </html>

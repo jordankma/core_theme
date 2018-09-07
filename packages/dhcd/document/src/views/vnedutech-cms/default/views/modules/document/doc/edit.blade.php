@@ -139,7 +139,7 @@ if(!empty($document->getTags->toArray())){
                                     </span>
                                     <input id="thumbnail" class="form-control" type="text" name="icon" value="{{old('icon',isset($document) ? $document->icon : '')}}">
                                  </div>
-                                 <img id="holder" style="margin-top:15px;max-height:100px;display:block; " src=" {{old('icon',isset($document) ? $document->icon : '')}}">
+                                 <img id="holder" style="margin-top:15px;max-height:100px;display:block; " src=" {{ config('site.url_storage') . old('icon',isset($document) ? $document->icon : '') }}">
                             </div>
                     </div>    
 

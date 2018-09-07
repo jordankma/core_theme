@@ -62,7 +62,7 @@
                            </span>
                             <input id="thumbnail" class="form-control" type="text" name="logo" value="{{ $logo }}">
                         </div>
-                        <img id="holder" src="{{ $logo }}" style="margin-top:15px;max-height:100px;">
+                        <img id="holder" src="{{ config('site.url_storage') . $logo }}" style="margin-top:15px;max-height:100px;">
                         <br><br>
 
                         <label>Logo mini</label>
@@ -74,7 +74,7 @@
                            </span>
                             <input id="thumbnail2" class="form-control" type="text" name="logo_mini" value="{{ $logo_mini }}">
                         </div>
-                        <img id="holder2" src="{{ $logo_mini }}" style="margin-top:15px;max-height:100px;">
+                        <img id="holder2" src="{{ config('site.url_storage') . $logo_mini }}" style="margin-top:15px;max-height:100px;">
                         <br><br>
 
                         <label>Favicon</label>
@@ -86,7 +86,7 @@
                            </span>
                             <input id="thumbnail1" class="form-control" type="text" name="favicon" value="{{ $favicon }}">
                         </div>
-                        <img id="holder1" src="{{ $favicon }}" style="margin-top:15px;max-height:100px;">
+                        <img id="holder1" src="{{ config('site.url_storage') . $favicon }}" style="margin-top:15px;max-height:100px;">
                         <br><br>
 
                         {{--<label>Logo link</label>--}}

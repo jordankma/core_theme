@@ -173,6 +173,7 @@ class GroupElastic extends ElasticEloquent
                 'must_not' => !empty($mustNotFilters[0]) ? $mustNotFilters : []
             ]
         ];
+
         $query = [
             'function_score' => [
                 'query' => [
@@ -182,7 +183,6 @@ class GroupElastic extends ElasticEloquent
                     ]
                 ]
             ],
-        
         ];
         
         if (!empty($params['is_random'])) {
@@ -195,7 +195,6 @@ class GroupElastic extends ElasticEloquent
         $offset = !empty($params['offset']) ? $params['offset'] : 0;
         $sort = !empty($params['sort']) ? $params['sort'] : ['member_id' => 'desc'];
         $data = GroupElastic::searchByQuery($query, null, null, $limit, $offset, $sort);
-
         return $data;
     }
 	public function remove(CourseElactic $course) {

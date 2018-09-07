@@ -27,9 +27,16 @@ class SessionseatController extends Controller
 
     public function add(SessionseatRequest $request)
     {
+        $sessionseat_img = $request->input('sessionseat_img');
+        if (count($sessionseat_img) > 0) {
+            foreach ($sessionseat_img as $k => $item) {
+                $sessionseat_img[$k] = $this->toURLFriendly($item);
+            }
+        }
+
         $sessionseat = new Sessionseat($request->all());
         $sessionseat->sessionseat_name = $request->input('sessionseat_name');
-        $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
+        $sessionseat->sessionseat_img = json_encode($sessionseat_img);
         $sessionseat->save();
 
         if ($sessionseat->sessionseat_id) {
@@ -92,11 +99,18 @@ class SessionseatController extends Controller
 
     public function update(SessionseatRequest $request)
     {
+        $sessionseat_img = $request->input('sessionseat_img');
+        if (count($sessionseat_img) > 0) {
+            foreach ($sessionseat_img as $k => $item) {
+                $sessionseat_img[$k] = $this->toURLFriendly($item);
+            }
+        }
+
         $sessionseat_id = $request->input('sessionseat_id');
         $sessionseat = $this->sessionseat->find($sessionseat_id);
         if(null!=$sessionseat){
             $sessionseat->sessionseat_name = $request->input('sessionseat_name');
-            $sessionseat->sessionseat_img = json_encode($request->input('sessionseat_img'));
+            $sessionseat->sessionseat_img = json_encode($sessionseat_img);
             if ($sessionseat->save()) {
 
                 Cache::forget('session_seat');
@@ -159,7 +173,7 @@ class SessionseatController extends Controller
         return Datatables::of($this->sessionseat->findAll())
             ->editColumn('img',function ($sessionseat){
                 $img = json_decode($sessionseat->sessionseat_img)[0];
-                return '<img src='.$img.' height="auto" width="200px">';
+                return '<img src=' . config('site.url_storage') . $this->toURLFriendly($img) . ' height="auto" width="200px">';
             })
             ->addColumn('actions', function ($sessionseat) {
                 $actions = '';

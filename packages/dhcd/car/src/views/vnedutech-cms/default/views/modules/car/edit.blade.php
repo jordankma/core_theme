@@ -96,7 +96,7 @@
                            </span>
                                 <input id="thumbnail" class="form-control" type="text" name="img" value="{{$staff->img}}">
                             </div>
-                            <img id="holder" src="{{asset($staff->img)}}" style="margin-top:15px;max-height:100px;">
+                            <img id="holder" src="{{config('site.url_storage') . ($staff->img)}}" style="margin-top:15px;max-height:100px;">
                             <br>
                             <label>Lộ trình (<span class="red">*</span>):</label>
                             <div class="form-group {{ $errors->first('note', 'has-error') }}">

@@ -92,7 +92,7 @@ class DocumentCate extends Model {
                 
                  echo '<tr>';                    
                     echo '<td>';
-                        echo "<img width='50px' src='".$item["icon"]."' >";
+                        echo "<img width='50px' src='".config('site.url_storage') . $item["icon"]."' >";
                     echo '</td>';               
                     echo '<td>';
                         echo $char . ' '.htmlspecialchars($item['name']);

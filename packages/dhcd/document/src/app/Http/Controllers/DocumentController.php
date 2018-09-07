@@ -58,9 +58,6 @@ class DocumentController extends Controller
     }
     
     public function add(Request $request){
-//        $this->pushFileFtp(['files', 'test'], 'chap01.pdf');
-//        Storage::putFileAs('/document/images/test/img', new File('files/background_fr.jpg'), 'background_fr.jpg');
-
         $cateObj = new DocumentCate();        
         $cates = $this->documentCateRepository->getCates();
         $types = $this->documentTypeRepository->getTypes();
@@ -88,18 +85,6 @@ class DocumentController extends Controller
                      'name' => $name,
                      'path' => $path_term 
                  ];
-
-//                 if ($file_types[$i] == 'pdf') {
-//
-//                     $client = new \GuzzleHttp\Client();
-//                     $path_file = substr($path_term, strpos($path_term, '/files'), strlen($path_term));
-//                     $client->request('GET', 'http://localhost:8080/split?path=/src/public' . $path_file);
-//                     $path_file = 'document/pdf' . $path_file;
-//                     $path_name = substr($path_file, 0, strrpos($path_file, '/'));
-//                     $file_name = substr($path_file, strrpos($path_file, '/') + 1, strlen($path_file));
-//                     $this->pushFileFtp($path_name, $file_name);
-//                 }
-
              }
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
              $is_offical = !empty($request->is_offical) ? $request->is_offical : 0;

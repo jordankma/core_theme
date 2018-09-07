@@ -29,6 +29,7 @@ class HotelController extends Controller
         $staffname = $request->input('staffname');
         $staffpos = $request->input('staffpos');
         $phone = $request->input('phone');
+        $img = $request->input('img');
         if (empty($staffname)) {
             return redirect()->route('dhcd.hotel.create')->with('error', trans('dhcd-hotel::language.messages.missstaff'));
         } else {
@@ -52,6 +53,7 @@ class HotelController extends Controller
         $hotel = new Hotel($request->all());
         $hotel->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $hotel->hotel_staff = $staff;
+        $hotel->img = $this->toURLFriendly($img);
         $hotel->save();
 
         if ($hotel->hotel_id) {
@@ -183,7 +185,7 @@ class HotelController extends Controller
             $hotel->hotel = $request->input('hotel');
             $hotel->note = $request->input('note');
             $hotel->address = $request->input('address');
-            $hotel->img = $request->input('img');
+            $hotel->img = $this->toURLFriendly($request->input('img'));
             $hotel->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
             $hotel->hotel_staff = $staff;
             if ($hotel->save()) {
@@ -237,7 +239,7 @@ class HotelController extends Controller
     return Datatables::of($this->hotel->findAll())
         ->editColumn('img',function ($hotel){
            $img = $hotel->img;
-           return '<img src='.$img.' height="auto" width="100%">';
+           return '<img src=' . config('site.url_storage') .  $img . ' height="auto" width="100%">';
         })
         ->editColumn('doan_id',function ($hotel) use ($doan){
             $doan_id = explode("," , $hotel->doan_id);

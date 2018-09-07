@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register | Welcome to Josh Frontend</title>
     <!--global css starts-->
-    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
-    <link rel="shortcut icon" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/images/favicon.png') }}" type="image/x-icon">
-    <link rel="icon" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/images/favicon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/favicon.png') }}" type="image/x-icon">
     <!--end of global css-->
     <!--page level css starts-->
-    <link type="text/css" rel="stylesheet" href="{{config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/iCheck/css/all.css')}}" />
-    <link href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/css/frontend/register.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{asset('/vendor/' . $group_name . '/' . $skin . '/vendors/iCheck/css/all.css')}}" />
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/css/bootstrapValidator.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/frontend/register.css') }}">
     <!--end of page level css-->
 </head>
 <body>
@@ -21,7 +21,7 @@
     <!--Content Section Start -->
     <div class="row">
         <div class="box animation flipInX">
-            <img src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/images/josh-new.png') }}" alt="logo" class="img-responsive mar">
+            <img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/josh-new.png') }}" alt="logo" class="img-responsive mar">
             <h3 class="text-primary">Sign Up</h3>
             <!-- Notifications -->
             <div id="notific">
@@ -84,11 +84,11 @@
     <!-- //Content Section End -->
 </div>
 <!--global js starts-->
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
-<script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/iCheck/js/icheck.js') }}"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/js/frontend/register_custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/iCheck/js/icheck.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/frontend/register_custom.js') }}"></script>
 <!--global js end-->
 </body>
 </html>

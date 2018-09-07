@@ -116,7 +116,7 @@
                             </span>
                                 <input id="thumbnail" class="form-control" type="text" name="img" value="{{$staff->img}}">
                             </div>
-                            <img id="holder" src="{{asset($staff->img)}}" style="margin:25px 0px 25px 0px;max-height:100px;">
+                            <img id="holder" src="{{config('site.url_storage') . ($staff->img)}}" style="margin:25px 0px 25px 0px;max-height:100px;">
                             <br>
 
                             <label>Ghi chú :</label>

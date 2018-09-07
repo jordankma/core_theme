@@ -72,6 +72,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('dhcd/member/position/confirm-delete', 'PositionMemberController@getModalDelete')->name('dhcd.member.position.confirm-delete');
     });
     Route::get('api/member/group-list', 'GroupController@apiList');
+
 });
 
 Route::group(array('prefix' => 'resource/dev'), function() {

@@ -54,7 +54,7 @@
                                    </span>
                                     <input id="thumbnail" class="form-control" type="text" name="sessionseat_img[]" value="{{ $value }}" required>
                                 </div>
-                                <img id="holder" src="{{ $value }}" style="margin-top:15px;max-height:100px;">
+                                <img id="holder" src="{{ config('site.url_storage') . $value }}" style="margin-top:15px;max-height:100px;">
                                 <br><br>
                             @endforeach
                         @endif

@@ -68,7 +68,7 @@ return [
     | Website backend url
     |--------------------------------------------------------------------------
     */
-    'url_storage' => 'http://dhcd-release.vnedutech.vn',
+    'url_storage' => 'http://dhcd.vnedutech.vn',
     'url_static' => 'http://static.dhcd.vnedutech.vn',
     'api_prefix' => '/resource/dev/get',
     'admin_prefix' => '/admin',

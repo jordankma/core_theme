@@ -72,7 +72,7 @@ class MemberController extends Controller
             $birthday = $request->input('birthday'); 
             $ngay_vao_dang = $request->input('ngay_vao_dang'); 
             $ngay_vao_doan = $request->input('ngay_vao_doan'); 
-            $avatar = !empty($request->input('avatar')) ? $request->input('avatar') :'';
+            $avatar = !empty($request->input('avatar')) ? $this->toURLFriendly($request->input('avatar')) :'';
 
             $members->name = $name;
             $members->email = $email;
@@ -187,7 +187,7 @@ class MemberController extends Controller
             $birthday = $request->input('birthday'); 
             $ngay_vao_dang = $request->input('ngay_vao_dang'); 
             $ngay_vao_doan = $request->input('ngay_vao_doan'); 
-            $avatar = !empty($request->input('avatar')) ? $request->input('avatar') :'';
+            $avatar = !empty($request->input('avatar')) ? $this->toURLFriendly($request->input('avatar')) :'';
 
             $member->name = $name;
             $member->email = $email;
@@ -380,7 +380,9 @@ class MemberController extends Controller
             })
             ->addColumn('group', function ($members) {
                 $group = '';
-                $group = htmlspecialchars($members->group[0]->name);
+                if($members->group[0]){
+                    $group = htmlspecialchars($members->group[0]->name);
+                }
                 return $group;
             })
             ->rawColumns(['actions','status','group'])
@@ -463,8 +465,6 @@ class MemberController extends Controller
                     if($member->save()){
                         $group_id = (int)$value[8];
                         $member_id = $member->member_id;
-                        $member_elastic = new MemberElastic();
-                        $member_elastic->saveDocument($member_id);
                         if (!GroupHasMember::where([
                             'group_id' => $group_id,
                             'member_id' => $member_id
@@ -472,6 +472,8 @@ class MemberController extends Controller
                         ){
                             DB::table('dhcd_group_has_member')->insert(['member_id' => $member_id, 'group_id' => $group_id]);
                         }
+                        $member_elastic = new MemberElastic();
+                        $member_elastic->saveDocument($member_id);
                     }
                 }        
             } else {
