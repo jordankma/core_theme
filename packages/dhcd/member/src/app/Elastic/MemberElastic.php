@@ -129,7 +129,7 @@ class MemberElastic extends ElasticEloquent
     {
         if (!$id) return;
         $member_elactic = new MemberElastic();
-        $item = Member::where('member_id',$id)->with('group')->first()->toArray();
+        $item = Member::withTrashed()->where('member_id',$id)->with('group')->first()->toArray();
         $data = self::_builDocument($item);
         $member_elactic->addDocument($item['member_id'], $data);
     }
