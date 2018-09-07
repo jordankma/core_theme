@@ -109,7 +109,7 @@ class GroupElastic extends ElasticEloquent
     {
         if (!$id) return;
         $group_elastic = new GroupElastic();
-        $item = Group::where('group_id',$id)->with('getMember')->first()->toArray();
+        $item = Group::withTrashed()->where('group_id',$id)->with('getMember')->first()->toArray();
         $data = self::_builDocument($item);
         $group_elastic->addDocument($item['group_id'], $data);
     }
