@@ -66,14 +66,14 @@ class DocumentController extends Controller
     }
     
     public function create(Request $request){
-        if(empty($request->file_types) || empty($request->file_names) || empty($request->path)){
-            return redirect()->back()->withInput()->withErrors(['Bạn chưa chọn file đính kèm']);
-        }      
+//        if(empty($request->file_types) || empty($request->file_names) || empty($request->path)){
+//            return redirect()->back()->withInput()->withErrors(['Bạn chưa chọn file đính kèm']);
+//        }
         $validator = Validator::make($request->all(), [
             'name' => 'required',                                   
             'document_type_id' => 'required',            
         ]);
-        if (!$validator->fails()) {            
+        if (!$validator->fails()) {
              $files = [];
              $file_names = $request->file_names;
              $file_types = $request->file_types;
@@ -120,7 +120,7 @@ class DocumentController extends Controller
                 }
 
 
-                if (!empty($request->document_cate_id)) {    
+                if (!empty($request->document_cate_id)) {
                     $document_cate_id = $request->document_cate_id;
                     $dochascate = [];
                     foreach ($document_cate_id as $cate_id) {
@@ -169,10 +169,10 @@ class DocumentController extends Controller
     }
     
     public function update(Request $request){    
-        if(empty($request->file_types) || empty($request->file_names) || empty($request->path)){
-            return redirect()->back()->withInput()->withErrors(['Bạn chưa chọn file đính kèm']);
-        }        
-        
+//        if(empty($request->file_types) || empty($request->file_names) || empty($request->path)){
+//            return redirect()->back()->withInput()->withErrors(['Bạn chưa chọn file đính kèm']);
+//        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'document_type_id' => 'required',
