@@ -23,7 +23,6 @@
     }
 </style>
 @stop
-<!--end of page css-->
 
 @php
 
@@ -207,7 +206,7 @@ $(function () {
     $("[name='permission_locked']").bootstrapSwitch();
 });
      
-// var domain = "http://dhcd.vnedutech.vn/admin/laravel-filemanager/";
+// var domain = "http://dhcd-release.vnedutech.vn/admin/laravel-filemanager/";
 $('#icon_doc').filemanager2('image');
 $('#lfm').filemanager2('application');
 $(document).ready(function () {

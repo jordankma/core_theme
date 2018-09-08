@@ -20,6 +20,7 @@ class DhcdDocumentsTable extends Migration
             $table->string('name');
             $table->string('alias');
             $table->longText('file')->nullable();            
+            $table->longText('file_spliter')->nullable();
             $table->longText('descript')->nullable();
             $table->string('icon')->nullable();
             $table->string('avatar')->nullable();

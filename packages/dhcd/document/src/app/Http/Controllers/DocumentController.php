@@ -74,7 +74,7 @@ class DocumentController extends Controller
             'document_type_id' => 'required',            
         ]);
         if (!$validator->fails()) {
-             $files = [];
+             $files = $fileSplits = [];
              $file_names = $request->file_names;
              $file_types = $request->file_types;
              $paths = $request->path;
@@ -86,6 +86,21 @@ class DocumentController extends Controller
                          'name' => $name,
                          'path' => $path_term 
                      ];
+                 }
+
+                 $result = new \stdClass();
+                 if ($file_types[$i] == 'pdf') {
+                     $timer = time() * 1000;
+                     $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
+                     $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
+                     $result = file_get_contents('http://dhcd.vnedutech.vn/resource/' . $pathFile);
+                     $result = json_decode($result);
+
+                     if (property_exists($result, "data")) {
+                         if (property_exists($result->data, "list_files")) {
+                             $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                         }
+                     }
                  }
              }
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
@@ -102,6 +117,7 @@ class DocumentController extends Controller
                  'alias' => $this->to_slug($request->name),
                  'document_type_id' => $request->document_type_id,
                  'file' => json_encode($files),
+                 'file_spliter' => json_encode($fileSplits),
                  'avatar' => $avatar,
                  'is_reserve' => $is_reserve,
                  'is_offical' => $is_offical, 
@@ -183,7 +199,7 @@ class DocumentController extends Controller
         
         if (!$validator->fails()) {
             
-             $files = [];
+             $files = $fileSplits = [];
              $file_names = $request->file_names;
              $file_types = $request->file_types;
              $paths = $request->path;
@@ -195,6 +211,21 @@ class DocumentController extends Controller
                          'name' => $name,
                          'path' => $path_term 
                      ];
+
+                     $result = new \stdClass();
+                     if ($file_types[$i] == 'pdf') {
+                         $timer = time() * 1000;
+                         $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
+                         $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
+                         $result = file_get_contents('http://dhcd.vnedutech.vn/resource/' . $pathFile);
+                         $result = json_decode($result);
+
+                         if (property_exists($result, "data")) {
+                             if (property_exists($result->data, "list_files")) {
+                                 $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                             }
+                         }
+                     }
                  }  
              }        
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
@@ -228,6 +259,7 @@ class DocumentController extends Controller
                         'descript' => $request->descript,
                         'document_type_id' => $request->document_type_id,
                         'file' => json_encode($files),
+                        'file_spliter' => json_encode($fileSplits),
                         'avatar' => $avatar,
                         'is_reserve' => $is_reserve,
                         'is_offical' => $is_offical,
