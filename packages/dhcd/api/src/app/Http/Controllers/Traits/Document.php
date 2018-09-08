@@ -99,12 +99,12 @@ trait Document
                         if (count($listFiles) > 0) {
                             $listFile = [];
                             if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file) {
+                                foreach ($listFileSpliter as $k => $file_split) {
                                     $files = [];
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
-                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                                    $files['filesize'] = $file_split['filesize'];
+                                    $files['path'] = config('site.url_storage') . $file_split['path'];
 
                                     $listFile[] = $files;
                                 }
@@ -227,12 +227,12 @@ trait Document
                         if (count($listFiles) > 0) {
                             $listFile = [];
                             if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file) {
+                                foreach ($listFileSpliter as $k => $file_split) {
                                     $files = [];
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
-                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                                    $files['filesize'] = $file_split['filesize'];
+                                    $files['path'] = config('site.url_storage') . $file_split['path'];
 
                                     $listFile[] = $files;
                                 }
@@ -317,12 +317,12 @@ trait Document
                         if (count($listFiles) > 0) {
                             $listFile = [];
                             if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file) {
+                                foreach ($listFileSpliter as $k => $file_split) {
                                     $files = [];
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
-                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                                    $files['filesize'] = $file_split['filesize'];
+                                    $files['path'] = config('site.url_storage') . $file_split['path'];
 
                                     $listFile[] = $files;
                                 }
@@ -434,12 +434,12 @@ trait Document
                         if (count($listFiles) > 0) {
                             $listFile = [];
                             if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file) {
+                                foreach ($listFileSpliter as $k => $file_split) {
                                     $files = [];
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
-                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                                    $files['filesize'] = $file_split['filesize'];
+                                    $files['path'] = config('site.url_storage') . $file_split['path'];
 
                                     $listFile[] = $files;
                                 }
@@ -524,12 +524,12 @@ trait Document
                         if (count($listFiles) > 0) {
                             $listFile = [];
                             if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file) {
+                                foreach ($listFileSpliter as $k => $file_split) {
                                     $files = [];
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
-                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                                    $files['filesize'] = $file_split['filesize'];
+                                    $files['path'] = config('site.url_storage') . $file_split['path'];
 
                                     $listFile[] = $files;
                                 }
@@ -602,12 +602,12 @@ trait Document
                 if (count($listFiles) > 0) {
                     $listFile = [];
                     if (count($listFileSpliter) > 0) {
-                        foreach ($listFileSpliter as $k => $file) {
+                        foreach ($listFileSpliter as $k => $file_split) {
                             $files = [];
                             $files['name'] = '';
                             $files['type'] = 'pdf';
-                            $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                            $files['filesize'] = $file_split['filesize'];
+                            $files['path'] = config('site.url_storage') . $file_split['path'];
 
                             $listFile[] = $files;
                         }
@@ -666,12 +666,12 @@ trait Document
                 if (count($listFiles) > 0) {
                     $listFile = [];
                     if (count($listFileSpliter) > 0) {
-                        foreach ($listFileSpliter as $k => $file) {
+                        foreach ($listFileSpliter as $k => $file_split) {
                             $files = [];
                             $files['name'] = '';
                             $files['type'] = 'pdf';
-                            $files['filesize'] = $listFileSpliter[$k]['filesize'];
-                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
+                            $files['filesize'] = $file_split['filesize'];
+                            $files['path'] = config('site.url_storage') . $file_split['path'];
 
                             $listFile[] = $files;
                         }
