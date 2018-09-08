@@ -98,33 +98,45 @@ trait Document
                         $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $k => $files) {
-                                $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                                $files['name'] = base64_encode($files['name']);
+                            if (count($listFileSpliter) > 0) {
+                                foreach ($listFileSpliter as $k => $file) {
+                                    $files = [];
+                                    $files['name'] = '';
+                                    $files['type'] = 'pdf';
+                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                                if (count($listFileSpliter) == count($listFiles)) {
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                    $listFile[] = $files;
                                 }
-
-                                $listFile[] = $files;
+                            } else {
+                                foreach ($listFiles as $k => $files) {
+                                    $files = [];
+                                    $files['filesize'] = 0;
+                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                                    $files['name'] = base64_encode($files['name']);
+                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                    $listFile[] = $files;
+                                }
                             }
-
-                            $item->id = $file->document_id;
-                            $item->title = base64_encode($file->name);
-                            $item->alias = base64_encode($file->alias);
-                            $item->sub_title = base64_encode($file->descript);
-                            $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
-                            $item->files = $listFile;
-                            $item->is_offical = base64_encode($file->is_offical);
-                            $item->is_reserve = base64_encode($file->is_reserve);
-                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                            $item->type_file = '';
-                            $item->type_view = base64_encode('detail');
-                            $item->date_created = strtotime($file->created_at) * 1000;
-                            $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                            $list_docs[] = $item;
                         }
+
+                        $item->id = $file->document_id;
+                        $item->title = base64_encode($file->name);
+                        $item->alias = base64_encode($file->alias);
+                        $item->sub_title = base64_encode($file->descript);
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->files = $listFile;
+                        $item->is_offical = base64_encode($file->is_offical);
+                        $item->is_reserve = base64_encode($file->is_reserve);
+                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                        $item->type_file = '';
+                        $item->type_view = base64_encode('detail');
+                        $item->date_created = strtotime($file->created_at) * 1000;
+                        $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                        $list_docs[] = $item;
+
                         //
                     }
                 }
@@ -213,17 +225,30 @@ trait Document
                         $listFiles = json_decode($file->file, true);
                         $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
-                            foreach ($listFiles as $k => $files) {
-                                $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                                $files['name'] = base64_encode($files['name']);
+                            $listFile = [];
+                            if (count($listFileSpliter) > 0) {
+                                foreach ($listFileSpliter as $k => $file) {
+                                    $files = [];
+                                    $files['name'] = '';
+                                    $files['type'] = 'pdf';
+                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                                if (count($listFileSpliter) == count($listFiles)) {
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                    $listFile[] = $files;
                                 }
-
-                                $listFile[] = $files;
+                            } else {
+                                foreach ($listFiles as $k => $files) {
+                                    $files = [];
+                                    $files['filesize'] = 0;
+                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                                    $files['name'] = base64_encode($files['name']);
+                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                    $listFile[] = $files;
+                                }
                             }
                         }
+
                         $item->id = $file->document_id;
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
@@ -291,33 +316,44 @@ trait Document
                         $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $k => $files) {
-                                $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                                $files['name'] = base64_encode($files['name']);
+                            if (count($listFileSpliter) > 0) {
+                                foreach ($listFileSpliter as $k => $file) {
+                                    $files = [];
+                                    $files['name'] = '';
+                                    $files['type'] = 'pdf';
+                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                                if (count($listFileSpliter) == count($listFiles)) {
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                    $listFile[] = $files;
                                 }
-
-                                $listFile[] = $files;
+                            } else {
+                                foreach ($listFiles as $k => $files) {
+                                    $files = [];
+                                    $files['filesize'] = 0;
+                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                                    $files['name'] = base64_encode($files['name']);
+                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                    $listFile[] = $files;
+                                }
                             }
-
-                            $item->id = $file->document_id;
-                            $item->title = base64_encode($file->name);
-                            $item->alias = base64_encode($file->alias);
-                            $item->sub_title = base64_encode($file->descript);
-                            $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
-                            $item->files = $listFile;
-                            $item->is_offical = base64_encode($file->is_offical);
-                            $item->is_reserve = base64_encode($file->is_reserve);
-                            $item->updated_file_at = base64_encode($file->updated_file_at);
-                            $item->type_file = '';
-                            $item->type_view = base64_encode('detail');
-                            $item->date_created = strtotime($file->created_at) * 1000;
-                            $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                            $list_document[] = $item;
                         }
+
+                        $item->id = $file->document_id;
+                        $item->title = base64_encode($file->name);
+                        $item->alias = base64_encode($file->alias);
+                        $item->sub_title = base64_encode($file->descript);
+                        $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
+                        $item->files = $listFile;
+                        $item->is_offical = base64_encode($file->is_offical);
+                        $item->is_reserve = base64_encode($file->is_reserve);
+                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                        $item->type_file = '';
+                        $item->type_view = base64_encode('detail');
+                        $item->date_created = strtotime($file->created_at) * 1000;
+                        $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                        $list_document[] = $item;
                         //
                     }
                 }
@@ -397,33 +433,44 @@ trait Document
                         $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $k => $files) {
-                                $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                                $files['name'] = base64_encode($files['name']);
+                            if (count($listFileSpliter) > 0) {
+                                foreach ($listFileSpliter as $k => $file) {
+                                    $files = [];
+                                    $files['name'] = '';
+                                    $files['type'] = 'pdf';
+                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                                if (count($listFileSpliter) == count($listFiles)) {
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                    $listFile[] = $files;
                                 }
-
-                                $listFile[] = $files;
+                            } else {
+                                foreach ($listFiles as $k => $files) {
+                                    $files = [];
+                                    $files['filesize'] = 0;
+                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                                    $files['name'] = base64_encode($files['name']);
+                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                    $listFile[] = $files;
+                                }
                             }
-
-                            $item->id = $file->document_id;
-                            $item->title = base64_encode($file->name);
-                            $item->alias = base64_encode($file->alias);
-                            $item->sub_title = base64_encode($file->descript);
-                            $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
-                            $item->files = $listFile;
-                            $item->is_offical = base64_encode($file->is_offical);
-                            $item->is_reserve = base64_encode($file->is_reserve);
-                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                            $item->type_file = '';
-                            $item->type_view = base64_encode('detail');
-                            $item->date_created = strtotime($file->created_at) * 1000;
-                            $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                            $list_document[] = $item;
                         }
+
+                        $item->id = $file->document_id;
+                        $item->title = base64_encode($file->name);
+                        $item->alias = base64_encode($file->alias);
+                        $item->sub_title = base64_encode($file->descript);
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->files = $listFile;
+                        $item->is_offical = base64_encode($file->is_offical);
+                        $item->is_reserve = base64_encode($file->is_reserve);
+                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                        $item->type_file = '';
+                        $item->type_view = base64_encode('detail');
+                        $item->date_created = strtotime($file->created_at) * 1000;
+                        $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                        $list_document[] = $item;
                         //
                     }
                 }
@@ -476,33 +523,44 @@ trait Document
                         $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $k => $files) {
-                                $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                                $files['name'] = base64_encode($files['name']);
+                            if (count($listFileSpliter) > 0) {
+                                foreach ($listFileSpliter as $k => $file) {
+                                    $files = [];
+                                    $files['name'] = '';
+                                    $files['type'] = 'pdf';
+                                    $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                                if (count($listFileSpliter) == count($listFiles)) {
-                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                    $listFile[] = $files;
                                 }
-
-                                $listFile[] = $files;
+                            } else {
+                                foreach ($listFiles as $k => $files) {
+                                    $files = [];
+                                    $files['filesize'] = 0;
+                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                                    $files['name'] = base64_encode($files['name']);
+                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                    $listFile[] = $files;
+                                }
                             }
-
-                            $item->id = $file->document_id;
-                            $item->title = base64_encode($file->name);
-                            $item->alias = base64_encode($file->alias);
-                            $item->sub_title = base64_encode($file->descript);
-                            $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
-                            $item->files = $listFile;
-                            $item->is_offical = base64_encode($file->is_offical);
-                            $item->is_reserve = base64_encode($file->is_reserve);
-                            $item->updated_file_at = base64_encode($file->updated_file_at);
-                            $item->type_file = '';
-                            $item->type_view = base64_encode('detail');
-                            $item->date_created = base64_encode(strtotime($file->created_at) * 1000);
-                            $item->date_modified = base64_encode(strtotime($file->updated_at) * 1000);
-
-                            $list_document[] = $item;
                         }
+
+                        $item->id = $file->document_id;
+                        $item->title = base64_encode($file->name);
+                        $item->alias = base64_encode($file->alias);
+                        $item->sub_title = base64_encode($file->descript);
+                        $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
+                        $item->files = $listFile;
+                        $item->is_offical = base64_encode($file->is_offical);
+                        $item->is_reserve = base64_encode($file->is_reserve);
+                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                        $item->type_file = '';
+                        $item->type_view = base64_encode('detail');
+                        $item->date_created = base64_encode(strtotime($file->created_at) * 1000);
+                        $item->date_modified = base64_encode(strtotime($file->updated_at) * 1000);
+
+                        $list_document[] = $item;
                         //
                     }
                 }
@@ -543,27 +601,38 @@ trait Document
                 $listFileSpliter = json_decode($filesDoc->file_spliter, true);
                 if (count($listFiles) > 0) {
                     $listFile = [];
-                    foreach ($listFiles as $k => $files) {
-                        $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                        $files['name'] = base64_encode($files['name']);
+                    if (count($listFileSpliter) > 0) {
+                        foreach ($listFileSpliter as $k => $file) {
+                            $files = [];
+                            $files['name'] = '';
+                            $files['type'] = 'pdf';
+                            $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                        if (count($listFileSpliter) == count($listFiles)) {
-                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                            $listFile[] = $files;
                         }
-
-                        $listFile[] = $files;
+                    } else {
+                        foreach ($listFiles as $k => $files) {
+                            $files = [];
+                            $files['filesize'] = 0;
+                            $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                            $files['name'] = base64_encode($files['name']);
+                            $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                            $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                            $listFile[] = $files;
+                        }
                     }
-
-                    $item->id = $filesDoc->document_id;
-                    $item->title = base64_encode($filesDoc->name);
-                    $item->alias = base64_encode($filesDoc->alias);
-                    $item->sub_title = base64_encode($filesDoc->descript);
-                    $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
-                    $item->files = $listFile;
-                    $item->type_file = '';
-                    $item->date_created = strtotime($filesDoc->created_at) * 1000;
-                    $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
                 }
+
+                $item->id = $filesDoc->document_id;
+                $item->title = base64_encode($filesDoc->name);
+                $item->alias = base64_encode($filesDoc->alias);
+                $item->sub_title = base64_encode($filesDoc->descript);
+                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
+                $item->files = $listFile;
+                $item->type_file = '';
+                $item->date_created = strtotime($filesDoc->created_at) * 1000;
+                $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
                 //
         }
 
@@ -593,24 +662,41 @@ trait Document
         if (null != $filesDoc) {
 
                 $listFiles = json_decode($filesDoc->file, true);
+                $listFileSpliter = json_decode($filesDoc->file_spliter, true);
                 if (count($listFiles) > 0) {
                     $listFile = [];
-                    foreach ($listFiles as $files) {
-                        $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
-                        $files['name'] = base64_encode($files['name']);
-                        $listFile[] = $files;
-                    }
+                    if (count($listFileSpliter) > 0) {
+                        foreach ($listFileSpliter as $k => $file) {
+                            $files = [];
+                            $files['name'] = '';
+                            $files['type'] = 'pdf';
+                            $files['filesize'] = $listFileSpliter[$k]['filesize'];
+                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k]['path'];
 
-                    $item->id = $filesDoc->document_id;
-                    $item->title = base64_encode($filesDoc->name);
-                    $item->alias = base64_encode($filesDoc->alias);
-                    $item->sub_title = base64_encode($filesDoc->descript);
-                    $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
-                    $item->files = $listFile;
-                    $item->type_file = '';
-                    $item->date_created = strtotime($filesDoc->created_at) * 1000;
-                    $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
+                            $listFile[] = $files;
+                        }
+                    } else {
+                        foreach ($listFiles as $k => $files) {
+                            $files = [];
+                            $files['filesize'] = 0;
+                            $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
+                            $files['name'] = base64_encode($files['name']);
+                            $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                            $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                            $listFile[] = $files;
+                        }
+                    }
                 }
+
+                $item->id = $filesDoc->document_id;
+                $item->title = base64_encode($filesDoc->name);
+                $item->alias = base64_encode($filesDoc->alias);
+                $item->sub_title = base64_encode($filesDoc->descript);
+                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
+                $item->files = $listFile;
+                $item->type_file = '';
+                $item->date_created = strtotime($filesDoc->created_at) * 1000;
+                $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
                 //
         }
 
