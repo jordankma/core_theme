@@ -203,31 +203,30 @@ trait Document
                 if (count($filesDoc) > 0) {
                     foreach ($filesDoc as $file) {
                         $item = new \stdClass();
+                        $listFile = [];
                         $listFiles = json_decode($file->file, true);
                         if (count($listFiles) > 0) {
-                            $listFile = [];
                             foreach ($listFiles as $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
                                 $listFile[] = $files;
                             }
-
-                            $item->id = $file->document_id;
-                            $item->title = base64_encode($file->name);
-                            $item->alias = base64_encode($file->alias);
-                            $item->sub_title = base64_encode($file->descript);
-                            $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
-                            $item->files = $listFile;
-                            $item->is_offical = base64_encode($file->is_offical);
-                            $item->is_reserve = base64_encode($file->is_reserve);
-                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                            $item->type_file = '';
-                            $item->type_view = base64_encode('detail');
-                            $item->date_created = strtotime($file->created_at) * 1000;
-                            $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                            $list_document[] = $item;
                         }
+                        $item->id = $file->document_id;
+                        $item->title = base64_encode($file->name);
+                        $item->alias = base64_encode($file->alias);
+                        $item->sub_title = base64_encode($file->descript);
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->files = $listFile;
+                        $item->is_offical = base64_encode($file->is_offical);
+                        $item->is_reserve = base64_encode($file->is_reserve);
+                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                        $item->type_file = '';
+                        $item->type_view = base64_encode('detail');
+                        $item->date_created = strtotime($file->created_at) * 1000;
+                        $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                        $list_document[] = $item;
                         //
                     }
                 }
