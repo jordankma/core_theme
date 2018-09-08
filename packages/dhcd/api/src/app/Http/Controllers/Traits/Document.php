@@ -95,11 +95,17 @@ trait Document
                     foreach ($filesDoc as $file) {
                         $item = new \stdClass();
                         $listFiles = json_decode($file->file, true);
+                        $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $files) {
+                            foreach ($listFiles as $k => $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
+
+                                if (count($listFileSpliter) == count($listFiles)) {
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                }
+
                                 $listFile[] = $files;
                             }
 
@@ -205,10 +211,16 @@ trait Document
                         $item = new \stdClass();
                         $listFile = [];
                         $listFiles = json_decode($file->file, true);
+                        $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
-                            foreach ($listFiles as $files) {
+                            foreach ($listFiles as $k => $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
+
+                                if (count($listFileSpliter) == count($listFiles)) {
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                }
+
                                 $listFile[] = $files;
                             }
                         }
@@ -216,7 +228,7 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('site.url_storage') . '' . $file->icon;
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
@@ -276,11 +288,17 @@ trait Document
                     foreach ($filesDoc as $file) {
                         $item = new \stdClass();
                         $listFiles = json_decode($file->file, true);
+                        $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $files) {
+                            foreach ($listFiles as $k => $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
+
+                                if (count($listFileSpliter) == count($listFiles)) {
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                }
+
                                 $listFile[] = $files;
                             }
 
@@ -376,11 +394,17 @@ trait Document
                     foreach ($filesDoc as $file) {
                         $item = new \stdClass();
                         $listFiles = json_decode($file->file, true);
+                        $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $files) {
+                            foreach ($listFiles as $k => $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
+
+                                if (count($listFileSpliter) == count($listFiles)) {
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                }
+
                                 $listFile[] = $files;
                             }
 
@@ -449,11 +473,17 @@ trait Document
                     foreach ($filesDoc as $file) {
                         $item = new \stdClass();
                         $listFiles = json_decode($file->file, true);
+                        $listFileSpliter = json_decode($file->file_spliter, true);
                         if (count($listFiles) > 0) {
                             $listFile = [];
-                            foreach ($listFiles as $files) {
+                            foreach ($listFiles as $k => $files) {
                                 $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                 $files['name'] = base64_encode($files['name']);
+
+                                if (count($listFileSpliter) == count($listFiles)) {
+                                    $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                                }
+
                                 $listFile[] = $files;
                             }
 
@@ -510,11 +540,17 @@ trait Document
         if (null != $filesDoc) {
             
                 $listFiles = json_decode($filesDoc->file, true);
+                $listFileSpliter = json_decode($filesDoc->file_spliter, true);
                 if (count($listFiles) > 0) {
                     $listFile = [];
-                    foreach ($listFiles as $files) {
+                    foreach ($listFiles as $k => $files) {
                         $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                         $files['name'] = base64_encode($files['name']);
+
+                        if (count($listFileSpliter) == count($listFiles)) {
+                            $files['path'] = config('site.url_storage') . $listFileSpliter[$k];
+                        }
+
                         $listFile[] = $files;
                     }
 
