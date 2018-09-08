@@ -110,7 +110,6 @@ trait Document
                                 }
                             } else {
                                 foreach ($listFiles as $k => $files) {
-                                    $files = [];
                                     $files['filesize'] = 0;
                                     $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                     $files['name'] = base64_encode($files['name']);
@@ -238,7 +237,6 @@ trait Document
                                 }
                             } else {
                                 foreach ($listFiles as $k => $files) {
-                                    $files = [];
                                     $files['filesize'] = 0;
                                     $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                     $files['name'] = base64_encode($files['name']);
@@ -328,7 +326,6 @@ trait Document
                                 }
                             } else {
                                 foreach ($listFiles as $k => $files) {
-                                    $files = [];
                                     $files['filesize'] = 0;
                                     $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                     $files['name'] = base64_encode($files['name']);
@@ -445,7 +442,6 @@ trait Document
                                 }
                             } else {
                                 foreach ($listFiles as $k => $files) {
-                                    $files = [];
                                     $files['filesize'] = 0;
                                     $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                     $files['name'] = base64_encode($files['name']);
@@ -535,7 +531,6 @@ trait Document
                                 }
                             } else {
                                 foreach ($listFiles as $k => $files) {
-                                    $files = [];
                                     $files['filesize'] = 0;
                                     $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                                     $files['name'] = base64_encode($files['name']);
@@ -613,7 +608,6 @@ trait Document
                         }
                     } else {
                         foreach ($listFiles as $k => $files) {
-                            $files = [];
                             $files['filesize'] = 0;
                             $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                             $files['name'] = base64_encode($files['name']);
@@ -677,7 +671,6 @@ trait Document
                         }
                     } else {
                         foreach ($listFiles as $k => $files) {
-                            $files = [];
                             $files['filesize'] = 0;
                             $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('app.url') . '' . $files['name'];
                             $files['name'] = base64_encode($files['name']);
