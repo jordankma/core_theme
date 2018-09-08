@@ -55,13 +55,15 @@ class DocumentCateController extends Controller {
                     'icon' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
-            $cateExits = DocumentCate::where(['alias' => $this->to_slug($request->name)])->get()->toArray();
-            if($cateExits){                
-                return redirect()->back()->withInput()->withErrors(['Danh mục đã tồn tại']);
+            $count_alias = DocumentCate::where('alias' ,'like', $this->to_slug($request->name).'%')->count();
+            if($count_alias == 0){                
+                $alias = $this->to_slug($request->name);
+            } else {
+                $alias = $this->to_slug($request->name).$count_alias;
             }
             $cate = DocumentCate::create([
                         'name' => $request->name,
-                        'alias' => $this->to_slug($request->name),
+                        'alias' => $alias,
                         'icon' => $request->icon,
                         'sort' => $request->sort,
                         'descript' => $request->descript,
@@ -118,13 +120,15 @@ class DocumentCateController extends Controller {
                     'document_cate_id' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
-            $cateExits = DocumentCate::where('alias',$this->to_slug($request->name))->where('document_cate_id','<>',$request->document_cate_id)->get()->toArray();
-            if($cateExits){                
-                return redirect()->back()->withInput()->withErrors(['Danh mục đã tồn tại']);
+            $count_alias = DocumentCate::where('alias' ,'like', $this->to_slug($request->name).'%')->count();
+            if($count_alias-1 == 0){
+                $alias = $this->to_slug($request->name);
+            } else {
+                $alias = $this->to_slug($request->name).$count_alias;
             }
             $cate = $this->documentCate->find($request->document_cate_id);
             $cate->name = $request->name;
-            $cate->alias = $this->to_slug($request->name);
+            $cate->alias = $alias;
             $cate->sort = $request->sort;
             $cate->descript = $request->descript;
             if ($cate->document_cate_id != (int) $request->parent_id) {

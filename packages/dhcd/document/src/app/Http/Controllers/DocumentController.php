@@ -78,13 +78,15 @@ class DocumentController extends Controller
              $file_names = $request->file_names;
              $file_types = $request->file_types;
              $paths = $request->path;
-             foreach($file_names as $i => $name){
-                 $path_term = str_replace(' ', '%20', $paths[$i]);
-                 $files[] = [
-                     'type' => $file_types[$i],
-                     'name' => $name,
-                     'path' => $path_term 
-                 ];
+             if(!empty($file_names)){
+                 foreach($file_names as $i => $name){
+                     $path_term = str_replace(' ', '%20', $paths[$i]);
+                     $files[] = [
+                         'type' => $file_types[$i],
+                         'name' => $name,
+                         'path' => $path_term 
+                     ];
+                 }
              }
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
              $is_offical = !empty($request->is_offical) ? $request->is_offical : 0;
@@ -185,14 +187,16 @@ class DocumentController extends Controller
              $file_names = $request->file_names;
              $file_types = $request->file_types;
              $paths = $request->path;
-             foreach($file_names as $i => $name){
-                 $path_term = str_replace(' ', '%20', $paths[$i]);
-                 $files[] = [
-                     'type' => $file_types[$i],
-                     'name' => $name,
-                     'path' => $path_term 
-                 ];
-             }          
+             if(!empty($file_names)){
+                 foreach($file_names as $i => $name){
+                     $path_term = str_replace(' ', '%20', $paths[$i]);
+                     $files[] = [
+                         'type' => $file_types[$i],
+                         'name' => $name,
+                         'path' => $path_term 
+                     ];
+                 }  
+             }        
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
              $is_offical = !empty($request->is_offical) ? $request->is_offical : 0;
              
