@@ -21,7 +21,7 @@ class Document extends Model {
 
     protected $primaryKey = 'document_id';
 
-    protected $fillable = ['name','file','status','descript','document_type_id','avatar','alias','is_offical','is_reserve','icon'];
+    protected $fillable = ['name','file','file_spliter','status','descript','document_type_id','avatar','alias','is_offical','is_reserve','icon'];
     
     protected $dates = ['deleted_at'];
     
