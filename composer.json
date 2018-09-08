@@ -45,13 +45,6 @@
     },
     {
       "type": "path",
-      "url": "packages/dhcd/document",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "path",
       "url": "packages/dhcd/car",
       "options": {
         "symlink": true
@@ -91,6 +84,13 @@
       "options": {
         "symlink": true
       }
+    },
+    {
+      "type": "path",
+      "url": "packages/dhcd/document",
+      "options": {
+        "symlink": true
+      }
     }
   ],
   "require": {
@@ -107,12 +107,9 @@
     "yajra/laravel-datatables-oracle": "~8.0",
     "phpoffice/phpspreadsheet": "^1.3",
     "dimsav/laravel-translatable": "^9.0",
-    "google/protobuf": "v3.6.0.1",
+    "elasticquent/elasticquent": "dev-master",
     "guzzle/guzzle": "~3.0",
-    "maatwebsite/excel": "^3.0",
-    "tymon/jwt-auth": "^1.0.0",
-    "unisharp/laravel-fileapi": "^1.0",
-    "elasticquent/elasticquent": "dev-master"
+    "tymon/jwt-auth": "^1.0.0"
   },
   "require-dev": {
     "filp/whoops": "^2.0",
@@ -136,11 +133,11 @@
       "Dhcd\\Administration\\": "packages/dhcd/administration/src/",
       "Dhcd\\Api\\": "packages/dhcd/api/src/",
       "Dhcd\\Member\\": "packages/dhcd/member/src/",
-      "Dhcd\\Document\\": "packages/dhcd/document/src/",
       "Dhcd\\Car\\": "packages/dhcd/car/src/",
       "Dhcd\\Hotel\\": "packages/dhcd/hotel/src/",
       "Dhcd\\Seat\\": "packages/dhcd/seat/src/",
-      "Dhcd\\Sessionseat\\": "packages/dhcd/sessionseat/src/"
+      "Dhcd\\Sessionseat\\": "packages/dhcd/sessionseat/src/",
+      "Dhcd\\Document\\": "packages/dhcd/document/src/"
     }
   },
   "autoload-dev": {
@@ -153,13 +150,13 @@
       "packages/dhcd/notification/src/",
       "packages/dhcd/events/src/",
       "packages/dhcd/administration/src/",
-      "packages/dhcd/document/src/",
       "packages/dhcd/car/src/",
       "packages/dhcd/hotel/src/",
       "packages/dhcd/seat/src/",
       "packages/dhcd/sessionseat/src/",
       "packages/dhcd/api/src/",
-      "packages/dhcd/member/src/"
+      "packages/dhcd/member/src/",
+      "packages/dhcd/document/src/"
     ],
     "psr-4": {
       "Tests\\": "tests/"
