@@ -4,6 +4,7 @@ namespace Adtech\Core;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -68,6 +69,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->app['router']->middlewareGroup('adtech.auth', ['\Adtech\Core\App\Middleware\AuthMiddleware']);
         $this->app['router']->middlewareGroup('adtech.acl', ['\Adtech\Core\App\Middleware\AclMiddleware']);
 //        $this->app['router']->middlewareGroup('adtech.cors', ['\Adtech\Core\App\Middleware\CorsMiddleware']);
+
+        Validator::extend('recaptcha', '\Adtech\Core\App\Validators\Recaptcha@validate');
     }
 
     /**

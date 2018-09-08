@@ -42,6 +42,15 @@
                         <input type="password" class="form-control" name="password" placeholder="Password">
                     </div>
                     <span class="help-block">{{ $errors->first('password', ':message') }}</span>
+
+                    @if (session()->has('count_login'))
+                        @if (session()->get('count_login') > 4)
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LeQL28UAAAAAIUGcNTy1HzD7g9dseSVmXvmQTT2" data-callback="YourOnSubmitFn"></div>
+                        </div>
+                        @endif
+                    @endif
+
                     <input type="submit" class="btn btn-block btn-primary" value="{{ trans('adtech-core::buttons.login') }}">
                 </form>
 
@@ -58,6 +67,7 @@
 <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/js/frontend/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrapvalidator/js/bootstrapValidator.min.js') }}"></script>
 <script type="text/javascript" src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/js/frontend/login_custom.js') }}"></script>
+<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
 <!--global js end-->
 </body>
 </html>
