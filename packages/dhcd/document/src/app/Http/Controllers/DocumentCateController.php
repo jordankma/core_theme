@@ -55,15 +55,9 @@ class DocumentCateController extends Controller {
                     'icon' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
-            $count_alias = DocumentCate::where('alias' ,'like', $this->to_slug($request->name).'%')->count();
-            if($count_alias == 0){                
-                $alias = $this->to_slug($request->name);
-            } else {
-                $alias = $this->to_slug($request->name).$count_alias;
-            }
             $cate = DocumentCate::create([
                         'name' => $request->name,
-                        'alias' => $alias,
+                        'alias' => $this->to_slug($request->name),
                         'icon' => $request->icon,
                         'sort' => $request->sort,
                         'descript' => $request->descript,
@@ -71,6 +65,10 @@ class DocumentCateController extends Controller {
             ]);
             //save tag
             if ($cate->document_cate_id) {
+
+                $cate->alias = $this->to_slug($request->name) . $cate->document_cate_id;
+                $cate->save();
+
                 if(!empty($request->tag)){
                     foreach($request->tag as $tag){
                         $insertTag[] = [
@@ -120,52 +118,48 @@ class DocumentCateController extends Controller {
                     'document_cate_id' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
-            $count_alias = DocumentCate::where('alias' ,'like', $this->to_slug($request->name).'%')->count();
-            if($count_alias-1 == 0){
-                $alias = $this->to_slug($request->name);
-            } else {
-                $alias = $this->to_slug($request->name).$count_alias;
-            }
             $cate = $this->documentCate->find($request->document_cate_id);
-            $cate->name = $request->name;
-            $cate->alias = $alias;
-            $cate->sort = $request->sort;
-            $cate->descript = $request->descript;
-            if ($cate->document_cate_id != (int) $request->parent_id) {
-                $cate->parent_id = $request->parent_id;
-            }
-            if (!empty($request->icon)) {
-                $cate->icon = $request->icon;
-            }
-            $cate->save();
-
-            $cateParent = $this->documentCate->find($cate->parent_id);
-            if (null != $cateParent) {
-                Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
-                Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
-            }
-
-            // save tag
-            if(!empty($request->tag)){
-                TagItem::where('document_cate_id',$cate->document_cate_id)->delete();
-                foreach($request->tag as $tag){
-                    $insertTag[] = [
-                        'document_cate_id' => $cate->document_cate_id,
-                        'tag_id' => $tag
-                    ]; 
+            if (null != $cate) {
+                $cate->name = $request->name;
+                $cate->alias = $this->to_slug($request->name) . $request->document_cate_id;
+                $cate->sort = $request->sort;
+                $cate->descript = $request->descript;
+                if ($cate->document_cate_id != (int) $request->parent_id) {
+                    $cate->parent_id = $request->parent_id;
                 }
-               
-                if(!empty($insertTag)){
-                    TagItem::insert($insertTag);
+                if (!empty($request->icon)) {
+                    $cate->icon = $request->icon;
                 }
+                $cate->save();
+
+                $cateParent = $this->documentCate->find($cate->parent_id);
+                if (null != $cateParent) {
+                    Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
+                    Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                }
+
+                // save tag
+                if(!empty($request->tag)){
+                    TagItem::where('document_cate_id',$cate->document_cate_id)->delete();
+                    foreach($request->tag as $tag){
+                        $insertTag[] = [
+                            'document_cate_id' => $cate->document_cate_id,
+                            'tag_id' => $tag
+                        ];
+                    }
+
+                    if(!empty($insertTag)){
+                        TagItem::insert($insertTag);
+                    }
+                }
+
+                $this->resetCache();
+
+                activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Edit document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
+                return redirect()->route('dhcd.document.cate.manage')->with('success', 'Cập nhật danh mục thành công');
+            } else {
+                return redirect()->route('dhcd.document.cate.edit', ['document_cate_id' => $request->document_cate_id])->withErrors(['Vui lòng kiểm tra lại dữ liệu nhập vào']);
             }
-
-            $this->resetCache();
-
-
-
-            activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Edit document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
-            return redirect()->route('dhcd.document.cate.manage')->with('success', 'Cập nhật danh mục thành công');
         } else {
             return redirect()->route('dhcd.document.cate.edit', ['document_cate_id' => $request->document_cate_id])->withErrors(['Vui lòng kiểm tra lại dữ liệu nhập vào']);
         }
