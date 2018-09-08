@@ -4,6 +4,7 @@ namespace Adtech\Core;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\Client;
 use Validator;
 
 class CoreServiceProvider extends ServiceProvider
@@ -70,7 +71,20 @@ class CoreServiceProvider extends ServiceProvider
         $this->app['router']->middlewareGroup('adtech.acl', ['\Adtech\Core\App\Middleware\AclMiddleware']);
 //        $this->app['router']->middlewareGroup('adtech.cors', ['\Adtech\Core\App\Middleware\CorsMiddleware']);
 
-        Validator::extend('recaptcha', '\Adtech\Core\App\Validators\Recaptcha@validate');
+        Validator::extend('recaptcha', function ($attribute, $value, $parameters, $validator){
+            $client = new Client();
+            $response = $client->post(
+                'https://www.google.com/recaptcha/api/siteverify',
+                ['form_params'=>
+                    [
+                        'secret'=>env('GOOGLE_RECAPTCHA_SECRET'),
+                        'response'=>$value
+                    ]
+                ]
+            );
+            $body = json_decode((string)$response->getBody());
+            return $body->success;
+        });
     }
 
     /**
