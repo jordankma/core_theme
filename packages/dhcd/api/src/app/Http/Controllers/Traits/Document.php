@@ -296,8 +296,8 @@ trait Document
                             $item->updated_file_at = base64_encode($file->updated_file_at);
                             $item->type_file = '';
                             $item->type_view = base64_encode('detail');
-                            $item->date_created = base64_encode(strtotime($file->created_at) * 1000);
-                            $item->date_modified = base64_encode(strtotime($file->updated_at) * 1000);
+                            $item->date_created = strtotime($file->created_at) * 1000;
+                            $item->date_modified = strtotime($file->updated_at) * 1000;
 
                             $list_document[] = $item;
                         }
