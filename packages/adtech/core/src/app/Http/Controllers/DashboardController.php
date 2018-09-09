@@ -13,6 +13,11 @@ class DashboardController extends Controller
 {
     public function backend(Request $request)
     {
+//        $client = new \GuzzleHttp\Client();
+//        $pathFile = base_path('public/files/chap01.pdf');
+//        $res = $client->request('GET', 'http://localhost:8079/split?path=' . $pathFile);
+//        echo $res->getBody();die();
+
         return view('ADTECH-CORE::modules.core.dashboard.backend');
     }
 
@@ -24,8 +29,12 @@ class DashboardController extends Controller
 
     public function filemanage()
     {
-
-        return view('ADTECH-CORE::modules.core.file.manage');
+        if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
+            $domain = '/admin/laravel-filemanager';
+        } else {
+            $domain = 'http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager';
+        }
+        return view('ADTECH-CORE::modules.core.file.manage', compact('domain'));
     }
 
     public function fileuploadtest(UploadRequest $request)
