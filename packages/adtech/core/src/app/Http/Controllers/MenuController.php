@@ -391,7 +391,7 @@ class MenuController extends Controller
                     return $name;
                 })
                 ->editColumn('icon', function ($menus) {
-                    $iconName = ($menus->icon != '') ? $menus->icon : 'question';
+                    $iconName = ($menus->icon == '') ? 'question' : (strrpos($menus->icon, '/') > 0) ? config('site.url_storage') . $menus->icon : $menus->icon;
 
                     if (strrpos($iconName, '/') > 0) {
                         $icon = '<img id="holder2" src="'.$iconName.'" style="max-height:40px;">';
