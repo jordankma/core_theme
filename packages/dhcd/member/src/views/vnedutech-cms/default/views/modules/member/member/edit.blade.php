@@ -74,8 +74,8 @@
                                             </a>
                                         </span>
                                         <input id="thumbnail" class="form-control" type="text"  name="avatar" value="{{$member->avatar}}">
-                                        <img src="{{$member->avatar}}" id="holder" style="margin-top:15px;max-height:100px;">
                                     </div>
+                                    <img src="{{$member->avatar}}" id="holder" style="margin:15px 0px;max-height:100px;">
                                 </div>
                                 <div class="col-sm-6">
                                     <label>{{trans('dhcd-member::language.form.title.position_current') }}</label>
