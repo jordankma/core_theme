@@ -472,7 +472,11 @@ class MemberController extends Controller
                             'member_id' => $member_id
                         ])->exists()
                         ){
-                            DB::table('dhcd_group_has_member')->insert(['member_id' => $member_id, 'group_id' => $group_id]);
+                            $dhcd_group_has_member = new GroupHasMember();
+                            $dhcd_group_has_member->member_id = $member_id;
+                            $dhcd_group_has_member->group_id = $group_id;
+                            $dhcd_group_has_member->save();
+//                            DB::table('dhcd_group_has_member')->insert(['member_id' => $member_id, 'group_id' => $group_id]);
                         }
                         $member_elastic = new MemberElastic();
                         $member_elastic->saveDocument($member_id);
