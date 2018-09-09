@@ -5,10 +5,10 @@
 
 if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
     Route::group(array('prefix' => 'administrator'), function () {
-        Route::group(['middleware' => ['adtech.auth', 'adtech.acl', 'adtech.locale']], function () {
+//        Route::group(['middleware' => ['adtech.auth', 'adtech.acl', 'adtech.locale']], function () {
             Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
             Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
-        });
+//        });
     });
 }
 
