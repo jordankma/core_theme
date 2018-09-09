@@ -2,6 +2,16 @@
 /**
  * Backend Routes
  */
+
+if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
+    Route::group(array('prefix' => 'administrator'), function () {
+        Route::group(['middleware' => ['adtech.auth', 'adtech.acl', 'adtech.locale']], function () {
+            Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
+            Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
+        });
+    });
+}
+
 $adminPrefix = config('site.admin_prefix');
 Route::group(array('prefix' => $adminPrefix), function () {
     /*
@@ -50,11 +60,11 @@ Route::group(array('prefix' => $adminPrefix), function () {
         Route::put('adtech/core/setting/translate', 'SettingController@translate')->name('adtech.core.setting.translate');
         Route::match(['get', 'post'], '/adtech/core/file/upload-test', 'DashboardController@fileuploadtest')->name('adtech.core.file.upload-test');
 
+//        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
+//        Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
         Route::get('/adtech/core/file/manage', 'DashboardController@filemanage')
             ->where('as', 'Quản lý file')
             ->name('adtech.core.file.manage');
-        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
-        Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
 
         Route::get('adtech/core/role/manage', 'RoleController@manage')
             ->where('as', 'Quản lý role')
