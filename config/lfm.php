@@ -1,6 +1,6 @@
 <?php
 
-return [
+$config_lfm = [
     /*
     |--------------------------------------------------------------------------
     | Routing
@@ -192,3 +192,9 @@ return [
     ],
 
 ];
+
+if (env('APP_URL') == 'http://dhcd-release.vnedutech.vn') {
+    $config_lfm['url_prefix'] = 'http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager';
+}
+
+return $config_lfm;
