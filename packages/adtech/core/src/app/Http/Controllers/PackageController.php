@@ -746,7 +746,7 @@ class PackageController extends Controller
             })
             ->get();
 
-        $arrModules = [];
+        $arrModules = ["adtech" => ["api","core"]];
         if ($packages && count($packages) > 0) {
             foreach ($packages as $k => $package) {
                 if (count($package->domains) > 0) {
