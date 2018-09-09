@@ -60,8 +60,8 @@ Route::group(array('prefix' => $adminPrefix), function () {
         Route::put('adtech/core/setting/translate', 'SettingController@translate')->name('adtech.core.setting.translate');
         Route::match(['get', 'post'], '/adtech/core/file/upload-test', 'DashboardController@fileuploadtest')->name('adtech.core.file.upload-test');
 
-//        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
-//        Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
+        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
+        Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
         Route::get('/adtech/core/file/manage', 'DashboardController@filemanage')
             ->where('as', 'Quản lý file')
             ->name('adtech.core.file.manage');
