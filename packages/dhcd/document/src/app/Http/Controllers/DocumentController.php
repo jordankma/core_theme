@@ -124,6 +124,10 @@ class DocumentController extends Controller
                  'icon' => asset($request->icon)                
              ]);
              if($document->document_id){
+
+                 $document->alias = $this->to_slug($request->name) . $document->document_id;
+                 $document->save();
+
                 if(!empty($request->tag)){
                     foreach($request->tag as $tag){
                         $insertTag[] = [
@@ -255,7 +259,7 @@ class DocumentController extends Controller
              if($document->document_id){
                   $document->update([
                         'name' => $request->name,
-                        'alias' => $this->to_slug($request->name),
+                        'alias' => $this->to_slug($request->name) . $document->document_id,
                         'descript' => $request->descript,
                         'document_type_id' => $request->document_type_id,
                         'file' => json_encode($files),
