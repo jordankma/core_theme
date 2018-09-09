@@ -9,6 +9,11 @@
   </thead>
   <tbody>
     @foreach($items as $item)
+        <?php
+        foreach($item as $key => $value) {
+            $item->$key = str_replace('http://dhcd-release.vnedutech.vn', 'http://files.dhcd.vnedutech.vn', $value);
+        }
+        ?>
     <tr>
       <td>
         <i class="fa {{ $item->icon }}"></i>

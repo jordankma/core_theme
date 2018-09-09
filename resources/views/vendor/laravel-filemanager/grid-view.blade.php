@@ -2,6 +2,12 @@
 <div class="row">
 
     @foreach($items as $item)
+
+        <?php
+        foreach($item as $key => $value) {
+            $item->$key = str_replace('http://dhcd-release.vnedutech.vn', 'http://files.dhcd.vnedutech.vn', $value);
+        }
+        ?>
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 img-row">
         <?php $item_name = $item->name; ?>
         <?php $thumb_src = $item->thumb; ?>
