@@ -193,7 +193,8 @@ $config_lfm = [
 
 ];
 
-if (env('APP_URL') == 'http://dhcd-release.vnedutech.vn' || $_SERVER['HTTP_X_FORWARDED_HOST'] == 'dhcd-release.vnedutech.vn') {
+$forward = (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : '';
+if (env('APP_URL') == 'http://dhcd-release.vnedutech.vn' || $forward == 'dhcd-release.vnedutech.vn') {
     $config_lfm['url_prefix'] = 'http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager';
 }
 return $config_lfm;
