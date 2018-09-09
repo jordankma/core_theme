@@ -439,8 +439,10 @@ class MemberController extends Controller
         ], $this->messages);
         if (!$validator->fails()) {
             $term = $request->input('path');
-            $url = substr($term, 1, strlen($term));
-            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($url);
+            $url_storage = config('site.url_storage');
+            $url = $url_storage.$term;
+            file_put_contents('excel.xls', file_get_contents($url));
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('excel.xls');
             $worksheet = $spreadsheet->getActiveSheet();
             $rows = [];
             foreach ($worksheet->getRowIterator() AS $row) {
