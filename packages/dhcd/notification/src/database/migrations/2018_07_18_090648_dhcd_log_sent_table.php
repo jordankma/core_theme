@@ -24,7 +24,7 @@ class DhcdLogSentTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('notification_id')->references('notification_id')->on('dhcd_notification')->onDelete('cascade');
+            $table->foreign('notification_id')->references('notification_id')->on('dhcd_notification');
         });
     }
 

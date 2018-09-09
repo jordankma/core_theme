@@ -48,8 +48,6 @@ class DhcdMemberTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-
-            // $table->foreign('position_id')->references('position_id')->on('dhcd_position')->onDelete('cascade');
         });
     }
 

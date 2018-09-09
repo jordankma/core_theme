@@ -74,7 +74,7 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.administration.provine-city.data') }}',
                 columns: [
-                    { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                    { data: 'DT_Row_Index', name: 'provine_city_id' },
                     { data: 'name_with_type', name: 'name_with_type'},
                     { data: 'code', name: 'code'},
                     { data: 'actions', name: 'actions', orderable: false, searchable: false}

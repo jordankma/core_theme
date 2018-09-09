@@ -20,8 +20,8 @@ class DhcdGroupHasMemberTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             
-            $table->foreign('group_id')->references('group_id')->on('dhcd_group')->onDelete('cascade');
-            $table->foreign('member_id')->references('member_id')->on('dhcd_member')->onDelete('cascade');
+            $table->foreign('group_id')->references('group_id')->on('dhcd_group');
+            $table->foreign('member_id')->references('member_id')->on('dhcd_member');
         });
     }
 

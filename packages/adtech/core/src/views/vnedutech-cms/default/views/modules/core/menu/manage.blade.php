@@ -91,7 +91,7 @@
                 serverSide: true,
                 ajax: url.replace("amp;", ""),
                 columns: [
-                    { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                    { data: 'DT_Row_Index', name: 'menu_id' },
                     { data: 'name', name: 'name' },
                     { data: 'route_name', name: 'route_name' },
                     { data: 'group', name: 'group' },

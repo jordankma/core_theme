@@ -103,7 +103,7 @@
             serverSide: true,
             ajax: '{{ route('dhcd.document.cate.data.member',['document_cate_id' => $document_cate_id]) }}',
             columns: [
-                { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                { data: 'DT_Row_Index', name: 'member_id' },
                 { data: 'name', name: 'name' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
             ]

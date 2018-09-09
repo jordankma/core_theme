@@ -102,7 +102,7 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.member.member.data') }}',
                 columns: [
-                    { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                    { data: 'DT_Row_Index', name: 'member_id' },
                     { data: 'name', name: 'name' },
                     { data: 'position', name: 'position' },
                     { data: 'group', name: 'group' },

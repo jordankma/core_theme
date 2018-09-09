@@ -19,7 +19,7 @@ class CreateAdtechCoreJsonVersionTable extends Migration
             $table->string('version');
             $table->timestamps();
 
-            $table->foreign('json_id')->references('json_id')->on('adtech_core_json')->onDelete('cascade');
+            $table->foreign('json_id')->references('json_id')->on('adtech_core_json');
         });
     }
 

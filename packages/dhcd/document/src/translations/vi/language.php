@@ -51,6 +51,7 @@ return [
         ],
         'document_cate' => [
             'name' => 'Nhập tên danh mục...',            
+            'alias' => 'Nhập mã danh mục...',
         ],
         'document_type' => [
             'name' => 'Nhập tên kiểu file...',            
@@ -91,6 +92,7 @@ return [
         ],
         'form' => [
            'name' => 'Tên danh mục',
+           'alias' => 'Mã danh mục',
            'parent_id' => 'Chọn danh mục cha',
            'icon' => 'Icon',
             'icon_current' => 'Icon hiện tại',

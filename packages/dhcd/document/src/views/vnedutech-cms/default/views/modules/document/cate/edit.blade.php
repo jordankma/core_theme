@@ -58,10 +58,18 @@ if(!empty($cate->getTags->toArray())){
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="name">{{ trans('dhcd-document::language.document_cate.form.name') }}</label>
                             <div class=" col-md-6 ">
-                                <input id="name" name="name" type="text" value="{{old('name',isset($cate) ? $cate->name : '' )}}" placeholder="{{ trans('dhcd-document::language.placeholder.document_cate.name') }}" class="form-control">
-                                
+                                <input id="name" name="name" type="text" value="{{old('name',isset($cate) ? $cate->name : '' )}}"
+                                       placeholder="{{ trans('dhcd-document::language.placeholder.document_cate.name') }}" class="form-control">
                             </div>
-                        </div>                                               
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="alias">{{ trans('dhcd-document::language.document_cate.form.alias') }}</label>
+                            <div class=" col-md-6 ">
+                                <input id="alias" name="alias" type="text" value="{{old('alias',isset($cate) ? $cate->alias : '' )}}" disabled="disabled"
+                                       placeholder="{{ trans('dhcd-document::language.placeholder.document_cate.alias') }}" class="form-control">
+                            </div>
+                        </div>
                         <!-- Message body -->
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="parent_id">{{ trans('dhcd-document::language.document_cate.form.parent_id') }}</label>

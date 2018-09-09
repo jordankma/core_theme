@@ -70,7 +70,7 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.notification.log-sent.data') }}',
                 columns: [
-                    { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                    { data: 'DT_Row_Index', name: 'log_sent_id' },
                     { data: 'create_by', name: 'create_by' },
                     { data: 'notification_id', name: 'notification_id' },
                     { data: 'created_at', name: 'created_at'},
