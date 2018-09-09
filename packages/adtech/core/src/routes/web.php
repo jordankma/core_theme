@@ -6,8 +6,86 @@
 if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
     Route::group(array('prefix' => 'administrator'), function () {
 //        Route::group(['middleware' => ['adtech.auth', 'adtech.acl', 'adtech.locale']], function () {
-            Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
-            Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload')->name('adtech.core.file.upload');
+        $as = 'unisharp.lfm.';
+        $namespace = '\UniSharp\LaravelFilemanager\Controllers';
+        Route::group(['prefix' => 'laravel-filemanager', 'as' => $as, 'namespace' => $namespace], function () {
+
+        });
+            Route::get('/', 'LfmController@show')->name('adtech.core.file.manager');
+
+            // Show integration error messages
+            Route::get('/errors', [
+                'uses' => 'LfmController@getErrors',
+                'as' => 'getErrors',
+            ]);
+
+            // upload
+            Route::any('/upload', [
+                'uses' => 'UploadController@upload',
+                'as' => 'upload',
+            ]);
+
+            // list images & files
+            Route::get('/jsonitems', [
+                'uses' => 'ItemsController@getItems',
+                'as' => 'getItems',
+            ]);
+
+            // folders
+            Route::get('/newfolder', [
+                'uses' => 'FolderController@getAddfolder',
+                'as' => 'getAddfolder',
+            ]);
+            Route::get('/deletefolder', [
+                'uses' => 'FolderController@getDeletefolder',
+                'as' => 'getDeletefolder',
+            ]);
+            Route::get('/folders', [
+                'uses' => 'FolderController@getFolders',
+                'as' => 'getFolders',
+            ]);
+
+            // crop
+            Route::get('/crop', [
+                'uses' => 'CropController@getCrop',
+                'as' => 'getCrop',
+            ]);
+            Route::get('/cropimage', [
+                'uses' => 'CropController@getCropimage',
+                'as' => 'getCropimage',
+            ]);
+            Route::get('/cropnewimage', [
+                'uses' => 'CropController@getNewCropimage',
+                'as' => 'getCropimage',
+            ]);
+
+            // rename
+            Route::get('/rename', [
+                'uses' => 'RenameController@getRename',
+                'as' => 'getRename',
+            ]);
+
+            // scale/resize
+            Route::get('/resize', [
+                'uses' => 'ResizeController@getResize',
+                'as' => 'getResize',
+            ]);
+            Route::get('/doresize', [
+                'uses' => 'ResizeController@performResize',
+                'as' => 'performResize',
+            ]);
+
+            // download
+            Route::get('/download', [
+                'uses' => 'DownloadController@getDownload',
+                'as' => 'getDownload',
+            ]);
+
+            // delete
+            Route::get('/delete', [
+                'uses' => 'DeleteController@getDelete',
+                'as' => 'getDelete',
+            ]);
 //        });
     });
 }
