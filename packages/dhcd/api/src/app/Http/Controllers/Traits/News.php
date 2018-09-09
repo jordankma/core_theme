@@ -40,7 +40,7 @@ trait News
                 $item->title = base64_encode($news->title);
                 $item->sub_title = base64_encode($sub_title);
                 $item->describe = base64_encode($news->desc);
-                $item->photo = (self::is_url($news->image)) ? $news->image : config('app.url') . '/' . $news->image;
+                $item->photo = (self::is_url($news->image)) ? $news->image : config('site.url_storage') . '/' . $news->image;
                 $item->content = base64_encode($news->content);
                 $item->date_created = date_format($news->created_at, 'Y-m-d');
                 $item->date_modified = date_format($news->updated_at, 'Y-m-d');
@@ -90,7 +90,7 @@ trait News
                 $item->title = base64_encode($news->title);
                 $item->sub_title = base64_encode($sub_title);
                 $item->describe = base64_encode($news->desc);
-                $item->photo = (self::is_url($news->image)) ? $news->image : config('app.url') . '/' . $news->image;
+                $item->photo = (self::is_url($news->image)) ? $news->image : config('site.url_storage') . '/' . $news->image;
                 $item->content = base64_encode($news->content);
                 $item->date_created = date_format($news->created_at, 'Y-m-d');
                 $item->date_modified = date_format($news->updated_at, 'Y-m-d');
@@ -143,7 +143,7 @@ trait News
                 $item->title = base64_encode($news->title);
                 $item->sub_title = base64_encode($sub_title);
                 $item->describe = base64_encode($news->desc);
-                $item->photo = (self::is_url($news->image)) ? $news->image : config('app.url') . '/' . $news->image;
+                $item->photo = (self::is_url($news->image)) ? $news->image : config('site.url_storage') . '/' . $news->image;
                 $item->content = base64_encode($news->content);
                 $item->date_created = date_format($news->created_at, 'Y-m-d');
                 $item->date_modified = date_format($news->updated_at, 'Y-m-d');

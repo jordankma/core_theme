@@ -38,7 +38,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $item->date_created = strtotime($menu->created_at) * 1000;
@@ -104,7 +104,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
@@ -156,7 +156,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->route_params) : base64_encode($menu->alias);
-                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
@@ -208,7 +208,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
@@ -224,5 +224,14 @@ trait Menu
                 }';
         $data = str_replace('null', '""', $data);
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+    }
+
+    function is_url($uri){
+        if(preg_match( '/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i' ,$uri)){
+            return $uri;
+        }
+        else{
+            return false;
+        }
     }
 }
