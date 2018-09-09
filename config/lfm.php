@@ -196,5 +196,5 @@ $config_lfm = [
 if (env('APP_URL') == 'http://dhcd-release.vnedutech.vn') {
     $config_lfm['url_prefix'] = 'http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager';
 }
-
+dd($config_lfm);
 return $config_lfm;
