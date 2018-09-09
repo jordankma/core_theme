@@ -5,13 +5,10 @@
 
 if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
     Route::group(array('prefix' => 'administrator'), function () {
-//        Route::group(['middleware' => ['adtech.auth', 'adtech.acl', 'adtech.locale']], function () {
         $as = 'unisharp.lfm.';
         $namespace = '\UniSharp\LaravelFilemanager\Controllers';
+        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
         Route::group(['prefix' => 'laravel-filemanager', 'as' => $as, 'namespace' => $namespace], function () {
-
-        });
-            Route::get('/', 'LfmController@show')->name('adtech.core.file.manager');
 
             // Show integration error messages
             Route::get('/errors', [
@@ -86,7 +83,7 @@ if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
                 'uses' => 'DeleteController@getDelete',
                 'as' => 'getDelete',
             ]);
-//        });
+        });
     });
 }
 
