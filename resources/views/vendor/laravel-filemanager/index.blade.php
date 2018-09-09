@@ -142,9 +142,9 @@
     </div>
   </div>
 
-  <div id="lfm-loader">
-    <img src="{{config('site.url_static') . ('/vendor/laravel-filemanager/img/loader.svg')}}">
-  </div>
+  {{--<div id="lfm-loader">--}}
+    {{--<img src="{{config('site.url_static') . ('/vendor/laravel-filemanager/img/loader.svg')}}">--}}
+  {{--</div>--}}
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
