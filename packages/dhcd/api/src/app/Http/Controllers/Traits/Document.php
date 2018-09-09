@@ -41,7 +41,7 @@ trait Document
                 $item->alias = base64_encode($menu->alias);
                 $item->type = base64_encode(1);
                 $item->type_api = base64_encode(1);
-                $item->icon = config('site.url_storage') . $menu->icon;
+                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $list_menus[] = $item;
             }
         }
@@ -124,7 +124,7 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : ($file->icon != '') ? config('app.url') . $file->icon : '';
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
@@ -147,7 +147,7 @@ trait Document
                 $item->list_document = $list_docs;
                 $item->type = base64_encode(1);
                 $item->type_api = base64_encode(1);
-                $item->icon = config('site.url_storage') . $cate->icon;
+                $item->icon = ($cate->icon != '') ? config('site.url_storage') . $cate->icon : '';
                 $list_menus[] = $item;
             }
         }
@@ -340,7 +340,7 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : ($file->icon != '') ? config('app.url') . $file->icon : '';
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
@@ -456,7 +456,7 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : config('app.url') . '' . $file->icon;
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : ($file->icon != '') ? config('app.url') . $file->icon : '';
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
@@ -545,7 +545,7 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? base64_encode($file->icon) : base64_encode(config('app.url') . '' . $file->icon);
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : ($file->icon != '') ? config('app.url') . $file->icon : '';
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
@@ -622,7 +622,7 @@ trait Document
                 $item->title = base64_encode($filesDoc->name);
                 $item->alias = base64_encode($filesDoc->alias);
                 $item->sub_title = base64_encode($filesDoc->descript);
-                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
+                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : ($filesDoc->avatar != '') ? config('app.url') . $filesDoc->avatar : '';
                 $item->files = $listFile;
                 $item->type_file = '';
                 $item->date_created = strtotime($filesDoc->created_at) * 1000;
@@ -685,7 +685,7 @@ trait Document
                 $item->title = base64_encode($filesDoc->name);
                 $item->alias = base64_encode($filesDoc->alias);
                 $item->sub_title = base64_encode($filesDoc->descript);
-                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : config('app.url') . '' . $filesDoc->avatar;
+                $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : ($filesDoc->avatar != '') ? config('app.url') . $filesDoc->avatar : '';
                 $item->files = $listFile;
                 $item->type_file = '';
                 $item->date_created = strtotime($filesDoc->created_at) * 1000;

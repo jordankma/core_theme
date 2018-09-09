@@ -305,7 +305,7 @@ trait Member
                 $item->name = base64_encode($group->name);
                 $item->desc = base64_encode($group->desc);
                 $item->alias = base64_encode($group->alias);
-                $item->image = config('site.url_storage') . $group->image;
+                $item->image = ($group->image != '') ? config('site.url_storage') . $group->image : '';
 
                 $list_member_groups[] = $item;
             }

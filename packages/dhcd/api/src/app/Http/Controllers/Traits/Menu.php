@@ -38,7 +38,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = base64_encode(config('site.url_storage') . $menu->icon);
+                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $item->date_created = strtotime($menu->created_at) * 1000;
@@ -104,7 +104,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = base64_encode(config('site.url_storage') . $menu->icon);
+                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
@@ -156,7 +156,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->route_params) : base64_encode($menu->alias);
-                $item->icon = config('site.url_storage') . $menu->icon;
+                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
@@ -208,7 +208,7 @@ trait Menu
                 $item->id = $menu->menu_id;
                 $item->title = base64_encode($menu->name);
                 $item->alias = base64_encode($menu->alias);
-                $item->icon = config('site.url_storage') . $menu->icon;
+                $item->icon = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
                 $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                 $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                 $list_menus[] = $item;
