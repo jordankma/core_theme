@@ -60,6 +60,9 @@ class GlobalController extends Controller
                         case 'dev/get/test': {
                             return $this->getTest();
                         }
+                        case 'dev/get/spliter': {
+                            return $this->getSpliter($request);
+                        }
                         case 'dev/get/session-seat': {
                             return $this->getSessionSeat();
                         }

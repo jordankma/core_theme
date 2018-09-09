@@ -19,6 +19,45 @@ trait Document
         $content = $this->my_simple_crypt( $pdf_base64, 'f' );
     }
 
+    public function getSpliter($request)
+    {
+        $client = new \GuzzleHttp\Client();
+        $pathFile = base_path('public' . $request->input('path_file'));
+        $client->request('GET', 'http://localhost:8079/split?path=' . $pathFile);
+
+        $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
+        $filename = substr($filename, 0, strrpos($filename, '.'));
+
+        $listFile = [];
+        $packagesDir = public_path('spliter/files/' . $filename);
+        $ls = @scandir($packagesDir);
+        if ($ls) {
+            foreach ($ls as $index => $file_spliter) {
+                if ($file_spliter === '.' || $file_spliter === '..') {
+                    continue;
+                }
+
+                $path_file = '/spliter/files/' . $filename . '/' . $file_spliter;
+                $item = new \stdClass();
+                $item->path = str_replace(' ', '%20', $path_file);
+                $item->type = 'pdf';
+                $item->filesize = filesize(base_path('public' . $path_file));
+
+                $listFile[] = $item;
+            }
+        }
+
+        $data = '{
+                    "data": {
+                        "list_files": '. json_encode($listFile) .'
+                    },
+                    "success" : true,
+                    "message" : "ok!"
+                }';
+        $data = str_replace('null', '""', $data);
+        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+    }
+
     public function getMenuDocument()
     {
         $cache_name = 'api_document_cate';
