@@ -155,7 +155,8 @@
   <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/dropzone.min.js') }}"></script>
   <script type="text/javascript" src="{{config('site.url_static') . ('/vendor/vnedutech-cms/default/vendors/sweetalert/js/sweetalert.min.js')}}"></script>
   <script>
-    var route_prefix = "{{ url('/') }}";
+    {{--var route_prefix = "{{ url('/') }}";--}}
+    var route_prefix = "{{ env('APP_URL') }}";
     var lfm_route = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
     var lang = {!! json_encode(trans('laravel-filemanager::lfm')) !!};
   </script>
