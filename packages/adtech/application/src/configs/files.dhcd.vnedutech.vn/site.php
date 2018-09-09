@@ -83,8 +83,7 @@ return [
             'method' => 'get',
             'uri' => '/',
             'middleware' => [],
-//            'action' => 'Adtech\Core\App\Http\Controllers\DashboardController@backend',
-            'action' => '\UniSharp\LaravelFilemanager\Controllers\LfmController@show',
+            'action' => 'Adtech\Core\App\Http\Controllers\DashboardController@backend',
         ],
     ],
 
