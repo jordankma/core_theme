@@ -22,8 +22,8 @@ trait Document
     public function getSpliter($request)
     {
         $client = new \GuzzleHttp\Client();
-        $pathFile = base_path('public' . $request->input('path_file'));dd($pathFile);
-        $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);
+        $pathFile = base_path('public' . $request->input('path_file'));
+        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);dd($res);
 
         $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
         $filename = substr($filename, 0, strrpos($filename, '.'));
