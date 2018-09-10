@@ -44,7 +44,6 @@ return [
             'engine' => 'InnoDB ROW_FORMAT=DYNAMIC',
             'prefix' => '',
             'strict' => true,
-            'engine' => null,
         ],
 
         'mysql_dhcd' => [
@@ -59,7 +58,6 @@ return [
             'engine' => 'InnoDB ROW_FORMAT=DYNAMIC',
             'prefix' => '',
             'strict' => true,
-            'engine' => null,
         ],
 
     ],
