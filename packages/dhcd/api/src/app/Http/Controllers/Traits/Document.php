@@ -80,7 +80,8 @@ trait Document
                 $item->alias = base64_encode($menu->alias);
                 $item->type = base64_encode(1);
                 $item->type_api = base64_encode(1);
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
                 $list_menus[] = $item;
             }
         }
@@ -164,7 +165,8 @@ trait Document
                         $item->title = base64_encode($file->name);
                         $item->alias = base64_encode($file->alias);
                         $item->sub_title = base64_encode($file->descript);
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
+                        $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
+                        $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
                         $item->files = $listFile;
                         $item->is_offical = base64_encode($file->is_offical);
                         $item->is_reserve = base64_encode($file->is_reserve);
