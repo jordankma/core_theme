@@ -50,7 +50,8 @@ trait Member
                 }
 
                 $item = new \stdClass();
-                $item->img = (self::is_url($car->img)) ? $car->img : ($car->img != '') ? config('site.url_storage') . $car->img : '';
+                $icon_link = ($car->img != '') ? config('site.url_storage') . $car->img : '';
+                $item->img = (self::is_url($car->img)) ? $car->img : $icon_link;
                 $item->note = base64_encode($car->note);
                 $item->car_bs = base64_encode($car->car_bs);
                 $item->car_num = base64_encode($car->car_num);
@@ -108,7 +109,8 @@ trait Member
 
                 $item = new \stdClass();
                 $item->hotel = base64_encode($hotel->hotel);
-                $item->img = (self::is_url($hotel->img)) ? $hotel->img : ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
                 $item->note = base64_encode($hotel->note);
                 $item->address = base64_encode($hotel->address);
                 $item->staff = $arrStaff;
@@ -159,7 +161,8 @@ trait Member
 
                 $item = new \stdClass();
                 $item->hotel = base64_encode($hotel->hotel);
-                $item->img = (self::is_url($hotel->img)) ? $hotel->img : ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
                 $item->note = base64_encode($hotel->note);
                 $item->address = base64_encode($hotel->address);
                 $item->staff = $arrStaff;
@@ -252,7 +255,8 @@ trait Member
                     foreach ($arrImg as $k => $img) {
 
                         $item = new \stdClass();
-                        $item->url = (self::is_url($img)) ? $img : ($img != '') ? config('site.url_storage') . $img : '';
+                        $icon_link = ($img != '') ? config('site.url_storage') . $img : '';
+                        $item->url = (self::is_url($img)) ? $img : $icon_link;
 
                         $arrImg[$k] = $item;
                     }
@@ -305,7 +309,8 @@ trait Member
                 $item->name = base64_encode($group->name);
                 $item->desc = base64_encode($group->desc);
                 $item->alias = base64_encode($group->alias);
-                $item->image = (self::is_url($group->image)) ? $group->image : ($group->image != '') ? config('site.url_storage') . $group->image : '';
+                $icon_link = ($group->image != '') ? config('site.url_storage') . $group->image : '';
+                $item->image = (self::is_url($group->image)) ? $group->image : $icon_link;
 
                 $list_member_groups[] = $item;
             }
@@ -350,7 +355,8 @@ trait Member
                     $item = new \stdClass();
                     $item->id = $member->member_id;
                     $item->name = base64_encode($member->name);
-                    $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+                    $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+                    $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : $icon_link;
                     $item->ten_hien_thi = base64_encode($member->name);
                     $item->email = base64_encode($member->email);
                     $item->so_dien_thoai = base64_encode($member->phone);
@@ -482,10 +488,11 @@ trait Member
 //                $tokenApi = app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->login();
 //                $token = json_decode($tokenApi->content())->access_token;
 
+                $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
                 $data = [
                     "data" => [
                         "id"  => $member->member_id,
-                        "avatar" => (self::is_url($member->avatar)) ? $member->avatar : ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '',
+                        "avatar" => (self::is_url($member->avatar)) ? $member->avatar : $icon_link,
                         "u_name" => $member->u_name,
                         "is_files_main_customers" => true,
                         "email" => $member->email,
@@ -513,9 +520,10 @@ trait Member
         $member = MemberModel::find($member_id);
 
         if(null != $member){
+            $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
             $member_info = [
                 "id" => $member->member_id,
-                "anh_ca_nhan" => (self::is_url($member->avatar)) ? $member->avatar : ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '',
+                "anh_ca_nhan" => (self::is_url($member->avatar)) ? $member->avatar : $icon_link,
                 "ten_hien_thi" => base64_encode($member->name),
                 "email" => base64_encode($member->email),
                 "so_dien_thoai" => base64_encode($member->phone),
