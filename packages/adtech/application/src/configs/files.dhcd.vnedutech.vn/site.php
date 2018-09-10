@@ -25,7 +25,7 @@
 //    }
 //}
 $modulesConfig = [];
-$modules = '{"adtech":["api","core"]}';
+$modules = '{"adtech":["api","core"], "dhcd": ["api"]}';
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
 if ($host) {
     $variable = 'APP_MODULES_' . strtoupper(str_replace('.', '_', $host));
