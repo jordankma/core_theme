@@ -23,7 +23,7 @@ trait Document
     {
         $client = new \GuzzleHttp\Client();
         $pathFile = base_path('public' . $request->input('path_file'));
-        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);dd($res);
+        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);dd($res->getBody());
 
         $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
         $filename = substr($filename, 0, strrpos($filename, '.'));
