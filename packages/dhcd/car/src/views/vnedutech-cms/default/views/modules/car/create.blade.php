@@ -88,7 +88,7 @@
 
                         <label>Biển số :</label>
                         <div class="form-group {{ $errors->first('car_bs', 'has-error') }}">
-                            {!! Form::text('car_bs', null, array('class' => 'form-control', 'autofocus'=>'autofocus','placeholder'=> trans('dhcd-car::language.placeholder.car.car_id'), 'required')) !!}
+                            {!! Form::text('car_bs', null, array('class' => 'form-control', 'autofocus'=>'autofocus','placeholder'=> trans('dhcd-car::language.placeholder.car.car_id'))) !!}
                             <span class="help-block">{{ $errors->first('car_bs', ':message') }}</span>
                         </div>
 
