@@ -29,7 +29,7 @@ trait Document
         $filename = substr($filename, 0, strrpos($filename, '.'));
 
         $listFile = [];
-        $packagesDir = public_path('spliter/files/' . $filename);
+        $packagesDir = "/storage/dhcd/public/spliter/files/" . $filename;//public_path('spliter/files/' . $filename);
         $ls = @scandir($packagesDir);
         if ($ls) {
             foreach ($ls as $index => $file_spliter) {
