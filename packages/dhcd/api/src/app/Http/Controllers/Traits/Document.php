@@ -37,13 +37,14 @@ trait Document
                     continue;
                 }
 
+                $filename = substr($file_spliter, 0, strpos($file_spliter, '.'));
                 $path_file = '/spliter/files/' . $filename . '/' . $file_spliter;
                 $item = new \stdClass();
                 $item->path = str_replace(' ', '%20', $path_file);
                 $item->type = 'pdf';
                 $item->filesize = filesize(base_path('public' . $path_file));
 
-                $listFile[] = $item;
+                $listFile[$filename] = $item;
             }
         }
 
