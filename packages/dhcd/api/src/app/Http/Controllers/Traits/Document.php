@@ -686,6 +686,7 @@ trait Document
                 $item->sub_title = base64_encode($filesDoc->descript);
                 $icon_link = ($filesDoc->avatar != '') ? config('site.url_storage') . $filesDoc->avatar : '';
                 $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : $icon_link;
+                $item->updated_file_at = strtotime($filesDoc->updated_file_at) * 1000;
                 $item->files = $listFile;
                 $item->type_file = '';
                 $item->date_created = strtotime($filesDoc->created_at) * 1000;
@@ -754,6 +755,7 @@ trait Document
                 $item->icon = (self::is_url($filesDoc->avatar)) ? $filesDoc->avatar : $icon_link;
                 $item->files = $listFile;
                 $item->type_file = '';
+                $item->updated_file_at = strtotime($filesDoc->updated_file_at) * 1000;
                 $item->date_created = strtotime($filesDoc->created_at) * 1000;
                 $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
                 //
