@@ -9,7 +9,7 @@ use Dhcd\Sessionseat\App\Models\Sessionseat;
 use Dhcd\Sessionseat\App\Http\Requests\SessionseatRequest;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator;
+use Validator, Cache;
 
 class SessionseatController extends Controller
 {
