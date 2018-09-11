@@ -13,7 +13,7 @@ trait Document
     public function getTest()
     {
         $client = new \GuzzleHttp\Client();
-        $res = $client->request('GET', 'http://localhost:8080/split?path=/src/public/files/test/chap01.pdf');
+        $res = $client->request('GET', 'http://localhost:8080/split?path=/files/test/chap01.pdf');
 
         $pdf_base64 = "files/test/test.pdf";
         $content = $this->my_simple_crypt( $pdf_base64, 'f' );
@@ -23,7 +23,7 @@ trait Document
     {
         $client = new \GuzzleHttp\Client();
         $pathFile = base_path('public' . $request->input('path_file'));
-        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);dd($res->getBody());
+        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);dd('http://192.168.0.51:8079/split?path=' . $pathFile);
 
         $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
         $filename = substr($filename, 0, strrpos($filename, '.'));
