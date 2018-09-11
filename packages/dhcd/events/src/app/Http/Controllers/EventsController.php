@@ -150,41 +150,44 @@ class EventsController extends Controller
 
             $event_id = $request->input('event_id');
             $eventDetail = Events::find($event_id);
-            $event_detail  = json_decode($eventDetail->event_detail, true);
-            $event_detail1  = json_decode($eventDetail->event_detail1, true);
-            $eventDetail->date = date("d/m/Y", strtotime($eventDetail->date));
+            if (null != $eventDetail) {
+                $event_detail  = json_decode($eventDetail->event_detail, true);
+                $event_detail1  = json_decode($eventDetail->event_detail1, true);
+                $eventDetail->date = date("d/m/Y", strtotime($eventDetail->date));
 
-            $dataAction = [];
-            if ($event_detail) {
-                foreach ($event_detail as $k => $event) {
+                $dataAction = [];
+                if ($event_detail) {
+                    foreach ($event_detail as $k => $event) {
 
-                    $dataAction[$k] = [
-                        "start_time" => ($event['start_time']) ? $event['start_time'] : '',
-                        "content" => ($event['content']) ? $event['content'] : ''
-                    ];
+                        $dataAction[$k] = [
+                            "start_time" => ($event['start_time']) ? $event['start_time'] : '',
+                            "content" => ($event['content']) ? $event['content'] : ''
+                        ];
+                    }
                 }
-            }
-            $dataAction = json_encode($dataAction);
+                $dataAction = json_encode($dataAction);
 
-            $dataAction1 = [];
-            if ($event_detail1) {
-                foreach ($event_detail1 as $k => $event) {
+                $dataAction1 = [];
+                if ($event_detail1) {
+                    foreach ($event_detail1 as $k => $event) {
 
-                    $dataAction1[$k] = [
-                        "start_time" => ($event['start_time']) ? $event['start_time'] : '',
-                        "content" => ($event['content']) ? $event['content'] : ''
-                    ];
+                        $dataAction1[$k] = [
+                            "start_time" => ($event['start_time']) ? $event['start_time'] : '',
+                            "content" => ($event['content']) ? $event['content'] : ''
+                        ];
+                    }
                 }
+                $dataAction1 = json_encode($dataAction1);
+
+                $data = [
+                    'event' => $eventDetail,
+                    'dataAction' => $dataAction,
+                    'dataAction1' => $dataAction1
+                ];
+                return view('DHCD-EVENTS::modules.events.events.edit', $data);
+            } else {
+                return redirect()->route('dhcd.events.events.manage')->with('error', trans('dhcd-events::language.messages.error.update'));
             }
-            $dataAction1 = json_encode($dataAction1);
-
-            $data = [
-                'event' => $eventDetail,
-                'dataAction' => $dataAction,
-                'dataAction1' => $dataAction1
-            ];
-
-            return view('DHCD-EVENTS::modules.events.events.edit', $data);
         } else {
             return $validator->messages();
         }
