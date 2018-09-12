@@ -27,12 +27,12 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/menu/all_files?time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/files/document?alias=vankiendaihoi&time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
-//        echo $encrypted.'<br>';
-//        echo $decrypted.'<br>';die;
+        echo $encrypted.'<br>';
+        echo $decrypted.'<br>';die;
 
         $query = [];
         if (count($parts) > 0) {
@@ -55,7 +55,7 @@ class GlobalController extends Controller
 //                $getUser = app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->me();
 //                $userInfo = json_decode($getUser->content());
 
-                if ((time() * 1000 - $request->input('time')) < 6000000) { //5000
+                if ((time() * 1000 - $request->input('time')) < 28800000) { //5000
                     switch ($parts['path']) {
                         case 'dev/get/test': {
                             return $this->getTest();
@@ -159,7 +159,7 @@ class GlobalController extends Controller
 //                    return response($getUser->content())->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
 //                }
             } elseif (!$validatorLogin->fails()) {
-                if ((time() * 1000 - $request->input('time')) < 6000000) {
+                if ((time() * 1000 - $request->input('time')) < 5000) {
                     switch ($parts['path']) {
                         case 'dev/post/login': {
                             return app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->login();
