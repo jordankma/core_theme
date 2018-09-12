@@ -98,7 +98,7 @@ class DocumentCate extends Model {
                         echo $char . ' '.htmlspecialchars($item['name']);
                     echo '</td>';               
                     echo '<td>';
-                        echo !empty($parents[$item['parent_id']]) ? $parents[$item['parent_id']]['name'] : 'Root';
+                        echo !empty($parents[$item['parent_id']]) ? htmlspecialchars($parents[$item['parent_id']]['name']) : 'Root';
                     echo '</td>';
                     echo '<td>';
                         if($USER_LOGGED->canAccess('dhcd.document.doc.log')){
