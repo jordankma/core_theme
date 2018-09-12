@@ -5,84 +5,85 @@
 
 if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
     Route::group(array('prefix' => 'administrator'), function () {
-        $as = 'unisharp.lfm.';
-        $namespace = '\UniSharp\LaravelFilemanager\Controllers';
-        Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
-        Route::group(['prefix' => 'laravel-filemanager', 'as' => $as], function () use ($namespace){
+        Route::group(['middleware' => ['adtech.auth']], function () {
+            $namespace = '\UniSharp\LaravelFilemanager\Controllers';
+            Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');
+            Route::group(['prefix' => 'laravel-filemanager', 'as' => 'unisharp.lfm.'], function () use ($namespace){
 
-            // Show integration error messages
-            Route::get('/errors', [
-                'uses' => $namespace . '\LfmController@getErrors',
-                'as' => 'getErrors',
-            ]);
+                // Show integration error messages
+                Route::get('/errors', [
+                    'uses' => $namespace . '\LfmController@getErrors',
+                    'as' => 'getErrors',
+                ]);
 
-            // upload
-            Route::any('/upload', [
-                'uses' => $namespace . '\UploadController@upload',
-                'as' => 'upload',
-            ]);
+                // upload
+                Route::any('/upload', [
+                    'uses' => $namespace . '\UploadController@upload',
+                    'as' => 'upload',
+                ]);
 
-            // list images & files
-            Route::get('/jsonitems', [
-                'uses' => $namespace . '\ItemsController@getItems',
-                'as' => 'getItems',
-            ]);
+                // list images & files
+                Route::get('/jsonitems', [
+                    'uses' => $namespace . '\ItemsController@getItems',
+                    'as' => 'getItems',
+                ]);
 
-            // folders
-            Route::get('/newfolder', [
-                'uses' => $namespace . '\FolderController@getAddfolder',
-                'as' => 'getAddfolder',
-            ]);
-            Route::get('/deletefolder', [
-                'uses' => $namespace . '\FolderController@getDeletefolder',
-                'as' => 'getDeletefolder',
-            ]);
-            Route::get('/folders', [
-                'uses' => $namespace . '\FolderController@getFolders',
-                'as' => 'getFolders',
-            ]);
+                // folders
+                Route::get('/newfolder', [
+                    'uses' => $namespace . '\FolderController@getAddfolder',
+                    'as' => 'getAddfolder',
+                ]);
+                Route::get('/deletefolder', [
+                    'uses' => $namespace . '\FolderController@getDeletefolder',
+                    'as' => 'getDeletefolder',
+                ]);
+                Route::get('/folders', [
+                    'uses' => $namespace . '\FolderController@getFolders',
+                    'as' => 'getFolders',
+                ]);
 
-            // crop
-            Route::get('/crop', [
-                'uses' => $namespace . '\CropController@getCrop',
-                'as' => 'getCrop',
-            ]);
-            Route::get('/cropimage', [
-                'uses' => $namespace . '\CropController@getCropimage',
-                'as' => 'getCropimage',
-            ]);
-            Route::get('/cropnewimage', [
-                'uses' => $namespace . '\CropController@getNewCropimage',
-                'as' => 'getCropimage',
-            ]);
+                // crop
+                Route::get('/crop', [
+                    'uses' => $namespace . '\CropController@getCrop',
+                    'as' => 'getCrop',
+                ]);
+                Route::get('/cropimage', [
+                    'uses' => $namespace . '\CropController@getCropimage',
+                    'as' => 'getCropimage',
+                ]);
+                Route::get('/cropnewimage', [
+                    'uses' => $namespace . '\CropController@getNewCropimage',
+                    'as' => 'getCropimage',
+                ]);
 
-            // rename
-            Route::get('/rename', [
-                'uses' => $namespace . '\RenameController@getRename',
-                'as' => 'getRename',
-            ]);
+                // rename
+                Route::get('/rename', [
+                    'uses' => $namespace . '\RenameController@getRename',
+                    'as' => 'getRename',
+                ]);
 
-            // scale/resize
-            Route::get('/resize', [
-                'uses' => $namespace . '\ResizeController@getResize',
-                'as' => 'getResize',
-            ]);
-            Route::get('/doresize', [
-                'uses' => $namespace . '\ResizeController@performResize',
-                'as' => 'performResize',
-            ]);
+                // scale/resize
+                Route::get('/resize', [
+                    'uses' => $namespace . '\ResizeController@getResize',
+                    'as' => 'getResize',
+                ]);
+                Route::get('/doresize', [
+                    'uses' => $namespace . '\ResizeController@performResize',
+                    'as' => 'performResize',
+                ]);
 
-            // download
-            Route::get('/download', [
-                'uses' => $namespace . '\DownloadController@getDownload',
-                'as' => 'getDownload',
-            ]);
+                // download
+                Route::get('/download', [
+                    'uses' => $namespace . '\DownloadController@getDownload',
+                    'as' => 'getDownload',
+                ]);
 
-            // delete
-            Route::get('/delete', [
-                'uses' => $namespace . '\DeleteController@getDelete',
-                'as' => 'getDelete',
-            ]);
+                // delete
+                Route::get('/delete', [
+                    'uses' => $namespace . '\DeleteController@getDelete',
+                    'as' => 'getDelete',
+                ]);
+            });
         });
     });
 }
