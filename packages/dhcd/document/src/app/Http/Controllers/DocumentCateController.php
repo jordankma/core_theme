@@ -8,7 +8,7 @@ use Dhcd\Document\App\Models\DocumentCate;
 
 use Dhcd\Document\App\Models\DocumentCateHasMember;
 use Dhcd\Member\App\Models\Member;
-
+use Illuminate\Support\Collection;
 use Dhcd\Document\App\Models\Tag;
 use Dhcd\Document\App\Models\TagItem;
 use Dhcd\Document\App\Repositories\DocumentCateRepository;
@@ -20,6 +20,7 @@ use Validator,
 
 class DocumentCateController extends Controller {
 
+    protected $_cateList;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
@@ -32,12 +33,7 @@ class DocumentCateController extends Controller {
     }
 
     public function manage(Request $request) {
-        
-        $objCate = new DocumentCate();
-        $cates = $this->documentCate->getCates();        
-        $parents = $this->_buildCate($this->documentCate->getCates());
-
-        return view('DHCD-DOCUMENT::modules.document.cate.manage', compact('cates', 'objCate', 'parents'));
+        return view('DHCD-DOCUMENT::modules.document.cate.manage');
     }
 
     public function add(Request $request) {
@@ -66,9 +62,11 @@ class DocumentCateController extends Controller {
             //save tag
             if ($cate->document_cate_id) {
 
-                $cate->alias = $this->to_slug($request->name) . $cate->document_cate_id;
+                $alias = $this->to_slug($request->name) . $cate->document_cate_id;
+                $cate->alias = $alias;
                 $cate->save();
 
+                Cache::forget('data_api_files_by_document_' . $alias);
                 if(!empty($request->tag)){
                     foreach($request->tag as $tag){
                         $insertTag[] = [
@@ -120,8 +118,9 @@ class DocumentCateController extends Controller {
         if (!$validator->fails()) {
             $cate = $this->documentCate->find($request->document_cate_id);
             if (null != $cate) {
+                $alias = $this->to_slug($request->name) . $request->document_cate_id;
                 $cate->name = $request->name;
-                $cate->alias = $this->to_slug($request->name) . $request->document_cate_id;
+                $cate->alias = $alias;
                 $cate->sort = $request->sort;
                 $cate->descript = $request->descript;
                 if ($cate->document_cate_id != (int) $request->parent_id) {
@@ -132,6 +131,7 @@ class DocumentCateController extends Controller {
                 }
                 $cate->save();
 
+                Cache::forget('data_api_files_by_document_' . $alias);
                 $cateParent = $this->documentCate->find($cate->parent_id);
                 if (null != $cateParent) {
                     Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
@@ -210,6 +210,8 @@ class DocumentCateController extends Controller {
 
     public function resetCache() {
         Cache::forget('document_cates_list');
+        Cache::forget('data_api_api_document_cate');
+        Cache::forget('data_api_api_all_document_cate');
     }
 
     protected function _buildCate($cates) {
@@ -406,5 +408,77 @@ class DocumentCateController extends Controller {
         }
         echo json_encode($data);
     }
-    // add xoa tung member 
+
+    //Table Data to index page
+    public function data()
+    {
+//        $objCate = new DocumentCate();
+//        $cates = $this->documentCate->getCates();
+        $parents = $this->_buildCate($this->documentCate->getCates());
+
+        return Datatables::of($this->documentCate->findAll())
+            ->editColumn('icon',function ($item){
+                $img = $item->icon;
+                return '<img src='.config('site.url_storage') . htmlspecialchars($img).' width="50px">';
+            })
+            ->editColumn('parent_id',function ($item) use ($parents){
+                return !empty($parents[$item->parent_id]) ? htmlspecialchars($parents[$item->parent_id]['name']) : 'Root';
+            })
+            ->addColumn('actions', function ($item) {
+                $actions = '';
+                if($this->user->canAccess('dhcd.document.doc.log')){
+                    $actions .= "<a href='".route('dhcd.document.cate.log',['type' => 'document_cates', 'subject_id' => $item->document_cate_id])."' data-toggle='modal' data-target='#log'><i class='livicon' data-name='info' data-size='18' data-loop='true' data-c='#F99928' data-hc='#F99928' title='log document'></i></a>";
+                }
+                if($this->user->canAccess('dhcd.document.cate.edit')){
+                    $actions .= "<a href='".route('dhcd.document.cate.edit',['document_cate_id' => $item->document_cate_id])."' ><i class='livicon' data-name='edit' data-size='18' data-loop='true' data-c='#428BCA' data-hc='#428BCA' title='edit'></i></a>";
+                } //
+                if($this->user->canAccess('dhcd.document.cate.delete')){
+                    $actions .= "<a href='".route('dhcd.document.cate.delete',['document_cate_id' => $item->document_cate_id])."'  onclick='return confirm(".'"'."Bạn có chắc chắn muốn xóa?".'"'.")'><i class='livicon' data-name='trash' data-size='18' data-loop='true' data-c='#f56954' data-hc='#f56954' title='delete'></i></a>";
+                }
+                if($this->user->canAccess('dhcd.document.cate.create.member')){
+                    $actions .= "<a href='".route('dhcd.document.cate.create.member',['document_cate_id' => $item->document_cate_id])."' ><i class='livicon' data-name='add member' data-size='18' data-loop='true' data-c='#428BCA' data-hc='#428BCA' title='add member'></i></a>";
+                } //
+                return $actions;
+            })
+            ->rawColumns(['actions', 'icon'])
+            ->make();
+    }
+
+    function getCateList() {
+        $cates = DocumentCate::orderBy('parent_id')->orderBy('sort')->get();
+        $this->_cateList = new Collection();
+        if (count($cates) > 0) {
+            foreach ($cates as $cate) {
+
+                $parent_id = $cate->parent_id;
+                $cate_id = $cate->document_cate_id;
+
+                $cateData['items'][$cate_id] = $cate;
+                $cateData['parents'][$parent_id][] = $cate_id;
+            }
+            self::buildCate(0, $cateData);
+        }
+    }
+
+    function buildCate($parentId, $menuData)
+    {
+        if (isset($menuData['parents'][$parentId]))
+        {
+            foreach ($menuData['parents'][$parentId] as $itemId)
+            {
+                $item = $menuData['items'][$itemId];
+                $item->level = 1;
+                if ($parentId == 0)
+                    $item->level = 0;
+                else
+                    $item->level = $menuData['items'][$parentId]->level + 1;
+                $this->_cateList->push($item);
+
+                // find childitems recursively
+                $more = self::buildCate($itemId, $menuData);
+                if (!empty($more))
+                    $this->_cateList->push($more);
+            }
+        }
+    }
 }

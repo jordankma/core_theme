@@ -157,6 +157,7 @@ class DocumentController extends Controller
                         if (null != $cateParent) {
                             Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
                             Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                            Cache::forget('data_api_files_by_document_' . $cateParent->alias);
                         }
                     }
 
@@ -277,6 +278,7 @@ class DocumentController extends Controller
                   $document->save();
                  $document_id = $document->document_id;
                  Cache::forget('api_doc_document_detail_' . $document->alias);
+                 Cache::forget('data_api_api_doc_document_detail_' . $document->alias);
                  $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
                      $query->where('dhcd_document_has_cate.document_id', $document_id);
                  }])->get();
@@ -287,6 +289,7 @@ class DocumentController extends Controller
                          if (count($item->getDocumentCate) > 0) {
                              foreach ($item->getDocumentCate as $cate) {
                                  Cache::forget('api_doc_document_page_' . $cate->alias . '_all');
+                                 Cache::forget('data_api_files_by_document_' . $cate->alias);
                              }
                          }
 
@@ -356,6 +359,7 @@ class DocumentController extends Controller
 
         $document_id = $request->document_id;
         Cache::forget('api_doc_document_detail_' . $document->alias);
+        Cache::forget('data_api_api_doc_document_detail_' . $document->alias);
         $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
             $query->where('dhcd_document_has_cate.document_id', $document_id);
         }])->get();
@@ -366,6 +370,7 @@ class DocumentController extends Controller
                 if (count($item->getDocumentCate) > 0) {
                     foreach ($item->getDocumentCate as $cate) {
                         Cache::forget('api_doc_document_page_' . $cate->alias . '_all');
+                        Cache::forget('data_api_files_by_document_' . $cate->alias);
                     }
                 }
 

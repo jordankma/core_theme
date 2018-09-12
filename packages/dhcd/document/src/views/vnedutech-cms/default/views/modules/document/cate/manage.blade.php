@@ -41,33 +41,20 @@
                 </div>
             </div>
             <br/>
-            <div class="panel-body">
-                
-                <!-- BEGIN BORDERED TABLE PORTLET-->
-                <div class="portlet box danger">
-                    
-                    <div class="portlet-body">
-                        <div class="table-scrollable">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        
-                                        <th>{{ trans('dhcd-document::language.document_cate.table.icon') }}</th>
-                                        <th>{{ trans('dhcd-document::language.document_cate.table.name') }}</th>
-                                        <th>{{ trans('dhcd-document::language.document_cate.table.parent_id') }}</th>
-                                        <th>{{ trans('dhcd-document::language.document_cate.table.action') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>                                   
-                                    @if(!empty($cates))
-                                        {{$objCate->showIsTableCategories($cates, $parents, $USER_LOGGED)}}
-                                    @endif                                                                        
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
-                    <!-- END BORDERED TABLE PORTLET-->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="table">
+                        <thead>
+                        <tr class="filters">
+                            {{--<th class="fit-content">{{ trans('adtech-core::common.sequence') }}STT</th>--}}
+                            <th>{{ trans('dhcd-document::language.document_cate.table.icon') }}</th>
+                            <th>{{ trans('dhcd-document::language.document_cate.table.name') }}</th>
+                            <th>{{ trans('dhcd-document::language.document_cate.table.parent_id') }}</th>
+                            <th>{{ trans('dhcd-document::language.document_cate.table.action') }}</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -79,7 +66,8 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 <script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
-<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap4.js') }}"></script>
+<script type="text/javascript" src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.responsive.js') }}" ></script>
 <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="user_log_title"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -90,6 +78,24 @@
 $(function () {
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).removeData('bs.modal');
+    });
+
+    var table = $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{ route('dhcd.document.cate.data') }}',
+        columns: [
+            // { data: 'rownum', name: 'rownum'},
+            { data: 'icon', name: 'icon'},
+            { data: 'name', name: 'name' },
+            { data: 'parent_id', name: 'parent_id'},
+            { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
+        ]
+    });
+    table.on('draw', function () {
+        $('.livicon').each(function () {
+            $(this).updateLivicon();
+        });
     });
 });
 </script>
