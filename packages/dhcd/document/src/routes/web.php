@@ -19,7 +19,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Route::post('create', 'DocumentCateController@create')->name('dhcd.document.cate.create');
             Route::get('data', 'DocumentCateController@data')->name('dhcd.document.cate.data');
             Route::get('edit', 'DocumentCateController@edit')->name('dhcd.document.cate.edit');
-            Route::post('update}', 'DocumentCateController@update')->name('dhcd.document.cate.update');
+            Route::post('update', 'DocumentCateController@update')->name('dhcd.document.cate.update');
             Route::get('delete', 'DocumentCateController@delete')->name('dhcd.document.cate.delete');
             Route::get('log', 'DocumentCateController@log')->name('dhcd.document.cate.log');
 
@@ -33,7 +33,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
         
          Route::group(['prefix' => 'dhcd/document/type'], function () {           
             Route::get('edit', 'DocumentTypeController@edit')->where('as', 'Cấu hình kiểu tài liệu')->name('dhcd.document.type.edit');
-            Route::post('update}', 'DocumentTypeController@update')->name('dhcd.document.type.update');            
+            Route::post('update', 'DocumentTypeController@update')->name('dhcd.document.type.update');
         });
         
         Route::group(['prefix' => 'dhcd/document/doc'], function () {
@@ -42,7 +42,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Route::post('create', 'DocumentController@create')->name('dhcd.document.doc.create');
             Route::get('data', 'DocumentController@data')->name('dhcd.document.doc.data');
             Route::get('edit', 'DocumentController@edit')->name('dhcd.document.doc.edit');
-            Route::post('update}', 'DocumentController@update')->name('dhcd.document.doc.update');
+            Route::post('update', 'DocumentController@update')->name('dhcd.document.doc.update');
             Route::get('delete', 'DocumentController@delete')->name('dhcd.document.doc.delete');
             Route::get('log', 'DocumentController@log')->name('dhcd.document.doc.log');
         });
