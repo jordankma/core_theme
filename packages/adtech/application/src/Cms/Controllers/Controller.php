@@ -94,6 +94,7 @@ class Controller extends BaseController
                 $menuTops = [];
                 if (count($menuGroups) > 0) {
                     foreach ($menuGroups as $group) {
+                        if (count($menuTops) > 4) break;
                         $object = new \stdClass();
                         $object->group = $group;
                         $menuTops[] = $object;
