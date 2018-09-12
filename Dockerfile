@@ -10,6 +10,8 @@ WORKDIR /src
 
 ## Add custom service to supervisor
 COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
+COPY docker/nginx/nginx.conf /etc/nginx/
+
 #RUN echo "[include]" >> /etc/supervisord.conf \
 #    && echo "files = /etc/supervisor/conf.d/*.conf" >> /etc/supervisord.conf
 
