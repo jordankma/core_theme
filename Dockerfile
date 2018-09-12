@@ -12,6 +12,10 @@ WORKDIR /src
 COPY docker/supervisor/conf.d/ /etc/supervisor/conf.d/
 COPY docker/nginx/nginx.conf /etc/nginx/
 
+## Modify php config
+RUN sed -i 's/.*upload_max_filesize.*/upload_max_filesize = 200M/g' /etc/php/7.1/fpm/php.ini
+RUN sed -i 's/.*post_max_size.*/post_max_size = 200M/g' /etc/php/7.1/fpm/php.ini
+
 #RUN echo "[include]" >> /etc/supervisord.conf \
 #    && echo "files = /etc/supervisor/conf.d/*.conf" >> /etc/supervisord.conf
 
