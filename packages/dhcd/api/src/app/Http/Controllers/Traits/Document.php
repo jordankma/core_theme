@@ -48,6 +48,9 @@ trait Document
             }
         }
 
+        $listFile = (array) $listFile;
+        ksort($listFile);
+
         $data = '{
                     "data": {
                         "list_files": '. json_encode($listFile) .'
