@@ -398,7 +398,7 @@ class MenuController extends Controller
                     } else {
                         $arrColor = ['#4089C7', '#00BB8D', '#58BEDC', '#F99928', '#F06E6B', '#A7B4BA'];
                         $colorItem = $arrColor[rand(0, 5)];
-                        $icon = '<i class="livicon" data-name="' . $iconName . '" data-size="18" data-loop="true" data-c="' . $colorItem . '" data-hc="' . $colorItem . '"></i>';
+                        $icon = '<i class="livicon" data-name="question" data-size="18" data-loop="true" data-c="' . $colorItem . '" data-hc="' . $colorItem . '"></i>';
                     }
 
                     return $icon;
