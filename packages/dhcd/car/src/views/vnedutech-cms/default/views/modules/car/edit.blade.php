@@ -98,7 +98,7 @@
                             </div>
                             <img id="holder" src="{{config('site.url_storage') . ($staff->img)}}" style="margin-top:15px;max-height:100px;">
                             <br>
-                            <label>Lộ trình (<span class="red">*</span>):</label>
+                            <label>Lộ trình</label>
                             <div class="form-group {{ $errors->first('note', 'has-error') }}">
                                 {!! Form::textarea('note', null, array('class' => 'form-control', 'autofocus'=>'autofocus')) !!}
                                 <span class="help-block">{{ $errors->first('note', ':message') }}</span>
@@ -110,7 +110,7 @@
                                 <legend class="scheduler-border">
                                     <div class="col-md-12" style="padding-right: 0px">
                                     <span class="scheduler-border">
-                                        Nhân Viên Phục Vụ (<span class="red">*</span>):
+                                        Nhân Viên Phục Vụ:
                                         <button type="button" class="btn btn-success pull-right addstaff">{{ trans('dhcd-car::language.buttons.create') }}</button>
                                     </span>
                                     </div>
