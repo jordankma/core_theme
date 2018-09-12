@@ -30,7 +30,6 @@ trait Document
 
         $listFile = [];
         $packagesDir = "/storage/dhcd/public/spliter/files/" . $filename;//public_path('spliter/files/' . $filename);
-        dd($packagesDir);
         $ls = @scandir($packagesDir);
         if ($ls) {
             foreach ($ls as $index => $file_spliter) {
