@@ -44,7 +44,7 @@ trait Document
                 $item->filesize = filesize($packagesDir . '/' . $file_spliter);
 
                 $file_num = substr($file_spliter, 0, strpos($file_spliter, '.'));
-                $listFile[$file_num] = $item;
+                $listFile[$file_num - 1] = $item;
             }
         }
 
