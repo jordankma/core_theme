@@ -93,7 +93,7 @@ class DocumentController extends Controller
                      $timer = time() * 1000;
                      $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
                      $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
-                     $result = file_get_contents('http://dhcd.vnedutech.vn/resource/' . $pathFile);
+                     $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                      $result = json_decode($result);
 
                      if (property_exists($result, "data")) {
@@ -221,7 +221,7 @@ class DocumentController extends Controller
                          $timer = time() * 1000;
                          $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
                          $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
-                         $result = file_get_contents('http://dhcd.vnedutech.vn/resource/' . $pathFile);
+                         $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                          $result = json_decode($result);
 
                          if (property_exists($result, "data")) {
@@ -230,15 +230,17 @@ class DocumentController extends Controller
                              }
                          }
                      }
-                 }  
-             }        
+                 }
+                 dd($fileSplits);
+             }
+
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
              $is_offical = !empty($request->is_offical) ? $request->is_offical : 0;
              
              $type_control = !empty($request->type_control) ? $request->type_control : 'file';
              $avatar = '';
              if($type_control == 'image'){
-                $avatar = !empty($request->setAvatar) ? $request->setAvatar : $files[0]['name'];                
+                $avatar = !empty($request->setAvatar) ? $request->setAvatar : $files[0]['name'];
              }
              
              $document = $this->documentRepository->find($request->document_id);
@@ -270,12 +272,8 @@ class DocumentController extends Controller
                         'icon' => asset($request->icon)
                   ]);
                   $document->save();
-
-                 Cache::forget('api_doc_document_detail_' . $this->to_slug($request->name));
-
                  $document_id = $document->document_id;
-                 $alias = $this->to_slug($request->name);
-                 Cache::forget('api_doc_document_detail_' . $alias);
+                 Cache::forget('api_doc_document_detail_' . $document->alias);
                  $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
                      $query->where('dhcd_document_has_cate.document_id', $document_id);
                  }])->get();
