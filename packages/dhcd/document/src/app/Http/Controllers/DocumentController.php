@@ -98,7 +98,9 @@ class DocumentController extends Controller
 
                      if (property_exists($result, "data")) {
                          if (property_exists($result->data, "list_files")) {
-                             $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                             if (is_array($result->data->list_files)) {
+                                 $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                             }
                          }
                      }
                  }
@@ -224,9 +226,12 @@ class DocumentController extends Controller
                          $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                          $result = json_decode($result);
 
+                         dd($result);
                          if (property_exists($result, "data")) {
                              if (property_exists($result->data, "list_files")) {
-                                 $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                                 if (is_array($result->data->list_files)) {
+                                     $fileSplits = array_merge($fileSplits, $result->data->list_files);
+                                 }
                              }
                          }
                      }
