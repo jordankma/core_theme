@@ -31,6 +31,7 @@ class CarController extends Controller
         $staffname = $request->input('staffname', '');
         $staffpos = $request->input('staffpos', '');
         $phone = $request->input('phone', '');
+        $car_bs = $request->input('car_bs', '');
         $img = $request->input('img', '');
         $result = [];
         if(empty($staffname)) {
@@ -59,6 +60,7 @@ class CarController extends Controller
         $car = new Car($request->all());
         $car->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $car->car_staff= $staff;
+        $car->car_bs= $car_bs;
         $car->img= $this->toURLFriendly($img);
         $car->save();
 
