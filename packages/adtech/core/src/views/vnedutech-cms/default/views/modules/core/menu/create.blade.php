@@ -131,7 +131,7 @@
                                <i class="fa fa-picture-o"></i> Choose
                              </a>
                            </span>
-                            {!! Form::text('icon', null, array('class' => 'form-control', 'id' => 'thumbnail', 'placeholder'=>trans('adtech-core::common.menu.icon_here'))) !!}
+                            {!! Form::text('icon', null, array('class' => 'form-control', 'id' => 'thumbnail', 'readonly', 'placeholder'=>trans('adtech-core::common.menu.icon_here'))) !!}
                             <span class="help-block">{{ $errors->first('icon', ':message') }}</span>
                         </div>
 
