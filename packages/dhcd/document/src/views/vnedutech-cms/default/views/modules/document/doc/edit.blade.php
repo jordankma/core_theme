@@ -197,8 +197,8 @@ if(!empty($document->getTags->toArray())){
                                 </tbody>
                             </table>
                         </div>
-                        @endif
                     </div>
+                    @endif
                     <!-- Form actions -->
                     <div class="form-group">
                         <div class="col-md- text-center">
