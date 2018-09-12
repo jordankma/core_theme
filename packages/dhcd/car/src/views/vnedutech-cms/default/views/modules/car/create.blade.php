@@ -68,9 +68,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="row">
                     <div class="col-sm-6">
-                        <label>Tên Đoàn</label>
+                        <label>Tên Đoàn (<span class="red">*</span>):</label>
                         <div class="form-group {{ $errors->first('doan', 'has-error') }}" id="boxDoan">
-                            <select class="form-control" id="doan_id" name="doan_id[]" multiple="multiple">
+                            <select class="form-control" id="doan_id" name="doan_id[]" multiple="multiple" required>
                                 @if(!empty($doan))
                                     @foreach($doan as $val)
                                         <option value="{{ $val['group_id'] }}" >{{ $val['name'] }}</option>
@@ -80,7 +80,7 @@
                             <span class="help-block">{{ $errors->first('doan', ':message') }}</span>
                         </div>
 
-                        <label>Số xe  (<span class="red">*</span>):</label>
+                        <label>Số xe (<span class="red">*</span>):</label>
                         <div class="form-group {{ $errors->first('car_num', 'has-error') }}">
                             {!! Form::text('car_num', null, array('class' => 'form-control', 'autofocus'=>'autofocus','placeholder'=> trans('dhcd-car::language.placeholder.car.car_num') , 'required' ,'[0-9]')) !!}
                             <span class="help-block">{{ $errors->first('car_num', ':message') }}</span>
@@ -106,7 +106,7 @@
 
                         <label>Lộ trình (<span class="red">*</span>):</label>
                         <div class="form-group {{ $errors->first('note', 'has-error') }}">
-                            {!! Form::textarea('note', null, array('class' => 'form-control', 'autofocus'=>'autofocus', 'required')) !!}
+                            {!! Form::textarea('note', null, array('class' => 'form-control')) !!}
                             <span class="help-block">{{ $errors->first('note', ':message') }}</span>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                 var arr = "<div class='form-group staff' id='staff"+ (++eid) +"'>" +
                     "<div class='form-group col-md-3 inline'>" +
                     "<label class='label'> Tên :</label>" +
-                    "<input type='text' autocomplete='off'  class='form-control staffname' name='staffname[]'  required >" +
+                    "<input type='text' autocomplete='off'  class='form-control staffname' name='staffname[]'>" +
                     "</div>" +
                     "<div class='form-group col-md-3 inline'>" +
                     "<label class='label'> Chức Vụ :</label>"+

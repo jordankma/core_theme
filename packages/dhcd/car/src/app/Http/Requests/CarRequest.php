@@ -33,29 +33,15 @@ class CarRequest extends FormRequest
             }
             case 'POST': {
                 $rules=[
-                    'car_num' => 'required|numeric',
-                    'note' => 'required'
+                    'car_num' => 'required|numeric'
                 ];
-                 $staffname = $request->input('staffname');
-                if(!empty($staffname)){
-                    foreach ($staffname as $key=>$item){
-                        $rules['staffname.'.$key]='required|max:255';
-                    }
-                }
                 return $rules;
             }
             case 'PUT':{
                 $rules=[
                     'car_id' => 'required|numeric',
                     'car_num' => 'required|numeric',
-                    'note' => 'required',
                 ];
-                 $staffname = $request->input('staffname');
-                if(!empty($staffname)){
-                    foreach ($staffname as $key=>$item){
-                        $rules['staffname.'.$key]='required|max:255';
-                    }
-                }
                 return $rules;
 
             }

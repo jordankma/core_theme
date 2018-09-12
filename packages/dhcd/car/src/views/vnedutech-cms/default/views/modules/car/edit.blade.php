@@ -63,9 +63,9 @@
                 <div class="row">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>Tên Đoàn</label>
+                            <label>Tên Đoàn (<span class="red">*</span>):</label>
                             <div class="form-group {{ $errors->first('doan', 'has-error') }}" id="boxDoan">
-                                <select class="form-control" id="doan_id" name="doan_id[]" multiple="multiple">
+                                <select class="form-control" id="doan_id" name="doan_id[]" multiple="multiple" required>
                                     @if(!empty($doan))
                                         @foreach($doan as $val)
                                             <option value="{{ $val['group_id'] }}" {{ in_array($val['group_id'], $doan_id) ? 'selected' : '' }}>{{ $val['name'] }}</option>
@@ -75,7 +75,7 @@
                                 <span class="help-block">{{ $errors->first('doan', ':message') }}</span>
                             </div>
 
-                            <label>Số xe  (<span class="red">*</span>):</label>
+                            <label>Số xe (<span class="red">*</span>):</label>
                             <div class="form-group {{ $errors->first('car_num', 'has-error') }}">
                                 {!! Form::text('car_num', null, array('class' => 'form-control', 'autofocus'=>'autofocus','placeholder'=> trans('dhcd-car::language.placeholder.car.car_num'),'required')) !!}
                                 <span class="help-block">{{ $errors->first('car_num', ':message') }}</span>
@@ -120,7 +120,7 @@
                                         <div class="form-group staff" id="staff{{$key}}">
                                             <div class="form-group col-md-3 inline">
                                                 <label class="label"> Tên :</label>
-                                                <input type="text" autocomplete="off" class="form-control  staffname" name="staffname[]"  required value="{{$val['staffname']}}">
+                                                <input type="text" autocomplete="off" class="form-control  staffname" name="staffname[]" value="{{$val['staffname']}}">
                                             </div>
                                             <div class="form-group col-md-3 inline">
                                                 <label class="label"> Chức Vụ  :</label>
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="form-group col-md-4 inline">
                                                 <label class="label"> Số Điện Thoại :</label>
-                                                <input type="text" autocomplete="off" class="form-control phone"  name="phone[]"  required value="{{$val['phone']}}">
+                                                <input type="text" autocomplete="off" class="form-control phone"  name="phone[]" value="{{$val['phone']}}">
                                             </div>
                                             <div class="form-group col-md-2 inline" style="padding: 25px 0px 0px 10px"><a style='cursor:pointer' class="trash"><i class='fa fa-trash' ></i></a></div>
                                         </div>
@@ -205,7 +205,7 @@
                 var arr = "<div class='form-group staff' id='staff"+ (++eid) +"'>" +
                     "<div class='form-group col-md-3 inline'>" +
                     "<label class='label'> Tên :</label>" +
-                    "<input type='text' autocomplete='off'  class='form-control staffname' name='staffname[]'  required >" +
+                    "<input type='text' autocomplete='off'  class='form-control staffname' name='staffname[]'>" +
                     "</div>" +
                     "<div class='form-group col-md-3 inline'>" +
                     "<label class='label'> Chức Vụ :</label>"+

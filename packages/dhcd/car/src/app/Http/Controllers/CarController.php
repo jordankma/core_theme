@@ -28,14 +28,16 @@ class CarController extends Controller
 
     public function add(CarRequest $request)
     {
-        $staffname = $request->input('staffname');
-        $staffpos = $request->input('staffpos');
-        $phone = $request->input('phone');
-        $img = $request->input('img');
+        $staffname = $request->input('staffname', '');
+        $staffpos = $request->input('staffpos', '');
+        $phone = $request->input('phone', '');
+        $img = $request->input('img', '');
+        $result = [];
         if(empty($staffname)) {
-            return redirect()->route('dhcd.car.create')->with('error', trans('dhcd-car::language.messages.error.missstaff'));
-        } else {
             $result = [];
+            $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+//            return redirect()->route('dhcd.car.create')->with('error', trans('dhcd-car::language.messages.error.missstaff'));
+        } else {
             for ($i = 0; $i < sizeof($staffname); $i++){
                 if(!$staffname[$i])
                 {
@@ -156,32 +158,33 @@ class CarController extends Controller
         $staffpos = $request->input('staffpos');
         $phone = $request->input('phone');
          foreach ($staffname as $val){
-        if($val == null or $val == ''){
-            return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
-        }
-        else{
-            $result = [];
-            for ($i = 0; $i < sizeof($staffname); $i++){
-                if(!$staffname[$i])
-                {
-                    return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
-                }
-                $result["$i"] = [
-                    "staffname" => $staffname[$i],
-                    "staffpos" => $staffpos[$i],
-                    "phone" => $phone[$i]
-                ];
+             $result = [];
+            if($val == null or $val == ''){
+                $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+    //            return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
             }
-            $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+            else{
+                for ($i = 0; $i < sizeof($staffname); $i++){
+                    if(!$staffname[$i])
+                    {
+                        return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
+                    }
+                    $result["$i"] = [
+                        "staffname" => $staffname[$i],
+                        "staffpos" => $staffpos[$i],
+                        "phone" => $phone[$i]
+                    ];
+                }
+                $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+            }
         }
-    }
         $car = Car::find($car_id);
         if (null != $car) {
             $car->doan_id = implode("," , $request->input('doan_id'));
-            $car->car_num = $request->input('car_num');
-            $car->car_bs = $request->input('car_bs');
-            $car->img = $this->toURLFriendly($request->input('img'));
-            $car->note = $request->input('note');
+            $car->car_num = $request->input('car_num', 0);
+            $car->car_bs = $request->input('car_bs', '');
+            $car->img = $this->toURLFriendly($request->input('img', ''));
+            $car->note = $request->input('note', '');
             $car->car_staff= $staff;
             if ($car->save()) {
 
