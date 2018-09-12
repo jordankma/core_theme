@@ -226,7 +226,6 @@ class DocumentController extends Controller
                          $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                          $result = json_decode($result);
 
-                         dd($result);
                          if (property_exists($result, "data")) {
                              if (property_exists($result->data, "list_files")) {
                                  if (is_array($result->data->list_files)) {
@@ -236,7 +235,6 @@ class DocumentController extends Controller
                          }
                      }
                  }
-                 dd($fileSplits);
              }
 
              $is_reserve = !empty($request->is_reserve) ? $request->is_reserve : 0;
