@@ -34,7 +34,12 @@ return [
     'connections' => [
         'mysql_core' => [
             'driver' => 'mysql',
-            'host' => explode(',', env('DB_HOST')),
+            'read' => [
+                'host' => explode(',', env('DB_HOST'))
+            ],
+            'write' => [
+                'host' => explode(',', env('DB_HOST'))[0]
+            ],
             'port' => env('DB_PORT'),
             'database' => env('DB_DATABASE'),
             'username' => env('DB_USERNAME'),
@@ -48,7 +53,12 @@ return [
 
         'mysql_dhcd' => [
             'driver' => 'mysql',
-            'host' => explode(',', env('DB1_HOST')),
+            'read' => [
+                'host' => explode(',', env('DB1_HOST'))
+            ],
+            'write' => [
+                'host' => explode(',', env('DB1_HOST'))[0]
+            ],
             'port' => env('DB1_PORT'),
             'database' => env('DB1_DATABASE'),
             'username' => env('DB1_USERNAME'),
