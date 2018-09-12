@@ -27,12 +27,12 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/files/document?alias=vankiendaihoi&time='.time()*1000, 'e' );
+//        $encrypted = $this->my_simple_crypt( 'dev/get/files/document?alias=vankiendaihoi&time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
-        echo $encrypted.'<br>';
-        echo $decrypted.'<br>';die;
+//        echo $encrypted.'<br>';
+//        echo $decrypted.'<br>';die;
 
         $query = [];
         if (count($parts) > 0) {
@@ -46,14 +46,7 @@ class GlobalController extends Controller
 //                'token' => 'required'
             ], $this->messages);
 
-            $validatorLogin = Validator::make($request->all(), [
-                'time' => 'required|numeric'
-            ], $this->messages);
-
             if (!$validator->fails()) {
-
-//                $getUser = app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->me();
-//                $userInfo = json_decode($getUser->content());
 
                 if ((time() * 1000 - $request->input('time')) < 28800000) { //5000
                     switch ($parts['path']) {
@@ -93,27 +86,12 @@ class GlobalController extends Controller
                         case 'dev/get/events': {
                             return $this->getEvents();
                         }
-//                        case 'dev/get/news': {
-//                            return $this->getNews($request);
-//                        }
-//                        case 'dev/get/news-home': {
-//                            return $this->getNewshome($request);
-//                        }
-//                        case 'dev/get/detail-news': {
-//                            return $this->getNewsdetail($request);
-//                        }
-//                        case 'dev/get/forum': {
-//                            return $this->getForum($request);
-//                        }
                         case 'dev/get/member-group': {
                             return $this->getMemberGroup($request);
                         }
                         case 'dev/get/member-by-group': {
                             return $this->getMemberByGroup($request);
                         }
-//                        case 'dev/get/member-by-category': {
-//                            return $this->getMemberByCategory($request);
-//                        }
                         case 'dev/get/menu': {
                             return $this->getMenu();
                         }
@@ -146,26 +124,6 @@ class GlobalController extends Controller
                         }
                         case 'dev/get/getlogsent/detail': {
                             return $this->getLogSentDetail($request);
-                        }
-                        case 'dev/get/logout': {
-                            return app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->logout();
-                        }
-                        case 'dev/get/refresh': {
-                            return app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->refresh();
-                        }
-                    }
-                }
-//                } else {
-//                    return response($getUser->content())->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
-//                }
-            } elseif (!$validatorLogin->fails()) {
-                if ((time() * 1000 - $request->input('time')) < 5000) {
-                    switch ($parts['path']) {
-                        case 'dev/post/login': {
-                            return app('Adtech\Api\App\Http\Controllers\Auth\LoginController')->login();
-                        }
-                        case 'dev/get/version-nav': {
-                            return $this->getVersionNav();
                         }
                     }
                 }
