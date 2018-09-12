@@ -18,57 +18,74 @@ trait Member
     {
         $doan_id = $request->input('doan_id');
 
-        $cache_name = 'car_' . $doan_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $cars = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_car_' . $doan_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'car_' . $doan_id;
+//            if (Cache::has($cache_name)) {
+//                $cars = Cache::get($cache_name);
+//            } else {
+//                $cars = car::orWhere('doan_id', 'like', $doan_id . ',%')
+//                    ->orWhere('doan_id', 'like', '%,' . $doan_id . ',%')
+//                    ->orWhere('doan_id', 'like', '%,' . $doan_id)
+//                    ->orWhere('doan_id', $doan_id)
+//                    ->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $cars, $expiresAt);
+//            }
+
             $cars = car::orWhere('doan_id', 'like', $doan_id . ',%')
                 ->orWhere('doan_id', 'like', '%,' . $doan_id . ',%')
                 ->orWhere('doan_id', 'like', '%,' . $doan_id)
                 ->orWhere('doan_id', $doan_id)
                 ->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $cars, $expiresAt);
-        }
 
-        $list_car = [];
-        if (count($cars) > 0) {
-            foreach ($cars as $car) {
+            $list_car = [];
+            if (count($cars) > 0) {
+                foreach ($cars as $car) {
 
-                $arrStaff = json_decode($car->car_staff, true);
-                if (count($arrStaff) > 0) {
-                    foreach ($arrStaff as $k => $staff) {
+                    $arrStaff = json_decode($car->car_staff, true);
+                    if (count($arrStaff) > 0) {
+                        foreach ($arrStaff as $k => $staff) {
 
-                        $item = new \stdClass();
-                        $item->staffname = base64_encode($staff['staffname']);
-                        $item->staffpos = base64_encode($staff['staffpos']);
-                        $item->phone = base64_encode($staff['phone']);
+                            $item = new \stdClass();
+                            $item->staffname = base64_encode($staff['staffname']);
+                            $item->staffpos = base64_encode($staff['staffpos']);
+                            $item->phone = base64_encode($staff['phone']);
 
-                        $arrStaff[$k] = $item;
+                            $arrStaff[$k] = $item;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $icon_link = ($car->img != '') ? config('site.url_storage') . $car->img : '';
+                    $item->img = (self::is_url($car->img)) ? $car->img : $icon_link;
+                    $item->note = base64_encode($car->note);
+                    $item->car_bs = base64_encode($car->car_bs);
+                    $item->car_num = base64_encode($car->car_num);
+                    $item->staff = $arrStaff;
+
+                    $list_car[] = $item;
                 }
-
-                $item = new \stdClass();
-                $icon_link = ($car->img != '') ? config('site.url_storage') . $car->img : '';
-                $item->img = (self::is_url($car->img)) ? $car->img : $icon_link;
-                $item->note = base64_encode($car->note);
-                $item->car_bs = base64_encode($car->car_bs);
-                $item->car_num = base64_encode($car->car_num);
-                $item->staff = $arrStaff;
-
-                $list_car[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_car": '. json_encode($list_car) .'
+                        "list_car": ' . json_encode($list_car) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
     
@@ -76,109 +93,137 @@ trait Member
     {
         $doan_id = $request->input('doan_id');
 
-        $cache_name = 'hotel_' . $doan_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $hotels = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_hotel_' . $doan_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'hotel_' . $doan_id;
+//            if (Cache::has($cache_name)) {
+//                $hotels = Cache::get($cache_name);
+//            } else {
+//                $hotels = Hotel::orWhere('doan_id', 'like', $doan_id . ',%')
+//                    ->orWhere('doan_id', 'like', '%,' . $doan_id . ',%')
+//                    ->orWhere('doan_id', 'like', '%,' . $doan_id)
+//                    ->orWhere('doan_id', $doan_id)
+//                    ->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $hotels, $expiresAt);
+//            }
+
             $hotels = Hotel::orWhere('doan_id', 'like', $doan_id . ',%')
                 ->orWhere('doan_id', 'like', '%,' . $doan_id . ',%')
                 ->orWhere('doan_id', 'like', '%,' . $doan_id)
                 ->orWhere('doan_id', $doan_id)
                 ->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $hotels, $expiresAt);
-        }
 
-        $list_hotel = [];
-        if (count($hotels) > 0) {
-            foreach ($hotels as $hotel) {
+            $list_hotel = [];
+            if (count($hotels) > 0) {
+                foreach ($hotels as $hotel) {
 
-                $arrStaff = json_decode($hotel->hotel_staff, true);
-                if (count($arrStaff) > 0) {
-                    foreach ($arrStaff as $k => $staff) {
+                    $arrStaff = json_decode($hotel->hotel_staff, true);
+                    if (count($arrStaff) > 0) {
+                        foreach ($arrStaff as $k => $staff) {
 
-                        $item = new \stdClass();
-                        $item->staffname = base64_encode($staff['staffname']);
-                        $item->staffpos = base64_encode($staff['staffpos']);
-                        $item->phone = base64_encode($staff['phone']);
+                            $item = new \stdClass();
+                            $item->staffname = base64_encode($staff['staffname']);
+                            $item->staffpos = base64_encode($staff['staffpos']);
+                            $item->phone = base64_encode($staff['phone']);
 
-                        $arrStaff[$k] = $item;
+                            $arrStaff[$k] = $item;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $item->hotel = base64_encode($hotel->hotel);
+                    $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                    $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
+                    $item->note = base64_encode($hotel->note);
+                    $item->address = base64_encode($hotel->address);
+                    $item->staff = $arrStaff;
+
+                    $list_hotel[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->hotel = base64_encode($hotel->hotel);
-                $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
-                $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
-                $item->note = base64_encode($hotel->note);
-                $item->address = base64_encode($hotel->address);
-                $item->staff = $arrStaff;
-
-                $list_hotel[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_hotel": '. json_encode($list_hotel) .'
+                        "list_hotel": ' . json_encode($list_hotel) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getHotels()
     {
-        $cache_name = 'hotels';
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $hotels = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_hotels';
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'hotels';
+//            if (Cache::has($cache_name)) {
+//                $hotels = Cache::get($cache_name);
+//            } else {
+//                $hotels = Hotel::all();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $hotels, $expiresAt);
+//            }
+
             $hotels = Hotel::all();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $hotels, $expiresAt);
-        }
+            $list_hotel = [];
+            if (count($hotels) > 0) {
+                foreach ($hotels as $hotel) {
 
-        $list_hotel = [];
-        if (count($hotels) > 0) {
-            foreach ($hotels as $hotel) {
+                    $arrStaff = json_decode($hotel->hotel_staff, true);
+                    if (count($arrStaff) > 0) {
+                        foreach ($arrStaff as $k => $staff) {
 
-                $arrStaff = json_decode($hotel->hotel_staff, true);
-                if (count($arrStaff) > 0) {
-                    foreach ($arrStaff as $k => $staff) {
+                            $item = new \stdClass();
+                            $item->staffname = base64_encode($staff['staffname']);
+                            $item->staffpos = base64_encode($staff['staffpos']);
+                            $item->phone = base64_encode($staff['phone']);
 
-                        $item = new \stdClass();
-                        $item->staffname = base64_encode($staff['staffname']);
-                        $item->staffpos = base64_encode($staff['staffpos']);
-                        $item->phone = base64_encode($staff['phone']);
-
-                        $arrStaff[$k] = $item;
+                            $arrStaff[$k] = $item;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $item->hotel = base64_encode($hotel->hotel);
+                    $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
+                    $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
+                    $item->note = base64_encode($hotel->note);
+                    $item->address = base64_encode($hotel->address);
+                    $item->staff = $arrStaff;
+
+                    $list_hotel[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->hotel = base64_encode($hotel->hotel);
-                $icon_link = ($hotel->img != '') ? config('site.url_storage') . $hotel->img : '';
-                $item->img = (self::is_url($hotel->img)) ? $hotel->img : $icon_link;
-                $item->note = base64_encode($hotel->note);
-                $item->address = base64_encode($hotel->address);
-                $item->staff = $arrStaff;
-
-                $list_hotel[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_hotels": '. json_encode($list_hotel) .'
+                        "list_hotels": ' . json_encode($list_hotel) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -187,143 +232,177 @@ trait Member
         $doan_id = $request->input('doan_id');
         $sessionseat_id = $request->input('sessionseat_id');
 
-        $cache_name = 'seat_' . $doan_id . '_' . $sessionseat_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $seats = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_seat' . $doan_id . '_' . $sessionseat_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+//            $cache_name = 'seat_' . $doan_id . '_' . $sessionseat_id;
+//            if (Cache::has($cache_name)) {
+//                $seats = Cache::get($cache_name);
+//            } else {
+//                $seats = Seat::where('doan_id', $doan_id)->where('sessionseat_id' , $sessionseat_id)->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $seats, $expiresAt);
+//            }
+
             $seats = Seat::where('doan_id', $doan_id)->where('sessionseat_id' , $sessionseat_id)->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $seats, $expiresAt);
-        }
+            $list_seat = [];
+            if (count($seats) > 0) {
+                foreach ($seats as $seat) {
 
-        $list_seat = [];
-        if (count($seats) > 0) {
-            foreach ($seats as $seat) {
+                    $arrStaff = json_decode($seat->seat_staff, true);
+                    if (count($arrStaff) > 0) {
+                        foreach ($arrStaff as $k => $staff) {
 
-                $arrStaff = json_decode($seat->seat_staff, true);
-                if (count($arrStaff) > 0) {
-                    foreach ($arrStaff as $k => $staff) {
+                            $item = new \stdClass();
+                            $item->staffname = base64_encode($staff['staffname']);
+                            $item->staffpos = base64_encode($staff['staffpos']);
+                            $item->phone = base64_encode($staff['phone']);
 
-                        $item = new \stdClass();
-                        $item->staffname = base64_encode($staff['staffname']);
-                        $item->staffpos = base64_encode($staff['staffpos']);
-                        $item->phone = base64_encode($staff['phone']);
-
-                        $arrStaff[$k] = $item;
+                            $arrStaff[$k] = $item;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $item->seat = base64_encode($seat->seat);
+                    $item->note = base64_encode($seat->note);
+                    $item->staff = $arrStaff;
+
+                    $list_seat[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->seat = base64_encode($seat->seat);
-                $item->note = base64_encode($seat->note);
-                $item->staff = $arrStaff;
-
-                $list_seat[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
                         "list_seat": '. json_encode($list_seat) .'
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getSessionSeat()
     {
-        $cache_name = 'session_seat';
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $sessionSeat = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_session_seat';
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'session_seat';
+//            if (Cache::has($cache_name)) {
+//                $sessionSeat = Cache::get($cache_name);
+//            } else {
+//                $sessionSeat = Sessionseat::all();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $sessionSeat, $expiresAt);
+//            }
+
             $sessionSeat = Sessionseat::all();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $sessionSeat, $expiresAt);
-        }
+            $list_session_seat = [];
+            if (count($sessionSeat) > 0) {
+                foreach ($sessionSeat as $session) {
 
-        $list_session_seat = [];
-        if (count($sessionSeat) > 0) {
-            foreach ($sessionSeat as $session) {
+                    $arrImg = json_decode($session->sessionseat_img, true);
+                    if (count($arrImg) > 0) {
+                        foreach ($arrImg as $k => $img) {
 
-                $arrImg = json_decode($session->sessionseat_img, true);
-                if (count($arrImg) > 0) {
-                    foreach ($arrImg as $k => $img) {
+                            $item = new \stdClass();
+                            $icon_link = ($img != '') ? config('site.url_storage') . $img : '';
+                            $item->url = (self::is_url($img)) ? $img : $icon_link;
 
-                        $item = new \stdClass();
-                        $icon_link = ($img != '') ? config('site.url_storage') . $img : '';
-                        $item->url = (self::is_url($img)) ? $img : $icon_link;
-
-                        $arrImg[$k] = $item;
+                            $arrImg[$k] = $item;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $item->id = $session->sessionseat_id;
+                    $item->name = base64_encode($session->sessionseat_name);
+                    $item->image = $arrImg;
+
+                    $list_session_seat[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->id = $session->sessionseat_id;
-                $item->name = base64_encode($session->sessionseat_name);
-                $item->image = $arrImg;
-
-                $list_session_seat[] = $item;
             }
-        }
 
-        $data = '{
-                    "data": {
-                        "list_session_seat": '. json_encode($list_session_seat) .'
-                    },
-                    "success" : true,
-                    "message" : "ok!"
-                }';
-        $data = str_replace('null', '""', $data);
+            $data = '{
+                        "data": {
+                            "list_session_seat": '. json_encode($list_session_seat) .'
+                        },
+                        "success" : true,
+                        "message" : "ok!"
+                    }';
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getMemberGroup($request)
     {
-        $cache_name = 'member_group';
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $memberGroup = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_member_group';
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'member_group';
+//            if (Cache::has($cache_name)) {
+//                $memberGroup = Cache::get($cache_name);
+//            } else {
+//                $memberGroup = Group::all();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $memberGroup, $expiresAt);
+//            }
+
             $memberGroup = Group::all();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $memberGroup, $expiresAt);
-        }
+            $list_member_groups = [];
+            if (count($memberGroup) > 0) {
+                foreach ($memberGroup as $group) {
 
-        $list_member_groups = [];
-        if (count($memberGroup) > 0) {
-            foreach ($memberGroup as $group) {
-
-                if ($request->has('type')) {
-                    if ($group->type != $request->input('type')) {
-                        continue;
+                    if ($request->has('type')) {
+                        if ($group->type != $request->input('type')) {
+                            continue;
+                        }
                     }
+
+                    $item = new \stdClass();
+                    $item->id = $group->group_id;
+                    $item->name = base64_encode($group->name);
+                    $item->desc = base64_encode($group->desc);
+                    $item->alias = base64_encode($group->alias);
+                    $icon_link = ($group->image != '') ? config('site.url_storage') . $group->image : '';
+                    $item->image = (self::is_url($group->image)) ? $group->image : $icon_link;
+
+                    $list_member_groups[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->id = $group->group_id;
-                $item->name = base64_encode($group->name);
-                $item->desc = base64_encode($group->desc);
-                $item->alias = base64_encode($group->alias);
-                $icon_link = ($group->image != '') ? config('site.url_storage') . $group->image : '';
-                $item->image = (self::is_url($group->image)) ? $group->image : $icon_link;
-
-                $list_member_groups[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_member_group": '. json_encode($list_member_groups) .'
+                        "list_member_group": ' . json_encode($list_member_groups) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -333,94 +412,123 @@ trait Member
             $members = [];
             $alias = $request->input('alias');
 
-            $cache_name = 'member_by_category_' . $alias;
-            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $members = Cache::get($cache_name);
+            //get cache
+            $cache_data = 'data_api_member_by_category_' . $alias;
+            if (Cache::has($cache_data)) {
+                $data = Cache::get($cache_data);
             } else {
+
+//                $cache_name = 'member_by_category_' . $alias;
+//                if (Cache::has($cache_name)) {
+//                    $members = Cache::get($cache_name);
+//                } else {
+//                    $category = DocumentCate::where('alias', $alias)->first();
+//                    if (null != $category) {
+//                        $members = MemberModel::whereHas('documentCate', function ($query) use ($category) {
+//                            $query->where('dhcd_document_cate_has_member.document_cate_id', $category->document_cate_id);
+//                            $query->where('dhcd_document_cate_has_member.deleted_at', null);
+//                        })->get();
+//                        $expiresAt = now()->addMinutes(3600);
+//                        Cache::put($cache_name, $members, $expiresAt);
+//                    }
+//                }
+
+                $members = $list_members = [];
                 $category = DocumentCate::where('alias', $alias)->first();
                 if (null != $category) {
                     $members = MemberModel::whereHas('documentCate', function ($query) use ($category) {
                         $query->where('dhcd_document_cate_has_member.document_cate_id', $category->document_cate_id);
                         $query->where('dhcd_document_cate_has_member.deleted_at', null);
                     })->get();
-                    $expiresAt = now()->addMinutes(3600);
-                    Cache::put($cache_name, $members, $expiresAt);
                 }
-            }
 
-            $list_members = [];
-            if (count($members) > 0) {
-                foreach ($members as $member) {
-                    $item = new \stdClass();
-                    $item->id = $member->member_id;
-                    $item->name = base64_encode($member->name);
-                    $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
-                    $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : $icon_link;
-                    $item->ten_hien_thi = base64_encode($member->name);
-                    $item->email = base64_encode($member->email);
-                    $item->so_dien_thoai = base64_encode($member->phone);
-                    $item->doan_thanh_nien = base64_encode($member->don_vi);
-                    $item->ngay_vao_dang = base64_encode($member->ngay_vao_dang);
-                    $item->dan_toc = base64_encode($member->dan_toc);
-                    $item->chuc_vu = base64_encode($member->position_current);
-                    $item->ton_giao = base64_encode($member->ton_giao);
-                    $item->trinh_do_ly_luan = base64_encode($member->trinh_do_ly_luan);
-                    $item->trinh_do_chuyen_mon = base64_encode($member->trinh_do_chuyen_mon);
-                    $item->noi_lam_viec = base64_encode($member->address);
+                if (count($members) > 0) {
+                    foreach ($members as $member) {
+                        $item = new \stdClass();
+                        $item->id = $member->member_id;
+                        $item->name = base64_encode($member->name);
+                        $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+                        $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : $icon_link;
+                        $item->ten_hien_thi = base64_encode($member->name);
+                        $item->email = base64_encode($member->email);
+                        $item->so_dien_thoai = base64_encode($member->phone);
+                        $item->doan_thanh_nien = base64_encode($member->don_vi);
+                        $item->ngay_vao_dang = base64_encode($member->ngay_vao_dang);
+                        $item->dan_toc = base64_encode($member->dan_toc);
+                        $item->chuc_vu = base64_encode($member->position_current);
+                        $item->ton_giao = base64_encode($member->ton_giao);
+                        $item->trinh_do_ly_luan = base64_encode($member->trinh_do_ly_luan);
+                        $item->trinh_do_chuyen_mon = base64_encode($member->trinh_do_chuyen_mon);
+                        $item->noi_lam_viec = base64_encode($member->address);
 
-                    $list_members[] = $item;
+                        $list_members[] = $item;
+                    }
                 }
-            }
 
-            $data = '{
+                $data = '{
                     "data": {
-                        "list_member_by_document_cate": '. json_encode($list_members) .'
+                        "list_member_by_document_cate": ' . json_encode($list_members) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-            $data = str_replace('null', '""', $data);
+                $data = str_replace('null', '""', $data);
+
+                //put cache
+                $expiresAt = now()->addDays(5);
+                Cache::put($cache_data, $data, $expiresAt);
+            }
+
             return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
         } else {
             $members = [];
             $alias = $request->input('alias');
 
-            $cache_name = 'member_by_group_' . $alias;
-//            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $members = Cache::get($cache_name);
+            //get cache
+            $cache_data = 'data_api_member_by_group_' . $alias;
+            if (Cache::has($cache_data)) {
+                $data = Cache::get($cache_data);
             } else {
-                $group = Group::where('alias', $alias)->first();
-                if (null != $group) {
-                    $members = MemberModel::whereHas('group', function ($query) use ($group) {
-                        $query->where('dhcd_group_has_member.group_id', $group->group_id);
-                        $query->where('dhcd_group_has_member.deleted_at', null);
-                    })->get();
-                    $expiresAt = now()->addMinutes(3600);
-                    Cache::put($cache_name, $members, $expiresAt);
+
+                $cache_name = 'member_by_group_' . $alias;
+                if (Cache::has($cache_name)) {
+                    $members = Cache::get($cache_name);
+                } else {
+                    $group = Group::where('alias', $alias)->first();
+                    if (null != $group) {
+                        $members = MemberModel::whereHas('group', function ($query) use ($group) {
+                            $query->where('dhcd_group_has_member.group_id', $group->group_id);
+                            $query->where('dhcd_group_has_member.deleted_at', null);
+                        })->get();
+                        $expiresAt = now()->addMinutes(3600);
+                        Cache::put($cache_name, $members, $expiresAt);
+                    }
                 }
-            }
 
-            $list_members = [];
-            if (count($members) > 0) {
-                foreach ($members as $member) {
-                    $item = new \stdClass();
-                    $item->id = $member->member_id;
-                    $item->name = base64_encode($member->name);
+                $list_members = [];
+                if (count($members) > 0) {
+                    foreach ($members as $member) {
+                        $item = new \stdClass();
+                        $item->id = $member->member_id;
+                        $item->name = base64_encode($member->name);
 
-                    $list_members[] = $item;
+                        $list_members[] = $item;
+                    }
                 }
-            }
 
-            $data = '{
+                $data = '{
                     "data": {
-                        "list_member_by_group": '. json_encode($list_members) .'
+                        "list_member_by_group": ' . json_encode($list_members) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-            $data = str_replace('null', '""', $data);
+                $data = str_replace('null', '""', $data);
+
+                //put cache
+                $expiresAt = now()->addMinutes(3600);
+                Cache::put($cache_data, $data, $expiresAt);
+            }
             return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
         }
     }
@@ -515,34 +623,45 @@ trait Member
             "success" => false,
             "message" => "Lỗi lấy thông tin",
         ];
-
         $member_id = $request->input("id");
-        $member = MemberModel::find($member_id);
 
-        if(null != $member){
-            $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
-            $member_info = [
-                "id" => $member->member_id,
-                "anh_ca_nhan" => (self::is_url($member->avatar)) ? $member->avatar : $icon_link,
-                "ten_hien_thi" => base64_encode($member->name),
-                "email" => base64_encode($member->email),
-                "so_dien_thoai" => base64_encode($member->phone),
-                "doan_thanh_nien" => base64_encode($member->don_vi),
-                "ngay_vao_dang" => base64_encode($member->ngay_vao_dang),
-                "dan_toc" => base64_encode($member->dan_toc),
-                "chuc_vu" => base64_encode($member->position_current),
-                "ton_giao" => base64_encode($member->ton_giao),
-                "trinh_do_ly_luan" => base64_encode($member->trinh_do_ly_luan),
-                "trinh_do_chuyen_mon" => base64_encode($member->trinh_do_chuyen_mon),
-                "noi_lam_viec" => base64_encode($member->address)
-            ];
-            $data = [
-                "success" => true,
-                "message" => "Lấy thông tin thành công",
-                "data" => $member_info
-            ];
+        //get cache
+        $cache_data = 'data_api_userinfo_' . $member_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
+        } else {
+
+            $member = MemberModel::find($member_id);
+            if (null != $member) {
+                $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+                $member_info = [
+                    "id" => $member->member_id,
+                    "anh_ca_nhan" => (self::is_url($member->avatar)) ? $member->avatar : $icon_link,
+                    "ten_hien_thi" => base64_encode($member->name),
+                    "email" => base64_encode($member->email),
+                    "so_dien_thoai" => base64_encode($member->phone),
+                    "doan_thanh_nien" => base64_encode($member->don_vi),
+                    "ngay_vao_dang" => base64_encode($member->ngay_vao_dang),
+                    "dan_toc" => base64_encode($member->dan_toc),
+                    "chuc_vu" => base64_encode($member->position_current),
+                    "ton_giao" => base64_encode($member->ton_giao),
+                    "trinh_do_ly_luan" => base64_encode($member->trinh_do_ly_luan),
+                    "trinh_do_chuyen_mon" => base64_encode($member->trinh_do_chuyen_mon),
+                    "noi_lam_viec" => base64_encode($member->address)
+                ];
+                $data = [
+                    "success" => true,
+                    "message" => "Lấy thông tin thành công",
+                    "data" => $member_info
+                ];
+            }
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
         }
-        $data = str_replace('null', '""', $data);
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 

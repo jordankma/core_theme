@@ -81,6 +81,7 @@ class EventsController extends Controller
         if ($events->event_id) {
 
             Cache::forget('api_events');
+            Cache::forget('data_api_api_events');
 
             activity('events')
                 ->performedOn($events)
@@ -120,13 +121,13 @@ class EventsController extends Controller
             'id' => 'required|numeric',
         ], $this->messages);
         if (!$validator->fails()) {
-
             $event_id = $request->input('id');
             $events = Events::find($event_id);
             if (null != $events) {
                 $events->delete($event_id);
 
                 Cache::forget('api_events');
+                Cache::forget('data_api_api_events');
 
                 activity('events')
                     ->performedOn($events)
@@ -239,6 +240,7 @@ class EventsController extends Controller
             if ($event->save()) {
 
                 Cache::forget('api_events');
+                Cache::forget('data_api_api_events');
 
                 activity('events')
                     ->performedOn($event)

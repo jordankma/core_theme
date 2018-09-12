@@ -101,23 +101,29 @@ class MemberController extends Controller
                 $member_id = $members->member_id;
                 if(!empty($group_id)){
                     foreach ($group_id as $key => $g_i) {
+
                         if (!GroupHasMember::where([
                             'group_id' => $g_i,
                             'member_id' => $member_id,
-                        ])->exists()
-                        )
-                        {
+                        ])->exists()) {
                             $data_insert[] = [
                                 'group_id' => $g_i,
                                 'member_id' => $member_id
                             ];
+                        }
+
+                        $groupDetail = Group::find($g_i);
+                        if (null != $groupDetail) {
+                            Cache::forget('data_api_member_by_group_' . $groupDetail->alias);
                         }
                     }
                 }
                 if(!empty($data_insert)){
                     DB::table('dhcd_group_has_member')->insert($data_insert);
                 }
+
                 Cache::forget('member');
+
                 $member_elastic = new MemberElastic();
                 $member_elastic->saveDocument($members->member_id);
                 activity('member')
@@ -208,6 +214,16 @@ class MemberController extends Controller
             $member->avatar = $avatar;
             $member->updated_at = new DateTime();
             if ($member->save()) {
+
+                $groupArr = Group::whereHas('getMember', function ($query) use ($member_id) {
+                        $query->where('dhcd_group_has_member.member_id', $member_id);
+                    })->get();
+                if (count($groupArr) > 0) {
+                    foreach ($groupArr as $group) {
+                        Cache::forget('data_api_member_by_group_' . $group->alias);
+                    }
+                }
+
                 DB::table('dhcd_group_has_member')->where(['member_id' => $member_id])->delete();
                 if(!empty($group_id)){
                     $data_insert = array();
@@ -215,13 +231,16 @@ class MemberController extends Controller
                         if (!GroupHasMember::where([
                             'group_id' => $g_i,
                             'member_id' => $member_id,
-                        ])->exists()
-                        )
-                        {
+                        ])->exists()) {
                             $data_insert[] = [
                                 'group_id' => $g_i,
                                 'member_id' => $member_id
                             ];
+                        }
+
+                        $groupDetail = Group::find($g_i);
+                        if (null != $groupDetail) {
+                            Cache::forget('data_api_member_by_group_' . $groupDetail->alias);
                         }
                     }
                 }
@@ -229,6 +248,7 @@ class MemberController extends Controller
                     DB::table('dhcd_group_has_member')->insert($data_insert);
                 }
                 Cache::forget('member');
+                Cache::forget('data_api_userinfo_' . $member_id);
                 $member_elastic = new MemberElastic();
                 $member_elastic->saveDocument($member->member_id);
                 activity('member')
@@ -253,8 +273,19 @@ class MemberController extends Controller
             $this->member->delete($member_id);
             $member_elastic = new MemberElastic();
             $member_elastic->saveDocument($member_id);
+
+            $groupArr = Group::whereHas('getMember', function ($query) use ($member_id) {
+                $query->where('dhcd_group_has_member.member_id', $member_id);
+            })->get();
+            if (count($groupArr) > 0) {
+                foreach ($groupArr as $group) {
+                    Cache::forget('data_api_member_by_group_' . $group->alias);
+                }
+            }
+
             DB::table('dhcd_group_has_member')->where(['member_id' => $member_id])->delete();
             Cache::forget('member');
+            Cache::forget('data_api_userinfo_' . $member_id);
             activity('member')
                 ->performedOn($member)
                 ->withProperties($request->all())

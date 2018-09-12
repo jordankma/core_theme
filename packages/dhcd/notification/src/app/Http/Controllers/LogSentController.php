@@ -14,7 +14,7 @@ use Dhcd\Notification\App\Models\LogSent;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,DateTime;
+use Validator,DateTime,Cache;
 // use Curl\Curl;
 
 class LogSentController extends Controller
@@ -63,6 +63,8 @@ class LogSentController extends Controller
 
         if (null != $log_sent) {
             $this->log_sent->delete($log_sent_id);
+
+            Cache::forget('data_api_logs_sent_all');
 
             activity('log_sent')
                 ->performedOn($log_sent)

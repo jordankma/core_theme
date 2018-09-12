@@ -59,6 +59,14 @@ class HotelController extends Controller
         if ($hotel->hotel_id) {
 
             Cache::forget('hotels');
+            Cache::forget('data_api_hotels');
+            $doan_arr = implode(',', $hotel->doan_id);
+            if (count($doan_arr) > 0) {
+                foreach ($doan_arr as $doan_id) {
+                    Cache::forget('hotel_' . $doan_id);
+                    Cache::forget('data_api_hotel_' . $doan_id);
+                }
+            }
 
             activity('hotel')
                 ->performedOn($hotel)
@@ -91,10 +99,12 @@ class HotelController extends Controller
                 $hotel->delete($hotel_id);
 
                 Cache::forget('hotels');
+                Cache::forget('data_api_hotels');
                 $doan_arr = implode(',', $hotel->doan_id);
                 if (count($doan_arr) > 0) {
                     foreach ($doan_arr as $doan_id) {
                         Cache::forget('hotel_' . $doan_id);
+                        Cache::forget('data_api_hotel_' . $doan_id);
                     }
                 }
 
@@ -191,9 +201,11 @@ class HotelController extends Controller
             if ($hotel->save()) {
 
                 Cache::forget('hotels');
+                Cache::forget('data_api_hotels');
                 if ($request->has('doan_id')) {
                     foreach ($request->input('doan_id') as $doan_id) {
                         Cache::forget('hotel_' . $doan_id);
+                        Cache::forget('data_api_hotel_' . $doan_id);
                     }
                 }
 

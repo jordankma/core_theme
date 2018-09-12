@@ -23,40 +23,53 @@ trait Search
        $params = [
            'name' => $keyword
        ];
-       $member = new MemberElastic();
-       $data_members = $member->customSearch($params)->paginate(20);
-       $group = new GroupElastic();
-       $data_groups = $group->customSearch($params)->paginate(20);
-       $groups = $members = array();
-       if(count($data_groups)>0){
-           foreach ($data_groups as $key => $group) {
-               if($group->deleted_at == ''){
-                   $groups[] = [
-                       'group_id' => $group->group_id,
-                       'name' => base64_encode($group->name)
-                   ];
-               }
-           }
-       }
-       if(count($data_members)>0){
-           foreach ($data_members as $key => $member) {
-               if($member->deleted_at == ''){
-                   $members[] = [
-                       'member_id' => $member->member_id,
-                       'name' => base64_encode($member->name)
-                   ];
-               }
-           }
-       }
-       $data = '{
+
+        //get cache
+        $cache_data = 'data_api_search_' . $keyword;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
+        } else {
+
+            $member = new MemberElastic();
+            $data_members = $member->customSearch($params)->paginate(20);
+            $group = new GroupElastic();
+            $data_groups = $group->customSearch($params)->paginate(20);
+            $groups = $members = array();
+            if (count($data_groups) > 0) {
+                foreach ($data_groups as $key => $group) {
+                    if ($group->deleted_at == '') {
+                        $groups[] = [
+                            'group_id' => $group->group_id,
+                            'name' => base64_encode($group->name)
+                        ];
+                    }
+                }
+            }
+            if (count($data_members) > 0) {
+                foreach ($data_members as $key => $member) {
+                    if ($member->deleted_at == '') {
+                        $members[] = [
+                            'member_id' => $member->member_id,
+                            'name' => base64_encode($member->name)
+                        ];
+                    }
+                }
+            }
+            $data = '{
                    "data": {
-                       "members": '. json_encode($members) .',
-                       "groups": '. json_encode($groups) .'
+                       "members": ' . json_encode($members) . ',
+                       "groups": ' . json_encode($groups) . '
                    },
                    "success" : true,
                    "message" : "ok!"
                }';
-       $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
    }
 

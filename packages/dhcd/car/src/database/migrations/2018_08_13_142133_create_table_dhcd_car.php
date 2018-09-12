@@ -18,10 +18,10 @@ class CreateTableDhcdCar extends Migration
             $table->increments('car_id');
             $table->string('doan_id')->nullable();
             $table->string('car_num');
-            $table->string('car_bs');
+            $table->string('car_bs')->nullable();
             $table->string('img')->nullable();
             $table->text('car_staff');
-            $table->text('note')->comment('Lộ trình xe');
+            $table->text('note')->comment('Lộ trình xe')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

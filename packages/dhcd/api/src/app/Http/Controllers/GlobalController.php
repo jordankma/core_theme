@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-//        $encrypted = $this->my_simple_crypt( 'dev/get/files/document?alias=vankiendaihoi&time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/config-text?time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
@@ -54,67 +54,67 @@ class GlobalController extends Controller
                             return $this->getTest();
                         }
                         case 'dev/get/spliter': {
-                            return $this->getSpliter($request);
+                            return $this->getSpliter($request);//ok
                         }
                         case 'dev/get/session-seat': {
-                            return $this->getSessionSeat();
+                            return $this->getSessionSeat();//ok
                         }
                         case 'dev/get/domain-api': {
-                            return $this->getDomainApi();
+                            return $this->getDomainApi();//ok
                         }
                         case 'dev/get/config-text': {
-                            return $this->getConfigText();
+                            return $this->getConfigText();//ok
                         }
                         case 'dev/get/app-version': {
-                            return $this->getVersion();
+                            return $this->getVersion();//ok
                         }
                         case 'dev/get/seat': {
-                            return $this->getSeat($request);
+                            return $this->getSeat($request);//ok
                         }
                         case 'dev/get/search': {
-                            return $this->getSearch($request);
+                            return $this->getSearch($request);//ok
                         }
                         case 'dev/get/hotel': {
-                            return $this->getHotel($request);
+                            return $this->getHotel($request);//ok
                         }
                         case 'dev/get/hotels': {
-                            return $this->getHotels();
+                            return $this->getHotels();//ok
                         }
                         case 'dev/get/car': {
-                            return $this->getCar($request);
+                            return $this->getCar($request);//ok
                         }
                         case 'dev/get/events': {
-                            return $this->getEvents();
+                            return $this->getEvents();//ok
                         }
                         case 'dev/get/member-group': {
-                            return $this->getMemberGroup($request);
+                            return $this->getMemberGroup($request);//ok
                         }
                         case 'dev/get/member-by-group': {
-                            return $this->getMemberByGroup($request);
+                            return $this->getMemberByGroup($request);//ok
                         }
                         case 'dev/get/menu': {
-                            return $this->getMenu();
+                            return $this->getMenu();//ok
                         }
                         case 'dev/get/menu-home': {
-                            return $this->getMenuHome();
+                            return $this->getMenuHome();//ok
                         }
                         case 'dev/get/menu-member': {
-                            return $this->getMenuMember();
+                            return $this->getMenuMember();//ok
                         }
                         case 'dev/get/files/menu': {
-                            return $this->getMenuDocument();
+                            return $this->getMenuDocument();//ok
                         }
                         case 'dev/get/files/all': {
-                            return $this->getAllDocument();
+                            return $this->getAllDocument();//ok
                         }
                         case 'dev/get/menu/all_files': {
-                            return $this->getMenuAll($request);
+                            return $this->getMenuAll($request);//ok
                         }
                         case 'dev/get/files/document': {
-                            return $this->getFilesDocument($request);
+                            return $this->getFilesDocument($request);//ok
                         }
                         case 'dev/get/files/detail': {
-                            return $this->getFilesDetail($request);
+                            return $this->getFilesDetail($request);//ok
                         }
                         case 'dev/get/getuserinfo': {
                             return $this->getUserInfo($request);

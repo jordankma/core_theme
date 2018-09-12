@@ -12,44 +12,47 @@ trait Document
 
     public function getTest()
     {
-        $client = new \GuzzleHttp\Client();
-        $res = $client->request('GET', 'http://localhost:8080/split?path=/files/test/chap01.pdf');
-
-        $pdf_base64 = "files/test/test.pdf";
-        $content = $this->my_simple_crypt( $pdf_base64, 'f' );
+//        $client = new \GuzzleHttp\Client();
+//        $res = $client->request('GET', 'http://localhost:8080/split?path=/files/test/chap01.pdf');
+//
+//        $pdf_base64 = "files/test/test.pdf";
+//        $content = $this->my_simple_crypt( $pdf_base64, 'f' );
     }
 
     public function getSpliter($request)
     {
-        $client = new \GuzzleHttp\Client();
-        $pathFile = "/storage/dhcd/public" . $request->input('path_file');
-        $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);
-
-        $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
-        $filename = substr($filename, 0, strrpos($filename, '.'));
-
         $listFile = [];
-        $packagesDir = public_path('spliter/files/' . $filename);
-        $ls = @scandir($packagesDir);
-        if ($ls) {
-            foreach ($ls as $index => $file_spliter) {
-                if ($file_spliter === '.' || $file_spliter === '..') {
-                    continue;
+        if ($request->has('path_file')) {
+            $client = new \GuzzleHttp\Client();
+            $pathFile = "/storage/dhcd/public" . $request->input('path_file');
+            $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);
+
+            $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
+            $filename = substr($filename, 0, strrpos($filename, '.'));
+
+            $listFile = [];
+            $packagesDir = public_path('spliter/files/' . $filename);
+            $ls = @scandir($packagesDir);
+            if ($ls) {
+                foreach ($ls as $index => $file_spliter) {
+                    if ($file_spliter === '.' || $file_spliter === '..') {
+                        continue;
+                    }
+
+                    $path_file = '/spliter/files/' . $filename . '/' . $file_spliter;
+                    $item = new \stdClass();
+                    $item->path = str_replace(' ', '%20', $path_file);
+                    $item->type = 'pdf';
+                    $item->filesize = filesize($packagesDir . '/' . $file_spliter);
+
+                    $file_num = substr($file_spliter, 0, strpos($file_spliter, '.'));
+                    $listFile[$file_num - 1] = $item;
                 }
-
-                $path_file = '/spliter/files/' . $filename . '/' . $file_spliter;
-                $item = new \stdClass();
-                $item->path = str_replace(' ', '%20', $path_file);
-                $item->type = 'pdf';
-                $item->filesize = filesize($packagesDir . '/' . $file_spliter);
-
-                $file_num = substr($file_spliter, 0, strpos($file_spliter, '.'));
-                $listFile[$file_num - 1] = $item;
             }
-        }
 
-        $listFile = (array) $listFile;
-        ksort($listFile);
+            $listFile = (array) $listFile;
+            ksort($listFile);
+        }
 
         $data = '{
                     "data": {
@@ -64,150 +67,179 @@ trait Document
 
     public function getMenuDocument()
     {
-        $cache_name = 'api_document_cate';
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $menus = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_document_cate';
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'api_document_cate';
+//            if (Cache::has($cache_name)) {
+//                $menus = Cache::get($cache_name);
+//            } else {
+//                $menus = app('Dhcd\Document\App\Http\Controllers\DocumentCateController')->getListCategory();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $menus, $expiresAt);
+//            }
+
             $menus = app('Dhcd\Document\App\Http\Controllers\DocumentCateController')->getListCategory();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $menus, $expiresAt);
-        }
 
-        $list_menus = [];
-        if (count($menus) > 0) {
-            foreach ($menus as $menu) {
-                $menu = (object) $menu;
-                $item = new \stdClass();
-                $item->id = $menu->document_cate_id;
-                $item->title = base64_encode($menu->name);
-                $item->alias = base64_encode($menu->alias);
-                $item->type = base64_encode(1);
-                $item->type_api = base64_encode(1);
-                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
-                $list_menus[] = $item;
+            $list_menus = [];
+            if (count($menus) > 0) {
+                foreach ($menus as $menu) {
+                    $menu = (object)$menu;
+                    $item = new \stdClass();
+                    $item->id = $menu->document_cate_id;
+                    $item->title = base64_encode($menu->name);
+                    $item->alias = base64_encode($menu->alias);
+                    $item->type = base64_encode(1);
+                    $item->type_api = base64_encode(1);
+                    $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                    $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
+                    $list_menus[] = $item;
+                }
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_info_item_menu": '. json_encode($list_menus) .'
+                        "list_info_item_menu": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getAllDocument()
     {
-        $cache_name = 'api_all_document_cate';
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $documentCates = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_all_document_cate';
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'api_all_document_cate';
+//            if (Cache::has($cache_name)) {
+//                $documentCates = Cache::get($cache_name);
+//            } else {
+//                $documentCates = app('Dhcd\Document\App\Http\Controllers\DocumentCateController')->getAllCategory();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $documentCates, $expiresAt);
+//            }
             $documentCates = app('Dhcd\Document\App\Http\Controllers\DocumentCateController')->getAllCategory();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $documentCates, $expiresAt);
-        }
 
-        $list_menus = [];
-        if (count($documentCates) > 0) {
-            foreach ($documentCates as $cate) {
+            $list_menus = [];
+            if (count($documentCates) > 0) {
+                foreach ($documentCates as $cate) {
 
-                $cate = (object) $cate;
-                $list_docs = [];
-                $alias = $cate->alias;
+                    $cate = (object)$cate;
+                    $list_docs = [];
+                    $alias = $cate->alias;
 
-                $cache_name = 'api_doc_document_page_' . $alias . '_all';
-//                Cache::forget($cache_name);
-                if (Cache::has($cache_name)) {
-                    $filesDoc = Cache::get($cache_name);
-                } else {
+//                    $cache_name = 'api_doc_document_page_' . $alias . '_all';
+//                    if (Cache::has($cache_name)) {
+//                        $filesDoc = Cache::get($cache_name);
+//                    } else {
+//                        $filesDoc = DocModel::with('getDocumentCate')
+//                            ->whereHas('getDocumentCate', function ($query) use ($cate) {
+//                                $query->where('dhcd_document_has_cate.document_cate_id', $cate->document_cate_id);
+//                            })->get();
+//
+//                        $expiresAt = now()->addMinutes(3600);
+//                        Cache::put($cache_name, $filesDoc, $expiresAt);
+//                    }
+
                     $filesDoc = DocModel::with('getDocumentCate')
                         ->whereHas('getDocumentCate', function ($query) use ($cate) {
                             $query->where('dhcd_document_has_cate.document_cate_id', $cate->document_cate_id);
                         })->get();
 
-                    $expiresAt = now()->addMinutes(3600);
-                    Cache::put($cache_name, $filesDoc, $expiresAt);
-                }
+                    if (count($filesDoc) > 0) {
+                        foreach ($filesDoc as $file) {
+                            $item = new \stdClass();
+                            $listFiles = json_decode($file->file, true);
+                            $listFileSpliter = json_decode($file->file_spliter, true);
+                            if (count($listFiles) > 0) {
+                                $listFile = [];
+                                if (count($listFileSpliter) > 0) {
+                                    foreach ($listFileSpliter as $k => $file_split) {
+                                        $files = [];
+                                        $files['name'] = '';
+                                        $files['type'] = 'pdf';
+                                        $files['filesize'] = $file_split['filesize'];
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
 
-                if (count($filesDoc) > 0) {
-                    foreach ($filesDoc as $file) {
-                        $item = new \stdClass();
-                        $listFiles = json_decode($file->file, true);
-                        $listFileSpliter = json_decode($file->file_spliter, true);
-                        if (count($listFiles) > 0) {
-                            $listFile = [];
-                            if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file_split) {
-                                    $files = [];
-                                    $files['name'] = '';
-                                    $files['type'] = 'pdf';
-                                    $files['filesize'] = $file_split['filesize'];
-                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
-
-                                    $listFile[] = $files;
-                                }
-                            } else {
-                                foreach ($listFiles as $k => $files) {
-                                    $files['filesize'] = 0;
-                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
-                                    $files['name'] = base64_encode($files['name']);
-                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
-                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
-                                    $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
-                                    $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
-                                    $listFile[] = $files;
+                                        $listFile[] = $files;
+                                    }
+                                } else {
+                                    foreach ($listFiles as $k => $files) {
+                                        $files['filesize'] = 0;
+                                        $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
+                                        $files['name'] = base64_encode($files['name']);
+                                        $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                        $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                        $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
+                                        $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
+                                        $listFile[] = $files;
+                                    }
                                 }
                             }
+
+                            $item->id = $file->document_id;
+                            $item->title = base64_encode($file->name);
+                            $item->alias = base64_encode($file->alias);
+                            $item->sub_title = base64_encode($file->descript);
+                            $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
+                            $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
+                            $item->files = $listFile;
+                            $item->is_offical = base64_encode($file->is_offical);
+                            $item->is_reserve = base64_encode($file->is_reserve);
+                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                            $item->type_file = '';
+                            $item->type_view = base64_encode('detail');
+                            $item->date_created = strtotime($file->created_at) * 1000;
+                            $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                            $list_docs[] = $item;
+
+                            //
                         }
-
-                        $item->id = $file->document_id;
-                        $item->title = base64_encode($file->name);
-                        $item->alias = base64_encode($file->alias);
-                        $item->sub_title = base64_encode($file->descript);
-                        $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
-                        $item->files = $listFile;
-                        $item->is_offical = base64_encode($file->is_offical);
-                        $item->is_reserve = base64_encode($file->is_reserve);
-                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                        $item->type_file = '';
-                        $item->type_view = base64_encode('detail');
-                        $item->date_created = strtotime($file->created_at) * 1000;
-                        $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                        $list_docs[] = $item;
-
-                        //
                     }
+
+                    $item = new \stdClass();
+                    $item->id = $cate->document_cate_id;
+                    $item->title = base64_encode($cate->name);
+                    $item->alias = base64_encode($cate->alias);
+                    $item->list_document = $list_docs;
+                    $item->type = base64_encode(1);
+                    $item->type_api = base64_encode(1);
+                    $icon_link = ($cate->icon != '') ? config('site.url_storage') . $cate->icon : '';
+                    $item->icon = (self::is_url($cate->icon)) ? $cate->icon : $icon_link;
+                    $list_menus[] = $item;
                 }
-
-                $item = new \stdClass();
-                $item->id = $cate->document_cate_id;
-                $item->title = base64_encode($cate->name);
-                $item->alias = base64_encode($cate->alias);
-                $item->list_document = $list_docs;
-                $item->type = base64_encode(1);
-                $item->type_api = base64_encode(1);
-                $icon_link = ($cate->icon != '') ? config('site.url_storage') . $cate->icon : '';
-                $item->icon = (self::is_url($cate->icon)) ? $cate->icon : $icon_link;
-                $list_menus[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_document_cates": '. json_encode($list_menus) .'
+                        "list_document_cates": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -216,215 +248,238 @@ trait Document
         $alias = $request->input('alias', '');
         $list_document = [];
         $total_page = 0;
+        $data = '{
+                    "success" : false,
+                    "message" : "Ohh!"
+                }';
 
-        $documentCate = DocumentCate::where('alias', $alias)->first();
-        if (null != $documentCate) {
-            //cat child
-            $cache_name = 'api_doc_document_children_' . $alias . '_all';
-//            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $cateChildren = Cache::get($cache_name);
-            } else {
+        //get cache
+        $cache_data = 'data_api_files_by_document_' . $alias;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
+        } else {
+
+            $documentCate = DocumentCate::where('alias', $alias)->first();
+            if (null != $documentCate) {
+                //cat child
+//                $cache_name = 'api_doc_document_children_' . $alias . '_all';
+//                if (Cache::has($cache_name)) {
+//                    $cateChildren = Cache::get($cache_name);
+//                } else {
+//                    $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
+//
+//                    $expiresAt = now()->addMinutes(3600);
+//                    Cache::put($cache_name, $cateChildren, $expiresAt);
+//                }
+
                 $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
 
-                $expiresAt = now()->addMinutes(3600);
-                Cache::put($cache_name, $cateChildren, $expiresAt);
-            }
+                //doc child
+//                $cache_name = 'api_doc_document_page_' . $alias . '_all';
+//                if (Cache::has($cache_name)) {
+//                    $filesDoc = Cache::get($cache_name);
+//                } else {
+//                    $filesDoc = DocModel::with('getDocumentCate')
+//                        ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
+//                            $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
+//                        })->get();
+//
+//                    $expiresAt = now()->addMinutes(3600);
+//                    Cache::put($cache_name, $filesDoc, $expiresAt);
+//                }
 
-            //doc child
-            $cache_name = 'api_doc_document_page_' . $alias . '_all';
-//            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $filesDoc = Cache::get($cache_name);
-            } else {
                 $filesDoc = DocModel::with('getDocumentCate')
                     ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
                         $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
                     })->get();
 
-                $expiresAt = now()->addMinutes(3600);
-                Cache::put($cache_name, $filesDoc, $expiresAt);
-            }
+                if (count($cateChildren) > 0 && count($filesDoc) > 0) {
 
-            if (count($cateChildren) > 0 && count($filesDoc) > 0) {
-
-                if (count($cateChildren) > 0) {
-                    foreach ($cateChildren as $child) {
-                        $item = new \stdClass();
-                        $item->id = $child->document_cate_id;
-                        $item->title = base64_encode($child->name);
-                        $item->alias = base64_encode($child->alias);
-                        $item->descript = base64_encode($child->descript);
-                        $item->type = base64_encode(1);
-                        $item->type_api = base64_encode(1);
-                        $item->type_view = base64_encode('category');
-                        $icon_link = ($child->icon != '') ? config('site.url_storage') . $child->icon : '';
-                        $item->icon = (self::is_url($child->icon)) ? $child->icon : $icon_link;
-                        $item->date_created = strtotime($child->created_at) * 1000;
-                        $item->date_modified = strtotime($child->updated_at) * 1000;
-                        $list_document[] = $item;
+                    if (count($cateChildren) > 0) {
+                        foreach ($cateChildren as $child) {
+                            $item = new \stdClass();
+                            $item->id = $child->document_cate_id;
+                            $item->title = base64_encode($child->name);
+                            $item->alias = base64_encode($child->alias);
+                            $item->descript = base64_encode($child->descript);
+                            $item->type = base64_encode(1);
+                            $item->type_api = base64_encode(1);
+                            $item->type_view = base64_encode('category');
+                            $icon_link = ($child->icon != '') ? config('site.url_storage') . $child->icon : '';
+                            $item->icon = (self::is_url($child->icon)) ? $child->icon : $icon_link;
+                            $item->date_created = strtotime($child->created_at) * 1000;
+                            $item->date_modified = strtotime($child->updated_at) * 1000;
+                            $list_document[] = $item;
+                        }
                     }
-                }
 
-                if (count($filesDoc) > 0) {
-                    foreach ($filesDoc as $file) {
-                        $item = new \stdClass();
-                        $listFile = [];
-                        $listFiles = json_decode($file->file, true);
-                        $listFileSpliter = json_decode($file->file_spliter, true);
-                        if (count($listFiles) > 0) {
+                    if (count($filesDoc) > 0) {
+                        foreach ($filesDoc as $file) {
+                            $item = new \stdClass();
                             $listFile = [];
-                            if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file_split) {
-                                    $files = [];
-                                    $files['name'] = '';
-                                    $files['type'] = 'pdf';
-                                    $files['filesize'] = $file_split['filesize'];
-                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                            $listFiles = json_decode($file->file, true);
+                            $listFileSpliter = json_decode($file->file_spliter, true);
+                            if (count($listFiles) > 0) {
+                                $listFile = [];
+                                if (count($listFileSpliter) > 0) {
+                                    foreach ($listFileSpliter as $k => $file_split) {
+                                        $files = [];
+                                        $files['name'] = '';
+                                        $files['type'] = 'pdf';
+                                        $files['filesize'] = $file_split['filesize'];
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
 
-                                    $listFile[] = $files;
-                                }
-                            } else {
-                                foreach ($listFiles as $k => $files) {
-                                    $files['filesize'] = 0;
-                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
-                                    $files['name'] = base64_encode($files['name']);
-                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
-                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
-                                    $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
-                                    $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
-                                    $listFile[] = $files;
+                                        $listFile[] = $files;
+                                    }
+                                } else {
+                                    foreach ($listFiles as $k => $files) {
+                                        $files['filesize'] = 0;
+                                        $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
+                                        $files['name'] = base64_encode($files['name']);
+                                        $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                        $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                        $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
+                                        $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
+                                        $listFile[] = $files;
+                                    }
                                 }
                             }
+
+                            $item->id = $file->document_id;
+                            $item->title = base64_encode($file->name);
+                            $item->alias = base64_encode($file->alias);
+                            $item->sub_title = base64_encode($file->descript);
+                            $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
+                            $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
+                            $item->files = $listFile;
+                            $item->is_offical = base64_encode($file->is_offical);
+                            $item->is_reserve = base64_encode($file->is_reserve);
+                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                            $item->type_file = '';
+                            $item->type_view = base64_encode('detail');
+                            $item->date_created = strtotime($file->created_at) * 1000;
+                            $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                            $list_document[] = $item;
+                            //
                         }
-
-                        $item->id = $file->document_id;
-                        $item->title = base64_encode($file->name);
-                        $item->alias = base64_encode($file->alias);
-                        $item->sub_title = base64_encode($file->descript);
-                        $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
-                        $item->files = $listFile;
-                        $item->is_offical = base64_encode($file->is_offical);
-                        $item->is_reserve = base64_encode($file->is_reserve);
-                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                        $item->type_file = '';
-                        $item->type_view = base64_encode('detail');
-                        $item->date_created = strtotime($file->created_at) * 1000;
-                        $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                        $list_document[] = $item;
-                        //
                     }
-                }
 
-                $data = '{
-                    "data": {
-                        "list_document": '. json_encode($list_document) .',
-                        "total_page": 1,
-                        "current_page": 1
-                    },
-                    "success" : true,
-                    "message" : "ok!"
-                }';
-                return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
-            } elseif (count($cateChildren) > 0) {
+                    $data = '{
+                        "data": {
+                            "list_document": ' . json_encode($list_document) . ',
+                            "total_page": 1,
+                            "current_page": 1
+                        },
+                        "success" : true,
+                        "message" : "ok!"
+                    }';
+                    $data = str_replace('null', '""', $data);
+//                    return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+                } elseif (count($cateChildren) > 0) {
 
-                if (count($cateChildren) > 0) {
-                    foreach ($cateChildren as $child) {
-                        $item = new \stdClass();
-                        $item->id = $child->document_cate_id;
-                        $item->title = base64_encode($child->name);
-                        $item->alias = base64_encode($child->alias);
-                        $item->descript = base64_encode($child->descript);
-                        $item->type = base64_encode(1);
-                        $item->type_api = base64_encode(1);
-                        $item->type_view = base64_encode('category');
-                        $icon_link = ($child->icon != '') ? config('site.url_storage') . $child->icon : '';
-                        $item->icon = (self::is_url($child->icon)) ? $child->icon : $icon_link;
-                        $item->date_created = strtotime($child->created_at) * 1000;
-                        $item->date_modified = strtotime($child->updated_at) * 1000;
-                        $list_document[] = $item;
+                    if (count($cateChildren) > 0) {
+                        foreach ($cateChildren as $child) {
+                            $item = new \stdClass();
+                            $item->id = $child->document_cate_id;
+                            $item->title = base64_encode($child->name);
+                            $item->alias = base64_encode($child->alias);
+                            $item->descript = base64_encode($child->descript);
+                            $item->type = base64_encode(1);
+                            $item->type_api = base64_encode(1);
+                            $item->type_view = base64_encode('category');
+                            $icon_link = ($child->icon != '') ? config('site.url_storage') . $child->icon : '';
+                            $item->icon = (self::is_url($child->icon)) ? $child->icon : $icon_link;
+                            $item->date_created = strtotime($child->created_at) * 1000;
+                            $item->date_modified = strtotime($child->updated_at) * 1000;
+                            $list_document[] = $item;
+                        }
                     }
-                }
 
-                $data = '{
-                    "type": "category",
-                    "data": {
-                        "list_document": '. json_encode($list_document) .'
-                    },
-                    "success" : true,
-                    "message" : "ok!"
-                }';
-                return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+                    $data = '{
+                        "type": "category",
+                        "data": {
+                            "list_document": ' . json_encode($list_document) . '
+                        },
+                        "success" : true,
+                        "message" : "ok!"
+                    }';
+                    $data = str_replace('null', '""', $data);
+//                    return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
 
-            } else {
+                } else {
 
-                if (count($filesDoc) > 0) {
-                    foreach ($filesDoc as $file) {
-                        $item = new \stdClass();
-                        $listFiles = json_decode($file->file, true);
-                        $listFileSpliter = json_decode($file->file_spliter, true);
-                        if (count($listFiles) > 0) {
-                            $listFile = [];
-                            if (count($listFileSpliter) > 0) {
-                                foreach ($listFileSpliter as $k => $file_split) {
-                                    $files = [];
-                                    $files['name'] = '';
-                                    $files['type'] = 'pdf';
-                                    $files['filesize'] = $file_split['filesize'];
-                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                    if (count($filesDoc) > 0) {
+                        foreach ($filesDoc as $file) {
+                            $item = new \stdClass();
+                            $listFiles = json_decode($file->file, true);
+                            $listFileSpliter = json_decode($file->file_spliter, true);
+                            if (count($listFiles) > 0) {
+                                $listFile = [];
+                                if (count($listFileSpliter) > 0) {
+                                    foreach ($listFileSpliter as $k => $file_split) {
+                                        $files = [];
+                                        $files['name'] = '';
+                                        $files['type'] = 'pdf';
+                                        $files['filesize'] = $file_split['filesize'];
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
 
-                                    $listFile[] = $files;
-                                }
-                            } else {
-                                foreach ($listFiles as $k => $files) {
-                                    $files['filesize'] = 0;
-                                    $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
-                                    $files['name'] = base64_encode($files['name']);
-                                    $files['type'] = (isset($files['type'])) ? $files['type'] : '';
-                                    $files['path'] = (isset($files['path'])) ? $files['path'] : '';
-                                    $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
-                                    $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
-                                    $listFile[] = $files;
+                                        $listFile[] = $files;
+                                    }
+                                } else {
+                                    foreach ($listFiles as $k => $files) {
+                                        $files['filesize'] = 0;
+                                        $files['name'] = (self::is_url($files['name'])) ? $files['name'] : config('site.url_storage') . '' . $files['name'];
+                                        $files['name'] = base64_encode($files['name']);
+                                        $files['type'] = (isset($files['type'])) ? $files['type'] : '';
+                                        $files['path'] = (isset($files['path'])) ? $files['path'] : '';
+                                        $icon_link = ($files['path'] != '') ? config('site.url_storage') . $files['path'] : '';
+                                        $files['path'] = (self::is_url($files['path'])) ? $files['path'] : $icon_link;
+                                        $listFile[] = $files;
+                                    }
                                 }
                             }
+
+                            $item->id = $file->document_id;
+                            $item->title = base64_encode($file->name);
+                            $item->alias = base64_encode($file->alias);
+                            $item->sub_title = base64_encode($file->descript);
+                            $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
+                            $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
+                            $item->files = $listFile;
+                            $item->is_offical = base64_encode($file->is_offical);
+                            $item->is_reserve = base64_encode($file->is_reserve);
+                            $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
+                            $item->type_file = '';
+                            $item->type_view = base64_encode('detail');
+                            $item->date_created = strtotime($file->created_at) * 1000;
+                            $item->date_modified = strtotime($file->updated_at) * 1000;
+
+                            $list_document[] = $item;
+                            //
                         }
-
-                        $item->id = $file->document_id;
-                        $item->title = base64_encode($file->name);
-                        $item->alias = base64_encode($file->alias);
-                        $item->sub_title = base64_encode($file->descript);
-                        $icon_link = ($file->icon != '') ? config('site.url_storage') . $file->icon : '';
-                        $item->icon = (self::is_url($file->icon)) ? $file->icon : $icon_link;
-                        $item->files = $listFile;
-                        $item->is_offical = base64_encode($file->is_offical);
-                        $item->is_reserve = base64_encode($file->is_reserve);
-                        $item->updated_file_at = strtotime($file->updated_file_at) * 1000;
-                        $item->type_file = '';
-                        $item->type_view = base64_encode('detail');
-                        $item->date_created = strtotime($file->created_at) * 1000;
-                        $item->date_modified = strtotime($file->updated_at) * 1000;
-
-                        $list_document[] = $item;
-                        //
                     }
-                }
 
-                $data = '{
-                    "type": "detail",
-                    "data": {
-                        "list_document": '. json_encode($list_document) .',
-                        "total_page": 1,
-                        "current_page": 1
-                    },
-                    "success" : true,
-                    "message" : "ok!"
-                }';
-                $data = str_replace('null', '""', $data);
-                return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+                    $data = '{
+                        "type": "detail",
+                        "data": {
+                            "list_document": ' . json_encode($list_document) . ',
+                            "total_page": 1,
+                            "current_page": 1
+                        },
+                        "success" : true,
+                        "message" : "ok!"
+                    }';
+                    $data = str_replace('null', '""', $data);
+//                    return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+                }
             }
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
         }
+        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getFilesDocumentByMenu($request) {
@@ -436,31 +491,36 @@ trait Document
         $documentCate = DocumentCate::where('alias', $alias)->first();
         if (null != $documentCate) {
             //cat child
-            $cache_name = 'api_doc_document_children_' . $alias . '_all';
-//            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $cateChildren = Cache::get($cache_name);
-            } else {
-                $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
+//            $cache_name = 'api_doc_document_children_' . $alias . '_all';
+//            if (Cache::has($cache_name)) {
+//                $cateChildren = Cache::get($cache_name);
+//            } else {
+//                $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
+//
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $cateChildren, $expiresAt);
+//            }
 
-                $expiresAt = now()->addMinutes(3600);
-                Cache::put($cache_name, $cateChildren, $expiresAt);
-            }
+            $cateChildren = DocumentCate::where('parent_id', $documentCate->document_cate_id)->get();
 
             //doc child
-            $cache_name = 'api_doc_document_page_' . $alias . '_all';
-//            Cache::forget($cache_name);
-            if (Cache::has($cache_name)) {
-                $filesDoc = Cache::get($cache_name);
-            } else {
-                $filesDoc = DocModel::with('getDocumentCate')
-                    ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
-                        $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
-                    })->get();
+//            $cache_name = 'api_doc_document_page_' . $alias . '_all';
+//            if (Cache::has($cache_name)) {
+//                $filesDoc = Cache::get($cache_name);
+//            } else {
+//                $filesDoc = DocModel::with('getDocumentCate')
+//                    ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
+//                        $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
+//                    })->get();
+//
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $filesDoc, $expiresAt);
+//            }
 
-                $expiresAt = now()->addMinutes(3600);
-                Cache::put($cache_name, $filesDoc, $expiresAt);
-            }
+            $filesDoc = DocModel::with('getDocumentCate')
+                ->whereHas('getDocumentCate', function ($query) use ($documentCate) {
+                    $query->where('dhcd_document_has_cate.document_cate_id', $documentCate->document_cate_id);
+                })->get();
 
             if (count($cateChildren) > 0 && count($filesDoc) > 0) {
 
@@ -643,19 +703,25 @@ trait Document
     public function getFilesDetail($request) {
         $alias = $request->input('alias', '');
 
-        $cache_name = 'api_doc_document_detail_' . $alias;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $filesDoc = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_doc_document_detail_' . $alias;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
-            $filesDoc = DocModel::where('alias', $alias)->first();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $filesDoc, $expiresAt);
-        }
 
-        $item = new \stdClass();
-        if (null != $filesDoc) {
-            
+//            $cache_name = 'api_doc_document_detail_' . $alias;
+//            if (Cache::has($cache_name)) {
+//                $filesDoc = Cache::get($cache_name);
+//            } else {
+//                $filesDoc = DocModel::where('alias', $alias)->first();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $filesDoc, $expiresAt);
+//            }
+
+            $filesDoc = DocModel::where('alias', $alias)->first();
+            $item = new \stdClass();
+            if (null != $filesDoc) {
+
                 $listFiles = json_decode($filesDoc->file, true);
                 $listFileSpliter = json_decode($filesDoc->file_spliter, true);
                 if (count($listFiles) > 0) {
@@ -696,14 +762,20 @@ trait Document
                 $item->date_created = strtotime($filesDoc->created_at) * 1000;
                 $item->date_modified = strtotime($filesDoc->updated_at) * 1000;
                 //
-        }
+            }
 
-        $data = '{
-                    "data": '. json_encode($item) .',
+            $data = '{
+                    "data": ' . json_encode($item) . ',
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 

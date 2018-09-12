@@ -205,7 +205,12 @@ class SettingController extends Controller
 
                 }
             }
+
+
+
             Cache::forget('settings' . $this->domainDefault);
+            Cache::forget('data_api_settings_versions_' . $this->domainDefault);
+            Cache::forget('data_api_settings_config_text_' . $this->domainDefault);
             return redirect()->route('adtech.core.setting.manage')->with('success', trans('adtech-core::messages.success.create'));
         }
     }

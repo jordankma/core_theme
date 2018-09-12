@@ -22,52 +22,64 @@ trait Menu
             }
         }
 
-        $arrTypeData = ['tintuc', 'tailieu'];
-        $arrTypeView = ['list', 'detail'];
+        //get cache
+        $cache_data = 'data_api_menu_all_files_' . $domain_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
+        } else {
 
-        $menus = MenuModel::where('domain_id', $domain_id)
-            ->where('type', 1)
-            ->whereIn('typeData', $arrTypeData)
-            ->whereIn('typeView', $arrTypeView)
-            ->orderBy('sort')->get();
+            $arrTypeData = ['tintuc', 'tailieu'];
+            $arrTypeView = ['list', 'detail'];
 
-        $list_menus = [];
-        if (count($menus) > 0) {
-            foreach ($menus as $menu) {
-                $item = new \stdClass();
-                $item->id = $menu->menu_id;
-                $item->title = base64_encode($menu->name);
-                $item->alias = base64_encode($menu->alias);
-                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
-                $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
-                $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
-                $item->date_created = strtotime($menu->created_at) * 1000;
-                $item->date_modified = strtotime($menu->updated_at) * 1000;
+            $menus = MenuModel::where('domain_id', $domain_id)
+                ->where('type', 1)
+                ->whereIn('typeData', $arrTypeData)
+                ->whereIn('typeView', $arrTypeView)
+                ->orderBy('sort')->get();
 
-                $result = [];
-                if ($menu->typeData == 'tailieu') {
-                    if ($menu->typeView == 'list') {
-                        $request->merge(['page' => 1, 'alias' => $menu->alias]);
-                        $result = $this->getFilesDocumentByMenu($request);
-                    } elseif ($menu->typeView == 'detail') {
-                        $request->merge(['alias' => $menu->route_params]);
-                        $result = $this->getFilesDetailByMenu($request);
+            $list_menus = [];
+            if (count($menus) > 0) {
+                foreach ($menus as $menu) {
+                    $item = new \stdClass();
+                    $item->id = $menu->menu_id;
+                    $item->title = base64_encode($menu->name);
+                    $item->alias = base64_encode($menu->alias);
+                    $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                    $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
+                    $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
+                    $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
+                    $item->date_created = strtotime($menu->created_at) * 1000;
+                    $item->date_modified = strtotime($menu->updated_at) * 1000;
+
+                    $result = [];
+                    if ($menu->typeData == 'tailieu') {
+                        if ($menu->typeView == 'list') {
+                            $request->merge(['page' => 1, 'alias' => $menu->alias]);
+                            $result = $this->getFilesDocumentByMenu($request);
+                        } elseif ($menu->typeView == 'detail') {
+                            $request->merge(['alias' => $menu->route_params]);
+                            $result = $this->getFilesDetailByMenu($request);
+                        }
                     }
+                    $item->document = json_decode($result);
+                    $list_menus[] = $item;
                 }
-                $item->document = json_decode($result);
-                $list_menus[] = $item;
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_info_item_menu": '. json_encode($list_menus) .'
+                        "list_info_item_menu": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -82,45 +94,62 @@ trait Menu
             }
         }
 
-        $cache_name = 'api_menus_frontend_' . $domain_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $menus = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_menus_frontend_' . $domain_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'api_menus_frontend_' . $domain_id;
+//            if (Cache::has($cache_name)) {
+//                $menus = Cache::get($cache_name);
+//            } else {
+//                $menus = MenuModel::where('domain_id', $domain_id)
+//                    ->where('type', 1)
+//                    ->where('group', 'Left')
+//                    ->where('parent', 0)
+//                    ->orderBy('sort')->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $menus, $expiresAt);
+//            }
+
             $menus = MenuModel::where('domain_id', $domain_id)
                 ->where('type', 1)
                 ->where('group', 'Left')
                 ->where('parent', 0)
                 ->orderBy('sort')->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $menus, $expiresAt);
-        }
 
-        $list_menus = [];
-        $arrTypeData = ['tintuc', 'tailieu'];
-        $arrTypeView = ['list', 'detail'];
-        if (count($menus) > 0) {
-            foreach ($menus as $menu) {
-                $item = new \stdClass();
-                $item->id = $menu->menu_id;
-                $item->title = base64_encode($menu->name);
-                $item->alias = base64_encode($menu->alias);
-                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
-                $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
-                $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
-                $list_menus[] = $item;
+            $list_menus = [];
+            $arrTypeData = ['tintuc', 'tailieu'];
+            $arrTypeView = ['list', 'detail'];
+            if (count($menus) > 0) {
+                foreach ($menus as $menu) {
+                    $item = new \stdClass();
+                    $item->id = $menu->menu_id;
+                    $item->title = base64_encode($menu->name);
+                    $item->alias = base64_encode($menu->alias);
+                    $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                    $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
+                    $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
+                    $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
+                    $list_menus[] = $item;
+                }
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_info_item_menu": '. json_encode($list_menus) .'
+                        "list_info_item_menu": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -135,45 +164,62 @@ trait Menu
             }
         }
 
-        $cache_name = 'api_menus_frontend_home_' . $domain_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $menus = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_menus_frontend_home_' . $domain_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'api_menus_frontend_home_' . $domain_id;
+//            if (Cache::has($cache_name)) {
+//                $menus = Cache::get($cache_name);
+//            } else {
+//                $menus = MenuModel::where('domain_id', $domain_id)
+//                    ->where('type', 1)
+//                    ->where('group', 'Home')
+//                    ->where('parent', 0)
+//                    ->orderBy('sort')->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $menus, $expiresAt);
+//            }
+
             $menus = MenuModel::where('domain_id', $domain_id)
                 ->where('type', 1)
                 ->where('group', 'Home')
                 ->where('parent', 0)
                 ->orderBy('sort')->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $menus, $expiresAt);
-        }
 
-        $list_menus = [];
-        $arrTypeData = ['tintuc', 'tailieu'];
-        $arrTypeView = ['list', 'detail'];
-        if (count($menus) > 0) {
-            foreach ($menus as $menu) {
-                $item = new \stdClass();
-                $item->id = $menu->menu_id;
-                $item->title = base64_encode($menu->name);
-                $item->alias = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->route_params) : base64_encode($menu->alias);
-                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
-                $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
-                $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
-                $list_menus[] = $item;
+            $list_menus = [];
+            $arrTypeData = ['tintuc', 'tailieu'];
+            $arrTypeView = ['list', 'detail'];
+            if (count($menus) > 0) {
+                foreach ($menus as $menu) {
+                    $item = new \stdClass();
+                    $item->id = $menu->menu_id;
+                    $item->title = base64_encode($menu->name);
+                    $item->alias = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->route_params) : base64_encode($menu->alias);
+                    $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                    $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
+                    $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
+                    $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
+                    $list_menus[] = $item;
+                }
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_info_item_menu": '. json_encode($list_menus) .'
+                        "list_info_item_menu": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
@@ -188,45 +234,61 @@ trait Menu
             }
         }
 
-        $cache_name = 'api_menus_frontend_member_' . $domain_id;
-//        Cache::forget($cache_name);
-        if (Cache::has($cache_name)) {
-            $menus = Cache::get($cache_name);
+        //get cache
+        $cache_data = 'data_api_api_menus_frontend_member_' . $domain_id;
+        if (Cache::has($cache_data)) {
+            $data = Cache::get($cache_data);
         } else {
+
+//            $cache_name = 'api_menus_frontend_member_' . $domain_id;
+//            if (Cache::has($cache_name)) {
+//                $menus = Cache::get($cache_name);
+//            } else {
+//                $menus = MenuModel::where('domain_id', $domain_id)
+//                    ->where('type', 1)
+//                    ->where('group', 'Member')
+//                    ->where('parent', 0)
+//                    ->orderBy('sort')->get();
+//                $expiresAt = now()->addMinutes(3600);
+//                Cache::put($cache_name, $menus, $expiresAt);
+//            }
             $menus = MenuModel::where('domain_id', $domain_id)
                 ->where('type', 1)
                 ->where('group', 'Member')
                 ->where('parent', 0)
                 ->orderBy('sort')->get();
-            $expiresAt = now()->addMinutes(3600);
-            Cache::put($cache_name, $menus, $expiresAt);
-        }
 
-        $list_menus = [];
-        $arrTypeData = ['tintuc', 'tailieu'];
-        $arrTypeView = ['list', 'detail'];
-        if (count($menus) > 0) {
-            foreach ($menus as $menu) {
-                $item = new \stdClass();
-                $item->id = $menu->menu_id;
-                $item->title = base64_encode($menu->name);
-                $item->alias = base64_encode($menu->alias);
-                $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
-                $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
-                $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
-                $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
-                $list_menus[] = $item;
+            $list_menus = [];
+            $arrTypeData = ['tintuc', 'tailieu'];
+            $arrTypeView = ['list', 'detail'];
+            if (count($menus) > 0) {
+                foreach ($menus as $menu) {
+                    $item = new \stdClass();
+                    $item->id = $menu->menu_id;
+                    $item->title = base64_encode($menu->name);
+                    $item->alias = base64_encode($menu->alias);
+                    $icon_link = ($menu->icon != '') ? config('site.url_storage') . $menu->icon : '';
+                    $item->icon = (self::is_url($menu->icon)) ? $menu->icon : $icon_link;
+                    $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
+                    $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
+                    $list_menus[] = $item;
+                }
             }
-        }
 
-        $data = '{
+            $data = '{
                     "data": {
-                        "list_info_item_menu": '. json_encode($list_menus) .'
+                        "list_info_item_menu": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-        $data = str_replace('null', '""', $data);
+            $data = str_replace('null', '""', $data);
+
+            //put cache
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_data, $data, $expiresAt);
+        }
+
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 }

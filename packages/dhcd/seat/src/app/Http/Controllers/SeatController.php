@@ -59,6 +59,7 @@ class SeatController extends Controller
         if ($seat->seat_id) {
 
             Cache::forget('seat_' . $request->input('doan_id') . '_' . $request->input('sessionseat_id'));
+            Cache::forget('data_api_seat' . $request->input('doan_id') . '_' . $request->input('sessionseat_id'));
 
             activity('seat')
                 ->performedOn($seat)
@@ -90,6 +91,7 @@ class SeatController extends Controller
                 $seat->delete($seat_id);
 
                 Cache::forget('seat_' . $seat->doan_id . '_' . $seat->sessionseat_id);
+                Cache::forget('data_api_seat' . $seat->doan_id . '_' . $seat->sessionseat_id);
 
                 activity('seat')
                     ->performedOn($seat)
@@ -199,6 +201,7 @@ class SeatController extends Controller
                 if ($seat->save()) {
 
                     Cache::forget('seat_' . $seat->doan_id . '_' . $seat->sessionseat_id);
+                    Cache::forget('data_api_seat' . $seat->doan_id . '_' . $seat->sessionseat_id);
 
                     activity('seat')
                         ->performedOn($seat)

@@ -31,7 +31,6 @@ class CarController extends Controller
         $staffname = $request->input('staffname', '');
         $staffpos = $request->input('staffpos', '');
         $phone = $request->input('phone', '');
-        $car_bs = $request->input('car_bs', '');
         $img = $request->input('img', '');
         $result = [];
         if(empty($staffname)) {
@@ -60,11 +59,19 @@ class CarController extends Controller
         $car = new Car($request->all());
         $car->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $car->car_staff= $staff;
-        $car->car_bs= $car_bs;
         $car->img= $this->toURLFriendly($img);
         $car->save();
 
         if ($car->car_id) {
+
+            $doan_arr = implode(',', $car->doan_id);
+            if (count($doan_arr) > 0) {
+                foreach ($doan_arr as $doan_id) {
+                    Cache::forget('car_' . $doan_id);
+                    Cache::forget('data_api_car_' . $doan_id);
+                }
+            }
+
             activity('seat')
                 ->performedOn($car)
                 ->withProperties($request->all())
@@ -91,12 +98,13 @@ class CarController extends Controller
             $car_id = $request->input('car_id');
             $car = Car::find($car_id);
             if (null != $car) {
-                $car->delete($car_id);
 
+                $car->delete($car_id);
                 $doan_arr = implode(',', $car->doan_id);
                 if (count($doan_arr) > 0) {
                     foreach ($doan_arr as $doan_id) {
                         Cache::forget('car_' . $doan_id);
+                        Cache::forget('data_api_car_' . $doan_id);
                     }
                 }
 
@@ -159,26 +167,24 @@ class CarController extends Controller
         $staffname = $request->input('staffname');
         $staffpos = $request->input('staffpos');
         $phone = $request->input('phone');
-         foreach ($staffname as $val){
-             $result = [];
-            if($val == null or $val == ''){
-                $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
-    //            return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
-            }
-            else{
-                for ($i = 0; $i < sizeof($staffname); $i++){
-                    if(!$staffname[$i])
-                    {
-                        return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
-                    }
-                    $result["$i"] = [
-                        "staffname" => $staffname[$i],
-                        "staffpos" => $staffpos[$i],
-                        "phone" => $phone[$i]
-                    ];
+         $result = [];
+        if($staffname == null or $staffname == ''){
+            $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+//            return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
+        }
+        else{
+            for ($i = 0; $i < sizeof($staffname); $i++){
+                if(!$staffname[$i])
+                {
+                    return redirect()->route('dhcd.car.show',['car_id' => $car_id])->with('error', trans('dhcd-car::language.messages.error.update'));
                 }
-                $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
+                $result["$i"] = [
+                    "staffname" => $staffname[$i],
+                    "staffpos" => $staffpos[$i],
+                    "phone" => $phone[$i]
+                ];
             }
+            $staff = json_encode($result,JSON_UNESCAPED_UNICODE);
         }
         $car = Car::find($car_id);
         if (null != $car) {
@@ -193,6 +199,7 @@ class CarController extends Controller
                 if ($request->has('doan_id')) {
                     foreach ($request->input('doan_id') as $doan_id) {
                         Cache::forget('car_' . $doan_id);
+                        Cache::forget('data_api_car_' . $doan_id);
                     }
                 }
 

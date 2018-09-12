@@ -41,7 +41,8 @@ class SessionseatController extends Controller
 
         if ($sessionseat->sessionseat_id) {
 
-            Cache::forget('session_seat');
+//            Cache::forget('session_seat');
+            Cache::forget('data_api_session_seat');
 
             activity('sessionseat')
                 ->performedOn($sessionseat)
@@ -65,7 +66,8 @@ class SessionseatController extends Controller
         if (null != $sessionseat) {
             $this->sessionseat->delete($sessionseat_id);
 
-            Cache::forget('session_seat');
+//            Cache::forget('session_seat');
+            Cache::forget('data_api_session_seat');
 
             activity('sessionseat')
                 ->performedOn($sessionseat)
@@ -113,7 +115,8 @@ class SessionseatController extends Controller
             $sessionseat->sessionseat_img = json_encode($sessionseat_img);
             if ($sessionseat->save()) {
 
-                Cache::forget('session_seat');
+//                Cache::forget('session_seat');
+                Cache::forget('data_api_session_seat');
 
                 activity('sessionseat')
                     ->performedOn($sessionseat)

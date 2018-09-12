@@ -58,6 +58,8 @@ class GroupController extends Controller
 
             if ($groups->save()) {
                 Cache::forget('member_group');
+                Cache::forget('data_api_member_group');
+
                 $group_elastic = new GroupElastic();
                 $group_elastic->saveDocument($groups->group_id);
                 activity('group')
@@ -113,7 +115,10 @@ class GroupController extends Controller
             if ($group->save()) {
                 $group_elastic = new GroupElastic();
                 $group_elastic->saveDocument($group->group_id);
+
                 Cache::forget('member_group');
+                Cache::forget('data_api_member_group');
+
                 activity('group')
                     ->performedOn($group)
                     ->withProperties($request->all())
@@ -157,7 +162,10 @@ class GroupController extends Controller
             $this->group->delete($group_id);
             $group_elastic = new GroupElastic();
             $group_elastic->saveDocument($group_id);
+
             Cache::forget('member_group');
+            Cache::forget('data_api_member_group');
+
             activity('group')
                 ->performedOn($group)
                 ->withProperties($request->all())
