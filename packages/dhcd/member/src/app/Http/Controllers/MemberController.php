@@ -72,7 +72,7 @@ class MemberController extends Controller
             $birthday = $request->input('birthday'); 
             $ngay_vao_dang = $request->input('ngay_vao_dang'); 
             $ngay_vao_doan = $request->input('ngay_vao_doan'); 
-            $avatar = !empty($request->input('avatar')) ? $this->toURLFriendly($request->input('avatar')) :'';
+            $avatar = !empty($request->input('avatar')) ? $request->input('avatar') :'';
 
             $members->name = $name;
             $members->email = $email;
@@ -193,7 +193,7 @@ class MemberController extends Controller
             $birthday = $request->input('birthday'); 
             $ngay_vao_dang = $request->input('ngay_vao_dang'); 
             $ngay_vao_doan = $request->input('ngay_vao_doan'); 
-            $avatar = !empty($request->input('avatar')) ? $this->toURLFriendly($request->input('avatar')) :'';
+            $avatar = !empty($request->input('avatar')) ? $request->input('avatar') :'';
 
             $member->name = $name;
             $member->email = $email;
