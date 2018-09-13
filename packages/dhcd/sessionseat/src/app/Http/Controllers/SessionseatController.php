@@ -30,7 +30,7 @@ class SessionseatController extends Controller
         $sessionseat_img = $request->input('sessionseat_img');
         if (count($sessionseat_img) > 0) {
             foreach ($sessionseat_img as $k => $item) {
-                $sessionseat_img[$k] = $this->toURLFriendly($item);
+                $sessionseat_img[$k] = $item;
             }
         }
 
@@ -104,7 +104,7 @@ class SessionseatController extends Controller
         $sessionseat_img = $request->input('sessionseat_img');
         if (count($sessionseat_img) > 0) {
             foreach ($sessionseat_img as $k => $item) {
-                $sessionseat_img[$k] = $this->toURLFriendly($item);
+                $sessionseat_img[$k] = $item;
             }
         }
 
@@ -176,7 +176,7 @@ class SessionseatController extends Controller
         return Datatables::of($this->sessionseat->findAll())
             ->editColumn('img',function ($sessionseat){
                 $img = json_decode($sessionseat->sessionseat_img)[0];
-                return '<img src=' . config('site.url_storage') . $this->toURLFriendly($img) . ' height="auto" width="200px">';
+                return '<img src=' . config('site.url_storage') . $img . ' height="auto" width="200px">';
             })
             ->addColumn('actions', function ($sessionseat) {
                 $actions = '';
