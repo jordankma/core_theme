@@ -210,7 +210,7 @@
                     cell2.innerHTML = "<label class='label'>Thời gian :      </label><input type='text' class='form-control' name='start_time[]' value='" + element.start_time + "'>";
                     // cell5.innerHTML = "";
                     cell6.innerHTML = "<label class='label'>Nội Dung :     </label><input type='text' class='form-control' name='event_content[]' value='" + element.content + "'>";
-                    cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow1(this)' class='fa fa-trash'></i>";
+                    cell7.innerHTML = "<i style='font-size:20px' type='button' value='Delete' onclick='deleteRow(this)' class='fa fa-trash'></i>";
                     $('#beforeID').before(row);
                 });
             }
