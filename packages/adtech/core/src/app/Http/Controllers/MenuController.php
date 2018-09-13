@@ -82,6 +82,7 @@ class MenuController extends Controller
                 Cache::forget('data_api_api_menus_frontend_' . $domain_id);
                 Cache::forget('data_api_api_menus_frontend_home_' . $domain_id);
                 Cache::forget('data_api_api_menus_frontend_member_' . $domain_id);
+                Cache::forget('data_api_api_menus_frontend_bottom_' . $domain_id);
 
                 activity('menu')
                     ->performedOn($menu)
@@ -167,6 +168,7 @@ class MenuController extends Controller
             Cache::forget('data_api_api_menus_frontend_' . $menu->domain_id);
             Cache::forget('data_api_api_menus_frontend_home_' . $menu->domain_id);
             Cache::forget('data_api_api_menus_frontend_member_' . $menu->domain_id);
+            Cache::forget('data_api_api_menus_frontend_bottom_' . $menu->domain_id);
 
             activity('menu')
                 ->performedOn($menu)
@@ -325,6 +327,7 @@ class MenuController extends Controller
             Cache::forget('data_api_api_menus_frontend_' . $domain_id);
             Cache::forget('data_api_api_menus_frontend_home_' . $domain_id);
             Cache::forget('data_api_api_menus_frontend_member_' . $domain_id);
+            Cache::forget('data_api_api_menus_frontend_bottom_' . $domain_id);
 
             activity('menu')
                 ->performedOn($menu)
