@@ -4,6 +4,7 @@ namespace Dhcd\Api\App\Http\Controllers\Traits;
 
 use Dhcd\Document\App\Models\Document as DocModel;
 use Dhcd\Document\App\Models\DocumentCate;
+use Adtech\Core\App\Models\Domain;
 use Validator;
 use Cache;
 
