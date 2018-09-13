@@ -53,7 +53,7 @@ class HotelController extends Controller
         $hotel = new Hotel($request->all());
         $hotel->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $hotel->hotel_staff = $staff;
-        $hotel->img = $this->toURLFriendly($img);
+        $hotel->img = $img;
         $hotel->save();
 
         if ($hotel->hotel_id) {
@@ -195,7 +195,7 @@ class HotelController extends Controller
             $hotel->hotel = $request->input('hotel');
             $hotel->note = $request->input('note');
             $hotel->address = $request->input('address');
-            $hotel->img = $this->toURLFriendly($request->input('img'));
+            $hotel->img = $request->input('img');
             $hotel->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
             $hotel->hotel_staff = $staff;
             if ($hotel->save()) {
