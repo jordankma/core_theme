@@ -59,7 +59,7 @@ class CarController extends Controller
         $car = new Car($request->all());
         $car->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
         $car->car_staff= $staff;
-        $car->img= $this->toURLFriendly($img);
+        $car->img= $img;
         $car->save();
 
         if ($car->car_id) {
@@ -191,7 +191,7 @@ class CarController extends Controller
             $car->doan_id = implode("," , $request->input('doan_id'));
             $car->car_num = $request->input('car_num', 0);
             $car->car_bs = $request->input('car_bs', '');
-            $car->img = $this->toURLFriendly($request->input('img', ''));
+            $car->img = $request->input('img', '');
             $car->note = $request->input('note', '');
             $car->car_staff= $staff;
             if ($car->save()) {
