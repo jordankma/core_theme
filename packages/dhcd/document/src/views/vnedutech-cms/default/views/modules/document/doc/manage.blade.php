@@ -104,6 +104,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{ trans('dhcd-document::language.document.table.name') }}</th>
+                                        <th>{{ trans('dhcd-document::language.document.table.alias') }}</th>
                                         <th>{{ trans('dhcd-document::language.document.table.file') }}</th>
                                         <th>{{ trans('dhcd-document::language.document.table.document_type_id') }}</th>
                                         <th>{{ trans('dhcd-document::language.document.table.document_cate_id') }}</th>                                        
@@ -118,6 +119,7 @@
                                     <tr>
                                         <td>{{$key = $key +1}}</td>
                                         <td>{{$doc['name']}}</td>
+                                        <td>{{$doc['alias']}}</td>
                                         <td>
                                             @if(!empty($doc['avatar']) || !empty($doc['icon']))
                                                 @if(!empty($doc['avatar']))

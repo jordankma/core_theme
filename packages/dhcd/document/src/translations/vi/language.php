@@ -84,6 +84,7 @@ return [
         'table' => [
             'title' => 'Danh sách danh mục',
             'name' => 'Tên danh mục',
+            'alias' => 'Mã danh mục',
             'parent_id' => 'Danh mục cha',
             'icon' => 'Icon',
             "action" => "Hành động",
@@ -122,6 +123,7 @@ return [
         'table' => [
             'title' => 'Danh sách tài liệu',
             'name' => 'Tên tài liệu',
+            'alias' => 'Mã tài liệu',
             'document_type_id' => 'Kiểu',
             'document_cate_id' => 'Danh mục',
             'file' => 'File',

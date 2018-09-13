@@ -50,6 +50,7 @@
                             {{--<th class="fit-content">{{ trans('adtech-core::common.sequence') }}STT</th>--}}
                             <th>{{ trans('dhcd-document::language.document_cate.table.icon') }}</th>
                             <th>{{ trans('dhcd-document::language.document_cate.table.name') }}</th>
+                            <th>{{ trans('dhcd-document::language.document_cate.table.alias') }}</th>
                             <th>{{ trans('dhcd-document::language.document_cate.table.parent_id') }}</th>
                             <th>{{ trans('dhcd-document::language.document_cate.table.action') }}</th>
                         </tr>
@@ -88,6 +89,7 @@ $(function () {
             // { data: 'rownum', name: 'rownum'},
             { data: 'icon', name: 'icon'},
             { data: 'name', name: 'name' },
+            { data: 'alias', name: 'alias' },
             { data: 'parent_id', name: 'parent_id'},
             { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
         ]
