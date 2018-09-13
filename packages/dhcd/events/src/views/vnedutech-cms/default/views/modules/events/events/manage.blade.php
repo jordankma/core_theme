@@ -80,7 +80,7 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.events.events.data') }}',
                 columns: [
-                    { data: 'rownum', name: 'rownum' },
+                    { data: 'DT_Row_Index', name: 'event_id' },
                     { data: 'name', name: 'name' , },
                     { data: 'date', name:'date'},
                     { data: 'event_detail', name: 'event_detail'},

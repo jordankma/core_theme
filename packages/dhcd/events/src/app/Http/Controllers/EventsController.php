@@ -291,21 +291,22 @@ class EventsController extends Controller
             {
                 return '<lable>Chưa Công Khai</label>';}
             })
-            ->addColumn('actions', function ($events) {
-                $actions = '';
-                if($this->user->canAccess('dhcd.events.events.log')){
-                    $actions .='<a href=' . route('dhcd.events.events.log', ['type' => 'event_id', 'event_id' => $events->event_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log events"></i></a>';
-                }
-                if($this->user->canAccess('dhcd.events.events.show')){
-                    $actions .='<a href=' . route('dhcd.events.events.show', ['event_id' => $events->event_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update events"></i></a>';
-                }      
-                if($this->user->canAccess('dhcd.events.events.confirm-delete')){
-                    $actions .='<a href=' . route('dhcd.events.events.confirm-delete', ['event_id' => $events->event_id]). ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete events"></i></a>';
-                }       
-                return $actions;               
-            })
-            ->rawColumns(['status','actions','date','event_detail','current_time'])
-            ->make();
+        ->addColumn('actions', function ($events) {
+            $actions = '';
+            if($this->user->canAccess('dhcd.events.events.log')){
+                $actions .='<a href=' . route('dhcd.events.events.log', ['type' => 'event_id', 'event_id' => $events->event_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log events"></i></a>';
+            }
+            if($this->user->canAccess('dhcd.events.events.show')){
+                $actions .='<a href=' . route('dhcd.events.events.show', ['event_id' => $events->event_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update events"></i></a>';
+            }
+            if($this->user->canAccess('dhcd.events.events.confirm-delete')){
+                $actions .='<a href=' . route('dhcd.events.events.confirm-delete', ['event_id' => $events->event_id]). ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete events"></i></a>';
+            }
+            return $actions;
+        })
+        ->addIndexColumn()
+        ->rawColumns(['status','actions','date','event_detail','current_time'])
+        ->make();
     }
 
     public function log(Request $request)
