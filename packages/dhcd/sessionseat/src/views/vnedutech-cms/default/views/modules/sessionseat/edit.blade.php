@@ -46,15 +46,19 @@
 
                         @if (count($sessionseat_img) > 0)
                             @foreach($sessionseat_img as $key => $value)
+                                <label>Chọn ảnh</label>
+                                <a href="#" onclick="removeRow(this)" class="pull-right">
+                                    <i class="livicon" data-name="trash" data-size="20" data-loop="true" data-c="#333" data-hc="#333"></i>
+                                </a>
                                 <div class="input-group">
                                    <span class="input-group-btn">
-                                     <a data-input="thumbnail" data-preview="holder" class="btn lfm btn-primary">
-                                       <i class="fa fa-picture-o"></i> Choose
+                                     <a data-input="thumbnail{{ $key }}" data-preview="holder{{ $key }}" class="btn lfm btn-primary">
+                                        <i class="fa fa-picture-o"></i> Choose
                                      </a>
                                    </span>
-                                    <input id="thumbnail" class="form-control" type="text" name="sessionseat_img[]" value="{{ $value }}" required>
+                                    <input id="thumbnail{{ $key }}" class="form-control" type="text" name="sessionseat_img[]" value="{{ $value }}" required>
                                 </div>
-                                <img id="holder" src="{{ config('site.url_storage') . $value }}" style="margin-top:15px;max-height:100px;">
+                                <img id="holder{{ $key }}" src="{{ config('site.url_storage') . $value }}" style="margin-top:15px;max-height:100px;">
                                 <br><br>
                             @endforeach
                         @endif
