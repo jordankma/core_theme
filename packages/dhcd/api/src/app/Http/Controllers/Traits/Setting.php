@@ -35,14 +35,21 @@ trait Setting
 
     public function getConfigText()
     {
-        //get setting value
-        $domain_id = 0;
+        //get domain
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        if ($host) {
-            $domain = Domain::where('name', $host)->first();
-            if (null != $domain) {
-                $domain_id = $domain->domain_id;
+        $cache_domain = 'data_api_domain_' . $host;
+        if (Cache::has($cache_domain)) {
+            $domain_id = Cache::get($cache_domain);
+        } else {
+            $domain_id = 0;
+            if ($host) {
+                $domain = Domain::where('name', $host)->first();
+                if (null != $domain) {
+                    $domain_id = $domain->domain_id;
+                }
             }
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_domain, $domain_id, $expiresAt);
         }
 
         //get cache
@@ -51,13 +58,7 @@ trait Setting
             $data = Cache::get($cache_data);
         } else {
 
-            if (Cache::has('settings' . $domain_id)) {
-                $settings = Cache::get('settings' . $domain_id);
-            } else {
-                $settings = SettingModel::where('domain_id', $domain_id)->get();
-                Cache::put('settings' . $domain_id, $settings);
-            }
-
+            $settings = SettingModel::where('domain_id', $domain_id)->get();
             $settingView = array('logo' => '', 'slogan' => '', 'hello_txt' => '');
             if (count($settings) > 0) {
                 foreach ($settings as $setting) {
@@ -93,14 +94,21 @@ trait Setting
 
     public function getVersion()
     {
-        //get setting value
-        $domain_id = 0;
+        //get domain
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        if ($host) {
-            $domain = Domain::where('name', $host)->first();
-            if (null != $domain) {
-                $domain_id = $domain->domain_id;
+        $cache_domain = 'data_api_domain_' . $host;
+        if (Cache::has($cache_domain)) {
+            $domain_id = Cache::get($cache_domain);
+        } else {
+            $domain_id = 0;
+            if ($host) {
+                $domain = Domain::where('name', $host)->first();
+                if (null != $domain) {
+                    $domain_id = $domain->domain_id;
+                }
             }
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_domain, $domain_id, $expiresAt);
         }
 
         //get cache
@@ -109,13 +117,7 @@ trait Setting
             $data = Cache::get($cache_data);
         } else {
 
-            if (Cache::has('settings' . $domain_id)) {
-                $settings = Cache::get('settings' . $domain_id);
-            } else {
-                $settings = SettingModel::where('domain_id', $domain_id)->get();
-                Cache::put('settings' . $domain_id, $settings);
-            }
-
+            $settings = SettingModel::where('domain_id', $domain_id)->get();
             $settingView = array('app_version' => '');
             if (count($settings) > 0) {
                 foreach ($settings as $setting) {

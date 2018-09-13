@@ -12,6 +12,34 @@ trait Document
 
     public function getTest()
     {
+        //get domain
+        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+        $cache_domain = 'data_api_domain_' . $host;
+        if (Cache::has($cache_domain)) {
+            $domain_id = Cache::get($cache_domain);
+        } else {
+            $domain_id = 0;
+            if ($host) {
+                $domain = Domain::where('name', $host)->first();
+                if (null != $domain) {
+                    $domain_id = $domain->domain_id;
+                }
+            }
+            $expiresAt = now()->addDays(5);
+            Cache::put($cache_domain, $domain_id, $expiresAt);
+        }
+//        $domain_id
+        $data = '{
+                    "data": {
+                        "host": '. $host .',
+                        "domain_id": '. $domain_id .'
+                    },
+                    "success" : true,
+                    "message" : "ok!"
+                }';
+        $data = str_replace('null', '""', $data);
+        return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+
 //        $client = new \GuzzleHttp\Client();
 //        $res = $client->request('GET', 'http://localhost:8080/split?path=/files/test/chap01.pdf');
 //
