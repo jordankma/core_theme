@@ -16,22 +16,22 @@ class MenuController extends BaseController
     public function __construct()
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
-        $this->__domain_id = $domain_id;
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
+        $this->__domain_id = 6;
     }
 
     public function getMenu()

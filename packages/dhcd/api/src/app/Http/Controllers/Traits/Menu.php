@@ -14,23 +14,24 @@ trait Menu
     public function getMenuAll($request)
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
 
         //get cache
+        $domain_id = 6;
         $cache_data = 'data_api_menu_all_files_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -94,23 +95,24 @@ trait Menu
     public function getMenu()
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
 
         //get cache
+        $domain_id = 6;
         $cache_data = 'data_api_api_menus_frontend_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -172,23 +174,24 @@ trait Menu
     public function getMenuHome()
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
 
         //get cache
+        $domain_id = 6;
         $cache_data = 'data_api_api_menus_frontend_home_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -250,23 +253,24 @@ trait Menu
     public function getMenuMember()
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
 
         //get cache
+        $domain_id = 6;
         $cache_data = 'data_api_api_menus_frontend_member_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -327,23 +331,24 @@ trait Menu
     public function getMenuBottom()
     {
         //get domain
-        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
-        $cache_domain = 'data_api_domain_' . $host;
-        if (Cache::has($cache_domain)) {
-            $domain_id = Cache::get($cache_domain);
-        } else {
-            $domain_id = 0;
-            if ($host) {
-                $domain = Domain::where('name', $host)->first();
-                if (null != $domain) {
-                    $domain_id = $domain->domain_id;
-                }
-            }
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_domain, $domain_id, $expiresAt);
-        }
+//        $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+//        $cache_domain = 'data_api_domain_' . $host;
+//        if (Cache::has($cache_domain)) {
+//            $domain_id = Cache::get($cache_domain);
+//        } else {
+//            $domain_id = 0;
+//            if ($host) {
+//                $domain = Domain::where('name', $host)->first();
+//                if (null != $domain) {
+//                    $domain_id = $domain->domain_id;
+//                }
+//            }
+//            $expiresAt = now()->addDays(5);
+//            Cache::put($cache_domain, $domain_id, $expiresAt);
+//        }
 
         //get cache
+        $domain_id = 6;
         $cache_data = 'data_api_api_menus_frontend_bottom_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
