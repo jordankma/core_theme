@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.exception')
 
 {{-- Page content --}}
 @section('content')
