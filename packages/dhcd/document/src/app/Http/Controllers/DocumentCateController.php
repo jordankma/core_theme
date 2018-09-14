@@ -175,10 +175,12 @@ class DocumentCateController extends Controller {
         $cate->deleted_at = date('Y-m-d H:s:i');
         $cate->save();
 
+        Cache::forget('data_api_files_by_document_' . $cate->alias);
         $cateParent = $this->documentCate->find($cate->parent_id);
         if (null != $cateParent) {
             Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
             Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+            Cache::forget('data_api_files_by_document_' . $cateParent->alias);
         }
 
         activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Delete document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
