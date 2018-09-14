@@ -134,6 +134,8 @@ Route::group(array('prefix' => $adminPrefix), function () {
         Route::get('adtech/core/setting/set-language', 'SettingController@setLanguage')->name('adtech.core.setting.set-language');
         Route::put('adtech/core/setting/update', 'SettingController@update')->name('adtech.core.setting.update');
         Route::put('adtech/core/setting/translate', 'SettingController@translate')->name('adtech.core.setting.translate');
+        Route::get('adtech/core/setting/memcached', 'SettingController@memcached')->name('adtech.core.setting.memcached');
+        Route::put('adtech/core/setting/resetCache', 'SettingController@resetCache')->name('adtech.core.setting.resetCache');
         Route::match(['get', 'post'], '/adtech/core/file/upload-test', 'DashboardController@fileuploadtest')->name('adtech.core.file.upload-test');
 
         Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')->name('adtech.core.file.manager');

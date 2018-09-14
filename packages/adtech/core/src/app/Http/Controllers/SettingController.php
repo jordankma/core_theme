@@ -219,4 +219,18 @@ class SettingController extends Controller
         $request->session()->put('website_language', $request->input('language'));
         return back();
     }
+
+    public function memcached() {
+        return view('ADTECH-CORE::modules.core.setting.memcached');
+    }
+
+    public function resetCache(Request $request) {
+        if ($request->has('cache_name')) {
+            if (Cache::has($request->input('cache_name'))) {
+                Cache::forget($request->input('cache_name'));
+                return redirect()->route('adtech.core.setting.memcached')->with('success', trans('adtech-core::messages.success.create'));
+            }
+        }
+        return redirect()->route('adtech.core.setting.memcached')->with('error', trans('adtech-core::messages.error.create'));
+    }
 }
