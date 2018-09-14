@@ -23,7 +23,13 @@ COPY composer.* ./
 RUN composer update --no-scripts --no-autoloader --no-ansi
 
 COPY . ./
-RUN composer dump-autoload --optimize \
-    && touch  /src/storage/logs/lumen.log \
+RUN composer dump-autoload --optimize
+
+## Path XSS
+COPY patch/vendor/ ./vendor/
+
+## Fix permission
+RUN touch  /src/storage/logs/lumen.log \
     && chown -R www-data: /src \
     && chmod -R 777 /src/storage /src/bootstrap/cache
+
