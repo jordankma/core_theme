@@ -6,6 +6,7 @@ use Adtech\Core\App\Mail\Password as PasswordMailer;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Adtech\Core\App\Repositories\PasswordResetRepository;
 use Adtech\Core\App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Mail;
@@ -41,7 +42,12 @@ class ResetPasswordController extends Controller
             return redirect(route('adtech.core.auth.forgot'));
         }
 
-        if ($request->isMethod('post')) {
+        $validator = Validator::make($request->all(), [
+            'inputPassword' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*?[#?!@$%^&*-]).+$/',
+            'inputConfirmPassword' => 'required|same:inputPassword'
+        ]);
+
+        if ($request->isMethod('post') && !$validator->fails()) {
             $password = $request->input('inputPassword');
             $confirmPassword = $request->input('inputConfirmPassword');
 

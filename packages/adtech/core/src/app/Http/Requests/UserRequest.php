@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
                 return [
                     'contact_name' => 'required|min:3',
                     'email' => 'required|email|unique:mysql_core.adtech_core_users,email',
-                    'password' => 'required|between:3,32',
+                    'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*?[#?!@$%^&*-]).+$/',
                     'password_confirm' => 'required|same:password'
                 ];
             }
