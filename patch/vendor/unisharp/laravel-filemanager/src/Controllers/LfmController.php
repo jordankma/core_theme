@@ -15,6 +15,13 @@ class LfmController extends Controller
 
     public function __construct()
     {
+        $requestAll = request()->all();
+        if (count($requestAll) > 0) {
+            foreach ($requestAll as $key => $value) {
+                request()->merge(array($key => self::toURLFriendly($value)));
+            }
+        }
+
         $this->applyIniOverrides();
     }
 
@@ -50,7 +57,7 @@ class LfmController extends Controller
     function toURLFriendly( $str )
     {
         $str = self::removeAccents($str);
-        $str = preg_replace(array('/[^a-zA-Z0-9 \'-]/', '/[ -\']+/', '/^-|-$/'), array('', '-', ''), $str);
+        $str = preg_replace(array('/[^a-zA-Z0-9 \'_.-]/', '/[ -\']+/', '/^-|-$/'), array('', '-', ''), $str);
         $str = preg_replace('/-inc$/i', '', $str);
         return strtolower($str);
     }
