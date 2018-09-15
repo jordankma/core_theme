@@ -58,13 +58,15 @@ class GlobalController extends Controller
                             $menuHome = $this->getMenuHome()->content();
                             $menuBottom = $this->getMenuBottom()->content();
                             $configText = $this->getConfigText()->content();
+                            $fileAll = $this->getAllDocument()->content();
 
                             $version = json_decode($version)->data;
                             $menuHome = json_decode($menuHome)->data;
                             $menuBottom = json_decode($menuBottom)->data;
                             $configText = json_decode($configText)->data;
+                            $fileAll = json_decode($fileAll)->data;
 
-                            $obj_data = (object) array_merge((array) $version, (array) $configText, (array) $menuHome, (array) $menuBottom);
+                            $obj_data = (object) array_merge((array) $version, (array) $configText, (array) $menuHome, (array) $menuBottom, (array) $fileAll);
 
                             $data = '{
                                 "data": ' . json_encode($obj_data) . ',
