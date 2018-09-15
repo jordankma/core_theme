@@ -18,7 +18,9 @@ class LfmController extends Controller
         $requestAll = request()->all();
         if (count($requestAll) > 0) {
             foreach ($requestAll as $key => $value) {
-                request()->merge(array($key => self::toURLFriendly($value)));
+                if (is_string($value)) {
+                    request()->merge(array($key => self::toURLFriendly($value)));
+                }
             }
         }
 
