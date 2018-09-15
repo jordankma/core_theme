@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/test?time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/homepage?time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
@@ -52,6 +52,27 @@ class GlobalController extends Controller
                     switch ($parts['path']) {
                         case 'dev/get/test': {
                             return $this->getTest();
+                        }
+                        case 'dev/get/homepage': {
+                            $version = $this->getVersion()->content();
+                            $menuHome = $this->getMenuHome()->content();
+                            $menuBottom = $this->getMenuBottom()->content();
+                            $configText = $this->getConfigText()->content();
+
+                            $version = json_decode($version)->data;
+                            $menuHome = json_decode($menuHome)->data;
+                            $menuBottom = json_decode($menuBottom)->data;
+                            $configText = json_decode($configText)->data;
+
+                            $obj_data = (object) array_merge((array) $version, (array) $configText, (array) $menuHome, (array) $menuBottom);
+
+                            $data = '{
+                                "data": ' . json_encode($obj_data) . ',
+                                "success" : true,
+                                "message" : "ok!"
+                            }';
+                            $data = str_replace('null', '""', $data);
+                            return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
                         }
                         case 'dev/get/spliter': {
                             return $this->getSpliter($request);//ok

@@ -32,7 +32,7 @@ trait Document
 //        $domain_id
         $data = '{
                     "data": {
-                        "host": '. $host .',
+                        "host": "'. $host .'",
                         "domain_id": '. $domain_id .'
                     },
                     "success" : true,

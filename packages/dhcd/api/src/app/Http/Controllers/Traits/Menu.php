@@ -77,7 +77,7 @@ trait Menu
 
             $data = '{
                     "data": {
-                        "list_info_item_menu": ' . json_encode($list_menus) . '
+                        "list_item_menu_all": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
@@ -156,7 +156,7 @@ trait Menu
 
             $data = '{
                     "data": {
-                        "list_info_item_menu": ' . json_encode($list_menus) . '
+                        "list_item_menu_left": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
@@ -235,7 +235,7 @@ trait Menu
 
             $data = '{
                     "data": {
-                        "list_info_item_menu": ' . json_encode($list_menus) . '
+                        "list_item_menu_home": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
@@ -313,7 +313,7 @@ trait Menu
 
             $data = '{
                     "data": {
-                        "list_info_item_menu": ' . json_encode($list_menus) . '
+                        "list_item_menu_member": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
@@ -391,7 +391,7 @@ trait Menu
 
             $data = '{
                     "data": {
-                        "list_info_item_menu": ' . json_encode($list_menus) . '
+                        "list_item_menu_bottom": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
                     "message" : "ok!"
