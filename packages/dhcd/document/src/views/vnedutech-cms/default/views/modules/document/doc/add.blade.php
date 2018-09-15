@@ -199,7 +199,7 @@
 <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ config('site.url_static') .('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-multiselect/js/bootstrap-multiselect.js') }}" type="text/javascript"></script>
 
-<script src="{{ asset('/vendor/laravel-filemanager/js/lfm2.js?t=' . time()) }}" type="text/javascript" ></script>
+<script src="{{ config('site.url_static') .('/vendor/laravel-filemanager/js/lfm2.js?t=' . time()) }}" type="text/javascript" ></script>
 <!--end of page js-->
 <script>
 $(function () {
@@ -207,6 +207,9 @@ $(function () {
 });
      
 // var domain = "http://dhcd-release.vnedutech.vn/admin/laravel-filemanager/";
+// var prefix = '/admin/laravel-filemanager/';
+// $('#icon_doc').filemanager2('image', {prefix: prefix});
+// $('#lfm').filemanager2('application', {prefix: prefix});
 $('#icon_doc').filemanager2('image');
 $('#lfm').filemanager2('application');
 $(document).ready(function () {
