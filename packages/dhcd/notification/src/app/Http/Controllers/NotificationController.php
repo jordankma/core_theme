@@ -13,7 +13,7 @@ use Dhcd\Notification\App\Models\LogSent;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,DateTime;
+use Validator, DateTime, Cache;
 
 use Dhcd\Member\App\Models\Member;
 use Dhcd\Member\App\Models\Group;
@@ -263,6 +263,8 @@ class NotificationController extends Controller
                     'title' => $notification->name,
                     'body' => $notification->content
                 ];
+                Cache::forget('data_api_logs_sent_all');
+
                 $this->sendGCM( $message );
                 activity('notification')
                     ->performedOn($notification)
