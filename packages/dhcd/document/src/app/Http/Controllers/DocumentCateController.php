@@ -309,6 +309,9 @@ class DocumentCateController extends Controller {
                 if(!empty($data_insert)){
                     DB::table('dhcd_document_cate_has_member')->insert($data_insert);
                 }
+
+                Cache::forget('data_api_member_by_category_' . $document_cates->alias);
+
                 activity('document_cates')
                     ->performedOn($document_cates)
                     ->withProperties($request->all())

@@ -143,7 +143,6 @@ class DocumentController extends Controller
                     }
                 }
 
-
                 if (!empty($request->document_cate_id)) {
                     $document_cate_id = $request->document_cate_id;
                     $dochascate = [];
@@ -261,7 +260,7 @@ class DocumentController extends Controller
              }
              if($flag == true){
                 $document->updated_file_at = new DateTime();
-             }     
+             }
              if($document->document_id){
                   $document->update([
                         'name' => $request->name,
