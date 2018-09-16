@@ -232,7 +232,7 @@ trait Menu
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
 
-                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
+                    $updated_at = ($menu->updated_at > $updated_at) ? $menu->updated_at : $updated_at;
                 }
             }
             $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
@@ -315,7 +315,7 @@ trait Menu
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
 
-                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
+                    $updated_at = ($menu->updated_at > $updated_at) ? $menu->updated_at : $updated_at;
                 }
             }
             $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
@@ -398,7 +398,7 @@ trait Menu
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
 
-                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
+                    $updated_at = ($menu->updated_at > $updated_at) ? $menu->updated_at : $updated_at;
                 }
             }
             $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
