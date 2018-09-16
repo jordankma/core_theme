@@ -23,7 +23,7 @@ trait Logsent
             $data = Cache::get($cache_data);
         } else {
 
-            $log_sents = LogSentModel::orderBy('time_sent', 'desc')
+            $log_sents = LogSentModel::orderBy('updated_at', 'desc')
                 ->with('notification')->get();
             $list_log_sent = array();
             if (count($log_sents) > 0) {
