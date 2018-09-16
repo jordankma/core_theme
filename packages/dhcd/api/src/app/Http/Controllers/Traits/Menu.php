@@ -217,6 +217,7 @@ trait Menu
                 ->orderBy('sort')->get();
 
             $list_menus = [];
+            $updated_at = 0;
             $arrTypeData = ['tintuc', 'tailieu'];
             $arrTypeView = ['list', 'detail'];
             if (count($menus) > 0) {
@@ -230,11 +231,15 @@ trait Menu
                     $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
+
+                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
                 }
             }
+            $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
             $data = '{
                     "data": {
+                        "updated_at": '. $updated_at .',
                         "list_item_menu_home": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
@@ -295,6 +300,7 @@ trait Menu
                 ->orderBy('sort')->get();
 
             $list_menus = [];
+            $updated_at = 0;
             $arrTypeData = ['tintuc', 'tailieu'];
             $arrTypeView = ['list', 'detail'];
             if (count($menus) > 0) {
@@ -308,11 +314,15 @@ trait Menu
                     $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
+
+                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
                 }
             }
+            $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
             $data = '{
                     "data": {
+                        "updated_at": '. $updated_at .',
                         "list_item_menu_member": ' . json_encode($list_menus) . '
                     },
                     "success" : true,
@@ -373,6 +383,7 @@ trait Menu
                 ->orderBy('sort')->get();
 
             $list_menus = [];
+            $updated_at = 0;
             $arrTypeData = ['tintuc', 'tailieu'];
             $arrTypeView = ['list', 'detail'];
             if (count($menus) > 0) {
@@ -386,11 +397,15 @@ trait Menu
                     $item->type = in_array($menu->typeData, $arrTypeData) ? base64_encode($menu->typeData) : '';
                     $item->typeView = in_array($menu->typeView, $arrTypeView) ? base64_encode($menu->typeView) : '';
                     $list_menus[] = $item;
+
+                    $updated_at = ($item->updated_at > $updated_at) ? $item->updated_at : $updated_at;
                 }
             }
+            $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
             $data = '{
                     "data": {
+                        "updated_at": '. $updated_at .',
                         "list_item_menu_bottom": ' . json_encode($list_menus) . '
                     },
                     "success" : true,

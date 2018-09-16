@@ -288,6 +288,7 @@ trait Document
             $data = Cache::get($cache_data);
         } else {
 
+            $updated_at = 0;
             $documentCate = DocumentCate::where('alias', $alias)->first();
             if (null != $documentCate) {
                 //cat child
@@ -339,6 +340,8 @@ trait Document
                             $item->date_created = strtotime($child->created_at) * 1000;
                             $item->date_modified = strtotime($child->updated_at) * 1000;
                             $list_document[] = $item;
+
+                            $updated_at = ($child->updated_at > $updated_at) ? $child->updated_at : $updated_at;
                         }
                     }
 
@@ -390,12 +393,17 @@ trait Document
                             $item->date_modified = strtotime($file->updated_at) * 1000;
 
                             $list_document[] = $item;
+
+                            $updated_at = ($file->updated_at > $updated_at) ? $file->updated_at : $updated_at;
                             //
                         }
                     }
 
+                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
+
                     $data = '{
                         "data": {
+                            "updated_at": '. $updated_at .',
                             "list_document": ' . json_encode($list_document) . ',
                             "total_page": 1,
                             "current_page": 1
@@ -422,12 +430,17 @@ trait Document
                             $item->date_created = strtotime($child->created_at) * 1000;
                             $item->date_modified = strtotime($child->updated_at) * 1000;
                             $list_document[] = $item;
+
+                            $updated_at = ($child->updated_at > $updated_at) ? $child->updated_at : $updated_at;
                         }
                     }
+
+                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
                     $data = '{
                         "type": "category",
                         "data": {
+                            "updated_at": '. $updated_at .',
                             "list_document": ' . json_encode($list_document) . '
                         },
                         "success" : true,
@@ -485,13 +498,18 @@ trait Document
                             $item->date_modified = strtotime($file->updated_at) * 1000;
 
                             $list_document[] = $item;
+
+                            $updated_at = ($file->updated_at > $updated_at) ? $file->updated_at : $updated_at;
                             //
                         }
                     }
 
+                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
+
                     $data = '{
                         "type": "detail",
                         "data": {
+                            "updated_at": '. $updated_at .',
                             "list_document": ' . json_encode($list_document) . ',
                             "total_page": 1,
                             "current_page": 1
