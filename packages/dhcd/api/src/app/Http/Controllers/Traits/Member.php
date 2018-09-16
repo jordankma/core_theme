@@ -436,7 +436,7 @@ trait Member
                 $members = $list_members = [];
                 $category = DocumentCate::where('alias', $alias)->first();
                 if (null != $category) {
-                    $members = MemberModel::whereHas('documentCate', function ($query) use ($category) {
+                    $members = MemberModel::with('group')->whereHas('documentCate', function ($query) use ($category) {
                         $query->where('dhcd_document_cate_has_member.document_cate_id', $category->document_cate_id);
                         $query->where('dhcd_document_cate_has_member.deleted_at', null);
                     })->get();
@@ -444,6 +444,7 @@ trait Member
 
                 if (count($members) > 0) {
                     foreach ($members as $member) {
+
                         $item = new \stdClass();
                         $item->id = $member->member_id;
                         $item->name = base64_encode($member->name);
@@ -460,6 +461,10 @@ trait Member
                         $item->trinh_do_ly_luan = base64_encode($member->trinh_do_ly_luan);
                         $item->trinh_do_chuyen_mon = base64_encode($member->trinh_do_chuyen_mon);
                         $item->noi_lam_viec = base64_encode($member->address);
+                        $item->doan = '';
+                        if (count($member->group) > 0) {
+                            $item->doan = base64_encode($member->group[0]->name);
+                        }
 
                         $list_members[] = $item;
                     }
