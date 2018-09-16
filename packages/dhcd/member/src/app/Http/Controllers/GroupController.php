@@ -280,6 +280,9 @@ class GroupController extends Controller
                 if(!empty($data_insert)){
                     DB::table('dhcd_group_has_member')->insert($data_insert);
                 }
+
+                Cache::forget('data_api_member_by_group_' . $group->alias);
+
                 activity('group')
                     ->performedOn($group)
                     ->withProperties($request->all())
@@ -330,6 +333,8 @@ class GroupController extends Controller
                 foreach ($members as $key => $member) {
                     DB::table('dhcd_group_has_member')->where(['group_id' => $group_id,'member_id' => $member])->delete();
                 }
+                Cache::forget('data_api_member_by_group_' . $group->alias);
+
                 activity('group')
                     ->performedOn($group)
                     ->withProperties($request->all())
@@ -351,8 +356,7 @@ class GroupController extends Controller
         $group = Group::where('group_id', $group_id)->with('getMember')->first();
         $members = $group->getMember;
         return Datatables::of($members)
-            ->addIndexColumn()
-            ->addColumn('actions', function ($members) use ($group_id) {
+            ->addColumn('actions', function ($members) {
                 $actions = '<input id="'.$members->member_id.'" type="checkbox" value="" class="select-member">';
                 return $actions;
             })

@@ -110,7 +110,7 @@
             serverSide: true,
             ajax: '{{ route('dhcd.member.group.data.member',['group_id' => $group_id]) }}',
             columns: [
-                { data: 'DT_Row_Index', name: 'group_id' },
+                { data: 'DT_Row_Index', name: 'member_id' },
                 { data: 'name', name: 'name' },
                 // { data: 'position_id', name: 'position_id' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
