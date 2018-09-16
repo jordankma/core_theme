@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/member-by-group?is_category=1&alias=testdanhmuc3&time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/member-hotel-car?is_category=1&alias=llangiang&id=1&time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
@@ -77,9 +77,13 @@ class GlobalController extends Controller
                             return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
                         }
                         case 'dev/get/member-hotel-car': {
-                            $member = $this->getMemberByGroup($request);
-                            $hotel = $this->getHotel($request);
-                            $car = $this->getCar($request);
+                            $member = $this->getMemberByGroup($request)->content();
+                            $hotel = $this->getHotel($request)->content();
+                            $car = $this->getCar($request)->content();
+
+                            $member = json_decode($member)->data;
+                            $hotel = json_decode($hotel)->data;
+                            $car = json_decode($car)->data;
 
                             $obj_data = (object) array_merge((array) $member, (array) $hotel, (array) $car);
 
