@@ -98,9 +98,9 @@
                             </div>
                             <img id="holder" src="{{config('site.url_storage') . ($staff->img)}}" style="margin-top:15px;max-height:100px;">
                             <br>
-                            <label>Lộ trình</label>
+                            <label>Lộ trình (<span class="red">*</span>):</label>
                             <div class="form-group {{ $errors->first('note', 'has-error') }}">
-                                {!! Form::textarea('note', null, array('class' => 'form-control', 'autofocus'=>'autofocus')) !!}
+                                {!! Form::textarea('note', null, array('class' => 'form-control', 'required')) !!}
                                 <span class="help-block">{{ $errors->first('note', ':message') }}</span>
                             </div>
                         </div>

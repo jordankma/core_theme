@@ -34,7 +34,8 @@ class CarRequest extends FormRequest
             case 'POST': {
                 $rules=[
                     'car_num' => 'required',
-                    'car_bs' => 'required'
+                    'car_bs' => 'required',
+                    'note' => 'note'
                 ];
                 return $rules;
             }
@@ -42,7 +43,8 @@ class CarRequest extends FormRequest
                 $rules=[
                     'car_id' => 'required|numeric',
                     'car_num' => 'required',
-                    'car_bs' => 'required'
+                    'car_bs' => 'required',
+                    'note' => 'note'
                 ];
                 return $rules;
 
