@@ -123,7 +123,7 @@ class DocumentController extends Controller
                  'avatar' => $avatar,
                  'is_reserve' => $is_reserve,
                  'is_offical' => $is_offical, 
-                 'icon' => asset($request->icon)                
+                 'icon' => $request->icon
              ]);
              if($document->document_id){
 
@@ -272,7 +272,7 @@ class DocumentController extends Controller
                         'avatar' => $avatar,
                         'is_reserve' => $is_reserve,
                         'is_offical' => $is_offical,
-                        'icon' => asset($request->icon)
+                        'icon' => $request->icon
                   ]);
                   $document->save();
                  $document_id = $document->document_id;
