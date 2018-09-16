@@ -16,7 +16,7 @@ class Car extends Model {
 
     protected $primaryKey = 'car_id';
 
-    protected $fillable = ['car_num'];
+    protected $fillable = ['doan_id', 'car_num', 'car_bs'];
 
     protected $dates = ['deleted_at'];
 }

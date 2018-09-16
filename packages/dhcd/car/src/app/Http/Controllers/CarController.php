@@ -57,14 +57,14 @@ class CarController extends Controller
         }
         
         $car = new Car($request->all());
-        $car->doan_id = $request->has('doan_id') ? implode(",",$request->input('doan_id')) : null;
+        $car->doan_id = $request->has('doan_id') ? implode(",", $request->input('doan_id')) : null;
         $car->car_staff= $staff;
         $car->img= $img;
         $car->save();
 
         if ($car->car_id) {
 
-            $doan_arr = implode(',', $car->doan_id);
+            $doan_arr = explode(',', $car->doan_id);
             if (count($doan_arr) > 0) {
                 foreach ($doan_arr as $doan_id) {
                     Cache::forget('car_' . $doan_id);
