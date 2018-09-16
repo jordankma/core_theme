@@ -495,19 +495,26 @@ trait Member
                 $data = Cache::get($cache_data);
             } else {
 
-                $cache_name = 'member_by_group_' . $alias;
-                if (Cache::has($cache_name)) {
-                    $members = Cache::get($cache_name);
-                } else {
-                    $group = Group::where('alias', $alias)->first();
-                    if (null != $group) {
-                        $members = MemberModel::whereHas('group', function ($query) use ($group) {
-                            $query->where('dhcd_group_has_member.group_id', $group->group_id);
-                            $query->where('dhcd_group_has_member.deleted_at', null);
-                        })->get();
-                        $expiresAt = now()->addMinutes(3600);
-                        Cache::put($cache_name, $members, $expiresAt);
-                    }
+//                $cache_name = 'member_by_group_' . $alias;
+//                if (Cache::has($cache_name)) {
+//                    $members = Cache::get($cache_name);
+//                } else {
+//                    $group = Group::where('alias', $alias)->first();
+//                    if (null != $group) {
+//                        $members = MemberModel::whereHas('group', function ($query) use ($group) {
+//                            $query->where('dhcd_group_has_member.group_id', $group->group_id);
+//                            $query->where('dhcd_group_has_member.deleted_at', null);
+//                        })->get();
+//                        $expiresAt = now()->addMinutes(3600);
+//                        Cache::put($cache_name, $members, $expiresAt);
+//                    }
+//                }
+                $group = Group::where('alias', $alias)->first();
+                if (null != $group) {
+                    $members = MemberModel::whereHas('group', function ($query) use ($group) {
+                        $query->where('dhcd_group_has_member.group_id', $group->group_id);
+                        $query->where('dhcd_group_has_member.deleted_at', null);
+                    })->get();
                 }
 
                 $list_members = [];

@@ -341,7 +341,8 @@ trait Document
                             $item->date_modified = strtotime($child->updated_at) * 1000;
                             $list_document[] = $item;
 
-                            $updated_at = ($child->updated_at > $updated_at) ? $child->updated_at : $updated_at;
+                            $item_updated_at = strtotime($child->updated_at) * 1000;
+                            $updated_at = ($item_updated_at > $updated_at) ? $item_updated_at : $updated_at;
                         }
                     }
 
@@ -394,12 +395,11 @@ trait Document
 
                             $list_document[] = $item;
 
-                            $updated_at = ($file->updated_at > $updated_at) ? $file->updated_at : $updated_at;
+                            $item_updated_at = strtotime($file->updated_at) * 1000;
+                            $updated_at = ($item_updated_at > $updated_at) ? $item_updated_at : $updated_at;
                             //
                         }
                     }
-
-                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
                     $data = '{
                         "data": {
@@ -431,11 +431,10 @@ trait Document
                             $item->date_modified = strtotime($child->updated_at) * 1000;
                             $list_document[] = $item;
 
-                            $updated_at = ($child->updated_at > $updated_at) ? $child->updated_at : $updated_at;
+                            $item_updated_at = strtotime($child->updated_at) * 1000;
+                            $updated_at = ($item_updated_at > $updated_at) ? $item_updated_at : $updated_at;
                         }
                     }
-
-                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
                     $data = '{
                         "type": "category",
@@ -499,12 +498,11 @@ trait Document
 
                             $list_document[] = $item;
 
-                            $updated_at = ($file->updated_at > $updated_at) ? $file->updated_at : $updated_at;
+                            $item_updated_at = strtotime($file->updated_at) * 1000;
+                            $updated_at = ($item_updated_at > $updated_at) ? $item_updated_at : $updated_at;
                             //
                         }
                     }
-
-                    $updated_at = ($updated_at != 0) ? strtotime($updated_at) * 1000 : 0;
 
                     $data = '{
                         "type": "detail",
