@@ -85,6 +85,7 @@ class DocumentCateController extends Controller {
                 if (null != $cateParent) {
                     Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
                     Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                    Cache::forget('data_api_files_by_document_' . $cateParent->alias);
                 }
 
                 activity('document_cates')->performedOn($cate)->withProperties($request->all())->log('User: :' . Auth::user()->email . ' - Add document cate - document_cate: ' . $cate->document_cate_id . ', name: ' . $cate->name);
@@ -136,6 +137,7 @@ class DocumentCateController extends Controller {
                 if (null != $cateParent) {
                     Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
                     Cache::forget('api_doc_document_children_' . $cateParent->alias . '_all');
+                    Cache::forget('data_api_files_by_document_' . $cateParent->alias);
                 }
 
                 // save tag
