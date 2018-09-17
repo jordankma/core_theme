@@ -23,7 +23,7 @@ class SettingController extends BaseController
 
     public function appDebug()
     {
-        $filePath = base_path('apk/app-debug.apk');
+        $filePath = public_path('apk/app-debug.apk');
 
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
