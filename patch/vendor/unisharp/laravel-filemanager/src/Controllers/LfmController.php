@@ -22,8 +22,8 @@ class LfmController extends Controller
                     request()->merge(array($key => self::toURLFriendly($value)));
                 }
             }
+            dd(request()->all());
         }
-        dd(request()->all());
 
         $this->applyIniOverrides();
     }
