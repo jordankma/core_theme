@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => 'http://dhcd-release.vnedutech.vn',
+    'url' => 'http://release.dhcd.vnedutech.vn',
 
     /*
     |--------------------------------------------------------------------------

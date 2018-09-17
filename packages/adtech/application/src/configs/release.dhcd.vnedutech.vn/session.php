@@ -148,7 +148,7 @@ return [
     |
     */
 
-    'domain' => 'dhcd-release.vnedutech.vn',
+    'domain' => 'release.dhcd.vnedutech.vn',
 
     /*
     |--------------------------------------------------------------------------
