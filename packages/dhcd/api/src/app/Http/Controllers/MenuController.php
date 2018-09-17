@@ -31,7 +31,7 @@ class MenuController extends BaseController
 //            $expiresAt = now()->addDays(5);
 //            Cache::put($cache_domain, $domain_id, $expiresAt);
 //        }
-        $this->__domain_id= 10;
+        $this->__domain_id= 30;
     }
 
     public function getMenu()
