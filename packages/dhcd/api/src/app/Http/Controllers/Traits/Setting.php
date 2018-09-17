@@ -53,7 +53,7 @@ trait Setting
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_settings_config_text_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -113,7 +113,7 @@ trait Setting
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_settings_versions_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);

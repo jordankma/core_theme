@@ -31,7 +31,7 @@ trait Menu
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_menu_all_files_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -112,7 +112,7 @@ trait Menu
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_api_menus_frontend_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -191,7 +191,7 @@ trait Menu
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_api_menus_frontend_home_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -275,7 +275,7 @@ trait Menu
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_api_menus_frontend_member_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
@@ -358,7 +358,7 @@ trait Menu
 //        }
 
         //get cache
-        $domain_id = 6;
+        $domain_id= 10;
         $cache_data = 'data_api_api_menus_frontend_bottom_' . $domain_id;
         if (Cache::has($cache_data)) {
             $data = Cache::get($cache_data);
