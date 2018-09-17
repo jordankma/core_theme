@@ -3,7 +3,7 @@
  * Backend Routes
  */
 
-if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
+if (env('APP_URL') == 'https://files.dhcd.vnedutech.vn') {
     Route::group(array('prefix' => 'administrator'), function () {
         Route::group(['middleware' => ['adtech.auth']], function () {
             $namespace = '\UniSharp\LaravelFilemanager\Controllers';
