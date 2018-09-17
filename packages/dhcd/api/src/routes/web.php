@@ -5,10 +5,10 @@ Route::group(array('prefix' => $apiPrefix), function() {
     Route::get('tailieu-category', 'DocumentController@listDocCate')->name('dhcd.api.tailieu.category');
 });
 
-$apiPrefix = '/apk';
-Route::group(array('prefix' => $apiPrefix), function () {
-    Route::get('app-debug', 'SettingController@appDebug');
-});
+//$apiPrefix = '/apk';
+//Route::group(array('prefix' => $apiPrefix), function () {
+//    Route::get('app-debug', 'SettingController@appDebug');
+//});
 
 //if (App::environment('production')) {
     $apiPrefix = '/resource';
