@@ -23,6 +23,7 @@ class LfmController extends Controller
                 }
             }
         }
+        dd(request()->all());
 
         $this->applyIniOverrides();
     }
