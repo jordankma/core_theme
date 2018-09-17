@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => 'http://files.dhcd.vnedutech.vn',
+    'url' => 'https://files.dhcd.vnedutech.vn',
 
     /*
     |--------------------------------------------------------------------------
