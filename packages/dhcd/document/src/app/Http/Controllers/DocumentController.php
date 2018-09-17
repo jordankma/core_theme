@@ -142,7 +142,7 @@ class DocumentController extends Controller
                         TagItem::insert($insertTag);
                     }
                 }
-
+                 Cache::forget('data_api_api_all_document_cate');
                 if (!empty($request->document_cate_id)) {
                     $document_cate_id = $request->document_cate_id;
                     $dochascate = [];
@@ -276,6 +276,7 @@ class DocumentController extends Controller
                   ]);
                   $document->save();
                  $document_id = $document->document_id;
+                 Cache::forget('data_api_api_all_document_cate');
                  Cache::forget('api_doc_document_detail_' . $document->alias);
                  Cache::forget('data_api_api_doc_document_detail_' . $document->alias);
                  $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
@@ -357,6 +358,7 @@ class DocumentController extends Controller
         $document->save();
 
         $document_id = $request->document_id;
+        Cache::forget('data_api_api_all_document_cate');
         Cache::forget('api_doc_document_detail_' . $document->alias);
         Cache::forget('data_api_api_doc_document_detail_' . $document->alias);
         $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {

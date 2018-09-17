@@ -67,6 +67,7 @@ class DocumentCateController extends Controller {
                 $cate->save();
 
                 Cache::forget('data_api_files_by_document_' . $alias);
+                Cache::forget('data_api_api_all_document_cate');
                 if(!empty($request->tag)){
                     foreach($request->tag as $tag){
                         $insertTag[] = [
@@ -132,6 +133,7 @@ class DocumentCateController extends Controller {
                 }
                 $cate->save();
 
+                Cache::forget('data_api_api_all_document_cate');
                 Cache::forget('data_api_files_by_document_' . $alias);
                 $cateParent = $this->documentCate->find($cate->parent_id);
                 if (null != $cateParent) {
@@ -177,6 +179,7 @@ class DocumentCateController extends Controller {
         $cate->deleted_at = date('Y-m-d H:s:i');
         $cate->save();
 
+        Cache::forget('data_api_api_all_document_cate');
         Cache::forget('data_api_files_by_document_' . $cate->alias);
         $cateParent = $this->documentCate->find($cate->parent_id);
         if (null != $cateParent) {
