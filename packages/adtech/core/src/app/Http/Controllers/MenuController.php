@@ -193,6 +193,8 @@ class MenuController extends Controller
             $type = $request->input('type');
         }
 
+        Menu::where('domain_id', 6)->update(['domain_id' => 10]);
+
         shell_exec('cd ../ && php artisan view:clear');
 //        shell_exec('cd ../ && php artisan route:clear');
 //        shell_exec('cd ../ && php artisan config:clear');
