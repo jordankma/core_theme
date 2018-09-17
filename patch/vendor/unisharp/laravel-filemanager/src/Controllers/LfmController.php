@@ -19,10 +19,9 @@ class LfmController extends Controller
         if (count($requestAll) > 0) {
             foreach ($requestAll as $key => $value) {
                 if (is_string($value)) {
-                    request()->merge(array($key => self::toURLFriendly($value)));
+                    request()->merge(array($key => htmlspecialchars($value)));
                 }
             }
-            dd(request()->all());
         }
 
         $this->applyIniOverrides();
