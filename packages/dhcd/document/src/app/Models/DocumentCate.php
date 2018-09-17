@@ -34,6 +34,10 @@ class DocumentCate extends Model {
         return $this->belongsToMany('Dhcd\Member\App\Models\Member', 'dhcd_document_cate_has_member', 'document_cate_id', 'member_id');
     }
 
+    public function getDocument(){
+        return $this->belongsToMany(DocumentCate::class, 'dhcd_document_has_cate','document_cate_id','document_id');
+    }
+
     public static function showCategories($cates,$parent_current = 0,$prarent_id = 0, $char = ''){
              
         foreach($cates as $key => $item){

@@ -352,6 +352,7 @@ class DocumentController extends Controller
         if(empty($request->only('document_id'))){
             return redirect()->route('dhcd.document.doc.manage')->withErrors(['Không tìm thấy tài liệu cần xóa']);
         }
+
         $document = $this->documentRepository->find($request->document_id);
         $document->status = 0;
         $document->deleted_at = date('Y-m-d H:s:i');        
@@ -361,20 +362,16 @@ class DocumentController extends Controller
         Cache::forget('data_api_api_all_document_cate');
         Cache::forget('api_doc_document_detail_' . $document->alias);
         Cache::forget('data_api_api_doc_document_detail_' . $document->alias);
-        $arrParent = Document::with(['getDocumentCate' => function ($query) use ($document_id) {
+
+        $arrParent = DocumentCate::whereHas('getDocument', function ($query) use ($document_id) {
             $query->where('dhcd_document_has_cate.document_id', $document_id);
-        }])->get();
+        })->get();
 
         if (count($arrParent) > 0) {
             foreach ($arrParent as $item) {
 
-                if (count($item->getDocumentCate) > 0) {
-                    foreach ($item->getDocumentCate as $cate) {
-                        Cache::forget('api_doc_document_page_' . $cate->alias . '_all');
-                        Cache::forget('data_api_files_by_document_' . $cate->alias);
-                    }
-                }
-
+                Cache::forget('api_doc_document_page_' . $item->alias . '_all');
+                Cache::forget('data_api_files_by_document_' . $item->alias);
             }
         }
         

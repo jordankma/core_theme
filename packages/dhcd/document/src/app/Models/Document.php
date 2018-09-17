@@ -35,6 +35,7 @@ class Document extends Model {
     public function getDocumentCate(){
         return $this->belongsToMany(DocumentCate::class, 'dhcd_document_has_cate','document_id','document_cate_id');
     }
+
     public function getTags(){
         return $this->belongsToMany(Tag::class, 'dhcd_tags_item','document_id', 'tag_id');
     }
