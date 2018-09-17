@@ -27,7 +27,7 @@ trait Setting
                     "success" : true,
                     "message" : "ok!",
                     "data": {
-                        "domain" : "dhcd-release.vnedutech.vn"
+                        "domain" : "release.dhcd.vnedutech.vn"
                     }
                 }';
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');

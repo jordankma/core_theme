@@ -5,7 +5,7 @@
 
         <?php
         foreach($item as $key => $value) {
-            $item->$key = str_replace('http://dhcd-release.vnedutech.vn', 'http://files.dhcd.vnedutech.vn', $value);
+            $item->$key = str_replace('https://release.dhcd.vnedutech.vn', 'https://files.dhcd.vnedutech.vn', $value);
         }
         ?>
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 img-row">

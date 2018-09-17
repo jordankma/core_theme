@@ -93,7 +93,7 @@ class DocumentController extends Controller
                      $timer = time() * 1000;
                      $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
                      $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
-                     $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
+                     $result = file_get_contents('https://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                      $result = json_decode($result);
 
                      if (property_exists($result, "data")) {
@@ -223,7 +223,7 @@ class DocumentController extends Controller
                          $timer = time() * 1000;
                          $pathFile = substr($path_term, strpos($path_term, '/files/'), strlen($path_term));
                          $pathFile = $this->my_simple_crypt('dev/get/spliter?path_file='.$pathFile.'&time='.$timer);
-                         $result = file_get_contents('http://files.dhcd.vnedutech.vn/resource/' . $pathFile);
+                         $result = file_get_contents('https://files.dhcd.vnedutech.vn/resource/' . $pathFile);
                          $result = json_decode($result);
 
                          if (property_exists($result, "data")) {

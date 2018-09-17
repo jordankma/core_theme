@@ -29,10 +29,13 @@ class DashboardController extends Controller
 
     public function filemanage()
     {
-        if (env('APP_URL') == 'http://files.dhcd.vnedutech.vn') {
+//        if (env('APP_URL') == 'http://dev.local.vn') {
+//            $domain = '/admin/laravel-filemanager';
+//        } else
+        if (env('APP_URL') == 'https://files.dhcd.vnedutech.vn') {
             $domain = '/admin/laravel-filemanager';
         } else {
-            $domain = 'http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager';
+            $domain = 'https://release.dhcd.vnedutech.vn/administrator/laravel-filemanager';
         }
         return view('ADTECH-CORE::modules.core.file.manage', compact('domain'));
     }

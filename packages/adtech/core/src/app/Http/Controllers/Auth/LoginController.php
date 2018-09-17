@@ -43,6 +43,9 @@ class LoginController extends Controller
                 $request->session()->forget('count_login');
                 \Session::flash('flash_messenger', trans('adtech-core::messages.login_success'));
                 $routeName = $routePrefix == config('site.admin_prefix') ? 'backend.homepage' : 'frontend.homepage';
+                if (env('APP_URL') == 'https://files.dhcd.vnedutech.vn') {
+                    $routeName = 'adtech.core.file.manager';
+                }
                 return redirect()->intended(route($routeName));
             }
         }
