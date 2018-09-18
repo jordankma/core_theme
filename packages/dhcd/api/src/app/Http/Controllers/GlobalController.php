@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/member-hotel-car?is_category=1&alias=llangiang&id=1&time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/homepage?time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
@@ -58,15 +58,16 @@ class GlobalController extends Controller
                             $menuHome = $this->getMenuHome()->content();
                             $menuBottom = $this->getMenuBottom()->content();
                             $configText = $this->getConfigText()->content();
-                            $fileAll = $this->getAllDocument()->content();
+//                            $fileAll = $this->getAllDocument()->content();
 
                             $version = json_decode($version)->data;
                             $menuHome = json_decode($menuHome)->data;
                             $menuBottom = json_decode($menuBottom)->data;
                             $configText = json_decode($configText)->data;
-                            $fileAll = json_decode($fileAll)->data;
+//                            $fileAll = json_decode($fileAll)->data;
 
-                            $obj_data = (object) array_merge((array) $version, (array) $configText, (array) $menuHome, (array) $menuBottom, (array) $fileAll);
+                            $obj_data = (object) array_merge((array) $version, (array) $configText, (array) $menuHome, (array) $menuBottom);
+                            $obj_data->list_document_cates = [];
 
                             $data = '{
                                 "data": ' . json_encode($obj_data) . ',
