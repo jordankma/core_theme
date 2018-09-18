@@ -240,6 +240,8 @@ trait Document
 
                             //
                         }
+                    } else {
+                        continue;
                     }
 
                     $item = new \stdClass();
