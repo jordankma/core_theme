@@ -27,7 +27,7 @@ class GlobalController extends Controller
 
     public function get(Request $request, $route_hash)
     {
-        $encrypted = $this->my_simple_crypt( 'dev/get/homepage?time='.time()*1000, 'e' );
+        $encrypted = $this->my_simple_crypt( 'dev/get/events?time='.time()*1000, 'e' );
         $decrypted = $this->my_simple_crypt( $route_hash, 'd' );
         $parts = parse_url($decrypted);
 
