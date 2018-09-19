@@ -226,12 +226,12 @@ class SettingController extends Controller
 
     public function resetCache(Request $request) {
         if ($request->has('cache_name')) {
+            if ($request->input('cache_name') == 'all') {
+                Cache::flush();
+                return redirect()->route('adtech.core.setting.memcached')->with('success', trans('adtech-core::messages.success.create'));
+            }
             if (Cache::has($request->input('cache_name'))) {
-                if ($request->input('cache_name') == 'all') {
-                    Cache::flush();
-                } else {
-                    Cache::forget($request->input('cache_name'));
-                }
+                Cache::forget($request->input('cache_name'));
                 return redirect()->route('adtech.core.setting.memcached')->with('success', trans('adtech-core::messages.success.create'));
             }
         }
