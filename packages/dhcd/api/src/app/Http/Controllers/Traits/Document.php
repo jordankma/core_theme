@@ -53,7 +53,7 @@ trait Document
         $listFile = [];
         if ($request->has('path_file')) {
             $client = new \GuzzleHttp\Client();
-            $pathFile = "/storage/dhcd/public" . $request->input('path_file');
+            $pathFile = "/data/html/static.dhcd.vnedutech.vn/dhcd/public" . $request->input('path_file');
             $res = $client->request('GET', 'http://192.168.0.51:8079/split?path=' . $pathFile);
 
             $filename = substr($request->input('path_file'), strrpos($request->input('path_file'), '/') + 1, strlen($request->input('path_file')));
