@@ -58,14 +58,13 @@ class RoleController extends Controller
     public function delete(RoleRequest $request)
     {
         $role_id = $request->input('role_id');
-        $role = $this->role->find($role_id);
+        $role = Role::with('users')->find($role_id);
 
         if ($role->permission_locked == 1) {
             return redirect()->route('adtech.core.role.manage')->with('error', trans('adtech-core::messages.error.permission'));
         }
 
-        if (null != $role) {
-
+        if (null != $role && count($role->users) == 0) {
             $this->role->delete($role_id);
             activity('role')
                 ->performedOn($role)

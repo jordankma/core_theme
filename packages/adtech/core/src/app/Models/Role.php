@@ -30,4 +30,9 @@ class Role extends Model
     {
         return AdtechAcl::getInstance()->isAllow($routeName, $params, $this);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('Adtech\Core\App\Models\User', 'adtech_core_users_role', 'role_id', 'user_id')->withTimestamps();
+    }
 }
