@@ -377,6 +377,10 @@ trait Member
                         }
                     }
 
+                    if ($group->group_id == 562) {
+                        continue;
+                    }
+
                     $item = new \stdClass();
                     $item->id = $group->group_id;
                     $item->name = base64_encode($group->name);
