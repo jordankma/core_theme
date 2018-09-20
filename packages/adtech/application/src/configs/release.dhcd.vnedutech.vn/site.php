@@ -69,7 +69,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'url_storage' => 'https://static.dhcd.vnedutech.vn',
-    'url_static' => 'https://static.dhcd.vnedutech.vn',
+    'url_static' => 'http://static-org.dhcd.vnedutech.vn',
     'api_prefix' => '/resource/dev/get',
     'admin_prefix' => '/admin',
     'homepage' => [
