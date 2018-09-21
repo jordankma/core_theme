@@ -404,7 +404,19 @@ class DocumentCateController extends Controller {
             $document_cate_id = $request->input('document_cate_id');
             if(!empty($keyword)){
                 $list_member_old = DocumentCateHasMember::where('document_cate_id',$document_cate_id)->select('member_id')->get();
-                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+//                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+                $arrKeyword = explode(',', $keyword);
+                if (count($arrKeyword) > 0) {
+                    $list_members = Member::whereNotIn('member_id', $list_member_old)
+                    ->where(function ($query) use ($arrKeyword) {
+                        foreach ($arrKeyword as $keysearch) {
+                            $query->orWhere('name', $keysearch);
+                        }
+                    })->get();
+                } else {
+                    $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+                }
+
                 if(!empty($list_members)){
                     foreach($list_members as $member){
                         $data[] = [
