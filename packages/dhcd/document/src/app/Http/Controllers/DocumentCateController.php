@@ -409,7 +409,7 @@ class DocumentCateController extends Controller {
                 $list_members = Member::whereNotIn('member_id', $list_member_old)
                 ->where(function ($query) use ($arrKeyword) {
                     foreach ($arrKeyword as $keysearch) {
-                        $query->orWhere('LOWER(name)', strtolower($keysearch));
+                        $query->orWhere('name', $keysearch);
                     }
                 })->get();
             } else {
