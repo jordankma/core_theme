@@ -31,8 +31,17 @@ class Controller extends BaseController
 
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
         $domain_id = 0;
+
         if ($host) {
-            $domain = Domain::where('name', $host)->first();
+
+            if (Cache::has('host_' . $host)) {
+                $domain = Cache::get('host_' . $host);
+            } else {
+                $domain = Domain::where('name', $host)->first();
+                $expiresAt = now()->addDays(1);
+                Cache::put('host_' . $host, $domain, $expiresAt);
+            }
+
             if (null != $domain) {
                 $this->currentDomain = $domain;
                 $domain_id = $domain->domain_id;
@@ -120,7 +129,8 @@ class Controller extends BaseController
             $locales = Cache::get('locales' . $this->domainDefault);
         } else {
             $locales = Locale::where('domain_id', $this->domainDefault)->get();
-            Cache::put('locales' . $this->domainDefault, $locales);
+            $expiresAt = now()->addDays(1);
+            Cache::put('locales' . $this->domainDefault, $locales, $expiresAt);
         }
 
         //get setting value
@@ -130,7 +140,8 @@ class Controller extends BaseController
             $settings = Cache::get('settings' . $this->domainDefault);
         } else {
             $settings = Setting::where('domain_id', $this->domainDefault)->get();
-            Cache::put('settings' . $this->domainDefault, $settings);
+            $expiresAt = now()->addDays(1);
+            Cache::put('settings' . $this->domainDefault, $settings, $expiresAt);
         }
         $settingView = array('logo' => '', 'logo_mini' => '', 'title' => '', 'favicon' => '', 'logo_link' => '');
         if (count($settings) > 0) {
@@ -203,7 +214,8 @@ class Controller extends BaseController
             $menus = Cache::get('menus' . $domain_id);
         } else {
             $menus = Menu::where('domain_id', $domain_id)->where('type', 0)->orderBy('parent')->orderBy('sort')->get();
-            Cache::put('menus' . $domain_id, $menus);
+            $expiresAt = now()->addDays(1);
+            Cache::put('menus' . $domain_id, $menus, $expiresAt);
         }
 
         $this->_menuList = new Collection();
