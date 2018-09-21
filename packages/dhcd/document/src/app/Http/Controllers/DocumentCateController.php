@@ -399,32 +399,30 @@ class DocumentCateController extends Controller {
 
     public function searchMember(Request $request) {
         $data = [];
-        if ($request->ajax()) {
-            $keyword = $request->input('keyword');
-            $document_cate_id = $request->input('document_cate_id');
-            if(!empty($keyword)){
-                $list_member_old = DocumentCateHasMember::where('document_cate_id',$document_cate_id)->select('member_id')->get();
+        $keyword = $request->input('keyword');
+        $document_cate_id = $request->input('document_cate_id');
+        if(!empty($keyword)){
+            $list_member_old = DocumentCateHasMember::where('document_cate_id',$document_cate_id)->select('member_id')->get();
 //                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
-                $arrKeyword = explode(',', $keyword);
-                if (count($arrKeyword) > 0) {
-                    $list_members = Member::whereNotIn('member_id', $list_member_old)
-                    ->where(function ($query) use ($arrKeyword) {
-                        foreach ($arrKeyword as $keysearch) {
-                            $query->orWhere('LOWER(name)', strtolower($keysearch));
-                        }
-                    })->get();
-                } else {
-                    $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
-                }
-
-                if(!empty($list_members)){
-                    foreach($list_members as $member){
-                        $data[] = [
-                            'name' => $member->name,
-                            'member_id' => $member->member_id,
-                            'position_current' => $member->position_current
-                        ];
+            $arrKeyword = explode(',', $keyword);
+            if (count($arrKeyword) > 0) {
+                $list_members = Member::whereNotIn('member_id', $list_member_old)
+                ->where(function ($query) use ($arrKeyword) {
+                    foreach ($arrKeyword as $keysearch) {
+                        $query->orWhere('LOWER(name)', strtolower($keysearch));
                     }
+                })->get();
+            } else {
+                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+            }
+
+            if(!empty($list_members)){
+                foreach($list_members as $member){
+                    $data[] = [
+                        'name' => $member->name,
+                        'member_id' => $member->member_id,
+                        'position_current' => $member->position_current
+                    ];
                 }
             }
         }
