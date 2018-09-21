@@ -391,6 +391,15 @@ trait Member
 
                     $list_member_groups[] = $item;
                 }
+                if (count($memberGroup) % 2 != 0) {
+                    $item = new \stdClass();
+                    $item->id = 9999;
+                    $item->name = base64_encode('');
+                    $item->desc = base64_encode('');
+                    $item->alias = base64_encode('');
+                    $item->image = '';
+                    $list_member_groups[] = $item;
+                }
             }
 
             $data = '{
