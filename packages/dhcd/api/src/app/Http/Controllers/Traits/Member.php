@@ -661,7 +661,7 @@ trait Member
                 $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
                 $member_info = [
                     "id" => $member->member_id,
-                    "anh_ca_nhan" => (self::is_url($member->avatar)) ? $member->avatar : $icon_link,
+                    "anh_ca_nhan" => (self::is_url($member->avatar)) ? base64_encode($member->avatar) : base64_encode($icon_link),
                     "ten_hien_thi" => base64_encode($member->name),
                     "email" => base64_encode($member->email),
                     "so_dien_thoai" => base64_encode($member->phone),
