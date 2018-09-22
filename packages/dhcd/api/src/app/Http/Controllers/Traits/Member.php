@@ -391,7 +391,7 @@ trait Member
 
                     $list_member_groups[] = $item;
                 }
-                if (count($memberGroup) % 2 != 0) {
+                if (count($list_member_groups) % 2 != 0) {
                     $item = new \stdClass();
                     $item->id = 9999;
                     $item->name = base64_encode('');
