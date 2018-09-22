@@ -171,18 +171,24 @@
             delay(function(){
                 var keyword = $('.typeahead').val();
                 var url = '/admin/dhcd/document/cate/search/member?keyword='+keyword+'&document_cate_id='+document_cate_id;
+                var checkStatus = (keyword.indexOf(',') > 0) ? 'checked="checked"' : '';
                 $.get(url, function(data){
                     var i,text = '';
                     var obj_data = JSON.parse(data);
                     if(obj_data.length>0){
                         for (i in obj_data) {
-                            text += '<li class="list-group-item"><input id="m-del-'+obj_data[i].member_id+'" type="checkbox" name="list_members[]" value="'+obj_data[i].member_id+'"><label for="m-del-'+obj_data[i].member_id+'">'+'  ' + escapeHtml(obj_data[i].name) + ' - ' + obj_data[i].position_current + '</label></li>';
+                            text += '<li class="list-group-item">' +
+                                        '<label for="m-del-'+obj_data[i].member_id+'">' +
+                                            '<input id="m-del-'+obj_data[i].member_id+'" type="checkbox" '+ checkStatus +' name="list_members[]" value="'+obj_data[i].member_id+'"> ' +
+                                            escapeHtml(obj_data[i].name) + ' - ' + obj_data[i].position_current + '' +
+                                        '</label>' +
+                                    '</li>';
                         }
                         $('#list_members').html('');
                         $('#list_members').append(text);
                     }
                     else{
-                        $('#list_members').html('<span class="red"> Không tìm thấy người dùng thỏa mãn </span>');        
+                        $('#list_members').html('<span class="red"> Không tìm thấy người dùng thỏa mãn </span>');
                     }
                 });
             }, 500 );
