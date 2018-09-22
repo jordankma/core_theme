@@ -455,8 +455,8 @@ trait Member
                             $data = base64_encode(implode('|', $member));
                             $item = new \stdClass();
                             $item->id = 'json_' . $data;
-                            $item->name = $member[1];
-                            $item->doan = $member[3];
+                            $item->name = base64_encode($member[1]);
+                            $item->doan = base64_encode($member[3]);
                             $list_members[] = $item;
                         }
                     }
