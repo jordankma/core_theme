@@ -391,6 +391,9 @@ trait Member
 
                     $list_member_groups[] = $item;
                 }
+
+                usort($list_member_groups, "cmp");
+
                 if (count($list_member_groups) % 2 != 0) {
                     $item = new \stdClass();
                     $item->id = 9999;
@@ -775,5 +778,10 @@ trait Member
         if(DB::table('dhcd_member')->insert($data_insert)){
             echo 'done';
         }
+    }
+
+    function cmp($a, $b)
+    {
+        return strcmp($a->name, $b->name);
     }
 }
