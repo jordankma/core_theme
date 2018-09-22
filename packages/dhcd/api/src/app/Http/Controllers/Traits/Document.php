@@ -203,7 +203,7 @@ trait Document
                                         $files['name'] = '';
                                         $files['type'] = 'pdf';
                                         $files['filesize'] = $file_split['filesize'];
-                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                                         $listFile[] = $files;
                                     }
@@ -362,7 +362,7 @@ trait Document
                                         $files['name'] = '';
                                         $files['type'] = 'pdf';
                                         $files['filesize'] = $file_split['filesize'];
-                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                                         $listFile[] = $files;
                                     }
@@ -465,7 +465,7 @@ trait Document
                                         $files['name'] = '';
                                         $files['type'] = 'pdf';
                                         $files['filesize'] = $file_split['filesize'];
-                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                                        $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                                         $listFile[] = $files;
                                     }
@@ -600,7 +600,7 @@ trait Document
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
                                     $files['filesize'] = $file_split['filesize'];
-                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                                     $listFile[] = $files;
                                 }
@@ -693,7 +693,7 @@ trait Document
                                     $files['name'] = '';
                                     $files['type'] = 'pdf';
                                     $files['filesize'] = $file_split['filesize'];
-                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                                    $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                                     $listFile[] = $files;
                                 }
@@ -779,7 +779,7 @@ trait Document
                             $files['name'] = '';
                             $files['type'] = 'pdf';
                             $files['filesize'] = $file_split['filesize'];
-                            $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                            $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                             $listFile[] = $files;
                         }
@@ -852,7 +852,7 @@ trait Document
                             $files['name'] = '';
                             $files['type'] = 'pdf';
                             $files['filesize'] = $file_split['filesize'];
-                            $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] : '';
+                            $files['path'] = ($file_split['path'] != '') ? config('site.url_storage') . $file_split['path'] . '?t=' . time() : '';
 
                             $listFile[] = $files;
                         }
