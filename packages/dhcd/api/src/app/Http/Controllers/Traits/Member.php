@@ -392,7 +392,7 @@ trait Member
                     $list_member_groups[] = $item;
                 }
 
-                usort($list_member_groups, "cmp");
+//                usort($list_member_groups, "cmp");
 
                 if (count($list_member_groups) % 2 != 0) {
                     $item = new \stdClass();
