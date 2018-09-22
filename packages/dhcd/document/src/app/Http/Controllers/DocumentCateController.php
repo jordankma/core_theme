@@ -178,6 +178,7 @@ class DocumentCateController extends Controller {
 
                 Cache::forget('data_api_api_all_document_cate');
                 Cache::forget('data_api_files_by_document_' . $alias);
+                Cache::forget('data_api_member_by_category_' . $alias);
                 $cateParent = $this->documentCate->find($cate->parent_id);
                 if (null != $cateParent) {
                     Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
