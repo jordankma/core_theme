@@ -449,7 +449,7 @@ trait Member
                 $list_members = [];
                 $category = DocumentCate::where('alias', $alias)->first();
                 if (null != $category) {
-                    $members = json_decode($category->member_json);
+                    $members = json_decode($category->member_json, true);
                     if (count($members) > 0) {
                         foreach ($members as $member) {
                             $data = base64_encode(implode('|', $member));
