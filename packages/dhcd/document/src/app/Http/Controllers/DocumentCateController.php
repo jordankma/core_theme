@@ -51,12 +51,33 @@ class DocumentCateController extends Controller {
                     'icon' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
+            //Kiểm tra file
+            $rows = [];
+            if ($request->hasFile('memberFile')) {
+                $file = $request->memberFile;
+                $path = $file->move('excels', $file->getClientOriginalName());
+                $pathFile = public_path($path->getPathname());
+                $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($pathFile);
+                $worksheet = $spreadsheet->getActiveSheet();
+
+                foreach ($worksheet->getRowIterator() AS $key => $row) {
+                    $cellIterator = $row->getCellIterator();
+                    $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+                    $cells = [$key];
+                    foreach ($cellIterator as $cell) {
+                        $cells[] = $cell->getValue();
+                    }
+                    $rows[] = $cells;
+                }
+            }
+
             $cate = DocumentCate::create([
                         'name' => $request->name,
                         'alias' => $this->to_slug($request->name),
                         'icon' => $request->icon,
                         'sort' => $request->sort,
                         'descript' => $request->descript,
+                        'member_json' => json_encode($rows),
                         'parent_id' => $request->parent_id
             ]);
             //save tag
@@ -120,6 +141,28 @@ class DocumentCateController extends Controller {
         if (!$validator->fails()) {
             $cate = $this->documentCate->find($request->document_cate_id);
             if (null != $cate) {
+
+                //Kiểm tra file
+                $rows = [];
+                if ($request->hasFile('memberFile')) {
+                    $file = $request->memberFile;
+                    $path = $file->move('excels', $file->getClientOriginalName());
+                    $pathFile = public_path($path->getPathname());
+                    $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($pathFile);
+                    $worksheet = $spreadsheet->getActiveSheet();
+
+                    foreach ($worksheet->getRowIterator() AS $key => $row) {
+                        $cellIterator = $row->getCellIterator();
+                        $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+                        $cells = [$key];
+                        foreach ($cellIterator as $cell) {
+                            $cells[] = $cell->getValue();
+                        }
+                        $rows[] = $cells;
+                    }
+                    $cate->member_json = json_encode($rows);
+                }
+
                 $alias = $this->to_slug($request->name) . $request->document_cate_id;
                 $cate->name = $request->name;
                 $cate->alias = $alias;

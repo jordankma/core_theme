@@ -19,7 +19,7 @@ class DocumentCate extends Model {
 
     protected $primaryKey = 'document_cate_id';
 
-    protected $fillable = ['name','parent_id','icon','alias', 'descript', 'sort'];
+    protected $fillable = ['name','parent_id','icon','alias', 'descript', 'member_json', 'sort'];
     
     protected $dates = ['deleted_at'];
     
