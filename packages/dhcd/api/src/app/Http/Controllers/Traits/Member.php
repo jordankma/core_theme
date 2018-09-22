@@ -446,42 +446,54 @@ trait Member
 //                    }
 //                }
 
-                $members = $list_members = [];
+                $list_members = [];
                 $category = DocumentCate::where('alias', $alias)->first();
                 if (null != $category) {
-                    $members = MemberModel::with('group')->whereHas('documentCate', function ($query) use ($category) {
-                        $query->where('dhcd_document_cate_has_member.document_cate_id', $category->document_cate_id);
-                        $query->where('dhcd_document_cate_has_member.deleted_at', null);
-                    })->get();
-                }
-
-                if (count($members) > 0) {
-                    foreach ($members as $member) {
-
-                        $item = new \stdClass();
-                        $item->id = $member->member_id;
-                        $item->name = base64_encode($member->name);
-                        $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
-                        $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : $icon_link;
-                        $item->ten_hien_thi = base64_encode($member->name);
-                        $item->email = base64_encode($member->email);
-                        $item->so_dien_thoai = base64_encode($member->phone);
-                        $item->doan_thanh_nien = base64_encode($member->don_vi);
-                        $item->ngay_vao_dang = base64_encode($member->ngay_vao_dang);
-                        $item->dan_toc = base64_encode($member->dan_toc);
-                        $item->chuc_vu = base64_encode($member->position_current);
-                        $item->ton_giao = base64_encode($member->ton_giao);
-                        $item->trinh_do_ly_luan = base64_encode($member->trinh_do_ly_luan);
-                        $item->trinh_do_chuyen_mon = base64_encode($member->trinh_do_chuyen_mon);
-                        $item->noi_lam_viec = base64_encode($member->address);
-                        $item->doan = '';
-                        if (count($member->group) > 0) {
-                            $item->doan = base64_encode($member->group[0]->name);
+                    $members = json_decode($category->member_json);
+                    if (count($members) > 0) {
+                        foreach ($members as $member) {
+                            $data = base64_encode(implode('|', $member));
+                            $item = new \stdClass();
+                            $item->id = 'json_' . $data;
+                            $item->name = $member[1];
+                            $item->doan = $member[3];
+                            $list_members[] = $item;
                         }
-
-                        $list_members[] = $item;
                     }
+
+//                    $members = MemberModel::with('group')->whereHas('documentCate', function ($query) use ($category) {
+//                        $query->where('dhcd_document_cate_has_member.document_cate_id', $category->document_cate_id);
+//                        $query->where('dhcd_document_cate_has_member.deleted_at', null);
+//                    })->get();
                 }
+
+//                if (count($members) > 0) {
+//                    foreach ($members as $member) {
+//
+//                        $item = new \stdClass();
+//                        $item->id = $member->member_id;
+//                        $item->name = base64_encode($member->name);
+//                        $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+//                        $item->anh_ca_nhan = (self::is_url($member->avatar)) ? $member->avatar : $icon_link;
+//                        $item->ten_hien_thi = base64_encode($member->name);
+//                        $item->email = base64_encode($member->email);
+//                        $item->so_dien_thoai = base64_encode($member->phone);
+//                        $item->doan_thanh_nien = base64_encode($member->don_vi);
+//                        $item->ngay_vao_dang = base64_encode($member->ngay_vao_dang);
+//                        $item->dan_toc = base64_encode($member->dan_toc);
+//                        $item->chuc_vu = base64_encode($member->position_current);
+//                        $item->ton_giao = base64_encode($member->ton_giao);
+//                        $item->trinh_do_ly_luan = base64_encode($member->trinh_do_ly_luan);
+//                        $item->trinh_do_chuyen_mon = base64_encode($member->trinh_do_chuyen_mon);
+//                        $item->noi_lam_viec = base64_encode($member->address);
+//                        $item->doan = '';
+//                        if (count($member->group) > 0) {
+//                            $item->doan = base64_encode($member->group[0]->name);
+//                        }
+//
+//                        $list_members[] = $item;
+//                    }
+//                }
 
                 $data = '{
                     "data": {
@@ -649,44 +661,67 @@ trait Member
             "message" => "Lỗi lấy thông tin",
         ];
         $member_id = $request->input("id");
-
-        //get cache
-        $cache_data = 'data_api_userinfo_' . $member_id;
-        if (Cache::has($cache_data)) {
-            $data = Cache::get($cache_data);
+        if (substr($member_id, 0, 5) == 'json_') {
+            $member_str = base64_decode(substr($member_id, 5, strlen($member_id)));
+            $member = explode('|', $member_str);
+            $member_info = [
+                "id" => $member[0],
+                "anh_ca_nhan" => base64_encode(''),
+                "ten_hien_thi" => base64_encode($member[1]),
+                "email" => base64_encode(''),
+                "so_dien_thoai" => base64_encode(''),
+                "doan_thanh_nien" => base64_encode(''),
+                "ngay_vao_dang" => base64_encode(''),
+                "dan_toc" => base64_encode(''),
+                "chuc_vu" => base64_encode($member[2]),
+                "ton_giao" => base64_encode(''),
+                "trinh_do_ly_luan" => base64_encode(''),
+                "trinh_do_chuyen_mon" => base64_encode(''),
+                "noi_lam_viec" => base64_encode('')
+            ];
+            $data = [
+                "success" => true,
+                "message" => "Lấy thông tin thành công",
+                "data" => $member_info
+            ];
         } else {
+            //get cache
+            $cache_data = 'data_api_userinfo_' . $member_id;
+            if (Cache::has($cache_data)) {
+                $data = Cache::get($cache_data);
+            } else {
 
-            $member = MemberModel::find($member_id);
-            if (null != $member) {
-                $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
-                $member_info = [
-                    "id" => $member->member_id,
-                    "anh_ca_nhan" => (self::is_url($member->avatar)) ? base64_encode($member->avatar) : base64_encode($icon_link),
-                    "ten_hien_thi" => base64_encode($member->name),
-                    "email" => base64_encode($member->email),
-                    "so_dien_thoai" => base64_encode($member->phone),
-                    "doan_thanh_nien" => base64_encode($member->don_vi),
-                    "ngay_vao_dang" => base64_encode($member->ngay_vao_dang),
-                    "dan_toc" => base64_encode($member->dan_toc),
-                    "chuc_vu" => base64_encode($member->position_current),
-                    "ton_giao" => base64_encode($member->ton_giao),
-                    "trinh_do_ly_luan" => base64_encode($member->trinh_do_ly_luan),
-                    "trinh_do_chuyen_mon" => base64_encode($member->trinh_do_chuyen_mon),
-                    "noi_lam_viec" => base64_encode($member->address)
-                ];
-                $data = [
-                    "success" => true,
-                    "message" => "Lấy thông tin thành công",
-                    "data" => $member_info
-                ];
+                $member = MemberModel::find($member_id);
+                if (null != $member) {
+                    $icon_link = ($member->avatar != '') ? config('site.url_storage') . $member->avatar : '';
+                    $member_info = [
+                        "id" => $member->member_id,
+                        "anh_ca_nhan" => (self::is_url($member->avatar)) ? base64_encode($member->avatar) : base64_encode($icon_link),
+                        "ten_hien_thi" => base64_encode($member->name),
+                        "email" => base64_encode($member->email),
+                        "so_dien_thoai" => base64_encode($member->phone),
+                        "doan_thanh_nien" => base64_encode($member->don_vi),
+                        "ngay_vao_dang" => base64_encode($member->ngay_vao_dang),
+                        "dan_toc" => base64_encode($member->dan_toc),
+                        "chuc_vu" => base64_encode($member->position_current),
+                        "ton_giao" => base64_encode($member->ton_giao),
+                        "trinh_do_ly_luan" => base64_encode($member->trinh_do_ly_luan),
+                        "trinh_do_chuyen_mon" => base64_encode($member->trinh_do_chuyen_mon),
+                        "noi_lam_viec" => base64_encode($member->address)
+                    ];
+                    $data = [
+                        "success" => true,
+                        "message" => "Lấy thông tin thành công",
+                        "data" => $member_info
+                    ];
+                }
+                $data = str_replace('null', '""', $data);
+
+                //put cache
+                $expiresAt = now()->addDays(5);
+                Cache::put($cache_data, $data, $expiresAt);
             }
-            $data = str_replace('null', '""', $data);
-
-            //put cache
-            $expiresAt = now()->addDays(5);
-            Cache::put($cache_data, $data, $expiresAt);
         }
-
         return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
