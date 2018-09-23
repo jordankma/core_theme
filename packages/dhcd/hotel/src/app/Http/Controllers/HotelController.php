@@ -60,7 +60,7 @@ class HotelController extends Controller
 
             Cache::forget('hotels');
             Cache::forget('data_api_hotels');
-            $doan_arr = implode(',', $hotel->doan_id);
+            $doan_arr = explode(',', $hotel->doan_id);
             if (count($doan_arr) > 0) {
                 foreach ($doan_arr as $doan_id) {
                     Cache::forget('hotel_' . $doan_id);
@@ -100,7 +100,7 @@ class HotelController extends Controller
 
                 Cache::forget('hotels');
                 Cache::forget('data_api_hotels');
-                $doan_arr = implode(',', $hotel->doan_id);
+                $doan_arr = explode(',', $hotel->doan_id);
                 if (count($doan_arr) > 0) {
                     foreach ($doan_arr as $doan_id) {
                         Cache::forget('hotel_' . $doan_id);
