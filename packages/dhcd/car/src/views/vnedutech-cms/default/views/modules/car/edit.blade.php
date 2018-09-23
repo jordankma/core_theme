@@ -198,11 +198,20 @@
             });
         });
 
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
         $(document).ready(function () {
             $('.addstaff').on('click',function(){
-                var count = $(".staff:last").attr("id");
-                var eid = parseInt(count.slice(5,count.length));
-                var arr = "<div class='form-group staff' id='staff"+ (++eid) +"'>" +
+                var eid = makeid();
+                var arr = "<div class='form-group staff' id='staff"+ eid +"'>" +
                     "<div class='form-group col-md-3 inline'>" +
                     "<label class='label'> Tên :</label>" +
                     "<input type='text' autocomplete='off'  class='form-control staffname' name='staffname[]'>" +
@@ -216,12 +225,12 @@
                     "<input type='text' autocomplete='off' class='form-control phone'  name='phone[]' >"+
                     "</div>" +
                     "<div class='form-group col-md-2 inline' style='padding: 25px 0px 0px 10px'><a style='cursor:pointer' class='trash'><i class='fa fa-trash' ></i></a></div>" +
-                    "</div>"
-                var $name = $('.staff:last').find('input[name="staffname[]"]');
-                if($name.length!=0 ) {
+                    "</div>";
+                var name = $('.staff:last').find('input[name="staffname[]"]');
+                if(name.length!=0 ) {
                     var idx=0;
-                    $.each($name,function (i, item) {
-                        if($name.val()==''){
+                    $.each(name,function (i, item) {
+                        if(name.val()==''){
                             idx=1;
                         }
                     });

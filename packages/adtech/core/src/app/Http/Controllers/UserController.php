@@ -144,7 +144,7 @@ class UserController extends Controller
     public function delete(UserRequest $request)
     {
         $user_id = $request->input('user_id');
-        $user = $this->user->find($user_id);
+        $user = User::with('roles')->find($user_id);
 
         if ($user->permission_locked == 1) {
             return redirect()->route('adtech.core.user.manage')->with('error', trans('adtech-core::messages.error.permission'));
@@ -152,12 +152,13 @@ class UserController extends Controller
 
         if (null != $user) {
 
-            $user_role_item = DB::connection('mysql_core')->select('select * from adtech_core_users_role where user_id = :id', ['id' => $user_id]);
-            if (null != $user_role_item) {
-                DB::connection('mysql_core')->table('adtech_core_users_role')->where('user_id', $user_id)->delete();
-            }
-
-            $this->user->delete($user_id);
+            DB::transaction(function () use ($user_id) {
+                $user_role_item = DB::connection('mysql_core')->select('select * from adtech_core_users_role where user_id = :id', ['id' => $user_id]);
+                if (null != $user_role_item) {
+                    DB::connection('mysql_core')->table('adtech_core_users_role')->where('user_id', $user_id)->delete();
+                }
+                $this->user->delete($user_id);
+            });
 
             activity('user')
                 ->performedOn($user)

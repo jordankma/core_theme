@@ -271,18 +271,22 @@ class CarController extends Controller
             ->editColumn('doan_id', function ($car) use($doan) {
             $doan_id = explode("," , $car->doan_id);
             $name='';
-            foreach ($doan as $val){
-                $name .= (in_array($val['group_id'], $doan_id)) ? $val['name'].' , ' : '';
+            if (count($doan) > 0) {
+                foreach ($doan as $val){
+                    $name .= (in_array($val['group_id'], $doan_id)) ? $val['name'].' , ' : '';
+                }
             }
             return $name;
             })
             ->editColumn('car_staff', function ($car) {
                 $result = '';
                 $car_staff = json_decode($car->car_staff, true);
-                foreach ($car_staff as $key => $val) {
-                    $result .= "Nhân Viên Phục Vụ" . ' : ' . $val['staffname'] . '<br>';
-                    $result .= "Chức Vụ" . ' : ' . $val['staffpos'] . '<br>';
-                    $result .= "Số Điện Thoại" . ' : ' . $val['phone'] . '<br>' . '<hr>';
+                if (count($car_staff) > 0) {
+                    foreach ($car_staff as $key => $val) {
+                        $result .= "Nhân Viên Phục Vụ" . ' : ' . $val['staffname'] . '<br>';
+                        $result .= "Chức Vụ" . ' : ' . $val['staffpos'] . '<br>';
+                        $result .= "Số Điện Thoại" . ' : ' . $val['phone'] . '<br>' . '<hr>';
+                    }
                 }
                 return $result;
             })

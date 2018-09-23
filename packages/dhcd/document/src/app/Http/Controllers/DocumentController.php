@@ -109,7 +109,7 @@ class DocumentController extends Controller
              $is_offical = !empty($request->is_offical) ? $request->is_offical : 0;
              $type_control = !empty($request->type_control) ? $request->type_control : 'file';
              $avatar = '';
-             if($type_control != 'file'){
+             if($type_control != 'file' && count($files) > 0){
                 $avatar = !empty($request->setAvatar) ? $request->setAvatar : $files[0]['path'];
              }
              
@@ -242,7 +242,7 @@ class DocumentController extends Controller
              
              $type_control = !empty($request->type_control) ? $request->type_control : 'file';
              $avatar = '';
-             if($type_control == 'image'){
+             if($type_control == 'image' && count($files) > 0){
                 $avatar = !empty($request->setAvatar) ? $request->setAvatar : $files[0]['name'];
              }
              

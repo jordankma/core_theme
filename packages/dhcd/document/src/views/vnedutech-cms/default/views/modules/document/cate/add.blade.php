@@ -96,6 +96,12 @@
                                  <img id="holder" style="margin-top:15px;max-height:100px;">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="name">Đại biểu</label>
+                            <div class="col-md-6">
+                                <input type="file" name="memberFile">
+                            </div>
+                        </div>
                         <!-- sort input-->
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="name">Sort</label>

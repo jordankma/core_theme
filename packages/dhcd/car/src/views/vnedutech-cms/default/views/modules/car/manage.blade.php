@@ -76,7 +76,7 @@
                 serverSide: true,
                 ajax: '{{ route('dhcd.car.data') }}',
                 columns: [
-                    { data: 'rownum', name: 'rownum'},
+                    { data: 'rownum', name: 'car_id'},
                     { data: 'doan_id', name: 'doan_id' },
                     { data: 'car_num', name: 'car_num'},
                     { data: 'car_bs', name: 'car_bs'},

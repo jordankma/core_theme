@@ -51,12 +51,33 @@ class DocumentCateController extends Controller {
                     'icon' => 'required'
                         ], $this->messages);
         if (!$validator->fails()) {
+            //Kiểm tra file
+            $rows = [];
+            if ($request->hasFile('memberFile')) {
+                $file = $request->memberFile;
+                $path = $file->move('excels', $file->getClientOriginalName());
+                $pathFile = public_path($path->getPathname());
+                $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($pathFile);
+                $worksheet = $spreadsheet->getActiveSheet();
+
+                foreach ($worksheet->getRowIterator() AS $key => $row) {
+                    $cellIterator = $row->getCellIterator();
+                    $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+                    $cells = [$key];
+                    foreach ($cellIterator as $cell) {
+                        $cells[] = $cell->getValue();
+                    }
+                    $rows[] = $cells;
+                }
+            }
+
             $cate = DocumentCate::create([
                         'name' => $request->name,
                         'alias' => $this->to_slug($request->name),
                         'icon' => $request->icon,
                         'sort' => $request->sort,
                         'descript' => $request->descript,
+                        'member_json' => json_encode($rows),
                         'parent_id' => $request->parent_id
             ]);
             //save tag
@@ -120,6 +141,28 @@ class DocumentCateController extends Controller {
         if (!$validator->fails()) {
             $cate = $this->documentCate->find($request->document_cate_id);
             if (null != $cate) {
+
+                //Kiểm tra file
+                $rows = [];
+                if ($request->hasFile('memberFile')) {
+                    $file = $request->memberFile;
+                    $path = $file->move('excels', $file->getClientOriginalName());
+                    $pathFile = public_path($path->getPathname());
+                    $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($pathFile);
+                    $worksheet = $spreadsheet->getActiveSheet();
+
+                    foreach ($worksheet->getRowIterator() AS $key => $row) {
+                        $cellIterator = $row->getCellIterator();
+                        $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+                        $cells = [$key];
+                        foreach ($cellIterator as $cell) {
+                            $cells[] = $cell->getValue();
+                        }
+                        $rows[] = $cells;
+                    }
+                    $cate->member_json = json_encode($rows);
+                }
+
                 $alias = $this->to_slug($request->name) . $request->document_cate_id;
                 $cate->name = $request->name;
                 $cate->alias = $alias;
@@ -135,6 +178,7 @@ class DocumentCateController extends Controller {
 
                 Cache::forget('data_api_api_all_document_cate');
                 Cache::forget('data_api_files_by_document_' . $alias);
+                Cache::forget('data_api_member_by_category_' . $alias);
                 $cateParent = $this->documentCate->find($cate->parent_id);
                 if (null != $cateParent) {
                     Cache::forget('api_doc_document_page_' . $cateParent->alias . '_all');
@@ -399,20 +443,30 @@ class DocumentCateController extends Controller {
 
     public function searchMember(Request $request) {
         $data = [];
-        if ($request->ajax()) {
-            $keyword = $request->input('keyword');
-            $document_cate_id = $request->input('document_cate_id');
-            if(!empty($keyword)){
-                $list_member_old = DocumentCateHasMember::where('document_cate_id',$document_cate_id)->select('member_id')->get();
-                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
-                if(!empty($list_members)){
-                    foreach($list_members as $member){
-                        $data[] = [
-                            'name' => $member->name,
-                            'member_id' => $member->member_id,
-                            'position_current' => $member->position_current
-                        ];
+        $keyword = $request->input('keyword');
+        $document_cate_id = $request->input('document_cate_id');
+        if(!empty($keyword)){
+            $list_member_old = DocumentCateHasMember::where('document_cate_id',$document_cate_id)->select('member_id')->get();
+//                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+            $arrKeyword = explode(',', $keyword);
+            if (count($arrKeyword) > 0 && strpos($keyword, ',') > 0) {
+                $list_members = Member::whereNotIn('member_id', $list_member_old)
+                ->where(function ($query) use ($arrKeyword) {
+                    foreach ($arrKeyword as $keysearch) {
+                        $query->orWhere('name', $keysearch);
                     }
+                })->get();
+            } else {
+                $list_members = Member::where('name', 'like', '%' . $keyword . '%')->whereNotIn('member_id', $list_member_old)->get();
+            }
+
+            if(!empty($list_members)){
+                foreach($list_members as $member){
+                    $data[] = [
+                        'name' => $member->name,
+                        'member_id' => $member->member_id,
+                        'position_current' => $member->position_current
+                    ];
                 }
             }
         }
