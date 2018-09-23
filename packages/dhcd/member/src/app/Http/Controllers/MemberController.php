@@ -115,6 +115,7 @@ class MemberController extends Controller
                         $groupDetail = Group::find($g_i);
                         if (null != $groupDetail) {
                             Cache::forget('data_api_member_by_group_' . $groupDetail->alias);
+                            Cache::forget('data_api_member_by_group_id_' . $groupDetail->group_id);
                         }
                     }
                 }
