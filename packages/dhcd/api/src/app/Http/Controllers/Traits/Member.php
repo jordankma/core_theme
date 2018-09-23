@@ -516,11 +516,15 @@ trait Member
         } else {
             $members = [];
             $alias = $request->input('alias');
+            $doan_id = $request->input('doan_id');
 
             //get cache
             $cache_data = 'data_api_member_by_group_' . $alias;
+            $cache_data_id = 'data_api_member_by_group_id_' . $doan_id;
             if (Cache::has($cache_data)) {
                 $data = Cache::get($cache_data);
+            } elseif (Cache::has($cache_data_id)) {
+                $data = Cache::get($cache_data_id);
             } else {
 
 //                $cache_name = 'member_by_group_' . $alias;
@@ -537,37 +541,68 @@ trait Member
 //                        Cache::put($cache_name, $members, $expiresAt);
 //                    }
 //                }
-                $group = Group::where('alias', $alias)->first();
-                if (null != $group) {
-                    $members = MemberModel::whereHas('group', function ($query) use ($group) {
-                        $query->where('dhcd_group_has_member.group_id', $group->group_id);
+                if ($request->has('doan_id')) {
+                    $members = MemberModel::whereHas('group', function ($query) use ($doan_id) {
+                        $query->where('dhcd_group_has_member.group_id', $doan_id);
                         $query->where('dhcd_group_has_member.deleted_at', null);
                     })->get();
-                }
 
-                $list_members = [];
-                if (count($members) > 0) {
-                    foreach ($members as $member) {
-                        $item = new \stdClass();
-                        $item->id = $member->member_id;
-                        $item->name = base64_encode($member->name);
+                    $list_members = [];
+                    if (count($members) > 0) {
+                        foreach ($members as $member) {
+                            $item = new \stdClass();
+                            $item->id = $member->member_id;
+                            $item->name = base64_encode($member->name);
 
-                        $list_members[] = $item;
+                            $list_members[] = $item;
+                        }
                     }
-                }
 
-                $data = '{
+                    $data = '{
                     "data": {
                         "list_member_by_group": ' . json_encode($list_members) . '
                     },
                     "success" : true,
                     "message" : "ok!"
                 }';
-                $data = str_replace('null', '""', $data);
+                    $data = str_replace('null', '""', $data);
 
-                //put cache
-                $expiresAt = now()->addMinutes(3600);
-                Cache::put($cache_data, $data, $expiresAt);
+                    //put cache
+                    $expiresAt = now()->addDays(5);
+                    Cache::put($cache_data_id, $data, $expiresAt);
+                } else {
+                    $group = Group::where('alias', $alias)->first();
+                    if (null != $group) {
+                        $members = MemberModel::whereHas('group', function ($query) use ($group) {
+                            $query->where('dhcd_group_has_member.group_id', $group->group_id);
+                            $query->where('dhcd_group_has_member.deleted_at', null);
+                        })->get();
+                    }
+
+                    $list_members = [];
+                    if (count($members) > 0) {
+                        foreach ($members as $member) {
+                            $item = new \stdClass();
+                            $item->id = $member->member_id;
+                            $item->name = base64_encode($member->name);
+
+                            $list_members[] = $item;
+                        }
+                    }
+
+                    $data = '{
+                    "data": {
+                        "list_member_by_group": ' . json_encode($list_members) . '
+                    },
+                    "success" : true,
+                    "message" : "ok!"
+                }';
+                    $data = str_replace('null', '""', $data);
+
+                    //put cache
+                    $expiresAt = now()->addDays(5);
+                    Cache::put($cache_data, $data, $expiresAt);
+                }
             }
             return response($data)->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
         }
@@ -588,7 +623,7 @@ trait Member
                         $query->where('dhcd_document_cate_has_member.deleted_at', null);
                     })
                     ->get();
-                $expiresAt = now()->addMinutes(3600);
+                $expiresAt = now()->addDays(5);
                 Cache::put('member_by_category_' . $alias, $members, $expiresAt);
             }
         }
