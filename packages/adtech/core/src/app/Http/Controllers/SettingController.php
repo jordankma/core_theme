@@ -221,7 +221,8 @@ class SettingController extends Controller
     }
 
     public function memcached() {
-        return view('ADTECH-CORE::modules.core.setting.memcached');
+        $encrypted = '';
+        return view('ADTECH-CORE::modules.core.setting.memcached', compact('encrypted'));
     }
 
     public function resetCache(Request $request) {
@@ -229,6 +230,9 @@ class SettingController extends Controller
             if (Cache::has($request->input('cache_name'))) {
                 Cache::forget($request->input('cache_name'));
                 return redirect()->route('adtech.core.setting.memcached')->with('success', trans('adtech-core::messages.success.create'));
+            } else {
+                $encrypted = $this->my_simple_crypt( $request->input('cache_name') . 'time='.time()*1000, 'e' );
+                return view('ADTECH-CORE::modules.core.setting.memcached', compact('encrypted'));
             }
         }
         return redirect()->route('adtech.core.setting.memcached')->with('error', trans('adtech-core::messages.error.create'));

@@ -43,6 +43,7 @@
                             {!! Form::text('cache_name', old('cache_name'), array('class' => 'form-control')) !!}
                         </div>
 
+                        {{ $encrypted }}
                     </div>
                     <!-- /.col-sm-8 -->
                     <div class="col-sm-4">
