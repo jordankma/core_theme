@@ -1,0 +1,43 @@
+/*==Style cho menu===*/
+@media screen and (max-width: 900px) {
+    #menu_top {
+        display: none;
+    }
+}
+
+#menu_top ul {
+    margin-left: 25px;
+    /*background: #1F568B;*/
+    list-style-type: none;
+    /*text-align: center;*/
+}
+
+#menu_top li {
+    color: #f1f1f1;
+    display: inline-block;
+    height: 50px;
+    line-height: 51px;
+    margin-left: -5px;
+}
+
+#menu_top a.active {
+    background: #F1F1F1;
+    color: #333;
+}
+
+#menu_top a {
+    text-decoration: none;
+    padding: 0px 20px;
+    color: #fff;
+    display: block;
+    font-size: 15px;
+}
+
+#menu_top a:hover {
+    background: #F1F1F1;
+    color: #333;
+}
+
+.flagTxt {
+    background: #EBEBEB; margin:5px; font-size: 13px; font-weight: bold; padding:0px 3px; color: #F79838
+}

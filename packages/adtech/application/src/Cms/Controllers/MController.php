@@ -104,7 +104,7 @@ class MController extends BaseController
             'MENU_TOP' => $this->_menuTop,
             'COLOR_LIST' => $arrColor,
             'SETTING' => $settingView,
-            'group_name'  => config('site.group_name'),
+            'group_name'  => config('site.theme'),
             'template'  => config('site.desktop.template'),
             'skin'  => config('site.desktop.skin'),
             'mtemplate'  => config('site.mobile.template'),

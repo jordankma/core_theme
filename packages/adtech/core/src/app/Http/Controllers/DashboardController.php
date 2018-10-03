@@ -17,7 +17,6 @@ class DashboardController extends Controller
 //        $pathFile = base_path('public/files/chap01.pdf');
 //        $res = $client->request('GET', 'http://localhost:8079/split?path=' . $pathFile);
 //        echo $res->getBody();die();
-
         return view('ADTECH-CORE::modules.core.dashboard.backend');
     }
 
