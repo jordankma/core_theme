@@ -141,12 +141,13 @@ if (heroCarousel) {
 if (logoGroup) {
   logoGroup.slick({
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [{
       breakpoint: 768,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
+        slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000
       }

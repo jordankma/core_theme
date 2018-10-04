@@ -92,7 +92,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'group_name' => 'vnedutech-cms',
-    'theme' => 'theme3',
+    'theme' => 'theme1',
     'angular_js' => true,
     'desktop' => [
         'template' => 'default',
@@ -116,10 +116,11 @@ return [
         'url_message' => '',
     ],
     'news_box' => [
-        'thongbaobtc' => 'thongbaobtc',
-        'biendaovietnamtailieuthamkhaochocuocthi' => 'biendaovietnamtailieuthamkhaochocuocthi',
-        'videonoibat' => 'videonoibat',
-        'tintucchung' => 'tintucchung'
+        'thongbaobtc' => 'thong-bao-btc',
+        'tinnong' => 'tin-nong',
+        'sukien' => 'su-kien',
+        'hanhtrinhgiaothonghocduong' => 'hanh-trinh-giao-thong-hoc-duong',
+        'hinhanhvideo' => 'hinh-anh-video'
     ],
     'news_cat' => [
         'thongbaobtc' => 'thong-bao-btc',
@@ -129,5 +130,6 @@ return [
     ],
     'city_id_default' => 62,
     'table_a_id' => 1,
-    'table_b_id' => 2
+    'table_b_id' => 2,
+    'banner_trang_chu_id' => 1
 ];

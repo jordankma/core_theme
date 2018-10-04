@@ -1,66 +1,47 @@
 /* Fonts */
 
-$f-theme: 'Roboto',sans-serif;
+$f-roboto: 'Roboto',sans-serif;
 $f-icon: 'icon';
 /* Colors - Default */
 
-$c-black: #000;
-$c-white: #fff;
+$c-black: #000000;
+$c-white: #ffffff;
+
 /* Body background */
-$bb: #d7e8f1;
+
+$c-bb: #dbe4ee;
 /* Colors - Theme */
 
-$cl01: #163f6a;
-$cl02: #e14122;
-$cl03: #2095dc;
-$cl04: rgba(0, 0, 0, 0.4);
-$cl05: #ea391c;
-$cl06: #0169b1;
-$cl07: #02a1e3;
-$cl08: #009a49;
-$cl09: #0a5690;
-$cl10: #d94421;
-$cl11: #0096db;
-$cl12: #999;
-$cl13: #f2f4f5;
-$cl14: #f3f3f3;
-$cl15: #e4e4e4;
-$cl16: #fbf9e3;
-$cl17: #172744;
-$cl18: #1c2f51;
-
-
-
-$cl19: #e92c0c;
-$cl20: #2dcb73;
-$cl21: #3498db;
-$cl22: #9b59b6;
-$cl23: #f39c12;
-$cl24: #666;
-
 $c-purple: #0791d2;
-$c-blue: #c21775;
-$c-blue1: #41c3f5;
-$c-blue2: #51b2df;
-$c-yellow: #fff000;
+$c-blue: #5ebeff;
+$c-blue1: #35b5ff;
+$c-blue2: #3268f0;
+$c-blue3: #0572e1;
+$c-blue4: #1e55e0;
+$c-blue5: #009eed;
+$c-yellow: #ffdd1e;
 $c-yellow1: #f6ff00;
 $c-yellow2: #fff76f;
 $c-green: #ffb400;
 $c-green1: #efa900;
 $c-green2: #009a49;
 $c-green3: #e57200;
-$c-red: #f07cb2;
+$c-orange: #da251c;
+$c-orange1: #009b0b;
+$c-orange2: #f6a744;
+$c-orange3: #f28c37;
+$c-orange4: #ef7937;
+$c-orange5: #1ba92f;
+$c-orange6: #4bb737;
+$c-red: #d32a0f;
 $c-red1: #e80088;
 $c-red2: #ff1134;
-$c-grey: #747474;
-$c-grey1: #7c7e7f;
-$c-navy: #0a5690;
-$c-navy1: #834cb1;
+$c-grey: #8794a8;
+$c-grey1: #6e6e6e;
+$c-navy: #1f3586;
+$c-navy1: #1244c3;
 $c-light: #f3f3f3;
 $c-light1: #f3f0e6;
-
-
-$c-orange: #F8953F;
 
 
 $c-dark: #3b3b3b;
@@ -68,7 +49,7 @@ $c-dark1: #2c2c2c;
 $c-divider: #E2E2E2;
 /* Coler border */
 
-$bc-light: #d0d0d0;
+$bc-light: #ccc;
 $bc-light1: #e1dbc8;
 $bc-grey: #f1f1f1;
 $bc-grey1: #dadada;
@@ -96,7 +77,7 @@ $ease: ease-in-out;
 /* Round */
 
 $round: 4px;
-$round1: 6px;
+$round1: 10px;
 /* Breakpoints */
 
 // Extra small devices (portrait phones, less than 576px)

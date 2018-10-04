@@ -1,3 +1,5 @@
+$(document).ready(function() {
+  
 // Video Youtube
 // Find all YouTube videos
 var $allVideos = $("iframe[src*='youtube']"),
@@ -141,12 +143,13 @@ if (heroCarousel) {
 if (logoGroup) {
   logoGroup.slick({
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [{
       breakpoint: 768,
       settings: {
-        slidesToShow: 1,
+        slidesToShow: 2,
+        slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000
       }
@@ -263,3 +266,4 @@ if (elements) {
     countdown: true
   });
 }
+});

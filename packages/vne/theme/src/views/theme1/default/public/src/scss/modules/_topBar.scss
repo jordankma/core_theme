@@ -23,18 +23,24 @@
     padding: 10px 0;
   }
   .contact {
-    @extend .small-text;
     @media (min-width: $breakpoints-md) {
       display: none;
     }
     @media (min-width: $breakpoints-lg) {
       display: block;
     }
-    .fa {
-      margin-right: 5px;
-    }
     span {
-      color: $cl25;
+      @extend .small-text;
+      margin-right: 10px;
+      .fa {
+        margin-right: 5px;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+    .phone {
+      color: $c-yellow;
     }
   }
   .nav {
@@ -46,7 +52,7 @@
       margin-left: 10px;
       height: 36px;
       min-width: 125px;
-      padding: 0 10px 0 47px;
+      padding: 0 10px 0 52px;
       line-height: 36px;
       text-align: center;
       text-transform: uppercase;
@@ -61,13 +67,13 @@
       }
       .fa {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 36px;
-        height: 36px;
+        top: 2px;
+        left: 2px;
+        width: 40px;
+        height: 32px;
         border-radius: $round - 1;
         background-color: $c-green1;
-        line-height: 36px;
+        line-height: 32px;
       }
       a {
         color: $c-white;

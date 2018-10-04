@@ -1,0 +1,41 @@
+{
+  "package": "package",
+  "module": "module",
+  "description": "Quản lý contact",
+  "details": [
+    {
+      "name": "Quản lý contact",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.contact.contact.log",
+            "vne.contact.contact.data",
+            "vne.contact.contact.manage"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "router name 03",
+            "router name 04"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "router name 05",
+            "router name 06"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.contact.contact.delete",
+            "vne.contact.contact.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

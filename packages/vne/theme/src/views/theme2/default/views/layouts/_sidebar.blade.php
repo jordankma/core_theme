@@ -1,238 +1,78 @@
-<!-- rating -->
-						<section class="section rating v1">
-							<div class="rating-item">
-								<div class="wrapper">
-									<h2 class="headline">Top thí sinh đăng ký</h2>
-									<div class="tab js-tab">
-										<div class="tab-item active">
-											<div class="title">Sở GD & ĐT Tỉnh/TP</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">Phú Thọ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Hà Nội</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Thái Nguyên</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="tab-item">
-											<div class="title">Trường</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">THPT Lý Thái Tổ</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<a href="" class="btn btn-light">Xem thêm</a>
-								</div>
-							</div>
-						</section>
-						<!-- rating end -->
+<!-- sign in -->
+	<section class="section sign-in">
+		<div class="inner">
+			<div class="headline">Đăng nhập</div>
+			<form>
+				<div class="form-group">
+					<label>Tài khoản</label>
+					<input class="form-control" type="email">
+				</div>
+				<div class="form-group">
+					<label>Mật khẩu</label>
+					<input class="form-control" type="password">
+				</div>
+				<p><i>Hãy đăng nhập để tham gia rèn luyện</i></p>
+				<button type="submit" class="btn btn-primary">Đăng nhập</button>
+			</form>
+		</div>
+	</section>
+	<!-- sign in end -->
 
-						<!-- rating -->
-						<section class="section rating v2">
-							<div class="rating-item">
-								<div class="wrapper">
-									<h2 class="headline">TOP THÍ SINH ĐÃ THI</h2>
-									<div class="tab js-tab">
-										<div class="tab-item active">
-											<div class="title">Sở GD & ĐT Tỉnh/TP</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">Phú Thọ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Hà Nội</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Thái Nguyên</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="tab-item">
-											<div class="title">Trường</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">THPT Lý Thái Tổ</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<a href="" class="btn btn-light">Xem thêm</a>
-								</div>
-							</div>
-						</section>
-						<!-- rating end -->
+	<!-- message -->
+	<section class="section message">
+		<div class="headline-section">
+			<h2><a href="">THÔNG BÁO CỦA HỘI ĐỒNG ĐỘI TW</a></h2>
 
-						<!-- rating right -->
-						<section class="section rating-right">
-							<h2 class="headline">TOP Thí sinh dẫn đầu tuần</h2>
-							<div class="tab js-tab">
-								<div class="tab-item active">
-									<div class="title">Tuần</div>
-									<div class="list">
-										<div class="list-item">
-											<div class="number">1</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-										<div class="list-item">
-											<div class="number">2</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-										<div class="list-item">
-											<div class="number">3</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="tab-item">
-									<div class="title">Chung cuộc</div>
-									<div class="list">
-										<div class="list-item">
-											<div class="number">1</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-										<div class="list-item">
-											<div class="number">2</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-										<div class="list-item">
-											<div class="number">3</div>
-											<div class="img">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/user.jpg" alt="">
-													</a>
-												</div>
-											</div>
-											<div class="info">
-												<h4 class="title">Nguyễn Thanh Tuấn</h4>
-												<p class="date">200 - 00:15:016</p>
-												<p class="name-school">THTT Bảo Lộc</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<a href="" class="btn btn-light">Xem bảng xếp hạng</a>
-						</section>
-						<!-- rating right end -->
+		</div>
+		<ul class="message-list">
+			<li class="item">
+				<div class="date">
+					<div class="day">20</div>
+					<div class="month">03</div>
+				</div>
+				<h3 class="title"><a href="">Thông báo lần 2 v/v triển khai thí điểm rèn luyện và công nhận hoàn thành chuyên
+						hiệu rèn luyện đội viên trực tuyến năm học 2017 - 2018</a></h3>
+			</li>
+			<li class="item">
+				<div class="date">
+					<div class="day">23</div>
+					<div class="month">01</div>
+				</div>
+				<h3 class="title"><a href="">THÔNG BÁO TỪ HỘI ĐỒNG ĐỘI TRUNG ƯƠNG</a></h3>
+			</li>
+			<li class="item">
+				<div class="date">
+					<div class="day">24</div>
+					<div class="month">08</div>
+				</div>
+				<h3 class="title"><a href="">Công văn về việc tham gia Liên hoan thiếu nhi các dân tộc toàn quốc năm 2017</a></h3>
+			</li>
+			<li class="item">
+				<div class="date">
+					<div class="day">18</div>
+					<div class="month">8</div>
+				</div>
+				<h3 class="title"><a href="">Hướng dẫn triển khai chương trình RLĐV</a></h3>
+			</li>
+			<li class="item">
+				<div class="date">
+					<div class="day">18</div>
+					<div class="month">9</div>
+				</div>
+				<h3 class="title"><a href="">Kế hoạch</a></h3>
+			</li>
+		</ul>
+	</section>
+	<!-- message end -->
+
+	<!-- logos right -->
+	<section class="section logos-right">
+		<ul>
+			<li><a href=""><img src="images/logo-right.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/logo1-right.jpg" alt=""></a></li>
+			<li><a href=""><img src="images/logo2_new.png" alt=""></a></li>
+			<li><a href=""><img src="images/logo3_new.png" alt=""></a></li>
+			<li><a href=""><img src="images/logo4-right.jpg" alt=""></a></li>
+		</ul>
+	</section>
+	<!-- logos right end -->

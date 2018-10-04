@@ -1,6 +1,6 @@
 <div class="form-user from-registration js-registration">
 	<div class="logo">
-		<img src="src/images/egroup-logo.png" alt="">
+		<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/egroup-logo.png?t=' . time()) }}" alt="">
 	</div>
 	<form action="" class="form">
 		<p>Thành viên mới?</p>

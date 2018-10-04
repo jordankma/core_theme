@@ -83,7 +83,7 @@
   z-index: 998;
   width: 320px;
   max-width: 100%;
-  background: $cl01;
+  background: $c-blue;
   height: 100vh;
   overflow-y: auto;
   color: $c-white;
@@ -92,19 +92,19 @@
   transition: $transition;
   .inner {
     padding: 20px 15px 50px 15px;
-    .button-group {
+    >.nav {
       display: flex;
       padding: 0;
-      margin: 0 -5px;
-      justify-content: center;
-      .button {
+      margin: 0;
+      .nav-item {
         position: relative;
-        margin: 10px 5px 0 5px;
+        margin-left: 10px;
         height: 36px;
-        width: 50%;
-        padding: 0 10px 0 52px;
+        min-width: 125px;
+        padding: 0 15px 0 57px;
         line-height: 36px;
         text-align: center;
+        font-weight: 700;
         text-transform: uppercase;
         list-style: none;
         position: relative;
@@ -115,8 +115,7 @@
         &:hover {
           box-shadow: 2px 2px 2px 2px $bs-black;
         }
-
-        .fa {
+        i {
           position: absolute;
           top: 2px;
           left: 2px;
@@ -126,26 +125,9 @@
           background-color: $c-green1;
           line-height: 32px;
         }
-
         a {
           color: $c-white;
           text-decoration: none;
-        }
-
-        &:nth-child(1) {
-          background: $cl07;
-
-          .fa {
-            background: $cl03;
-          }
-        }
-
-        &:nth-child(2) {
-          background: $cl06;
-
-          .fa {
-            background: $cl09;
-          }
         }
       }
     }
@@ -213,16 +195,6 @@
               color: $c-white;
             }
           }
-        }
-      }
-    }
-    .contact {
-      margin-top: 40px;
-      text-align: right;
-      p {
-        margin: 0;
-        &.phone {
-          color: $c-yellow;
         }
       }
     }

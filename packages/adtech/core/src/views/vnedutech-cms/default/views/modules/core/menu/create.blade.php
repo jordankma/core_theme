@@ -1445,15 +1445,15 @@
                 typeView = listRouteView[route_name];
 
                 switch(typeData + '-' + typeView) {
-                    case 'tintuc-list':
-                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.news.category') ? route('dhcd.api.news.category') : '' }}';
+                    case 'news-list':
+                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('vne.api.news.category') ? route('vne.api.news.category') : '' }}';
                         break;
-                    case 'tintuc-detail':
+                    case 'news-detail':
                         txtUrl = '';
-                        txtModal = 'tintuc-detail';
+                        txtModal = 'news-detail';
                         break;
                     case 'tailieu-list':
-                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('dhcd.api.tailieu.category') ? route('dhcd.api.tailieu.category') : '' }}';
+                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('vne.api.tailieu.category') ? route('vne.api.tailieu.category') : '' }}';
                         break;
                     case 'tailieu-detail':
                         txtUrl = '';
@@ -1476,8 +1476,8 @@
                                 response.forEach(function(element) {
                                     var x = document.getElementById("category_name");
                                     var option = document.createElement("option");
-                                    if (typeof element.news_cat_id != 'undefined') {
-                                        option.value = element.news_cat_id;
+                                    if (typeof element.alias != 'undefined') {
+                                        option.value = element.alias;
                                     }
                                     if (typeof element.document_cate_id != 'undefined' && typeof element.alias != 'undefined') {
                                         option.value = element.alias;

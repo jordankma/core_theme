@@ -2,1391 +2,613 @@
 @section('content')
 <main class="main">
 
-			<div class="hero-countdown" style="background-image: url(../images/bg-banner1.png);">
-				<div class="container">
-					<div class="row no-spacing">
-						<!-- hero -->
-						<section class="col-lg-8 no-spacing section hero">
-							<div class="carousel js-carousel">
-								<div class="img-cover carousel-item">
-									<a href="#" class="img-cover__wrapper">
-										<img src="images/banner-quang-cao_75.jpg" alt="">
-									</a>
-								</div>
-								<div class="img-cover carousel-item">
-									<a href="#" class="img-cover__wrapper">
-										<img src="images/banner-thuong-mai-dien-tu_77.jpg" alt="">
-									</a>
-								</div>
-								<div class="img-cover carousel-item">
-									<a href="#" class="img-cover__wrapper">
-										<img src="images/chung-ket-cuoc-thi-giao-thong-hoc-duong-nam-2018_78.jpg" alt="">
-									</a>
-								</div>
+			<div class="container">
+				<div class="row no-spacing">
+					<!-- hero -->
+					<section class="col-md-8 col-xl-9 no-spacing section hero">
+						<div class="carousel js-carousel">
+							<div class="img-cover carousel-item">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/slide.png" alt="">
+								</a>
 							</div>
-						</section>
-						<!-- hero end -->
-						<!-- Countdown clock -->
-						<section class="col-lg-4 no-spacing section countdown-clock">
-							<h2 class="headline">Cuộc thi LUẬT GIA TƯƠNG LAI</h2>
-							<div data-minutes="600000"></div>
-							<div class="button-group">
-								<a class="btn" href="">Vào thi</a>
-								<a class="btn" href="">Thi thử</a>
+							<div class="img-cover carousel-item">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/slide1.jpg" alt="">
+								</a>
 							</div>
-						</section>
-						<!-- Countdown clock end -->
-					</div>
+						</div>
+					</section>
+					<!-- hero end -->
+					<!-- sign in -->
+					<section class="col-md-4 col-xl-3 no-spacing section sign-in">
+						<div class="inner">
+							<div class="headline">Đăng nhập</div>
+							<form>
+								<div class="form-group">
+									<label>Tài khoản</label>
+									<input class="form-control" type="email">
+								</div>
+								<div class="form-group">
+									<label>Mật khẩu</label>
+									<input class="form-control" type="password">
+								</div>
+								<p><i>Hãy đăng nhập để tham gia rèn luyện</i></p>
+								<button type="submit" class="btn btn-primary">Đăng nhập</button>
+							</form>
+						</div>
+					</section>
+					<!-- sign in end -->
 				</div>
 			</div>
 
 			<div class="container container-main">
-				<div class="row">
 
-					<div class="col-12">
-						<!-- logo list -->
-						<section class="section logo-group">
-							<div class="logo-list">
-								<h2 class="title">Ban tổ chức cuộc thi</h2>
-								<div class="carousel js-carousel-01">
-									<a class="carousel-item" href="">
-										<div class="logo">
-											<img src="images/ub.png" alt="">
-										</div>
-										<h3 class="name">ỦY BAN ATGTQG</h3>
-									</a>
-									<a class="carousel-item" href="">
-										<div class="logo">
-											<img src="images/bgd.png" alt="">
-										</div>
-										<h3 class="name">BỘ GIÁO DỤC VÀ ĐÀO TẠO</h3>
-									</a>
-									<a class="carousel-item" href="">
-										<div class="logo">
-											<img src="images/duongbo.png" alt="">
-										</div>
-										<h3 class="name">TỔNG CỤC ĐBVN</h3>
-									</a>
-									<a class="carousel-item" href="">
-										<div class="logo">
-											<img src="images/giaothong.png" alt="">
-										</div>
-										<h3 class="name">CỤC CẢNH SÁT GIAO THÔNG</h3>
-									</a>
-									<a class="carousel-item" href="">
-										<div class="logo">
-											<img src="images/egroup.png" alt="">
-										</div>
-										<h3 class="name">TẬP ĐOÀN GIÁO DỤC EGROUP</h3>
-									</a>
-								</div>
-							</div>
-						</section>
-						<!-- logo list end -->
-					</div>
-
-					<div class="col-12">
-						<!-- adv -->
-						<div class="section adv">
-							<a href="" target="_blank">
-								<img src="images/banner_donvitaitro.jpg">
-							</a>
+				<!-- Accordion rating -->
+				<section class="section accordion-rating">
+					<div class="grid top">
+						<div class="grid-3 class">
+							<span><i class="fa fa-book"></i> Chuyên hiệu</span>
 						</div>
-						<!-- adv end -->
+						<div class="grid-9 headline">
+							<h2><a href="">BXH RÈN LUYỆN ĐỘI VIÊN</a></h2>
+						</div>
 					</div>
-
-					<div class="col-12">
-						<section class="section timeline">
-							<h2 class="headline"><a href="">Timeline cuộc thi</a></h2>
-							<ul class="timeline-list">
-								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 1</div>
-										<div class="date">02/10 - 08/10</div>
-									</div>
+					<div class="grid center">
+						<div class="grid-3">
+							<ul class="rating-list js-accordion-buttons">
+								<li class="item active">
+									<h3 class="title">AN TOÀN GIAO THÔNG</h3>
+									<p class="date">(01/02/2018 - 28/04/2018)</p>
 								</li>
 								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 2</div>
-										<div class="date">09/10 - 15/10</div>
-									</div>
+									<h3 class="title">NHÀ SỬ HỌC NHỎ TUỔI</h3>
+									<p class="date">(01/02/2018 - 28/04/2018)</p>
 								</li>
 								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 3</div>
-										<div class="date">16/10 - 22/10</div>
-									</div>
+									<h3 class="title">NHÀ SINH HỌC NHỎ TUỔI</h3>
+									<p class="date">(01/03/2018 - 28/04/2018)</p>
 								</li>
 								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 4</div>
-										<div class="date">23/10 - 29/10</div>
-									</div>
-								</li>
-								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 5</div>
-										<div class="date">30/10 - 05/11</div>
-									</div>
-								</li>
-								<li class="item">
-									<div class="inner">
-										<div class="title">Tuần 6</div>
-										<div class="date">06/11 - 12/11</div>
-									</div>
-								</li>
-								<li class="item">
-									<div class="inner">
-										<div class="title">Vòng thi cấp tỉnh/TP</div>
-										<div class="date">27/11 - 30/11</div>
-									</div>
+									<h3 class="title">HỮU NGHỊ QUỐC TẾ</h3>
+									<p class="date">(01/03/2018 - 28/04/2018)</p>
 								</li>
 							</ul>
-							<div class="info">
-								<div class="user user-registration">
-									<img src="src/images/cup2.png" alt="">
-									<div class="number">233.657</div>
-									<div class="title">THÍ SINH ĐĂNG KÝ</div>
-								</div>
-								<div class="user user-active">
-									<img src="src/images/flag.png" alt="">
-									<div class="number">197.998</div>
-									<div class="title">THÍ SINH ĐÃ THI</div>
-								</div>
-							</div>
-						</section>
-					</div>
-
-					<div class="col-12">
-						<!-- adv -->
-						<div class="section adv">
-							<a href="" target="_blank">
-								<img src="images/giaothonghocduong.gif">
-							</a>
+							<a href="" target="_blank"><img src="images/adv.png" alt=""></a>
 						</div>
-						<!-- adv end -->
-					</div>
-
-					<div class="col-12">
-						<!-- notification -->
-						<section class="section notification">
-							<div class="notification-item">
-								<div class="headline">
-									<h2><a href="">THÔNG BÁO CỦA BAN TỔ CHỨC</a></h2>
-									<a class="btn" href="">Xem thêm</a>
-								</div>
-								<div class="list">
-									<div class="list-item">
-										<p class="date">09/05/18</p>
-										<h3 class="title"><a href="http://">Danh sách thí sinh đạt giải cấp tỉnh/thành phố Cuộc thi "Giao thông học
-												đường" lần III</a></h3>
-									</div>
-									<div class="list-item">
-										<p class="date">17/05/18</p>
-										<h3 class="title"><a href="http://">THÔNG BÁO v/v điều chỉnh cơ cấu giải thưởng cuộc thi "Giao thông học
-												đường" lần thứ III...</a></h3>
-									</div>
-									<div class="list-item">
-										<p class="date">03/05/18</p>
-										<h3 class="title"><a href="http://">DANH SÁCH THÍ SINH THAM GIA VÒNG THI CHUNG KẾT TOÀN QUỐC CUỘC THI "GIAO
-												THÔNG HỌC ĐƯỜNG"...</a></h3>
-									</div>
-									<div class="list-item">
-										<p class="date">14/05/18</p>
-										<h3 class="title"><a href="http://">Thư mời tham dự vòng thi chung kết xếp hạng toàn quốc và lễ trao giải
-												cuộc thi...</a></h3>
-									</div>
-									<div class="list-item">
-										<p class="date">08/05/18</p>
-										<h3 class="title"><a href="http://">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học
-												đường" lần...</a></h3>
-									</div>
-								</div>
-							</div>
-						</section>
-						<!-- notification end -->
-					</div>
-
-					<div class="col-12">
-						<!-- adv -->
-						<div class="section adv">
-							<a href="" target="_blank">
-								<img src="images/banner web 1170x100.jpg">
-							</a>
-						</div>
-						<!-- adv end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- rating -->
-						<section class="section rating v1">
-							<div class="rating-item">
-								<div class="wrapper">
-									<h2 class="headline">Top thí sinh đăng ký</h2>
-									<div class="tab js-tab">
-										<div class="tab-item active">
-											<div class="title">Sở GD & ĐT Tỉnh/TP</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">Phú Thọ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Hà Nội</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Thái Nguyên</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="tab-item">
-											<div class="title">Trường</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">THPT Lý Thái Tổ</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<a href="" class="btn btn-light">Xem thêm</a>
-								</div>
-							</div>
-						</section>
-						<!-- rating end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- rating -->
-						<section class="section rating v2">
-							<div class="rating-item">
-								<div class="wrapper">
-									<h2 class="headline">TOP THÍ SINH ĐÃ THI</h2>
-									<div class="tab js-tab">
-										<div class="tab-item active">
-											<div class="title">Sở GD & ĐT Tỉnh/TP</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">Phú Thọ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Hà Nội</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Thái Nguyên</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="tab-item">
-											<div class="title">Trường</div>
-											<ul class="list">
-												<li class="list-item">
-													<div class="number">01</div>
-													<div class="info">
-														<div class="number-user">180356 <span>thí sinh</span></div>
-														<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">02</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-													</div>
-												</li>
-												<li class="list-item">
-													<div class="number">03</div>
-													<div class="info">
-														<div class="number-user">92297 <span>thí sinh</span></div>
-														<div class="address">THPT Lý Thái Tổ</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<a href="" class="btn btn-light">Xem thêm</a>
-								</div>
-							</div>
-						</section>
-						<!-- rating end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- rating right -->
-						<section class="section rating-right">
-							<h2 class="headline">TOP Thí sinh dẫn đầu tuần</h2>
-							<div class="list">
-								<div class="list-item">
-									<div class="number">1</div>
-									<div class="img">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<h4 class="title">Nguyễn Thanh Tuấn</h4>
-										<p class="date">200 - 00:15:016</p>
-										<p class="name-school">THTT Bảo Lộc</p>
-									</div>
-								</div>
-								<div class="list-item">
-									<div class="number">2</div>
-									<div class="img">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<h4 class="title">Nguyễn Thanh Tuấn</h4>
-										<p class="date">200 - 00:15:016</p>
-										<p class="name-school">THTT Bảo Lộc</p>
-									</div>
-								</div>
-								<div class="list-item">
-									<div class="number">3</div>
-									<div class="img">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<h4 class="title">Nguyễn Thanh Tuấn</h4>
-										<p class="date">200 - 00:15:016</p>
-										<p class="name-school">THTT Bảo Lộc</p>
-									</div>
-								</div>
-								<div class="list-item">
-									<div class="number">4</div>
-									<div class="img">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<h4 class="title">Nguyễn Thanh Tuấn</h4>
-										<p class="date">200 - 00:15:016</p>
-										<p class="name-school">THTT Bảo Lộc</p>
-									</div>
-								</div>
-							</div>
-						</section>
-						<!-- rating right end -->
-					</div>
-
-					<div class="col-lg-6">
-						<!-- news hot -->
-						<section class="section news-hot">
-							<h2 class="headline"><a href="http://">Tin Nóng</a></h2>
-							<div class="inner">
-								<figure class="news-item">
-									<h3 class="title">
-										<a href="">Veniam anim culpa amet eiusmod ullamco fugiat nisi amet proident ipsum exercitation enim sint.</a>
-									</h3>
-									<div class="content">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/new.jpg" alt="">
-											</a>
-										</div>
+						<div class="grid-9">
+							<div class="rating-list js-accordion-body" style="background-image: url(../images/bg_top_student.png);">
+								<ul class="row rating-item active">
+									<img class="background" src="images/atgt.png" alt="">
+									<li class="col-4 user user-no1">
 										<div class="wrapper">
-											<div class="info">
-												<span class="date">26/12/2017</span>
-												<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-												<span class="commit"><i class="fa fa-chat"></i> 0</span>
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
 											</div>
-											<div class="description">Qui reprehenderit est commodo amet officia esse nisi minim. Ut labore ut
-												reprehenderit proident Lorem voluptate aliquip reprehenderit id in in proident. Qui consequat consectetur
-												elit.</div>
-										</div>
-									</div>
-								</figure>
-								<ul class="list">
-									<li class="item">
-										<h4 class="title"><a href="http://">Elit officia est eiusmod officia qui reprehenderit laborum ut adipisicing
-												fugiat officia nisi magna voluptate.</a></h4>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
+											<div class="info">
+												<div class="name">Trương Chí Bảo</div>
+												<div class="address">5/1 - Tiểu học Nguyễn Văn Trỗi - Quảng Nam</div>
+											</div>
+											<div class="number"><span>1</span></div>
 										</div>
 									</li>
-									<li class="item">
-										<h4 class="title"><a href="http://">Aliquip amet amet occaecat dolor ipsum est dolore mollit quis consectetur
-												mollit.</a></h4>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
+									<li class="col-4 user user-no2">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Lưu Triệu Vỹ</div>
+												<div class="address">5E - Tiểu học Mương Mán - Bình Thuận</div>
+											</div>
+											<div class="number"><span>2</span></div>
 										</div>
 									</li>
-									<li class="item">
-										<h4 class="title"><a href="http://">Exercitation pariatur quis eu velit dolor mollit deserunt exercitation
-												nisi ad enim.</a></h4>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
+									<li class="col-4 user user-no3">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Nguyễn Ngọc Thanh Đoan</div>
+												<div class="address">4D - Tiểu học Ninh Đa 1 - Khánh Hòa</div>
+											</div>
+											<div class="number"><span>3</span></div>
 										</div>
 									</li>
-									<li class="item">
-										<h4 class="title"><a href="http://">Proident excepteur cupidatat cillum sunt sit laboris excepteur ea elit.</a></h4>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
+								</ul>
+								<ul class="row rating-item">
+									<img class="background" src="images/su.png" alt="">
+									<li class="col-4 user user-no1">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Trương Chí Bảo</div>
+												<div class="address">5/1 - Tiểu học Nguyễn Văn Trỗi - Quảng Nam</div>
+											</div>
+											<div class="number"><span>1</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no2">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Lưu Triệu Vỹ</div>
+												<div class="address">5E - Tiểu học Mương Mán - Bình Thuận</div>
+											</div>
+											<div class="number"><span>2</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no3">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Nguyễn Ngọc Thanh Đoan</div>
+												<div class="address">4D - Tiểu học Ninh Đa 1 - Khánh Hòa</div>
+											</div>
+											<div class="number"><span>3</span></div>
+										</div>
+									</li>
+								</ul>
+								<ul class="row rating-item">
+									<img class="background" src="images/shnt.png" alt="">
+									<li class="col-4 user user-no1">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Trương Chí Bảo</div>
+												<div class="address">5/1 - Tiểu học Nguyễn Văn Trỗi - Quảng Nam</div>
+											</div>
+											<div class="number"><span>1</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no2">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Lưu Triệu Vỹ</div>
+												<div class="address">5E - Tiểu học Mương Mán - Bình Thuận</div>
+											</div>
+											<div class="number"><span>2</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no3">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Nguyễn Ngọc Thanh Đoan</div>
+												<div class="address">4D - Tiểu học Ninh Đa 1 - Khánh Hòa</div>
+											</div>
+											<div class="number"><span>3</span></div>
+										</div>
+									</li>
+								</ul>
+								<ul class="row rating-item">
+									<img class="background" src="images/hnqt.png" alt="">
+									<li class="col-4 user user-no1">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Trương Chí Bảo</div>
+												<div class="address">5/1 - Tiểu học Nguyễn Văn Trỗi - Quảng Nam</div>
+											</div>
+											<div class="number"><span>1</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no2">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Lưu Triệu Vỹ</div>
+												<div class="address">5E - Tiểu học Mương Mán - Bình Thuận</div>
+											</div>
+											<div class="number"><span>2</span></div>
+										</div>
+									</li>
+									<li class="col-4 user user-no3">
+										<div class="wrapper">
+											<div class="img-cover">
+												<span class="img-cover__wrapper">
+													<img src="images/user.jpg" alt="">
+												</span>
+											</div>
+											<div class="info">
+												<div class="name">Nguyễn Ngọc Thanh Đoan</div>
+												<div class="address">4D - Tiểu học Ninh Đa 1 - Khánh Hòa</div>
+											</div>
+											<div class="number"><span>3</span></div>
 										</div>
 									</li>
 								</ul>
 							</div>
-						</section>
-						<!-- news hot end -->
+						</div>
 					</div>
+					<a class="btn" href="">Xem chi tiết</a>
+				</section>
+				<!-- Accordion rating -->
 
-					<div class="col-lg-6">
-						<!-- news event -->
-						<section class="section news-event">
-							<h2 class="headline"><a href="http://">SỰ KIỆN</a></h2>
-							<div class="inner">
-								<figure class="news-item">
-									<div class="img-cover">
-										<a href="#" class="img-cover__wrapper">
-											<img src="images/new.jpg" alt="">
-										</a>
-									</div>
-									<div class="content">
-										<h3 class="title">
-											<a href="">Minim et ea pariatur tempor id labore non Lorem minim.</a>
-										</h3>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
-										</div>
-									</div>
-								</figure>
-								<figure class="news-item">
-									<div class="img-cover">
-										<a href="#" class="img-cover__wrapper">
-											<img src="images/new.jpg" alt="">
-										</a>
-									</div>
-									<div class="content">
-										<h3 class="title">
-											<a href="">Sint enim occaecat proident deserunt occaecat.</a>
-										</h3>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
-										</div>
-									</div>
-								</figure>
-								<figure class="news-item">
-									<div class="img-cover">
-										<a href="#" class="img-cover__wrapper">
-											<img src="images/new.jpg" alt="">
-										</a>
-									</div>
-									<div class="content">
-										<h3 class="title">
-											<a href="">Non aliqua qui sint nulla veniam.</a>
-										</h3>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
-										</div>
-									</div>
-								</figure>
-								<figure class="news-item">
-									<div class="img-cover">
-										<a href="#" class="img-cover__wrapper">
-											<img src="images/new.jpg" alt="">
-										</a>
-									</div>
-									<div class="content">
-										<h3 class="title">
-											<a href="">Quis cillum aliquip excepteur anim qui reprehenderit ea in ex mollit aute.</a>
-										</h3>
-										<div class="info">
-											<span class="date">26/12/2017</span>
-											<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-											<span class="commit"><i class="fa fa-chat"></i> 0</span>
-										</div>
-									</div>
-								</figure>
+				<div class="row">
+					<div class="col-md-6">
+						<!-- message -->
+						<section class="section message">
+							<div class="headline-section">
+								<h2><a href="">THÔNG BÁO CỦA HỘI ĐỒNG ĐỘI TW</a></h2>
+								<a href="">Xem tất cả</a>
 							</div>
-						</section>
-						<!-- news event end -->
-					</div>
-
-					<div class="col-12">
-						<!-- group news -->
-						<section class="section news-group">
-							<h2 class="headline"><a href="http://">HÀNH TRÌNH GIAO THÔNG HỌC ĐƯỜNG</a></h2>
-							<div class="accordion js-accordion">
-								<ul class="buttons js-accordion-buttons">
-									<li class="active">Vòng cấp trường</li>
-									<li>Vòng cấp tỉnh</li>
-									<li>Vòng toàn quốc</li>
-									<li>tin tức khác</li>
-								</ul>
-								<div class="blocks js-accordion-bodys">
-									<div class="block active">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
+							<ul class="message-list">
+								<li class="item">
+									<div class="date">
+										<div class="day">20</div>
+										<div class="month">03</div>
 									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
+									<h3 class="title"><a href="">Thông báo lần 2 v/v triển khai thí điểm rèn luyện và công nhận hoàn thành chuyên
+											hiệu rèn luyện đội viên trực tuyến năm học 2017 - 2018</a></h3>
+								</li>
+								<li class="item">
+									<div class="date">
+										<div class="day">23</div>
+										<div class="month">01</div>
 									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
+									<h3 class="title"><a href="">THÔNG BÁO TỪ HỘI ĐỒNG ĐỘI TRUNG ƯƠNG</a></h3>
+								</li>
+								<li class="item">
+									<div class="date">
+										<div class="day">24</div>
+										<div class="month">08</div>
 									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
+									<h3 class="title"><a href="">Công văn về việc tham gia Liên hoan thiếu nhi các dân tộc toàn quốc năm 2017</a></h3>
+								</li>
+								<li class="item">
+									<div class="date">
+										<div class="day">18</div>
+										<div class="month">8</div>
 									</div>
-								</div>
-							</div>
-						</section>
-						<!-- group news end -->
-					</div>
-
-					<div class="col-12">
-						<!-- images videos -->
-						<section class="section images-videos">
-							<h2 class="headline"><a href="http://">HÌNH ẢNH - VIDEO NỔI BẬT</a></h2>
-							<div class="accordion js-accordion">
-								<ul class="buttons js-accordion-buttons">
-									<li class="active">Video Nổi bật</li>
-									<li>Hình ảnh</li>
-								</ul>
-								<div class="blocks js-accordion-bodys">
-									<div class="block active">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã
-														tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho
-														học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
+									<h3 class="title"><a href="">Hướng dẫn triển khai chương trình RLĐV</a></h3>
+								</li>
+								<li class="item">
+									<div class="date">
+										<div class="day">18</div>
+										<div class="month">9</div>
 									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã
-														tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho
-														học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
-									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã
-														tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho
-														học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
-									</div>
-									<div class="block">
-										<div class="inner">
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần III</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Danh sách thí sinh đạt giải tuần 3, 4, 5, 6 Cuộc thi "Giao thông học đường" lần
-														III</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Trường THCS Dư Hàng Kênh từng bừng lễ trao giải vòng trường</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Vào sáng nay (06/03), trường THCS Dư Hàng Kênh, quận Lê Chân , thành phố Hải
-														Phòng đã
-														tổ chức lễ trao giải cuộc thi...</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Sự kiện mừng xuân Mậu Tuất 2018</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">[KHAI XUÂN – ĐÓN LỘC] Sự kiện mừng xuân Mậu Tuất 2018</div>
-												</div>
-											</figure>
-											<figure class="news-item">
-												<div class="img-cover">
-													<a href="#" class="img-cover__wrapper">
-														<img src="images/new.jpg" alt="">
-													</a>
-												</div>
-												<div class="content">
-													<h3 class="title">
-														<a href="">Bảo đảm an toàn giao thông cho học sinh, sinh viên dịp Tết Nguyên đán Mậu Tuất</a>
-													</h3>
-													<div class="info">
-														<span class="date">26/12/2017</span>
-														<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-														<span class="commit"><i class="fa fa-chat"></i> 0</span>
-													</div>
-													<div class="description">Các nhà trường tăng cường giáo dục kiến thức tham gia giao thông, đảm bảo an toàn
-														cho
-														học sinh trong dịp Tết.</div>
-												</div>
-											</figure>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-						<!-- images videos end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- quest -->
-						<section class="section quest">
-							<div class="headline">HỌ NÓI VỀ CHÚNG TÔI</div>
-							<div class="quest-list js-carousel-02">
-								<div class="item">
-									<div class="avatar">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<div class="commit">Deserunt amet eiusmod adipisicing exercitation. Ut nostrud duis consequat est commodo eu
-											occaecat excepteur eiusmod magna magna.</div>
-										<div class="name">Hồ Phi Khánh</div>
-										<div class="address">Học sinh lớp 11 Tin, trường THPT chuyên Nguyễn Huệ</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="avatar">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<div class="commit">Deserunt amet eiusmod adipisicing exercitation. Magna magna proident culpa est nostrud
-											labore deserunt sit.</div>
-										<div class="name">Hồ Phi Khánh</div>
-										<div class="address">Học sinh lớp 11 Tin, trường THPT chuyên Nguyễn Huệ</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="avatar">
-										<div class="img-cover">
-											<a href="#" class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</a>
-										</div>
-									</div>
-									<div class="info">
-										<div class="commit">Deserunt amet eiusmod adipisicing exercitation. Incididunt mollit ad occaecat fugiat ut
-											cupidatat labore dolor fugiat amet fugiat nostrud amet.</div>
-										<div class="name">Hồ Phi Khánh</div>
-										<div class="address">Học sinh lớp 11 Tin, trường THPT chuyên Nguyễn Huệ</div>
-									</div>
-								</div>
-							</div>
-						</section>
-						<!-- quest end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- new user -->
-						<section class="section new-user">
-							<h2 class="headline">Thành viên mới nhất</h2>
-							<div class="list-item">
-								<div class="user-item">
-									<div class="wrapper">
-										<div class="img-cover avatar">
-											<span class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</span>
-										</div>
-										<div class="info">
-											<h3 class="name">Nguyễn Thị Ngân</h3>
-											<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-										</div>
-									</div>
-								</div>
-								<div class="user-item">
-									<div class="wrapper">
-										<div class="img-cover avatar">
-											<span class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</span>
-										</div>
-										<div class="info">
-											<h3 class="name">Nguyễn Thị Ngân</h3>
-											<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-										</div>
-									</div>
-								</div>
-								<div class="user-item">
-									<div class="wrapper">
-										<div class="img-cover avatar">
-											<span class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</span>
-										</div>
-										<div class="info">
-											<h3 class="name">Nguyễn Thị Ngân</h3>
-											<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-										</div>
-									</div>
-								</div>
-								<div class="user-item">
-									<div class="wrapper">
-										<div class="img-cover avatar">
-											<span class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</span>
-										</div>
-										<div class="info">
-											<h3 class="name">Nguyễn Thị Ngân</h3>
-											<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-										</div>
-									</div>
-								</div>
-								<div class="user-item">
-									<div class="wrapper">
-										<div class="img-cover avatar">
-											<span class="img-cover__wrapper">
-												<img src="images/user.jpg" alt="">
-											</span>
-										</div>
-										<div class="info">
-											<h3 class="name">Nguyễn Thị Ngân</h3>
-											<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-						<!-- new user end -->
-					</div>
-
-					<div class="col-lg-4">
-						<!-- social -->
-						<section class="section social">
-							<h2 class="headline">GTHĐ TRÊN CÁC MẠNG XÃ HỘI</h2>
-							<ul class="list">
-								<li><a href=""><img src="src/images/social-facebook.png" alt=""></a></li>
-								<li><a href=""><img src="src/images/social-youtube.png" alt=""></a></li>
+									<h3 class="title"><a href="">Kế hoạch</a></h3>
+								</li>
 							</ul>
 						</section>
-						<!-- social end -->
+						<!-- message end -->
 					</div>
-
+					<div class="col-md-6">
+						<!-- province -->
+						<section class="section province">
+							<div class="headline-section">
+								<h2><a href="">TỈ LỆ ĐỘI VIÊN THAM GIA RÈN LUYỆN THEO TỈNH/ TP</a></h2>
+								<a href="">Xem tất cả</a>
+							</div>
+							<ul class="province-list">
+								<li class="item">
+									<div class="number">1</div>
+									<div class="progressbar">
+										<span>Lai Châu</span>
+										<div class="progress">
+											<div class="progress-bar" style="width:73.74%"><span>73.74%</span></div>
+										</div>
+									</div>
+								</li>
+								<li class="item">
+									<div class="number">2</div>
+									<div class="progressbar">
+										<span>Kom Tum</span>
+										<div class="progress">
+											<div class="progress-bar" style="width:73.68%"><span>73.%</span></div>
+										</div>
+									</div>
+								</li>
+								<li class="item">
+									<div class="number">3</div>
+									<div class="progressbar">
+										<span>Điện biên</span>
+										<div class="progress">
+											<div class="progress-bar" style="width:46.41%"><span>46.41%</span></div>
+										</div>
+									</div>
+								</li>
+								<li class="item">
+									<div class="number">4</div>
+									<div class="progressbar">
+										<span>Bình Định</span>
+										<div class="progress">
+											<div class="progress-bar" style="width:39.02%"><span>39.02 %</span></div>
+										</div>
+									</div>
+								</li>
+								<li class="item">
+									<div class="number">5</div>
+									<div class="progressbar">
+										<span>Hà Nam</span>
+										<div class="progress">
+											<div class="progress-bar" style="width: 36.15%"><span>36.15 %</span></div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</section>
+						<!-- province end -->
+					</div>
+					<div class="col-12">
+						<!-- adv -->
+						<div class="section adv">
+							<a href="" target="_blank">
+								<img src="images/adv1.jpg">
+							</a>
+						</div>
+						<!-- adv end -->
+					</div>
+					<div class="col-md-6">
+						<!-- news -->
+						<section class="section news">
+							<div class="headline-section bg-navy">
+								<h2><a href="">rèn luyện đội viên 360</a></h2>
+								<a href="">Xem tất cả</a>
+							</div>
+							<div class="news-list">
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new1.JPG" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">500 đội viên tham gia Ngày hội rèn luyện đội viên</a>
+										</h3>
+										<div class="description">Sáng 25-5, tại Nhà thiếu nhi tỉnh, Hội đồng Đội Trung ương và Công ty cổ phần tập
+											đoàn giáo dục Egroup đã phối hợp tổ chức Ngày hội rèn luyện đội viên năm học 2017-2018.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new2.jpg" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Đồng Nai: Tưng bừng ngày hội “Rèn luyện đội viên” năm học 2017 – 2018</a>
+										</h3>
+										<div class="description">Sáng nay, ngày 25/5 tại Nhà Thiếu nhi tỉnh Đồng Nai, ngày hội “Rèn luyện đội viên”
+											năm học 2017 – 2018 đã diễn ra trong không khí sôi động, đầy màu sắc với sự tham gia của hàng trăm Đội viên.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new3.png" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Tổ chức chương trình</a>
+										</h3>
+										<div class="description">Ngày hội rèn luyện đội viên năm 2018 sẽ được tổ chức vào 25/05/2018 tại tỉnh Đồng
+											Nai. Các bạn hãy theo dõi chương trình trên website và fanpage.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new4.png" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">V/v: Thí điểm việc rèn luyện và công nhận hoàn thành chuyên hiệu "Rèn luyện đội viên”</a>
+										</h3>
+										<div class="description">Ngày 08/01/2018, Hội đồng Đội Trung ương đã triển khai Kế hoạch số 06-KH/HĐĐTW triển
+											khai thí
+											điểm việc rèn luyện và công nhận hoàn thành chuyên hiệu"Rèn luyện đội viên” trực tuyến năm học 2017 - 2018.
+											Để việc
+											thí điểm được triển khai hiệu quả, đề nghị Hội đồng Đội các tỉnh, thành phố thực hiện tốt một số nội dung
+											sau:</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new5.jpg" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Chủ tịch nước Trần Đại Quang chúc Tết Trung thu thiếu niên, nhi đồng cả nước</a>
+										</h3>
+										<div class="description">Nhân dịp Tết Trung thu năm 2017, Chủ tịch nước Trần Đại Quang đã có thư gửi các cháu
+											thiếu niên, nhi đồng trên cả nước.</div>
+									</div>
+								</figure>
+							</div>
+						</section>
+						<!-- news end -->
+					</div>
+					<div class="col-md-6">
+						<!-- news -->
+						<section class="section news">
+							<div class="headline-section">
+								<h2><a href="">SỔ TAY RÈN LUYỆN</a></h2>
+								<a href="">Xem tất cả</a>
+							</div>
+							<div class="news-list">
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new1.JPG" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">500 đội viên tham gia Ngày hội rèn luyện đội viên</a>
+										</h3>
+										<div class="description">Sáng 25-5, tại Nhà thiếu nhi tỉnh, Hội đồng Đội Trung ương và Công ty cổ phần tập
+											đoàn giáo dục Egroup đã phối hợp tổ chức Ngày hội rèn luyện đội viên năm học 2017-2018.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new2.jpg" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Đồng Nai: Tưng bừng ngày hội “Rèn luyện đội viên” năm học 2017 – 2018</a>
+										</h3>
+										<div class="description">Sáng nay, ngày 25/5 tại Nhà Thiếu nhi tỉnh Đồng Nai, ngày hội “Rèn luyện đội viên”
+											năm học 2017 – 2018 đã diễn ra trong không khí sôi động, đầy màu sắc với sự tham gia của hàng trăm Đội viên.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new3.png" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Tổ chức chương trình</a>
+										</h3>
+										<div class="description">Ngày hội rèn luyện đội viên năm 2018 sẽ được tổ chức vào 25/05/2018 tại tỉnh Đồng
+											Nai. Các bạn hãy theo dõi chương trình trên website và fanpage.</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new4.png" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">V/v: Thí điểm việc rèn luyện và công nhận hoàn thành chuyên hiệu "Rèn luyện đội viên”</a>
+										</h3>
+										<div class="description">Ngày 08/01/2018, Hội đồng Đội Trung ương đã triển khai Kế hoạch số 06-KH/HĐĐTW triển
+											khai thí
+											điểm việc rèn luyện và công nhận hoàn thành chuyên hiệu"Rèn luyện đội viên” trực tuyến năm học 2017 - 2018.
+											Để việc
+											thí điểm được triển khai hiệu quả, đề nghị Hội đồng Đội các tỉnh, thành phố thực hiện tốt một số nội dung
+											sau:</div>
+									</div>
+								</figure>
+								<figure class="item">
+									<div class="img-cover">
+										<a href="#" class="img-cover__wrapper">
+											<img src="images/new5.jpg" alt="">
+										</a>
+									</div>
+									<div class="content">
+										<h3 class="title">
+											<a href="">Chủ tịch nước Trần Đại Quang chúc Tết Trung thu thiếu niên, nhi đồng cả nước</a>
+										</h3>
+										<div class="description">Nhân dịp Tết Trung thu năm 2017, Chủ tịch nước Trần Đại Quang đã có thư gửi các cháu
+											thiếu niên, nhi đồng trên cả nước.</div>
+									</div>
+								</figure>
+							</div>
+						</section>
+						<!-- news end -->
+					</div>
 				</div>
 
+
+
+
+
 			</div>
+
+			<!-- media -->
+			<section class="section media">
+				<div class="container">
+					<h2 class="headline">VIDEO - HÌNH ẢNH NỔI BẬT</h2>
+					<div class="row media-list">
+						<figure class="col-md-3 media-item video">
+							<div class="img-cover">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/new1.JPG" alt="">
+								</a>
+							</div>
+							<h3 class="title">
+								<a href="">Tường thuật trực tiếp chương trình ngày hội rèn luyện đội viên năm 2018 tại tỉnh Đồng Nai</a>
+							</h3>
+						</figure>
+						<figure class="col-md-3 media-item">
+							<div class="img-cover">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/new2.jpg" alt="">
+								</a>
+							</div>
+							<h3 class="title">
+								<a href="">Ai yêu Bác Hồ Chí Minh hơn thiếu niên nhi đồng?</a>
+							</h3>
+						</figure>
+						<figure class="col-md-3 media-item">
+							<div class="img-cover">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/new3.png" alt="">
+								</a>
+							</div>
+							<h3 class="title">
+								<a href="">Clip mẫu 3 bài trống của Đội</a>
+							</h3>
+						</figure>
+						<figure class="col-md-3 media-item video">
+							<div class="img-cover">
+								<a href="#" class="img-cover__wrapper">
+									<img src="images/new4.png" alt="">
+								</a>
+							</div>
+							<h3 class="title">
+								<a href="">Clip mẫu 5 bài Dân vũ Festival</a>
+							</h3>
+						</figure>
+					</div>
+				</div>
+			</section>
+			<!-- media end -->
 
 		</main>
 @stop

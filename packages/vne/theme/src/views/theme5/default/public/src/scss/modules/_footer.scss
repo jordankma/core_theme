@@ -2,45 +2,59 @@
 @import '../_mixins.scss';
 
 .footer {
-  @extend .section;
-  padding: 35px 0;
-  background: $c-blue3;
+  margin-top: 30px;
+  background: $cl18;
   color: $c-white;
-  border-top: 5px solid $c-blue1;
-  .footer-info {
-    @media (min-width: $breakpoints-md) {
-      display: flex;
-      justify-content: space-between;
+  padding: 30px 0;
+  .info {
+    @extend .small-text;
+    >p {
+      margin: 0;
     }
-    .footer-contact {
-      >p {
-        text-align: center;
+    .inner {
+      margin-top: 20px;
+      .col-md-6 {
+        margin-top: 20px;
         @media (min-width: $breakpoints-md) {
-          text-align: left;
+          margin-top: 0;
+        }
+        &:nth-child(1) {
+          margin-top: 0;
+        }
+      }
+      .title {
+        color: $cl17;
+        margin: 0;
+        @media (min-width: $breakpoints-md) {
+          min-height: 3.2rem;
         }
       }
       ul {
-        padding: 0;
+        padding: 0 0 0 17px;
+        margin: 10px 0 0 0;
         li {
-          list-style: none;
-          position: relative;
-          padding-left: 20px;
-          .fa {
-            position: absolute;
-            top: 0;
-            left: 0;
+          margin-top: 5px;
+          &:nth-child(1) {
+            margin-top: 0;
           }
         }
       }
     }
-    .footer-facebook {
-      overflow: hidden;
-    }
   }
-  .copyright {
+  .logo {
     margin-top: 20px;
-    a {
-      color: $c-white;
+    @media (min-width: $breakpoints-md) {
+      text-align: right;
+      margin-top: 0;
+    }
+    >p {
+      margin: 0;
+    }
+    .inner {
+      margin-top: 10px;
+      @media (min-width: $breakpoints-md) {
+        margin-top: 20px;
+      }
     }
   }
 }

@@ -14,6 +14,8 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Vne\\Theme\\' => array($baseDir . '/packages/vne/theme/src'),
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
+    'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),
+    'Vne\\Contact\\' => array($baseDir . '/packages/vne/contact/src'),
     'Vne\\Banner\\' => array($baseDir . '/packages/vne/banner/src'),
     'UniSharp\\LaravelFilemanager\\' => array($vendorDir . '/unisharp/laravel-filemanager/src'),
     'Underscore\\' => array($vendorDir . '/anahkiasen/underscore-php/src', $vendorDir . '/anahkiasen/underscore-php/tests'),

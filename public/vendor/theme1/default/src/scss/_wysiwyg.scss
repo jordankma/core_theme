@@ -109,6 +109,16 @@ body {
   }
 }
 
+.home .main {
+  background-image: url(../images/bg1.png),
+  url(../images/bg2.png);
+  background-position: left top,
+  left bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding-bottom: 25px;
+}
+
 .table-responsive {
   display: block;
   width: 100%;

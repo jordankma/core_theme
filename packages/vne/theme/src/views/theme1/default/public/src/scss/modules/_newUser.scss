@@ -11,12 +11,13 @@
     text-transform: uppercase;
     text-align: center;
     color: $c-white;
-    background: $cl26;
+    background: $cl08;
     padding: 8px 15px;
   }
   .list-item {
     margin: 0;
     padding: 15px;
+    background: url(../images/bg-thanh-vien.png);
   }
   .user-item {
     margin-top: 15px;
@@ -33,7 +34,6 @@
         left: 0;
         width: 50px;
         height: 50px;
-        border-radius: $round;
       }
       .info {
         .name {

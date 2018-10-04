@@ -8,7 +8,7 @@
   border-top: 1px solid $cl03;
   padding: 5px 0;
   @media (min-width: $breakpoints-lg) {
-    padding: 10px 0;
+    padding: 0;
   }
   .wrapper {
     @media (min-width: $breakpoints-md) {
@@ -23,8 +23,24 @@
     min-width: 120px;
     @media (min-width: $breakpoints-md) {
       text-align: left;
-      .logo {
-        img {
+    }
+    .logo {
+      display: block;
+      top: 50%;
+      left: 50%;
+      @media (min-width: $breakpoints-lg) {
+        position: absolute;
+        display: block;
+        width: 120px;
+        height: 120px;
+        transform: translate(-50%, -50%);
+      }
+      img {
+        width: 120px;
+        height: 120px;
+        max-width: 100%;
+        max-height: 100%;
+        @media (min-width: $breakpoints-md) {
           display: block;
         }
       }
@@ -50,7 +66,7 @@
       >.nav-link {
         position: relative;
         display: block;
-        padding: 15px 0;
+        padding: 25px 0;
         font-size: 1rem;
         text-transform: uppercase;
         text-decoration: none;
@@ -60,7 +76,7 @@
           position: absolute;
           width: 0;
           height: 1px;
-          bottom: 15px;
+          bottom: 25px;
           left: 0;
           background: $c-white;
           transition: $transition;

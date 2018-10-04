@@ -1,4 +1,4 @@
-@extends('VNE-THEME::modules.master')
+@extends('VNE-THEME::layouts.master')
 @section('content')
 <main class="main">
 

@@ -117,77 +117,12 @@ if (tab) {
   });
 }
 
-// carousel
-var heroCarousel = $('.js-carousel');
-var logoGroup = $('.js-carousel-01');
-var questList = $('.js-carousel-02');
-var footerLogoList = $('.js-carousel-03');
-
-if (heroCarousel) {
-  heroCarousel.slick({
-    dots: true,
-    fade: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    responsive: [{
-      breakpoint: 768,
-      settings: {
-        arrows: false
-      }
-    }]
-  });
-}
-
-if (logoGroup) {
-  logoGroup.slick({
-    arrows: false,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    responsive: [{
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000
-      }
-    }]
-  });
-}
-
-if (questList) {
-  questList.slick({
-    dots: true,
-    fade: true,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000
-  });
-}
-
-if (footerLogoList) {
-  footerLogoList.slick({
-    arrows: false,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    responsive: [{
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000
-      }
-    }]
-  });
-}
-
-// Accordion
-const accordion = $('.js-accordion');
-if (accordion) {
-  let accordionButtons = $('.js-accordion-buttons>li');
-  let accordionBodys = $('.js-accordion-bodys .block');
-
+// Accordion rating
+const accordionRating = $('.accordion-rating');
+if (accordionRating) {
+  let accordionButtons = $('.js-accordion-buttons .item');
+  let accordionBodys = $('.js-accordion-body .rating-item');
+  
   for (let i = 0; i < accordionButtons.length; i++) {
     const accordionButton = accordionButtons[i];
     const accordionBody = accordionBodys[i];
@@ -196,6 +131,25 @@ if (accordion) {
       $(accordionBody).addClass('active').siblings().removeClass("active");
     });
   }
+}
+
+// carousel
+var heroCarousel = $('.js-carousel');
+
+if (heroCarousel) {
+  heroCarousel.slick({
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false
+        }
+      }
+    ]
+  });
 }
 
 // Search results
@@ -245,22 +199,4 @@ if ($(window).width() <= 1024) {
   $('.menu-responsive>.group>.inner').append($('#nav1'));
   $('.menu-responsive>.group>.inner').prepend($('#nav2'));
   $('.menu-responsive .group .top').prepend($('#nav2 .nav-item:nth-child(1) .nav-link'));
-}
-
-// Countdown clock
-const elements = document.querySelector('[data-minutes]');
-
-if (elements) {
-  const clock = $(elements);
-  const targetValues = elements.getAttribute('data-minutes');
-
-  FlipClock.Lang.English.days = 'Ngày';
-  FlipClock.Lang.English.hours = 'Giờ';
-  FlipClock.Lang.English.minutes = 'Phút';
-  FlipClock.Lang.English.seconds = 'Giây';
-
-  clock.FlipClock(targetValues, {
-    clockFace: 'DailyCounter',
-    countdown: true
-  });
 }

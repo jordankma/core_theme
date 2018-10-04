@@ -10,7 +10,7 @@
     margin: 0;
     text-transform: uppercase;
     padding: 6px 15px 6px 55px;
-    background: url(../images/icon-tin-nong.png) no-repeat center left 15px $c-green3;
+    background: url(../images/icon-tin-nong.png) no-repeat center left 15px $cl08;
     a {
       color: $c-white;
       text-decoration: none;
@@ -21,7 +21,7 @@
   }
   .news-item {
     padding-bottom: 15px;
-    border-bottom: 1px solid $bc-light;
+    border-bottom: 1px solid $cl13;
     .title {
       margin: 0;
       font-weight: 500;
@@ -76,7 +76,7 @@
     .item {
       list-style: none;
       padding: 10px 0;
-      border-bottom: 1px solid $bc-light;
+      border-bottom: 1px solid $cl13;
       &:last-of-type {
         padding-bottom: 0;
         border-bottom: none;

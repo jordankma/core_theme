@@ -1,14 +1,14 @@
 <div class="form-user form-login js-login">
 	<div class="logo">
-		<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/egroup-logo.png?t=' . time()) }}" alt="">
+		<img src="src/images/egroup-logo.png" alt="">
 	</div>
-	<form action="" class="form">
+	<form action="http://eid.vnedutech.vn/login?site=http://theme.local.vn" class="form" method="post">
 		<p>Đã là thành viên?</p>
 		<div class="form-group">
-			<input type="username" class="form-control" placeholder="Email/Username">
+			<input type="text" class="form-control" name="email" placeholder="Email/Username">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="password">
+			<input type="password" class="form-control" name="password" placeholder="password">
 		</div>
 		<div class="form-group form-check">
 			<input type="checkbox" class="form-check-input">

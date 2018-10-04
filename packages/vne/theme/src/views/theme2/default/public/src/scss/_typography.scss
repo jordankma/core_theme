@@ -31,7 +31,7 @@
 
 .body-text {
   font-size: .75rem;
-  @media (min-width: $breakpoints-md) {
+  @media (min-width: $breakpoints-lg) {
     font-size: .875rem;
   }
 }
@@ -47,5 +47,12 @@
   font-size: .8125rem;
   @media (min-width: $breakpoints-md) {
     font-size: 1rem;
+  }
+}
+
+.small-text-02 {
+  font-size: .625rem;
+  @media (min-width: $breakpoints-md) {
+    font-size: .75rem;
   }
 }

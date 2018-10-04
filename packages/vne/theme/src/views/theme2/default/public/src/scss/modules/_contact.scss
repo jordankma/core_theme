@@ -2,10 +2,6 @@
 @import '../_mixins.scss';
 
 .contact {
-  .wrapper {
-    background: $c-white;
-    padding: 0 15px 30px 15px;
-  }
   .col-lg-5 {
     @media (min-width: $breakpoints-lg) {
       left: 58.333333%;
@@ -23,14 +19,14 @@
     @extend .small-text-01;
     margin: 0;
     padding: 10px 15px;
-    margin: 0 -15px;
-    background: $cl07;
+    background: $c-blue1;
     color: $c-white;
+    border-radius: $round1;
   }
   .title {
-    @extend .body-text;
+    @extend .medium-text;
     margin: 0;
-    color: $cl07;
+    color: $c-blue;
     text-transform: uppercase;
   }
   .info {
@@ -38,7 +34,11 @@
     .info-item {
       margin-top: 20px;
       p {
-        margin: 5px 0 0 0;
+        margin: 10px 0 0 0;
+        i {
+          display: inline-block;
+          width: 30px;
+        }
       }
       &:nth-child(1) {
         margin-top: 0;

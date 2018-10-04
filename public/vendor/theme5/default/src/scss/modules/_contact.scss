@@ -2,14 +2,18 @@
 @import '../_mixins.scss';
 
 .contact {
-  .col-lg-5 {
+  .wrapper {
+    background: $c-white;
+    padding: 0 15px 30px 15px;
+  }
+  .col-lg-6:nth-child(1) {
     @media (min-width: $breakpoints-lg) {
-      left: 58.333333%;
+      left: 50%;
     }
   }
-  .col-lg-7 {
+  .col-lg-6:nth-child(2) {
     @media (min-width: $breakpoints-lg) {
-      right: 41.666667%;
+      right: 50%;
     }
   }
   .maps {
@@ -19,14 +23,14 @@
     @extend .small-text-01;
     margin: 0;
     padding: 10px 15px;
-    background: $c-blue1;
+    margin: 0 -15px;
+    background: $cl07;
     color: $c-white;
-    border-radius: $round1;
   }
   .title {
-    @extend .medium-text;
+    @extend .body-text;
     margin: 0;
-    color: $c-blue;
+    color: $cl07;
     text-transform: uppercase;
   }
   .info {
@@ -34,11 +38,7 @@
     .info-item {
       margin-top: 20px;
       p {
-        margin: 10px 0 0 0;
-        i {
-          display: inline-block;
-          width: 30px;
-        }
+        margin: 5px 0 0 0;
       }
       &:nth-child(1) {
         margin-top: 0;

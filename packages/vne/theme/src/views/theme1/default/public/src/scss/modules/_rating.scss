@@ -26,14 +26,8 @@
         left: 15px;
         font-size: 1rem;
         text-transform: uppercase;
+        font-weight: 700;
         padding: 10px 15px;
-        color: $cl12;
-        &:hover,
-        &:focus {
-          color: $c-white;
-          background: $cl08;
-          border-color: $cl08;
-        }
       }
     }
     .tab {
@@ -123,9 +117,9 @@
     }
   }
   &.v1 .wrapper .headline {
-    background: $cl09;
+    background: $cl08;
   }
   &.v2 .wrapper .headline {
-    background: $c-navy;
+    background: $cl09;
   }
 }

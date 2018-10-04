@@ -5,10 +5,10 @@
 </div>
 <div class="slideout js-slideout">
 	<div class="inner">
-		<ul class="button-group">
-			<li class="button js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
-			<li class="button js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
-		</ul> <!-- button group -->
+		<ul class="nav">
+			<li class="nav-item js-toggle-login"><i class="fa fa-user"></i> Đăng nhập</li>
+			<li class="nav-item js-toggle-registration"><i class="fa fa-user"></i> Đăng ký</li>
+		</ul>
 		<nav class="slideout-navbar">
 			<ul class="nav">
 				<li class="nav-item">
@@ -16,63 +16,64 @@
 				</li>
 				<li class="nav-item">
 					<a href="" class="nav-link">Giới thiệu</a>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">Hưỡng dẫn</a>
 					<ul>
 						<li class="nav-item">
-							<a href="" class="nav-link">Giới thiệu cuộc thi</a>
+							<a href="" class="nav-link">Hướng dẫn đội viên</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link">Hướng dẫn đăng ký</a>
+							<a href="" class="nav-link">Hướng dẫn TPT đội</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link">Hướng dẫn thi</a>
+							<a href="" class="nav-link">Hướng dẫn HĐĐ Quận/Huyện</a>
+						</li>
+						<li class="nav-item">
+							<a href="" class="nav-link">Hướng dẫn HĐĐ Tỉnh/TP</a>
 						</li>
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">Thông báo BTC</a>
+					<a href="" class="nav-link">Thông báo</a>
+					<ul>
+						<li class="nav-item">
+							<a href="" class="nav-link">Kế hoạch triển khai</a>
+						</li>
+						<li class="nav-item">
+							<a href="" class="nav-link">Văn bản chỉ đạo</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="" class="nav-link">RÈN LUYỆN ĐỘI VIÊN 360</a>
 				</li>
 				<li class="nav-item">
 					<a href="" class="nav-link">Tra cứu</a>
 					<ul>
 						<li class="nav-item">
-							<a href="" class="nav-link">Danh sách thí sinh</a>
+							<a href="" class="nav-link">Bảng xếp hạng</a>
 						</li>
 						<li class="nav-item">
 							<a href="" class="nav-link">Kết quả</a>
 						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link">Bảng xếp hạng</a>
-						</li>
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a href="" class="nav-link">Thể lệ</a>
-				</li>
-				<li class="nav-item">
-					<a href="" class="nav-link">Tin tức</a>
+					<a href="" class="nav-link">Số tay rèn luyện</a>
 					<ul>
 						<li class="nav-item">
-							<a href="" class="nav-link">Văn bản khác</a>
+							<a href="" class="nav-link">Nội dung chương trình RLĐV</a>
 						</li>
 						<li class="nav-item">
-							<a href="" class="nav-link">Video</a>
-						</li>
-						<li class="nav-item">
-							<a href="" class="nav-link">Tin tức khác</a>
+							<a href="" class="nav-link">Tài liệu tham khảo</a>
 						</li>
 					</ul>
-				</li>
-				<li class="nav-item">
-					<a href="" class="nav-link">Lịnh thi</a>
 				</li>
 				<li class="nav-item">
 					<a href="" class="nav-link">Liên hệ</a>
 				</li>
 			</ul>
 		</nav>
-		<div class="contact">
-			<p class="phone">Hotline: 1900 636 444</p>
-			<p class="email">Email: gthd@egroup.vn</p>
-		</div>
 	</div>
 </div>

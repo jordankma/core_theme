@@ -14,7 +14,7 @@
     font-weight: 700;
     text-transform: uppercase;
     color: $c-white;
-    background: $cl13;
+    background: url(../images/bg-about.png) no-repeat left bottom $cl10;
   }
   .quest-list {
     padding: 15px;
@@ -45,7 +45,6 @@
         }
         .address {
           @extend .small-text;
-          color: $cl16;
         }
       }
     }

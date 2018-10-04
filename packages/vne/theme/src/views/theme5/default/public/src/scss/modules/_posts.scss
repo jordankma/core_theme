@@ -5,7 +5,10 @@
   .wrapper {
     background: $c-white;
     border-radius: $round1;
-    padding: 0 20px 20px 20px;
+    padding: 0 15px 20px 15px;
+    @media (min-width: $breakpoints-md) {
+      padding: 0 20px 20px 20px
+    }
     .inner {
       margin: 0 -10px;
       display: flex;
@@ -34,22 +37,22 @@
       margin-top: 10px;
     }
     .title {
-      @extend .small-text-01;
       margin: 0;
+      font-weight: 500;
+      text-align: justify;
+      line-height: 1.4;
       a {
+        color: $cl11;
         text-decoration: none;
-        color: $c-blue;
         transition: $transition;
-        &:hover {
-          color: $c-green;
+        &:hover,
+        &:focus {
+          color: $c-dark;
         }
       }
     }
     .date {
       color: $c-grey;
     }
-  }
-  .pagination {
-    padding: 0;
   }
 }

@@ -3,12 +3,10 @@
 
 body {
   @extend .body-text;
-  font-family: $f-roboto;
-  font-size: .75rem;
+  font-family: $f-theme;
   line-height: 1.6;
-  background: $c-bb;
+  background: $bb;
   color: $c-dark;
-  
 }
 
 .fa {
@@ -52,18 +50,26 @@ body {
   content: '\e909';
 }
 
-.fa-home::before {
+.fa-graduation-cap::before {
   content: '\e90b';
 }
 
-.fa-book::before {
+.fa-chat::before {
+  content: '\e90d';
+}
+
+.fa-eye::before {
   content: '\e90c';
 }
 
+.fa-home::before {
+  content: '\e90e';
+}
 
 .img-cover {
-	position: relative;
+  position: relative;
   overflow: hidden;
+
   &:after {
     content: '';
     display: block;
@@ -78,11 +84,13 @@ body {
   top: 0;
   left: 0;
   transition: $transition;
+
   >img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   &:hover {
     opacity: .8;
   }
@@ -94,52 +102,10 @@ body {
 }
 
 .section {
-  margin-top: 20px;
-  @media (min-width: $breakpoints-md) {
-    margin-top: 30px;
-  }
-}
+  margin-top: 15px;
 
-.headline-section {
-  position: relative;
-  padding: 10px 15px;
-  background: $c-green;
-  h2 {
-    @extend .small-text-01;
-    margin: 0;
-    font-weight: 700;
-    text-transform: uppercase;
-    a {
-      color: $c-white;
-      text-decoration: none;
-    }
-  }
-  >a {
-    position: absolute;
-    display: none;
-    top: 15px;
-    color: $c-white;
-    right: 15px;
-    text-decoration: none;
-    @media (min-width: $breakpoints-md) {
-      display: block;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: $c-white;
-      transition: $transition;
-    }
-    &:hover {
-      opacity: .8;
-      &::after {
-        width: 100%;
-      }
-    }
+  @media (min-width: $breakpoints-md) {
+    margin-top: 20px;
   }
 }
 
@@ -161,13 +127,115 @@ body {
   background: $c-white;
 }
 
-.bg-navy {
-  background: $c-navy;
-}
-
 .adv {
   img {
     width: 100%;
     max-width: 100%;
+  }
+}
+
+.hero-countdown {
+  padding: 30px 0 50px 0;
+  background-size: cover;
+  background-position: 50%;
+}
+
+.slick-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  font-size: 0;
+  background: transparent;
+  border: none;
+  color: $c-white;
+  outline: none;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    color: $c-blue;
+  }
+
+  &::after {
+    font-family: $f-icon;
+    font-size: 40px;
+  }
+
+  &.slick-prev {
+    left: 25px;
+
+    &::after {
+      content: '\e904';
+    }
+  }
+
+  &.slick-next {
+    right: 25px;
+
+    &::after {
+      content: '\e903';
+    }
+  }
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  li {
+    list-style: none;
+    margin: 0 6px;
+
+    &.slick-active,
+    &:hover {
+      button {
+        background: $c-white;
+      }
+    }
+
+    button {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+      background: transparent;
+      border: 1px solid $c-white;
+      cursor: pointer;
+      outline: none;
+      transition: $transition;
+    }
+  }
+}
+
+.accordion {
+  .buttons {
+    margin: 0;
+    padding: 0;
+    li {
+      cursor: pointer;
+    }
+  }
+  .blocks {
+    .block {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: $transition;
+      &.active {
+        max-height: 2000px;
+        opacity: 1;
+        padding: 30px 0;
+        pointer-events: initial;
+      }
+    }
   }
 }

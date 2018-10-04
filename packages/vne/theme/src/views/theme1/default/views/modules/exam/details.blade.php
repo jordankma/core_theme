@@ -37,7 +37,7 @@
 						nói chung, Ban Tuyên giáo Tỉnh ủy Đắk Nông phối hợp với Quân cảng Sài Gòn tổ chức Cuộc thi “Tìm hiểu về biển,
 						đảo Việt
 						Nam”.</p>
-					<p><img width="100%" src="images/bannner-26-thang-3_78.jpg" alt=""></p>
+					<p><img width="100%" src="images/banner-thuong-mai-dien-tu_77.jpg" alt=""></p>
 					<h4>I.ĐỐI TƯỢNG,HÌNH THỨC THI</h4>
 					<p><b><i>1. Đối tượng dự thi</i></b></p>
 					<p>Công dân Việt Nam từ 16 tuổi trở lên đang sinh sống, lao động, làm việc, học tập trên địa bàn tỉnh Đắk

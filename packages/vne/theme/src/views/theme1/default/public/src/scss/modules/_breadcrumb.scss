@@ -1,6 +1,13 @@
 @import '../_variables.scss';
 @import '../_mixins.scss';
 
+.breadcrumb {
+  @extend .section;
+  @media (min-width: $breakpoints-md) {
+    margin-top: 60px;
+  }
+}
+
 .breadcrumb-list {
   display: flex;
   margin: 0;

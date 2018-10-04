@@ -2,69 +2,58 @@
 @import '../_mixins.scss';
 
 .news {
-  .news-wrapper {
-    padding: 10px 15px 20px 15px;
-    background: $c-white;
-    border-radius: $round1;
-  }
-  .news-item {
-    padding: 15px 0 25px 0;
-    border-bottom: 1px solid $bc-light;
-    .inner {
-      @media (min-width: $breakpoints-md) {
-        display: flex;
-      }
+  background: $c-white;
+  .news-list {
+    .item {
+      display: flex;
+      padding: 15px;
+      margin: 0;
+      border-top: 1px solid $bc-light;
       .img-cover {
-        @media (min-width: $breakpoints-md) {
-          width: 30%;
-          min-height: 165px;
-        }
+        width: 33.33333%;
       }
       .content {
-        margin-top: 5px;
-        @media (min-width: $breakpoints-md) {
-          width: 70%;
-          padding-left: 20px;
-          margin-top: 0;
-        }
+        width: 66.66666%;
+        padding-left: 10px;
+        min-height: 101px;
         .title {
-          @extend .medium-text;
+          @extend .small-text-01;
+          line-height: 1.4;
+          transform: translateY(-3px);
           margin: 0;
           a {
+            color: $c-blue;
             text-decoration: none;
             transition: $transition;
-            color: $c-dark;
             &:hover,
             &:focus {
-              color: $c-blue;
-            }
-          }
-        }
-        .info {
-          margin-top: 5px;
-          >span {
-            margin-right: 10px;
-            &:last-of-type {
-              margin-right: 0;
+              color: $c-orange1;
             }
           }
         }
         .description {
-          margin-top: 5px;
-          color: $cl24;
-        }
-        .copyright {
-          margin-top: 10px;
+          position: relative;
+          height: 4.7em;
+          overflow: hidden;
+          &::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1.6em;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0), $c-white);
+          }
         }
       }
     }
   }
-  .btn {
-    @extend .small-text-01;
-    width: 100%;
-    margin-top: 20px;
-    padding: 14px 0;
-    font-weight: 700;
-    text-transform: uppercase;
+  &.news-page {
+    .news-list {
+      .item {
+        border-top: none;
+        border-bottom: 1px solid $bc-light;
+      }
+    }
   }
 }

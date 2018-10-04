@@ -1,53 +1,24 @@
 <footer class="footer">
-	<div class="footer-top">
-		<div class="container">
-			<div class="carousel js-carousel-03">
-				<div class="carousel-item">
-					<a href=""><img src="images/vnedutech-logo.png" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="images/logo_bak.png" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="images/mgc.png" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="images/thieunien.png" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="images/hoahoctro.png" alt=""></a>
-				</div>
+	<div class="container">
+		<div class="footer-info">
+			<div class="footer-contact">
+				<p><img src="images/logo.png" alt=""></p>
+				<h4>HỖ TRỢ NỘI DUNG RÈN LUYỆN HỘI ĐỒNG ĐỘI TRUNG ƯƠNG</h4>
+				<ul>
+					<li><i class="fa fa-address"></i> Địa chỉ: 62 Bà Triệu, Quận Hoàn Kiếm, Thành phố Hà Nội</li>
+					<li><i class="fa fa-email"></i>Email hỗ trợ: renluyendoivien@gmail.com</li>
+					<li><i class="fa fa-phone"></i>Hotline: 1900.636.444 ( Trong giờ hành chính từ thứ 2 - thứ 6) <br>1900.636.228 (
+						Ngoài giờ hành chính,T7 + CN và các ngày Lễ, Tết)</li>
+				</ul>
+			</div>
+			<div class="footer-facebook">
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=230&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+				 width="340" height="230" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"
+				 allow="encrypted-media"></iframe>
 			</div>
 		</div>
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<p>ỦY BAN AN TOÀN GIAO THÔNG QUỐC GIA</p>
-					<ul>
-						<li>80B Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</li>
-						<li>Đồng Chí: Lê Việt Hoàng</li>
-						<li>Văn Phòng Ủy Ban ATGTQG</li>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<P>BỘ GIÁO DỤC VÀ ĐÀO TẠO</P>
-					<ul>
-						<li>35 Đại Cồ Việt, Hai Bà Trưng, Hà Nội</li>
-						<li>Đồng Chí: Nguyễn Việt Hà</li>
-						<li>Vụ Công Tác HSSV Bộ GD&ĐT</li>
-					</ul>
-				</div>
-				<div class="col-md-4">
-					<p>CÔNG TY CP TẬP ĐOÀN GIÁO DỤC EGROUP</p>
-					<ul>
-						<li>Tầng 3, Tòa Nhà 25T1, Hoàng Đạo Thúy, Trung Hòa, Cầu Giấy, Hà Nội</li>
-						<li>Đồng chí: Phạm Thu Huế</li>
-						<li>Phòng Cộng Đồng, Công Ty Cổ Phần Tập Đoàn Giáo Dục Egroup</li>
-					</ul>
-				</div>
-			</div>
+		<div class="copyright">
+			<a href="">Design by VNEDUTECH.VN</a>
 		</div>
 	</div>
 </footer>

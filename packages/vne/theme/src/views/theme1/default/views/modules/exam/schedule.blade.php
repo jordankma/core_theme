@@ -1,7 +1,6 @@
 @extends('VNE-THEME::layouts.master')
 @section('content')
 <main class="main">
-
 	<!-- calendar -->
 	<section class="calendar">
 		<div class="container">
