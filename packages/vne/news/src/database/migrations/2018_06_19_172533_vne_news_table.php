@@ -49,6 +49,6 @@ class VneNewsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_news');
+        // Schema::connection('mysql_vne')->dropIfExists('vne_news');
     }
 }

@@ -45,8 +45,13 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					<span class="email"><i class="fa fa-email"></i> Email: gthd@egroup.vn</span>
 				</div> <!-- /top bar -->
 				<ul class="nav">
-					<li class="nav-item js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
-					<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
+					@if(Session::has('user_info'))
+						<li class="nav-item"><i class="fa fa-user">{{ Session::get('user_info')['email_address'] }}</i></li>
+						<li class="nav-item"><i class="fa fa-edit"></i><a href="{{ route('vne.member.logout')}}">Đăng xuất</a></li>	
+					@else
+						<li class="nav-item js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
+						<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
+					@endif
 				</ul> <!-- nav -->
 			</div>
 		</div>

@@ -1,8 +1,7 @@
 <?php
 $adminPrefix = '';
 Route::group(array('prefix' => $adminPrefix), function() {
-    Route::group(['middleware' => ['adtech.acl']], function () {
-        Route::get('/', 'HomeController@index');
+        Route::get('/', 'HomeController@index')->name('index');
 
         Route::get('lien-he', 'HomeController@showContact')->name('frontend.contact.show')->where('as','Frontend - Liên hệ');
         Route::post('lien-he', 'HomeController@updateContact')->name('frontend.contact.update');
@@ -27,6 +26,4 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::post('/dang-ky', 'HomeController@updateRegisterMember')->name('frontend.member.register.update');
 
         Route::get('get-token', 'HomeController@getToken');
-
-    });
 });

@@ -31,6 +31,6 @@ class VneNewsTagTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_news_tag');
+        // Schema::connection('mysql_vne')->dropIfExists('vne_news_tag');
     }
 }

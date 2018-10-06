@@ -32,6 +32,6 @@ class VneNewsHasCatTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_news_has_cat');
+        // Schema::connection('mysql_vne')->dropIfExists('vne_news_has_cat');
     }
 }

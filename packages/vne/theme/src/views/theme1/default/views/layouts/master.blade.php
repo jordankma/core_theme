@@ -58,9 +58,53 @@
 
 	<!-- js -->
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/jquery-3.3.1.min.js?t=' . time()) }}"></script>
+	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/flipclock.min.js?t=' . time()) }}"></script>
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js?t=' . time()) }}"></script>
+	<script src="{{ asset('/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js?t=' . time()) }}"></script>
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
 	@yield('footer_scripts')
+	<script type="text/javascript">
+		$('body').on('submit', "#form-login", function (event) {
+	        event.preventDefault();
+	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
+	        var email = $('input[name=email]').val();
+	        var password = $('input[name=password]').val(); 
+	        var url = '/login';
+	        $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
+	            if (!result.status) {
+	                $('#form-login .help-block').text(result.messeger);
+	                $('#form-login .help-block').css('display','block');
+	                return false;
+	            }else{
+	                location.reload(true);
+	            }
+	        }, 'json');
+	    });
+	    $('body').on('submit', "#form-register", function (event) {
+	        event.preventDefault();
+	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
+	        var u_name = $('input[name=u_name]').val();
+	        var email = $('input[name=email]').val();
+	        var phone = $('input[name=phone]').val();
+	        var password = $('input[name=password]').val(); 
+	        var password = $('input[name=conf_password]').val(); 
+
+	        if(u_name=='' && email='' && phone='' && password='' && phone=''){
+
+	        }
+
+	        var url = '/register';
+	        $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
+	            if (!result.status) {
+	                $('#form-login .help-block').text(result.messeger);
+	                $('#form-login .help-block').css('display','block');
+	                return false;
+	            }else{
+	                location.reload(true);
+	            }
+	        }, 'json');
+	    });
+	</script>
 </body>
 
 </html>

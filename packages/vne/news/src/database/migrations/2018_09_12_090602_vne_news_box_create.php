@@ -30,6 +30,6 @@ class VneNewsBoxCreate extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_news_box');
+        // Schema::connection('mysql_vne')->dropIfExists('vne_news_box');
     }
 }

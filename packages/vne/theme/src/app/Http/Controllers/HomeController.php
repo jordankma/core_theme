@@ -42,7 +42,8 @@ class HomeController extends Controller
         $sukien = config('site.news_box.sukien');
         $list_news_event = $this->news->getNewsByBox($sukien,4);
 
-
+        $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
+        $list_news_hanh_trinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4);
         $data = [
             'list_banner' => $list_banner,
             'list_thong_bao_btc' => $list_thong_bao_btc,

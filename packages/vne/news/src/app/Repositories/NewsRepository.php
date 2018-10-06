@@ -5,10 +5,7 @@ namespace Vne\News\App\Repositories;
 use Adtech\Application\Cms\Repositories\Eloquent\Repository;
 use DB;
 use Vne\News\App\Models\News;
-/**
- * Class DemoRepository
- * @package Vne\News\Repositories
- */
+
 class NewsRepository extends Repository
 {
 
@@ -79,11 +76,16 @@ class NewsRepository extends Repository
         return $data;
     }
 
-    public function getNewsByBox($alias,$limit) {
-        
-        $result = News::orderBy('news_id', 'desc')->whereHas('getBoxs', function ($query) use ($alias) {
+    public function getNewsByBox($alias,$limit=null) {
+        if($limit==null){
+            $result = News::orderBy('news_id', 'desc')->whereHas('getBoxs', function ($query) use ($alias) {
             $query->where('vne_news_box.alias', $alias);
-        })->paginate($limit, ['*'], $alias);
+            })->get();   
+        } else {
+            $result = News::orderBy('news_id', 'desc')->whereHas('getBoxs', function ($query) use ($alias) {
+                $query->where('vne_news_box.alias', $alias);
+            })->paginate($limit, ['*'], $alias);
+        }
         return $result;
     }
 

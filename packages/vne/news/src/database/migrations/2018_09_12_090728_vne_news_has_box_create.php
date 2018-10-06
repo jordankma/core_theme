@@ -13,7 +13,7 @@ class VneNewsHasBoxCreate extends Migration
      */
     public function up()
     {
-        Schema::create('vne_news_has_box', function (Blueprint $table) {
+        Schema::connection('mysql_vne')->create('vne_news_has_box', function (Blueprint $table) {
             $table->increments('news_has_box_id');
             $table->integer('news_id', false, true)->index();
             $table->integer('news_box_id', false, true)->index();
@@ -33,6 +33,6 @@ class VneNewsHasBoxCreate extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vne_news_has_box');
+        Schema::connection('mysql_vne')->dropIfExists('vne_news_has_box');
     }
 }
