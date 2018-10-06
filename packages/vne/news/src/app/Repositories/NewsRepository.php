@@ -76,16 +76,31 @@ class NewsRepository extends Repository
         return $data;
     }
 
-    public function getNewsByBox($alias,$limit=null) {
+    public function getNewsByBox($alias,$news_cat_id=null,$limit=null) {
+        $q = News::orderBy('news_id', 'desc');
         if($limit==null){
-            $result = News::orderBy('news_id', 'desc')->whereHas('getBoxs', function ($query) use ($alias) {
-            $query->where('vne_news_box.alias', $alias);
-            })->get();   
-        } else {
-            $result = News::orderBy('news_id', 'desc')->whereHas('getBoxs', function ($query) use ($alias) {
+            $q->whereHas('getBoxs', function ($query) use ($alias) {
                 $query->where('vne_news_box.alias', $alias);
-            })->paginate($limit, ['*'], $alias);
+            });   
+            if($news_cat_id != null){
+                $q->whereHas('getCats', function ($query) use ($news_cat_id) {
+                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                });
+            }
+            $result = $q->get();
+        } 
+        else {
+            $q->with('getBoxs')->whereHas('getBoxs', function ($query) use ($alias) {
+                $query->where('vne_news_box.alias', $alias);
+            });
+            if($news_cat_id != null){
+                $q->whereHas('getCats', function ($query) use ($news_cat_id) {
+                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                });
+            }
+            $result = $q->paginate($limit, ['*'], $alias);
         }
+        
         return $result;
     }
 

@@ -87,22 +87,25 @@
 	        var email = $('input[name=email]').val();
 	        var phone = $('input[name=phone]').val();
 	        var password = $('input[name=password]').val(); 
-	        var password = $('input[name=conf_password]').val(); 
-
-	        if(u_name=='' && email='' && phone='' && password='' && phone=''){
-
+	        var conf_password = $('input[name=conf_password]').val(); 
+	        console.log(u_name=='');
+	        if(u_name=='' && email=='' && phone=='' && password=='' && conf_password=='' ){
+	        	console.log('1');
+	        	$('#form-register .help-block').text('Các trường này không được bỏ trống');
+                $('#form-register .help-block').css('display','block');	
+	        } else {
+	        	console.log('2');
+		        // var url = '/register';
+		        // $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
+		        //     if (!result.status) {
+		        //         $('#form-login .help-block').text(result.messeger);
+		        //         $('#form-login .help-block').css('display','block');
+		        //         return false;
+		        //     }else{
+		        //         location.reload(true);
+		        //     }
+		        // }, 'json');
 	        }
-
-	        var url = '/register';
-	        $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
-	            if (!result.status) {
-	                $('#form-login .help-block').text(result.messeger);
-	                $('#form-login .help-block').css('display','block');
-	                return false;
-	            }else{
-	                location.reload(true);
-	            }
-	        }, 'json');
 	    });
 	</script>
 </body>
