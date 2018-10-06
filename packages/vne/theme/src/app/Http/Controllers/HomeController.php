@@ -34,17 +34,17 @@ class HomeController extends Controller
         $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
         $thongbaobtc = config('site.news_box.thongbaobtc');
-        $list_thong_bao_btc = $this->news->getNewsByBox($thongbaobtc,5);
+        $list_thong_bao_btc = $this->news->getNewsByBox($thongbaobtc,null,5);
 
         $tinnong = config('site.news_box.tinnong');
-        $list_news_hot = $this->news->getNewsByBox($tinnong,5);
+        $list_news_hot = $this->news->getNewsByBox($tinnong,null,5);
         
         $sukien = config('site.news_box.sukien');
-        $list_news_event = $this->news->getNewsByBox($sukien,4);
+        $list_news_event = $this->news->getNewsByBox($sukien,null,4);
 
         $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-        $list_news_hanh_trinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,3);
-        dd($list_news_hanh_trinh);
+        $list_news_hanh_trinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong);
+        // dd($list_news_hanh_trinh);
         $data = [
             'list_banner' => $list_banner,
             'list_thong_bao_btc' => $list_thong_bao_btc,
