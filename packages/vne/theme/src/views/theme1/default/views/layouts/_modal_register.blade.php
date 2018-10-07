@@ -1,6 +1,6 @@
 <div class="form-user from-registration js-registration">
 	<div class="logo">
-		<img src="src/images/egroup-logo.png" alt="">
+		<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/egroup-logo.png?t=' . time()) }}" alt="">
 	</div>
 	<form action="{{route('vne.member.register')}}" class="form" method="post" id="form-register">
 		<p>Thành viên mới?</p>

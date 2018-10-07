@@ -128,6 +128,12 @@ return [
         'videonoibat' => 'videonoibat',
         'tintucchung' => 'tintucchung'
     ],
+    'news_cat_id' => [
+        'vongcaptruong' => 4,
+        'vongcaptinh' => 5,
+        'vongtoanquoc' => 6,
+        'tintuckhac' => 7
+    ],
     'city_id_default' => 62,
     'table_a_id' => 1,
     'table_b_id' => 2,

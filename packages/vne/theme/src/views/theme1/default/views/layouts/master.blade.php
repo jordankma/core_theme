@@ -26,7 +26,7 @@
 		<![endif]>
 	</noscript>
 
-	<div id="app" style="background-image: url(../images/bg-body.png);">
+	<div id="app" style="background-image: url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/bg-body.png?t=' . time()) }}../);">
 
 		<!-- header -->
 		@include('VNE-THEME::layouts.header')

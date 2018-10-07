@@ -109,6 +109,16 @@
                         <!-- /.col-sm-4 -->
                         <div class="col-md-4 col-sm-4">
                             <div class="form-group">
+                                <label>{{trans('vne-news::language.form.text.box')}}</label>
+                                <select id="box" class="form-control" name="news_box[]" multiple="multiple">
+                                    @if(!empty($list_news_box))
+                                    @foreach($list_news_box as $box)
+                                        <option value="{{$box->news_box_id}}">{{$box->name}}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>{{trans('vne-news::language.form.text.cat')}} <span style="color: red">(*)</span></label><br>
                                 <select id="cate" class="form-control" name="news_cat[]" required="" multiple="multiple">
                                     @if(!empty($list_news_cat))
@@ -118,14 +128,6 @@
                                     @endif
                                 </select>
                             </div>
-                            <label>{{trans('vne-news::language.form.text.box')}}</label>
-                            <select id="box" class="form-control" name="news_box[]" multiple="multiple">
-                                @if(!empty($list_news_box))
-                                @foreach($list_news_box as $box)
-                                    <option value="{{$box->news_box_id}}">{{$box->name}}</option>
-                                @endforeach
-                                @endif
-                            </select>
                             <div class="form-group area-tag">
                                 <label>{{trans('Thêm tag')}}</label><br>
                                 <div class="input-group">

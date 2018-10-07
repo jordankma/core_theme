@@ -51,17 +51,17 @@
 								<p><i class="fa fa-phone"></i> Hotline: 1900 636 444(8h00 - 22h00).</p>
 							</div>
 						</div>
-						<form action="" class="form-contact">
+						<form action="{{ route('frontend.contact.save')}}" class="form-contact" id="form-contact" method="post">
 							<h2 class="title">Liên hệ với chúng tôi:</h2>
 							<div class="row">
 								<div class="form-group col-md-6">
-									<input type="name" class="form-control" placeholder="Họ và tên">
+									<input type="text" name="name" class="form-control" placeholder="Họ và tên">
 								</div>
 								<div class="form-group col-md-6">
-									<input type="email" class="form-control" placeholder="Email">
+									<input type="email" name="email_contact" class="form-control" placeholder="Email">
 								</div>
 								<div class="form-group col-12">
-									<textarea class="form-control" rows="8" placeholder="Nội dung"></textarea>
+									<textarea class="form-control" name="content" rows="8" placeholder="Nội dung"></textarea>
 								</div>
 							</div>
 							<button class="btn btn-primary" type="submit">Gửi thông tin</button>

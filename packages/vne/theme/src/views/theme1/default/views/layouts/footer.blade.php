@@ -3,19 +3,19 @@
 		<div class="container">
 			<div class="carousel js-carousel-03">
 				<div class="carousel-item">
-					<a href=""><img src="images/vnedutech-logo.png" alt=""></a>
+					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/vnedutech-logo.png?t=' . time()) }}" alt=""></a>
 				</div>
 				<div class="carousel-item">
-					<a href=""><img src="images/logo_bak.png" alt=""></a>
+					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo_bak.png?t=' . time()) }}" alt=""></a>
 				</div>
 				<div class="carousel-item">
-					<a href=""><img src="images/mgc.png" alt=""></a>
+					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/mgc.png?t=' . time()) }}" alt=""></a>
 				</div>
 				<div class="carousel-item">
-					<a href=""><img src="images/thieunien.png" alt=""></a>
+					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/thieunien.png?t=' . time()) }}" alt=""></a>
 				</div>
 				<div class="carousel-item">
-					<a href=""><img src="images/hoahoctro.png" alt=""></a>
+					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/hoahoctro.png?t=' . time()) }}" alt=""></a>
 				</div>
 			</div>
 		</div>
