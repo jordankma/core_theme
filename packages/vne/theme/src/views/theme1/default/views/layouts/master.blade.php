@@ -84,27 +84,31 @@
 	        event.preventDefault();
 	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
 	        var u_name = $('input[name=u_name]').val();
-	        var email = $('input[name=email]').val();
+	        var email = $('input[name=email_reg]').val();
 	        var phone = $('input[name=phone]').val();
 	        var password = $('input[name=password]').val(); 
-	        var conf_password = $('input[name=conf_password]').val(); 
-	        console.log(u_name=='');
-	        if(u_name=='' && email=='' && phone=='' && password=='' && conf_password=='' ){
-	        	console.log('1');
+	        var conf_password = $('input[name=conf_password]').val();
+	        if(u_name=='' || email=='' || phone=='' || password=='' || conf_password=='' ){
 	        	$('#form-register .help-block').text('Các trường này không được bỏ trống');
                 $('#form-register .help-block').css('display','block');	
 	        } else {
-	        	console.log('2');
-		        // var url = '/register';
-		        // $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
-		        //     if (!result.status) {
-		        //         $('#form-login .help-block').text(result.messeger);
-		        //         $('#form-login .help-block').css('display','block');
-		        //         return false;
-		        //     }else{
-		        //         location.reload(true);
-		        //     }
-		        // }, 'json');
+                if(password != conf_password){
+                	$('#form-register .help-block').text('Mật khẩu không giống nhau');	
+                }
+                else{
+		        	$('#form-register .help-block').text('');
+	                $('#form-register .help-block').css('display','none');
+			        var url = '/register';
+			        $.post(url, {_token: _crsfToken,u_name:u_name, email: email,phone:phone, password: password,conf_password:conf_password}, function (result) {
+			            if (!result.status) {
+			                $('#form-login .help-block').text(result.messeger);
+			                $('#form-login .help-block').css('display','block');
+			                return false;
+			            }else{
+			                location.reload(true);
+			            }
+			        }, 'json');
+                }
 	        }
 	    });
 	</script>

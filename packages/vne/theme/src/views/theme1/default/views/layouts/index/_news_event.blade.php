@@ -10,7 +10,7 @@
 			@endphp
 			<figure class="news-item">
 				<div class="img-cover">
-					<a href="#" class="img-cover__wrapper">
+					<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
 						<img src="{{ $element->image }}" alt="">
 					</a>
 				</div>

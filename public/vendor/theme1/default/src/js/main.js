@@ -1,5 +1,3 @@
-$(document).ready(function() {
-  
 // Video Youtube
 // Find all YouTube videos
 var $allVideos = $("iframe[src*='youtube']"),
@@ -266,4 +264,3 @@ if (elements) {
     countdown: true
   });
 }
-});

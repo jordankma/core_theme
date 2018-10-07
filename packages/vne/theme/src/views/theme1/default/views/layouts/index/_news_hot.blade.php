@@ -5,9 +5,7 @@
 		<div class="inner">
 			@if(!empty($list_news_hot))
 			@foreach($list_news_hot as $element)
-			@php 
-				$alias = $element->title_alias . '.html';
-			@endphp
+			@php $alias = $element->title_alias . '.html'; @endphp
 			@if($loop->index==0)
 			<figure class="news-item">
 				<h3 class="title">

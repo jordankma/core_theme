@@ -14,15 +14,16 @@
 								<div class="inner">
 									@if(!empty($list_news_hanh_trinh_truong))
 									@foreach ($list_news_hanh_trinh_truong as $element)
+										@php $alias = $element->title_alias . '.html'; @endphp
 										<figure class="news-item">
 											<div class="img-cover">
-												<a href="#" class="img-cover__wrapper">
+												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
 													<img src="{{ $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
 												<h3 class="title">
-													<a href="">{{ $element->title }}</a>
+													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
 													<span class="date">{{ $element->created_at }}</span>
@@ -40,15 +41,16 @@
 								<div class="inner">
 									@if(!empty($list_news_hanh_trinh_tinh))
 									@foreach ($list_news_hanh_trinh_tinh as $element)
+										@php $alias = $element->title_alias . '.html'; @endphp
 										<figure class="news-item">
 											<div class="img-cover">
-												<a href="#" class="img-cover__wrapper">
+												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
 													<img src="{{ $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
 												<h3 class="title">
-													<a href="">{{ $element->title }}</a>
+													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
 													<span class="date">{{ $element->created_at }}</span>
@@ -66,15 +68,16 @@
 								<div class="inner">
 									@if(!empty($list_news_hanh_trinh_toanquoc))
 									@foreach ($list_news_hanh_trinh_toanquoc as $element)
+										@php $alias = $element->title_alias . '.html'; @endphp
 										<figure class="news-item">
 											<div class="img-cover">
-												<a href="#" class="img-cover__wrapper">
+												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
 													<img src="{{ $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
 												<h3 class="title">
-													<a href="">{{ $element->title }}</a>
+													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
 													<span class="date">{{ $element->created_at }}</span>
@@ -92,15 +95,16 @@
 								<div class="inner">
 									@if(!empty($list_news_hanh_trinh_khac))
 									@foreach ($list_news_hanh_trinh_khac as $element)
+										@php $alias = $element->title_alias . '.html'; @endphp
 										<figure class="news-item">
 											<div class="img-cover">
-												<a href="#" class="img-cover__wrapper">
+												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
 													<img src="{{ $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
 												<h3 class="title">
-													<a href="">{{ $element->title }}</a>
+													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
 													<span class="date">{{ $element->created_at }}</span>

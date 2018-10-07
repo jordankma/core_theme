@@ -18,7 +18,7 @@
 			<input type="text" class="form-control" name="phone" placeholder="Số điện thoại">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" name="email" placeholder="Email">
+			<input type="email" class="form-control" name="email_reg" placeholder="Email">
 		</div>
 		<small class="help-block" style="color: red"></small>
 		<button type="submit" class="btn btn-success">Đăng ký</button>

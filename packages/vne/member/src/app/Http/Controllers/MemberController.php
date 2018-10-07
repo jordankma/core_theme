@@ -38,7 +38,18 @@ class MemberController extends Controller
     }
 
     public function register(Request $request){
-
+        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR']]);
+        $res = $client->request('POST', 'http://eid.vnedutech.vn/api/login', [
+            'form_params'=> [
+                'email' => $email,
+                'password' => $password
+            ]
+        ]); 
+        
+        if($data['success'] == true){
+               
+        }
+        return $data;  
     } 
 
     public function logout(Request $request){

@@ -86,22 +86,24 @@ class HomeController extends Controller
 
     }
 
-    public function listNews(){
-        $list_banner = array();
+    public function listNews(Request $request, $alias = null){
+        if($alias==null){
+            $list_news = News::orderBy('news_id', 'desc')->paginate(10);  
+        } else {
+            $list_news = $this->news->getNewsByCate($alias,10);    
+        }
         $data = [
-            'list_banner' => $list_banner,
-            
+            'list_news' => $list_news     
         ];
-        return view('VNE-THEME::modules.index.index');
+        return view('VNE-THEME::modules.news.list',$data);
     }
 
-    public function detailNews(){
-        $list_banner = array();
+    public function detailNews($alias){
+        $news = News::where('title_alias',$alias)->first();  
         $data = [
-            'list_banner' => $list_banner,
-            
+            'news' => $news     
         ];
-        return view('VNE-THEME::modules.index.index');
+        return view('VNE-THEME::modules.news.details',$data);
     }
 
     public function listExam(){
