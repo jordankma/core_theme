@@ -20792,3 +20792,32 @@ ews\\src\\app\\Repositories\\NewsRepository.php(103): Illuminate\\Foundation\\Bo
 #36 D:\\OSPanel\\domains\\core_theme\\public\\index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #37 {main}
 "} 
+[2018-10-08 06:16:19] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:181)
+[stacktrace]
+#0 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(115): Illuminate\\Log\\LogManager->resolve(NULL)
+#1 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(103): Illuminate\\Log\\LogManager->get(NULL)
+#2 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(526): Illuminate\\Log\\LogManager->driver()
+#3 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(113): Illuminate\\Log\\LogManager->error('The \"--craete\" ...', Array)
+#4 D:\\OSPanel\\domains\\core_theme\\packages\\adtech\\application\\src\\Cms\\Exceptions\\Handler.php(35): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\Console\\Exception\\RuntimeException))
+#5 D:\\OSPanel\\domains\\core_theme\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php(60): Adtech\\Application\\Cms\\Exceptions\\Handler->report(Object(Symfony\\Component\\Console\\Exception\\RuntimeException))
+#6 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(353): NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler->report(Object(Symfony\\Component\\Console\\Exception\\RuntimeException))
+#7 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(124): Illuminate\\Foundation\\Console\\Kernel->reportException(Object(Symfony\\Component\\Console\\Exception\\RuntimeException))
+#8 D:\\OSPanel\\domains\\core_theme\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 {main}
+"} 
+[2018-10-08 06:16:19] laravel.ERROR: The "--craete" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--craete\" option does not exist. at D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Input\\ArgvInput.php:218)
+[stacktrace]
+#0 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Input\\ArgvInput.php(152): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption('craete', 'vne_cat_has_box')
+#1 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Input\\ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption('--craete=vne_ca...')
+#2 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Input\\Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Command\\Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind(Object(Symfony\\Component\\Console\\Input\\InputDefinition))
+#4 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(166): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#5 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Application.php(886): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Application.php(262): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Database\\Console\\Migrations\\MigrateMakeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 D:\\OSPanel\\domains\\core_theme\\vendor\\symfony\\console\\Application.php(145): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(89): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 D:\\OSPanel\\domains\\core_theme\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 D:\\OSPanel\\domains\\core_theme\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 {main}
+"} 
