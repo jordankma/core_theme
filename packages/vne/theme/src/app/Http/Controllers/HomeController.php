@@ -133,13 +133,9 @@ class HomeController extends Controller
         return view('VNE-THEME::modules.index.index');
     }
 
-    public function showRegisterMember(){
-        $list_banner = array();
-        $data = [
-            'list_banner' => $list_banner,
-            
-        ];
-        return view('VNE-THEME::modules.index.index');
+    public function showRegisterMember(Request $request){
+        
+        return view('VNE-THEME::modules.member.register');
     }
 
     public function updateRegisterMember(){
@@ -149,5 +145,47 @@ class HomeController extends Controller
     		
     	];
         return view('VNE-THEME::modules.index.index');
+    }
+
+    public function getDistrict(Request $request){
+        $list_district = array();
+        $list_district_json = array();
+        if(!empty($list_district)){
+            foreach ($list_district as $key => $district) {
+                $list_district_json[] = [
+                    'district_id' => $district->district_id,
+                    'name' => $district->name
+                ];
+            }
+        }
+        return json_encode($list_district_json);      
+    }
+
+    public function getSchool(Request $request){
+        $list_school = array();
+        $list_school_json = array();
+        if(!empty($list_school)){
+            foreach ($list_school as $key => $school) {
+                $list_school_json[] = [
+                    'school_id' => $school->school_id,
+                    'name' => $school->name
+                ];
+            }
+        }
+        return json_encode($list_school_json);      
+    }
+
+    public function getClass(Request $request){
+        $list_class = array();
+        $list_class_json = array();
+        if(!empty($list_class)){
+            foreach ($list_class as $key => $class) {
+                $list_class_json[] = [
+                    'class_id' => $class->class_id,
+                    'name' => $class->name
+                ];
+            }
+        }
+        return json_encode($list_class_json);      
     }
 }

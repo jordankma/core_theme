@@ -3,7 +3,7 @@
 namespace Vne\Member\App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Adtech\Application\Cms\Controllers\Controller as Controller;
+use Adtech\Application\Cms\Controllers\MController as Controller;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
@@ -38,16 +38,46 @@ class MemberController extends Controller
     }
 
     public function register(Request $request){
-        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR']]);
-        $res = $client->request('POST', 'http://eid.vnedutech.vn/api/login', [
-            'form_params'=> [
-                'email' => $email,
-                'password' => $password
+        $u_name = $request->input('u_name');
+        $phone = $request->input('phone');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $conf_password = $request->input('conf_password');
+        $client = new Client([
+            'headers'  => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR'
             ]
-        ]); 
+        ]);
+        $res = $client->post('http://exam.local.vn/verify', [
+            'form_params'=> [
+                'username' => $u_name,
+                'phone' => $phone,
+                'email' => $email,
+                'password' => $password,
+                'password_confirmation' => $conf_password,
+                'token' => '12323'
+            ]
+        ]);
+        $data_reponse = json_decode($res->getBody(),true);
+
+        dd($data_reponse); 
         
-        if($data['success'] == true){
-               
+        if($data_reponse['success'] == true){
+            $token = $data_reponse['data']['token'];
+            Session::put('token_user', $token); 
+            $data_user = $this->getInfoUser($token);
+            Session::put('user_info',  $data_user);
+            $data['status'] = true;
+            return json_encode($data);
+        }
+        else{
+            $data['status'] = false;
+            foreach ($data_reponse['errors'] as $key => $value) {
+                $data['messeger'] = $value;
+                break;        
+            } 
+            return json_encode($data);   
         }
         return $data;  
     } 
@@ -61,8 +91,9 @@ class MemberController extends Controller
             return redirect()->route('index');    
         }    
     }
+
     function getTokenUser($email,$password){
-        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR']]);
+        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR','Accept' => 'application/json']]);
         $res = $client->request('POST', 'http://eid.vnedutech.vn/api/login', [
             'form_params'=> [
                 'email' => $email,

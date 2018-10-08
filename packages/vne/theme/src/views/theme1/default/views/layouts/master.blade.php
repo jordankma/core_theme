@@ -88,9 +88,9 @@
 	        var phone = $('input[name=phone]').val();
 	        var password = $('input[name=password]').val(); 
 	        var conf_password = $('input[name=conf_password]').val();
-	        if(u_name=='' || email=='' || phone=='' || password=='' || conf_password=='' ){
+	        if(u_name=='' || password=='' || conf_password=='' || (email=='' && phone=='')){
+	        	$('#form-register .help-block').css('display','block');
 	        	$('#form-register .help-block').text('Các trường này không được bỏ trống');
-                $('#form-register .help-block').css('display','block');	
 	        } else {
                 if(password != conf_password){
                 	$('#form-register .help-block').text('Mật khẩu không giống nhau');	

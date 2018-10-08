@@ -26,4 +26,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::post('/dang-ky', 'HomeController@updateRegisterMember')->name('frontend.member.register.update');
 
         Route::get('get-token', 'HomeController@getToken');
+
+        Route::get('get/district', 'HomeController@getDistrict')->name('vne.get.district');
+        Route::get('get/school', 'HomeController@getSchool')->name('vne.get.school');
+        Route::get('get/class', 'HomeController@getClass')->name('vne.get.class');
 });
