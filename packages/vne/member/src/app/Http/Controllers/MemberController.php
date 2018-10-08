@@ -16,7 +16,7 @@ class MemberController extends Controller
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
-
+    private $bearer_token = 'aZlDLbcF4yP60krTnEc05YgYS0aEPL0z92I960nP';
     public function login(Request $request){
         $data['status'] = false;
         $data['messeger'] = 'Tài khoản hoặc mật khẩu sai';
@@ -46,22 +46,19 @@ class MemberController extends Controller
         $client = new Client([
             'headers'  => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR'
+                'Authorization' => 'Bearer ' . $this->bearer_token
             ]
         ]);
-        $res = $client->post('http://exam.local.vn/verify', [
+        $res = $client->post('http://eid.vnedutech.vn/api/register', [
             'form_params'=> [
                 'username' => $u_name,
-                'phone' => $phone,
-                'email' => $email,
+                'phone' => $phone != null ? $phone : '',
+                'email' => $email != null ? $email : '',
                 'password' => $password,
-                'password_confirmation' => $conf_password,
-                'token' => '12323'
+                'password_confirmation' => $conf_password
             ]
         ]);
         $data_reponse = json_decode($res->getBody(),true);
-
-        dd($data_reponse); 
         
         if($data_reponse['success'] == true){
             $token = $data_reponse['data']['token'];
@@ -71,10 +68,10 @@ class MemberController extends Controller
             $data['status'] = true;
             return json_encode($data);
         }
-        else{
+        elseif($data_reponse['success'] == false){
             $data['status'] = false;
-            foreach ($data_reponse['errors'] as $key => $value) {
-                $data['messeger'] = $value;
+            foreach ($data_reponse['data'] as $key => $value) {
+                $data['messeger'] = $value[0];
                 break;        
             } 
             return json_encode($data);   
@@ -85,7 +82,7 @@ class MemberController extends Controller
     public function logout(Request $request){
         if(Session::has('token_user')) {
             $token = $token = Session::get('token_user');
-            $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR']]);
+            $client = new Client(['headers'  => ['Authorization' => 'Bearer ' . $this->bearer_token]]);
             $res = $client->request('get', 'http://eid.vnedutech.vn/logout'); 
             Session::forget('user_info');
             return redirect()->route('index');    
@@ -93,7 +90,7 @@ class MemberController extends Controller
     }
 
     function getTokenUser($email,$password){
-        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR','Accept' => 'application/json']]);
+        $client = new Client(['headers'  => ['Authorization' => 'Bearer ' . $this->bearer_token,'Accept' => 'application/json']]);
         $res = $client->request('POST', 'http://eid.vnedutech.vn/api/login', [
             'form_params'=> [
                 'email' => $email,
@@ -109,7 +106,7 @@ class MemberController extends Controller
 
     //return info user 
     function getInfoUser($token){
-        $client = new Client(['headers'  => ['Authorization' => 'Bearer GYK47oHXhSpHqOuVdhjx6DB478LxGHukNhHis0aR']]);
+        $client = new Client(['headers'  => ['Authorization' => 'Bearer ' . $this->bearer_token]]);
         $res = $client->request('POST', 'http://eid.vnedutech.vn/api/authorize', [
             'form_params'=> [
                 'token' => $token

@@ -101,8 +101,8 @@
 			        var url = '/register';
 			        $.post(url, {_token: _crsfToken,u_name:u_name, email: email,phone:phone, password: password,conf_password:conf_password}, function (result) {
 			            if (!result.status) {
-			                $('#form-login .help-block').text(result.messeger);
-			                $('#form-login .help-block').css('display','block');
+			                $('#form-register .help-block').text(result.messeger);
+			                $('#form-register .help-block').css('display','block');
 			                return false;
 			            }else{
 			                location.reload(true);
