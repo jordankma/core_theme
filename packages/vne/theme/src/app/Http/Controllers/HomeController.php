@@ -31,6 +31,7 @@ class HomeController extends Controller
     }
 
     public function index(){
+        $theme = $this->theme;
         $id_position_banner_trangchu = config('site.banner_trang_chu_id');
         $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
@@ -67,7 +68,7 @@ class HomeController extends Controller
             'list_news_anh_video_2' => $list_news_anh_video_2
             
         ];
-        return view('VNE-THEME::modules.index.index',$data);
+        return view('VNE-THEME::modules.index.index',$data); 
     }
 
     public function showContact(){

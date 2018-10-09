@@ -44,13 +44,17 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					<span class="phone"><i class="fa fa-phone"></i> Hotline: 1900 636 444</span>
 					<span class="email"><i class="fa fa-email"></i> Email: gthd@egroup.vn</span>
 				</div> <!-- /top bar -->
-				<ul class="nav">
+				<ul class="nav" id="menu-info">
 					@if(Session::has('user_info'))
-						<li class="nav-item"><i class="fa fa-user">{{ Session::get('user_info')['email_address'] }}</i></li>
-						<li class="nav-item"><i class="fa fa-edit"></i><a href="{{ route('vne.member.logout')}}">Đăng xuất</a></li>	
+						<div id="online-now">
+							<li class="nav-item"><i class="fa fa-user">{{ Session::get('user_info')['username'] }}</i></li>
+							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i>{{-- <a href="{{ route('vne.member.logout')}}"> --}}Đăng xuất{{-- </a> --}}</li>	
+						</div>
 					@else
-						<li class="nav-item js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
-						<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
+						<div id="offline-now">
+							<li class="nav-item js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
+							<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
+						</div>
 					@endif
 				</ul> <!-- nav -->
 			</div>

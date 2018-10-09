@@ -22,8 +22,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
 
         Route::get('/lich-thi', 'HomeController@scheduleExam')->name('frontend.exam.schedule')->where('as','Frontend - Lịch thi');
 
-        Route::get('/dang-ky', 'HomeController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
-        Route::post('/dang-ky', 'HomeController@updateRegisterMember')->name('frontend.member.register.update');
+        Route::get('cap-nhat-thong-tin', 'HomeController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
+        Route::post('/cap-nhat-thong-tin', 'HomeController@updateRegisterMember')->name('frontend.member.register.update');
 
         Route::get('get-token', 'HomeController@getToken');
 

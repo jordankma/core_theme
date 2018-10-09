@@ -8,8 +8,8 @@
 					<a href="http://"><img src="images/logo_new.png" alt=""></a>
 				</div> <!-- /branb -->
 				<ul class="btn-group">
-					<li class="btn-item"><a href=""><img src="src/images/rldv.png" alt=""></a></li>
-					<li class="btn-item"><a href=""><img src="src/images/slldt.png" alt=""></a></li>
+					<li class="btn-item"><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/rldv.png?t=' . time()) }}" alt=""></a></li>
+					<li class="btn-item"><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/slldt.png?t=' . time()) }}" alt=""></a></li>
 					<ul class="user">
 						<li class="user-item js-toggle-login"><i class="fa fa-user"></i> Đăng nhập</li>
 						<li class="user-item js-toggle-registration"><i class="fa fa-user"></i> Đăng ký</li>

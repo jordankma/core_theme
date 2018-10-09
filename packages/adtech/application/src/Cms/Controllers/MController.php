@@ -11,16 +11,23 @@ use Adtech\Core\App\Models\Setting;
 use Session;
 use Cache;
 use Auth;
-
+use GuzzleHttp\Client;
 // Member controller
 class MController extends BaseController
 {
     use ValidatesRequests;
     protected $user;
+    protected $theme;
     protected $currentDomain;
     protected $_menuList;
     protected $_menuTop;
     protected $domainDefault;
+
+    private $header = [
+        'headers'  => [
+            'X-Requested-With' => 'XMLHttpRequest'
+        ]
+    ];
 
     private function _guard()
     {
@@ -29,8 +36,21 @@ class MController extends BaseController
 
     public function __construct()
     {
-        //
+        // dd(Session::has('user_info'));
+        // if(!Session::has('user_info')){
+
+        //     $client = new Client($this->header);
+        //     $res = $client->request('GET','http://eid.vnedutech.vn/get-status-login', [
+        //         'xhrFields'=> [
+        //             'withCredentials' => true
+        //         ]
+        //     ]);
+        //     $data_reponse = json_decode($res->getBody(),true);
+        //     dd($data_reponse);
+        //     // if()
+        // }
         $id = $this->_guard()->id();
+        $this->theme = config('site.theme');
         $this->user = $this->_guard()->user();
         $email = $this->user ? $this->user->email : null;
         $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
