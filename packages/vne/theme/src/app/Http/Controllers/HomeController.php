@@ -32,43 +32,71 @@ class HomeController extends Controller
 
     public function index(){
         $theme = $this->theme;
-        $id_position_banner_trangchu = config('site.banner_trang_chu_id');
-        $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
+        if($theme == 'theme1'){
+            $id_position_banner_trangchu = config('site.banner_trang_chu_id');
+            $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
-        $thongbaobtc = config('site.news_box.thongbaobtc');
-        $list_thong_bao_btc = $this->news->getNewsByBox($thongbaobtc,null,5);
+            $thongbaobtc = config('site.news_box.thongbaobtc');
+            $list_thong_bao_btc = $this->news->getNewsByBox($thongbaobtc,null,5);
 
-        $tinnong = config('site.news_box.tinnong');
-        $list_news_hot = $this->news->getNewsByBox($tinnong,null,5);
-        
-        $sukien = config('site.news_box.sukien');
-        $list_news_event = $this->news->getNewsByBox($sukien,null,4);
-
-        $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-        $list_news_hanh_trinh_truong = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
-        $list_news_hanh_trinh_tinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
-        $list_news_hanh_trinh_toanquoc = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,6,4);
-        $list_news_hanh_trinh_khac = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
-        
-        $hinhanhvideo = config('site.news_box.hinhanhvideo');
-
-        $list_news_anh_video_1 = $this->news->getNewsByBox($hinhanhvideo,8,4);
-        $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
-
-        $data = [
-            'list_banner' => $list_banner,
-            'list_thong_bao_btc' => $list_thong_bao_btc,
-            'list_news_hot' => $list_news_hot,
-            'list_news_event' => $list_news_event,
-            'list_news_hanh_trinh_truong' => $list_news_hanh_trinh_truong,
-            'list_news_hanh_trinh_tinh' => $list_news_hanh_trinh_tinh,
-            'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
-            'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
-            'list_news_anh_video_1' => $list_news_anh_video_1,
-            'list_news_anh_video_2' => $list_news_anh_video_2
+            $tinnong = config('site.news_box.tinnong');
+            $list_news_hot = $this->news->getNewsByBox($tinnong,null,5);
             
-        ];
-        return view('VNE-THEME::modules.index.index',$data); 
+            $sukien = config('site.news_box.sukien');
+            $list_news_event = $this->news->getNewsByBox($sukien,null,4);
+
+            $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
+            $list_news_hanh_trinh_truong = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
+            $list_news_hanh_trinh_tinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
+            $list_news_hanh_trinh_toanquoc = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,6,4);
+            $list_news_hanh_trinh_khac = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
+            
+            $hinhanhvideo = config('site.news_box.hinhanhvideo');
+
+            $list_news_anh_video_1 = $this->news->getNewsByBox($hinhanhvideo,8,4);
+            $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
+
+            $data = [
+                'list_banner' => $list_banner,
+                'list_thong_bao_btc' => $list_thong_bao_btc,
+                'list_news_hot' => $list_news_hot,
+                'list_news_event' => $list_news_event,
+                'list_news_hanh_trinh_truong' => $list_news_hanh_trinh_truong,
+                'list_news_hanh_trinh_tinh' => $list_news_hanh_trinh_tinh,
+                'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
+                'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
+                'list_news_anh_video_1' => $list_news_anh_video_1,
+                'list_news_anh_video_2' => $list_news_anh_video_2
+                
+            ];
+            return view('VNE-THEME::modules.index.index',$data); 
+        }
+        elseif($theme == 'theme2'){
+            $id_position_banner_trangchu = config('site.banner_trang_chu_id');
+            $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
+
+            $thongbaohoidongdoi = config('site.news_box.thongbaohoidongdoi');
+            $list_news_thong_bao_hoi_dong_doi = $this->news->getNewsByBox($thongbaohoidongdoi,null,5);
+
+            $renluyendoivien = config('site.news_box.renluyendoivien');
+            $list_news_ren_luyen_doi_vien = $this->news->getNewsByBox($renluyendoivien,null,5);
+
+            $sotayrenluyen = config('site.news_box.sotayrenluyen');
+            $list_news_so_tay_ren_luyen = $this->news->getNewsByBox($sotayrenluyen,null,5);
+
+            $hinhanhvideo = config('site.news_box.hinhanhvideo');
+            $list_news_hinh_anh_video = $this->news->getNewsByBox($hinhanhvideo,null,5);
+
+
+            $data = [
+                'list_banner' => $list_banner,    
+                'list_news_thong_bao_hoi_dong_doi' => $list_news_thong_bao_hoi_dong_doi,    
+                'list_news_ren_luyen_doi_vien' => $list_news_ren_luyen_doi_vien,    
+                'list_news_so_tay_ren_luyen' => $list_news_so_tay_ren_luyen,    
+                'list_news_hinh_anh_video' => $list_news_hinh_anh_video, 
+            ];
+            return view('VNE-THEME::modules.index.index',$data);    
+        }
     }
 
     public function showContact(){

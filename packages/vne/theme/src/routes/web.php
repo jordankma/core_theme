@@ -1,7 +1,7 @@
 <?php
 $adminPrefix = '';
 Route::group(array('prefix' => $adminPrefix), function() {
-        Route::get('/', 'HomeController@index')->name('index');
+        Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
 
         Route::get('lien-he', 'HomeController@showContact')->name('frontend.contact.show')->where('as','Frontend - Liên hệ');
         Route::post('lien-he', 'HomeController@saveContact')->name('frontend.contact.save');
