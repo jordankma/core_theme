@@ -15,6 +15,7 @@ use Vne\Contact\App\Models\Contact;
 use Vne\News\App\Models\News;
 
 use Vne\News\App\Repositories\NewsRepository;
+use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
@@ -163,12 +164,387 @@ class HomeController extends Controller
     }
 
     public function showRegisterMember(Request $request){
+        $register_form = '{
+          "register_form": {
+            "target_list": [
+              {
+                "target_id": 1,
+                "target_name": "Học sinh Tiểu học"
+              },
+              {
+                "target_id": 2,
+                "target_name": "Học sinh THCS"
+              },
+               {
+                "target_id": 3,
+                "target_name": "Học sinh THPT"
+              },
+               {
+                "target_id": 4,
+                "target_name": "Giáo viên"
+              }
+            ],
+            "target_data": [
+              {
+                "target_id": 1,
+                "data": [
+                  {
+                    "province": {
+                      "label": "Tỉnh/ TP",
+                      "varible": "province",
+                      "input_type": "select_data",
+                      "value": "[1,2,3,4]",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
+                      "is_require": true
+                    },
+                    "district": {
+                      "label": "Quận/ huyện",
+                      "varible": "district",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
+                      "is_require": true
+                    },
+                    "school": {
+                      "label": "Trường",
+                      "varible": "school",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
+                      "is_require": true
+                    },
+                    "gclass": {
+                      "label": "Khối lớp",
+                      "varible": "gclass",
+                      "input_type": "select",
+                      "value": {
+                        "1": "Lớp 1",
+                        "2": "Lớp 2",
+                        "3": "Lớp 3",
+                        "4": "Lớp 4",
+                        "5": "Lớp 5",
+                        "6": "Lớp 6",
+                        "7": "Lớp 7",
+                        "8": "Lớp 8",
+                        "9": "Lớp 9",
+                        "10": "Lớp 10",
+                        "11": "Lớp 11",
+                        "12": "Lớp 12"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "phone": {
+                      "label": "Điện thoại",
+                      "varible": "phone",
+                      "input_type": "number",
+                      "value": "",
+                      "api": "",
+                      "is_require": true
+                    },
+                    "gender": {
+                      "label": "Giới tính",
+                      "varible": "gender",
+                      "input_type": "radio",
+                      "value": {
+                        "male": "Nam",
+                        "female": "Nữ"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "email": {
+                      "label": "Email",
+                      "varible": "email",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    },
+                    "facebook": {
+                      "label": "Facebook",
+                      "varible": "facebook",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    }
+                  }
+                ]
+              },
+              {
+                "target_id": 2,
+                "data": [
+                  {
+                    "province": {
+                      "label": "Tỉnh/ TP",
+                      "varible": "province",
+                      "input_type": "select_data",
+                      "value": "[1,2,3,4]",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
+                      "is_require": true
+                    },
+                    "district": {
+                      "label": "Quận/ huyện",
+                      "varible": "district",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
+                      "is_require": true
+                    },
+                    "school": {
+                      "label": "Trường",
+                      "varible": "school",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
+                      "is_require": true
+                    },
+                    "gclass": {
+                      "label": "Khối lớp",
+                      "varible": "gclass",
+                      "input_type": "select",
+                      "value": {
+                        "1": "Lớp 1",
+                        "2": "Lớp 2",
+                        "3": "Lớp 3",
+                        "4": "Lớp 4",
+                        "5": "Lớp 5",
+                        "6": "Lớp 6",
+                        "7": "Lớp 7",
+                        "8": "Lớp 8",
+                        "9": "Lớp 9",
+                        "10": "Lớp 10",
+                        "11": "Lớp 11",
+                        "12": "Lớp 12"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "phone": {
+                      "label": "Điện thoại",
+                      "varible": "phone",
+                      "input_type": "number",
+                      "value": "",
+                      "api": "",
+                      "is_require": true
+                    },
+                    "gender": {
+                      "label": "Giới tính",
+                      "varible": "gender",
+                      "input_type": "radio",
+                      "value": {
+                        "male": "Nam",
+                        "female": "Nữ"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "email": {
+                      "label": "Email",
+                      "varible": "email",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    },
+                    "facebook": {
+                      "label": "Facebook",
+                      "varible": "facebook",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    }
+                  }
+                ]
+              },
+              {
+                "target_id": 3,
+                "data": [
+                  {
+                    "province": {
+                      "label": "Tỉnh/ TP",
+                      "varible": "province",
+                      "input_type": "select_data",
+                      "value": "[1,2,3,4]",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
+                      "is_require": true
+                    },
+                    "district": {
+                      "label": "Quận/ huyện",
+                      "varible": "district",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
+                      "is_require": true
+                    },
+                    "school": {
+                      "label": "Trường",
+                      "varible": "school",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
+                      "is_require": true
+                    },
+                    "gclass": {
+                      "label": "Khối lớp",
+                      "varible": "gclass",
+                      "input_type": "select",
+                      "value": {
+                        "1": "Lớp 1",
+                        "2": "Lớp 2",
+                        "3": "Lớp 3",
+                        "4": "Lớp 4",
+                        "5": "Lớp 5",
+                        "6": "Lớp 6",
+                        "7": "Lớp 7",
+                        "8": "Lớp 8",
+                        "9": "Lớp 9",
+                        "10": "Lớp 10",
+                        "11": "Lớp 11",
+                        "12": "Lớp 12"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "phone": {
+                      "label": "Điện thoại",
+                      "varible": "phone",
+                      "input_type": "number",
+                      "value": "",
+                      "api": "",
+                      "is_require": true
+                    },
+                    "gender": {
+                      "label": "Giới tính",
+                      "varible": "gender",
+                      "input_type": "radio",
+                      "value": {
+                        "male": "Nam",
+                        "female": "Nữ"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "email": {
+                      "label": "Email",
+                      "varible": "email",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    },
+                    "facebook": {
+                      "label": "Facebook",
+                      "varible": "facebook",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    }
+                  }
+                ]
+              },
+              {
+                "target_id": 4,
+                "data": [
+                  {
+                    "province": {
+                      "label": "Tỉnh/ TP",
+                      "varible": "province",
+                      "input_type": "select_data",
+                      "value": [
+                        1,
+                        2,
+                        3,
+                        4
+                      ],
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
+                      "is_require": true
+                    },
+                    "district": {
+                      "label": "Quận/ huyện",
+                      "varible": "district",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
+                      "is_require": true
+                    },
+                    "school": {
+                      "label": "Trường",
+                      "varible": "school",
+                      "input_type": "select_data",
+                      "value": "",
+                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
+                      "is_require": true
+                    },
+                    "phone": {
+                      "label": "Điện thoại",
+                      "varible": "phone",
+                      "input_type": "number",
+                      "value": "",
+                      "api": "",
+                      "is_require": true
+                    },
+                    "cmnd": {
+                      "label": "Số CMND",
+                      "varible": "cmnd",
+                      "input_type": "number",
+                      "value": "",
+                      "api": "",
+                      "is_require": true
+                    },
+                    "gender": {
+                      "label": "Giới tính",
+                      "varible": "gender",
+                      "input_type": "radio",
+                      "value": {
+                        "male": "Nam",
+                        "female": "Nữ"
+                      },
+                      "api": "",
+                      "is_require": true
+                    },
+                    "email": {
+                      "label": "Email",
+                      "varible": "email",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    },
+                    "facebook": {
+                      "label": "Facebook",
+                      "varible": "facebook",
+                      "input_type": "text",
+                      "value": "[]",
+                      "api": "",
+                      "is_require": false
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }';
+        $data_form = json_decode($register_form,true);
+
+        $client = new Client();
+        $res = $client->request('GET', 'http://cuocthi.vnedutech.vn/admin/vne/getprovince'); 
+        $data_reponse = json_decode($res->getBody(),true);
         
-        return view('VNE-THEME::modules.member.register');
+        $data = [
+          'list_target' => $data_form['register_form']['target_list'],
+          'list_provine' => $data_reponse['data'],
+          'data_form' => $data_form
+        ];
+        return view('VNE-THEME::modules.member.register',$data);
     }
 
     public function updateRegisterMember(){
     	$list_banner = array();
+
     	$data = [
     		'list_banner' => $list_banner,
     		

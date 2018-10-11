@@ -47,7 +47,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 				<ul class="nav" id="menu-info">
 					@if(Session::has('user_info'))
 						<div id="online-now">
-							<li class="nav-item"><i class="fa fa-user">{{ Session::get('user_info')['username'] }}</i></li>
+							<li class="nav-item"><i class="fa fa-user"></i>{{ Session::get('user_info')['username'] }}</li>
 							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i>{{-- <a href="{{ route('vne.member.logout')}}"> --}}Đăng xuất{{-- </a> --}}</li>	
 						</div>
 					@else

@@ -34,11 +34,7 @@
 
 			</div>
 
-			<div class="col-lg-4 right-main">
-
-				@include('VNE-THEME::layouts._sidebar')
-
-			</div>
+			@include('VNE-THEME::layouts._sidebar')
 
 		</div>
 
