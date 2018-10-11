@@ -1,20 +1,6 @@
 <!-- sign in -->
 	<section class="section sign-in">
-		<div class="inner">
-			<div class="headline">Đăng nhập</div>
-			<form>
-				<div class="form-group">
-					<label>Tài khoản</label>
-					<input class="form-control" type="email">
-				</div>
-				<div class="form-group">
-					<label>Mật khẩu</label>
-					<input class="form-control" type="password">
-				</div>
-				<p><i>Hãy đăng nhập để tham gia rèn luyện</i></p>
-				<button type="submit" class="btn btn-primary">Đăng nhập</button>
-			</form>
-		</div>
+		@include('VNE-THEME::layouts._login')
 	</section>
 	<!-- sign in end -->
 

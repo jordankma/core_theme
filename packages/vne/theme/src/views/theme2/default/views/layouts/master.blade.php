@@ -61,6 +61,72 @@
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js?t=' . time()) }}"></script>
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
 	@yield('footer_scripts')
+	<script type="text/javascript">
+		var is_login = '{{ Session::has('user_info') }}';
+		var route_logout = '{{ route('vne.member.logout')}}';
+		if(!is_login){
+			checkLogin();
+		}
+		function checkLogin() {
+	        $.ajax({
+	            url: 'http://eid.vnedutech.vn/get-status-login',
+	            method: 'get',
+	            xhrFields: {
+	                withCredentials: true
+	            },
+	            headers: {
+	                'X-Requested-With': 'XMLHttpRequest'
+	            },
+	            success: function (data) {
+	                if (data.authorized !== false) {
+	                	var url = '{{ route('vne.member.set.session')}}';
+	                	var token = data.data.token;  
+	                	url = url + "?token=" + token;
+	                	window.location.assign(url);	
+	                }
+	            },
+	            error: function (data) {
+	                console.log('Fail')
+	            }
+	        });
+		}
+		$('body').on('click', "#button-logout", function (event) {
+	    	event.preventDefault();	
+	    	$.ajax({
+	            url: 'http://eid.vnedutech.vn/logout',
+	            method: 'get',
+	            xhrFields: {
+	                withCredentials: true
+	            },
+	            headers: {
+	                'X-Requested-With': 'XMLHttpRequest'
+	            },
+	            success: function (data) {
+	            	var url = '{{ route('vne.member.logout')}}';
+	            	window.location.assign(url);
+	            },
+	            error: function (data) {
+	                console.log('Fail')
+	            }
+	        });
+	    });
+		$('body').on('submit', "#form-login", function (event) {
+	        event.preventDefault();
+	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
+	        var email = $('input[name=email]').val();
+	        var password = $('input[name=password]').val(); 
+	        var url = '/login';
+	        $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
+	            if (!result.status) {
+	                $('#form-login .help-block').text(result.messeger);
+	                $('#form-login .help-block').css('display','block');
+	                return false;
+	            }else{
+	                location.reload(true);
+	            }
+	        }, 'json');
+	    });
+	</script>
 </body>
 
 </html>
