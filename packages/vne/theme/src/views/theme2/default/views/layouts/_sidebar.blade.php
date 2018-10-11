@@ -1,4 +1,5 @@
-<!-- sign in -->
+<div class="col-lg-4 right-main">
+	<!-- sign in -->
 	<section class="section sign-in">
 		@include('VNE-THEME::layouts._login')
 	</section>
@@ -54,11 +55,13 @@
 	<!-- logos right -->
 	<section class="section logos-right">
 		<ul>
-			<li><a href=""><img src="images/logo-right.jpg" alt=""></a></li>
-			<li><a href=""><img src="images/logo1-right.jpg" alt=""></a></li>
-			<li><a href=""><img src="images/logo2_new.png" alt=""></a></li>
-			<li><a href=""><img src="images/logo3_new.png" alt=""></a></li>
-			<li><a href=""><img src="images/logo4-right.jpg" alt=""></a></li>
+			<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo-right.jpg?t=' . time()) }}" alt=""></a></li>
+			<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo1-right.jpg?t=' . time()) }}" alt=""></a></li>
+			<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo2_new.png?t=' . time()) }}" alt=""></a></li>
+			<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/images/logo3_new.png?t=' . time()) }}" alt=""></a></li>
+			<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo4-right.jpg?t=' . time()) }}" alt=""></a></li>
 		</ul>
 	</section>
 	<!-- logos right end -->
+
+</div>

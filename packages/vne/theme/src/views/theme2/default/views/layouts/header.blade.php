@@ -41,7 +41,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 		<div class="container">
 			<div class="inner">
 				<div class="branb">
-					<a href="http://"><img src="images/logo_new.png" alt=""></a>
+					<a href="{{ route('index') }}"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo_new.png?t=' . time()) }}" alt=""></a>
 				</div> <!-- /branb -->
 				<ul class="btn-group">
 					<li class="btn-item"><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/rldv.png?t=' . time()) }}" alt=""></a></li>

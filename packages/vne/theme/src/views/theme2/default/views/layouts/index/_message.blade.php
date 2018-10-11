@@ -3,7 +3,10 @@
 	<section class="section message">
 		<div class="headline-section">
 			<h2><a href="">THÔNG BÁO CỦA HỘI ĐỒNG ĐỘI TW</a></h2>
-			<a href="">Xem tất cả</a>
+			@php 
+				$alias = config('site.news_cat.thongbaohoidongdoi')
+			@endphp
+			<a href="{{ URL::to('tin-tuc',$alias) }}">Xem tất cả</a>
 		</div>
 		<ul class="message-list">
 			@if(!empty($list_news_thong_bao_hoi_dong_doi))
