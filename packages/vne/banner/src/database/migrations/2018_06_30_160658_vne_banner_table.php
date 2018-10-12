@@ -13,7 +13,7 @@ class VneBannerTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_banner', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_banner', function (Blueprint $table) {
             $table->increments('banner_id');
             $table->string("create_by")->nullable();
             $table->string("name");
@@ -39,6 +39,6 @@ class VneBannerTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_banner');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_banner');
     }
 }

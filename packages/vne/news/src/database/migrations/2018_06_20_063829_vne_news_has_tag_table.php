@@ -13,7 +13,7 @@ class VneNewsHasTagTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_news_has_tag', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_news_has_tag', function (Blueprint $table) {
             $table->increments('news_has_tag_id')->comment('id');
             $table->integer('news_id',false,true);
             $table->integer('news_tag_id',false,true);
@@ -33,6 +33,6 @@ class VneNewsHasTagTable extends Migration
      */
     public function down()
     {
-        // Schema::connection('mysql_vne')->dropIfExists('vne_news_has_tag');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_has_tag');
     }
 }

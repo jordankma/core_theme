@@ -55,7 +55,7 @@ class MemberController extends Controller
                 'email' => $email != null ? $email : '',
                 'password' => $password,
                 'password_confirmation' => $conf_password,
-                'site' => 'http://theme.local.vn'
+                'site' => config('app.url')
             ]
         ]);
         $data_reponse = json_decode($res->getBody(),true);

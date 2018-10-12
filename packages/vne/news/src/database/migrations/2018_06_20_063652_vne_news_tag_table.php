@@ -13,7 +13,7 @@ class VneNewsTagTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_news_tag', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_news_tag', function (Blueprint $table) {
             $table->increments('news_tag_id');
             $table->string('name');
             $table->string('alias');
@@ -31,6 +31,6 @@ class VneNewsTagTable extends Migration
      */
     public function down()
     {
-        // Schema::connection('mysql_vne')->dropIfExists('vne_news_tag');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_tag');
     }
 }

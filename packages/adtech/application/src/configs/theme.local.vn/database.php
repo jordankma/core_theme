@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => 'mysql_vne',
+    'default' => 'mysql_cuocthi',
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
 //            'prefix' => '',
 //        ],
 
-        'mysql_vne' => [
+        'mysql_cuocthi' => [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' => '3306',

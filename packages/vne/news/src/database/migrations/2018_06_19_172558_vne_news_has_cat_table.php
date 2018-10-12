@@ -13,7 +13,7 @@ class VneNewsHasCatTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_news_has_cat', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_news_has_cat', function (Blueprint $table) {
             $table->increments('news_has_cat_id');
             $table->integer('news_id', false, true)->index();
             $table->integer('news_cat_id', false, true)->index();
@@ -32,6 +32,6 @@ class VneNewsHasCatTable extends Migration
      */
     public function down()
     {
-        // Schema::connection('mysql_vne')->dropIfExists('vne_news_has_cat');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_has_cat');
     }
 }

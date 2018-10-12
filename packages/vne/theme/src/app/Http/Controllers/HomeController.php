@@ -32,7 +32,7 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $theme = $this->theme;
+        $theme = config('site.theme');
         if($theme == 'theme1'){
             $id_position_banner_trangchu = config('site.banner_trang_chu_id');
             $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();

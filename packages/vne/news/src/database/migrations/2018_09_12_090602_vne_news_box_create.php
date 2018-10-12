@@ -13,7 +13,7 @@ class VneNewsBoxCreate extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_news_box', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_news_box', function (Blueprint $table) {
             $table->increments('news_box_id');
             $table->string('name');
             $table->string('alias');
@@ -30,6 +30,6 @@ class VneNewsBoxCreate extends Migration
      */
     public function down()
     {
-        // Schema::connection('mysql_vne')->dropIfExists('vne_news_box');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_box');
     }
 }

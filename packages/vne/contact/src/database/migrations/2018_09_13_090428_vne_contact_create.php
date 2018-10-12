@@ -13,7 +13,7 @@ class VneContactCreate extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_vne')->create('vne_contact', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_contact', function (Blueprint $table) {
             $table->increments('contact_id');
             $table->string("name");
             $table->string("email");
@@ -31,6 +31,6 @@ class VneContactCreate extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_vne')->dropIfExists('vne_contact');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_contact');
     }
 }
