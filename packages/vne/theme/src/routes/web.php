@@ -16,6 +16,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         ->where('type','news')
         ->where('view','detail');
 
+        Route::get('danh-sach-thi-sinh', 'HomeController@listMember')->name('frontend.exam.list.member')->where('as','Frontend - Danh sách thí sinh');
+        Route::get('ket-qua', 'HomeController@listResult')->name('frontend.exam.list.result')->where('as','Frontend - Danh sách kết quả thí sinh');
         Route::get('/bai-thi', 'HomeController@listExam')->name('frontend.exam.list')->where('as','Frontend - Danh sách bài thi');
 
         Route::get('chi-tiet-bai-thi/{alias}.html', 'HomeController@detailExam')->name('frontend.news.contact')->where('as','Frontend - Bài thi chi tiết');

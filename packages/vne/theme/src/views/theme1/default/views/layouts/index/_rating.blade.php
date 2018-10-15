@@ -142,7 +142,7 @@
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="images/user.jpg" alt="">
+							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
 						</a>
 					</div>
 				</div>
@@ -157,7 +157,7 @@
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="images/user.jpg" alt="">
+							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
 						</a>
 					</div>
 				</div>
@@ -172,7 +172,7 @@
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="images/user.jpg" alt="">
+							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
 						</a>
 					</div>
 				</div>
@@ -187,7 +187,7 @@
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="images/user.jpg" alt="">
+							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
 						</a>
 					</div>
 				</div>

@@ -100,8 +100,16 @@ class HomeController extends Controller
         }
     }
 
+    public function listMember(){
+      return view('VNE-THEME::modules.search.search_member');
+    }
+
+    public function listResult(){
+      return view('VNE-THEME::modules.search.search_result');
+    }
+
     public function showContact(){
-        return view('VNE-THEME::modules.contact.contact');
+      return view('VNE-THEME::modules.contact.contact');
     }
 
     public function saveContact(Request $request){
@@ -155,12 +163,7 @@ class HomeController extends Controller
     }
 
     public function scheduleExam(){
-        $list_banner = array();
-        $data = [
-            'list_banner' => $list_banner,
-            
-        ];
-        return view('VNE-THEME::modules.index.index');
+        return view('VNE-THEME::modules.exam.schedule');
     }
 
     public function showRegisterMember(Request $request){
