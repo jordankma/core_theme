@@ -24,7 +24,350 @@ class HomeController extends Controller
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
-
+    private $register_form = '{
+      "data": {
+        "load_default": [
+          {
+              "id" : 1,
+              "title": "Tên đăng nhập",
+              "hint_text": "Tên đăng nhập",
+              "type": "text",
+              "params": "user_name",
+              "type_view": 0,
+              "is_require": true,
+              "is_search": true
+          },
+          {
+              "id": 2,
+              "title": "Đề tài",
+              "params": "gioitinh",
+              "hint_text": "Chọn giới tính",
+              "type_view": 2,
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Nam"
+                },
+                {
+                  "id": 2,
+                  "title": "Nữ"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Tỉnh/Thành phố",
+              "params": "city",
+              "hint_text": "Chọn tỉnh/thành",
+              "type_view": 1,
+              "type": "data",
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Hà Nội"
+                },
+                {
+                  "id": 2,
+                  "title": "Hưng Yên"
+                },
+                {
+                  "id": 3,
+                  "title": "Hải Phòng"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "title": "Chọn công việc bạn yêu thich",
+              "params": "chonABC",
+              "hint_text": "Chọn giới tính",
+              "type_view": 3,
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Thích đi học"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích nghe nhạc"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích ăn kem"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích đá bóng"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích ngủ"
+                }
+              ]
+            }
+          ]
+        ,
+          "target": [
+            {
+          "id": 1,
+          "title": "Hoc sinh",
+        
+          "form_data": [
+            {
+              "id": 1,
+              "title": "Tên đăng nhập",
+              "hint_text": "Tên đăng nhập",
+              "type": "text",
+              "params": "user_name",
+              "type_view": 0,
+              "is_require": true,
+              "is_search": true
+            },
+            {
+              "id": 2,
+              "title": "Họ và tên",
+              "params": "name",
+              "type": "text",
+              "hint_text": "Họ tên",
+              "type_view": 0,
+              "is_require": true,
+              "is_search": true
+            
+            },
+            {
+              "id": 3,
+              "title": "Tỉnh/Thành phố",
+              "params": "city",
+              "hint_text": "Chọn tỉnh/thành",
+              "type_view": 1,
+              "type": "data",
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Hà Nội"
+                },
+                {
+                  "id": 2,
+                  "title": "Hưng Yên"
+                },
+                {
+                  "id": 3,
+                  "title": "Hải Phòng"
+                }
+              ]
+            },
+            {
+               "id": 4,
+              "title": "Quận/ huyện",
+              "params": "district",
+              "hint_text": "Chọn Quận/huyện",
+              "type_view": 1,
+              "type": "api",
+              "api": "",
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+              ]
+            },
+            {
+              "id": 4,
+              "title": "Tên bài viết",
+              "params": "note",
+              "hint_text": "Tên bài viết",
+              "type" : "text",
+              "type_view": 0,
+              "is_require": true,
+              "is_search": true
+            },
+            {
+              "id": 3,
+              "title": "Đề tài",
+              "params": "topic",
+              "hint_text": "Chọn đề tài",
+              "type_view": 1,
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Đề tài 1"
+                },
+                {
+                  "id": 2,
+                  "title": "Đề tài 2"
+                },
+                {
+                  "id": 3,
+                  "title": "Đề tài 3"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Đề tài",
+              "params": "gioitinh",
+              "hint_text": "Chọn giới tính",
+              "type_view": 2,
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Nam"
+                },
+                {
+                  "id": 2,
+                  "title": "Nữ"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Chọn công việc bạn yêu thich",
+              "params": "chonABC",
+              "hint_text": "Chọn giới tính",
+              "type_view": 3,
+              "is_require": true,
+              "is_search": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Thích đi học"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích nghe nhạc"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích ăn kem"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích đá bóng"
+                },
+                {
+                  "id": 2,
+                  "title": "Thích ngủ"
+                }
+              ]
+            }
+          ]
+        },
+            {
+          "id": 2,
+          "title": "Sinh vien di lam",
+          "form_data": [
+            {
+              "id": 1,
+              "title": "Tên đăng nhập",
+              "hint_text": "Tên đăng nhập",
+              "params": "user_name",
+              "type" : "text",
+              "type_view": 0,
+              "is_require": true
+            },
+            {
+              "id": 2,
+              "title": "Họ và tên",
+              "params": "name",
+              "hint_text": "Họ tên",
+              "type" : "text",
+              "type_view": 0,
+              "is_require": true
+            },
+            {
+              "id": 3,
+              "title": "Tỉnh/Thành phố",
+              "params": "city",
+              "hint_text": "Chọn tỉnh/thành",
+              "type_view": 1,
+              "is_require": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Hà Nội"
+                },
+                {
+                  "id": 2,
+                  "title": "Hưng Yên"
+                },
+                {
+                  "id": 3,
+                  "title": "Hải Phòng"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "title": "Tên bài viết",
+              "params": "note",
+              "hint_text": "Tên bài viết",
+              "type" : "text",
+              "type_view": 0
+            },
+            {
+              "id": 3,
+              "title": "Đề tài",
+              "params": "topic",
+              "hint_text": "Chọn đề tài",
+              "type_view": 1,
+              "is_require": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Đề tài 1"
+                },
+                {
+                  "id": 2,
+                  "title": "Đề tài 2"
+                },
+                {
+                  "id": 3,
+                  "title": "Đề tài 3"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "title": "Đề tài",
+              "params": "gioitinh",
+              "hint_text": "Chọn giới tính",
+              "type_view": 2,
+              "is_require": true,
+              "data_view": [
+                {
+                  "id": 1,
+                  "title": "Nam"
+                },
+                {
+                  "id": 2,
+                  "title": "Nữ"
+                }
+              ]
+            }
+          ]
+        }
+            ]
+       
+      },
+      "config": {
+        "0": "input",
+        "1": "selectbox",
+        "2": "radio",
+        "3": "checkbox"
+      },
+      "success": true,
+      "message": "ok!"
+    }';
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
@@ -167,382 +510,89 @@ class HomeController extends Controller
     }
 
     public function showRegisterMember(Request $request){
-        $register_form = '{
-          "register_form": {
-            "target_list": [
-              {
-                "target_id": 1,
-                "target_name": "Học sinh Tiểu học"
-              },
-              {
-                "target_id": 2,
-                "target_name": "Học sinh THCS"
-              },
-               {
-                "target_id": 3,
-                "target_name": "Học sinh THPT"
-              },
-               {
-                "target_id": 4,
-                "target_name": "Giáo viên"
-              }
-            ],
-            "target_data": [
-              {
-                "target_id": 1,
-                "data": [
-                  {
-                    "province": {
-                      "label": "Tỉnh/ TP",
-                      "varible": "province",
-                      "input_type": "select_data",
-                      "value": "[1,2,3,4]",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
-                      "is_require": true
-                    },
-                    "district": {
-                      "label": "Quận/ huyện",
-                      "varible": "district",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
-                      "is_require": true
-                    },
-                    "school": {
-                      "label": "Trường",
-                      "varible": "school",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
-                      "is_require": true
-                    },
-                    "gclass": {
-                      "label": "Khối lớp",
-                      "varible": "gclass",
-                      "input_type": "select",
-                      "value": {
-                        "1": "Lớp 1",
-                        "2": "Lớp 2",
-                        "3": "Lớp 3",
-                        "4": "Lớp 4",
-                        "5": "Lớp 5",
-                        "6": "Lớp 6",
-                        "7": "Lớp 7",
-                        "8": "Lớp 8",
-                        "9": "Lớp 9",
-                        "10": "Lớp 10",
-                        "11": "Lớp 11",
-                        "12": "Lớp 12"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "phone": {
-                      "label": "Điện thoại",
-                      "varible": "phone",
-                      "input_type": "number",
-                      "value": "",
-                      "api": "",
-                      "is_require": true
-                    },
-                    "gender": {
-                      "label": "Giới tính",
-                      "varible": "gender",
-                      "input_type": "radio",
-                      "value": {
-                        "male": "Nam",
-                        "female": "Nữ"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "email": {
-                      "label": "Email",
-                      "varible": "email",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    },
-                    "facebook": {
-                      "label": "Facebook",
-                      "varible": "facebook",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    }
-                  }
-                ]
-              },
-              {
-                "target_id": 2,
-                "data": [
-                  {
-                    "province": {
-                      "label": "Tỉnh/ TP",
-                      "varible": "province",
-                      "input_type": "select_data",
-                      "value": "[1,2,3,4]",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
-                      "is_require": true
-                    },
-                    "district": {
-                      "label": "Quận/ huyện",
-                      "varible": "district",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
-                      "is_require": true
-                    },
-                    "school": {
-                      "label": "Trường",
-                      "varible": "school",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
-                      "is_require": true
-                    },
-                    "gclass": {
-                      "label": "Khối lớp",
-                      "varible": "gclass",
-                      "input_type": "select",
-                      "value": {
-                        "1": "Lớp 1",
-                        "2": "Lớp 2",
-                        "3": "Lớp 3",
-                        "4": "Lớp 4",
-                        "5": "Lớp 5",
-                        "6": "Lớp 6",
-                        "7": "Lớp 7",
-                        "8": "Lớp 8",
-                        "9": "Lớp 9",
-                        "10": "Lớp 10",
-                        "11": "Lớp 11",
-                        "12": "Lớp 12"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "phone": {
-                      "label": "Điện thoại",
-                      "varible": "phone",
-                      "input_type": "number",
-                      "value": "",
-                      "api": "",
-                      "is_require": true
-                    },
-                    "gender": {
-                      "label": "Giới tính",
-                      "varible": "gender",
-                      "input_type": "radio",
-                      "value": {
-                        "male": "Nam",
-                        "female": "Nữ"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "email": {
-                      "label": "Email",
-                      "varible": "email",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    },
-                    "facebook": {
-                      "label": "Facebook",
-                      "varible": "facebook",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    }
-                  }
-                ]
-              },
-              {
-                "target_id": 3,
-                "data": [
-                  {
-                    "province": {
-                      "label": "Tỉnh/ TP",
-                      "varible": "province",
-                      "input_type": "select_data",
-                      "value": "[1,2,3,4]",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
-                      "is_require": true
-                    },
-                    "district": {
-                      "label": "Quận/ huyện",
-                      "varible": "district",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
-                      "is_require": true
-                    },
-                    "school": {
-                      "label": "Trường",
-                      "varible": "school",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
-                      "is_require": true
-                    },
-                    "gclass": {
-                      "label": "Khối lớp",
-                      "varible": "gclass",
-                      "input_type": "select",
-                      "value": {
-                        "1": "Lớp 1",
-                        "2": "Lớp 2",
-                        "3": "Lớp 3",
-                        "4": "Lớp 4",
-                        "5": "Lớp 5",
-                        "6": "Lớp 6",
-                        "7": "Lớp 7",
-                        "8": "Lớp 8",
-                        "9": "Lớp 9",
-                        "10": "Lớp 10",
-                        "11": "Lớp 11",
-                        "12": "Lớp 12"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "phone": {
-                      "label": "Điện thoại",
-                      "varible": "phone",
-                      "input_type": "number",
-                      "value": "",
-                      "api": "",
-                      "is_require": true
-                    },
-                    "gender": {
-                      "label": "Giới tính",
-                      "varible": "gender",
-                      "input_type": "radio",
-                      "value": {
-                        "male": "Nam",
-                        "female": "Nữ"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "email": {
-                      "label": "Email",
-                      "varible": "email",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    },
-                    "facebook": {
-                      "label": "Facebook",
-                      "varible": "facebook",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    }
-                  }
-                ]
-              },
-              {
-                "target_id": 4,
-                "data": [
-                  {
-                    "province": {
-                      "label": "Tỉnh/ TP",
-                      "varible": "province",
-                      "input_type": "select_data",
-                      "value": [
-                        1,
-                        2,
-                        3,
-                        4
-                      ],
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getprovince?list=",
-                      "is_require": true
-                    },
-                    "district": {
-                      "label": "Quận/ huyện",
-                      "varible": "district",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getdistricts/",
-                      "is_require": true
-                    },
-                    "school": {
-                      "label": "Trường",
-                      "varible": "school",
-                      "input_type": "select_data",
-                      "value": "",
-                      "api": "http://cuocthi.vnedutech.vn/admin/vne/getschools/",
-                      "is_require": true
-                    },
-                    "phone": {
-                      "label": "Điện thoại",
-                      "varible": "phone",
-                      "input_type": "number",
-                      "value": "",
-                      "api": "",
-                      "is_require": true
-                    },
-                    "cmnd": {
-                      "label": "Số CMND",
-                      "varible": "cmnd",
-                      "input_type": "number",
-                      "value": "",
-                      "api": "",
-                      "is_require": true
-                    },
-                    "gender": {
-                      "label": "Giới tính",
-                      "varible": "gender",
-                      "input_type": "radio",
-                      "value": {
-                        "male": "Nam",
-                        "female": "Nữ"
-                      },
-                      "api": "",
-                      "is_require": true
-                    },
-                    "email": {
-                      "label": "Email",
-                      "varible": "email",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    },
-                    "facebook": {
-                      "label": "Facebook",
-                      "varible": "facebook",
-                      "input_type": "text",
-                      "value": "[]",
-                      "api": "",
-                      "is_require": false
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        }';
-        $data_form = json_decode($register_form,true);
-
-        $client = new Client();
-        $res = $client->request('GET', 'http://cuocthi.vnedutech.vn/admin/vne/getprovince'); 
-        $data_reponse = json_decode($res->getBody(),true);
-        
+        $register_form = $this->register_form;
+        $register_form_array = json_decode($register_form,true);
         $data = [
-          'list_target' => $data_form['register_form']['target_list'],
-          'list_provine' => $data_reponse['data'],
-          'data_form' => $data_form
+          'list_object' => $register_form_array['data']['target'],
+          'config' => $register_form_array['config'],
+          'form_data_default' => $register_form_array['data']['load_default']
         ];
         return view('VNE-THEME::modules.member.register',$data);
+    }
+
+    public function getFormRegister(Request $request){
+      $validator = Validator::make($request->all(), [
+            'object_id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+          $object_id = $request->input('object_id');
+          $register_form = $this->register_form;
+          $register_form_array = json_decode($register_form,true);
+          foreach ($register_form_array['data']['target'] as $key => $value ) {
+            if($value['id'] == $object_id){
+              $form_data = $value['form_data'];
+              break; 
+            }      
+          }
+          $str = '';
+          foreach ($form_data as $element){
+            if($element['type_view'] == 0){  
+              $require = $element['is_require'] == true ? 'required=""' : ''; 
+              $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : '';          
+              $str .= 
+              '<div class="form-group">'
+                  .'<label>' . $element['title'] . '</label>'
+                  .'<div class="input">'
+                  .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control"'
+                  . $require .'>'
+                  .    '<small class="form-text">' . $element['hint_text'] . '</small>'
+                  . $text_muted
+                  .'</div>'
+              .'</div>';
+            } 
+            elseif($element['type_view'] == 1) {
+              $require = $element['is_require'] == true ? 'required=""' : ''; 
+              $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : ''; 
+              $str .=
+              '<div class="form-group">'
+                  .'<label>' . $element['title'] . '</label>'
+                  .'<div class="input">'
+                      .'<select class="form-control" name="' . $element['params'] . '"' . $require . '>'
+                      .    '<option>' . $element['title'] .'</option>'; 
+                          foreach ($element['data_view'] as $element2){
+                              $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
+                          }
+                      $str .= '</select>';
+                      $str .= $text_muted;
+                  $str .= '</div>'
+              .'</div>';
+              // @elseif($element['type_view'] == 2)
+              // <div class="form-group">
+              //     <label>{{ $element['title'] }}</label>
+              //     <div class="input">
+              //         @foreach ($element['data_view'] as $element3)
+              //             <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['id']}}">{{ $element3['title'] }}</label>
+              //         @endforeach
+              //         @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+              //     </div>
+              // </div>
+              // @elseif($element['type_view'] == 3)
+              // <div class="form-group">
+              //     <label>{{ $element['title'] }}</label>
+              //     <div class="input">
+              //         @foreach ($element['data_view'] as $element4)
+              //             <label><input type="checkbox" name="{{ $element['params'] }}" value="{{$element4['id']}}">{{ $element4['title'] }}</label>
+              //         @endforeach
+              //         @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+              //     </div>
+              // </div>
+              // @endif
+            }
+          }
+          return response()->json(['flag' => 1,'str'=>$str]);
+        } else {
+          return $validator->messages();
+        }        
     }
 
     public function updateRegisterMember(){

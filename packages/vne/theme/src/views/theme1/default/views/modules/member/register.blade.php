@@ -7,22 +7,69 @@
 		<div class="container">
 			<div class="inner">
 				<form action="" method="" id="form-register-member">
+                    @foreach ($form_data_default as $element)
+                        @if($element['type_view'] == 0)
+                        <div class="form-group">
+                            <label> {{ $element['title'] }} </label>
+                            <div class="input">
+                                <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" @if($element['is_require'] == true) required="" @endif>
+                                <small class="form-text">{{ $element['hint_text'] }}</small>
+                                @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+                            </div>
+                        </div>
+                        @elseif($element['type_view'] == 1)
+                        <div class="form-group">
+                            <label>{{ $element['title'] }}</label>
+                            <div class="input">
+                                <select class="form-control" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif>
+                                    <option>{{ $element['title'] }}</option>
+                                    @foreach ($element['data_view'] as $element2)
+                                        <option value="{{ $element2['id'] }}">{{ $element2['title'] }}</option>
+                                    @endforeach
+                                </select>
+                                @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+                            </div>
+                        </div>
+                        @elseif($element['type_view'] == 2)
+                        <div class="form-group">
+                            <label>{{ $element['title'] }}</label>
+                            <div class="input">
+                                @foreach ($element['data_view'] as $element3)
+                                    <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['id']}}">{{ $element3['title'] }}</label>
+                                @endforeach
+                                @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+                            </div>
+                        </div>
+                        @elseif($element['type_view'] == 3)
+                        <div class="form-group">
+                            <label>{{ $element['title'] }}</label>
+                            <div class="input">
+                                @foreach ($element['data_view'] as $element4)
+                                    <label><input type="checkbox" name="{{ $element['params'] }}" value="{{$element4['id']}}">{{ $element4['title'] }}</label>
+                                @endforeach
+                                @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
+                            </div>
+                        </div>
+                        @endif
+                    @endforeach
 					<div class="form-group">
 						<label>Bạn là đối tượng</label>
 						<div class="input">
 							<select class="form-control" id="object" name="object_id">
-								<option></option>
-								@if(!empty($list_target))
-								@foreach ($list_target as $element)
-								<option value="{{ $element['target_id'] }}">{{ $element['target_name'] }}</option>
+								<option>Chọn đối tượng</option>
+								@if(!empty($list_object))
+								@foreach ($list_object as $element)
+								    <option value="{{ $element['id'] }}">{{ $element['title'] }}</option>
 								@endforeach
 								@endif
 							</select>
-							<small class="text-muted">*</small>
 							<input type="hidden" name="object_name" value="">
 						</div>
 					</div>
-					
+					<p style="text-align: center;"> Thông tin nơi học tập, công tác </p>
+                    <div id="info-member">
+                        
+                    </div>
 					<div class="btn-group">
 						<button type="submit" class="btn btn-save">Lưu</button>
 					</div>
@@ -35,79 +82,20 @@
 </main>
 @stop
 @section('footer_scripts')
-	{{-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
-			$("body").on('change', '#city', function () {
-                var city_id = $(this).val();
-                var city_name = $("#city option:selected").text();
-                $('input[name=city_name]').val(city_name);
-                $.ajax({
-                    url: "{{ route('vne.get.district') }}",
-                    type: 'GET',
-                    cache: false,
-                    data: {
-                        'city_id' : city_id,
-                        'city_name' : city_name
-                    },
-                    success: function (data, status) {
-                        var data = JSON.parse(data);
-                        var str = '<option value="0" >Chọn trường</option>';
-                        for(i = 0; i<data.length; i++) {
-                            str += '<option value="' + data[i].district_id + '" >' + data[i].name + '</option>';
-                        }   
-                        $('#district').html('');
-                        $('#district').append(str);
-                    }
-                }, 'json');
+			$("body").on('change', '#object', function () {
+                var object_id = $(this).val();
+                var object_name = $("#object option:selected").text();
+                $('input[name=object_name]').val(object_name);
+                $.get("/get-form-register?object_id="+object_id , function(data, status){
+                    $('#info-member').html('');
+                    $('#info-member').append(data.str);
+                });
+                
             });
 
-            $("body").on('change', '#district', function () {
-                var district_id = $(this).val();
-                var district_name = $("#district option:selected").text();
-                $('input[name=district_name]').val(district_name);
-                $.ajax({
-                    url: "{{ route('vne.get.school') }}",
-                    type: 'GET',
-                    cache: false,
-                    data: {
-                        'district_id': district_id,
-                        'district_name' : district_name
-                    },
-                    success: function (data, status) {
-                        var data = JSON.parse(data);
-                        var str = '<option value="0" >Chọn trường</option>';
-                        for(i = 0; i<data.length; i++) {
-                            str += '<option value="' + data[i].school_id + '" >' + data[i].name + '</option>';
-                        }   
-                        $('#school').html('');
-                        $('#school').append(str);
-                    }
-                }, 'json');
-            });
-
-            $("body").on('change', '#school', function () {
-                var school_id = $(this).val();
-                var school_name = $("#school option:selected").text();
-                $('input[name=school_name]').val(school_name);
-                $.ajax({
-                    url: "{{ route('vne.get.class') }}",
-                    type: 'GET',
-                    cache: false,
-                    data: {
-                        'school_id' : school_id,
-                        'school_name' : school_name
-                    },
-                    success: function (data, status) {
-                        var data = JSON.parse(data);
-                        var str = '<option value="0" >Chọn trường</option>';
-                        for(i = 0; i<data.length; i++) {
-                            str += '<option value="' + data[i].class_id + '" >' + data[i].name + '</option>';
-                        }   
-                        $('#class').html('');
-                        $('#class').append(str);
-                    }
-                }, 'json');
-            });
+            
 		});
-	</script> --}}
+	</script>
 @stop
