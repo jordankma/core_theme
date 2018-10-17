@@ -1,6 +1,7 @@
 <?php
 $adminPrefix = '';
 Route::group(array('prefix' => $adminPrefix), function() {
+    Route::group(['middleware' => ['verify']], function () {
         Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
 
         Route::get('lien-he', 'HomeController@showContact')->name('frontend.contact.show')->where('as','Frontend - Liên hệ');
@@ -33,4 +34,5 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('get/district', 'HomeController@getDistrict')->name('vne.get.district');
         Route::get('get/school', 'HomeController@getSchool')->name('vne.get.school');
         Route::get('get/class', 'HomeController@getClass')->name('vne.get.class');
+    });
 });

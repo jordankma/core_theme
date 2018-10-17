@@ -45,14 +45,17 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					<span class="email"><i class="fa fa-email"></i> Email: gthd@egroup.vn</span>
 				</div> <!-- /top bar -->
 				<ul class="nav" id="menu-info">
-					@if(Session::has('user_info'))
+					@if($USER_INFO != null)
 						<div id="online-now">
-							<li class="nav-item"><i class="fa fa-user"></i>{{ Session::get('user_info')['username'] }}</li>
+							<li class="nav-item"><i class="fa fa-user"></i>{{ $USER_INFO['username'] }}</li>
 							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i>{{-- <a href="{{ route('vne.member.logout')}}"> --}}Đăng xuất{{-- </a> --}}</li>	
 						</div>
 					@else
 						<div id="offline-now">
-							<li class="nav-item js-toggle-login"><i class="fa fa-user"></i>Đăng nhập</li>
+							@php 
+								$url = "http://eid.vnedutech.vn/login?site=http://" . config('app.url');
+							@endphp
+							<li class="nav-item"><a href="{{ $url }}"><i class="fa fa-user"></i>Đăng nhập</a></li>
 							<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
 						</div>
 					@endif

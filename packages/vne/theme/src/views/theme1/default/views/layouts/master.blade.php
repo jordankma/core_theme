@@ -70,9 +70,10 @@
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
 	@yield('footer_scripts')
 	<script type="text/javascript">
-		var is_login = '{{ Session::has('user_info') }}';
+		var is_login = '{{ Session::has('token_user') }}';
+		console.log(is_login);
 		var route_logout = '{{ route('vne.member.logout')}}';
-		if(!is_login){
+		if(is_login !=1 ){
 			checkLogin();
 		}
 		function checkLogin() {

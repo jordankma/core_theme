@@ -32,8 +32,6 @@ class MemberController extends Controller
         } else {
             if(Session::has('token_user')) {
                 $token = Session::get('token_user');
-                $data_user = $this->getInfoUser($token);
-                Session::put('user_info',  $data_user);
                 $data['status'] = true;
                 return json_encode($data);
             }
@@ -61,9 +59,9 @@ class MemberController extends Controller
         $data_reponse = json_decode($res->getBody(),true);
         if($data_reponse['success'] == true){
             $token = $data_reponse['data']['token'];
-            Session::put('token_user', $token); 
-            $data_user = $this->getInfoUser($token);
-            Session::put('user_info',  $data_user);
+            if(isset($data_reponse['data']['type']) && $data_reponse['data']['type'] == 'phone'){
+                Session::put('token_user', $token); 
+            }
             $data['status'] = true;
             return json_encode($data);
         }
@@ -90,10 +88,9 @@ class MemberController extends Controller
         return redirect()->route('index');    
     }
     public function setSession(Request $request){
-        $token = $request->token;
-        $data_user = $this->getInfoUser($token);
-        Session::put('user_info',  $data_user);
-        return redirect()->route('index');
+        $token = $request->input('token');
+        Session::put('token_user',$token);
+        return redirect()->intended(route('index'));
     }
     function getTokenUser($email,$password){
         $client = new Client($this->header);
@@ -111,18 +108,18 @@ class MemberController extends Controller
     }
 
     //return info user 
-    function getInfoUser($token){
-        $client = new Client($this->header);
-        $res = $client->request('POST', 'http://eid.vnedutech.vn/api/authorize', [
-            'form_params'=> [
-                'token' => $token
-            ]
-        ]); 
-        $data = json_decode($res->getBody(),true);
-        if($data['success'] == true){ 
-            $data_user = $data['data']['user'];  
-        }
-        return $data_user;
-    }
+    // function getInfoUser($token){
+    //     $client = new Client($this->header);
+    //     $res = $client->request('POST', 'http://eid.vnedutech.vn/api/authorize', [
+    //         'form_params'=> [
+    //             'token' => $token
+    //         ]
+    //     ]); 
+    //     $data = json_decode($res->getBody(),true);
+    //     if($data['success'] == true){ 
+    //         $data_user = $data['data']['user'];  
+    //     }
+    //     return $data_user;
+    // }
 
 }

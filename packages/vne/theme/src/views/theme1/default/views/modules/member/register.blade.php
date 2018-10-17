@@ -12,8 +12,7 @@
                         <div class="form-group">
                             <label> {{ $element['title'] }} </label>
                             <div class="input">
-                                <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" @if($element['is_require'] == true) required="" @endif>
-                                <small class="form-text">{{ $element['hint_text'] }}</small>
+                                <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
                             </div>
                         </div>

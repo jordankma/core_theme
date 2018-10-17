@@ -10,7 +10,7 @@ use Adtech\Core\App\Models\Menu;
 use Adtech\Core\App\Models\Setting;
 use Session;
 use Cache;
-use Auth;
+use Auth,URL;
 use GuzzleHttp\Client;
 // Member controller
 class MController extends BaseController
@@ -36,19 +36,7 @@ class MController extends BaseController
 
     public function __construct()
     {
-        // dd(Session::has('user_info'));
-        // if(!Session::has('user_info')){
-
-        //     $client = new Client($this->header);
-        //     $res = $client->request('GET','http://eid.vnedutech.vn/get-status-login', [
-        //         'xhrFields'=> [
-        //             'withCredentials' => true
-        //         ]
-        //     ]);
-        //     $data_reponse = json_decode($res->getBody(),true);
-        //     dd($data_reponse);
-        //     // if()
-        // }
+        
         $id = $this->_guard()->id();
         $this->theme = config('site.theme');
         $this->user = $this->_guard()->user();

@@ -13211,6 +13211,7 @@ return array(
     'Vne\\Member\\App\\Http\\Controllers\\MemberController' => $baseDir . '/packages/vne/member/src/app/Http/Controllers/MemberController.php',
     'Vne\\Member\\App\\Middleware\\AuthMiddleware' => $baseDir . '/packages/vne/member/src/app/Middleware/AuthMiddleware.php',
     'Vne\\Member\\App\\Middleware\\CheckRegister' => $baseDir . '/packages/vne/member/src/app/Middleware/RegisterMiddleware.php',
+    'Vne\\Member\\App\\Middleware\\VerifyToken' => $baseDir . '/packages/vne/member/src/app/Middleware/VerifyMiddleware.php',
     'Vne\\Member\\App\\Models\\Demo' => $baseDir . '/packages/vne/member/src/app/Models/Demo.php',
     'Vne\\Member\\App\\Repositories\\DemoRepository' => $baseDir . '/packages/vne/member/src/app/Repositories/DemoRepository.php',
     'Vne\\Member\\MemberServiceProvider' => $baseDir . '/packages/vne/member/src/MemberServiceProvider.php',
