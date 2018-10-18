@@ -74,6 +74,7 @@
 		console.log(is_login);
 		var route_logout = '{{ route('vne.member.logout')}}';
 		if(is_login !=1 ){
+			console.log('not login');
 			checkLogin();
 		}
 		function checkLogin() {
@@ -90,6 +91,7 @@
 	                if (data.authorized !== false) {
 	                	var url = '{{ route('vne.member.set.session')}}';
 	                	var token = data.data.token;  
+	                	console.log(token);
 	                	url = url + "?token=" + token;
 	                	window.location.assign(url);	
 	                }

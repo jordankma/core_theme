@@ -13,7 +13,7 @@
 		<small class="help-block" style="color: red"></small>
 		<p><i>Hãy đăng nhập để tham gia rèn luyện</i></p> --}}
 		@php 
-			$url = "http://eid.vnedutech.vn/login?site=http://" . config('app.url');
+			$url = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 		@endphp
 		<a href="{{ $url }}"> <button type="submit" class="btn btn-primary">Đăng nhập</button> </a>
 	{{-- </form> --}}

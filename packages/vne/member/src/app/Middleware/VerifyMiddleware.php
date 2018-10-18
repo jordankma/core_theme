@@ -25,6 +25,7 @@ class VerifyToken
 	            ]
 	        ]); 
 	        $data = json_decode($res->getBody(),true);
+        	dd($data);
 	        if($data['success'] == true){ 
 	        	Session::put('token_user',$data['data']['token']);
 	            $USER_INFO = $data['data']['user'];

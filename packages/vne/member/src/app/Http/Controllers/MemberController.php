@@ -81,8 +81,7 @@ class MemberController extends Controller
     } 
 
     public function logout(Request $request){
-        if(Session::has('token_user') || Session::forget('user_info')) {
-            Session::forget('user_info');
+        if(Session::has('token_user')) {
             Session::forget('token_user');
         }    
         return redirect()->route('index');    
