@@ -88,7 +88,7 @@ class MemberController extends Controller
     }
     public function setSession(Request $request){
         $token = $request->input('token');
-        Session::put('token_user',$token);
+        // Session::put('token_user',$token);
         return redirect()->intended(route('index'));
     }
     function getTokenUser($email,$password){

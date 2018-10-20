@@ -12,9 +12,8 @@ class VerifyToken
     public function handle($request, Closure $next)
     {
     	$USER_INFO = array();
-    	dd(Cookie::get('eids_token'));
-        if(Session::has('token_user')) {
-            $token = Session::get('token_user');
+    	$token = Cookie::get('eids_token');
+        if($token != null) {
             $client = new Client([
 		        'headers'  => [
 		            'Authorization' => 'Bearer s16W01HQ8En2jeCZNj57asRKGksY6Mcsl2y0vYUb' ,
@@ -27,12 +26,12 @@ class VerifyToken
 	        ]); 
 	        $data = json_decode($res->getBody(),true);
 	        if($data['success'] == true){ 
-	        	Session::put('token_user',$data['data']['token']);
+	        	// Session::put('token_user',$data['data']['token']);
 	            $USER_INFO = $data['data']['user'];
 	        }
-	        else{
-	        	Session::forget('token_user');
-	        }
+	        // else{
+	        // 	Session::forget('token_user');
+	        // }
         }
      	View::share('USER_INFO',$USER_INFO);
         return $next($request);
