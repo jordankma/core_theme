@@ -2,8 +2,8 @@
 	<div class="container">
 		<h2 class="headline">VIDEO - HÌNH ẢNH NỔI BẬT</h2>
 		<div class="row media-list">
-			@if(!empty($list_news_so_tay_ren_luyen))
-			@foreach ($list_news_so_tay_ren_luyen as $element)
+			@if(!empty($list_news_hinh_anh_video))
+			@foreach ($list_news_hinh_anh_video as $element)
 			@php 
 				$alias = $element->title_alias . '.html';
 				$date = $element->created_at;

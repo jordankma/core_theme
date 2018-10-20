@@ -70,34 +70,36 @@
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
 	@yield('footer_scripts')
 	<script type="text/javascript">
-		var is_login = '{{ Session::has('user_info') }}';
-		var route_logout = '{{ route('vne.member.logout')}}';
-		if(!is_login){
-			checkLogin();
-		}
-		function checkLogin() {
-	        $.ajax({
-	            url: 'http://eid.vnedutech.vn/get-status-login',
-	            method: 'get',
-	            xhrFields: {
-	                withCredentials: true
-	            },
-	            headers: {
-	                'X-Requested-With': 'XMLHttpRequest'
-	            },
-	            success: function (data) {
-	                if (data.authorized !== false) {
-	                	var url = '{{ route('vne.member.set.session')}}';
-	                	var token = data.data.token;  
-	                	url = url + "?token=" + token;
-	                	window.location.assign(url);	
-	                }
-	            },
-	            error: function (data) {
-	                console.log('Fail')
-	            }
-	        });
-		}
+		// var token = '{{ Cookie::get('eids_token') }}';
+		// console.log(token);
+		// var route_logout = '{{ route('vne.member.logout')}}';
+		// if(token !== null ){
+		// 	checkLogin();
+		// }
+		// function checkLogin() {
+	 //        $.ajax({
+	 //            url: 'http://eid.vnedutech.vn/get-status-login',
+	 //            method: 'get',
+	 //            xhrFields: {
+	 //                withCredentials: true
+	 //            },
+	 //            headers: {
+	 //                'X-Requested-With': 'XMLHttpRequest'
+	 //            },
+	 //            success: function (data) {
+	 //                if (data.authorized !== false) {
+	 //                	// var url = '{{ route('vne.member.set.session')}}';
+	 //                	// var token = data.data.token;  
+	 //                	// url = url + "?token=" + token;
+	 //                	// window.location.assign(url);	
+	 //                	location.reload(true);
+	 //                }
+	 //            },
+	 //            error: function (data) {
+	 //                console.log('Fail')
+	 //            }
+	 //        });
+		// }
 		$('body').on('click', "#button-logout", function (event) {
 	    	event.preventDefault();	
 	    	$.ajax({

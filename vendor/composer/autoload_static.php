@@ -13897,6 +13897,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Member\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Http/Controllers/MemberController.php',
         'Vne\\Member\\App\\Middleware\\AuthMiddleware' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/AuthMiddleware.php',
         'Vne\\Member\\App\\Middleware\\CheckRegister' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/RegisterMiddleware.php',
+        'Vne\\Member\\App\\Middleware\\VerifyToken' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/VerifyMiddleware.php',
         'Vne\\Member\\App\\Models\\Demo' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Models/Demo.php',
         'Vne\\Member\\App\\Repositories\\DemoRepository' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Repositories/DemoRepository.php',
         'Vne\\Member\\MemberServiceProvider' => __DIR__ . '/../..' . '/packages/vne/member/src/MemberServiceProvider.php',

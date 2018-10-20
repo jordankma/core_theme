@@ -8,7 +8,7 @@ use Adtech\Application\Cms\Controllers\MController as Controller;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,Datetime;
+use Validator,Datetime,Session,URL;
 
 use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
@@ -25,354 +25,355 @@ class HomeController extends Controller
         'numeric'  => "Phải là số"
     );
     private $register_form = '{
-      "data": {
-        "load_default": [
-          {
-              "id" : 1,
-              "title": "Tên đăng nhập",
-              "hint_text": "Tên đăng nhập",
-              "type": "text",
-              "params": "user_name",
-              "type_view": 0,
-              "is_require": true,
-              "is_search": true
-          },
-          {
-              "id": 2,
-              "title": "Đề tài",
-              "params": "gioitinh",
-              "hint_text": "Chọn giới tính",
-              "type_view": 2,
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Nam"
-                },
-                {
-                  "id": 2,
-                  "title": "Nữ"
-                }
-              ]
+        "data": {
+          "load_default": [
+            {
+                "id" : 1,
+                "title": "Tên đăng nhập",
+                "hint_text": "Tên đăng nhập",
+                "type": "text",
+                "params": "user_name",
+                "type_view": 0,
+                "is_require": true,
+                "is_search": true
             },
             {
-              "id": 3,
-              "title": "Tỉnh/Thành phố",
-              "params": "city",
-              "hint_text": "Chọn tỉnh/thành",
-              "type_view": 1,
-              "type": "data",
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Hà Nội"
-                },
-                {
-                  "id": 2,
-                  "title": "Hưng Yên"
-                },
-                {
-                  "id": 3,
-                  "title": "Hải Phòng"
-                }
-              ]
-            },
-            {
-              "id": 4,
-              "title": "Chọn công việc bạn yêu thich",
-              "params": "chonABC",
-              "hint_text": "Chọn giới tính",
-              "type_view": 3,
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Thích đi học"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích nghe nhạc"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích ăn kem"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích đá bóng"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích ngủ"
-                }
-              ]
-            }
-          ]
-        ,
-          "target": [
-            {
-          "id": 1,
-          "title": "Hoc sinh",
-        
-          "form_data": [
-            {
-              "id": 1,
-              "title": "Tên đăng nhập",
-              "hint_text": "Tên đăng nhập",
-              "type": "text",
-              "params": "user_name",
-              "type_view": 0,
-              "is_require": true,
-              "is_search": true
-            },
-            {
-              "id": 2,
-              "title": "Họ và tên",
-              "params": "name",
-              "type": "text",
-              "hint_text": "Họ tên",
-              "type_view": 0,
-              "is_require": true,
-              "is_search": true
-            
-            },
-            {
-              "id": 3,
-              "title": "Tỉnh/Thành phố",
-              "params": "city",
-              "hint_text": "Chọn tỉnh/thành",
-              "type_view": 1,
-              "type": "data",
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Hà Nội"
-                },
-                {
-                  "id": 2,
-                  "title": "Hưng Yên"
-                },
-                {
-                  "id": 3,
-                  "title": "Hải Phòng"
-                }
-              ]
-            },
-            {
-               "id": 4,
-              "title": "Quận/ huyện",
-              "params": "district",
-              "hint_text": "Chọn Quận/huyện",
-              "type_view": 1,
-              "type": "api",
-              "api": "",
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-              ]
-            },
-            {
-              "id": 4,
-              "title": "Tên bài viết",
-              "params": "note",
-              "hint_text": "Tên bài viết",
-              "type" : "text",
-              "type_view": 0,
-              "is_require": true,
-              "is_search": true
-            },
-            {
-              "id": 3,
-              "title": "Đề tài",
-              "params": "topic",
-              "hint_text": "Chọn đề tài",
-              "type_view": 1,
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Đề tài 1"
-                },
-                {
-                  "id": 2,
-                  "title": "Đề tài 2"
-                },
-                {
-                  "id": 3,
-                  "title": "Đề tài 3"
-                }
-              ]
-            },
-            {
-              "id": 3,
-              "title": "Đề tài",
-              "params": "gioitinh",
-              "hint_text": "Chọn giới tính",
-              "type_view": 2,
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Nam"
-                },
-                {
-                  "id": 2,
-                  "title": "Nữ"
-                }
-              ]
-            },
-            {
-              "id": 3,
-              "title": "Chọn công việc bạn yêu thich",
-              "params": "chonABC",
-              "hint_text": "Chọn giới tính",
-              "type_view": 3,
-              "is_require": true,
-              "is_search": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Thích đi học"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích nghe nhạc"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích ăn kem"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích đá bóng"
-                },
-                {
-                  "id": 2,
-                  "title": "Thích ngủ"
-                }
-              ]
-            }
-          ]
-        },
-            {
-          "id": 2,
-          "title": "Sinh vien di lam",
-          "form_data": [
-            {
-              "id": 1,
-              "title": "Tên đăng nhập",
-              "hint_text": "Tên đăng nhập",
-              "params": "user_name",
-              "type" : "text",
-              "type_view": 0,
-              "is_require": true
-            },
-            {
-              "id": 2,
-              "title": "Họ và tên",
-              "params": "name",
-              "hint_text": "Họ tên",
-              "type" : "text",
-              "type_view": 0,
-              "is_require": true
-            },
-            {
-              "id": 3,
-              "title": "Tỉnh/Thành phố",
-              "params": "city",
-              "hint_text": "Chọn tỉnh/thành",
-              "type_view": 1,
-              "is_require": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Hà Nội"
-                },
-                {
-                  "id": 2,
-                  "title": "Hưng Yên"
-                },
-                {
-                  "id": 3,
-                  "title": "Hải Phòng"
-                }
-              ]
-            },
-            {
-              "id": 4,
-              "title": "Tên bài viết",
-              "params": "note",
-              "hint_text": "Tên bài viết",
-              "type" : "text",
-              "type_view": 0,
-              "is_require": true
-            },
-            {
-              "id": 3,
-              "title": "Đề tài",
-              "params": "topic",
-              "hint_text": "Chọn đề tài",
-              "type_view": 1,
-              "is_require": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Đề tài 1"
-                },
-                {
-                  "id": 2,
-                  "title": "Đề tài 2"
-                },
-                {
-                  "id": 3,
-                  "title": "Đề tài 3"
-                }
-              ]
-            },
-            {
-              "id": 3,
-              "title": "Đề tài",
-              "params": "gioitinh",
-              "hint_text": "Chọn giới tính",
-              "type_view": 2,
-              "is_require": true,
-              "data_view": [
-                {
-                  "id": 1,
-                  "title": "Nam"
-                },
-                {
-                  "id": 2,
-                  "title": "Nữ"
-                }
-              ]
-            }
-          ]
-        }
+                "id": 2,
+                "title": "Đề tài",
+                "params": "gioitinh",
+                "hint_text": "Chọn giới tính",
+                "type_view": 2,
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Nam"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Nữ"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "title": "Tỉnh/Thành phố",
+                "params": "city",
+                "hint_text": "Chọn tỉnh/thành",
+                "type_view": 1,
+                "type": "data",
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Hà Nội"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Hưng Yên"
+                  },
+                  {
+                    "id": 3,
+                    "title": "Hải Phòng"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "title": "Chọn công việc bạn yêu thich",
+                "params": "chonABC",
+                "hint_text": "Chọn giới tính",
+                "type_view": 3,
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Thích đi học"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích nghe nhạc"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích ăn kem"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích đá bóng"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích ngủ"
+                  }
+                ]
+              }
             ]
-       
-      },
-      "config": {
-        "0": "input",
-        "1": "selectbox",
-        "2": "radio",
-        "3": "checkbox"
-      },
-      "success": true,
-      "message": "ok!"
-    }';
+          ,
+            "target": [
+              {
+            "id": 1,
+            "title": "Hoc sinh",
+          
+            "form_data": [
+              {
+                "id": 1,
+                "title": "Tên đăng nhập",
+                "hint_text": "Tên đăng nhập",
+                "type": "text",
+                "params": "user_name",
+                "type_view": 0,
+                "is_require": true,
+                "is_search": true
+              },
+              {
+                "id": 2,
+                "title": "Họ và tên",
+                "params": "name",
+                "type": "text",
+                "hint_text": "Họ tên",
+                "type_view": 0,
+                "is_require": true,
+                "is_search": true
+              
+              },
+              {
+                "id": 3,
+                "title": "Tỉnh/Thành phố",
+                "params": "city",
+                "hint_text": "Chọn tỉnh/thành",
+                "type_view": 1,
+                "type": "data",
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Hà Nội"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Hưng Yên"
+                  },
+                  {
+                    "id": 3,
+                    "title": "Hải Phòng"
+                  }
+                ]
+              },
+              {
+                 "id": 4,
+                "title": "Quận/ huyện",
+                "params": "district",
+                "hint_text": "Chọn Quận/huyện",
+                "type_view": 1,
+                "type": "api",
+                "api": "",
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                ]
+              },
+              {
+                "id": 4,
+                "title": "Tên bài viết",
+                "params": "note",
+                "hint_text": "Tên bài viết",
+                "type" : "text",
+                "type_view": 0,
+                "is_require": true,
+                "is_search": true
+              },
+              {
+                "id": 3,
+                "title": "Đề tài",
+                "params": "topic",
+                "hint_text": "Chọn đề tài",
+                "type_view": 1,
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Đề tài 1"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Đề tài 2"
+                  },
+                  {
+                    "id": 3,
+                    "title": "Đề tài 3"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "title": "Đề tài",
+                "params": "gioitinh",
+                "hint_text": "Chọn giới tính",
+                "type_view": 2,
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Nam"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Nữ"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "title": "Chọn công việc bạn yêu thich",
+                "params": "chonABC",
+                "hint_text": "Chọn giới tính",
+                "type_view": 3,
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Thích đi học"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích nghe nhạc"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích ăn kem"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích đá bóng"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Thích ngủ"
+                  }
+                ]
+              }
+            ]
+          },
+              {
+            "id": 2,
+            "title": "Sinh vien di lam",
+            "form_data": [
+              {
+                "id": 1,
+                "title": "Tên đăng nhập",
+                "hint_text": "Tên đăng nhập",
+                "params": "user_name",
+                "type" : "text",
+                "type_view": 0,
+                "is_require": true
+              },
+              {
+                "id": 2,
+                "title": "Họ và tên",
+                "params": "name",
+                "hint_text": "Họ tên",
+                "type" : "text",
+                "type_view": 0,
+                "is_require": true
+              },
+              {
+                "id": 3,
+                "title": "Tỉnh/Thành phố",
+                "params": "city",
+                "hint_text": "Chọn tỉnh/thành",
+                "type_view": 1,
+                "is_require": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Hà Nội"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Hưng Yên"
+                  },
+                  {
+                    "id": 3,
+                    "title": "Hải Phòng"
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "title": "Tên bài viết",
+                "params": "note",
+                "hint_text": "Tên bài viết",
+                "type" : "text",
+                "type_view": 0,
+                "is_require": true
+              },
+              {
+                "id": 3,
+                "title": "Đề tài",
+                "params": "topic",
+                "hint_text": "Chọn đề tài",
+                "type_view": 1,
+                "is_require": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Đề tài 1"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Đề tài 2"
+                  },
+                  {
+                    "id": 3,
+                    "title": "Đề tài 3"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "title": "Đề tài",
+                "params": "gioitinh",
+                "hint_text": "Chọn giới tính",
+                "type_view": 2,
+                "is_require": true,
+                "data_view": [
+                  {
+                    "id": 1,
+                    "title": "Nam"
+                  },
+                  {
+                    "id": 2,
+                    "title": "Nữ"
+                  }
+                ]
+              }
+            ]
+          }
+              ]
+         
+        },
+        "config": {
+          "0": "input",
+          "1": "selectbox",
+          "2": "radio",
+          "3": "checkbox"
+        },
+        "success": true,
+        "message": "ok!"
+      }';
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
         $this->news = $newsRepository;
+        Session::put('url.intended', URL::full());
     }
 
     public function index(){
@@ -428,7 +429,6 @@ class HomeController extends Controller
 
             $sotayrenluyen = config('site.news_box.sotayrenluyen');
             $list_news_so_tay_ren_luyen = $this->news->getNewsByBox($sotayrenluyen,null,5);
-
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
             $list_news_hinh_anh_video = $this->news->getNewsByBox($hinhanhvideo,null,5);
 
@@ -536,61 +536,69 @@ class HomeController extends Controller
             }      
           }
           $str = '';
-          foreach ($form_data as $element){
-            if($element['type_view'] == 0){  
+          if(count($form_data) > 0){
+            foreach ($form_data as $element){
               $require = $element['is_require'] == true ? 'required=""' : ''; 
               $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : '';          
-              $str .= 
-              '<div class="form-group">'
-                  .'<label>' . $element['title'] . '</label>'
-                  .'<div class="input">'
-                  .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control"'
-                  . $require .'>'
-                  .    '<small class="form-text">' . $element['hint_text'] . '</small>'
-                  . $text_muted
-                  .'</div>'
-              .'</div>';
-            } 
-            elseif($element['type_view'] == 1) {
-              $require = $element['is_require'] == true ? 'required=""' : ''; 
-              $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : ''; 
-              $str .=
-              '<div class="form-group">'
-                  .'<label>' . $element['title'] . '</label>'
-                  .'<div class="input">'
-                      .'<select class="form-control" name="' . $element['params'] . '"' . $require . '>'
-                      .    '<option>' . $element['title'] .'</option>'; 
-                          foreach ($element['data_view'] as $element2){
-                              $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
+              if($element['type_view'] == 0){  
+                $str .= 
+                '<div class="form-group">'
+                    .'<label>' . $element['title'] . '</label>'
+                    .'<div class="input">'
+                    .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control" placeholder="' . $element['hint_text'] . '"'
+                    . $require .'>'
+                    . $text_muted
+                    .'</div>'
+                .'</div>';
+              } 
+              elseif($element['type_view'] == 1) { 
+                $str .=
+                '<div class="form-group">'
+                    .'<label>' . $element['title'] . '</label>'
+                    .'<div class="input">'
+                        .'<select class="form-control" name="' . $element['params'] . '"' . $require . '>'
+                        .    '<option>' . $element['title'] .'</option>'; 
+                            if(count($element['data_view'])>0){
+                              foreach ($element['data_view'] as $element2){
+                                  $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
+                              }
+                            }
+                        $str .= '</select>';
+                        $str .= $text_muted;
+                    $str .= '</div>'
+                .'</div>';
+              }
+              elseif($element['type_view'] == 2){
+                $str .=
+                '<div class="form-group">'
+                    .'<label>' . $element['title'] . '</label>'
+                    .'<div class="input">';
+                        if(count($element['data_view'])>0){
+                          foreach ($element['data_view'] as $element3){
+                              $str .= '<label><input type="radio" name="' . $element['params'] . '" value="' . $element3['id'] . '">' . $element3['title'] .'</label>';
                           }
-                      $str .= '</select>';
-                      $str .= $text_muted;
-                  $str .= '</div>'
-              .'</div>';
-              // @elseif($element['type_view'] == 2)
-              // <div class="form-group">
-              //     <label>{{ $element['title'] }}</label>
-              //     <div class="input">
-              //         @foreach ($element['data_view'] as $element3)
-              //             <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['id']}}">{{ $element3['title'] }}</label>
-              //         @endforeach
-              //         @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
-              //     </div>
-              // </div>
-              // @elseif($element['type_view'] == 3)
-              // <div class="form-group">
-              //     <label>{{ $element['title'] }}</label>
-              //     <div class="input">
-              //         @foreach ($element['data_view'] as $element4)
-              //             <label><input type="checkbox" name="{{ $element['params'] }}" value="{{$element4['id']}}">{{ $element4['title'] }}</label>
-              //         @endforeach
-              //         @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
-              //     </div>
-              // </div>
-              // @endif
+                        }
+                        $str .= $text_muted;
+                    $str .= '</div>'
+                .'</div>';
+              }
+              elseif($element['type_view'] == 3){
+                $str .=  
+                '<div class="form-group">'
+                    .'<label>' . $element['title'] . '</label>'
+                    .'<div class="input">';
+                        if(count($element['data_view'])>0){
+                          foreach ($element['data_view'] as $element4){
+                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '" value="' . $element4['id'] .'">' . $element4['title'] .'</label>';
+                          }
+                        }
+                        $str .= $text_muted;
+                    $str .= '</div>'
+                .'</div>';
+              }
             }
           }
-          return response()->json(['flag' => 1,'str'=>$str]);
+          return response()->json(['str'=>$str]);
         } else {
           return $validator->messages();
         }        
