@@ -312,7 +312,8 @@ class HomeController extends Controller
               "params": "note",
               "hint_text": "Tên bài viết",
               "type" : "text",
-              "type_view": 0
+              "type_view": 0,
+              "is_require": true
             },
             {
               "id": 3,
