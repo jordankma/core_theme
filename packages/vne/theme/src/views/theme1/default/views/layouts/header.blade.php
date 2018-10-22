@@ -53,7 +53,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					@else
 						<div id="offline-now">
 							@php 
-								$url = "http://eid.vnedutech.vn/login?site=http://" . config('app.url');
+								$url = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 							@endphp
 							<li class="nav-item"><a href="{{ $url }}"><i class="fa fa-user"></i>Đăng nhập</a></li>
 							<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>

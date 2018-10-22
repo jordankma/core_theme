@@ -5,6 +5,7 @@ namespace Vne\Member\App\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Auth,Session,Cookie;
+use Illuminate\Cookie\CookieJar;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\View;
 class VerifyToken
@@ -25,16 +26,14 @@ class VerifyToken
 	            ]
 	        ]); 
 	        $data = json_decode($res->getBody(),true);
+	        // dd($data);
 	        if($data['success'] == true){ 
-	        	// Session::put('token_user',$data['data']['token']);
 	            $USER_INFO = $data['data']['user'];
+	            $token = $data['data']['token'];
 	        }
-	        // else{
-	        // 	Session::forget('token_user');
-	        // }
         }
      	View::share('USER_INFO',$USER_INFO);
-        return $next($request);
+        return $next($request)->withCookie(cookie('eids_token', $token, 86400 * 30));
     }
 
 }

@@ -35,4 +35,6 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('get/school', 'HomeController@getSchool')->name('vne.get.school');
         Route::get('get/class', 'HomeController@getClass')->name('vne.get.class');
     });
+
+    
 });

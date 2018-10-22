@@ -161,8 +161,8 @@
 			                $('#form-register .help-block').css('display','block');
 			                return false;
 			            }else{
-			                // location.reload(true);
-			                window.location.assign("http://theme.local.vn/cap-nhat-thong-tin");
+			                location.reload(true);
+			                // window.location.assign("http://gthd.vnedutech.vn/cap-nhat-thong-tin");
 			            }
 			        }, 'json');
                 }
