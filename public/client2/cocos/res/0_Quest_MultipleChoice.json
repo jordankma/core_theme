@@ -1,0 +1,4453 @@
+{
+  "ID": "6500d827-eae1-4bd3-998e-f79de4a3c373",
+  "Version": "3.10.0.0",
+  "Name": "0_Quest_MultipleChoice",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 14,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg.jpg",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 639.2219,
+              "Y": 398.8687
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4994,
+              "Y": 0.4986
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 1.0
+            },
+            "LeftMargin": -0.7781,
+            "RightMargin": 0.7781,
+            "TopMargin": 1.1313,
+            "BottomMargin": -1.1313,
+            "Tag": 2,
+            "ActionTag": -1981505857,
+            "Size": {
+              "X": 1280.0,
+              "Y": 800.0
+            },
+            "Name": "spr_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/logo.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 59.201,
+              "Y": 755.4471
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.0463,
+              "Y": 0.9443
+            },
+            "PreSize": {
+              "X": 0.4453,
+              "Y": 0.0838
+            },
+            "LeftMargin": 59.201,
+            "RightMargin": 650.799,
+            "TopMargin": 11.0529,
+            "BottomMargin": 721.9471,
+            "Tag": 8,
+            "ActionTag": 751422308,
+            "Size": {
+              "X": 570.0,
+              "Y": 67.0
+            },
+            "Name": "spr_logo",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg_quest.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 312.7009,
+              "Y": 388.2598
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2443,
+              "Y": 0.4853
+            },
+            "PreSize": {
+              "X": 0.3883,
+              "Y": 0.605
+            },
+            "LeftMargin": 64.2009,
+            "RightMargin": 718.7991,
+            "TopMargin": 169.7402,
+            "BottomMargin": 146.2598,
+            "Tag": 9,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 26,
+                "LabelText": "CÂU HỎI SỐ 10",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 263.242,
+                  "Y": 449.158
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5297,
+                  "Y": 0.928
+                },
+                "PreSize": {
+                  "X": 0.6036,
+                  "Y": 0.1033
+                },
+                "LeftMargin": 113.242,
+                "RightMargin": 83.758,
+                "TopMargin": 9.842,
+                "BottomMargin": 424.158,
+                "Tag": 21,
+                "ActionTag": 1341687352,
+                "Size": {
+                  "X": 300.0,
+                  "Y": 50.0
+                },
+                "Name": "lbl_nbquest",
+                "ctype": "TextObjectData"
+              },
+              {
+                "InnerNodeSize": {
+                  "Width": 495,
+                  "Height": 800
+                },
+                "ScrollDirectionType": "Vertical",
+                "ClipAble": true,
+                "BackColorAlpha": 0,
+                "ComboBoxIndex": 1,
+                "SingleColor": {
+                  "G": 150,
+                  "B": 100
+                },
+                "FirstColor": {
+                  "G": 150,
+                  "B": 100
+                },
+                "EndColor": {},
+                "ColorVector": {
+                  "ScaleY": 1.0
+                },
+                "Scale9Width": 1,
+                "Scale9Height": 1,
+                "TouchEnable": true,
+                "AnchorPoint": {},
+                "Position": {
+                  "X": 11.7842,
+                  "Y": 45.875
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.0237,
+                  "Y": 0.0948
+                },
+                "PreSize": {
+                  "X": 0.996,
+                  "Y": 0.7541
+                },
+                "LeftMargin": 11.7842,
+                "RightMargin": -9.7842,
+                "TopMargin": 73.125,
+                "BottomMargin": 45.875,
+                "Tag": 19,
+                "Children": [
+                  {
+                    "IsCustomSize": true,
+                    "FontSize": 17,
+                    "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp\nUNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp\nUNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                    "FontResource": {
+                      "Type": "Normal",
+                      "Path": "font/UTM AvoBold.ttf",
+                      "Plist": ""
+                    },
+                    "OutlineColor": {
+                      "G": 0,
+                      "B": 0
+                    },
+                    "ShadowColor": {
+                      "R": 110,
+                      "G": 110,
+                      "B": 110
+                    },
+                    "ShadowOffsetX": 2.0,
+                    "ShadowOffsetY": -2.0,
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "Position": {
+                      "X": 237.9999,
+                      "Y": 397.7872
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "CColor": {
+                      "R": 0,
+                      "G": 0,
+                      "B": 0
+                    },
+                    "IconVisible": false,
+                    "PrePosition": {
+                      "X": 0.4808,
+                      "Y": 0.4972
+                    },
+                    "PreSize": {
+                      "X": 0.9495,
+                      "Y": 1.0
+                    },
+                    "LeftMargin": 2.9999,
+                    "RightMargin": 22.0001,
+                    "TopMargin": 2.2128,
+                    "BottomMargin": -2.2128,
+                    "Tag": 20,
+                    "ActionTag": 1642589597,
+                    "Size": {
+                      "X": 470.0,
+                      "Y": 800.0
+                    },
+                    "Name": "lbl_quest",
+                    "ctype": "TextObjectData"
+                  }
+                ],
+                "ActionTag": 349186579,
+                "Size": {
+                  "X": 495.0,
+                  "Y": 365.0
+                },
+                "Name": "ScrollView",
+                "ctype": "ScrollViewObjectData"
+              }
+            ],
+            "ActionTag": -2057153607,
+            "Size": {
+              "X": 497.0,
+              "Y": 484.0
+            },
+            "Name": "bg_quest",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "IsCustomSize": true,
+            "FontSize": 30,
+            "LabelText": "Câu hỏi",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UTM AvoBold.ttf",
+              "Plist": ""
+            },
+            "HorizontalAlignmentType": "HT_Right",
+            "VerticalAlignmentType": "VT_Center",
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 73.7009,
+              "Y": 66.0507
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {
+              "R": 128,
+              "G": 0,
+              "B": 128
+            },
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.0576,
+              "Y": 0.0826
+            },
+            "PreSize": {
+              "X": 0.1172,
+              "Y": 0.0625
+            },
+            "LeftMargin": -1.2991,
+            "RightMargin": 1131.2991,
+            "TopMargin": 708.9493,
+            "BottomMargin": 41.0507,
+            "Tag": 21,
+            "ActionTag": -2093486585,
+            "Size": {
+              "X": 150.0,
+              "Y": 50.0
+            },
+            "Name": "textround",
+            "ctype": "TextObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 913.0133,
+              "Y": 576.9185
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7133,
+              "Y": 0.7211
+            },
+            "PreSize": {
+              "X": 0.4828,
+              "Y": 0.155
+            },
+            "LeftMargin": 604.0133,
+            "RightMargin": 57.9867,
+            "TopMargin": 161.0815,
+            "BottomMargin": 514.9185,
+            "Tag": 10,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1976,
+                  "Y": 62.5145
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5731,
+                  "Y": 0.5041
+                },
+                "PreSize": {
+                  "X": 0.7767,
+                  "Y": 0.8871
+                },
+                "LeftMargin": 114.1976,
+                "RightMargin": 23.8024,
+                "TopMargin": 6.4855,
+                "BottomMargin": 7.5145,
+                "Tag": 14,
+                "ActionTag": 691018756,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans0",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 309.0225,
+                  "Y": 61.5845
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5,
+                  "Y": 0.4966
+                },
+                "PreSize": {
+                  "X": 1.0324,
+                  "Y": 1.1371
+                },
+                "LeftMargin": -9.9775,
+                "RightMargin": -10.0225,
+                "TopMargin": -8.0845,
+                "BottomMargin": -8.9155,
+                "Tag": 20,
+                "ActionTag": -422277032,
+                "Size": {
+                  "X": 638.0,
+                  "Y": 141.0
+                },
+                "Name": "spr_ansTF0",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": -1044147026,
+            "Size": {
+              "X": 618.0,
+              "Y": 124.0
+            },
+            "Name": "btn_ans0",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 913.0134,
+              "Y": 443.9122
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7133,
+              "Y": 0.5549
+            },
+            "PreSize": {
+              "X": 0.4781,
+              "Y": 0.1437
+            },
+            "LeftMargin": 607.0134,
+            "RightMargin": 60.9866,
+            "TopMargin": 298.5878,
+            "BottomMargin": 386.4122,
+            "Tag": 18,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 57.5139
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5788,
+                  "Y": 0.5001
+                },
+                "PreSize": {
+                  "X": 0.7843,
+                  "Y": 0.9565
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 17.8011,
+                "TopMargin": 2.4861,
+                "BottomMargin": 2.5139,
+                "Tag": 19,
+                "ActionTag": 62997283,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans1",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.4986,
+                  "ScaleY": 0.5029
+                },
+                "Position": {
+                  "X": 305.1297,
+                  "Y": 57.1249
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.4986,
+                  "Y": 0.4967
+                },
+                "PreSize": {
+                  "X": 1.0425,
+                  "Y": 1.2261
+                },
+                "LeftMargin": -12.9771,
+                "RightMargin": -13.0229,
+                "TopMargin": -12.216,
+                "BottomMargin": -13.784,
+                "Tag": 20,
+                "ActionTag": 451918834,
+                "Size": {
+                  "X": 638.0,
+                  "Y": 141.0
+                },
+                "Name": "spr_ansTF1",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 1849923578,
+            "Size": {
+              "X": 612.0,
+              "Y": 115.0
+            },
+            "Name": "btn_ans1",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 913.0134,
+              "Y": 315.4058
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7133,
+              "Y": 0.3943
+            },
+            "PreSize": {
+              "X": 0.4781,
+              "Y": 0.1437
+            },
+            "LeftMargin": 607.0134,
+            "RightMargin": 60.9866,
+            "TopMargin": 427.0942,
+            "BottomMargin": 257.9058,
+            "Tag": 21,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọc VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 58.5154
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5788,
+                  "Y": 0.5088
+                },
+                "PreSize": {
+                  "X": 0.7843,
+                  "Y": 0.9565
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 17.8011,
+                "TopMargin": 1.4846,
+                "BottomMargin": 3.5154,
+                "Tag": 22,
+                "ActionTag": -292817272,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans2",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 306.0228,
+                  "Y": 56.5537
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5,
+                  "Y": 0.4918
+                },
+                "PreSize": {
+                  "X": 1.0425,
+                  "Y": 1.2261
+                },
+                "LeftMargin": -12.9772,
+                "RightMargin": -13.0228,
+                "TopMargin": -12.0537,
+                "BottomMargin": -13.9463,
+                "Tag": 23,
+                "ActionTag": -690667695,
+                "Size": {
+                  "X": 638.0,
+                  "Y": 141.0
+                },
+                "Name": "spr_ansTF2",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 980977369,
+            "Size": {
+              "X": 612.0,
+              "Y": 115.0
+            },
+            "Name": "btn_ans2",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 586,
+            "Scale9Height": 97,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 913.0132,
+              "Y": 184.8994
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7133,
+              "Y": 0.2311
+            },
+            "PreSize": {
+              "X": 0.4812,
+              "Y": 0.1488
+            },
+            "LeftMargin": 605.0132,
+            "RightMargin": 58.9868,
+            "TopMargin": 555.6006,
+            "BottomMargin": 125.3994,
+            "Tag": 24,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 58.5152
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.575,
+                  "Y": 0.4917
+                },
+                "PreSize": {
+                  "X": 0.7792,
+                  "Y": 0.9244
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 21.8011,
+                "TopMargin": 5.4848,
+                "BottomMargin": 3.5152,
+                "Tag": 25,
+                "ActionTag": 1848045091,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans3",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 306.0228,
+                  "Y": 57.0988
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.4968,
+                  "Y": 0.4798
+                },
+                "PreSize": {
+                  "X": 1.0357,
+                  "Y": 1.1849
+                },
+                "LeftMargin": -12.9772,
+                "RightMargin": -9.0228,
+                "TopMargin": -8.5988,
+                "BottomMargin": -13.4012,
+                "Tag": 26,
+                "ActionTag": 1561279088,
+                "Size": {
+                  "X": 638.0,
+                  "Y": 141.0
+                },
+                "Name": "spr_ansTF3",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 1333646679,
+            "Size": {
+              "X": 616.0,
+              "Y": 119.0
+            },
+            "Name": "btn_ans3",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "Câu tiếp theo",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_22.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_22.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_21.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 112,
+            "Scale9Height": 27,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 311.3352,
+              "Y": 147.1006
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2432,
+              "Y": 0.1839
+            },
+            "PreSize": {
+              "X": 0.1109,
+              "Y": 0.0613
+            },
+            "LeftMargin": 240.3352,
+            "RightMargin": 897.6648,
+            "TopMargin": 628.3994,
+            "BottomMargin": 122.6006,
+            "Tag": 27,
+            "ActionTag": -352876613,
+            "Size": {
+              "X": 142.0,
+              "Y": 49.0
+            },
+            "Name": "btn_nextquest",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 26,
+            "ButtonText": "Kết thúc",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_dis.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_12.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_11.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 178,
+            "Scale9Height": 45,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1145.8497,
+              "Y": 60.5678
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.8952,
+              "Y": 0.0757
+            },
+            "PreSize": {
+              "X": 0.1625,
+              "Y": 0.0838
+            },
+            "LeftMargin": 1041.8497,
+            "RightMargin": 30.1503,
+            "TopMargin": 705.9322,
+            "BottomMargin": 27.0678,
+            "Tag": 28,
+            "ActionTag": 846028324,
+            "Size": {
+              "X": 208.0,
+              "Y": 67.0
+            },
+            "Name": "btn_end",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg_time.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1153.863,
+              "Y": 716.5789
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.9015,
+              "Y": 0.8957
+            },
+            "PreSize": {
+              "X": 0.1125,
+              "Y": 0.1813
+            },
+            "LeftMargin": 1081.863,
+            "RightMargin": 54.137,
+            "TopMargin": 10.9211,
+            "BottomMargin": 644.0789,
+            "Tag": 41,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 36,
+                "LabelText": "09:30",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 71.2886,
+                  "Y": 81.7384
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.4951,
+                  "Y": 0.5637
+                },
+                "PreSize": {
+                  "X": 0.6944,
+                  "Y": 0.6897
+                },
+                "LeftMargin": 21.2886,
+                "RightMargin": 22.7114,
+                "TopMargin": 13.2616,
+                "BottomMargin": 31.7384,
+                "Tag": 42,
+                "ActionTag": 2037016887,
+                "Size": {
+                  "X": 100.0,
+                  "Y": 100.0
+                },
+                "Name": "lbl_time",
+                "ctype": "TextObjectData"
+              }
+            ],
+            "ActionTag": -1392551372,
+            "Size": {
+              "X": 144.0,
+              "Y": 145.0
+            },
+            "Name": "spr_bgtime",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 183.1663,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.1431,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 161.1663,
+            "RightMargin": 1074.8337,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 193,
+            "ActionTag": 1072176734,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest0",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "15",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5013,
+              "ScaleY": 0.5096
+            },
+            "Position": {
+              "X": 227.3569,
+              "Y": 81.4436
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.1776,
+              "Y": 0.1018
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 205.2997,
+            "RightMargin": 1030.7003,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 194,
+            "ActionTag": 1176258598,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest1",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 271.433,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2121,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 249.433,
+            "RightMargin": 986.567,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 195,
+            "ActionTag": 678114702,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest2",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 315.5663,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2465,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 293.5663,
+            "RightMargin": 942.4337,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 196,
+            "ActionTag": -1398291545,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest3",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 359.6997,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.281,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 337.6997,
+            "RightMargin": 898.3003,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 197,
+            "ActionTag": 778765744,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest4",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 403.8331,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3155,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 381.8331,
+            "RightMargin": 854.1669,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 198,
+            "ActionTag": 1646105713,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest5",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 447.9664,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.35,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 425.9664,
+            "RightMargin": 810.0336,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 199,
+            "ActionTag": 1535774847,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest6",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 492.0998,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3845,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 470.0998,
+            "RightMargin": 765.9002,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 200,
+            "ActionTag": -741436668,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest7",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 536.2332,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4189,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 514.2332,
+            "RightMargin": 721.7668,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 201,
+            "ActionTag": -2089795123,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest8",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 580.3665,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4534,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 558.3665,
+            "RightMargin": 677.6335,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 202,
+            "ActionTag": 1114846227,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest9",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 624.4999,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4879,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 602.4999,
+            "RightMargin": 633.5001,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 203,
+            "ActionTag": -1262942705,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest10",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 668.6332,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5224,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 646.6332,
+            "RightMargin": 589.3668,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 204,
+            "ActionTag": 1088921270,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest11",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 712.7666,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5568,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 690.7666,
+            "RightMargin": 545.2334,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 205,
+            "ActionTag": 1100931566,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest12",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 756.9,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5913,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 734.9,
+            "RightMargin": 501.1,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 206,
+            "ActionTag": -357904428,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest13",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 801.0333,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6258,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 779.0333,
+            "RightMargin": 456.9667,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 207,
+            "ActionTag": -1562655813,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest14",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 845.1666,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6603,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 823.1666,
+            "RightMargin": 412.8334,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 208,
+            "ActionTag": -582701521,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest15",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 889.2999,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6948,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 867.2999,
+            "RightMargin": 368.7001,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 209,
+            "ActionTag": 1188573883,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest16",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 933.4332,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7292,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 911.4332,
+            "RightMargin": 324.5668,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 210,
+            "ActionTag": -905714534,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest17",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 977.5667,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7637,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 955.5667,
+            "RightMargin": 280.4333,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 211,
+            "ActionTag": 1382632486,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest18",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1021.7,
+              "Y": 81.0308
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7982,
+              "Y": 0.1013
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 999.7,
+            "RightMargin": 236.3,
+            "TopMargin": 697.4692,
+            "BottomMargin": 59.5308,
+            "Tag": 212,
+            "ActionTag": 1016636875,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest19",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 184.4959,
+              "Y": 32.0892
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.1441,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 162.4959,
+            "RightMargin": 1073.5042,
+            "TopMargin": 746.4108,
+            "BottomMargin": 10.5892,
+            "Tag": 193,
+            "ActionTag": -180543523,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest20",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 228.5695,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.1786,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 206.5695,
+            "RightMargin": 1029.4304,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 194,
+            "ActionTag": 1786107271,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest21",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 272.6432,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.213,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 250.6432,
+            "RightMargin": 985.3568,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 195,
+            "ActionTag": 1447864933,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest22",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 316.7169,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2474,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 294.7169,
+            "RightMargin": 941.2831,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 196,
+            "ActionTag": -567902810,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest23",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 360.7906,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2819,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 338.7906,
+            "RightMargin": 897.2095,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 197,
+            "ActionTag": 592211693,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest24",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 404.8642,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3163,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 382.8642,
+            "RightMargin": 853.1357,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 198,
+            "ActionTag": -1327320516,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest25",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 448.9379,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3507,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 426.9379,
+            "RightMargin": 809.0621,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 199,
+            "ActionTag": -712234018,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest26",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 493.0115,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3852,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 471.0115,
+            "RightMargin": 764.9885,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 200,
+            "ActionTag": 145223403,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest27",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 537.0852,
+              "Y": 32.0891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4196,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 515.0852,
+            "RightMargin": 720.9148,
+            "TopMargin": 746.4109,
+            "BottomMargin": 10.5891,
+            "Tag": 201,
+            "ActionTag": 1925138654,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest28",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 581.1588,
+              "Y": 32.0892
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.454,
+              "Y": 0.0401
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 559.1588,
+            "RightMargin": 676.8412,
+            "TopMargin": 746.4108,
+            "BottomMargin": 10.5892,
+            "Tag": 202,
+            "ActionTag": -486643809,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest29",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 625.2324,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4885,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 603.2324,
+            "RightMargin": 632.7676,
+            "TopMargin": 747.1654,
+            "BottomMargin": 9.8346,
+            "Tag": 203,
+            "ActionTag": 180123439,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest30",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 669.306,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5229,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 647.306,
+            "RightMargin": 588.694,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 204,
+            "ActionTag": 720857915,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest31",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 713.3797,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5573,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 691.3797,
+            "RightMargin": 544.6203,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 205,
+            "ActionTag": -2072626252,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest32",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 757.4534,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5918,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 735.4534,
+            "RightMargin": 500.5466,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 206,
+            "ActionTag": 2034640006,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest33",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 801.527,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6262,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 779.527,
+            "RightMargin": 456.473,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 207,
+            "ActionTag": -1701167013,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest34",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 845.6006,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6606,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 823.6006,
+            "RightMargin": 412.3994,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 208,
+            "ActionTag": 311160407,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest35",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 889.6742,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6951,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 867.6742,
+            "RightMargin": 368.3258,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 209,
+            "ActionTag": 2084155977,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest36",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 933.7478,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7295,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 911.7478,
+            "RightMargin": 324.2522,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 210,
+            "ActionTag": -1515907748,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest37",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 977.8214,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7639,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 955.8214,
+            "RightMargin": 280.1786,
+            "TopMargin": 747.1655,
+            "BottomMargin": 9.8346,
+            "Tag": 211,
+            "ActionTag": -1318973913,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest38",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 20,
+            "ButtonText": "10",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/nbquest1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 14,
+            "Scale9Height": 21,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1021.8951,
+              "Y": 31.3346
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7984,
+              "Y": 0.0392
+            },
+            "PreSize": {
+              "X": 0.0344,
+              "Y": 0.0538
+            },
+            "LeftMargin": 999.8951,
+            "RightMargin": 236.105,
+            "TopMargin": 747.1654,
+            "BottomMargin": 9.8346,
+            "Tag": 212,
+            "ActionTag": -878640118,
+            "Size": {
+              "X": 44.0,
+              "Y": 43.0
+            },
+            "Name": "btn_quest39",
+            "ctype": "ButtonObjectData"
+          }
+        ],
+        "Size": {
+          "X": 1280.0,
+          "Y": 800.0
+        },
+        "Name": "Scene",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [
+        "art/bg.jpg",
+        "art/bg_quest.png",
+        "art/bg_time.png",
+        "art/bganschoose.png",
+        "art/btn_11.png",
+        "art/btn_12.png",
+        "art/btn_21.png",
+        "art/btn_22.png",
+        "art/btn_a1.png",
+        "art/btn_a2.png",
+        "art/btn_a3.png",
+        "art/btn_b1.png",
+        "art/btn_b2.png",
+        "art/btn_b3.png",
+        "art/btn_c1.png",
+        "art/btn_c2.png",
+        "art/btn_c3.png",
+        "art/btn_d1.png",
+        "art/btn_d2.png",
+        "art/btn_d3.png",
+        "art/btn_dis.png",
+        "art/logo.png",
+        "art/nbquest1.png",
+        "art/nbquest2.png",
+        "art/nbquest3.png",
+        "font/UTM AvoBold.ttf",
+        "font/UVNVan_B.TTF"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Scene"
+}

@@ -104,6 +104,34 @@ class NewsRepository extends Repository
         return $result;
     }
 
+    public function getNewsByBoxApi($alias,$news_cat_id=null,$limit=null) {
+        $q = News::orderBy('news_id', 'desc');
+        if($limit==null){
+            $q->whereHas('getBoxs', function ($query) use ($alias) {
+                $query->where('vne_news_box.alias', $alias);
+            });   
+            if($news_cat_id != null){
+                $q->whereHas('getCats', function ($query) use ($news_cat_id) {
+                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                });
+            }
+            $result = $q->get();
+        } 
+        else {
+            $q->with('getBoxs')->whereHas('getBoxs', function ($query) use ($alias) {
+                $query->where('vne_news_box.alias', $alias);
+            });
+            if($news_cat_id != null){
+                $q->whereHas('getCats', function ($query) use ($news_cat_id) {
+                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                });
+            }
+            $result = $q->paginate($limit);
+        }
+        
+        return $result;
+    }
+
     public function getNewsByCate($alias,$limit) {
         
         $result = News::whereHas('getCats', function ($query) use ($alias) {

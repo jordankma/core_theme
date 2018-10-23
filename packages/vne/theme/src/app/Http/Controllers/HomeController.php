@@ -468,6 +468,10 @@ class HomeController extends Controller
 
     }
 
+    public function getTryExam(){
+       return view('VNE-THEME::modules.contest.index'); 
+    }
+
     public function listNews(Request $request, $alias = null){
         if($alias==null){
             $list_news = News::orderBy('news_id', 'desc')->paginate(10);  
@@ -479,6 +483,15 @@ class HomeController extends Controller
         ];
         return view('VNE-THEME::modules.news.list',$data);
     }
+
+    public function listNewsByBox(Request $request, $alias = null){
+        $list_news = $this->news->getNewsByBox($alias,null,10); 
+        $data = [
+            'list_news' => $list_news     
+        ];
+        return view('VNE-THEME::modules.news.list',$data);
+    }
+
 
     public function detailNews($alias){
         $news = News::where('title_alias',$alias)->first();  

@@ -121,6 +121,9 @@ class SettingController extends Controller
                     case 'slogan':
                         $slogan = $setting->value;
                         break;
+                    case 'info_page_contact':
+                        $info_page_contact = $setting->value;
+                        break;
                 }
             }
         }
@@ -144,9 +147,9 @@ class SettingController extends Controller
             'hotline' => $hotline,
             'ga_code' => $ga_code,
             'chat_code' => $chat_code,
-            'slogan' => $slogan
+            'slogan' => $slogan,
+            'info_page_contact' => $info_page_contact
         ];
-
         return view('ADTECH-CORE::modules.core.setting.manage', $data);
     }
 

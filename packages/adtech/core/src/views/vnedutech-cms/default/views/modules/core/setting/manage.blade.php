@@ -88,6 +88,10 @@
                         </div>
                         <img id="holder1" src="{{ config('site.url_storage') . $favicon }}" style="margin-top:15px;max-height:100px;">
                         <br><br>
+                        <label>Thông tin liên hệ trang contact</label>
+                        <div class="form-group">
+                            <textarea name="info_page_contact" id="ckeditor" placeholder="Nhập thông tin liên hệ">{{ $info_page_contact }}</textarea>
+                        </div>
 
                         {{--<label>Logo link</label>--}}
                         {{--<div class="form-group">--}}
@@ -161,12 +165,20 @@
     <!-- begining of page js -->
     <script src="{{ config('site.url_static') . ('/vendor/' . $group_name . '/' . $skin . '/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
     <script src="{{ config('site.url_static') . ('/vendor/laravel-filemanager/js/lfm.js?t=' . time()) }}" ></script>
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin .'/vendors/ckeditor_news/ckeditor.js') }}" type="text/javascript"></script>
     <script>
         $(function () {
             // var domain = "http://dhcd-release.vnedutech.vn/administrator/laravel-filemanager";
             $('#lfm').filemanager('image');
             $('#lfm1').filemanager('image');
             $('#lfm2').filemanager('image');
+            var options = {
+                filebrowserImageBrowseUrl: '/admin/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/admin/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/admin/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files&_token=',
+            };
+            CKEDITOR.replace('ckeditor',options);
         })
     </script>
 @stop

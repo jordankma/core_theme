@@ -10,3 +10,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('vne/contact/contact/confirm-delete', 'ContactController@getModalDelete')->name('vne.contact.contact.confirm-delete');
     });
 });
+
+Route::group(array('prefix' => 'resouce/api/contact'), function() {
+    Route::post('send', 'ApiContactController@postSendContact');
+
+});

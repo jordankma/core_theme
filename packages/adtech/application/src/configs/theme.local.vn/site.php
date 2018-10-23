@@ -71,6 +71,7 @@ return [
     'url_static' => 'http://theme.local.vn',
     'api_prefix' => '/resource/dev/get',
     'admin_prefix' => '/admin',
+    'token_bear' => 'NGLPs5oUP1gcJISvUy5cA29bMSLHPWoM4MVIEJVr',
     'homepage' => [
         'frontend' => [
             'method' => 'get',

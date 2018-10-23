@@ -54,16 +54,89 @@ class ApiNewsController extends Controller
         $this->_user = Auth::user();
     }
 
-    public function getListNewsApi(){
-        
+    public function getListNewsApi(Request $request){
+        $list_news = News::paginate(10);
+        $data = array();
+        if(!empty($list_news)){
+            foreach ($list_news as $key => $value) {
+                $data[] = [
+                    'id' => $value->news_id,
+                    'title' => base64_encode($value->title),
+                    'image' => base64_encode($value->image),
+                    'url' => '',
+                    'desc' => base64_encode($value->desc),
+                    'like' => 123,
+                    'view' => 36423
+                ];
+            }
+        }  
+        $data_reponse = [
+            'data' => $data,
+            'success' => true,
+            'message' => 'ok!',
+            'page' => $list_news->currentPage(),
+            'totalpage' => $list_news->lastPage()
+        ];    
+        return response(json_encode($data_reponse))->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
     }
 
     public function getDetailNewsApi(Request $request){
-        
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+            $data = array();
+            $news = News::find($request->input('id'));
+            if(!empty($news)){
+                $data = [
+                    'id' => $news->news_id,
+                    'title' => base64_encode($news->title),
+                    'desc' => base64_encode($news->desc),
+                    'content' => base64_encode($news->content)
+                ];
+            }
+            $data_reponse = [
+                'data' => $data,
+                'success' => true,
+                'message' => 'ok!'
+            ];
+            return response(json_encode($data_reponse))->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
+        } else{
+            return $validator->messages();
+        }
     }
 
     public function getListNewsByBoxApi(Request $request){
-
+        $validator = Validator::make($request->all(), [
+            'alias' => 'required',
+        ], $this->messages);
+        if (!$validator->fails()) { 
+            $list_news = $this->news->getNewsByBoxApi($request->input('alias'),null,3);
+            $data = array();
+            if(!empty($list_news)){
+                foreach ($list_news as $key => $value) {
+                    $data[] = [
+                        'id' => $value->news_id,
+                        'title' => base64_encode($value->title),
+                        'image' => base64_encode($value->image),
+                        'url' => '',
+                        'desc' => base64_encode($value->desc),
+                        'like' => 123,
+                        'view' => 36423
+                    ];
+                }
+            }  
+            $data_reponse = [
+                'data' => $data,
+                'success' => true,
+                'message' => 'ok!',
+                'page' => $list_news->currentPage(),
+                'totalpage' => $list_news->lastPage()
+            ];    
+            return response(json_encode($data_reponse))->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');        
+        } else{
+            return $validator->messages();
+        }   
     }
 
 }

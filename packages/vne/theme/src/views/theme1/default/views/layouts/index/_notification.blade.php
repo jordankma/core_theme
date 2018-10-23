@@ -4,7 +4,10 @@
 		<div class="notification-item">
 			<div class="headline">
 				<h2><a href="">THÔNG BÁO CỦA BAN TỔ CHỨC</a></h2>
-				<a class="btn" href="">Xem thêm</a>
+				@php 
+					$thongbaobtc = config('site.news_box.thongbaobtc');
+				@endphp
+				<a class="btn" href="{{ route('frontend.news.list.box',$thongbaobtc) }}">Xem thêm</a>
 			</div>
 			<div class="list">
 				@if(!empty($list_thong_bao_btc))

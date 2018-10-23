@@ -14,7 +14,7 @@
 					<div data-minutes="600000"></div>
 					<div class="button-group">
 						<a class="btn" href="">Vào thi</a>
-						<a class="btn" href="">Thi thử</a>
+						<a class="btn" href="{{ route('vne.get.try.exam') }}">Thi thử</a>
 					</div>
 				</section>
 				<!-- Countdown clock end -->
@@ -167,8 +167,8 @@
 				<section class="section social">
 					<h2 class="headline">GTHĐ TRÊN CÁC MẠNG XÃ HỘI</h2>
 					<ul class="list">
-						<li><a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-facebook.png?t=' . time()) }}" alt=""></a></li>
-						<li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-youtube.png?t=' . time()) }}" alt=""></a></li>
+						<li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-facebook.png?t=' . time()) }}" alt=""></a></li>
+						{{-- <li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-youtube.png?t=' . time()) }}" alt=""></a></li> --}}
 					</ul>
 				</section>
 				<!-- social end -->

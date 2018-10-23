@@ -1,0 +1,1417 @@
+{
+  "ID": "1e21a786-ed14-4a05-a8d3-10c3c82e0aa0",
+  "Version": "3.10.0.0",
+  "Name": "0_Quest_MultipleChoice1",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 14,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg.jpg",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 639.2219,
+              "Y": 398.8687
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.4994,
+              "Y": 0.4986
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 1.0
+            },
+            "LeftMargin": -0.7781,
+            "RightMargin": 0.7781,
+            "TopMargin": 1.1313,
+            "BottomMargin": -1.1313,
+            "Tag": 2,
+            "ActionTag": -1981505857,
+            "Size": {
+              "X": 1280.0,
+              "Y": 800.0
+            },
+            "Name": "spr_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/logo.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 60.2717,
+              "Y": 754.3762
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.0471,
+              "Y": 0.943
+            },
+            "PreSize": {
+              "X": 0.4453,
+              "Y": 0.0838
+            },
+            "LeftMargin": 60.2717,
+            "RightMargin": 649.7283,
+            "TopMargin": 12.1238,
+            "BottomMargin": 720.8762,
+            "Tag": 8,
+            "ActionTag": 751422308,
+            "Size": {
+              "X": 570.0,
+              "Y": 67.0
+            },
+            "Name": "spr_logo",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/giaothong/bg_quest.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 313.7715,
+              "Y": 387.1891
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2451,
+              "Y": 0.484
+            },
+            "PreSize": {
+              "X": 0.3883,
+              "Y": 0.605
+            },
+            "LeftMargin": 65.2715,
+            "RightMargin": 717.7285,
+            "TopMargin": 170.8109,
+            "BottomMargin": 145.1891,
+            "Tag": 9,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 24,
+                "LabelText": "CÂU HỎI SỐ 10",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 263.242,
+                  "Y": 449.158
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5297,
+                  "Y": 0.928
+                },
+                "PreSize": {
+                  "X": 0.6036,
+                  "Y": 0.1033
+                },
+                "LeftMargin": 113.242,
+                "RightMargin": 83.758,
+                "TopMargin": 9.842,
+                "BottomMargin": 424.158,
+                "Tag": 21,
+                "ActionTag": 1341687352,
+                "Size": {
+                  "X": 300.0,
+                  "Y": 50.0
+                },
+                "Name": "lbl_nbquest",
+                "ctype": "TextObjectData"
+              },
+              {
+                "InnerNodeSize": {
+                  "Width": 495,
+                  "Height": 800
+                },
+                "ScrollDirectionType": "Vertical",
+                "ClipAble": true,
+                "BackColorAlpha": 0,
+                "ComboBoxIndex": 1,
+                "SingleColor": {
+                  "G": 150,
+                  "B": 100
+                },
+                "FirstColor": {
+                  "G": 150,
+                  "B": 100
+                },
+                "EndColor": {},
+                "ColorVector": {
+                  "ScaleY": 1.0
+                },
+                "Scale9Width": 1,
+                "Scale9Height": 1,
+                "TouchEnable": true,
+                "AnchorPoint": {},
+                "Position": {
+                  "X": 11.7842,
+                  "Y": 48.2803
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.0237,
+                  "Y": 0.0998
+                },
+                "PreSize": {
+                  "X": 0.996,
+                  "Y": 0.7541
+                },
+                "LeftMargin": 11.7842,
+                "RightMargin": -9.7842,
+                "TopMargin": 70.7197,
+                "BottomMargin": 48.2803,
+                "Tag": 19,
+                "Children": [
+                  {
+                    "IsCustomSize": true,
+                    "FontSize": 17,
+                    "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp\nUNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp\nUNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                    "FontResource": {
+                      "Type": "Normal",
+                      "Path": "font/UVNVan_B.TTF",
+                      "Plist": ""
+                    },
+                    "OutlineColor": {
+                      "G": 0,
+                      "B": 0
+                    },
+                    "ShadowColor": {
+                      "R": 110,
+                      "G": 110,
+                      "B": 110
+                    },
+                    "ShadowOffsetX": 2.0,
+                    "ShadowOffsetY": -2.0,
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "Position": {
+                      "X": 241.5619,
+                      "Y": 400.349
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "CColor": {
+                      "R": 0,
+                      "G": 0,
+                      "B": 0
+                    },
+                    "IconVisible": false,
+                    "PrePosition": {
+                      "X": 0.488,
+                      "Y": 0.5004
+                    },
+                    "PreSize": {
+                      "X": 0.9596,
+                      "Y": 1.0
+                    },
+                    "LeftMargin": 4.0619,
+                    "RightMargin": 15.9381,
+                    "TopMargin": -0.349,
+                    "BottomMargin": 0.349,
+                    "Tag": 20,
+                    "ActionTag": 1642589597,
+                    "Size": {
+                      "X": 475.0,
+                      "Y": 800.0
+                    },
+                    "Name": "lbl_quest",
+                    "ctype": "TextObjectData"
+                  }
+                ],
+                "ActionTag": 349186579,
+                "Size": {
+                  "X": 495.0,
+                  "Y": 365.0
+                },
+                "Name": "ScrollView",
+                "ctype": "ScrollViewObjectData"
+              }
+            ],
+            "ActionTag": -2057153607,
+            "Size": {
+              "X": 497.0,
+              "Y": 484.0
+            },
+            "Name": "bg_quest",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg_timeresults.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1109.9813,
+              "Y": 745.413
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.8672,
+              "Y": 0.9318
+            },
+            "PreSize": {
+              "X": 0.1617,
+              "Y": 0.0725
+            },
+            "LeftMargin": 1006.4813,
+            "RightMargin": 66.5187,
+            "TopMargin": 25.587,
+            "BottomMargin": 716.413,
+            "Tag": 22,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 22,
+                "LabelText": "THỜI GIAN",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Right",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": -128.4731,
+                  "Y": 30.9291
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": -0.6206,
+                  "Y": 0.5333
+                },
+                "PreSize": {
+                  "X": 1.2077,
+                  "Y": 0.8621
+                },
+                "LeftMargin": -253.4731,
+                "RightMargin": 210.4731,
+                "TopMargin": 2.0709,
+                "BottomMargin": 5.9291,
+                "Tag": 23,
+                "ActionTag": -1065251415,
+                "Size": {
+                  "X": 250.0,
+                  "Y": 50.0
+                },
+                "Name": "lbl_texttime",
+                "ctype": "TextObjectData"
+              },
+              {
+                "IsCustomSize": true,
+                "FontSize": 22,
+                "LabelText": "10.20.999",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 103.863,
+                  "Y": 31.6392
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5018,
+                  "Y": 0.5455
+                },
+                "PreSize": {
+                  "X": 0.8696,
+                  "Y": 0.7759
+                },
+                "LeftMargin": 13.863,
+                "RightMargin": 13.137,
+                "TopMargin": 3.8608,
+                "BottomMargin": 9.1392,
+                "Tag": 16,
+                "ActionTag": -716254155,
+                "Size": {
+                  "X": 180.0,
+                  "Y": 45.0
+                },
+                "Name": "lbl_timeresult",
+                "ctype": "TextObjectData"
+              }
+            ],
+            "ActionTag": -566014611,
+            "Size": {
+              "X": 207.0,
+              "Y": 58.0
+            },
+            "Name": "spr_bgtime",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg_scoreresults.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 1110.3286,
+              "Y": 683.5139
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.8674,
+              "Y": 0.8544
+            },
+            "PreSize": {
+              "X": 0.1617,
+              "Y": 0.0737
+            },
+            "LeftMargin": 1006.8286,
+            "RightMargin": 66.1714,
+            "TopMargin": 86.9861,
+            "BottomMargin": 654.0139,
+            "Tag": 17,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 22,
+                "LabelText": "ĐIỂM",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Right",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": -128.4731,
+                  "Y": 30.9291
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": -0.6206,
+                  "Y": 0.5242
+                },
+                "PreSize": {
+                  "X": 1.2077,
+                  "Y": 0.8475
+                },
+                "LeftMargin": -253.4731,
+                "RightMargin": 210.4731,
+                "TopMargin": 3.0709,
+                "BottomMargin": 5.9291,
+                "Tag": 18,
+                "ActionTag": -1449869645,
+                "Size": {
+                  "X": 250.0,
+                  "Y": 50.0
+                },
+                "Name": "lbl_textscore",
+                "ctype": "TextObjectData"
+              },
+              {
+                "IsCustomSize": true,
+                "FontSize": 22,
+                "LabelText": "300",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 103.863,
+                  "Y": 31.6392
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5018,
+                  "Y": 0.5363
+                },
+                "PreSize": {
+                  "X": 0.8696,
+                  "Y": 0.7627
+                },
+                "LeftMargin": 13.863,
+                "RightMargin": 13.137,
+                "TopMargin": 4.8608,
+                "BottomMargin": 9.1392,
+                "Tag": 19,
+                "ActionTag": -161353152,
+                "Size": {
+                  "X": 180.0,
+                  "Y": 45.0
+                },
+                "Name": "lbl_scoreresult",
+                "ctype": "TextObjectData"
+              }
+            ],
+            "ActionTag": 474668843,
+            "Size": {
+              "X": 207.0,
+              "Y": 59.0
+            },
+            "Name": "spr_bgscore",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_a1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 914.0837,
+              "Y": 567.7728
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7141,
+              "Y": 0.7097
+            },
+            "PreSize": {
+              "X": 0.4828,
+              "Y": 0.155
+            },
+            "LeftMargin": 605.0837,
+            "RightMargin": 56.9163,
+            "TopMargin": 170.2272,
+            "BottomMargin": 505.7728,
+            "Tag": 10,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1976,
+                  "Y": 62.5145
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5731,
+                  "Y": 0.5041
+                },
+                "PreSize": {
+                  "X": 0.7767,
+                  "Y": 0.8871
+                },
+                "LeftMargin": 114.1976,
+                "RightMargin": 23.8024,
+                "TopMargin": 6.4855,
+                "BottomMargin": 7.5145,
+                "Tag": 14,
+                "ActionTag": 691018756,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans0",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 306.8508,
+                  "Y": 69.6644
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.4965,
+                  "Y": 0.5618
+                },
+                "PreSize": {
+                  "X": 0.9935,
+                  "Y": 0.9597
+                },
+                "LeftMargin": -0.1492,
+                "RightMargin": 4.1492,
+                "TopMargin": -5.1644,
+                "BottomMargin": 10.1644,
+                "Tag": 20,
+                "ActionTag": -422277032,
+                "Size": {
+                  "X": 614.0,
+                  "Y": 119.0
+                },
+                "Name": "spr_ansTF0",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": -1044147026,
+            "Size": {
+              "X": 618.0,
+              "Y": 124.0
+            },
+            "Name": "btn_ans0",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_b1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 914.0837,
+              "Y": 441.5859
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7141,
+              "Y": 0.552
+            },
+            "PreSize": {
+              "X": 0.4781,
+              "Y": 0.1437
+            },
+            "LeftMargin": 608.0837,
+            "RightMargin": 59.9163,
+            "TopMargin": 300.9141,
+            "BottomMargin": 384.0859,
+            "Tag": 18,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 57.5139
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5788,
+                  "Y": 0.5001
+                },
+                "PreSize": {
+                  "X": 0.7843,
+                  "Y": 0.9565
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 17.8011,
+                "TopMargin": 2.4861,
+                "BottomMargin": 2.5139,
+                "Tag": 19,
+                "ActionTag": 62997283,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans1",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.4986,
+                  "ScaleY": 0.5029
+                },
+                "Position": {
+                  "X": 305.9777,
+                  "Y": 70.9283
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5,
+                  "Y": 0.6168
+                },
+                "PreSize": {
+                  "X": 1.0033,
+                  "Y": 1.0348
+                },
+                "LeftMargin": -0.1627,
+                "RightMargin": -1.8373,
+                "TopMargin": -15.0832,
+                "BottomMargin": 11.0832,
+                "Tag": 20,
+                "ActionTag": 451918834,
+                "Size": {
+                  "X": 614.0,
+                  "Y": 119.0
+                },
+                "Name": "spr_ansTF1",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 1849923578,
+            "Size": {
+              "X": 612.0,
+              "Y": 115.0
+            },
+            "Name": "btn_ans1",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_c1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 914.0837,
+              "Y": 315.3987
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7141,
+              "Y": 0.3942
+            },
+            "PreSize": {
+              "X": 0.4781,
+              "Y": 0.1437
+            },
+            "LeftMargin": 608.0837,
+            "RightMargin": 59.9163,
+            "TopMargin": 427.1013,
+            "BottomMargin": 257.8987,
+            "Tag": 21,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọc VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 58.5154
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5788,
+                  "Y": 0.5088
+                },
+                "PreSize": {
+                  "X": 0.7843,
+                  "Y": 0.9565
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 17.8011,
+                "TopMargin": 1.4846,
+                "BottomMargin": 3.5154,
+                "Tag": 22,
+                "ActionTag": -292817272,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans2",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 306.8526,
+                  "Y": 67.6654
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5014,
+                  "Y": 0.5884
+                },
+                "PreSize": {
+                  "X": 1.0033,
+                  "Y": 1.0348
+                },
+                "LeftMargin": -0.1474,
+                "RightMargin": -1.8526,
+                "TopMargin": -12.1654,
+                "BottomMargin": 8.1654,
+                "Tag": 23,
+                "ActionTag": -690667695,
+                "Size": {
+                  "X": 614.0,
+                  "Y": 119.0
+                },
+                "Name": "spr_ansTF2",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 980977369,
+            "Size": {
+              "X": 612.0,
+              "Y": 115.0
+            },
+            "Name": "btn_ans2",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FontSize": 14,
+            "ButtonText": "",
+            "TextColor": {
+              "R": 65,
+              "G": 65,
+              "B": 70
+            },
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d3.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_d2.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 582,
+            "Scale9Height": 93,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 914.0837,
+              "Y": 189.2118
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.7141,
+              "Y": 0.2365
+            },
+            "PreSize": {
+              "X": 0.4781,
+              "Y": 0.1437
+            },
+            "LeftMargin": 608.0837,
+            "RightMargin": 59.9163,
+            "TopMargin": 553.2882,
+            "BottomMargin": 131.7118,
+            "Tag": 24,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 15,
+                "LabelText": "UNCLOS cho phép các bên có quyền lựa chọn một trong 4 cơ chế: Tòa án công lý quốc tế, Tòa án quốc tế về Luật biển, Trọng tài theo phụ lục VII và Trọng tài theo phụ lục VIII. Nếu các bên không lựa chọn một trong số 4 cơ chế nêu trên thì Trọng tài theo phụ lục VII là cơ chế bắt buộc được sử dụng để giải quyết tranh chấp",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UVNVan_B.TTF",
+                  "Plist": ""
+                },
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 354.1989,
+                  "Y": 58.5152
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5788,
+                  "Y": 0.5088
+                },
+                "PreSize": {
+                  "X": 0.7843,
+                  "Y": 0.9565
+                },
+                "LeftMargin": 114.1989,
+                "RightMargin": 17.8011,
+                "TopMargin": 1.4848,
+                "BottomMargin": 3.5152,
+                "Tag": 25,
+                "ActionTag": 1848045091,
+                "Size": {
+                  "X": 480.0,
+                  "Y": 110.0
+                },
+                "Name": "lbl_ans3",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "art/bganschoose.png",
+                  "Plist": ""
+                },
+                "BlendFunc": {
+                  "Src": 1,
+                  "Dst": 771
+                },
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 306.8526,
+                  "Y": 68.8649
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5014,
+                  "Y": 0.5988
+                },
+                "PreSize": {
+                  "X": 1.0033,
+                  "Y": 1.0348
+                },
+                "LeftMargin": -0.1474,
+                "RightMargin": -1.8526,
+                "TopMargin": -13.3649,
+                "BottomMargin": 9.3649,
+                "Tag": 26,
+                "ActionTag": 1561279088,
+                "Size": {
+                  "X": 614.0,
+                  "Y": 119.0
+                },
+                "Name": "spr_ansTF3",
+                "ctype": "SpriteObjectData"
+              }
+            ],
+            "ActionTag": 1333646679,
+            "Size": {
+              "X": 612.0,
+              "Y": 115.0
+            },
+            "Name": "btn_ans3",
+            "ctype": "ButtonObjectData"
+          }
+        ],
+        "Size": {
+          "X": 1280.0,
+          "Y": 800.0
+        },
+        "Name": "Scene",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [
+        "art/bg.jpg",
+        "art/bg_scoreresults.png",
+        "art/bg_timeresults.png",
+        "art/bganschoose.png",
+        "art/btn_a1.png",
+        "art/btn_a2.png",
+        "art/btn_a3.png",
+        "art/btn_b1.png",
+        "art/btn_b2.png",
+        "art/btn_b3.png",
+        "art/btn_c1.png",
+        "art/btn_c2.png",
+        "art/btn_c3.png",
+        "art/btn_d2.png",
+        "art/btn_d3.png",
+        "art/giaothong/bg_quest.png",
+        "art/logo.png",
+        "font/UVNVan_B.TTF"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Scene"
+}

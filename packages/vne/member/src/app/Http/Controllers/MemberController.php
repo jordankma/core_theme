@@ -18,7 +18,7 @@ class MemberController extends Controller
     );
     private $header = [
         'headers'  => [
-            'Authorization' => 'Bearer s16W01HQ8En2jeCZNj57asRKGksY6Mcsl2y0vYUb' ,
+            'Authorization' => 'Bearer NGLPs5oUP1gcJISvUy5cA29bMSLHPWoM4MVIEJVr',
             'Accept' => 'application/json'
     ]];
     public function login(Request $request){

@@ -17,7 +17,7 @@ class VerifyToken
         if($token != null) {
             $client = new Client([
 		        'headers'  => [
-		            'Authorization' => 'Bearer s16W01HQ8En2jeCZNj57asRKGksY6Mcsl2y0vYUb' ,
+		            'Authorization' => 'Bearer NGLPs5oUP1gcJISvUy5cA29bMSLHPWoM4MVIEJVr',
 		            'Accept' => 'application/json'
 		    ]]);
 	        $res = $client->request('POST', 'http://eid.vnedutech.vn/api/authorize', [
@@ -34,6 +34,7 @@ class VerifyToken
         }
      	View::share('USER_INFO',$USER_INFO);
         return $next($request)->withCookie(cookie('eids_token', $token, 86400 * 30));
+        // return $next($request);
     }
 
 }

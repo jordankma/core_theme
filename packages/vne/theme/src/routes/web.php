@@ -17,6 +17,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         ->where('type','news')
         ->where('view','detail');
 
+        Route::get('/vi-tri/{alias?}', 'HomeController@listNewsByBox')->name('frontend.news.list.box');
+
         Route::get('danh-sach-thi-sinh', 'HomeController@listMember')->name('frontend.exam.list.member')->where('as','Frontend - Danh sách thí sinh');
         Route::get('ket-qua', 'HomeController@listResult')->name('frontend.exam.list.result')->where('as','Frontend - Danh sách kết quả thí sinh');
         Route::get('/bai-thi', 'HomeController@listExam')->name('frontend.exam.list')->where('as','Frontend - Danh sách bài thi');
@@ -34,7 +36,9 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('get/district', 'HomeController@getDistrict')->name('vne.get.district');
         Route::get('get/school', 'HomeController@getSchool')->name('vne.get.school');
         Route::get('get/class', 'HomeController@getClass')->name('vne.get.class');
+
     });
+        Route::get('thi-thu', 'HomeController@getTryExam')->name('vne.get.try.exam');
 
     
 });
