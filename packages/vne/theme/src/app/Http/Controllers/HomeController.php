@@ -31,6 +31,8 @@ class HomeController extends Controller
                 "id" : 1,
                 "title": "Tên đăng nhập",
                 "hint_text": "Tên đăng nhập",
+                "class" : "",
+                "id" : "",
                 "type": "text",
                 "params": "user_name",
                 "type_view": 0,
@@ -42,6 +44,8 @@ class HomeController extends Controller
                 "title": "Đề tài",
                 "params": "gioitinh",
                 "hint_text": "Chọn giới tính",
+                "class" : "",
+                "id" : "",
                 "type_view": 2,
                 "is_require": true,
                 "is_search": true,
@@ -57,34 +61,12 @@ class HomeController extends Controller
                 ]
               },
               {
-                "id": 3,
-                "title": "Tỉnh/Thành phố",
-                "params": "city",
-                "hint_text": "Chọn tỉnh/thành",
-                "type_view": 1,
-                "type": "data",
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Hà Nội"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Hưng Yên"
-                  },
-                  {
-                    "id": 3,
-                    "title": "Hải Phòng"
-                  }
-                ]
-              },
-              {
                 "id": 4,
                 "title": "Chọn công việc bạn yêu thich",
                 "params": "chonABC",
                 "hint_text": "Chọn giới tính",
+                "class" : "",
+                "id" : "",
                 "type_view": 3,
                 "is_require": true,
                 "is_search": true,
@@ -123,6 +105,8 @@ class HomeController extends Controller
                 "id": 1,
                 "title": "Tên đăng nhập",
                 "hint_text": "Tên đăng nhập",
+                "class" : "",
+                "id" : "",
                 "type": "text",
                 "params": "user_name",
                 "type_view": 0,
@@ -135,6 +119,8 @@ class HomeController extends Controller
                 "params": "name",
                 "type": "text",
                 "hint_text": "Họ tên",
+                "class" : "",
+                "id" : "",
                 "type_view": 0,
                 "is_require": true,
                 "is_search": true
@@ -145,8 +131,11 @@ class HomeController extends Controller
                 "title": "Tỉnh/Thành phố",
                 "params": "city",
                 "hint_text": "Chọn tỉnh/thành",
+                "class" : "",
+                "id" : "city",
                 "type_view": 1,
                 "type": "data",
+                "api" : "http://theme.local.vn/get/district",
                 "is_require": true,
                 "is_search": true,
                 "data_view": [
@@ -169,6 +158,23 @@ class HomeController extends Controller
                 "title": "Quận/ huyện",
                 "params": "district",
                 "hint_text": "Chọn Quận/huyện",
+                "class" : "",
+                "id" : "district",
+                "type_view": 1,
+                "type": "api",
+                "api": "http://theme.local.vn/get/school",
+                "is_require": true,
+                "is_search": true,
+                "data_view": [
+                ]
+              },
+              {
+                 "id": 4,
+                "title": "Trường",
+                "params": "school",
+                "hint_text": "Chọn Quận/huyện",
+                "class" : "",
+                "id" : "school",
                 "type_view": 1,
                 "type": "api",
                 "api": "",
@@ -182,6 +188,8 @@ class HomeController extends Controller
                 "title": "Tên bài viết",
                 "params": "note",
                 "hint_text": "Tên bài viết",
+                "class" : "",
+                "id" : "",
                 "type" : "text",
                 "type_view": 0,
                 "is_require": true,
@@ -192,6 +200,9 @@ class HomeController extends Controller
                 "title": "Đề tài",
                 "params": "topic",
                 "hint_text": "Chọn đề tài",
+                "class" : "",
+                "id" : "",
+                "api" : "",
                 "type_view": 1,
                 "is_require": true,
                 "is_search": true,
@@ -215,6 +226,8 @@ class HomeController extends Controller
                 "title": "Đề tài",
                 "params": "gioitinh",
                 "hint_text": "Chọn giới tính",
+                "class" : "",
+                "id" : "",
                 "type_view": 2,
                 "is_require": true,
                 "is_search": true,
@@ -234,6 +247,8 @@ class HomeController extends Controller
                 "title": "Chọn công việc bạn yêu thich",
                 "params": "chonABC",
                 "hint_text": "Chọn giới tính",
+                "class" : "",
+                "id" : "",
                 "type_view": 3,
                 "is_require": true,
                 "is_search": true,
@@ -270,6 +285,8 @@ class HomeController extends Controller
                 "id": 1,
                 "title": "Tên đăng nhập",
                 "hint_text": "Tên đăng nhập",
+                "class" : "",
+                "id" : "",
                 "params": "user_name",
                 "type" : "text",
                 "type_view": 0,
@@ -280,6 +297,8 @@ class HomeController extends Controller
                 "title": "Họ và tên",
                 "params": "name",
                 "hint_text": "Họ tên",
+                "class" : "",
+                "id" : "",
                 "type" : "text",
                 "type_view": 0,
                 "is_require": true
@@ -289,7 +308,10 @@ class HomeController extends Controller
                 "title": "Tỉnh/Thành phố",
                 "params": "city",
                 "hint_text": "Chọn tỉnh/thành",
+                "class" : "",
+                "id" : "city",
                 "type_view": 1,
+                "api" : "http://theme.local.vn/get/district",
                 "is_require": true,
                 "data_view": [
                   {
@@ -311,6 +333,8 @@ class HomeController extends Controller
                 "title": "Tên bài viết",
                 "params": "note",
                 "hint_text": "Tên bài viết",
+                "class" : "",
+                "id" : "",
                 "type" : "text",
                 "type_view": 0,
                 "is_require": true
@@ -320,6 +344,9 @@ class HomeController extends Controller
                 "title": "Đề tài",
                 "params": "topic",
                 "hint_text": "Chọn đề tài",
+                "class" : "",
+                "id" : "",
+                "api" : "",
                 "type_view": 1,
                 "is_require": true,
                 "data_view": [
@@ -342,6 +369,8 @@ class HomeController extends Controller
                 "title": "Đề tài",
                 "params": "gioitinh",
                 "hint_text": "Chọn giới tính",
+                "class" : "",
+                "id" : "",
                 "type_view": 2,
                 "is_require": true,
                 "data_view": [
@@ -558,8 +587,8 @@ class HomeController extends Controller
                 '<div class="form-group">'
                     .'<label>' . $element['title'] . '</label>'
                     .'<div class="input">'
-                    .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control" placeholder="' . $element['hint_text'] . '"'
-                    . $require .'>'
+                    .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control ' . $element['class'] . '" placeholder="' . $element['hint_text'] . '"'
+                    . $require .' id="' . $element['id'] . '">'
                     . $text_muted
                     .'</div>'
                 .'</div>';
@@ -569,7 +598,7 @@ class HomeController extends Controller
                 '<div class="form-group">'
                     .'<label>' . $element['title'] . '</label>'
                     .'<div class="input">'
-                        .'<select class="form-control" name="' . $element['params'] . '"' . $require . '>'
+                        .'<select class="form-control ' . $element['class'] . '" name="' . $element['params'] . '"' . $require . ' id="' . $element['id'] . '" data-api="' . $element['api'] .'">'
                         .    '<option>' . $element['title'] .'</option>'; 
                             if(count($element['data_view'])>0){
                               foreach ($element['data_view'] as $element2){
@@ -588,7 +617,7 @@ class HomeController extends Controller
                     .'<div class="input">';
                         if(count($element['data_view'])>0){
                           foreach ($element['data_view'] as $element3){
-                              $str .= '<label><input type="radio" name="' . $element['params'] . '" value="' . $element3['id'] . '">' . $element3['title'] .'</label>';
+                              $str .= '<label><input type="radio" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element3['id'] . '" id="' . $element['id'] . '">' . $element3['title'] .'</label>';
                           }
                         }
                         $str .= $text_muted;
@@ -602,7 +631,7 @@ class HomeController extends Controller
                     .'<div class="input">';
                         if(count($element['data_view'])>0){
                           foreach ($element['data_view'] as $element4){
-                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '" value="' . $element4['id'] .'">' . $element4['title'] .'</label>';
+                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
                           }
                         }
                         $str .= $text_muted;
@@ -628,8 +657,10 @@ class HomeController extends Controller
     }
 
     public function getDistrict(Request $request){
-        $list_district = array();
+        $list_district = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/district?city_id=62');
+        $list_district = json_decode($list_district);
         $list_district_json = array();
+
         if(!empty($list_district)){
             foreach ($list_district as $key => $district) {
                 $list_district_json[] = [
@@ -642,7 +673,8 @@ class HomeController extends Controller
     }
 
     public function getSchool(Request $request){
-        $list_school = array();
+        $list_school = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/school?district_id=1');
+        $list_school = json_decode($list_school);
         $list_school_json = array();
         if(!empty($list_school)){
             foreach ($list_school as $key => $school) {

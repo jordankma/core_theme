@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <label> {{ $element['title'] }} </label>
                             <div class="input">
-                                <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
+                                <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control {{ $element['class'] }}" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif id="{{ $element['id'] }}">
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
                             </div>
                         </div>
@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>{{ $element['title'] }}</label>
                             <div class="input">
-                                <select class="form-control" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif>
+                                <select class="form-control {{ $element['class'] }}" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif id="{{ $element['id'] }}" data-api="{{ $element['api'] }}">
                                     <option>{{ $element['title'] }}</option>
                                     @foreach ($element['data_view'] as $element2)
                                         <option value="{{ $element2['id'] }}">{{ $element2['title'] }}</option>
@@ -34,7 +34,7 @@
                             <label>{{ $element['title'] }}</label>
                             <div class="input">
                                 @foreach ($element['data_view'] as $element3)
-                                    <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['id']}}">{{ $element3['title'] }}</label>
+                                    <label><input type="radio" class="{{ $element['class'] }}" name="{{ $element['params'] }}" value="{{$element3['id']}}" id="{{ $element['id'] }}">{{ $element3['title'] }}</label>
                                 @endforeach
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
                             </div>
@@ -44,7 +44,7 @@
                             <label>{{ $element['title'] }}</label>
                             <div class="input">
                                 @foreach ($element['data_view'] as $element4)
-                                    <label><input type="checkbox" name="{{ $element['params'] }}" value="{{$element4['id']}}">{{ $element4['title'] }}</label>
+                                    <label><input type="checkbox" class="{{ $element['class'] }}" name="{{ $element['params'] }}" value="{{$element4['id']}}" id="{{ $element['id'] }}">{{ $element4['title'] }}</label>
                                 @endforeach
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
                             </div>
@@ -91,9 +91,59 @@
                     $('#info-member').html('');
                     $('#info-member').append(data.str);
                 });
-                
+            });
+            $("body").on('change', '#city', function () {
+                var city_id = $(this).val();
+                var city_name = $("#city option:selected").text();
+                $('input[name=city_name]').val(city_name);
+                var url = $(this).data("api") + '?city_id=' + city_id;
+                console.log(url);
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    data: {
+                        'city_id' : city_id,
+                        'city_name' : city_name,
+                        'url' : url
+                    },
+                    success: function (data, status) {
+                        var data = JSON.parse(data);
+                        var str = '<option value="0" >Chọn quận huyện</option>';
+                        for(i = 0; i<data.length; i++) {
+                            str += '<option value="' + data[i].district_id + '" >' + data[i].name + '</option>';
+                        }   
+                        $('#district').html('');
+                        $('#district').append(str);
+                    }
+                }, 'json');
             });
 
+            $("body").on('change', '#district', function () {
+                var district_id = $(this).val();
+                var district_name = $("#district option:selected").text();
+                $('input[name=district_name]').val(district_name);
+                var url = $(this).data("api") + '?district_id=' + district_id;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    data: {
+                        'district_id': district_id,
+                        'district_name' : district_name,
+                        'url' : url
+                    },
+                    success: function (data, status) {
+                        var data = JSON.parse(data);
+                        var str = '<option value="0" >Chọn trường</option>';
+                        for(i = 0; i<data.length; i++) {
+                            str += '<option value="' + data[i].school_id + '" >' + data[i].name + '</option>';
+                        }   
+                        $('#school').html('');
+                        $('#school').append(str);
+                    }
+                }, 'json');
+            });
             
 		});
 	</script>
