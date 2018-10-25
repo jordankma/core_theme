@@ -498,7 +498,21 @@ class HomeController extends Controller
     }
 
     public function getTryExam(){
-       return view('VNE-THEME::modules.contest.index'); 
+      $game_token = '';
+      $linkresult = '';
+      $linkaudio = '';
+      $linkhome = '';
+      $ip_port = '';
+      $linkimg = '';
+      $linkquest = '';
+      $test = '';
+      $m_level = '';
+      $type = '';
+      $url = '/files/client/cocos1/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $data = [
+        'url' => $url
+      ];
+      return view('VNE-THEME::modules.contest.index',$data);
     }
 
     public function listNews(Request $request, $alias = null){

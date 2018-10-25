@@ -45,12 +45,12 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					<span class="email"><i class="fa fa-email"></i> Email: gthd@egroup.vn</span>
 				</div> <!-- /top bar -->
 				<ul class="nav" id="menu-info">
-					@if($USER_INFO != null)
-						<div id="online-now">
-							<li class="nav-item"><i class="fa fa-user"></i>{{ $USER_INFO['username'] }}</li>
-							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i>{{-- <a href="{{ route('vne.member.logout')}}"> --}}Đăng xuất{{-- </a> --}}</li>	
+					{{-- @if($USER_INFO != null) --}}
+						<div id="online-now" style="display: none;visibility: hidden;"> 
+							<li class="nav-item" id="text-user-name"><i class="fa fa-user"></i></li>
+							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i> Đăng xuất </li>	
 						</div>
-					@else
+					{{-- @else --}}
 						<div id="offline-now">
 							@php 
 								$url = "http://eid.vnedutech.vn/login?site=" . config('app.url');
@@ -58,7 +58,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 							<li class="nav-item"><a href="{{ $url }}"><i class="fa fa-user"></i>Đăng nhập</a></li>
 							<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
 						</div>
-					@endif
+					{{-- @endif --}}
 				</ul> <!-- nav -->
 			</div>
 		</div>
