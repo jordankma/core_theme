@@ -1,0 +1,40 @@
+{
+  "package": "vne",
+  "module": "timeline",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Timeline",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.timeline.data",
+            "vne.timeline.manage"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "vne.timeline.create",
+            "vne.timeline.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "vne.timeline.show",
+            "vne.timeline.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.timeline.delete",
+            "vne.timeline.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

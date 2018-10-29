@@ -92,6 +92,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         ),
         'V' => 
         array (
+            'Vne\\Timeline\\' => 13,
             'Vne\\Theme\\' => 10,
             'Vne\\News\\' => 9,
             'Vne\\Member\\' => 11,
@@ -262,6 +263,10 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Vne\\Timeline\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/vne/timeline/src',
         ),
         'Vne\\Theme\\' => 
         array (
@@ -1210,6 +1215,11 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'CreateAdtechCoreUsersRoleTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100002_create_adtech_core_users_role_table.php',
         'CreateAdtechCoreUsersTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100001_create_adtech_core_users_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100003_create_password_resets_table.php',
+        'CreateTableTimeline' => __DIR__ . '/../..' . '/packages/vne/timeline/src/database/migrations/2018_10_24_111536_create_table_timeline.php',
+        'CreateTopExam' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_101537_create_top_exam.php',
+        'CreateTopRegister' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_101518_create_top_register.php',
+        'CreateTopResult' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_101602_create_top_result.php',
+        'CreateVneMember' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_100631_create_vne_member.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -13890,17 +13900,20 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Banner\\App\\Repositories\\BannerRepository' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Repositories/BannerRepository.php',
         'Vne\\Banner\\App\\Repositories\\PositionRepository' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Repositories/PositionRepository.php',
         'Vne\\Banner\\BannerServiceProvider' => __DIR__ . '/../..' . '/packages/vne/banner/src/BannerServiceProvider.php',
+        'Vne\\Contact\\App\\Http\\Controllers\\ApiContactController' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Http/Controllers/ApiContactController.php',
         'Vne\\Contact\\App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Http/Controllers/ContactController.php',
         'Vne\\Contact\\App\\Models\\Contact' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Models/Contact.php',
         'Vne\\Contact\\App\\Repositories\\ContactRepository' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Repositories/ContactRepository.php',
         'Vne\\Contact\\ContactServiceProvider' => __DIR__ . '/../..' . '/packages/vne/contact/src/ContactServiceProvider.php',
+        'Vne\\Member\\App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Http/Controllers/AuthController.php',
         'Vne\\Member\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Http/Controllers/MemberController.php',
         'Vne\\Member\\App\\Middleware\\AuthMiddleware' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/AuthMiddleware.php',
         'Vne\\Member\\App\\Middleware\\CheckRegister' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/RegisterMiddleware.php',
         'Vne\\Member\\App\\Middleware\\VerifyToken' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/VerifyMiddleware.php',
-        'Vne\\Member\\App\\Models\\Demo' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Models/Demo.php',
+        'Vne\\Member\\App\\Models\\Member' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Models/Member.php',
         'Vne\\Member\\App\\Repositories\\DemoRepository' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Repositories/DemoRepository.php',
         'Vne\\Member\\MemberServiceProvider' => __DIR__ . '/../..' . '/packages/vne/member/src/MemberServiceProvider.php',
+        'Vne\\News\\App\\Http\\Controllers\\ApiNewsController' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Http/Controllers/ApiNewsController.php',
         'Vne\\News\\App\\Http\\Controllers\\NewsBoxController' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Http/Controllers/NewsBoxController.php',
         'Vne\\News\\App\\Http\\Controllers\\NewsCatController' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Http/Controllers/NewsCatController.php',
         'Vne\\News\\App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Http/Controllers/NewsController.php',
@@ -13927,6 +13940,11 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\News\\NewsServiceProvider' => __DIR__ . '/../..' . '/packages/vne/news/src/NewsServiceProvider.php',
         'Vne\\Theme\\App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/HomeController.php',
         'Vne\\Theme\\ThemeServiceProvider' => __DIR__ . '/../..' . '/packages/vne/theme/src/ThemeServiceProvider.php',
+        'Vne\\Timeline\\App\\Http\\Controllers\\TimelineController' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Http/Controllers/TimelineController.php',
+        'Vne\\Timeline\\App\\Http\\Requests\\TimelineRequest' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Http/Requests/TimelineRequest.php',
+        'Vne\\Timeline\\App\\Models\\Timeline' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Models/Timeline.php',
+        'Vne\\Timeline\\App\\Repositories\\TimelineRepository' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Repositories/TimelineRepository.php',
+        'Vne\\Timeline\\TimelineServiceProvider' => __DIR__ . '/../..' . '/packages/vne/timeline/src/TimelineServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

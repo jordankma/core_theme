@@ -12,6 +12,7 @@ return array(
     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'Vne\\Timeline\\' => array($baseDir . '/packages/vne/timeline/src'),
     'Vne\\Theme\\' => array($baseDir . '/packages/vne/theme/src'),
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
     'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),

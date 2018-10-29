@@ -8,17 +8,20 @@ use Adtech\Application\Cms\Controllers\MController as Controller;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,Datetime,Session,URL;
+use Validator,Datetime,Session,URL,Schema;
 
 use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
 use Vne\News\App\Models\News;
+use Vne\Member\App\Models\Member;
 
 use Vne\News\App\Repositories\NewsRepository;
 use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
+    protected $secret_key = '8bgCi@gsLbtGhO)1';
+    protected $secret_iv = ')FQKRL57zFYdtn^!';
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
@@ -645,7 +648,7 @@ class HomeController extends Controller
                     .'<div class="input">';
                         if(count($element['data_view'])>0){
                           foreach ($element['data_view'] as $element4){
-                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
+                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '[]" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
                           }
                         }
                         $str .= $text_muted;
@@ -660,14 +663,46 @@ class HomeController extends Controller
         }        
     }
 
-    public function updateRegisterMember(){
-    	$list_banner = array();
-
-    	$data = [
-    		'list_banner' => $list_banner,
-    		
-    	];
-        return view('VNE-THEME::modules.index.index');
+    public function updateRegisterMember(Request $request){
+      $member = Member::where('member_id',$request->input('member_id'))->first();
+      if(empty($member)){
+        $member = new Member();
+        $data_request = $request->all();
+        if(!empty($data_request)){
+          foreach ($data_request as $key => $value) {
+            $member->addColumn('vne_member',$key);
+            if(gettype($request->input($key))=='array'){
+              $member->$key = json_encode($request->input($key));
+            } else{
+              $member->$key = $request->input($key); 
+            }
+          }
+        }
+        if($member->save()){
+          $member->is_reg = '1';
+          $member->update();
+          $data = $member->getAttributes();
+          $data = http_build_query($data);
+          $data_encrypt = $this->my_simple_crypt($data);
+          try {
+              $result = file_get_contents('http://gthd.vnedutech.vn/admin/api/contest/candidate_register?data='. $data_encrypt);
+              $result = json_decode($result);
+              if($result->status == true){
+                  $member->sync_mongo = '1';
+                  $member->update();
+                  return redirect()->route('index');
+              }
+              else{
+                  return redirect()->route('frontend.member.register.show');
+              }
+          } catch (Exception $e) {
+              
+          }
+          return redirect()->route('index');
+        }
+      } else{
+        return redirect()->route('index');  
+      }
     }
 
     public function getDistrict(Request $request){
@@ -713,5 +748,22 @@ class HomeController extends Controller
             }
         }
         return json_encode($list_class_json);      
+    }
+
+    function my_simple_crypt( $string, $action = 'e' ) {
+        // you may change these values to your own
+        $secret_key = $this->secret_key;
+        $secret_iv = $this->secret_iv;
+        $output = false;
+        $encrypt_method = "AES-256-CBC";
+        $key = substr( hash( 'sha256', $secret_key ), 0 ,32);
+        $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+        if( $action == 'e' ) {
+            $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+        }
+        else if( $action == 'd' ){
+            $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+        }
+        return $output;
     }
 }

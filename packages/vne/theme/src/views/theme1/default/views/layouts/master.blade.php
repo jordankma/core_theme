@@ -84,7 +84,7 @@
 	            },
 	            success: function (data) {
 	                if (data.authorized !== false) {
-	                	console.log(data.data.username);
+	                	$('input[name=member_id]').val(data.data.user_id);
 	                	$('#online-now').css('display','block');	
 	                	$('#online-now').css('visibility','visible');
 	                	$('#offline-now').css('display','none');	
@@ -158,8 +158,13 @@
 			                $('#form-register .help-block').css('display','block');
 			                return false;
 			            }else{
-			                location.reload(true);
-			                // window.location.assign("http://gthd.vnedutech.vn/cap-nhat-thong-tin");
+			            	if(email=='' && phone != ''){
+			              		window.location.assign("http://gthd.vnedutech.vn/cap-nhat-thong-tin");
+			            	}
+			            	else if(email != ''){
+			            		$('#form-register').html('');
+			                	$('#form-register').text('Bạn cần truy cập vào mail để xác nhận mới có thể đăng nhập');
+			            	}
 			            }
 			        }, 'json');
                 }

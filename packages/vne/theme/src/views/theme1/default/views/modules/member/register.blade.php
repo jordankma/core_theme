@@ -6,7 +6,8 @@
 	<section class="registration">
 		<div class="container">
 			<div class="inner">
-				<form action="" method="" id="form-register-member">
+				<form action="{{ route('frontend.member.register.update') }}" method="post" id="form-register-member">
+                    <input type="hidden" name="member_id" id="member_id">
                     @foreach ($form_data_default as $element)
                         @if($element['type_view'] == 0)
                         <div class="form-group">
@@ -44,7 +45,7 @@
                             <label>{{ $element['title'] }}</label>
                             <div class="input">
                                 @foreach ($element['data_view'] as $element4)
-                                    <label><input type="checkbox" class="{{ $element['class'] }}" name="{{ $element['params'] }}" value="{{$element4['id']}}" id="{{ $element['id'] }}">{{ $element4['title'] }}</label>
+                                    <label><input type="checkbox" class="{{ $element['class'] }}" name="{{ $element['params'] }}[]" value="{{$element4['id']}}" id="{{ $element['id'] }}">{{ $element4['title'] }}</label>
                                 @endforeach
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
                             </div>

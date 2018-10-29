@@ -58,10 +58,12 @@ class AuthController extends Controller
         ]);
         $data_reponse = json_decode($res->getBody(),true);
         if($data_reponse['success'] == true){
-            $token = $data_reponse['data']['token'];
-            if(isset($data_reponse['data']['type']) && $data_reponse['data']['type'] == 'phone'){
-                Session::put('token_user', $token); 
-            }
+            // $token = $data_reponse['data']['token'];
+            // if(isset($data_reponse['data']['type']) && $data_reponse['data']['type'] == 'phone'){
+            //     Session::put('token_user', $token); 
+            // }
+            $data['user_id'] = isset($data_reponse['data']['user_id']) ? $data_reponse['data']['user_id'] : 1010;
+            $data['username'] = isset($data_reponse['data']['username']) ? $data_reponse['data']['username'] : 'default';
             $data['status'] = true;
             return json_encode($data);
         }
