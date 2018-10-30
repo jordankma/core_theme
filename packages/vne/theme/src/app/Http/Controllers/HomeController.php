@@ -14,7 +14,7 @@ use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
 use Vne\News\App\Models\News;
 use Vne\Member\App\Models\Member;
-
+use Vne\Timeline\App\Models\Timeline;
 use Vne\News\App\Repositories\NewsRepository;
 use GuzzleHttp\Client;
 
@@ -434,6 +434,8 @@ class HomeController extends Controller
             $list_news_anh_video_1 = $this->news->getNewsByBox($hinhanhvideo,8,4);
             $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
 
+            $list_time_line = Timeline::all();
+
             $data = [
                 'list_banner' => $list_banner,
                 'list_thong_bao_btc' => $list_thong_bao_btc,
@@ -444,7 +446,8 @@ class HomeController extends Controller
                 'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
                 'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
                 'list_news_anh_video_1' => $list_news_anh_video_1,
-                'list_news_anh_video_2' => $list_news_anh_video_2
+                'list_news_anh_video_2' => $list_news_anh_video_2,
+                'list_time_line' => $list_time_line
                 
             ];
             return view('VNE-THEME::modules.index.index',$data); 
@@ -706,15 +709,14 @@ class HomeController extends Controller
     }
 
     public function getDistrict(Request $request){
-        $list_district = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/district?city_id=62');
+        $list_district = file_get_contents('http://cuocthi.vnedutech.vn/admin/vne/getdistricts/'.$request->input('city_id'));
         $list_district = json_decode($list_district);
         $list_district_json = array();
-
-        if(!empty($list_district)){
-            foreach ($list_district as $key => $district) {
+        if(!empty($list_district->data)){
+            foreach ($list_district->data as $key => $district) {
                 $list_district_json[] = [
-                    'district_id' => $district->district_id,
-                    'name' => $district->name
+                    'district_id' => $district->_id,
+                    'name' => $district->district
                 ];
             }
         }
@@ -722,13 +724,13 @@ class HomeController extends Controller
     }
 
     public function getSchool(Request $request){
-        $list_school = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/school?district_id=1');
+        $list_school = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/school?district_id='.$request->input('district_id'));
         $list_school = json_decode($list_school);
         $list_school_json = array();
-        if(!empty($list_school)){
-            foreach ($list_school as $key => $school) {
+        if(!empty($list_school->data)){
+            foreach ($list_school->data as $key => $school) {
                 $list_school_json[] = [
-                    'school_id' => $school->school_id,
+                    'school_id' => $school->_id,
                     'name' => $school->name
                 ];
             }

@@ -90,7 +90,9 @@
                 $('input[name=object_name]').val(object_name);
                 $.get("/get-form-register?object_id="+object_id , function(data, status){
                     $('#info-member').html('');
-                    $('#info-member').append(data.str);
+                    setTimeout(function() {
+                      $('#info-member').append(data.str);
+                    }, 500);
                 });
             });
             $("body").on('change', '#city', function () {

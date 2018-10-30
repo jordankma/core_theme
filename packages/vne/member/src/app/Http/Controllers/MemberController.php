@@ -17,4 +17,5 @@ class MemberController extends Controller
         'numeric'  => "Phải là số"
     );
     
+    
 }

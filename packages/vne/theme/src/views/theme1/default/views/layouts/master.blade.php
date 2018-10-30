@@ -91,6 +91,12 @@
 	                	$('#offline-now').css('visibility','hidden');
 	                	$('#text-user-name').append(data.data.username);	
 	                }
+	                else{
+	                	$('#offline-now').css('display','block');	
+	                	$('#offline-now').css('visibility','visible');
+	                	$('#online-now').css('display','none');	
+	                	$('#online-now').css('visibility','hidden');	
+	                }
 	            },
 	            error: function (data) {
 	                console.log('Fail')

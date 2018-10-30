@@ -51,12 +51,13 @@ function showCategories($categories, $parent_id = 0, $char = '')
 							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i> Đăng xuất </li>	
 						</div>
 					{{-- @else --}}
-						<div id="offline-now">
+						<div id="offline-now" style="display: none;visibility: hidden;">
 							@php 
-								$url = "http://eid.vnedutech.vn/login?site=" . config('app.url');
+								$url_login = "http://eid.vnedutech.vn/login?site=" . config('app.url');
+								$url_register = "http://eid.vnedutech.vn/register?site=" . config('app.url');
 							@endphp
-							<li class="nav-item"><a href="{{ $url }}"><i class="fa fa-user"></i>Đăng nhập</a></li>
-							<li class="nav-item js-toggle-registration"><i class="fa fa-edit"></i>Đăng ký</li>
+							<li class="nav-item"><a href="{{ $url_login }}"><i class="fa fa-user"></i>Đăng nhập</li>
+							<li class="nav-item {{-- js-toggle-registration --}}"><a href="{{ $url_register }}"><i class="fa fa-edit"></i>Đăng ký </a></li>
 						</div>
 					{{-- @endif --}}
 				</ul> <!-- nav -->
