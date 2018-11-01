@@ -6,7 +6,7 @@
 						@foreach ($list_time_line as $element)
 							<li class="item">
 								<div class="inner">
-									<div class="title"> {{ $element->title }} </div>
+									<div class="title"> {{ $element->titles }} </div>
 									<div class="date"> {{ $element->starttime }} -> {{ $element->endtime }}</div>
 								</div>
 							</li>

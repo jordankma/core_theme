@@ -24,28 +24,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<p>ỦY BAN AN TOÀN GIAO THÔNG QUỐC GIA</p>
-					<ul>
-						<li>80B Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</li>
-						<li>Đồng Chí: Lê Việt Hoàng</li>
-						<li>Văn Phòng Ủy Ban ATGTQG</li>
-					</ul>
+					{!! isset($SETTING['info_footer_1']) ? $SETTING['info_footer_1'] : '' !!}
 				</div>
 				<div class="col-md-4">
-					<P>BỘ GIÁO DỤC VÀ ĐÀO TẠO</P>
-					<ul>
-						<li>35 Đại Cồ Việt, Hai Bà Trưng, Hà Nội</li>
-						<li>Đồng Chí: Nguyễn Việt Hà</li>
-						<li>Vụ Công Tác HSSV Bộ GD&ĐT</li>
-					</ul>
+					{!! isset($SETTING['info_footer_2']) ? $SETTING['info_footer_2'] : '' !!}
 				</div>
 				<div class="col-md-4">
-					<p>CÔNG TY CP TẬP ĐOÀN GIÁO DỤC EGROUP</p>
-					<ul>
-						<li>Tầng 3, Tòa Nhà 25T1, Hoàng Đạo Thúy, Trung Hòa, Cầu Giấy, Hà Nội</li>
-						<li>Đồng chí: Phạm Thu Huế</li>
-						<li>Phòng Cộng Đồng, Công Ty Cổ Phần Tập Đoàn Giáo Dục Egroup</li>
-					</ul>
+					{!! isset($SETTING['info_footer_3']) ? $SETTING['info_footer_3'] : '' !!}
 				</div>
 			</div>
 		</div>

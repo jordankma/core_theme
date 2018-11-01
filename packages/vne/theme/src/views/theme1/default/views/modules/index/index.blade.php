@@ -87,81 +87,8 @@
 				<!-- quest end -->
 			</div>
 
-			<div class="col-lg-4">
-				<!-- new user -->
-				<section class="section new-user">
-					<h2 class="headline">Thành viên mới nhất</h2>
-					<div class="list-item">
-						<div class="user-item">
-							<div class="wrapper">
-								<div class="img-cover avatar">
-									<span class="img-cover__wrapper">
-										<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-									</span>
-								</div>
-								<div class="info">
-									<h3 class="name">Nguyễn Thị Ngân</h3>
-									<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-								</div>
-							</div>
-						</div>
-						<div class="user-item">
-							<div class="wrapper">
-								<div class="img-cover avatar">
-									<span class="img-cover__wrapper">
-										<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-									</span>
-								</div>
-								<div class="info">
-									<h3 class="name">Nguyễn Thị Ngân</h3>
-									<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-								</div>
-							</div>
-						</div>
-						<div class="user-item">
-							<div class="wrapper">
-								<div class="img-cover avatar">
-									<span class="img-cover__wrapper">
-										<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-									</span>
-								</div>
-								<div class="info">
-									<h3 class="name">Nguyễn Thị Ngân</h3>
-									<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-								</div>
-							</div>
-						</div>
-						<div class="user-item">
-							<div class="wrapper">
-								<div class="img-cover avatar">
-									<span class="img-cover__wrapper">
-										<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-									</span>
-								</div>
-								<div class="info">
-									<h3 class="name">Nguyễn Thị Ngân</h3>
-									<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-								</div>
-							</div>
-						</div>
-						<div class="user-item">
-							<div class="wrapper">
-								<div class="img-cover avatar">
-									<span class="img-cover__wrapper">
-										<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-									</span>
-								</div>
-								<div class="info">
-									<h3 class="name">Nguyễn Thị Ngân</h3>
-									<p class="address">Lớp 12 - <a href="">THPT A Kim Bảng</a> - Hà Nam</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<!-- new user end -->
-			</div>
-
+			@include('VNE-THEME::layouts.index._new_member')
+	
 			<div class="col-lg-4">
 				<!-- social -->
 				<section class="section social">

@@ -1,0 +1,40 @@
+{
+  "package": "vne",
+  "module": "compaionunit",
+  "description": "Permission route by group",
+  "details": [
+    {
+      "name": "Đơn vị đồng hành",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.companionunit.manager",
+            "vne.companionunit.data"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "vne.companionunit.create",
+            "vne.companionunit.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "vne.companionunit.show",
+            "vne.companionunit.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.companionunit.delete",
+            "vne.companionunit.confirm-delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -49,16 +49,18 @@
                         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"/> --}}
                         <input type="hidden" name="visible" value="1"/>
                         <fieldset>
-                            <div class='col-md-6'>
+                            <div class='col-md-2'>
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label" for="name">{{ trans('vne-news::language.table.list_news.title') }}</label>
+                                    <label class="col-md-4 control-label" for="name">{{ trans('vne-news::language.table.list_news.title') }}</label>
                                     <div class="col-md-8">
                                         <input id="name" name="name" type="text"  value="{{isset($request->name)?$request->name:null}}" class="form-control">
                                     </div>                                  
                                 </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label" >{{ trans('vne-news::language.table.list_news.category') }}</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-5 control-label" >{{ trans('vne-news::language.table.list_news.category') }}</label>
+                                    <div class="col-md-7">
                                         <select class="form-control" name="news_cat">
                                             <option></option>
                                             @if(!empty($list_news_cat))
@@ -69,9 +71,11 @@
                                         </select>
                                     </div>
                                 </div> 
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label" >{{ trans('vne-news::language.table.list_news.box') }}</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-5 control-label" >{{ trans('vne-news::language.table.list_news.box') }}</label>
+                                    <div class="col-md-7">
                                         <select class="form-control" name="news_box">
                                             <option></option>
                                             @if(!empty($list_news_box))
@@ -83,13 +87,15 @@
                                     </div>
                                 </div>            
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label" >{{ "Time" }}</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-5 control-label" >{{ "Time" }}</label>
+                                    <div class="col-md-7">
                                         <input type="text" class="form-control" name="news_time" id="news_time" placeholder="Thời gian">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group" style="margin-left: 42px;">
                                     <input type="radio" name="is_hot" value="1" id="newshot">
                                     <label for="newshot">Tin hot</label>
@@ -97,7 +103,7 @@
                                     <label for="newsnormal">Tin thường</label>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-md-offset-5">
+                            <div class="col-md-2">
                                 <button type='submit' class="btn btn-success" name="search_news" id="but-search-news">Tìm kiếm</button>
                             </div>
                         </fieldset>

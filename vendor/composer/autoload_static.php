@@ -97,6 +97,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
             'Vne\\News\\' => 9,
             'Vne\\Member\\' => 11,
             'Vne\\Contact\\' => 12,
+            'Vne\\Companionunit\\' => 18,
             'Vne\\Banner\\' => 11,
         ),
         'U' => 
@@ -283,6 +284,10 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Contact\\' => 
         array (
             0 => __DIR__ . '/../..' . '/packages/vne/contact/src',
+        ),
+        'Vne\\Companionunit\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/vne/companionunit/src',
         ),
         'Vne\\Banner\\' => 
         array (
@@ -1215,6 +1220,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'CreateAdtechCoreUsersRoleTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100002_create_adtech_core_users_role_table.php',
         'CreateAdtechCoreUsersTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100001_create_adtech_core_users_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100003_create_password_resets_table.php',
+        'CreateTableCompanionunit' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/database/migrations/2018_10_23_102708_create_table_companionunit.php',
         'CreateTableTimeline' => __DIR__ . '/../..' . '/packages/vne/timeline/src/database/migrations/2018_10_24_111536_create_table_timeline.php',
         'CreateTopExam' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_101537_create_top_exam.php',
         'CreateTopRegister' => __DIR__ . '/../..' . '/packages/vne/member/src/database/migrations/2018_10_29_101518_create_top_register.php',
@@ -13900,6 +13906,11 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Banner\\App\\Repositories\\BannerRepository' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Repositories/BannerRepository.php',
         'Vne\\Banner\\App\\Repositories\\PositionRepository' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Repositories/PositionRepository.php',
         'Vne\\Banner\\BannerServiceProvider' => __DIR__ . '/../..' . '/packages/vne/banner/src/BannerServiceProvider.php',
+        'Vne\\Companionunit\\App\\Http\\Controllers\\CompanionunitController' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/app/Http/Controllers/CompanionunitController.php',
+        'Vne\\Companionunit\\App\\Http\\Requests\\CompanionunitRequest' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/app/Http/Requests/CompanionunitRequest.php',
+        'Vne\\Companionunit\\App\\Models\\Companionunit' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/app/Models/Companionunit.php',
+        'Vne\\Companionunit\\App\\Repositories\\ComunitRepository' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/app/Repositories/ComunitRepository.php',
+        'Vne\\Companionunit\\CompanionunitServiceProvider' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/CompanionunitServiceProvider.php',
         'Vne\\Contact\\App\\Http\\Controllers\\ApiContactController' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Http/Controllers/ApiContactController.php',
         'Vne\\Contact\\App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Http/Controllers/ContactController.php',
         'Vne\\Contact\\App\\Models\\Contact' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Models/Contact.php',

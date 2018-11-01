@@ -31,25 +31,7 @@
 					</div>
 					<div class="col-lg-7">
 						<div class="info">
-							<div class="info-item">
-								<h2 class="title">BỘ GIÁO DỤC VÀ ĐÀO TẠO</h2>
-								<p><i class="fa fa-user"></i> Đồng Chí: Nguyễn Việt Hà, Vụ Công tác HS-SV, Bộ Giáo Dục và Đào Tạo.</p>
-								<p><i class="fa fa-address"></i> 35 Đại Cồ Việt, Hai Bà Trưng, Hà Nội.</p>
-							</div>
-							<div class="info-item">
-								<h2 class="title">ỦY BAN AN TOÀN GIAO THÔNG QUỐC GIA</h2>
-								<p><i class="fa fa-user"></i> Đồng Chí: Lê Việt Hoàng, Văn Phòng Ủy Ban ATGTQG.</p>
-								<p><i class="fa fa-address"></i> Số 80B Trần Hưng Đạo, quận Hoàn Kiếm, TP Hà Nội.</p>
-							</div>
-							<div class="info-item">
-								<h2 class="title">CÔNG TY CỔ PHẦN TẬP ĐOÀN GIÁO DỤC EGROUP</h2>
-								<p><i class="fa fa-address"></i> Tầng 3, Tòa Nhà 25T1, Hoàng Đạo Thúy, Trung Hòa, Cầu Giấy, Hà Nội.</p>
-							</div>
-							<div class="info-item">
-								<h2 class="title">THƯỜNG TRỰC BAN TỔ CHỨC:</h2>
-								<p><i class="fa fa-email"></i> Email: gthd@egroup.vn</p>
-								<p><i class="fa fa-phone"></i> Hotline: 1900 636 444(8h00 - 22h00).</p>
-							</div>
+							{!! isset($SETTING['info_page_contact']) ? $SETTING['info_page_contact'] : '' !!}
 						</div>
 						<form action="{{ route('frontend.contact.save')}}" class="form-contact" id="form-contact" method="post">
 							<h2 class="title">Liên hệ với chúng tôi:</h2>

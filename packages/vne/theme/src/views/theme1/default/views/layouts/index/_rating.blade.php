@@ -8,53 +8,33 @@
 					<div class="tab-item active">
 						<div class="title">Sở GD & ĐT Tỉnh/TP</div>
 						<ul class="list">
+							@if(!empty($list_top_thi_sinh_dang_ky_tinh))
+							@foreach ($list_top_thi_sinh_dang_ky_tinh as $element)
 							<li class="list-item">
-								<div class="number">01</div>
+								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
-									<div class="number-user">180356 <span>thí sinh</span></div>
-									<div class="address">Phú Thọ</div>
+									<div class="number-user"> {{ $element->total }} <span>thí sinh</span></div>
+									<div class="address"> {{ $element->name }} </div>
 								</div>
 							</li>
-							<li class="list-item">
-								<div class="number">02</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Hà Nội</div>
-								</div>
-							</li>
-							<li class="list-item">
-								<div class="number">03</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Thái Nguyên</div>
-								</div>
-							</li>
+							@endforeach
+							@endif
 						</ul>
 					</div>
 					<div class="tab-item">
 						<div class="title">Trường</div>
 						<ul class="list">
+							@if(!empty($list_top_thi_sinh_dang_ky_truong))
+							@foreach ($list_top_thi_sinh_dang_ky_truong as $element)
 							<li class="list-item">
-								<div class="number">01</div>
+								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
-									<div class="number-user">180356 <span>thí sinh</span></div>
-									<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
+									<div class="number-user"> {{ $element->total }} <span>thí sinh</span></div>
+									<div class="address"> {{ $element->name }} </div>
 								</div>
 							</li>
-							<li class="list-item">
-								<div class="number">02</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-								</div>
-							</li>
-							<li class="list-item">
-								<div class="number">03</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">THPT Lý Thái Tổ</div>
-								</div>
-							</li>
+							@endforeach
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -75,53 +55,33 @@
 					<div class="tab-item active">
 						<div class="title">Sở GD & ĐT Tỉnh/TP</div>
 						<ul class="list">
+							@if(!empty($list_top_thi_sinh_da_thi_tinh))
+							@foreach ($list_top_thi_sinh_da_thi_tinh as $element)
 							<li class="list-item">
-								<div class="number">01</div>
+								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
-									<div class="number-user">180356 <span>thí sinh</span></div>
-									<div class="address">Phú Thọ</div>
+									<div class="number-user"> {{ $element->total }} <span>thí sinh</span></div>
+									<div class="address"> {{ $element->name }} </div>
 								</div>
 							</li>
-							<li class="list-item">
-								<div class="number">02</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Hà Nội</div>
-								</div>
-							</li>
-							<li class="list-item">
-								<div class="number">03</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Thái Nguyên</div>
-								</div>
-							</li>
+							@endforeach
+							@endif
 						</ul>
 					</div>
 					<div class="tab-item">
 						<div class="title">Trường</div>
 						<ul class="list">
+							@if(!empty($list_top_thi_sinh_da_thi_truong))
+							@foreach ($list_top_thi_sinh_da_thi_truong as $element)
 							<li class="list-item">
-								<div class="number">01</div>
+								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
-									<div class="number-user">180356 <span>thí sinh</span></div>
-									<div class="address">THPT Lưu Nhân Chú, Đại Từ</div>
+									<div class="number-user"> {{ $element->total }} <span>thí sinh</span></div>
+									<div class="address"> {{ $element->name }} </div>
 								</div>
 							</li>
-							<li class="list-item">
-								<div class="number">02</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">Trường Đại Học Nguyễn Tất Thành</div>
-								</div>
-							</li>
-							<li class="list-item">
-								<div class="number">03</div>
-								<div class="info">
-									<div class="number-user">92297 <span>thí sinh</span></div>
-									<div class="address">THPT Lý Thái Tổ</div>
-								</div>
-							</li>
+							@endforeach
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -137,8 +97,10 @@
 	<section class="section rating-right">
 		<h2 class="headline">TOP Thí sinh dẫn đầu tuần</h2>
 		<div class="list">
+			@if(!empty($list_thi_sinh_dan_dau_tuan))
+			@foreach($list_thi_sinh_dan_dau_tuan as $element)
 			<div class="list-item">
-				<div class="number">1</div>
+				<div class="number"> {{ $loop->index+1 }} </div>
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
@@ -147,56 +109,13 @@
 					</div>
 				</div>
 				<div class="info">
-					<h4 class="title">Nguyễn Thanh Tuấn</h4>
-					<p class="date">200 - 00:15:016</p>
-					<p class="name-school">THTT Bảo Lộc</p>
+					<h4 class="title">{{ $element->name }}</h4>
+					<p class="date">{{ $element->point }} - {{ $element->time }}</p>
+					<p class="name-school">{{ $element->school_name }}</p>
 				</div>
 			</div>
-			<div class="list-item">
-				<div class="number">2</div>
-				<div class="img">
-					<div class="img-cover">
-						<a href="#" class="img-cover__wrapper">
-							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="info">
-					<h4 class="title">Nguyễn Thanh Tuấn</h4>
-					<p class="date">200 - 00:15:016</p>
-					<p class="name-school">THTT Bảo Lộc</p>
-				</div>
-			</div>
-			<div class="list-item">
-				<div class="number">3</div>
-				<div class="img">
-					<div class="img-cover">
-						<a href="#" class="img-cover__wrapper">
-							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="info">
-					<h4 class="title">Nguyễn Thanh Tuấn</h4>
-					<p class="date">200 - 00:15:016</p>
-					<p class="name-school">THTT Bảo Lộc</p>
-				</div>
-			</div>
-			<div class="list-item">
-				<div class="number">4</div>
-				<div class="img">
-					<div class="img-cover">
-						<a href="#" class="img-cover__wrapper">
-							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="info">
-					<h4 class="title">Nguyễn Thanh Tuấn</h4>
-					<p class="date">200 - 00:15:016</p>
-					<p class="name-school">THTT Bảo Lộc</p>
-				</div>
-			</div>
+			@endforeach
+			@endif
 		</div>
 	</section>
 	<!-- rating right end -->

@@ -74,7 +74,7 @@ class SettingController extends Controller
 //        $languageArr = config('translatable.locales');
         $languageArr = Locale::where('status', 1)->get();
         $settings = Setting::where('domain_id', $this->domainDefault)->get();
-        $title = $logo = $logo_mini = $logo_link = $favicon = $company_name = $address = $email = $phone = $hotline = $ga_code = $chat_code = $slogan = $app_version = '';
+        $title = $logo = $logo_mini = $logo_link = $favicon = $company_name = $address = $email = $phone = $hotline = $ga_code = $chat_code = $slogan = $app_version = $info_page_contact = $info_footer_1 = $info_footer_2 = $info_footer_3 = '';
 
         if (count($settings) > 0) {
             foreach ($settings as $setting) {
@@ -124,6 +124,15 @@ class SettingController extends Controller
                     case 'info_page_contact':
                         $info_page_contact = $setting->value;
                         break;
+                    case 'info_footer_1':
+                        $info_footer_1 = $setting->value;
+                        break;
+                    case 'info_footer_2':
+                        $info_footer_2 = $setting->value;
+                        break;
+                    case 'info_footer_3':
+                        $info_footer_3 = $setting->value;
+                        break;
                 }
             }
         }
@@ -148,7 +157,10 @@ class SettingController extends Controller
             'ga_code' => $ga_code,
             'chat_code' => $chat_code,
             'slogan' => $slogan,
-            'info_page_contact' => $info_page_contact
+            'info_page_contact' => $info_page_contact,
+            'info_footer_1' => $info_footer_1,
+            'info_footer_2' => $info_footer_2,
+            'info_footer_3' => $info_footer_3
         ];
         return view('ADTECH-CORE::modules.core.setting.manage', $data);
     }

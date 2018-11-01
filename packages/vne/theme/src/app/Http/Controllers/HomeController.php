@@ -435,20 +435,85 @@ class HomeController extends Controller
             $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
 
             $list_time_line = Timeline::all();
+            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong 
+            =  '[
+                {
+                    "name" : "hà nội",
+                    "total": 550
+                },
+                {
+                    "name" : "tp hcm",
+                    "total": 1054
+                },
+                {
+                    "name" : "hà tây",
+                    "total": 430
+                }
+            ]';
 
+            $list_thi_sinh_dan_dau_tuan = '[
+                {
+                    "name" : "lê văn A",
+                    "time" : "10:10",
+                    "point" : "200",
+                    "school_name" : "THTT Bảo Lộc"
+                },
+                {
+                    "name" : "lê văn B",
+                    "time" : "10:10",
+                    "point" : "200",
+                    "school_name" : "THTT Bảo Lộc"
+                },
+                {
+                    "name" : "lê văn C",
+                    "time" : "10:10",
+                    "point" : "200",
+                    "school_name" : "THTT Bảo Lộc"
+                }, 
+                {
+                    "name" : "lê văn C",
+                    "time" : "10:10",
+                    "point" : "200",
+                    "school_name" : "THTT Bảo Lộc"
+                }
+            ]';
+
+            $list_thi_sinh_moi = '[
+                {
+                    "name" : "lê văn A",
+                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
+                },
+                {
+                    "name" : "lê văn B",
+                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
+                },
+                {
+                    "name" : "lê văn C",
+                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
+                },
+                {
+                    "name" : "lê văn C",
+                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
+                }
+            ]';
             $data = [
-                'list_banner' => $list_banner,
-                'list_thong_bao_btc' => $list_thong_bao_btc,
-                'list_news_hot' => $list_news_hot,
-                'list_news_event' => $list_news_event,
-                'list_news_hanh_trinh_truong' => $list_news_hanh_trinh_truong,
-                'list_news_hanh_trinh_tinh' => $list_news_hanh_trinh_tinh,
-                'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
-                'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
-                'list_news_anh_video_1' => $list_news_anh_video_1,
-                'list_news_anh_video_2' => $list_news_anh_video_2,
-                'list_time_line' => $list_time_line
-                
+              'list_banner' => $list_banner,
+              'list_thong_bao_btc' => $list_thong_bao_btc,
+              'list_news_hot' => $list_news_hot,
+              'list_news_event' => $list_news_event,
+              'list_news_hanh_trinh_truong' => $list_news_hanh_trinh_truong,
+              'list_news_hanh_trinh_tinh' => $list_news_hanh_trinh_tinh,
+              'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
+              'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
+              'list_news_anh_video_1' => $list_news_anh_video_1,
+              'list_news_anh_video_2' => $list_news_anh_video_2,
+              'list_time_line' => $list_time_line,
+              'list_top_thi_sinh_dang_ky_tinh' => json_decode($list_top_thi_sinh_dang_ky_tinh),
+              'list_top_thi_sinh_dang_ky_truong' => json_decode($list_top_thi_sinh_dang_ky_truong),
+              'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
+              'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong),
+              'list_thi_sinh_dan_dau_tuan' => json_decode($list_thi_sinh_dan_dau_tuan),
+              'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi)
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -514,7 +579,7 @@ class HomeController extends Controller
       $test = '';
       $m_level = '';
       $type = '';
-      $url = '/files/client/cocos1/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $url = 'gthd.vnedutech.vn/client/cocos1/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
       $data = [
         'url' => $url
       ];
@@ -599,66 +664,68 @@ class HomeController extends Controller
           }
           $str = '';
           if(count($form_data) > 0){
-            foreach ($form_data as $element){
-              $require = $element['is_require'] == true ? 'required=""' : ''; 
-              $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : '';          
-              if($element['type_view'] == 0){  
-                $str .= 
-                '<div class="form-group">'
-                    .'<label>' . $element['title'] . '</label>'
-                    .'<div class="input">'
-                    .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control ' . $element['class'] . '" placeholder="' . $element['hint_text'] . '"'
-                    . $require .' id="' . $element['id'] . '">'
-                    . $text_muted
-                    .'</div>'
-                .'</div>';
-              } 
-              elseif($element['type_view'] == 1) { 
-                $str .=
-                '<div class="form-group">'
-                    .'<label>' . $element['title'] . '</label>'
-                    .'<div class="input">'
-                        .'<select class="form-control ' . $element['class'] . '" name="' . $element['params'] . '"' . $require . ' id="' . $element['id'] . '" data-api="' . $element['api'] .'">'
-                        .    '<option>' . $element['title'] .'</option>'; 
-                            if(count($element['data_view'])>0){
-                              foreach ($element['data_view'] as $element2){
-                                  $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
-                              }
-                            }
-                        $str .= '</select>';
-                        $str .= $text_muted;
-                    $str .= '</div>'
-                .'</div>';
-              }
-              elseif($element['type_view'] == 2){
-                $str .=
-                '<div class="form-group">'
-                    .'<label>' . $element['title'] . '</label>'
-                    .'<div class="input">';
-                        if(count($element['data_view'])>0){
-                          foreach ($element['data_view'] as $element3){
-                              $str .= '<label><input type="radio" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element3['id'] . '" id="' . $element['id'] . '">' . $element3['title'] .'</label>';
-                          }
-                        }
-                        $str .= $text_muted;
-                    $str .= '</div>'
-                .'</div>';
-              }
-              elseif($element['type_view'] == 3){
-                $str .=  
-                '<div class="form-group">'
-                    .'<label>' . $element['title'] . '</label>'
-                    .'<div class="input">';
-                        if(count($element['data_view'])>0){
-                          foreach ($element['data_view'] as $element4){
-                              $str .= '<label><input type="checkbox" name="' . $element['params'] . '[]" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
-                          }
-                        }
-                        $str .= $text_muted;
-                    $str .= '</div>'
-                .'</div>';
-              }
-            }
+            $html = view('VNE-THEME::modules.member.input', compact('form_data'));
+            $str = $html->render();
+            // foreach ($form_data as $element){
+            //   $require = $element['is_require'] == true ? 'required=""' : ''; 
+            //   $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : '';          
+            //   if($element['type_view'] == 0){  
+            //     $str .= 
+            //     '<div class="form-group">'
+            //         .'<label>' . $element['title'] . '</label>'
+            //         .'<div class="input">'
+            //         .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control ' . $element['class'] . '" placeholder="' . $element['hint_text'] . '"'
+            //         . $require .' id="' . $element['id'] . '">'
+            //         . $text_muted
+            //         .'</div>'
+            //     .'</div>';
+            //   } 
+            //   elseif($element['type_view'] == 1) { 
+            //     $str .=
+            //     '<div class="form-group">'
+            //         .'<label>' . $element['title'] . '</label>'
+            //         .'<div class="input">'
+            //             .'<select class="form-control ' . $element['class'] . '" name="' . $element['params'] . '"' . $require . ' id="' . $element['id'] . '" data-api="' . $element['api'] .'">'
+            //             .    '<option>' . $element['title'] .'</option>'; 
+            //                 if(count($element['data_view'])>0){
+            //                   foreach ($element['data_view'] as $element2){
+            //                       $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
+            //                   }
+            //                 }
+            //             $str .= '</select>';
+            //             $str .= $text_muted;
+            //         $str .= '</div>'
+            //     .'</div>';
+            //   }
+            //   elseif($element['type_view'] == 2){
+            //     $str .=
+            //     '<div class="form-group">'
+            //         .'<label>' . $element['title'] . '</label>'
+            //         .'<div class="input">';
+            //             if(count($element['data_view'])>0){
+            //               foreach ($element['data_view'] as $element3){
+            //                   $str .= '<label><input type="radio" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element3['id'] . '" id="' . $element['id'] . '">' . $element3['title'] .'</label>';
+            //               }
+            //             }
+            //             $str .= $text_muted;
+            //         $str .= '</div>'
+            //     .'</div>';
+            //   }
+            //   elseif($element['type_view'] == 3){
+            //     $str .=  
+            //     '<div class="form-group">'
+            //         .'<label>' . $element['title'] . '</label>'
+            //         .'<div class="input">';
+            //             if(count($element['data_view'])>0){
+            //               foreach ($element['data_view'] as $element4){
+            //                   $str .= '<label><input type="checkbox" name="' . $element['params'] . '[]" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
+            //               }
+            //             }
+            //             $str .= $text_muted;
+            //         $str .= '</div>'
+            //     .'</div>';
+            //   }
+            // }
           }
           return response()->json(['str'=>$str]);
         } else {

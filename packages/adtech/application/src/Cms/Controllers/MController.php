@@ -99,6 +99,18 @@ class MController extends BaseController
                     case 'chat_code':
                         $settingView['chat_code'] = $setting->value;
                         break;
+                    case 'info_page_contact':
+                        $settingView['info_page_contact'] = $setting->value;
+                        break;
+                    case 'info_footer_1':
+                        $settingView['info_footer_1'] = $setting->value;
+                        break;
+                    case 'info_footer_2':
+                        $settingView['info_footer_2'] = $setting->value;
+                        break;
+                    case 'info_footer_3':
+                        $settingView['info_footer_3'] = $setting->value;
+                        break;
                 }
             }
         }

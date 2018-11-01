@@ -17,6 +17,7 @@ return array(
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
     'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),
     'Vne\\Contact\\' => array($baseDir . '/packages/vne/contact/src'),
+    'Vne\\Companionunit\\' => array($baseDir . '/packages/vne/companionunit/src'),
     'Vne\\Banner\\' => array($baseDir . '/packages/vne/banner/src'),
     'UniSharp\\LaravelFilemanager\\' => array($vendorDir . '/unisharp/laravel-filemanager/src'),
     'Underscore\\' => array($vendorDir . '/anahkiasen/underscore-php/src', $vendorDir . '/anahkiasen/underscore-php/tests'),
