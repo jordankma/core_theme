@@ -4,12 +4,9 @@ namespace Vne\Timeline\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
-use phpDocumentor\Reflection\DocBlock;
 use Vne\Timeline\App\Http\Requests\TimelineRequest;
 use Vne\Timeline\App\Repositories\TimelineRepository;
 use Vne\Timeline\App\Models\Timeline;
-use Spatie\Activitylog\Models\Activity;
-use Yajra\Datatables\Datatables;
 use Validator;
 
 class TimelineController extends Controller
@@ -30,14 +27,14 @@ class TimelineController extends Controller
     {
         $time = $request->input('time');
         list($start, $end) = explode("-", $time);
-        $starttime = explode('/', trim($start));
-        $endtime = explode('/', trim($end));
+        $start_date = explode('/', trim($start));
+        $end_date = explode('/', trim($end));
         try {
             $timeline = new Timeline($request->all());
             $timeline->titles = $request->input('titles');
-            $timeline->starttime = $starttime[2] . '-' . $starttime[0] . '-' . $starttime[1];
-            $timeline->endtime = $endtime[2] . '-' . $endtime[0] . '-' . $endtime[1];
-            $timeline->note = $request->input('note');
+            $timeline->starttime = $start_date[2] . '-' . $start_date[0] . '-' . $start_date[1];
+            $timeline->endtime = $end_date[2] . '-' . $end_date[0] . '-' . $end_date[1];
+            $timeline->note = strip_tags($request->input('note'));
             $timeline->save();
         } catch (\Exception $e) {
             return redirect()->route('vne.timeline.create')->with('error', $e->getMessage());
@@ -87,11 +84,11 @@ class TimelineController extends Controller
     {
         $id = $request->input('id');
         $timeline = $this->timeline->findOrFail($id);
-        $starttime = $timeline->starttime;
-        $endtime = $timeline->endtime;
+        $start_date = $timeline->starttime;
+        $end_date = $timeline->endtime;
         $data = [
-            'endtime' => date("m/d/Y", strtotime($endtime)),
-            'starttime' => date("m/d/Y", strtotime($starttime)),
+            'endtime' => date("m/d/Y", strtotime($end_date)),
+            'starttime' => date("m/d/Y", strtotime($start_date)),
             'timeline' => $timeline
         ];
         return view('VNE-TIMELINE::modules.timeline.edit', $data);
@@ -108,12 +105,12 @@ class TimelineController extends Controller
         $timeline = $this->timeline->findOrFail($id);
         $time = $request->input('time');
         list($start, $end) = explode("-", trim($time));
-        $starttime = explode('/', trim($start));
-        $endtime = explode('/', trim($end));
+        $start_date = explode('/', trim($start));
+        $end_date = explode('/', trim($end));
         $timeline->titles = $request->input('titles');
-        $timeline->starttime = $starttime[2] . '-' . $starttime[0] . '-' . $starttime[1];
-        $timeline->endtime = $endtime[2] . '-' . $endtime[0] . '-' . $endtime[1];
-        $timeline->note = $request->input('note');
+        $timeline->starttime = $start_date[2] . '-' . $start_date[0] . '-' . $start_date[1];
+        $timeline->endtime = $end_date[2] . '-' . $end_date[0] . '-' . $end_date[1];
+        $timeline->note = strip_tags($request->input('note'));
         try {
             $timeline->update();
             activity('timeline')
@@ -179,10 +176,16 @@ class TimelineController extends Controller
 
     public function gettimeline()
     {
-        $timeline = Timeline::all();
+        $timeline = Timeline::select('id','titles','starttime','endtime','note')->get()->toArray();
+        $titles =['id','titles','starttime','endtime','note'];
+        $data = [$titles];
+        foreach ($timeline as $key =>$value){
+            $x = array_values($value);
+            $data[] = $x;
+        }
         if ($timeline == null) {
             return response()->json(['data' => null], 500);
         }
-        return response()->json(['data' => $timeline], 200);
+        return response()->json(['data' => $data], 200);
     }
 }

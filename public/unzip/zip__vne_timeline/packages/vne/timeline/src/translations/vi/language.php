@@ -16,7 +16,8 @@ return [
     "buttons" => [
         "create" => "Create",
         "update" => "Lưu",
-        "discard" => "Discard"
+        "discard" => "Discard",
+        "exit" => "Thoát"
     ],
     "placeholder" => [
         "titles" => "tiêu đề",

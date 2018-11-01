@@ -1,5 +1,4 @@
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <center><h4 class="modal-title" id="edit"> Time Line </h4></center>
 </div>
 <div class="modal-body">
@@ -25,7 +24,7 @@
                         <div class="form-group">
                             <label class="col-md-3 col-lg-3 col-12 control-label" for="time">Time :</label>
                             <div class="col-md-9 col-lg-9 col-12{{ $errors->first('time', 'has-error') }} ">
-                                <input name="time" id="time" type="text" class="form-control" value="{{$starttime}}-{{$endtime}}"required>
+                                <input name="time" id="time" type="text" class="form-control" value="{{$start_date}}-{{$end_date}}"required>
                                 <span class="help-block">{{ $errors->first('time', ':message') }}</span>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                                 <button type="button"
                                         class="btn btn-success" id="btn-update">{{ trans('vne-timeline::language.buttons.update') }}</button>
                                 <a href="{!! route('vne.timeline.create') !!}"
-                                   class="btn btn-danger">{{ trans('vne-timeline::language.buttons.discard') }}</a>
+                                   class="btn btn-danger">{{ trans('vne-timeline::language.buttons.exit') }}</a>
                             </div>
                         </div>
                     </div>

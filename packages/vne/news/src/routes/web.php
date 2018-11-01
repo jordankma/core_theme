@@ -75,9 +75,12 @@ Route::group(array('prefix' => $adminPrefix), function() {
 
     });
 });
-    Route::group(array('prefix' => 'resouce/api/news'), function() {
+$apiPrefix = config('site.api_prefix');
+
+Route::group(array('prefix' => $apiPrefix), function() {
+    Route::group(array('prefix' => 'news'), function() {
         Route::get('list', 'ApiNewsController@getListNewsApi');
         Route::get('detail', 'ApiNewsController@getDetailNewsApi');
         Route::get('list-by-box', 'ApiNewsController@getListNewsByBoxApi');
-
     });
+});

@@ -15,6 +15,7 @@ use Vne\Contact\App\Models\Contact;
 use Vne\News\App\Models\News;
 use Vne\Member\App\Models\Member;
 use Vne\Timeline\App\Models\Timeline;
+use Vne\Companionunit\App\Models\Companionunit;
 use Vne\News\App\Repositories\NewsRepository;
 use GuzzleHttp\Client;
 
@@ -405,6 +406,8 @@ class HomeController extends Controller
     {
         parent::__construct();
         $this->news = $newsRepository;
+        $url = config('app.url');
+        $this->api_prefix = $url.config('site.api_prefix'); 
         Session::put('url.intended', URL::full());
     }
 
@@ -435,6 +438,13 @@ class HomeController extends Controller
             $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
 
             $list_time_line = Timeline::all();
+
+            $id_don_vi_dong_hanh = config('site.don_vi_dong_hanh_id');
+            $list_don_vi_dong_hanh = Companionunit::where('comtype',$id_don_vi_dong_hanh)->get();
+
+            $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
+            $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
+
             $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong 
             =  '[
                 {
@@ -513,7 +523,9 @@ class HomeController extends Controller
               'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
               'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong),
               'list_thi_sinh_dan_dau_tuan' => json_decode($list_thi_sinh_dan_dau_tuan),
-              'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi)
+              'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi),
+              'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
+              'list_don_vi_tai_tro' => $list_don_vi_tai_tro
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -569,17 +581,18 @@ class HomeController extends Controller
     }
 
     public function getTryExam(){
-      $game_token = '';
-      $linkresult = '';
-      $linkaudio = '';
-      $linkhome = '';
-      $ip_port = '';
-      $linkimg = '';
-      $linkquest = '';
-      $test = '';
-      $m_level = '';
-      $type = '';
-      $url = 'gthd.vnedutech.vn/client/cocos1/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $url_source = config('site.url_source');
+      $game_token = '267d9ab000febd79315df9c0aa668825';
+      $linkresult = 'http://timhieubiendao.daknong.vn';
+      $linkaudio = $url_source.'/res/sound/';
+      $linkhome = 'http://timhieubiendao.daknong.vn';
+      $ip_port = 'http://123.30.174.148:4555/';
+      $linkimg = 'http://quiz2.vnedutech.vn';
+      $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
+      $test = 'false';
+      $m_level = '3';
+      $type = '2';
+      $url = $url_source . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
       $data = [
         'url' => $url
       ];
@@ -634,7 +647,13 @@ class HomeController extends Controller
     }
 
     public function scheduleExam(){
-        return view('VNE-THEME::modules.exam.schedule');
+      $link_get_schedule = $this->api_prefix.'/vne/gettimeline';
+      $schedule = file_get_contents($link_get_schedule);
+      $schedule = json_decode($schedule);
+      $data = [
+          'schedule' => $schedule->data
+      ];
+      return view('VNE-THEME::modules.exam.schedule',$data);
     }
 
     public function showRegisterMember(Request $request){

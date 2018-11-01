@@ -12,7 +12,7 @@ class Comgroup extends Model {
      *
      * @var string
      */
-    protected $connection = 'mysql_contest';
+    protected $connection = 'mysql_cuocthi';
 
     protected $table = 'vne_comgroup';
 

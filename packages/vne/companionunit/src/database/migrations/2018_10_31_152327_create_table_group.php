@@ -13,7 +13,7 @@ class CreateTableGroup extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_contest')->create('vne_comgroup', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_comgroup', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comgroup');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateTableGroup extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_contest')->dropIfExists('vne_comgroup');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_comgroup');
     }
 }

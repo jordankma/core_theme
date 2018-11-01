@@ -2,21 +2,13 @@
 	<div class="footer-top">
 		<div class="container">
 			<div class="carousel js-carousel-03">
+				@if(!empty($list_don_vi_tai_tro))
+				@foreach($list_don_vi_tai_tro as $element)
 				<div class="carousel-item">
-					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/vnedutech-logo.png?t=' . time()) }}" alt=""></a>
+					<a href="{{ $element->link }}"><img src="{{ $element->img }}" alt=""></a>
 				</div>
-				<div class="carousel-item">
-					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/logo_bak.png?t=' . time()) }}" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/mgc.png?t=' . time()) }}" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/thieunien.png?t=' . time()) }}" alt=""></a>
-				</div>
-				<div class="carousel-item">
-					<a href=""><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/hoahoctro.png?t=' . time()) }}" alt=""></a>
-				</div>
+				@endforeach
+				@endif
 			</div>
 		</div>
 	</div>

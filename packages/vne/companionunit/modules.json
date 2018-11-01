@@ -4,34 +4,42 @@
   "description": "Permission route by group",
   "details": [
     {
-      "name": "Đơn vị đồng hành",
+      "name": "quản lý đơn vị",
       "groups": [
         {
           "name": "View list",
           "routes": [
             "vne.companionunit.manager",
-            "vne.companionunit.data"
+            "vne.comgroup.manager",
+            "vne.companionunit.data",
+            "vne.comgroup.data"
           ]
         },
         {
           "name": "Create",
           "routes": [
             "vne.companionunit.create",
-            "vne.companionunit.add"
+            "vne.comgroup.create",
+            "vne.companionunit.add",
+            "vne.comgroup.add"
           ]
         },
         {
           "name": "Update",
           "routes": [
             "vne.companionunit.show",
-            "vne.companionunit.update"
+            "vne.comgroup.show",
+            "vne.companionunit.update",
+            "vne.comgroup.update"
           ]
         },
         {
           "name": "Delete",
           "routes": [
             "vne.companionunit.delete",
-            "vne.companionunit.confirm-delete"
+            "vne.comgroup.delete",
+            "vne.companionunit.confirm-delete",
+            "vne.comgroup.confirm-delete"
           ]
         }
       ]

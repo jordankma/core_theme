@@ -13,10 +13,10 @@ class CreateTableCompanionunit extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_contest')->create('vne_comunit', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_comunit', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comname');
-            $table->tinyInteger('type')->comment('1 là đơn vị đồng hành, 0 là đơn vị tổ chức');
+            $table->tinyInteger('comtype')->comment('1 là đơn vị đồng hành, 0 là đơn vị tổ chức');
             $table->string('comlink')->nullable();
             $table->string('comnote')->nullable();
             $table->string('img');
@@ -32,6 +32,6 @@ class CreateTableCompanionunit extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_contest')->dropIfExists('vne_comunit');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_comunit');
     }
 }

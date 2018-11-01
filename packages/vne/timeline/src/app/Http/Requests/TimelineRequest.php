@@ -4,6 +4,7 @@ namespace Vne\Timeline\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TimelineRequest extends FormRequest
 {

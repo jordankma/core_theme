@@ -25,6 +25,11 @@ class TimelineRepository extends Repository
         $result->select('vne_timeline.*', DB::raw('@rownum  := @rownum  + 1 AS rownum'));
         return $result;
     }
+    public function apidata(){
+        $result = $this->model::query();
+        $result->select('vne_timeline.');
+        return $result;
+    }
     public function findOrFail($id) {
         $result = $this->model::findOrFail($id);
         return $result;

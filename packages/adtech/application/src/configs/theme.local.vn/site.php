@@ -71,6 +71,7 @@ return [
     'url_static' => 'http://theme.local.vn',
     'api_prefix' => '/resource/dev/get',
     'admin_prefix' => '/admin',
+    'url_source' => 'gthd.vnedutech.vn/client/cocos3',
     'token_bear' => 'NGLPs5oUP1gcJISvUy5cA29bMSLHPWoM4MVIEJVr',
     'homepage' => [
         'frontend' => [
@@ -138,5 +139,7 @@ return [
     'city_id_default' => 62,
     'table_a_id' => 1,
     'table_b_id' => 2,
-    'banner_trang_chu_id' => 1
+    'banner_trang_chu_id' => 1,
+    'don_vi_dong_hanh_id' => 1,
+    'don_vi_tai_tro_id' => 2
 ];

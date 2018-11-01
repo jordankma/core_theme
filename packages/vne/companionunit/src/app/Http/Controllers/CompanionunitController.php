@@ -177,7 +177,12 @@ class CompanionunitController extends Controller
             })
             ->editColumn('img', function ($Comunit) {
                 $img = $Comunit->img;
-                return '<img src=' . $img . ' height="auto" width="100%">';
+                return '<img src=' . $img . ' height="150px" width="auto">';
+            })
+            ->editColumn('comtype',function ($Comunit){
+               $comgroup = Comgroup::find($Comunit['comtype']);
+               $comtype = $comgroup->comgroup;
+                return $comtype;
             })
             ->addIndexColumn()
             ->rawColumns(['actions', 'img'])
@@ -191,5 +196,13 @@ class CompanionunitController extends Controller
             return response()->json(['data' => null], 500);
         }
         return response()->json(['data' => $comunit], 200);
+    }
+    public function getcomtype()
+    {
+        $comtype = Comgroup::select('id','comgroup')->get();
+        if ($comtype == null) {
+            return response()->json(['data' => null], 500);
+        }
+        return response()->json(['data' => $comtype], 200);
     }
 }

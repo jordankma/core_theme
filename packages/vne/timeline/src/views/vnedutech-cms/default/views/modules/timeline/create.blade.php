@@ -176,7 +176,10 @@
         $(function () {
             $("[name='permission_locked']").bootstrapSwitch();
         });
-        $('input[name="time"]').daterangepicker();
+        $('input[name="time"]').daterangepicker({
+            format: 'DD-MM-YYYY',
+            minDate: new Date()
+        });
         $(document).ready(function () {
             $( function () {
                 $.ajax({

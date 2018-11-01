@@ -14,5 +14,5 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('vne/timeline/delete', 'TimelineController@delete')->name('vne.timeline.delete');
         Route::get('vne/timeline/confirm-delete', 'TimelineController@getModalDelete')->name('vne.timeline.confirm-delete');
     });
-    Route::get('vne/gettimeline', 'TimelineController@gettimeline')->name('vne.gettimeline');
 });
+Route::get('vne/gettimeline', 'TimelineController@gettimeline')->name('vne.gettimeline');
