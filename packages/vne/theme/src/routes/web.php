@@ -39,6 +39,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
 
     // });
         Route::get('thi-thu', 'HomeController@getTryExam')->name('vne.get.try.exam');
+        Route::get('thi-that', 'HomeController@getRealExam')->name('vne.get.real.exam');
 
     
 });

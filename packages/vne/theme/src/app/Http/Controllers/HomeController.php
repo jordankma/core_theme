@@ -580,11 +580,11 @@ class HomeController extends Controller
 
     }
 
-    public function getTryExam(){
-      $url_source = config('site.url_source');
-      $game_token = '267d9ab000febd79315df9c0aa668825';
+    public function getTryExam(Request $request){
+      $url_source_try = config('site.url_source_try');
+      $game_token = $request->input('token');
       $linkresult = 'http://timhieubiendao.daknong.vn';
-      $linkaudio = $url_source.'/res/sound/';
+      $linkaudio = $url_source_try.'/res/sound/';
       $linkhome = 'http://timhieubiendao.daknong.vn';
       $ip_port = 'http://123.30.174.148:4555/';
       $linkimg = 'http://quiz2.vnedutech.vn';
@@ -592,7 +592,26 @@ class HomeController extends Controller
       $test = 'false';
       $m_level = '3';
       $type = '2';
-      $url = $url_source . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $url = $url_source_try . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $data = [
+        'url' => $url
+      ];
+      return view('VNE-THEME::modules.contest.index',$data);
+    }
+
+    public function getRealExam(Request $request){
+      $url_source_real = config('site.url_source_real');
+      $game_token = $request->input('token');
+      $linkresult = 'http://timhieubiendao.daknong.vn';
+      $linkaudio = $url_source_real.'/res/sound/';
+      $linkhome = 'http://timhieubiendao.daknong.vn';
+      $ip_port = 'http://java.cuocthi.vnedutech.vn/';
+      $linkimg = 'http://quiz2.vnedutech.vn';
+      $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
+      $test = 'false';
+      $m_level = '3';
+      $type = '2';
+      $url = $url_source_real . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
       $data = [
         'url' => $url
       ];

@@ -89,7 +89,11 @@
 	                	$('#online-now').css('visibility','visible');
 	                	$('#offline-now').css('display','none');	
 	                	$('#offline-now').css('visibility','hidden');
-	                	$('#text-user-name').append(data.data.username);	
+	                	$('#text-user-name').append(data.data.username);
+	                	var url_thi_thu = $('#btn-try-exam').attr('href') + '?token=' + data.data.token;	
+	                	$('#btn-try-exam').attr('href',url_thi_thu);
+	                	var url_thi_that = $('#btn-real-exam').attr('href') + '?token=' + data.data.token;	
+	                	$('#btn-real-exam').attr('href',url_thi_that);
 	                }
 	                else{
 	                	$('#offline-now').css('display','block');	
