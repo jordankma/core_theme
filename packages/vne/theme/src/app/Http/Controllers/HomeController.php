@@ -425,7 +425,9 @@ class HomeController extends Controller
             
             $sukien = config('site.news_box.sukien');
             $list_news_event = $this->news->getNewsByBox($sukien,null,4);
-
+            
+            $honoivechungtoi = config('site.news_box.honoivechungtoi');
+            $list_news_honoivechungtoi = $this->news->getNewsByBox($honoivechungtoi,null,4);
             $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
             $list_news_hanh_trinh_truong = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
             $list_news_hanh_trinh_tinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
@@ -525,7 +527,8 @@ class HomeController extends Controller
               'list_thi_sinh_dan_dau_tuan' => json_decode($list_thi_sinh_dan_dau_tuan),
               'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi),
               'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
-              'list_don_vi_tai_tro' => $list_don_vi_tai_tro
+              'list_don_vi_tai_tro' => $list_don_vi_tai_tro,
+              'list_news_honoivechungtoi' => $list_news_honoivechungtoi
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }

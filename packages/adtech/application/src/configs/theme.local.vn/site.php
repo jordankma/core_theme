@@ -122,7 +122,8 @@ return [
         'tinnong' => 'tin-nong',
         'sukien' => 'su-kien',
         'hanhtrinhgiaothonghocduong' => 'hanh-trinh-giao-thong-hoc-duong',
-        'hinhanhvideo' => 'hinh-anh-video'
+        'hinhanhvideo' => 'hinh-anh-video',
+        'honoivechungtoi' => 'ho-noi-ve-chung-toi'
     ],
     'news_cat' => [
         'thongbaobtc' => 'thong-bao-btc',

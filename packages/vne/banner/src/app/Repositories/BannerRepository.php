@@ -31,4 +31,8 @@ class BannerRepository extends Repository
 
         return $result;
     }
+
+    public function bannerByPosition($position_id){
+        return $this->model->where('position', '=', $position_id)->get();    
+    }
 }

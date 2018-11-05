@@ -29,3 +29,11 @@ Route::group(array('prefix' => $adminPrefix), function() {
         });
     });
 });
+
+$apiPrefix = config('site.api_prefix');
+
+Route::group(array('prefix' => $apiPrefix), function() {
+    Route::group(array('prefix' => 'banner'), function() {
+        Route::get('list', 'ApiBannerController@getListBannerByPositionApi');
+    });
+});
