@@ -7,7 +7,7 @@
 @section('header_styles')
     <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/bootstrap-switch/css/bootstrap-switch.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin .'/vendors/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin .'/vendors/ckeditor_news/ckeditor.js') }}" type="text/javascript"></script>
 @stop
 <!--end of page css-->
 
@@ -55,7 +55,7 @@
                             <label for="blog_category" class="">Actions</label>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">{{ trans('vne-news::language.buttons.update') }}</button>
-                                <a href="{!! route('vne.art.demo.create') !!}"
+                                <a href="{!! route('vne.news.page.manager') !!}"
                                    class="btn btn-danger">{{ trans('vne-news::language.buttons.discard') }}</a>
                             </div>
                         </div>

@@ -23,6 +23,7 @@ class HomeController extends Controller
 {
     protected $secret_key = '8bgCi@gsLbtGhO)1';
     protected $secret_iv = ')FQKRL57zFYdtn^!';
+    protected $url_api_prefix;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
@@ -402,13 +403,16 @@ class HomeController extends Controller
         "success": true,
         "message": "ok!"
       }';
+    function setUrlApiPrefix(){
+      $this->url_api_prefix = config('app.url').config('site.api_prefix');   
+    }
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
         $this->news = $newsRepository;
         $url = config('app.url');
-        $this->api_prefix = $url.config('site.api_prefix'); 
         Session::put('url.intended', URL::full());
+        $this->setUrlApiPrefix();
     }
 
     public function index(){
@@ -446,49 +450,16 @@ class HomeController extends Controller
 
             $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
             $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
+            $url = config('app.url');
+            $url = 'http://gthd.vnedutech.vn/';
+            $list_top_thi_sinh_dang_ky_tinh = file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=3&page=1&table_id=');
+            $list_top_thi_sinh_dang_ky_truong = file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=3&page=1&table_id=');
 
-            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong 
-            =  '[
-                {
-                    "name" : "hà nội",
-                    "total": 550
-                },
-                {
-                    "name" : "tp hcm",
-                    "total": 1054
-                },
-                {
-                    "name" : "hà tây",
-                    "total": 430
-                }
-            ]';
+            $list_top_thi_sinh_da_thi_tinh = file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id=');
+            
+            $list_top_thi_sinh_da_thi_truong = file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id=');
 
-            $list_thi_sinh_dan_dau_tuan = '[
-                {
-                    "name" : "lê văn A",
-                    "time" : "10:10",
-                    "point" : "200",
-                    "school_name" : "THTT Bảo Lộc"
-                },
-                {
-                    "name" : "lê văn B",
-                    "time" : "10:10",
-                    "point" : "200",
-                    "school_name" : "THTT Bảo Lộc"
-                },
-                {
-                    "name" : "lê văn C",
-                    "time" : "10:10",
-                    "point" : "200",
-                    "school_name" : "THTT Bảo Lộc"
-                }, 
-                {
-                    "name" : "lê văn C",
-                    "time" : "10:10",
-                    "point" : "200",
-                    "school_name" : "THTT Bảo Lộc"
-                }
-            ]';
+            $list_thi_sinh_dan_dau_tuan =  file_get_contents($url . 'api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5'); 
 
             $list_thi_sinh_moi = '[
                 {
@@ -567,6 +538,33 @@ class HomeController extends Controller
       return view('VNE-THEME::modules.search.search_result');
     }
 
+    public function getTopResult(){
+      $title = "Top thí sinh thi";
+      $url = config('app.url');
+      $url = 'http://gthd.vnedutech.vn/';
+      $list_top_thi_sinh_da_thi_tinh = file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=all&page=1&table_id=&round_id=&topic_id=');
+            
+      $list_top_thi_sinh_da_thi_truong = file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=100&page=1&table_id=&round_id=&topic_id=');
+      $data = [
+        'title' => $title,
+        'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
+        'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong)
+      ];
+      return view('VNE-THEME::modules.search.rating',$data);
+    }
+    public function getTopRegister(){
+      $title = "Top thí sinh đăng ký";
+      $url = config('app.url');
+      $url = 'http://gthd.vnedutech.vn/';
+      $list_top_thi_sinh_dang_ky_tinh = file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=all&page=1&table_id=');
+      $list_top_thi_sinh_dang_ky_truong = file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=100&page=1&table_id=');
+      $data = [
+        'title' => $title,
+        'list_top_thi_sinh_dang_ky_tinh' => json_decode($list_top_thi_sinh_dang_ky_tinh),
+        'list_top_thi_sinh_dang_ky_truong' => json_decode($list_top_thi_sinh_dang_ky_truong)
+      ];
+      return view('VNE-THEME::modules.search.rating_register',$data);
+    }
     public function showContact(){
       return view('VNE-THEME::modules.contact.contact');
     }
@@ -707,66 +705,6 @@ class HomeController extends Controller
           if(count($form_data) > 0){
             $html = view('VNE-THEME::modules.member.input', compact('form_data'));
             $str = $html->render();
-            // foreach ($form_data as $element){
-            //   $require = $element['is_require'] == true ? 'required=""' : ''; 
-            //   $text_muted = $element['is_require'] == true ? '<small class="text-muted">*</small>' : '';          
-            //   if($element['type_view'] == 0){  
-            //     $str .= 
-            //     '<div class="form-group">'
-            //         .'<label>' . $element['title'] . '</label>'
-            //         .'<div class="input">'
-            //         .    '<input type="' . $element['type'] . '" name="' . $element['params'] . '" class="form-control ' . $element['class'] . '" placeholder="' . $element['hint_text'] . '"'
-            //         . $require .' id="' . $element['id'] . '">'
-            //         . $text_muted
-            //         .'</div>'
-            //     .'</div>';
-            //   } 
-            //   elseif($element['type_view'] == 1) { 
-            //     $str .=
-            //     '<div class="form-group">'
-            //         .'<label>' . $element['title'] . '</label>'
-            //         .'<div class="input">'
-            //             .'<select class="form-control ' . $element['class'] . '" name="' . $element['params'] . '"' . $require . ' id="' . $element['id'] . '" data-api="' . $element['api'] .'">'
-            //             .    '<option>' . $element['title'] .'</option>'; 
-            //                 if(count($element['data_view'])>0){
-            //                   foreach ($element['data_view'] as $element2){
-            //                       $str .= '<option value="' . $element2['id'] . '">' . $element2['title'] . '</option>';
-            //                   }
-            //                 }
-            //             $str .= '</select>';
-            //             $str .= $text_muted;
-            //         $str .= '</div>'
-            //     .'</div>';
-            //   }
-            //   elseif($element['type_view'] == 2){
-            //     $str .=
-            //     '<div class="form-group">'
-            //         .'<label>' . $element['title'] . '</label>'
-            //         .'<div class="input">';
-            //             if(count($element['data_view'])>0){
-            //               foreach ($element['data_view'] as $element3){
-            //                   $str .= '<label><input type="radio" name="' . $element['params'] . '" class="' . $element['class'] . '" value="' . $element3['id'] . '" id="' . $element['id'] . '">' . $element3['title'] .'</label>';
-            //               }
-            //             }
-            //             $str .= $text_muted;
-            //         $str .= '</div>'
-            //     .'</div>';
-            //   }
-            //   elseif($element['type_view'] == 3){
-            //     $str .=  
-            //     '<div class="form-group">'
-            //         .'<label>' . $element['title'] . '</label>'
-            //         .'<div class="input">';
-            //             if(count($element['data_view'])>0){
-            //               foreach ($element['data_view'] as $element4){
-            //                   $str .= '<label><input type="checkbox" name="' . $element['params'] . '[]" class="' . $element['class'] . '" value="' . $element4['id'] .'" id="' . $element['id'] . '">' . $element4['title'] .'</label>';
-            //               }
-            //             }
-            //             $str .= $text_muted;
-            //         $str .= '</div>'
-            //     .'</div>';
-            //   }
-            // }
           }
           return response()->json(['str'=>$str]);
         } else {
@@ -796,7 +734,9 @@ class HomeController extends Controller
           $data = http_build_query($data);
           $data_encrypt = $this->my_simple_crypt($data);
           try {
-              $result = file_get_contents('http://gthd.vnedutech.vn/admin/api/contest/candidate_register?data='. $data_encrypt);
+              $url = config('app.url');
+              $url = 'http://gthd.vnedutech.vn';
+              $result = file_get_contents($url . '/admin/api/contest/candidate_register?data='. $data_encrypt);
               $result = json_decode($result);
               if($result->status == true){
                   $member->sync_mongo = '1';
@@ -817,8 +757,13 @@ class HomeController extends Controller
     }
 
     public function getDistrict(Request $request){
-        $list_district = file_get_contents('http://cuocthi.vnedutech.vn/admin/vne/getdistricts/'.$request->input('city_id'));
-        $list_district = json_decode($list_district);
+        $list_district = array();
+        try {
+          $list_district = file_get_contents('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'.$request->input('city_id'));
+          $list_district = json_decode($list_district);
+        } catch (Exception $e) {
+          
+        }
         $list_district_json = array();
         if(!empty($list_district->data)){
             foreach ($list_district->data as $key => $district) {
@@ -832,14 +777,14 @@ class HomeController extends Controller
     }
 
     public function getSchool(Request $request){
-        $list_school = file_get_contents('http://timhieubiendao.daknong.vn/admin/vne/member/member/get/school?district_id='.$request->input('district_id'));
+        $list_school = file_get_contents('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschools/'.$request->input('district_id'));
         $list_school = json_decode($list_school);
         $list_school_json = array();
         if(!empty($list_school->data)){
             foreach ($list_school->data as $key => $school) {
                 $list_school_json[] = [
                     'school_id' => $school->_id,
-                    'name' => $school->name
+                    'name' => $school->schoolname
                 ];
             }
         }

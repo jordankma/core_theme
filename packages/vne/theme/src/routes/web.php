@@ -31,6 +31,9 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('cap-nhat-thong-tin', 'HomeController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
         Route::post('/cap-nhat-thong-tin', 'HomeController@updateRegisterMember')->name('frontend.member.register.update');
 
+        Route::get('/top-ket-qua', 'HomeController@getTopResult')->name('frontend.get.top.result');
+        Route::get('/top-dang-ky', 'HomeController@getTopRegister')->name('frontend.get.top.register');
+
         Route::get('get-token', 'HomeController@getToken');
 
         Route::get('get/district', 'HomeController@getDistrict')->name('vne.get.district');

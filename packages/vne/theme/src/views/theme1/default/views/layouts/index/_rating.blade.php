@@ -9,7 +9,7 @@
 						<div class="title">Sở GD & ĐT Tỉnh/TP</div>
 						<ul class="list">
 							@if(!empty($list_top_thi_sinh_dang_ky_tinh))
-							@foreach ($list_top_thi_sinh_dang_ky_tinh as $element)
+							@foreach ($list_top_thi_sinh_dang_ky_tinh->data as $element)
 							<li class="list-item">
 								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
@@ -25,7 +25,7 @@
 						<div class="title">Trường</div>
 						<ul class="list">
 							@if(!empty($list_top_thi_sinh_dang_ky_truong))
-							@foreach ($list_top_thi_sinh_dang_ky_truong as $element)
+							@foreach ($list_top_thi_sinh_dang_ky_truong->data as $element)
 							<li class="list-item">
 								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
@@ -38,7 +38,7 @@
 						</ul>
 					</div>
 				</div>
-				<a href="" class="btn btn-light">Xem thêm</a>
+				<a href="{{ route('frontend.get.top.register')}}" class="btn btn-light">Xem thêm</a>
 			</div>
 		</div>
 	</section>
@@ -56,7 +56,7 @@
 						<div class="title">Sở GD & ĐT Tỉnh/TP</div>
 						<ul class="list">
 							@if(!empty($list_top_thi_sinh_da_thi_tinh))
-							@foreach ($list_top_thi_sinh_da_thi_tinh as $element)
+							@foreach ($list_top_thi_sinh_da_thi_tinh->data as $element)
 							<li class="list-item">
 								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
@@ -72,7 +72,7 @@
 						<div class="title">Trường</div>
 						<ul class="list">
 							@if(!empty($list_top_thi_sinh_da_thi_truong))
-							@foreach ($list_top_thi_sinh_da_thi_truong as $element)
+							@foreach ($list_top_thi_sinh_da_thi_truong->data as $element)
 							<li class="list-item">
 								<div class="number">{{$loop->index +1 }}</div>
 								<div class="info">
@@ -85,7 +85,7 @@
 						</ul>
 					</div>
 				</div>
-				<a href="" class="btn btn-light">Xem thêm</a>
+				<a href="{{ route('frontend.get.top.result') }}" class="btn btn-light">Xem thêm</a>
 			</div>
 		</div>
 	</section>
@@ -98,7 +98,7 @@
 		<h2 class="headline">TOP Thí sinh dẫn đầu tuần</h2>
 		<div class="list">
 			@if(!empty($list_thi_sinh_dan_dau_tuan))
-			@foreach($list_thi_sinh_dan_dau_tuan as $element)
+			@foreach($list_thi_sinh_dan_dau_tuan->data as $element)
 			<div class="list-item">
 				<div class="number"> {{ $loop->index+1 }} </div>
 				<div class="img">
@@ -110,8 +110,8 @@
 				</div>
 				<div class="info">
 					<h4 class="title">{{ $element->name }}</h4>
-					<p class="date">{{ $element->point }} - {{ $element->time }}</p>
-					<p class="name-school">{{ $element->school_name }}</p>
+					<p class="date">{{ $element->point_real }} - {{ $element->used_time }}</p>
+					{{-- <p class="name-school">{{ $element->school_name }}</p> --}}
 				</div>
 			</div>
 			@endforeach

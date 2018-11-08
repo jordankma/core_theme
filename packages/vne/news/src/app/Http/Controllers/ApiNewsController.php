@@ -81,12 +81,16 @@ class ApiNewsController extends Controller
     }
 
     public function getDetailNewsApi(Request $request){
-        $validator = Validator::make($request->all(), [
-            'id' => 'required|numeric',
-        ], $this->messages);
-        if (!$validator->fails()) {
+        // $validator = Validator::make($request->all(), [
+        //     'alias' => 'required|numeric',
+        // ], $this->messages);
+        // if (!$validator->fails()) {
             $data = array();
-            $news = News::find($request->input('id'));
+            if($request->has('id')){
+                $news = News::find($request->input('id'));
+            } else{
+                $news = News::where('title_alias',$request->input('alias'))->first();
+            }
             if(!empty($news)){
                 $data = [
                     'id' => $news->news_id,
@@ -101,9 +105,9 @@ class ApiNewsController extends Controller
                 'message' => 'ok!'
             ];
             return response(json_encode($data_reponse))->setStatusCode(200)->header('Content-Type', 'application/json; charset=utf-8');
-        } else{
-            return $validator->messages();
-        }
+        // } else{
+        //     return $validator->messages();
+        // }
     }
 
     public function getListNewsByBoxApi(Request $request){
