@@ -364,7 +364,7 @@ class HomeController extends Controller
           $member->is_reg = '1';
           $member->update();
           $data = $member->getAttributes();
-          $data = http_build_query($data);
+          $data = json_encode($data);
           $data_encrypt = $this->my_simple_crypt($data);
           try {
               $url = config('app.url');
@@ -387,55 +387,6 @@ class HomeController extends Controller
       } else{
         return redirect()->route('index');  
       }
-    }
-
-    public function getDistrict(Request $request){
-        $list_district = array();
-        try {
-          $list_district = file_get_contents('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'.$request->input('city_id'));
-          $list_district = json_decode($list_district);
-        } catch (Exception $e) {
-          
-        }
-        $list_district_json = array();
-        if(!empty($list_district->data)){
-            foreach ($list_district->data as $key => $district) {
-                $list_district_json[] = [
-                    'district_id' => $district->_id,
-                    'name' => $district->district
-                ];
-            }
-        }
-        return json_encode($list_district_json);      
-    }
-
-    public function getSchool(Request $request){
-        $list_school = file_get_contents('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschools/'.$request->input('district_id'));
-        $list_school = json_decode($list_school);
-        $list_school_json = array();
-        if(!empty($list_school->data)){
-            foreach ($list_school->data as $key => $school) {
-                $list_school_json[] = [
-                    'school_id' => $school->_id,
-                    'name' => $school->schoolname
-                ];
-            }
-        }
-        return json_encode($list_school_json);      
-    }
-
-    public function getClass(Request $request){
-        $list_class = array();
-        $list_class_json = array();
-        if(!empty($list_class)){
-            foreach ($list_class as $key => $class) {
-                $list_class_json[] = [
-                    'class_id' => $class->class_id,
-                    'name' => $class->name
-                ];
-            }
-        }
-        return json_encode($list_class_json);      
     }
 
     function my_simple_crypt( $string, $action = 'e' ) {
