@@ -24,385 +24,16 @@ class HomeController extends Controller
     protected $secret_key = '8bgCi@gsLbtGhO)1';
     protected $secret_iv = ')FQKRL57zFYdtn^!';
     protected $url_api_prefix;
+    private $register_form;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
-    private $register_form = '{
-        "data": {
-          "load_default": [
-            {
-                "id" : 1,
-                "title": "Tên đăng nhập",
-                "hint_text": "Tên đăng nhập",
-                "class" : "",
-                "id" : "",
-                "type": "text",
-                "params": "user_name",
-                "type_view": 0,
-                "is_require": true,
-                "is_search": true
-            },
-            {
-                "id": 2,
-                "title": "Đề tài",
-                "params": "gioitinh",
-                "hint_text": "Chọn giới tính",
-                "class" : "",
-                "id" : "",
-                "type_view": 2,
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Nam"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Nữ"
-                  }
-                ]
-              },
-              {
-                "id": 4,
-                "title": "Chọn công việc bạn yêu thich",
-                "params": "chonABC",
-                "hint_text": "Chọn giới tính",
-                "class" : "",
-                "id" : "",
-                "type_view": 3,
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Thích đi học"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích nghe nhạc"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích ăn kem"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích đá bóng"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích ngủ"
-                  }
-                ]
-              }
-            ]
-          ,
-            "target": [
-              {
-            "id": 1,
-            "title": "Hoc sinh",
-          
-            "form_data": [
-              {
-                "id": 1,
-                "title": "Tên đăng nhập",
-                "hint_text": "Tên đăng nhập",
-                "class" : "",
-                "id" : "",
-                "type": "text",
-                "params": "user_name",
-                "type_view": 0,
-                "is_require": true,
-                "is_search": true
-              },
-              {
-                "id": 2,
-                "title": "Họ và tên",
-                "params": "name",
-                "type": "text",
-                "hint_text": "Họ tên",
-                "class" : "",
-                "id" : "",
-                "type_view": 0,
-                "is_require": true,
-                "is_search": true
-              
-              },
-              {
-                "id": 3,
-                "title": "Tỉnh/Thành phố",
-                "params": "city",
-                "hint_text": "Chọn tỉnh/thành",
-                "class" : "",
-                "id" : "city",
-                "type_view": 1,
-                "type": "data",
-                "api" : "http://theme.local.vn/get/district",
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Hà Nội"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Hưng Yên"
-                  },
-                  {
-                    "id": 3,
-                    "title": "Hải Phòng"
-                  }
-                ]
-              },
-              {
-                 "id": 4,
-                "title": "Quận/ huyện",
-                "params": "district",
-                "hint_text": "Chọn Quận/huyện",
-                "class" : "",
-                "id" : "district",
-                "type_view": 1,
-                "type": "api",
-                "api": "http://theme.local.vn/get/school",
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                ]
-              },
-              {
-                 "id": 4,
-                "title": "Trường",
-                "params": "school",
-                "hint_text": "Chọn Quận/huyện",
-                "class" : "",
-                "id" : "school",
-                "type_view": 1,
-                "type": "api",
-                "api": "",
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                ]
-              },
-              {
-                "id": 4,
-                "title": "Tên bài viết",
-                "params": "note",
-                "hint_text": "Tên bài viết",
-                "class" : "",
-                "id" : "",
-                "type" : "text",
-                "type_view": 0,
-                "is_require": true,
-                "is_search": true
-              },
-              {
-                "id": 3,
-                "title": "Đề tài",
-                "params": "topic",
-                "hint_text": "Chọn đề tài",
-                "class" : "",
-                "id" : "",
-                "api" : "",
-                "type_view": 1,
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Đề tài 1"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Đề tài 2"
-                  },
-                  {
-                    "id": 3,
-                    "title": "Đề tài 3"
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "title": "Đề tài",
-                "params": "gioitinh",
-                "hint_text": "Chọn giới tính",
-                "class" : "",
-                "id" : "",
-                "type_view": 2,
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Nam"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Nữ"
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "title": "Chọn công việc bạn yêu thich",
-                "params": "chonABC",
-                "hint_text": "Chọn giới tính",
-                "class" : "",
-                "id" : "",
-                "type_view": 3,
-                "is_require": true,
-                "is_search": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Thích đi học"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích nghe nhạc"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích ăn kem"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích đá bóng"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Thích ngủ"
-                  }
-                ]
-              }
-            ]
-          },
-              {
-            "id": 2,
-            "title": "Sinh vien di lam",
-            "form_data": [
-              {
-                "id": 1,
-                "title": "Tên đăng nhập",
-                "hint_text": "Tên đăng nhập",
-                "class" : "",
-                "id" : "",
-                "params": "user_name",
-                "type" : "text",
-                "type_view": 0,
-                "is_require": true
-              },
-              {
-                "id": 2,
-                "title": "Họ và tên",
-                "params": "name",
-                "hint_text": "Họ tên",
-                "class" : "",
-                "id" : "",
-                "type" : "text",
-                "type_view": 0,
-                "is_require": true
-              },
-              {
-                "id": 3,
-                "title": "Tỉnh/Thành phố",
-                "params": "city",
-                "hint_text": "Chọn tỉnh/thành",
-                "class" : "",
-                "id" : "city",
-                "type_view": 1,
-                "api" : "http://theme.local.vn/get/district",
-                "is_require": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Hà Nội"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Hưng Yên"
-                  },
-                  {
-                    "id": 3,
-                    "title": "Hải Phòng"
-                  }
-                ]
-              },
-              {
-                "id": 4,
-                "title": "Tên bài viết",
-                "params": "note",
-                "hint_text": "Tên bài viết",
-                "class" : "",
-                "id" : "",
-                "type" : "text",
-                "type_view": 0,
-                "is_require": true
-              },
-              {
-                "id": 3,
-                "title": "Đề tài",
-                "params": "topic",
-                "hint_text": "Chọn đề tài",
-                "class" : "",
-                "id" : "",
-                "api" : "",
-                "type_view": 1,
-                "is_require": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Đề tài 1"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Đề tài 2"
-                  },
-                  {
-                    "id": 3,
-                    "title": "Đề tài 3"
-                  }
-                ]
-              },
-              {
-                "id": 3,
-                "title": "Đề tài",
-                "params": "gioitinh",
-                "hint_text": "Chọn giới tính",
-                "class" : "",
-                "id" : "",
-                "type_view": 2,
-                "is_require": true,
-                "data_view": [
-                  {
-                    "id": 1,
-                    "title": "Nam"
-                  },
-                  {
-                    "id": 2,
-                    "title": "Nữ"
-                  }
-                ]
-              }
-            ]
-          }
-              ]
-         
-        },
-        "config": {
-          "0": "input",
-          "1": "selectbox",
-          "2": "radio",
-          "3": "checkbox"
-        },
-        "success": true,
-        "message": "ok!"
-      }';
+    
+    function getRegisterForm(){
+      $this->register_form = file_get_contents('http://gthd.vnedutech.vn/api/contest/get/load_form');  
+    }
     function setUrlApiPrefix(){
       $this->url_api_prefix = config('app.url').config('site.api_prefix');   
     }
@@ -452,15 +83,16 @@ class HomeController extends Controller
             $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
             $url = config('app.url');
             $url = 'http://gthd.vnedutech.vn/';
-            $list_top_thi_sinh_dang_ky_tinh = file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=3&page=1&table_id=');
-            $list_top_thi_sinh_dang_ky_truong = file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=3&page=1&table_id=');
-
-            $list_top_thi_sinh_da_thi_tinh = file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id=');
-            
-            $list_top_thi_sinh_da_thi_truong = file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id=');
-
-            $list_thi_sinh_dan_dau_tuan =  file_get_contents($url . 'api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5'); 
-
+            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong = $list_thi_sinh_dan_dau_tuan = array(); 
+            try {
+              $list_top_thi_sinh_dang_ky_tinh = json_decode(file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=3&page=1&table_id='));
+              $list_top_thi_sinh_dang_ky_truong = json_decode(file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=3&page=1&table_id='));
+              $list_top_thi_sinh_da_thi_tinh = json_decode(file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id='));
+              $list_top_thi_sinh_da_thi_truong = json_decode(file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id='));
+              $list_thi_sinh_dan_dau_tuan =  json_decode(file_get_contents($url . 'api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5')); 
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
             $list_thi_sinh_moi = '[
                 {
                     "name" : "lê văn A",
@@ -491,11 +123,11 @@ class HomeController extends Controller
               'list_news_anh_video_1' => $list_news_anh_video_1,
               'list_news_anh_video_2' => $list_news_anh_video_2,
               'list_time_line' => $list_time_line,
-              'list_top_thi_sinh_dang_ky_tinh' => json_decode($list_top_thi_sinh_dang_ky_tinh),
-              'list_top_thi_sinh_dang_ky_truong' => json_decode($list_top_thi_sinh_dang_ky_truong),
-              'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
-              'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong),
-              'list_thi_sinh_dan_dau_tuan' => json_decode($list_thi_sinh_dan_dau_tuan),
+              'list_top_thi_sinh_dang_ky_tinh' => $list_top_thi_sinh_dang_ky_tinh,
+              'list_top_thi_sinh_dang_ky_truong' => $list_top_thi_sinh_dang_ky_truong,
+              'list_top_thi_sinh_da_thi_tinh' => $list_top_thi_sinh_da_thi_tinh,
+              'list_top_thi_sinh_da_thi_truong' => $list_top_thi_sinh_da_thi_truong,
+              'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
               'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi),
               'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
               'list_don_vi_tai_tro' => $list_don_vi_tai_tro,
@@ -677,10 +309,11 @@ class HomeController extends Controller
     }
 
     public function showRegisterMember(Request $request){
+        $this->getRegisterForm();
         $register_form = $this->register_form;
         $register_form_array = json_decode($register_form,true);
         $data = [
-          'list_object' => $register_form_array['data']['target'],
+          'autoload' => $register_form_array['data']['auto_load'],
           'config' => $register_form_array['config'],
           'form_data_default' => $register_form_array['data']['load_default']
         ];
@@ -689,17 +322,17 @@ class HomeController extends Controller
 
     public function getFormRegister(Request $request){
       $validator = Validator::make($request->all(), [
-            'object_id' => 'required|numeric',
+            'key' => 'required|numeric',
+            'key2' => 'required|numeric'
         ], $this->messages);
         if (!$validator->fails()) {
-          $object_id = $request->input('object_id');
+          $key = $request->input('key');
+          $key2 = $request->input('key2');
+          $this->getRegisterForm();
           $register_form = $this->register_form;
           $register_form_array = json_decode($register_form,true);
-          foreach ($register_form_array['data']['target'] as $key => $value ) {
-            if($value['id'] == $object_id){
-              $form_data = $value['form_data'];
-              break; 
-            }      
+          if(!empty($register_form_array)){
+            $form_data = $register_form_array['data']['auto_load'][$key]['form_data'][$key2]['form_data'];  
           }
           $str = '';
           if(count($form_data) > 0){
