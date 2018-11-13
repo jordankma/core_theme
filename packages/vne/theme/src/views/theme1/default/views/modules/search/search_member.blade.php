@@ -27,44 +27,7 @@
 				<div class="headline"><i class="fa fa-search"></i> Tra cứu danh sách thí sinh</div>
 				<form action="" class="search-form">
 					<div class="wrapper">
-						<div class="form-group col-12">
-							<label for="bangThi">Chọn bảng</label>
-							<select class="form-control">
-								<option>Chọn bảng</option>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="id">Tên đăng nhập</label>
-							<input type="id" class="form-control" placeholder="Tên đăng nhập">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="name">Họ tên</label>
-							<input type="name" class="form-control" placeholder="Họ tên">
-						</div>
-						<div class="form-group col-md-4">
-							<label for="provinceCity">Chọn tỉnh/thành phố</label>
-							<select class="form-control">
-								<option>Chọn tỉnh/thành phố</option>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="district">Quận/huyện</label>
-							<select class="form-control">
-								<option>Chọn quận/huyện</option>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="school">Trường</label>
-							<select class="form-control">
-								<option>Chọn trường</option>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="class">Lớp</label>
-							<select class="form-control">
-								<option>Chọn lớp</option>
-							</select>
-						</div>
+						{!! $str !!}
 					</div>
 					<button class="btn btn-primary" type="submit">Tìm kiếm</button>
 				</form>

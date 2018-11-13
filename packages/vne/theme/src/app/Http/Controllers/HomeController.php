@@ -25,14 +25,18 @@ class HomeController extends Controller
     protected $secret_iv = ')FQKRL57zFYdtn^!';
     protected $url_api_prefix;
     private $register_form;
+    private $candidate_form;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
     
-    function getRegisterForm(){
+    function setJsonRegisterForm(){
       $this->register_form = file_get_contents('http://gthd.vnedutech.vn/api/contest/get/load_form');  
+    }
+    function setJsonCandidateForm(){
+      $this->candidate_form = file_get_contents('http://gthd.vnedutech.vn/api/contest/get/load_form?type=candidate');  
     }
     function setUrlApiPrefix(){
       $this->url_api_prefix = config('app.url').config('site.api_prefix');   
@@ -44,6 +48,8 @@ class HomeController extends Controller
         $url = config('app.url');
         Session::put('url.intended', URL::full());
         $this->setUrlApiPrefix();
+        $this->setJsonRegisterForm();
+        $this->setJsonCandidateForm();
     }
 
     public function index(){
@@ -163,7 +169,15 @@ class HomeController extends Controller
     }
 
     public function listMember(){
-      return view('VNE-THEME::modules.search.search_member');
+      $candidate_form = $this->candidate_form;
+      $candidate_form_arr = json_decode($candidate_form,true);
+      $form_data = $candidate_form_arr['data']['load_default'];
+      $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
+      $str = $html->render();
+      $data = [
+          'str' => $str
+      ];
+      return view('VNE-THEME::modules.search.search_member', $data);
     }
 
     public function listResult(){
@@ -309,7 +323,6 @@ class HomeController extends Controller
     }
 
     public function showRegisterMember(Request $request){
-        $this->getRegisterForm();
         $register_form = $this->register_form;
         $register_form_array = json_decode($register_form,true);
         $data = [
@@ -346,47 +359,69 @@ class HomeController extends Controller
     }
 
     public function updateRegisterMember(Request $request){
-      $member = Member::where('member_id',$request->input('member_id'))->first();
-      if(empty($member)){
-        $member = new Member();
-        $data_request = $request->all();
-        if(!empty($data_request)){
-          foreach ($data_request as $key => $value) {
-            $member->addColumn('vne_member',$key);
-            if(gettype($request->input($key))=='array'){
-              $member->$key = json_encode($request->input($key));
-            } else{
-              $member->$key = $request->input($key); 
-            }
-          }
-        }
-        if($member->save()){
-          $member->is_reg = '1';
-          $member->update();
-          $data = $member->getAttributes();
-          $data = json_encode($data);
-          $data_encrypt = $this->my_simple_crypt($data);
-          try {
-              $url = config('app.url');
-              $url = 'http://gthd.vnedutech.vn';
-              $result = file_get_contents($url . '/admin/api/contest/candidate_register?data='. $data_encrypt);
-              $result = json_decode($result);
-              if($result->status == true){
-                  $member->sync_mongo = '1';
-                  $member->update();
-                  return redirect()->route('index');
-              }
-              else{
-                  return redirect()->route('frontend.member.register.show');
-              }
-          } catch (Exception $e) {
-              
-          }
-          return redirect()->route('index');
-        }
+      $member_id= 17;
+      $data_request = $request->all();
+      $data_request['member_id'] = $member_id;
+      $data_request['is_register'] = 1;
+      $data = json_encode($data_request);
+      $data_encrypt = $this->my_simple_crypt($data);
+      $client = new Client();
+      $url = config('app.url');
+      $url = 'http://gthd.vnedutech.vn';
+      $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [
+        'form_params'=> [
+            'data' => $data_encrypt
+        ]
+      ]); 
+      $data = json_decode($res->getBody(),true);
+      if($data['status'] == true){
+        return redirect()->route('index');   
       } else{
-        return redirect()->route('index');  
+        return redirect()->route('frontend.member.register.show');
       }
+    //   $member = Member::where('member_id',$member_id)->first();
+    //   if(empty($member)){
+    //     $member = new Member();
+    //     $data_request = $request->all();
+    //     dd($data_request);
+    //     if(!empty($data_request)){
+    //       foreach ($data_request as $key => $value) {
+    //         $member->addColumn('vne_member',$key);
+    //         if(gettype($request->input($key))=='array'){
+    //           $member->$key = json_encode($request->input($key));
+    //         } else{
+    //           $member->$key = $request->input($key); 
+    //         }
+    //       }
+    //     }
+    //     if($member->save()){
+          
+    //       $member->is_reg = '1';
+    //       $member->update();
+    //       $data = $member->getAttributes();
+    //       $data = json_encode($data);
+    //       $data_encrypt = $this->my_simple_crypt($data);
+    //       try {
+    //           $url = config('app.url');
+    //           $url = 'http://gthd.vnedutech.vn';
+    //           $result = file_get_contents($url . '/admin/api/contest/candidate_register?data='. $data_encrypt);
+    //           $result = json_decode($result);
+    //           if($result->status == true){
+    //               $member->sync_mongo = '1';
+    //               $member->update();
+    //               return redirect()->route('index');
+    //           }
+    //           else{
+    //               return redirect()->route('frontend.member.register.show');
+    //           }
+    //       } catch (Exception $e) {
+              
+    //       }
+    //       return redirect()->route('index');
+    //     }
+    //   } else{
+    //     return redirect()->route('index');  
+    //   }
     }
 
     function my_simple_crypt( $string, $action = 'e' ) {

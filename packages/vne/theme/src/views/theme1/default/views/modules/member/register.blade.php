@@ -38,7 +38,7 @@
                             <div class="input">
                                 @if(!empty($element['data_view']))
                                 @foreach ($element['data_view'] as $element3)
-                                    <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['key']}}">{{ $element3['value'] }}</label>
+                                    <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['key']}}" @if($loop->index==0) checked @endif>{{ $element3['value'] }}</label>
                                 @endforeach
                                 @endif
                                 @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
@@ -93,22 +93,47 @@
 @section('footer_scripts')
 	<script type="text/javascript">
 		$(document).ready(function() {
-            var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince/';
-            $.ajax({
-                url: url,
-                type: 'GET',
-                cache: false,
-                success: function (data, status) {
-                    var data = JSON.parse(data);
-                    console.log(data);
-                    var str = '<option></option>';
-                    for(i = 0; i<data.data.length; i++) {
-                        str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
-                    }   
-                    $('#province').html('');
-                    $('#province').append(str);
+            var data = [
+                {
+                "_id": 1,
+                "province": "Thanh Hóa",
+                "alias": "thanh-hoa",
+                "region": "trung",
+                "updated_at": "2018-10-10 16:23:23",
+                "created_at": "2018-10-10 16:23:23"
+                },
+                {
+                "_id": 2,
+                "province": "Nghệ An",
+                "alias": "nghe-an",
+                "region": "trung",
+                "updated_at": "2018-10-10 16:23:23",
+                "created_at": "2018-10-10 16:23:23"
                 }
-            }, 'json');
+            ];
+            // var data = JSON.parse(data);
+            var str = '<option></option>';
+            for(i = 0; i<data.length; i++) {
+                str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
+            }   
+            $('#province').html('');
+            $('#province').append(str);
+            // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince/';
+            // $.ajax({
+            //     url: url,
+            //     type: 'GET',
+            //     cache: false,
+            //     success: function (data, status) {
+            //         var data = JSON.parse(data);
+            //         console.log(data);
+            //         var str = '<option></option>';
+            //         for(i = 0; i<data.data.length; i++) {
+            //             str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
+            //         }   
+            //         $('#province').html('');
+            //         $('#province').append(str);
+            //     }
+            // }, 'json');
 			$("body").on('change', '#object', function () {
                 var object_id = $(this).val();
                 var object_name = $("#object option:selected").text();
@@ -135,55 +160,109 @@
             });
 
 
-            $("body").on('change', '#city', function () {
-                var city_id = $(this).val();
-                var city_name = $("#city option:selected").text();
-                $('input[name=city_name]').val(city_name);
-                // var url = $(this).data("api") + '?city_id=' + city_id;
-                var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'+ city_id;
-                console.log(url);
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    cache: false,
-                    success: function (data, status) {
-                        var data = JSON.parse(data);
-                        console.log(data);
-                        var str = '<option value="0">Chọn quận huyện</option>';
-                        for(i = 0; i<data.length; i++) {
-                            str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
-                        }   
-                        $('#district').html('');
-                        $('#district').append(str);
+            $("body").on('change', '#province', function () {
+                var data = [
+                    {
+                    "_id": 28,
+                    "district": "Anh Sơn",
+                    "alias": "anh-son",
+                    "province_id": 2,
+                    "province": "Nghệ An",
+                    "updated_at": "2018-10-10 02:15:09",
+                    "created_at": "2018-10-10 02:15:09"
+                    },
+                    {
+                    "_id": 29,
+                    "district": "Con Cuông",
+                    "alias": "con-cuong",
+                    "province_id": 2,
+                    "province": "Nghệ An",
+                    "updated_at": "2018-10-10 02:15:09",
+                    "created_at": "2018-10-10 02:15:09"
                     }
-                }, 'json');
+                ];
+                console.log(data);
+                var str = '<option></option>';
+                for(i = 0; i<data.length; i++) {
+                    str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
+                }   
+                $('#district').html('');
+                $('#district').append(str);
+                // var city_id = $(this).val();
+                // var city_name = $("#city option:selected").text();
+                // $('input[name=city_name]').val(city_name);
+                // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'+ city_id;
+                // $.ajax({
+                //     url: url,
+                //     type: 'GET',
+                //     cache: false,
+                //     success: function (data, status) {
+                //         var data = JSON.parse(data);
+                //         console.log(data);
+                //         var str = '<option></option>';
+                //         for(i = 0; i<data.length; i++) {
+                //             str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
+                //         }   
+                //         $('#district').html('');
+                //         $('#district').append(str);
+                //     }
+                // }, 'json');
             });
 
             $("body").on('change', '#district', function () {
-                var district_id = $(this).val();
-                var district_name = $("#district option:selected").text();
-                $('input[name=district_name]').val(district_name);
-                // var url = $(this).data("api") + '?district_id=' + district_id;
-                var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschools/'+ district_id;
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    cache: false,
-                    data: {
-                        'district_id': district_id,
-                        'district_name' : district_name,
-                        'url' : url
-                    },
-                    success: function (data, status) {
-                        var data = JSON.parse(data);
-                        var str = '<option value="0" >Chọn trường</option>';
-                        for(i = 0; i<data.length; i++) {
-                            str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
-                        }   
-                        $('#school').html('');
-                        $('#school').append(str);
-                    }
-                }, 'json');
+                var data = [
+                {
+                "_id": 31467,
+                "schoolname": "Trường Cao đẳng Kỹ thuật Công nghiệp Bắc Giang",
+                "schooladdress": null,
+                "schoolphone": 0,
+                "schoolprovince": 13,
+                "schooldistrict": 0,
+                "schoollevel": 4,
+                "updated_at": "2018-11-01 13:59:05",
+                "created_at": "2018-11-01 13:59:05"
+                },
+                {
+                "_id": 31468,
+                "schoolname": "Trường Cao đẳng nghề Bắc Giang",
+                "schooladdress": null,
+                "schoolphone": 0,
+                "schoolprovince": 13,
+                "schooldistrict": 0,
+                "schoollevel": 4,
+                "updated_at": "2018-11-01 13:59:05",
+                "created_at": "2018-11-01 13:59:05"
+                }];
+                var str = '<option></option>';
+                for(i = 0; i<data.length; i++) {
+                    str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
+                }   
+                $('#school').html('');
+                $('#school').append(str);
+                // var district_id = $(this).val();
+                // var district_name = $("#district option:selected").text();
+                // $('input[name=district_name]').val(district_name);
+                // // var url = $(this).data("api") + '?district_id=' + district_id;
+                // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschools/'+ district_id;
+                // $.ajax({
+                //     url: url,
+                //     type: 'GET',
+                //     cache: false,
+                //     data: {
+                //         'district_id': district_id,
+                //         'district_name' : district_name,
+                //         'url' : url
+                //     },
+                //     success: function (data, status) {
+                //         var data = JSON.parse(data);
+                //         var str = '<option value="0" >Chọn trường</option>';
+                //         for(i = 0; i<data.length; i++) {
+                //             str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
+                //         }   
+                //         $('#school').html('');
+                //         $('#school').append(str);
+                //     }
+                // }, 'json');
             });
             
 		});
