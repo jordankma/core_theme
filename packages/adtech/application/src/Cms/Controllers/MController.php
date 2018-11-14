@@ -22,7 +22,7 @@ class MController extends BaseController
     protected $_menuList;
     protected $_menuTop;
     protected $domainDefault;
-
+    public $url;
     private $header = [
         'headers'  => [
             'X-Requested-With' => 'XMLHttpRequest'
@@ -36,7 +36,8 @@ class MController extends BaseController
 
     public function __construct()
     {
-        
+        // $this->url = config('app.url');
+        $this->url = 'http://gthd.vnedutech.vn';
         $id = $this->_guard()->id();
         $this->theme = config('site.theme');
         $this->user = $this->_guard()->user();

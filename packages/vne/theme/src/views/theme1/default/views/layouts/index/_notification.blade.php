@@ -16,7 +16,7 @@
 					$alias = $element->title_alias . '.html';
 				@endphp
 				<div class="list-item">
-					<p class="date">{{ $element->created_at }}</p>
+					<p class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</p>
 					<h3 class="title"><a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a></h3>
 				</div>
 				@endforeach

@@ -27,7 +27,7 @@
 				<div class="headline"><i class="fa fa-search"></i> Tra cứu danh sách thí sinh</div>
 				<form action="" class="search-form">
 					<div class="wrapper">
-						{!! $str !!}
+						{!! $form_search !!}
 					</div>
 					<button class="btn btn-primary" type="submit">Tìm kiếm</button>
 				</form>
@@ -39,294 +39,61 @@
 	<!-- search results -->
 	<section class="section search-results">
 		<div class="container">
-			<div class="results">Tổng só: <span>1.965.697</span> lượt thi</div>
+			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> lượt thi</div>
 			<!-- pagination -->
-			<nav class="pagination">
-				<ul class="nav">
-					<li class="item">
-						<a class="link disabled" href="#">Đầu</a>
-					</li>
-					<li class="item">
-						<a class="link disabled" href="#"><i class="fa fa-angle-right"></i></a>
-					</li>
-					<li class="item">
-						<a class="link active" href="#">1</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">2</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">3</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">4</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">5</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">6</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">7</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">8</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">9</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">10</a>
-					</li>
-					<li class="item">
-						<a class="link" href="#"><i class="fa fa-angle-left"></i></a>
-					</li>
-					<li class="item">
-						<a class="link" href="#">Cuối</a>
-					</li>
-				</ul>
-			</nav>
+			{{$list_member->links()}}
 			<!-- pagination end -->
 			<div class="detail">
-				<ul class="detail-row title">
-					<li class="detail-col-1">STT</li>
-					<li class="detail-col-2">Họ tên</li>
-					<li class="detail-col-3">Tên đăng nhập</li>
-					<li class="detail-col-4">Lớp</li>
-					<li class="detail-col-5">Trường</li>
-					<li class="detail-col-6">Quận/Huyện</li>
-					<li class="detail-col-7">Thành phố</li>
-					<li class="detail-col-8">Thời gian</li>
-					<li class="detail-col-9">Điểm</li>
-				</ul>
-				<div class="detail-list">
-					<ul class="detail-row item">
-						<li class="detail-col-1">1</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
+					@if(!empty($list_member))
+					@foreach ($list_member as $element)
+					@if($loop->index==0)
+					<ul class="detail-row title">
+						<li class="detail-col-1">STT</li>
+						<li class="detail-col-2">Họ tên</li>
+						<li class="detail-col-3">Tên đăng nhập</li>
+						<li class="detail-col-4">Lớp</li>
+						<li class="detail-col-5">Trường</li>
+						<li class="detail-col-6">Quận/Huyện</li>
+						<li class="detail-col-7">Thành phố</li>
 					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">2</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">3</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">4</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">5</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">6</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">7</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">8</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">9</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">10</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">11</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">12</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">13</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">14</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">15</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">16</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">17</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">18</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">19</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
-					<ul class="detail-row item">
-						<li class="detail-col-1">20</li>
-						<li class="detail-col-2">Nguyễn Trí Đức Nghĩa</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A1</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
-					</ul>
+					<div class="detail-list">
+						<ul class="detail-row item">
+							<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
+							<li class="detail-col-2">{{ $element['name'] }}</li>
+							<li class="detail-col-3">banhbeovodung0102</li>
+							<li class="detail-col-4">Lớp A10</li>
+							<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
+							<li class="detail-col-6">Quận 5</li>
+							<li class="detail-col-7">TP. Hồ Chí Minh</li>
+						</ul>
+					@else 
+						<ul class="detail-row item">
+							<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
+							<li class="detail-col-2">{{ $element['name'] }}</li>
+							<li class="detail-col-3">banhbeovodung0102</li>
+							<li class="detail-col-4">Lớp A10</li>
+							<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
+							<li class="detail-col-6">Quận 5</li>
+							<li class="detail-col-7">TP. Hồ Chí Minh</li>
+						</ul>
+					@endif
+						@endforeach
+						@endif
+					</div>
 				</div>
-			</div>
 		</div>
 	</section>
 	<!-- search results end -->
 
 
 </main>
+@stop
+@section('footer_scripts')
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+            
+            
+		});
+	</script>
 @stop

@@ -1,0 +1,63 @@
+<?php
+
+namespace Vne\Theme\App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Adtech\Application\Cms\Controllers\MController as Controller;
+
+
+use Spatie\Activitylog\Models\Activity;
+use Yajra\Datatables\Datatables;
+use Validator,Datetime,Session,URL,Schema;
+use GuzzleHttp\Client;
+use Vne\Theme\App\ApiHash;
+
+class ExamController extends Controller
+{
+    protected $secret_key = '8bgCi@gsLbtGhO)1';
+    protected $secret_iv = ')FQKRL57zFYdtn^!';
+    protected $url_api_prefix;
+    private $messages = array(
+        'name.regex' => "Sai định dạng",
+        'required' => "Bắt buộc",
+        'numeric'  => "Phải là số"
+    );
+    function setUrlApiPrefix(){
+      $this->url_api_prefix = config('app.url').config('site.api_prefix');   
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        Session::put('url.intended', URL::full());
+        $this->setUrlApiPrefix();
+    }
+
+    public function listExam(){
+        $list_banner = array();
+        $data = [
+            'list_banner' => $list_banner,
+            
+        ];
+        return view('VNE-THEME::modules.index.index');
+    }
+
+    public function detailExam(){
+        $list_banner = array();
+        $data = [
+            'list_banner' => $list_banner,
+            
+        ];
+        return view('VNE-THEME::modules.index.index');
+    }
+
+    public function scheduleExam(){
+      $link_get_schedule = $this->api_prefix.'/vne/gettimeline';
+      $schedule = file_get_contents($link_get_schedule);
+      $schedule = json_decode($schedule);
+      $data = [
+          'schedule' => $schedule->data
+      ];
+      return view('VNE-THEME::modules.exam.schedule',$data);
+    }
+}

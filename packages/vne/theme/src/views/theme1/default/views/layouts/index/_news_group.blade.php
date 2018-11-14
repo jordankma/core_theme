@@ -26,9 +26,9 @@
 													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
-													<span class="date">{{ $element->created_at }}</span>
-													<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-													<span class="commit"><i class="fa fa-chat"></i> 0</span>
+													<span class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span>
+													{{-- <span class="view"><i class="fa fa-eye"></i> 1.802</span>
+													<span class="commit"><i class="fa fa-chat"></i> 0</span> --}}
 												</div>
 												<div class="description">{{ $element->desc }}</div>
 											</div>
@@ -53,9 +53,9 @@
 													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
-													<span class="date">{{ $element->created_at }}</span>
-													<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-													<span class="commit"><i class="fa fa-chat"></i> 0</span>
+													<span class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span>
+													{{-- <span class="view"><i class="fa fa-eye"></i> 1.802</span>
+													<span class="commit"><i class="fa fa-chat"></i> 0</span> --}}
 												</div>
 												<div class="description">{{ $element->desc }}</div>
 											</div>
@@ -80,9 +80,9 @@
 													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
-													<span class="date">{{ $element->created_at }}</span>
-													<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-													<span class="commit"><i class="fa fa-chat"></i> 0</span>
+													<span class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span>
+													{{-- <span class="view"><i class="fa fa-eye"></i> 1.802</span>
+													<span class="commit"><i class="fa fa-chat"></i> 0</span> --}}
 												</div>
 												<div class="description">{{ $element->desc }}</div>
 											</div>
@@ -107,9 +107,9 @@
 													<a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a>
 												</h3>
 												<div class="info">
-													<span class="date">{{ $element->created_at }}</span>
-													<span class="view"><i class="fa fa-eye"></i> 1.802</span>
-													<span class="commit"><i class="fa fa-chat"></i> 0</span>
+													<span class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span>
+													{{-- <span class="view"><i class="fa fa-eye"></i> 1.802</span>
+													<span class="commit"><i class="fa fa-chat"></i> 0</span> --}}
 												</div>
 												<div class="description">{{ $element->desc }}</div>
 											</div>

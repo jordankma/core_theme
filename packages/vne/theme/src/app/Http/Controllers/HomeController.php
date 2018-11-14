@@ -13,43 +13,22 @@ use Validator,Datetime,Session,URL,Schema;
 use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
 use Vne\News\App\Models\News;
-use Vne\Member\App\Models\Member;
 use Vne\Timeline\App\Models\Timeline;
 use Vne\Companionunit\App\Models\Companionunit;
 use Vne\News\App\Repositories\NewsRepository;
-use GuzzleHttp\Client;
 
 class HomeController extends Controller
 {
-    protected $secret_key = '8bgCi@gsLbtGhO)1';
-    protected $secret_iv = ')FQKRL57zFYdtn^!';
-    protected $url_api_prefix;
-    private $register_form;
-    private $candidate_form;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
-    );
-    
-    function setJsonRegisterForm(){
-      $this->register_form = file_get_contents('http://gthd.vnedutech.vn/api/contest/get/load_form');  
-    }
-    function setJsonCandidateForm(){
-      $this->candidate_form = file_get_contents('http://gthd.vnedutech.vn/api/contest/get/load_form?type=candidate');  
-    }
-    function setUrlApiPrefix(){
-      $this->url_api_prefix = config('app.url').config('site.api_prefix');   
-    }
+    );  
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
         $this->news = $newsRepository;
-        $url = config('app.url');
         Session::put('url.intended', URL::full());
-        $this->setUrlApiPrefix();
-        $this->setJsonRegisterForm();
-        $this->setJsonCandidateForm();
     }
 
     public function index(){
@@ -87,36 +66,53 @@ class HomeController extends Controller
 
             $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
             $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
-            $url = config('app.url');
-            $url = 'http://gthd.vnedutech.vn/';
-            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong = $list_thi_sinh_dan_dau_tuan = array(); 
+
+            $url = $this->url;
+            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong 
+            = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong 
+            = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
+            $count_thi_sinh_dang_ky = 0;
+            $count_thi_sinh_thi = 0;
             try {
-              $list_top_thi_sinh_dang_ky_tinh = json_decode(file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=3&page=1&table_id='));
-              $list_top_thi_sinh_dang_ky_truong = json_decode(file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=3&page=1&table_id='));
-              $list_top_thi_sinh_da_thi_tinh = json_decode(file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id='));
-              $list_top_thi_sinh_da_thi_truong = json_decode(file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id='));
-              $list_thi_sinh_dan_dau_tuan =  json_decode(file_get_contents($url . 'api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5')); 
+              $list_top_thi_sinh_dang_ky_tinh = json_decode(file_get_contents($url . '/api/contest/get/top/register?top_type=province&top=3&page=1&table_id='));
             } catch (\Throwable $th) {
               //throw $th;
             }
-            $list_thi_sinh_moi = '[
-                {
-                    "name" : "lê văn A",
-                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
-                },
-                {
-                    "name" : "lê văn B",
-                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
-                },
-                {
-                    "name" : "lê văn C",
-                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
-                },
-                {
-                    "name" : "lê văn C",
-                    "address" : "Lớp 8 - THCS Vinh Tân - Nghệ An"
-                }
-            ]';
+            try {
+              $list_top_thi_sinh_dang_ky_truong = json_decode(file_get_contents($url . '/api/contest/get/top/register?top_type=school&top=3&page=1&table_id='));
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $list_top_thi_sinh_da_thi_tinh = json_decode(file_get_contents($url . '/api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id='));
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $list_top_thi_sinh_da_thi_truong = json_decode(file_get_contents($url . '/api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id='));
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $list_thi_sinh_dan_dau_tuan =  json_decode(file_get_contents($url . '/api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5')); 
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
+            try {
+              $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/search_contest_result'))->total;
+            } catch (\Throwable $th) {
+              //throw $th;
+            }
             $data = [
               'list_banner' => $list_banner,
               'list_thong_bao_btc' => $list_thong_bao_btc,
@@ -134,10 +130,12 @@ class HomeController extends Controller
               'list_top_thi_sinh_da_thi_tinh' => $list_top_thi_sinh_da_thi_tinh,
               'list_top_thi_sinh_da_thi_truong' => $list_top_thi_sinh_da_thi_truong,
               'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
-              'list_thi_sinh_moi' => json_decode($list_thi_sinh_moi),
+              'list_thi_sinh_moi' => $list_thi_sinh_moi,
               'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
               'list_don_vi_tai_tro' => $list_don_vi_tai_tro,
-              'list_news_honoivechungtoi' => $list_news_honoivechungtoi
+              'list_news_honoivechungtoi' => $list_news_honoivechungtoi,
+              'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
+              'count_thi_sinh_thi' => $count_thi_sinh_thi
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -168,276 +166,4 @@ class HomeController extends Controller
         }
     }
 
-    public function listMember(){
-      $candidate_form = $this->candidate_form;
-      $candidate_form_arr = json_decode($candidate_form,true);
-      $form_data = $candidate_form_arr['data']['load_default'];
-      $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
-      $str = $html->render();
-      $data = [
-          'str' => $str
-      ];
-      return view('VNE-THEME::modules.search.search_member', $data);
-    }
-
-    public function listResult(){
-      return view('VNE-THEME::modules.search.search_result');
-    }
-
-    public function getTopResult(){
-      $title = "Top thí sinh thi";
-      $url = config('app.url');
-      $url = 'http://gthd.vnedutech.vn/';
-      $list_top_thi_sinh_da_thi_tinh = file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=all&page=1&table_id=&round_id=&topic_id=');
-            
-      $list_top_thi_sinh_da_thi_truong = file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=100&page=1&table_id=&round_id=&topic_id=');
-      $data = [
-        'title' => $title,
-        'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
-        'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong)
-      ];
-      return view('VNE-THEME::modules.search.rating',$data);
-    }
-    public function getTopRegister(){
-      $title = "Top thí sinh đăng ký";
-      $url = config('app.url');
-      $url = 'http://gthd.vnedutech.vn/';
-      $list_top_thi_sinh_dang_ky_tinh = file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=all&page=1&table_id=');
-      $list_top_thi_sinh_dang_ky_truong = file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=100&page=1&table_id=');
-      $data = [
-        'title' => $title,
-        'list_top_thi_sinh_dang_ky_tinh' => json_decode($list_top_thi_sinh_dang_ky_tinh),
-        'list_top_thi_sinh_dang_ky_truong' => json_decode($list_top_thi_sinh_dang_ky_truong)
-      ];
-      return view('VNE-THEME::modules.search.rating_register',$data);
-    }
-    public function showContact(){
-      return view('VNE-THEME::modules.contact.contact');
-    }
-
-    public function saveContact(Request $request){
-        $contact = new Contact();
-        $contact->name = $request->input('name');
-        $contact->email = $request->input('email_contact');
-        $contact->content = $request->input('content');
-        $contact->created_at = new Datetime();
-        if($contact->save()) {
-            return view('VNE-THEME::modules.contact.contact')->with('thongbao','Gửi liên hệ thành công');
-        }
-
-    }
-
-    public function getTryExam(Request $request){
-      $url_source_try = config('site.url_source_try');
-      $game_token = $request->input('token');
-      $linkresult = 'http://timhieubiendao.daknong.vn';
-      $linkaudio = $url_source_try.'/res/sound/';
-      $linkhome = 'http://timhieubiendao.daknong.vn';
-      $ip_port = 'http://123.30.174.148:4555/';
-      $linkimg = 'http://quiz2.vnedutech.vn';
-      $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
-      $test = 'false';
-      $m_level = '3';
-      $type = '2';
-      $url = $url_source_try . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
-      $data = [
-        'url' => $url
-      ];
-      return view('VNE-THEME::modules.contest.index',$data);
-    }
-
-    public function getRealExam(Request $request){
-      $url_source_real = config('site.url_source_real');
-      $game_token = $request->input('token');
-      $linkresult = 'http://timhieubiendao.daknong.vn';
-      $linkaudio = $url_source_real.'/res/sound/';
-      $linkhome = 'http://timhieubiendao.daknong.vn';
-      $ip_port = 'http://java.cuocthi.vnedutech.vn/';
-      $linkimg = 'http://quiz2.vnedutech.vn';
-      $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
-      $test = 'false';
-      $m_level = '3';
-      $type = '2';
-      $url = $url_source_real . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
-      $data = [
-        'url' => $url
-      ];
-      return view('VNE-THEME::modules.contest.index',$data);
-    }
-
-    public function listNews(Request $request, $alias = null){
-        if($alias==null){
-            $list_news = News::orderBy('news_id', 'desc')->paginate(10);  
-        } else {
-            $list_news = $this->news->getNewsByCate($alias,10);    
-        }
-        $data = [
-            'list_news' => $list_news     
-        ];
-        return view('VNE-THEME::modules.news.list',$data);
-    }
-
-    public function listNewsByBox(Request $request, $alias = null){
-        $list_news = $this->news->getNewsByBox($alias,null,10); 
-        $data = [
-            'list_news' => $list_news     
-        ];
-        return view('VNE-THEME::modules.news.list',$data);
-    }
-
-
-    public function detailNews($alias){
-        $news = News::where('title_alias',$alias)->first();  
-        $data = [
-            'news' => $news     
-        ];
-        return view('VNE-THEME::modules.news.details',$data);
-    }
-
-    public function listExam(){
-        $list_banner = array();
-        $data = [
-            'list_banner' => $list_banner,
-            
-        ];
-        return view('VNE-THEME::modules.index.index');
-    }
-
-    public function detailExam(){
-        $list_banner = array();
-        $data = [
-            'list_banner' => $list_banner,
-            
-        ];
-        return view('VNE-THEME::modules.index.index');
-    }
-
-    public function scheduleExam(){
-      $link_get_schedule = $this->api_prefix.'/vne/gettimeline';
-      $schedule = file_get_contents($link_get_schedule);
-      $schedule = json_decode($schedule);
-      $data = [
-          'schedule' => $schedule->data
-      ];
-      return view('VNE-THEME::modules.exam.schedule',$data);
-    }
-
-    public function showRegisterMember(Request $request){
-        $register_form = $this->register_form;
-        $register_form_array = json_decode($register_form,true);
-        $data = [
-          'autoload' => $register_form_array['data']['auto_load'],
-          'config' => $register_form_array['config'],
-          'form_data_default' => $register_form_array['data']['load_default']
-        ];
-        return view('VNE-THEME::modules.member.register',$data);
-    }
-
-    public function getFormRegister(Request $request){
-      $validator = Validator::make($request->all(), [
-            'key' => 'required|numeric',
-            'key2' => 'required|numeric'
-        ], $this->messages);
-        if (!$validator->fails()) {
-          $key = $request->input('key');
-          $key2 = $request->input('key2');
-          $this->getRegisterForm();
-          $register_form = $this->register_form;
-          $register_form_array = json_decode($register_form,true);
-          if(!empty($register_form_array)){
-            $form_data = $register_form_array['data']['auto_load'][$key]['form_data'][$key2]['form_data'];  
-          }
-          $str = '';
-          if(count($form_data) > 0){
-            $html = view('VNE-THEME::modules.member.input', compact('form_data'));
-            $str = $html->render();
-          }
-          return response()->json(['str'=>$str]);
-        } else {
-          return $validator->messages();
-        }        
-    }
-
-    public function updateRegisterMember(Request $request){
-      $member_id= 17;
-      $data_request = $request->all();
-      $data_request['member_id'] = $member_id;
-      $data_request['is_register'] = 1;
-      $data = json_encode($data_request);
-      $data_encrypt = $this->my_simple_crypt($data);
-      $client = new Client();
-      $url = config('app.url');
-      $url = 'http://gthd.vnedutech.vn';
-      $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [
-        'form_params'=> [
-            'data' => $data_encrypt
-        ]
-      ]); 
-      $data = json_decode($res->getBody(),true);
-      if($data['status'] == true){
-        return redirect()->route('index');   
-      } else{
-        return redirect()->route('frontend.member.register.show');
-      }
-    //   $member = Member::where('member_id',$member_id)->first();
-    //   if(empty($member)){
-    //     $member = new Member();
-    //     $data_request = $request->all();
-    //     dd($data_request);
-    //     if(!empty($data_request)){
-    //       foreach ($data_request as $key => $value) {
-    //         $member->addColumn('vne_member',$key);
-    //         if(gettype($request->input($key))=='array'){
-    //           $member->$key = json_encode($request->input($key));
-    //         } else{
-    //           $member->$key = $request->input($key); 
-    //         }
-    //       }
-    //     }
-    //     if($member->save()){
-          
-    //       $member->is_reg = '1';
-    //       $member->update();
-    //       $data = $member->getAttributes();
-    //       $data = json_encode($data);
-    //       $data_encrypt = $this->my_simple_crypt($data);
-    //       try {
-    //           $url = config('app.url');
-    //           $url = 'http://gthd.vnedutech.vn';
-    //           $result = file_get_contents($url . '/admin/api/contest/candidate_register?data='. $data_encrypt);
-    //           $result = json_decode($result);
-    //           if($result->status == true){
-    //               $member->sync_mongo = '1';
-    //               $member->update();
-    //               return redirect()->route('index');
-    //           }
-    //           else{
-    //               return redirect()->route('frontend.member.register.show');
-    //           }
-    //       } catch (Exception $e) {
-              
-    //       }
-    //       return redirect()->route('index');
-    //     }
-    //   } else{
-    //     return redirect()->route('index');  
-    //   }
-    }
-
-    function my_simple_crypt( $string, $action = 'e' ) {
-        // you may change these values to your own
-        $secret_key = $this->secret_key;
-        $secret_iv = $this->secret_iv;
-        $output = false;
-        $encrypt_method = "AES-256-CBC";
-        $key = substr( hash( 'sha256', $secret_key ), 0 ,32);
-        $iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
-        if( $action == 'e' ) {
-            $output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
-        }
-        else if( $action == 'd' ){
-            $output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
-        }
-        return $output;
-    }
 }

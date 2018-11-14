@@ -4,6 +4,9 @@
         <label> {{ $element['title'] }} </label>
         <div class="input">
             <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
+            @if($element['params_hidden'] !=null)
+                <input type="hidden" name="{{ $element['params_hidden'] }}">    
+            @endif
             @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
@@ -19,6 +22,9 @@
                 @endforeach
                 @endif
             </select>
+            @if($element['params_hidden'] !=null)
+                <input type="hidden" name="{{ $element['params_hidden'] }}">    
+            @endif
             @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
@@ -31,6 +37,9 @@
                 <label><input type="radio" name="{{ $element['params'] }}" value="{{$element3['key']}}" @if($loop->index==0) checked @endif>{{ $element3['value'] }}</label>
             @endforeach
             @endif
+            @if($element['params_hidden'] !=null)
+                <input type="hidden" name="{{ $element['params_hidden'] }}">    
+            @endif
             @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
@@ -42,6 +51,9 @@
             @foreach ($element['data_view'] as $element4)
                 <label><input type="checkbox" name="{{ $element['params'] }}[]" value="{{$element4['key']}}">{{ $element4['value'] }}</label>
             @endforeach
+            @endif
+            @if($element['params_hidden'] !=null)
+                <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
             @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>

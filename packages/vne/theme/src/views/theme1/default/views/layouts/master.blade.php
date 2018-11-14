@@ -85,6 +85,7 @@
 	            success: function (data) {
 	                if (data.authorized !== false) {
 	                	$('input[name=member_id]').val(data.data.user_id);
+	                	$('input[name=u_name]').val(data.data.username);
 	                	$('#online-now').css('display','block');	
 	                	$('#online-now').css('visibility','visible');
 	                	$('#offline-now').css('display','none');	

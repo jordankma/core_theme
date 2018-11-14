@@ -19,12 +19,12 @@
 		<div class="info">
 			<div class="user user-registration">
 				<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup2.png?t=' . time()) }}" alt="">
-				<div class="number">233.657</div>
+				<div class="number">{{ $count_thi_sinh_dang_ky }}</div>
 				<div class="title">THÍ SINH ĐĂNG KÝ</div>
 			</div>
 			<div class="user user-active">
 				<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/flag.png?t=' . time()) }}" alt="">
-				<div class="number">197.998</div>
+				<div class="number">{{ $count_thi_sinh_thi }}</div>
 				<div class="title">THÍ SINH ĐÃ THI</div>
 			</div>
 		</div>
