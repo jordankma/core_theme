@@ -181,3 +181,8 @@ $('input[name=birthday]').attr('placeholder','YYYY-MM-DD');
         var school_name = $("#school_id option:selected").text();
         $('input[name=school_name]').val(school_name);
     });
+    $("body").on('change', '#class_id', function () {
+        var class_name = $("#class_id option:selected").text();
+        console.log(class_name);
+        $('input[name=class_name]').val(class_name);
+    });

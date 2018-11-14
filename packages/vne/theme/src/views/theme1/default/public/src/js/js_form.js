@@ -183,5 +183,6 @@ $('input[name=birthday]').attr('placeholder','YYYY-MM-DD');
     });
     $("body").on('change', '#class_id', function () {
         var class_name = $("#class_id option:selected").text();
-        $('input[name=class_name]').val(school_name);
+        console.log(class_name);
+        $('input[name=class_name]').val(class_name);
     });
