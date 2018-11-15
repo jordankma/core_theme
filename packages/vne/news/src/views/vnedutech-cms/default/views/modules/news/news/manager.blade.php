@@ -118,6 +118,7 @@
                                     <tr>                                             
                                         <th class="fit-content">#</th>
                                         <th>{{ trans('vne-news::language.table.list_news.title') }}</th>
+                                        <th>{{ trans('vne-news::language.table.list_news.alias') }}</th>
                                         <th>{{ trans('vne-news::language.table.list_news.image') }}</th>
                                         <th>{{ trans('vne-news::language.table.list_news.author') }}</th>
                                         <th>{{ trans('vne-news::language.table.list_news.category') }}</th>
@@ -173,6 +174,7 @@
                 columns: [
                     { data: 'DT_Row_Index', name: 'news_id' },
                     { data: 'title', name: 'title' },
+                    { data: 'title_alias', name: 'title_alias' },
                     { data: 'image', name: 'image' },
                     { data: 'create_by', name: 'create_by' },
                     { data: 'news_cat', name: 'news_cat' },

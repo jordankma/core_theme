@@ -177,4 +177,17 @@ class NewsBoxController extends Controller
             ->make();
     }
 
+    public function getBoxApi(){
+        $news_box = NewsBox::all();
+        $data = array();
+        if(!empty($news_box)){
+            foreach ($news_box as $key => $value) {
+                $data[] = [
+                    'name' => $value->name,
+                    'alias' => $value->alias
+                ];
+            }
+        }  
+        return json_encode($data);  
+    }
 }

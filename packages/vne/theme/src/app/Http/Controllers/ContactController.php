@@ -32,6 +32,7 @@ class ContactController extends Controller
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
+        Session::put('url.intended', URL::full());
     }
 
     

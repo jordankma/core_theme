@@ -1448,6 +1448,9 @@
                     case 'news-list':
                         txtUrl = '{{ Illuminate\Support\Facades\Route::has('vne.api.news.category') ? route('vne.api.news.category') : '' }}';
                         break;
+                    case 'news-box':
+                        txtUrl = '{{ Illuminate\Support\Facades\Route::has('vne.api.news.box') ? route('vne.api.news.box') : '' }}';
+                        break;
                     case 'news-detail':
                         txtUrl = '';
                         txtModal = 'news-detail';
@@ -1471,7 +1474,11 @@
                         success: function (response) {
                             console.log(response);
                             $("#boxParams").css('display', '');
-                            $("#lbl_category").html('Chọn danh mục');
+                            if(typeView=='list'){
+                                $("#lbl_category").html('Chọn danh mục');
+                            } else if(typeView=='box'){
+                                $("#lbl_category").html('Chọn vị trí');    
+                            }
                             if (response.length > 0) {
                                 response.forEach(function(element) {
                                     var x = document.getElementById("category_name");

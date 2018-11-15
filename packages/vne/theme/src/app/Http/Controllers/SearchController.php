@@ -42,7 +42,7 @@ class SearchController extends Controller
         $this->setJsonResultForm();
     }
 
-    public function listMember(){
+    public function listMember(Request $request){
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
       $form_data = $candidate_form_arr['data']['load_default'];
@@ -83,23 +83,13 @@ class SearchController extends Controller
       $form_search = $html->render();
 
       $url = $this->url;
-      $params = [
-          'table_id' => !empty($request->table_id)?$request->table_id: '',
-          'u_name' => !empty($request->u_name)?$request->u_name: '',
-          'name' => !empty($request->name)?$request->name: '',
-          'city_id' => !empty($request->city_id)?$request->city_id: '',
-          'district_id' => !empty($request->district_id)?$request->district_id: '',
-          'school_id' => !empty($request->school_id)?$request->school_id: '',
-          'class_id' => !empty($request->class_id)?$request->class_id: '',
-          'topic_id' => !empty($request->topic_id)?$request->topic_id: '',
-          'page'=> !empty($request->page)?$request->page:1
-      ];
-      $list_member = file_get_contents('http://timhieubiendao.daknong.vn/admin/api/contest/search_contest_result?'. http_build_query($params));
+      $params = $request->all();
+      $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $collection = new Collection($list_member['data']);
       $perPage = 20;
-      $paginatedSearchResults= new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
+      $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
       $data = [
         'list_member' => $paginatedSearchResults,
         'form_search' => $form_search,

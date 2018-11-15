@@ -40,6 +40,7 @@ return [
         ],
         "list_news" => [
             "title"=>"Tiêu đề",
+            "alias"=>"Alias",
             "author"=>"Người tạo",
             "category"=>"Chuyên mục",
             "box"=>"Chọn box",

@@ -39,7 +39,7 @@
 	<!-- search results -->
 	<section class="section search-results">
 		<div class="container">
-			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> lượt thi</div>
+			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> thí sinh</div>
 			<!-- pagination -->
 			{{$list_member->links()}}
 			<!-- pagination end -->
@@ -60,21 +60,21 @@
 						<ul class="detail-row item">
 							<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
 							<li class="detail-col-2">{{ $element['name'] }}</li>
-							<li class="detail-col-3">banhbeovodung0102</li>
-							<li class="detail-col-4">Lớp A10</li>
-							<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-							<li class="detail-col-6">Quận 5</li>
-							<li class="detail-col-7">TP. Hồ Chí Minh</li>
+							<li class="detail-col-3">{{ $element['u_name'] }}</li>
+							<li class="detail-col-4">{{ $element['class_name'] }}</li>
+							<li class="detail-col-5">{{ $element['school_name'] }}</li>
+							<li class="detail-col-6">{{ $element['district_name'] }}</li>
+							<li class="detail-col-7">{{ $element['province_name'] }}</li>
 						</ul>
 					@else 
 						<ul class="detail-row item">
 							<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
 							<li class="detail-col-2">{{ $element['name'] }}</li>
-							<li class="detail-col-3">banhbeovodung0102</li>
-							<li class="detail-col-4">Lớp A10</li>
-							<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-							<li class="detail-col-6">Quận 5</li>
-							<li class="detail-col-7">TP. Hồ Chí Minh</li>
+							<li class="detail-col-3">{{ $element['u_name'] }}</li>
+							<li class="detail-col-4">{{ $element['class_name'] }}</li>
+							<li class="detail-col-5">{{ $element['school_name'] }}</li>
+							<li class="detail-col-6">{{ $element['district_name'] }}</li>
+							<li class="detail-col-7">{{ $element['province_name'] }}</li>
 						</ul>
 					@endif
 						@endforeach

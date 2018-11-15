@@ -62,25 +62,25 @@
 					<ul class="detail-row item">
 						<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
 						<li class="detail-col-2">{{ $element['name'] }}</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
+						<li class="detail-col-3">{{ $element['u_name'] }}</li>
+						<li class="detail-col-4">{{ $element['class_name'] }}</li>
+						<li class="detail-col-5">{{ $element['school_name'] }}</li>
+						<li class="detail-col-6">{{ $element['district_name'] }}</li>
+						<li class="detail-col-7">{{ $element['province_name'] }}</li>
+						<li class="detail-col-8">{{ $element['used_time'] }}</li>
+						<li class="detail-col-9">{{ $element['point_real'] }} điểm</li>
 					</ul>
 				@else 
 					<ul class="detail-row item">
 						<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
 						<li class="detail-col-2">{{ $element['name'] }}</li>
-						<li class="detail-col-3">banhbeovodung0102</li>
-						<li class="detail-col-4">Lớp A10</li>
-						<li class="detail-col-5">Trường Đại học Khoa học Tự nhiên - Đại học QG Tp Hồ Chí Minh</li>
-						<li class="detail-col-6">Quận 5</li>
-						<li class="detail-col-7">TP. Hồ Chí Minh</li>
-						<li class="detail-col-8">00:15:018</li>
-						<li class="detail-col-9">200</li>
+						<li class="detail-col-3">{{ $element['u_name'] }}</li>
+						<li class="detail-col-4">{{ $element['class_name'] }}</li>
+						<li class="detail-col-5">{{ $element['school_name'] }}</li>
+						<li class="detail-col-6">{{ $element['district_name'] }}</li>
+						<li class="detail-col-7">{{ $element['province_name'] }}</li>
+						<li class="detail-col-8">{{ $element['used_time'] }}</li>
+						<li class="detail-col-9">{{ $element['point_real'] }} điểm</li>
 					</ul>
 				@endif
 					@endforeach

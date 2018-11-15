@@ -62,11 +62,11 @@ class ApiNewsController extends Controller
                 $data[] = [
                     'id' => $value->news_id,
                     'title' => base64_encode($value->title),
-                    'image' => base64_encode($value->image),
+                    'image' => $value->image,
                     'url' => '',
                     'desc' => base64_encode($value->desc),
-                    'like' => 123,
-                    'view' => 36423
+                    'like' => 0,
+                    'view' => 0
                 ];
             }
         }  
@@ -122,11 +122,11 @@ class ApiNewsController extends Controller
                     $data[] = [
                         'id' => $value->news_id,
                         'title' => base64_encode($value->title),
-                        'image' => base64_encode($value->image),
+                        'image' => $value->image,
                         'url' => '',
                         'desc' => base64_encode($value->desc),
-                        'like' => 123,
-                        'view' => 36423
+                        'like' => 0,
+                        'view' => 0
                     ];
                 }
             }  

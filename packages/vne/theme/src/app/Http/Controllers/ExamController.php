@@ -52,12 +52,17 @@ class ExamController extends Controller
     }
 
     public function scheduleExam(){
-      $link_get_schedule = $this->api_prefix.'/vne/gettimeline';
-      $schedule = file_get_contents($link_get_schedule);
-      $schedule = json_decode($schedule);
-      $data = [
-          'schedule' => $schedule->data
-      ];
-      return view('VNE-THEME::modules.exam.schedule',$data);
+        $schedule = array();
+        try {
+            $link_get_schedule = $this->url_api_prefix.'/vne/gettimeline';
+            $schedule = file_get_contents($link_get_schedule);
+            $schedule = json_decode($schedule)->data;
+        } catch (\Throwable $th) {
+            //throw $th;
+        } 
+        $data = [
+            'schedule' => $schedule
+        ];
+        return view('VNE-THEME::modules.exam.schedule',$data);
     }
 }

@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'register' => \Vne\Member\App\Middleware\CheckRegister::class,
         'verify' => \Vne\Member\App\Middleware\VerifyToken::class,
+        'verify.contest' => \Vne\Theme\App\Middleware\VerifyContest::class,
 //        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
 //        'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
     ];

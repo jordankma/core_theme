@@ -48,6 +48,7 @@ class HomeController extends Controller
             
             $honoivechungtoi = config('site.news_box.honoivechungtoi');
             $list_news_honoivechungtoi = $this->news->getNewsByBox($honoivechungtoi,null,4);
+
             $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
             $list_news_hanh_trinh_truong = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
             $list_news_hanh_trinh_tinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
@@ -55,7 +56,6 @@ class HomeController extends Controller
             $list_news_hanh_trinh_khac = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
             
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
-
             $list_news_anh_video_1 = $this->news->getNewsByBox($hinhanhvideo,8,4);
             $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
 
@@ -68,33 +68,14 @@ class HomeController extends Controller
             $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
 
             $url = $this->url;
-            $list_top_thi_sinh_dang_ky_tinh = $list_top_thi_sinh_dang_ky_truong 
-            = $list_top_thi_sinh_da_thi_tinh = $list_top_thi_sinh_da_thi_truong 
-            = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
+            $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
             $count_thi_sinh_dang_ky = 0;
             $count_thi_sinh_thi = 0;
             try {
-              $list_top_thi_sinh_dang_ky_tinh = json_decode(file_get_contents($url . '/api/contest/get/top/register?top_type=province&top=3&page=1&table_id='));
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              $list_top_thi_sinh_dang_ky_truong = json_decode(file_get_contents($url . '/api/contest/get/top/register?top_type=school&top=3&page=1&table_id='));
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              $list_top_thi_sinh_da_thi_tinh = json_decode(file_get_contents($url . '/api/contest/get/top/candidate?top_type=province&top=3&page=1&table_id=&round_id=&topic_id='));
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              $list_top_thi_sinh_da_thi_truong = json_decode(file_get_contents($url . '/api/contest/get/top/candidate?top_type=school&top=3&page=1&table_id=&round_id=&topic_id='));
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              $list_thi_sinh_dan_dau_tuan =  json_decode(file_get_contents($url . '/api/contest/get/top/result?top_type=province&top=4&page=1&table_id=2&round_id=4&topic_id=5')); 
+                $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board'));
+                $list_top_thi_sinh_dang_ky = $list_top[0];
+                $list_top_thi_sinh_da_thi = $list_top[1];
+                $list_thi_sinh_dan_dau_tuan = $list_top[2];
             } catch (\Throwable $th) {
               //throw $th;
             }
@@ -125,10 +106,8 @@ class HomeController extends Controller
               'list_news_anh_video_1' => $list_news_anh_video_1,
               'list_news_anh_video_2' => $list_news_anh_video_2,
               'list_time_line' => $list_time_line,
-              'list_top_thi_sinh_dang_ky_tinh' => $list_top_thi_sinh_dang_ky_tinh,
-              'list_top_thi_sinh_dang_ky_truong' => $list_top_thi_sinh_dang_ky_truong,
-              'list_top_thi_sinh_da_thi_tinh' => $list_top_thi_sinh_da_thi_tinh,
-              'list_top_thi_sinh_da_thi_truong' => $list_top_thi_sinh_da_thi_truong,
+              'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
+              'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
               'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
               'list_thi_sinh_moi' => $list_thi_sinh_moi,
               'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,

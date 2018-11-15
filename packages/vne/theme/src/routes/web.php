@@ -19,7 +19,10 @@ Route::group(array('prefix' => $adminPrefix), function() {
         ->where('as','Frontend - Tin tức chi tiết')
         ->where('type','news')
         ->where('view','detail');
-        Route::get('vi-tri/{alias?}', 'NewsController@listNewsByBox')->name('frontend.news.list.box');
+        Route::get('vi-tri/{alias?}', 'NewsController@listNewsByBox')->name('frontend.news.list.box')
+        ->where('as','Frontend - Danh sách tin tức theo vị trí')
+        ->where('type','news')
+        ->where('view','box');
 
         //cac trang search
         Route::get('danh-sach-thi-sinh', 'SearchController@listMember')->name('frontend.exam.list.member')->where('as','Frontend - Danh sách thí sinh');
@@ -38,8 +41,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::post('cap-nhat-thong-tin', 'MemberController@updateRegisterMember')->name('frontend.member.register.update');
 
     // });
+    Route::group(['middleware' => ['verify.contest']], function () {
         Route::get('thi-thu', 'ContestController@getTryExam')->name('vne.get.try.exam');
         Route::get('thi-that', 'ContestController@getRealExam')->name('vne.get.real.exam');
-
-    
+    });
 });

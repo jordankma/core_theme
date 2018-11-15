@@ -28,6 +28,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Route::get('confirm-delete', 'NewsCatController@getModalDelete')->name('vne.news.cat.confirm-delete');
 
             Route::get('api/list', 'NewsCatController@getCateApi')->name('vne.api.news.category');
+            Route::get('api/list/box', 'NewsBoxController@getBoxApi')->name('vne.api.news.box');
         });
 
         //route new tag 
