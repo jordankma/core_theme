@@ -24,22 +24,23 @@ $(document).ready(function () {
     // }   
     // $('#province_id').html('');
     // $('#province_id').append(str);
-    var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince/';
+    var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince';
     $.ajax({
         url: url,
         type: 'GET',
+        dataType: "text json",
+        cache: false,
         success: function (data, status) {
-            // var data = JSON.parse(data);
-            alert('111asdasdasd');
-            // var str = '<option></option>';
-            // for(i = 0; i<data.data.length; i++) {
-            //     str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
-            // }   
-            // $('#province').html('');
-            // $('#province').append(str);
+            var data = JSON.parse(data);
+            var str = '<option></option>';
+            for(i = 0; i<data.data.length; i++) {
+                str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
+            }   
+            $('#province').html('');
+            $('#province').append(str);   
         },
         error: function(data, status){
-            alert(status);
+            alert('2');
         }
     });
 
