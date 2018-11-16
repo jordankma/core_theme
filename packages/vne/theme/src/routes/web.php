@@ -27,7 +27,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
         //cac trang search
         Route::get('danh-sach-thi-sinh', 'SearchController@listMember')->name('frontend.exam.list.member')->where('as','Frontend - Danh sách thí sinh');
         Route::get('ket-qua', 'SearchController@listResult')->name('frontend.exam.list.result')->where('as','Frontend - Danh sách kết quả thí sinh');
-        Route::get('top-ket-qua', 'SearchController@getTopResult')->name('frontend.get.top.result');
+        Route::get('top/{type?}', 'SearchController@getTop')->name('frontend.get.top');
         Route::get('top-dang-ky', 'SearchController@getTopRegister')->name('frontend.get.top.register');
         
         //trang thi

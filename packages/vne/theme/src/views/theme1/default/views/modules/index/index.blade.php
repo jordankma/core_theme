@@ -1,4 +1,9 @@
 @extends('VNE-THEME::layouts.master')
+@section('header_styles')
+	{{-- .timeline .timeline-list::after{
+		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }})
+	} --}}
+@stop
 @section('content')
 <main class="main">
 

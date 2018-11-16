@@ -19,6 +19,8 @@ class SearchController extends Controller
     protected $secret_iv = ')FQKRL57zFYdtn^!';
     protected $url_api_prefix;
     private $candidate_form;
+    private $result_form;
+    private $rank_board;
     private $messages = array(
         'name.regex' => "Sai định dạng",
         'required' => "Bắt buộc",
@@ -33,6 +35,9 @@ class SearchController extends Controller
     function setJsonResultForm(){
       $this->result_form = file_get_contents($this->url .'/api/contest/get/load_form?type=result');  
     }
+    function setJsonRankBoard(){
+      $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');  
+    }
     public function __construct()
     {
         parent::__construct();
@@ -40,6 +45,7 @@ class SearchController extends Controller
         $this->setUrlApiPrefix();
         $this->setJsonCandidateForm();
         $this->setJsonResultForm();
+        $this->setJsonRankBoard();
     }
 
     public function listMember(Request $request){
@@ -49,17 +55,7 @@ class SearchController extends Controller
       $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
       $form_search = $html->render();
       $url = $this->url;
-      $params = [
-          'table_id' => !empty($request->table_id)?$request->table_id: '',
-          'u_name' => !empty($request->u_name)?$request->u_name: '',
-          'name' => !empty($request->name)?$request->name: '',
-          'city_id' => !empty($request->city_id)?$request->city_id: '',
-          'district_id' => !empty($request->district_id)?$request->district_id: '',
-          'school_id' => !empty($request->school_id)?$request->school_id: '',
-          'class_id' => !empty($request->class_id)?$request->class_id: '',
-          'topic_id' => !empty($request->topic_id)?$request->topic_id: '',
-          'page'=> !empty($request->page)?$request->page:1
-      ];
+      $params = $request->all();
       $list_member = file_get_contents($url . '/api/contest/get/search_candidate?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -98,30 +94,52 @@ class SearchController extends Controller
       return view('VNE-THEME::modules.search.search_result',$data);
     }
 
-    public function getTopResult(){
-      $title = "Top thí sinh thi";
+    public function getTop(Request $request,$type){
+      $title = '';
       $url = $this->url;
-      $list_top_thi_sinh_da_thi_tinh = file_get_contents($url . 'api/contest/get/top/candidate?top_type=province&top=all&page=1&table_id=&round_id=&topic_id=');
-            
-      $list_top_thi_sinh_da_thi_truong = file_get_contents($url . 'api/contest/get/top/candidate?top_type=school&top=100&page=1&table_id=&round_id=&topic_id=');
+      $type = $type;
+      $page = $request->has('page') ? $request->input('page') : 1;
+      $data_child_params = $request->has('data_child_params') ? $request->input('data_child_params') : 'school';
+      
+      try {
+        $rank_board = json_decode($this->rank_board);
+        $list_top_thi_sinh_dang_ky = $rank_board->data[0];
+        $list_top_thi_sinh_da_thi = $rank_board->data[1];    
+      } catch (\Throwable $th) {
+        //throw $th;
+        return redirect()->route('index');
+      }
+      
+      if($type=='register'){
+        $title = $list_top_thi_sinh_dang_ky->title;
+        $list_top = $list_top_thi_sinh_dang_ky->data_child;
+        $data_table = self::getDataTable($list_top, $data_child_params, $page);
+      } 
+      elseif($type=='candidate'){
+        $title = $list_top_thi_sinh_da_thi->title;
+        $list_top = $list_top_thi_sinh_da_thi->data_child;
+        $data_table = self::getDataTable($list_top, $data_child_params, $page);
+      }
       $data = [
         'title' => $title,
-        'list_top_thi_sinh_da_thi_tinh' => json_decode($list_top_thi_sinh_da_thi_tinh),
-        'list_top_thi_sinh_da_thi_truong' => json_decode($list_top_thi_sinh_da_thi_truong)
+        'type' => $type,
+        'list_top' => $list_top,
+        'data_table' => $data_table
       ];
       return view('VNE-THEME::modules.search.rating',$data);
     }
-    public function getTopRegister(){
-      $title = "Top thí sinh đăng ký";
-      $url = $this->url;
-      $list_top_thi_sinh_dang_ky_tinh = file_get_contents($url . 'api/contest/get/top/register?top_type=province&top=all&page=1&table_id=');
-      $list_top_thi_sinh_dang_ky_truong = file_get_contents($url . 'api/contest/get/top/register?top_type=school&top=100&page=1&table_id=');
-      $data = [
-        'title' => $title,
-        'list_top_thi_sinh_dang_ky_tinh' => json_decode($list_top_thi_sinh_dang_ky_tinh),
-        'list_top_thi_sinh_dang_ky_truong' => json_decode($list_top_thi_sinh_dang_ky_truong)
-      ];
-      return view('VNE-THEME::modules.search.rating_register',$data);
-    }
 
+    function getDataTable($list_top, $data_child_params, $page){
+      $data_table = array();
+      if(!empty($list_top)){
+        foreach ($list_top as $key => $value) {
+          if( $value->params == $data_child_params){
+            $api = $value->api;
+            $url_api_get_data_table = $api . '&page=' . $page;
+            $data_table = file_get_contents($url_api_get_data_table);
+          }    
+        }
+      }
+      return $data_table;
+    }
 }

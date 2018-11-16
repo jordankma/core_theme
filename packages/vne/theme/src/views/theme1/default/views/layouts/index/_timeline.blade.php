@@ -1,5 +1,5 @@
 <div class="col-12">
-	<section class="section timeline">
+	<section class="section timeline" style="background-image:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/bg-timeline.png?t=' . time()) }});">
 		<h2 class="headline"><a href="">Timeline cuộc thi</a></h2>
 		<ul class="timeline-list">
 			@if(!empty($list_time_line))

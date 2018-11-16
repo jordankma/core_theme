@@ -32,7 +32,7 @@
 		<![endif]>
 	</noscript>
 
-	<div id="app" style="background-image: url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/bg-body.png?t=' . time()) }}../);">
+	<div id="app">
 
 		<!-- header -->
 		@include('VNE-THEME::layouts.header')
