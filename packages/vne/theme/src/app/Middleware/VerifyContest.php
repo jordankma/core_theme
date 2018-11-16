@@ -10,14 +10,14 @@ class VerifyContest
 {
 	private $header = [
         'headers'  => [
-            'Authorization' => 'Bearer NGLPs5oUP1gcJISvUy5cA29bMSLHPWoM4MVIEJVr',
+            'Authorization' => 'Bearer ' . env('BEARER_TOKEN'),
             'Accept' => 'application/json'
     ]];
     public function handle($request, Closure $next)
     {
 		$token = $request->token;
-		$url = config('app.url');
-		// $url = 'http://gthd.vnedutech.vn';
+		// $url = config('app.url');
+		$url = 'http://gthd.vnedutech.vn';
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
 		try {
@@ -34,7 +34,6 @@ class VerifyContest
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
-			
 			try {
 				$data_reponse = json_decode(file_get_contents($url . '/api/contest/get/check_reg?member_id=' . $member_id),true);
 				if($data_reponse['status'] == true){
@@ -44,6 +43,7 @@ class VerifyContest
 				//throw $th;
 			}
 			if($check_reg == true){
+				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);
 			} else{
 				return redirect()->route('frontend.member.register.show');		

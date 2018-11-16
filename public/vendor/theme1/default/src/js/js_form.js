@@ -1,46 +1,47 @@
-$('input[name=birthday]').attr('placeholder','YYYY-MM-DD');
-    var data = [
-        {
-        "_id": 1,
-        "province": "Thanh Hóa",
-        "alias": "thanh-hoa",
-        "region": "trung",
-        "updated_at": "2018-10-10 16:23:23",
-        "created_at": "2018-10-10 16:23:23"
-        },
-        {
-        "_id": 2,
-        "province": "Nghệ An",
-        "alias": "nghe-an",
-        "region": "trung",
-        "updated_at": "2018-10-10 16:23:23",
-        "created_at": "2018-10-10 16:23:23"
-        }
-    ];
-    // var data = JSON.parse(data);
-    var str = '<option></option>';
-    for(i = 0; i<data.length; i++) {
-        str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
-    }   
-    $('#province_id').html('');
-    $('#province_id').append(str);
-    // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince/';
-    // $.ajax({
-    //     url: url,
-    //     type: 'GET',
-    //     cache: false,
-    //     success: function (data, status) {
-    //         console.log(data);
-    //         var data = JSON.parse(data);
-            
-    //         var str = '<option></option>';
-    //         for(i = 0; i<data.data.length; i++) {
-    //             str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
-    //         }   
-    //         $('#province').html('');
-    //         $('#province').append(str);
+$(document).ready(function () {
+    // var data = [
+    //     {
+    //     "_id": 1,
+    //     "province": "Thanh Hóa",
+    //     "alias": "thanh-hoa",
+    //     "region": "trung",
+    //     "updated_at": "2018-10-10 16:23:23",
+    //     "created_at": "2018-10-10 16:23:23"
+    //     },
+    //     {
+    //     "_id": 2,
+    //     "province": "Nghệ An",
+    //     "alias": "nghe-an",
+    //     "region": "trung",
+    //     "updated_at": "2018-10-10 16:23:23",
+    //     "created_at": "2018-10-10 16:23:23"
     //     }
-    // }, 'json');
+    // ];
+    // // var data = JSON.parse(data);
+    // var str = '<option></option>';
+    // for(i = 0; i<data.length; i++) {
+    //     str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
+    // }   
+    // $('#province_id').html('');
+    // $('#province_id').append(str);
+    var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince/';
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (data, status) {
+            // var data = JSON.parse(data);
+            alert('111asdasdasd');
+            // var str = '<option></option>';
+            // for(i = 0; i<data.data.length; i++) {
+            //     str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
+            // }   
+            // $('#province').html('');
+            // $('#province').append(str);
+        },
+        error: function(data, status){
+            alert(status);
+        }
+    });
 
     $("body").on('change', '#object', function () {
         var object_id = $(this).val();
@@ -186,3 +187,4 @@ $('input[name=birthday]').attr('placeholder','YYYY-MM-DD');
         console.log(class_name);
         $('input[name=class_name]').val(class_name);
     });
+});

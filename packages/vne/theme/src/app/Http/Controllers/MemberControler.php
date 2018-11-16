@@ -33,6 +33,7 @@ class MemberController extends Controller
     }
     public function __construct()
     {
+       
         parent::__construct();
         Session::put('url.intended', URL::full());
         $this->setUrlApiPrefix();
@@ -40,11 +41,18 @@ class MemberController extends Controller
     }
 
     public function showRegisterMember(Request $request){
+        $member_id = $request->input('member_id');
+        $check_reg = $request->input('check_reg');
+        if($check_reg == true){
+          return redirect()->route('index');
+        }
         $register_form = $this->register_form;
         $register_form_array = json_decode($register_form,true);
+        //render form default
         $form_data = $register_form_array['data']['load_default'];
         $html = view('VNE-THEME::modules.member.input', compact('form_data'));
         $form_data_default = $html->render();
+        //end
         $data = [
           'autoload' => $register_form_array['data']['auto_load'],
           'config' => $register_form_array['config'],

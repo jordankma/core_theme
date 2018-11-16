@@ -49,13 +49,16 @@ class SearchController extends Controller
     }
 
     public function listMember(Request $request){
+      $url = $this->url;
+      $params = $request->all();
+      $params['page'] = $request->has('page') ? $request->input('page') : 1;
+      //get form search
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
       $form_data = $candidate_form_arr['data']['load_default'];
       $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
       $form_search = $html->render();
-      $url = $this->url;
-      $params = $request->all();
+      //end
       $list_member = file_get_contents($url . '/api/contest/get/search_candidate?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
@@ -71,15 +74,16 @@ class SearchController extends Controller
     }
 
     public function listResult(Request $request){
+      $url = $this->url;
+      $params = $request->all();
+      $params['page'] = $request->has('page') ? $request->input('page') : 1;
       //get form search
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
       $form_data = $candidate_form_arr['data']['load_default'];
       $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
       $form_search = $html->render();
-
-      $url = $this->url;
-      $params = $request->all();
+      //end
       $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();

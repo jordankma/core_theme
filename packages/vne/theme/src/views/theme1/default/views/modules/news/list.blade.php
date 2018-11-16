@@ -1,21 +1,6 @@
 @extends('VNE-THEME::layouts.master')
 @section('content')
 <main class="main">
-	<!-- breadcrumb -->
-	<nav class="section breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb-list">
-				<li class="breadcrumb-item">
-					<a class="breadcrumb-link" href="#">Trang chủ</a>
-				</li>
-				<li class="breadcrumb-item">
-					<a class="breadcrumb-link" href="#">Tin tức</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	<!-- breadcrumb end -->
-
 	<div class="container container-main">
 		<div class="row">
 

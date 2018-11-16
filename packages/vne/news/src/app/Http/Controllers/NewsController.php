@@ -195,7 +195,6 @@ class NewsController extends Controller
 	}
 
 	public function show($news_id){
-
 		self::getCate();
         $list_news_cat = $this->_newsCatList;
         $list_news_tag = $this->news_tag->all();

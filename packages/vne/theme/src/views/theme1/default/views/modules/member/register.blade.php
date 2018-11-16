@@ -43,11 +43,8 @@
 </main>
 @stop
 @section('footer_scripts')
-    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-            
-            
-		});
+		var bearer_token = '{{ env("BEARER_TOKEN") }}';
 	</script>
+    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
 @stop
