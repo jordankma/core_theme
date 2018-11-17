@@ -8,20 +8,20 @@ use Auth;
 use GuzzleHttp\Client;
 class VerifyContest
 {
-	private $header = [
-        'headers'  => [
-            'Authorization' => 'Bearer ' . env('BEARER_TOKEN'),
-            'Accept' => 'application/json'
-    ]];
+	// private $header = ;
     public function handle($request, Closure $next)
     {
 		$token = $request->token;
-		// $url = config('app.url');
-		$url = 'http://gthd.vnedutech.vn';
+		$url = config('app.url');
+		// $url = 'http://gthd.vnedutech.vn';
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
 		try {
-			$client = new Client($this->header);
+			$client = new Client([
+				'headers'  => [
+					'Authorization' => 'Bearer ' . env('BEARER_TOKEN'),
+					'Accept' => 'application/json'
+			]]);
 			$res = $client->get('http://eid.vnedutech.vn/api/verify?token=' . $token);
 			$data_reponse_eid = json_decode($res->getBody(),true);
 			if($data_reponse_eid['success'] == true){
@@ -31,6 +31,7 @@ class VerifyContest
 		} catch (\Throwable $th) {
 			throw $th;
 		}
+		
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
@@ -41,7 +42,8 @@ class VerifyContest
 				}
 			} catch (\Throwable $th) {
 				//throw $th;
-			}
+			}			
+			dd($check_reg);
 			if($check_reg == true){
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);

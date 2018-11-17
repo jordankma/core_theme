@@ -43,6 +43,7 @@ class MemberController extends Controller
     public function showRegisterMember(Request $request){
         $member_id = $request->input('member_id');
         $check_reg = $request->input('check_reg');
+        // dd($check_reg);
         if($check_reg == true){
           return redirect()->route('index');
         }

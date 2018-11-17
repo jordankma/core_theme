@@ -46,9 +46,9 @@ class ContestController extends Controller
     public function getRealExam(Request $request){
       $url_source_real = config('site.url_source_real');
       $game_token = $request->input('token');
-      $linkresult = 'http://timhieubiendao.daknong.vn';
+      $linkresult = 'http://gthd.vnedutech.vn';
       $linkaudio = $url_source_real.'/res/sound/';
-      $linkhome = 'http://timhieubiendao.daknong.vn';
+      $linkhome = 'http://gthd.vnedutech.vn';
       $ip_port = 'http://java.cuocthi.vnedutech.vn/';
       $linkimg = 'http://quiz2.vnedutech.vn';
       $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
