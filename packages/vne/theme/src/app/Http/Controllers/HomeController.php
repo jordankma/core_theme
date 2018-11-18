@@ -75,11 +75,11 @@ class HomeController extends Controller
                 $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board'));
                 $list_top_thi_sinh_dang_ky = $list_top->data[0];
                 $list_top_thi_sinh_da_thi = $list_top->data[1];
-                $list_thi_sinh_dan_dau_tuan = $list_top->data[2];
+                $list_thi_sinh_dan_dau_tuan = $list_top->data[2]->data_child[0];
             } catch (\Throwable $th) {
               //throw $th;
             }
-            // dd($list_thi_sinh_dan_dau_tuan);
+            // dd($list_thi_sinh_dan_dau_tuan->data_child[0]);
             try {
               $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
             } catch (\Throwable $th) {

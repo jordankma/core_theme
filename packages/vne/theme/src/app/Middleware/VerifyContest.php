@@ -31,7 +31,6 @@ class VerifyContest
 		} catch (\Throwable $th) {
 			throw $th;
 		}
-		
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
@@ -42,8 +41,7 @@ class VerifyContest
 				}
 			} catch (\Throwable $th) {
 				//throw $th;
-			}			
-			dd($check_reg);
+			}
 			if($check_reg == true){
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);

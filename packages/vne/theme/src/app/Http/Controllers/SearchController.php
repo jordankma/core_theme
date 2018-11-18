@@ -118,17 +118,20 @@ class SearchController extends Controller
         $title = $list_top_thi_sinh_dang_ky->title;
         $list_top = $list_top_thi_sinh_dang_ky->data_child;
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
+        dd(json_decode($data_table));
       } 
       elseif($type=='candidate'){
         $title = $list_top_thi_sinh_da_thi->title;
         $list_top = $list_top_thi_sinh_da_thi->data_child;
+        dd($list_top);
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
       }
       $data = [
         'title' => $title,
         'type' => $type,
         'list_top' => $list_top,
-        'data_table' => $data_table
+        'data_table' => $data_table,
+        'page' => $page
       ];
       return view('VNE-THEME::modules.search.rating',$data);
     }

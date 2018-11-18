@@ -21,48 +21,11 @@
 				<!-- pagination -->
 				<nav class="pagination" style="padding-left: 30%;">
 					<ul class="">
-						<li class="page-item">
-							<a class="page-link disabled" href="#">Đầu</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link disabled" href="#"><i class="fa fa-angle-right"></i></a>
-						</li>
+						@for($i=0; $i< $data_table ; $i++)
 						<li class="page-item">
 							<a class="page-link active" href="#">1</a>
 						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">4</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">5</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">6</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">7</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">8</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">9</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">10</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">Cuối</a>
-						</li>
+						@endfor
 					</ul>
 				</nav>
 				<!-- pagination end -->

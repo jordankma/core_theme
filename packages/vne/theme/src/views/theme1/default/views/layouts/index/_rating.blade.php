@@ -71,10 +71,10 @@
 <div class="col-lg-4">
 	<!-- rating right -->
 	<section class="section rating-right">
-		<h2 class="headline">TOP Thí sinh dẫn đầu tuần</h2>
+		<h2 class="headline">{{ $list_thi_sinh_dan_dau_tuan->title}}</h2>
 		<div class="list">
-			{{-- @if(!empty($list_thi_sinh_dan_dau_tuan))
-			@foreach($list_thi_sinh_dan_dau_tuan->data as $element)
+			@if(!empty($list_thi_sinh_dan_dau_tuan->data_table ))
+			@foreach($list_thi_sinh_dan_dau_tuan->data_table as $element)
 			<div class="list-item">
 				<div class="number"> {{ $loop->index+1 }} </div>
 				<div class="img">
@@ -85,12 +85,13 @@
 					</div>
 				</div>
 				<div class="info">
-					<h4 class="title">{{ $element->name }}</h4>
-					<p class="date">{{ $element->point_real }} - {{ $element->used_time }}</p>
+					<h4 class="title">{{ $element[2] }}</h4>
+					<p class="date">{{ $element[3] }} - {{ $element[4] }}</p>
+					<p class="name-school">{{ $element[5] }} - {{ $element[6] }} - {{ $element[7] }}</p>
 				</div>
 			</div>
 			@endforeach
-			@endif --}}
+			@endif
 		</div>
 	</section>
 	<!-- rating right end -->
