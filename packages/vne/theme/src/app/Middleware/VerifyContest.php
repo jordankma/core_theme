@@ -11,7 +11,10 @@ class VerifyContest
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		$token = $request->token;
+		if(!$request->has('token')){
+			return redirect()->route('index');	
+		}
+		$token = $request->input('token');
 		$url = config('app.url');
 		// $url = 'http://gthd.vnedutech.vn';
 		$check_login = false; //da login chua
@@ -31,6 +34,7 @@ class VerifyContest
 		} catch (\Throwable $th) {
 			throw $th;
 		}
+		// dd($check_login);
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
@@ -42,6 +46,7 @@ class VerifyContest
 			} catch (\Throwable $th) {
 				//throw $th;
 			}
+			// dd($check_reg);
 			if($check_reg == true){
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);

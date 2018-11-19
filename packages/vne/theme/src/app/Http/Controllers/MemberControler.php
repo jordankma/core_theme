@@ -41,25 +41,32 @@ class MemberController extends Controller
     }
 
     public function showRegisterMember(Request $request){
-        $member_id = $request->input('member_id');
-        $check_reg = $request->input('check_reg');
-        // dd($check_reg);
-        if($check_reg == true){
+        $validator = Validator::make($request->all(), [
+            'token' => 'required'
+        ], $this->messages);
+        if (!$validator->fails()) {  
+          $member_id = $request->input('member_id');
+          $check_reg = $request->input('check_reg');
+          // dd($check_reg);
+          if($check_reg == true){
+            return redirect()->route('index');
+          }
+          $register_form = $this->register_form;
+          $register_form_array = json_decode($register_form,true);
+          //render form default
+          $form_data = $register_form_array['data']['load_default'];
+          $html = view('VNE-THEME::modules.member.input', compact('form_data'));
+          $form_data_default = $html->render();
+          //end
+          $data = [
+            'autoload' => $register_form_array['data']['auto_load'],
+            'config' => $register_form_array['config'],
+            'form_data_default' => $form_data_default
+          ];
+          return view('VNE-THEME::modules.member.register',$data);
+        } else{
           return redirect()->route('index');
         }
-        $register_form = $this->register_form;
-        $register_form_array = json_decode($register_form,true);
-        //render form default
-        $form_data = $register_form_array['data']['load_default'];
-        $html = view('VNE-THEME::modules.member.input', compact('form_data'));
-        $form_data_default = $html->render();
-        //end
-        $data = [
-          'autoload' => $register_form_array['data']['auto_load'],
-          'config' => $register_form_array['config'],
-          'form_data_default' => $form_data_default
-        ];
-        return view('VNE-THEME::modules.member.register',$data);
     }
 
     public function getFormRegister(Request $request){
