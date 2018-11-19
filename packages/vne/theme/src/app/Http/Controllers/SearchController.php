@@ -103,8 +103,11 @@ class SearchController extends Controller
       $url = $this->url;
       $type = $type;
       $page = $request->has('page') ? $request->input('page') : 1;
-      $data_child_params = $request->has('data_child_params') ? $request->input('data_child_params') : 'school';
-      
+      $data_child_params = 
+        ($request->has('data_child_params') && $request->input('data_child_params')) 
+        ? $request->input('data_child_params') : 'school';
+      //url get by page
+      $url_get_by_page = $request->url() . '?top_type=' . $data_child_params;
       try {
         $rank_board = json_decode($this->rank_board);
         $list_top_thi_sinh_dang_ky = $rank_board->data[0];
@@ -118,12 +121,10 @@ class SearchController extends Controller
         $title = $list_top_thi_sinh_dang_ky->title;
         $list_top = $list_top_thi_sinh_dang_ky->data_child;
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
-        dd(json_decode($data_table));
       } 
       elseif($type=='candidate'){
         $title = $list_top_thi_sinh_da_thi->title;
         $list_top = $list_top_thi_sinh_da_thi->data_child;
-        dd($list_top);
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
       }
       $data = [
@@ -131,7 +132,9 @@ class SearchController extends Controller
         'type' => $type,
         'list_top' => $list_top,
         'data_table' => $data_table,
-        'page' => $page
+        'page' => $page,
+        'data_child_params' => $data_child_params,
+        'url_get_by_page' => $url_get_by_page
       ];
       return view('VNE-THEME::modules.search.rating',$data);
     }
@@ -142,11 +145,11 @@ class SearchController extends Controller
         foreach ($list_top as $key => $value) {
           if( $value->params == $data_child_params){
             $api = $value->api;
-            $url_api_get_data_table = $api . '&page=' . $page;
+            $url_api_get_data_table = $api . '&page=' . $page . '&top=20';
             $data_table = file_get_contents($url_api_get_data_table);
           }    
         }
       }
-      return $data_table;
+      return json_decode($data_table);
     }
 }

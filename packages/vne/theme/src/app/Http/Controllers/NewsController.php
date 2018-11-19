@@ -22,13 +22,33 @@ class NewsController extends Controller
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
-    
+    private $rank_board;
+    function setJsonRankBoard(){
+        $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');  
+    }
+
     public function __construct( NewsRepository $newsRepository)
     {
         parent::__construct();
         $this->news = $newsRepository;
         $url = config('app.url');
         Session::put('url.intended', URL::full());
+        $this->setJsonRankBoard();
+        $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
+        try {
+            $list_top = json_decode($this->rank_board);
+            $list_top_thi_sinh_dang_ky = $list_top->data[0];
+            $list_top_thi_sinh_da_thi = $list_top->data[1];
+            $list_thi_sinh_dan_dau_tuan = $list_top->data[2]->data_child[0];
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $share = [
+            'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
+            'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
+            'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
+        ];
+        view()->share($share);
     }
 
     public function listNews(Request $request, $alias = null){

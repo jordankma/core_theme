@@ -38,7 +38,7 @@
 	<section class="section rating v2">
 		<div class="rating-item">
 			<div class="wrapper">
-				<h2 class="headline">TOP THÍ SINH ĐÃ THI</h2>
+				<h2 class="headline">{{ $list_top_thi_sinh_da_thi->title }}</h2>
 				<div class="tab js-tab">
 					@if(!empty($list_top_thi_sinh_da_thi->data_child))
 					@foreach ($list_top_thi_sinh_da_thi->data_child as $element)

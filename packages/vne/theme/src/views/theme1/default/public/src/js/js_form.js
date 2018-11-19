@@ -31,16 +31,16 @@ $(document).ready(function () {
     //     dataType: "text json",
     //     cache: false,
     //     success: function (data, status) {
-    //         var data = JSON.parse(data);
+    //         var data = data.data;
     //         var str = '<option></option>';
-    //         for(i = 0; i<data.data.length; i++) {
-    //             str += '<option value="' + data.data[i]._id + '" >' + data.data[i].province + '</option>';
-    //         }   
+    //         for(i = 0; i<data.length; i++) {
+    //             str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
+    //         }  
     //         $('#province').html('');
     //         $('#province').append(str);   
     //     },
     //     error: function(data, status){
-    //         // alert('2');
+    //         console.log('fails');
     //     }
     // });
 
@@ -100,16 +100,16 @@ $(document).ready(function () {
         }   
         $('#district_id').html('');
         $('#district_id').append(str);
-        // var city_id = $(this).val();
-        // var city_name = $("#city option:selected").text();
-        // $('input[name=city_name]').val(city_name);
-        // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'+ city_id;
+        // var province_id = $(this).val();
+        // var province_name = $("#province option:selected").text();
+        // $('input[name=province_name]').val(province_name);
+        // var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'+ province_id;
         // $.ajax({
         //     url: url,
         //     type: 'GET',
         //     cache: false,
         //     success: function (data, status) {
-        //         var data = JSON.parse(data);
+        //         var data = data.data;
         //         console.log(data);
         //         var str = '<option></option>';
         //         for(i = 0; i<data.length; i++) {
@@ -168,7 +168,7 @@ $(document).ready(function () {
         //         'url' : url
         //     },
         //     success: function (data, status) {
-        //         var data = JSON.parse(data);
+        //         var data = data.data;
         //         var str = '<option value="0" >Chọn trường</option>';
         //         for(i = 0; i<data.length; i++) {
         //             str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
