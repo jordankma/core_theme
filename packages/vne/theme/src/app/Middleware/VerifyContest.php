@@ -51,7 +51,7 @@ class VerifyContest
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);
 			} else{
-				return redirect()->route('frontend.member.register.show');		
+				return redirect()->route('frontend.member.register.show',['member_id' => $member_id]);		
 			}
 		}
         return redirect()->route('index');

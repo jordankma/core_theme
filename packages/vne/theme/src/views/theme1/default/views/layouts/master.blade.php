@@ -91,10 +91,14 @@
 	                	$('#offline-now').css('display','none');	
 	                	$('#offline-now').css('visibility','hidden');
 	                	$('#text-user-name').append(data.data.username);
+
 	                	var url_thi_thu = $('#btn-try-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-try-exam').attr('href',url_thi_thu);
 	                	var url_thi_that = $('#btn-real-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-real-exam').attr('href',url_thi_that);
+	                	
+						var url_cap_nhat_thong_tin = $('.btn-update-info').attr('href') + '?member_id=' + data.data.user_id;	
+	                	$('.btn-update-info').attr('href',url_cap_nhat_thong_tin);
 	                }
 	                else{
 	                	$('#offline-now').css('display','block');	
@@ -127,59 +131,6 @@
 	                console.log('Fail')
 	            }
 	        });
-	    });
-		$('body').on('submit', "#form-login", function (event) {
-	        event.preventDefault();
-	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
-	        var email = $('input[name=email]').val();
-	        var password = $('input[name=password]').val(); 
-	        var url = '/login';
-	        $.post(url, {_token: _crsfToken, email: email, password: password}, function (result) {
-	            if (!result.status) {
-	                $('#form-login .help-block').text(result.messeger);
-	                $('#form-login .help-block').css('display','block');
-	                return false;
-	            }else{
-	                location.reload(true);
-	            }
-	        }, 'json');
-	    });
-	    $('body').on('submit', "#form-register", function (event) {
-	        event.preventDefault();
-	        var _crsfToken = $('meta[name=csrf-token]').prop('content');
-	        var u_name = $('input[name=u_name]').val();
-	        var email = $('input[name=email_reg]').val();
-	        var phone = $('input[name=phone]').val();
-	        var password = $('input[name=password]').val(); 
-	        var conf_password = $('input[name=conf_password]').val();
-	        if(u_name=='' || password=='' || conf_password=='' || (email=='' && phone=='')){
-	        	$('#form-register .help-block').css('display','block');
-	        	$('#form-register .help-block').text('Các trường này không được bỏ trống');
-	        } else {
-                if(password != conf_password){
-                	$('#form-register .help-block').text('Mật khẩu không giống nhau');	
-                }
-                else{
-		        	$('#form-register .help-block').text('');
-	                $('#form-register .help-block').css('display','none');
-			        var url = '/register';
-			        $.post(url, {_token: _crsfToken,u_name:u_name, email: email,phone:phone, password: password,conf_password:conf_password}, function (result) {
-			            if (!result.status) {
-			                $('#form-register .help-block').text(result.messeger);
-			                $('#form-register .help-block').css('display','block');
-			                return false;
-			            }else{
-			            	if(email=='' && phone != ''){
-			              		window.location.assign("http://gthd.vnedutech.vn/cap-nhat-thong-tin");
-			            	}
-			            	else if(email != ''){
-			            		$('#form-register').html('');
-			                	$('#form-register').text('Bạn cần truy cập vào mail để xác nhận mới có thể đăng nhập');
-			            	}
-			            }
-			        }, 'json');
-                }
-	        }
 	    });
 	</script>
 </body>

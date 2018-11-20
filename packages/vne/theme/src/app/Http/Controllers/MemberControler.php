@@ -42,12 +42,19 @@ class MemberController extends Controller
 
     public function showRegisterMember(Request $request){
         $validator = Validator::make($request->all(), [
-            'token' => 'required'
+            'member_id' => 'required|numeric'
         ], $this->messages);
-        if (!$validator->fails()) {  
+        if (!$validator->fails()) {
           $member_id = $request->input('member_id');
           $check_reg = $request->input('check_reg');
-          // dd($check_reg);
+          $url = config('app.url');
+          // $url = 'http://gthd.vnedutech.vn';
+          if($check_reg == null){
+            $data_reponse = json_decode(file_get_contents($url . '/api/contest/get/check_reg?member_id=' . $member_id),true);
+            if($data_reponse['status'] == true){
+              $check_reg = true;	
+            }
+          }
           if($check_reg == true){
             return redirect()->route('index');
           }
@@ -95,6 +102,7 @@ class MemberController extends Controller
     }
 
     public function updateRegisterMember(Request $request){
+      dd($request->input('member_id'));
       $date_birthday = new DateTime($request->input('birthday'));
       $birthday = date_format($date_birthday,"d-m-Y");
       $field_list = file_get_contents($this->url . '/api/contest/get/list_field');

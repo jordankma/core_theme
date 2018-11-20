@@ -36,10 +36,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('lich-thi', 'ExamController@scheduleExam')->name('frontend.exam.schedule')->where('as','Frontend - Lịch thi');
 
         // trang cap nhat thong tin
-        Route::group(['middleware' => ['verify.contest']], function () {
-            Route::get('get-form-register', 'MemberController@getFormRegister')->name('frontend.member.get.form.register');
-            Route::get('cap-nhat-thong-tin', 'MemberController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
-        });
+        Route::get('get-form-register', 'MemberController@getFormRegister')->name('frontend.member.get.form.register');
+        Route::get('cap-nhat-thong-tin', 'MemberController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
         Route::post('cap-nhat-thong-tin', 'MemberController@updateRegisterMember')->name('frontend.member.register.update');
 
     // });
