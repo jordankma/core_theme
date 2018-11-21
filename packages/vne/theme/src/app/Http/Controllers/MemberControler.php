@@ -102,7 +102,7 @@ class MemberController extends Controller
     }
 
     public function updateRegisterMember(Request $request){
-      dd($request->input('member_id'));
+      // dd($request->input('member_id'));
       $date_birthday = new DateTime($request->input('birthday'));
       $birthday = date_format($date_birthday,"d-m-Y");
       $field_list = file_get_contents($this->url . '/api/contest/get/list_field');

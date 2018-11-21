@@ -11,12 +11,12 @@ class VerifyContest
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		if(!$request->has('token')){
-			return redirect()->route('index');	
-		}
-		$token = $request->input('token');
 		$url = config('app.url');
 		// $url = 'http://gthd.vnedutech.vn';
+		if(!$request->has('token')){
+			return redirect("http://eid.vnedutech.vn/login?site=" . $url);	
+		}
+		$token = $request->input('token');
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
 		try {

@@ -101,7 +101,7 @@ $(document).ready(function () {
         // $('#district_id').html('');
         // $('#district_id').append(str);
         var province_id = $(this).val();
-        var province_name = $("#province option:selected").text();
+        var province_name = $("#province_id option:selected").text();
         $('input[name=province_name]').val(province_name);
         var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistricts/'+ province_id;
         $.ajax({
