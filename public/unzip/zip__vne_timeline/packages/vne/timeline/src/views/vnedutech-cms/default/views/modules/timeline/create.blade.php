@@ -94,18 +94,20 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <div class="form-group">
-                                                <label class="col-md-3 col-lg-3 col-12 control-label" for="titles">Titles :</label>
-                                                <div class="col-md-9 col-lg-9 col-12{{ $errors->first('titles', 'has-error') }} ">
-                                                    <input name="titles" type="text" placeholder="{{ trans('vne-timeline::language.placeholder.titles') }}" class="form-control" autofocus required>
+                                                <label class="col-sm-3 control-label" for="titles">Titles (<span
+                                                            style="color: red">*</span>):</label>
+                                                <div class="col-sm-9 {{$errors->first('titles', 'has-error')}} ">
+                                                    <input name="titles" type="text" placeholder="{{ trans('vne-timeline::language.placeholder.titles') }}" class="form-control" value="{{old('titles')}}" autofocus required>
                                                     <span class="help-block">{{ $errors->first('titles', ':message') }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-7">
                                             <div class="form-group">
-                                                <label class="col-md-3 col-lg-3 col-12 control-label" for="time">Time :</label>
-                                                <div class="col-md-9 col-lg-9 col-12{{ $errors->first('time', 'has-error') }} ">
-                                                    <input name="time" type="text"  class="form-control" required>
+                                                <label class="col-sm-3 control-label" for="time">Time (<span
+                                                            style="color: red">*</span>):</label>
+                                                <div class="col-sm-9 {{$errors->first('time', 'has-error')}} ">
+                                                    <input name="time" type="text"  class="form-control" readonly required>
                                                     <span class="help-block">{{ $errors->first('time', ':message') }}</span>
                                                 </div>
                                             </div>
@@ -115,9 +117,9 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <label class="col-md-3 col-lg-3 col-12 control-label"
+                                                    <label class="col-sm-3 control-label"
                                                            for="note">Note :</label>
-                                                    <div class="col-md-9 col-lg-9 col-12{{ $errors->first('note', 'has-error') }} ">
+                                                    <div class="col-sm-9 {{$errors->first('note', 'has-error')}} ">
                                                         {!! Form::textarea('note', null, array('class' => 'form-control','rows'=>'5','placeholder'=> trans('vne-timeline::language.placeholder.note'))) !!}
                                                         <span class="help-block">{{ $errors->first('note', ':message') }}</span>
                                                     </div>
@@ -171,16 +173,35 @@
     <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datetimepicker/js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/clockface/js/clockface.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/js/pages/datepicker.js') }}" type="text/javascript"></script>
+   <script src =" https://cdn.jsdelivr.net/npm/jquery-scroll-lock@3.1.2/jquery-scrollLock.min.js" type="text/javascript"></script>
     <!--end of page js-->
+
     <script>
         $(function () {
             $("[name='permission_locked']").bootstrapSwitch();
         });
-        $('input[name="time"]').daterangepicker({
-            format: 'DD-MM-YYYY',
-            minDate: new Date()
+        $(function() {
+            $('input[name="time"]').daterangepicker({
+                minDate: new Date(),
+                timePicker: true,
+                startDate: moment().startOf('hour'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'D/MM/YYYY H:mm:ss ',
+                }
+            });
         });
+
+        //remove modal
+        $(function () {
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $(this).removeData('bs.modal');
+                document.location.reload(true)
+            });
+        });
+
         $(document).ready(function () {
+            //ajax
             $( function () {
                 $.ajax({
                     type : 'GET',
@@ -234,24 +255,18 @@
             });
         });
     </script>
-    <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title"
+    <div class="modal fade" data-refresh="true" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content"></div>
         </div>
     </div>
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
+    <div class="modal fade" data-refresh="true" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             </div>
         </div>
     </div>
-    <script>
-        $(function () {
-            $('body').on('hidden.bs.modal', '.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-        });
-    </script>
+
 @stop

@@ -13,12 +13,12 @@ class CreateTableTimeline extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_contest')->create('vne_timeline', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_timeline', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titles');
             $table->string('note')->nullable();
-            $table->date('starttime');
-            $table->date('endtime');
+            $table->datetime('starttime')->format('m-d-Y H:i:s');
+            $table->datetime('endtime')->format('m-d-Y H:i:s');
             $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
@@ -32,6 +32,6 @@ class CreateTableTimeline extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_contest')->dropIfExists('vne_timeline');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_timeline');
     }
 }

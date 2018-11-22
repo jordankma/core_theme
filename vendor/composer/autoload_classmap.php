@@ -13267,6 +13267,7 @@ return array(
     'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/MemberControler.php',
     'Vne\\Theme\\App\\Http\\Controllers\\NewsController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/NewsController.php',
     'Vne\\Theme\\App\\Http\\Controllers\\SearchController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/SearchController.php',
+    'Vne\\Theme\\App\\Middleware\\VerifyContest' => $baseDir . '/packages/vne/theme/src/app/Middleware/VerifyContest.php',
     'Vne\\Theme\\ThemeServiceProvider' => $baseDir . '/packages/vne/theme/src/ThemeServiceProvider.php',
     'Vne\\Timeline\\App\\Http\\Controllers\\TimelineController' => $baseDir . '/packages/vne/timeline/src/app/Http/Controllers/TimelineController.php',
     'Vne\\Timeline\\App\\Http\\Requests\\TimelineRequest' => $baseDir . '/packages/vne/timeline/src/app/Http/Requests/TimelineRequest.php',

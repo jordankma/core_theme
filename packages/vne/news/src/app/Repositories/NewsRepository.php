@@ -77,7 +77,7 @@ class NewsRepository extends Repository
     }
 
     public function getNewsByBox($alias,$news_cat_id=null,$limit=null) {
-        $q = News::orderBy('news_id', 'desc');
+        $q = News::orderBy('is_hot','asc')->orderBy('news_id', 'desc');
         if($limit==null){
             $q->whereHas('getBoxs', function ($query) use ($alias) {
                 $query->where('vne_news_box.alias', $alias);

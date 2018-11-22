@@ -277,7 +277,15 @@ class NewsController extends Controller
                 }
             }
         }
-        
+        if($is_hot == 1){
+            if(!empty($news_box)){
+                foreach ($news_box as $key => $value) {
+                    $list_news = News::with('getBoxs')->whereHas('getBoxs', function ($query) use ($value) {
+                        $query->where('vne_news_box.news_box_id', $value);
+                    })->update(['is_hot' => 2]);
+                }
+            }
+        }
 		$news = $this->news->find($news_id);
 		$news->title = $title;
         $news->type_page = 'news';

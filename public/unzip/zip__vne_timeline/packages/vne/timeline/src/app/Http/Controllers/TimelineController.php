@@ -7,6 +7,8 @@ use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Vne\Timeline\App\Http\Requests\TimelineRequest;
 use Vne\Timeline\App\Repositories\TimelineRepository;
 use Vne\Timeline\App\Models\Timeline;
+use Illuminate\Support\Facades\Cache;
+use DateTime;
 use Validator;
 
 class TimelineController extends Controller
@@ -27,13 +29,13 @@ class TimelineController extends Controller
     {
         $time = $request->input('time');
         list($start, $end) = explode("-", $time);
-        $start_date = explode('/', trim($start));
-        $end_date = explode('/', trim($end));
+        $starttime = DateTime::createFromFormat('d/m/Y H:i:s ', $start)->format('Y-m-d H:i:s');
+        $endtime = DateTime::createFromFormat(' d/m/Y H:i:s', $end)->format('Y-m-d H:i:s');
         try {
             $timeline = new Timeline($request->all());
             $timeline->titles = $request->input('titles');
-            $timeline->starttime = $start_date[2] . '-' . $start_date[0] . '-' . $start_date[1];
-            $timeline->endtime = $end_date[2] . '-' . $end_date[0] . '-' . $end_date[1];
+            $timeline->starttime = $starttime;
+            $timeline->endtime = $endtime;
             $timeline->note = strip_tags($request->input('note'));
             $timeline->save();
         } catch (\Exception $e) {
@@ -84,12 +86,12 @@ class TimelineController extends Controller
     {
         $id = $request->input('id');
         $timeline = $this->timeline->findOrFail($id);
-        $start_date = $timeline->starttime;
-        $end_date = $timeline->endtime;
         $data = [
-            'endtime' => date("m/d/Y", strtotime($end_date)),
-            'starttime' => date("m/d/Y", strtotime($start_date)),
-            'timeline' => $timeline
+            'id' => $id,
+            'titles' => $timeline->titles,
+            'starttime' => date('d/m/Y H:i:s ', strtotime($timeline->starttime)),
+            'endtime' => date('d/m/Y H:i:s ', strtotime($timeline->endtime)),
+            'note' => $timeline->note,
         ];
         return view('VNE-TIMELINE::modules.timeline.edit', $data);
     }
@@ -105,11 +107,11 @@ class TimelineController extends Controller
         $timeline = $this->timeline->findOrFail($id);
         $time = $request->input('time');
         list($start, $end) = explode("-", trim($time));
-        $start_date = explode('/', trim($start));
-        $end_date = explode('/', trim($end));
+        $starttime = DateTime::createFromFormat('d/m/Y H:i:s ', $start)->format('Y-m-d H:i:s');
+        $endtime = DateTime::createFromFormat(' d/m/Y H:i:s', $end)->format('Y-m-d H:i:s');
         $timeline->titles = $request->input('titles');
-        $timeline->starttime = $start_date[2] . '-' . $start_date[0] . '-' . $start_date[1];
-        $timeline->endtime = $end_date[2] . '-' . $end_date[0] . '-' . $end_date[1];
+        $timeline->starttime = $starttime;
+        $timeline->endtime = $endtime;
         $timeline->note = strip_tags($request->input('note'));
         try {
             $timeline->update();
@@ -170,22 +172,49 @@ class TimelineController extends Controller
     //Table Data to index page
     public function data()
     {
-        $data = $this->timeline->findAll()->get();
+        $timeline = $this->timeline->findAll()->get();
+        $data = [];
+        foreach ($timeline as $key => $value) {
+            $obj = ['id' => $value->id,
+                'titles' => $value->titles,
+                'starttime' => date('d-m-Y H:i:s ', strtotime($value->starttime)),
+                'endtime' => date('d-m-Y H:i:s ', strtotime($value->endtime)),
+                'note' => $value->note,
+            ];
+            $data[] = $obj;
+        }
         return json_encode($data, true);
     }
 
+//    public function gettimeline()
+//    {
+//        $timeline = Timeline::select('id','titles','starttime','endtime','note')->get()->toArray();
+//        $titles =['STT','Tiêu Đề','Thời Gian Bắt Đầu','Thời Gian Kết Thúc','Nội Dung'];
+//        $data = [$titles];
+//        foreach ($timeline as $key =>$value){
+//            $x = array_values($value);
+//            $data[] = $x;
+//        }
+//        if ($timeline == null) {
+//            return response()->json(['data' => null], 500);
+//        }
+//        return response()->json(['data' => $data], 200);
+//    }
     public function gettimeline()
     {
-        $timeline = Timeline::select('id','titles','starttime','endtime','note')->get()->toArray();
-        $titles =['id','titles','starttime','endtime','note'];
-        $data = [$titles];
-        foreach ($timeline as $key =>$value){
-            $x = array_values($value);
-            $data[] = $x;
-        }
+        $timeline = Cache::remember('timeline', 30 * 60, function () {
+            $timeline = Timeline::select('id', 'titles', 'starttime', 'endtime', 'note')->get()->toArray();
+            $data = [];
+            foreach ($timeline as $key => $value) {
+                $x = array_values($value);
+                $data[] = $x;
+            }
+            return $data;
+        });
+        $header = ['STT', 'Tiêu Đề', 'Thời Gian Bắt Đầu', 'Thời Gian Kết Thúc', 'Nội Dung'];
         if ($timeline == null) {
-            return response()->json(['data' => null], 500);
+            return response()->json(['data' => ['table_header' => $header, 'data_table' => null]], 500)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
         }
-        return response()->json(['data' => $data], 200);
+        return response()->json(['data' => ['table_header' => $header, 'data_table' => $timeline]], 200)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
     }
 }

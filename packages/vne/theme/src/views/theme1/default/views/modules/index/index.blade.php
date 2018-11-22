@@ -16,7 +16,7 @@
 				<!-- Countdown clock -->
 				<section class="col-lg-4 no-spacing section countdown-clock">
 					<h2 class="headline">Cuộc thi GIAO THÔNG HỌC ĐƯỜNG </h2>
-					<div data-minutes="0"></div>
+					<div data-minutes="{{ $minutes_countdown }}"></div>
 					<div class="button-group">
 						<a class="btn" href="{{ route('vne.get.real.exam') }}" id="btn-real-exam">Vào thi</a>
 						<a class="btn" href="{{ route('vne.get.try.exam') }}" id="btn-try-exam">Thi thử</a>

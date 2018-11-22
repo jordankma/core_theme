@@ -18,5 +18,7 @@ Route::group(array('prefix' => $adminPrefix), function () {
 
 $apiPrefix = config('site.api_prefix');
 Route::group(array('prefix' => $apiPrefix), function () {
-    Route::get('vne/gettimeline', 'TimelineController@gettimeline')->name('vne.gettimeline');
+//    Route::group(['middleware' => 'adtech.bearer'], function () {
+        Route::get('vne/gettimeline', 'TimelineController@gettimeline')->name('vne.gettimeline');
+//    });
 });

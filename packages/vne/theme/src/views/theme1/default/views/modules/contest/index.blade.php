@@ -10,12 +10,12 @@
                                 z-index: -1000;
                             }
                         </style>
-                        <iframe width="902px" height="600px" style="margin-left:50px" src="{{ asset($url) }}"></iframe>
+                        <iframe style="width: 95%; height: 98%; border: none" src="{{ asset($url) }}"></iframe>
                     </div>
                 </div>
-                <a href="/front/exam/exit" class="exam-close">
+                {{-- <a href="/front/exam/exit" class="exam-close">
                     <img src="/files/images/close.png"/>
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>

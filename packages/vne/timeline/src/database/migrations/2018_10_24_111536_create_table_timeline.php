@@ -17,8 +17,8 @@ class CreateTableTimeline extends Migration
             $table->increments('id');
             $table->string('titles');
             $table->string('note')->nullable();
-            $table->date('starttime');
-            $table->date('endtime');
+            $table->datetime('starttime')->format('m-d-Y H:i:s');
+            $table->datetime('endtime')->format('m-d-Y H:i:s');
             $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';

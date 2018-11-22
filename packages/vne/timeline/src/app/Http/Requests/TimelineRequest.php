@@ -37,14 +37,15 @@ class TimelineRequest extends FormRequest
                 {
                     $rules = [
                         'titles' => 'required|max:255',
+                        'note'=> 'max:255'
                     ];
                     $data =  $request->time;
                     if(isset($data)){
                         list($start, $end ) = explode("-", $data);
                         $start = str_replace('/', '-', trim($start));
                         $end = str_replace('/', '-', trim($end));
-                        $rules['starttime'.$start] ='date_format:"d/m/Y"';
-                        $rules['endtime'.$end] ='date_format:"d/m/Y"|after:starttime.'.$start;
+                        $rules['starttime'.$start] ='require|date_format:"DD/M/YYYY"';
+                        $rules['endtime'.$end] ='require|date_format:"DD/M/YYYY"|after:starttime.'.$start;
                     }
                     return $rules;
                 }
@@ -53,14 +54,15 @@ class TimelineRequest extends FormRequest
                     $rules = [
                         'id'=> 'required|numeric',
                         'titles' => 'required|max:255',
+                        'note'=> 'max:255'
                     ];
                     $data =  $request->time;
                     if(isset($data)){
                         list($start, $end ) = explode("-", $data);
                         $start = str_replace('/', '-', trim($start));
                         $end = str_replace('/', '-', trim($end));
-                        $rules['starttime'.$start] ='date_format:"d/m/Y"';
-                        $rules['endtime'.$end] ='date_format:"d/m/Y"|after:starttime.'.$start;
+                        $rules['starttime'.$start] ='date_format:"DD/M/YYYY"';
+                        $rules['endtime'.$end] ='date_format:"DD/M/YYYY"|after:starttime.'.$start;
                     }
                     return $rules;
                 }
@@ -75,7 +77,7 @@ class TimelineRequest extends FormRequest
         return [
             'numeric' => 'Phải là số',
             'required' => 'Vui lòng nhập thông tin',
-            'max' => 'Tên chương trình không dài quá 255 kí tự',
+            'max' => 'Không dài quá 255 kí tự',
             'unique' => 'Không được trùng tên'
         ];
     }

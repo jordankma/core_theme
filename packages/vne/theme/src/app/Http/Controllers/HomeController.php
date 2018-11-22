@@ -38,26 +38,26 @@ class HomeController extends Controller
             $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
             $thongbaobtc = config('site.news_box.thongbaobtc');
-            $list_thong_bao_btc = $this->news->getNewsByBox($thongbaobtc,null,5);
+            $list_thong_bao_btc = self::getNewsByBox($thongbaobtc,null,5);
 
             $tinnong = config('site.news_box.tinnong');
-            $list_news_hot = $this->news->getNewsByBox($tinnong,null,5);
+            $list_news_hot = self::getNewsByBox($tinnong,null,5);
             
             $sukien = config('site.news_box.sukien');
-            $list_news_event = $this->news->getNewsByBox($sukien,null,4);
+            $list_news_event = self::getNewsByBox($sukien,null,4);
             
             $honoivechungtoi = config('site.news_box.honoivechungtoi');
-            $list_news_honoivechungtoi = $this->news->getNewsByBox($honoivechungtoi,null,4);
+            $list_news_honoivechungtoi = self::getNewsByBox($honoivechungtoi,null,4);
 
             $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-            $list_news_hanh_trinh_truong = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
-            $list_news_hanh_trinh_tinh = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
-            $list_news_hanh_trinh_toanquoc = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,6,4);
-            $list_news_hanh_trinh_khac = $this->news->getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
+            $list_news_hanh_trinh_truong = self::getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
+            $list_news_hanh_trinh_tinh = self::getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
+            $list_news_hanh_trinh_toanquoc = self::getNewsByBox($hanhtrinhgiaothonghocduong,6,4);
+            $list_news_hanh_trinh_khac = self::getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
             
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
-            $list_news_anh_video_1 = $this->news->getNewsByBox($hinhanhvideo,8,4);
-            $list_news_anh_video_2 = $this->news->getNewsByBox($hinhanhvideo,9,4);
+            $list_news_anh_video_1 = self::getNewsByBox($hinhanhvideo,8,4);
+            $list_news_anh_video_2 = self::getNewsByBox($hinhanhvideo,9,4);
 
             $list_time_line = Timeline::all();
 
@@ -95,6 +95,8 @@ class HomeController extends Controller
             } catch (\Throwable $th) {
               //throw $th;
             }
+            $minutes_countdown = self::getMinuteCountDown();
+            // dd($minutes_countdown);
             $data = [
               'list_banner' => $list_banner,
               'list_thong_bao_btc' => $list_thong_bao_btc,
@@ -115,7 +117,8 @@ class HomeController extends Controller
               'list_don_vi_tai_tro' => $list_don_vi_tai_tro,
               'list_news_honoivechungtoi' => $list_news_honoivechungtoi,
               'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
-              'count_thi_sinh_thi' => $count_thi_sinh_thi
+              'count_thi_sinh_thi' => $count_thi_sinh_thi,
+              'minutes_countdown' => $minutes_countdown
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -146,4 +149,20 @@ class HomeController extends Controller
         }
     }
 
+    public function getMinuteCountDown(){
+      $minutes_countdown = 0;
+      
+      $date_now = new Datetime();
+      $date_now_string = $date_now->format('Y-m-d H:i:s');
+      $time_line = Timeline::where('starttime','>',$date_now_string)->first();
+      if($time_line){
+        $starttime = $time_line->starttime; 
+        $minutes_countdown_timestamp = strtotime($starttime) - strtotime($date_now_string);
+        $minutes_countdown = round($minutes_countdown_timestamp/60)*60;
+      }
+      return $minutes_countdown; 
+    }
+    public function getNewsByBox($alias, $news_cat_id, $limit){
+      return $this->news->getNewsByBox($alias,$news_cat_id,$limit);  
+    }
 }

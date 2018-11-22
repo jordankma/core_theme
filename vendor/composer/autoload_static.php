@@ -13963,6 +13963,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/MemberControler.php',
         'Vne\\Theme\\App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/NewsController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/SearchController.php',
+        'Vne\\Theme\\App\\Middleware\\VerifyContest' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Middleware/VerifyContest.php',
         'Vne\\Theme\\ThemeServiceProvider' => __DIR__ . '/../..' . '/packages/vne/theme/src/ThemeServiceProvider.php',
         'Vne\\Timeline\\App\\Http\\Controllers\\TimelineController' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Http/Controllers/TimelineController.php',
         'Vne\\Timeline\\App\\Http\\Requests\\TimelineRequest' => __DIR__ . '/../..' . '/packages/vne/timeline/src/app/Http/Requests/TimelineRequest.php',

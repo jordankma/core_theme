@@ -47,7 +47,7 @@ class ContestController extends Controller
       $url_source_real = config('site.url_source_real');
       $game_token = $request->input('token');
       $linkresult = 'http://gthd.vnedutech.vn';
-      $linkaudio = $url_source_real.'/res/sound/';
+      $linkaudio = '/res/sound/';
       $linkhome = 'http://gthd.vnedutech.vn';
       $ip_port = 'http://java.cuocthi.vnedutech.vn/';
       $linkimg = 'http://quiz2.vnedutech.vn';
