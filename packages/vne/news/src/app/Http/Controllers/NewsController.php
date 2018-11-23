@@ -52,6 +52,12 @@ class NewsController extends Controller
         $this->news_has_cat = $newsHasCatRepository;
         $this->news_box = $newsBoxRepository;
         $this->_user = Auth::user();
+        $this->thongbaobtc = config('site.news_box.thongbaobtc');
+        $this->tinnong = config('site.news_box.tinnong');
+        $this->sukien = config('site.news_box.sukien');
+        $this->honoivechungtoi = config('site.news_box.honoivechungtoi');
+        $this->hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
+        $this->hinhanhvideo = config('site.news_box.hinhanhvideo');
     }
 	/**
      * @return view list news
@@ -184,6 +190,16 @@ class NewsController extends Controller
 		if ($news->news_id) {
             Cache::forget('cache_api_news');
             Cache::forget('cache_news');
+            Cache::forget($this->thongbaobtc);
+            Cache::forget($this->tinnong);
+            Cache::forget($this->sukien);
+            Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_4');
+            Cache::forget($this->hinhanhvideo . '_1');
+            Cache::forget($this->hinhanhvideo . '_2');
             activity('news')
                 ->performedOn($news)
                 ->withProperties($request->all())
@@ -355,6 +371,14 @@ class NewsController extends Controller
 		if ($news->news_id) {
             Cache::forget('cache_api_news');
             Cache::forget('cache_news');
+            Cache::forget($this->sukien);
+            Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_4');
+            Cache::forget($this->hinhanhvideo . '_1');
+            Cache::forget($this->hinhanhvideo . '_2');
             activity('news')
                 ->performedOn($news)
                 ->withProperties($request->all())
@@ -395,7 +419,14 @@ class NewsController extends Controller
             $this->news->delete($news_id);
             Cache::forget('cache_api_news');
             Cache::forget('cache_news');
-
+            Cache::forget($this->sukien);
+            Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_4');
+            Cache::forget($this->hinhanhvideo . '_1');
+            Cache::forget($this->hinhanhvideo . '_2');
             NewsHasTag::where('news_id', $news_id)->delete();
             NewsHasCat::where('news_id', $news_id)->delete();
             NewsHasBox::where('news_id', $news_id)->delete();

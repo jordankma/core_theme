@@ -8,7 +8,7 @@ use Adtech\Application\Cms\Controllers\MController as Controller;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,Datetime,Session,URL,Schema;
+use Validator,Datetime,Session,URL,Schema,Cache;
 
 use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
@@ -38,26 +38,26 @@ class HomeController extends Controller
             $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
             $thongbaobtc = config('site.news_box.thongbaobtc');
-            $list_thong_bao_btc = self::getNewsByBox($thongbaobtc,null,5);
+            $list_thong_bao_btc = self::getNewsByBox($thongbaobtc, $thongbaobtc,null,5);
 
             $tinnong = config('site.news_box.tinnong');
-            $list_news_hot = self::getNewsByBox($tinnong,null,5);
+            $list_news_hot = self::getNewsByBox($tinnong, $tinnong , null, 5);
             
             $sukien = config('site.news_box.sukien');
-            $list_news_event = self::getNewsByBox($sukien,null,4);
+            $list_news_event = self::getNewsByBox($sukien, $sukien, null, 4);
             
             $honoivechungtoi = config('site.news_box.honoivechungtoi');
-            $list_news_honoivechungtoi = self::getNewsByBox($honoivechungtoi,null,4);
+            $list_news_honoivechungtoi = self::getNewsByBox($honoivechungtoi, $honoivechungtoi, null, 4);
 
             $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-            $list_news_hanh_trinh_truong = self::getNewsByBox($hanhtrinhgiaothonghocduong,4,4);
-            $list_news_hanh_trinh_tinh = self::getNewsByBox($hanhtrinhgiaothonghocduong,5,4);
-            $list_news_hanh_trinh_toanquoc = self::getNewsByBox($hanhtrinhgiaothonghocduong,6,4);
-            $list_news_hanh_trinh_khac = self::getNewsByBox($hanhtrinhgiaothonghocduong,7,4);
+            $list_news_hanh_trinh_truong = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_1', $hanhtrinhgiaothonghocduong, 4, 4);
+            $list_news_hanh_trinh_tinh = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_2', $hanhtrinhgiaothonghocduong, 5, 4);
+            $list_news_hanh_trinh_toanquoc = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_3', $hanhtrinhgiaothonghocduong, 6, 4);
+            $list_news_hanh_trinh_khac = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_4' , $hanhtrinhgiaothonghocduong,7,4);
             
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
-            $list_news_anh_video_1 = self::getNewsByBox($hinhanhvideo,8,4);
-            $list_news_anh_video_2 = self::getNewsByBox($hinhanhvideo,9,4);
+            $list_news_anh_video_1 = self::getNewsByBox($hinhanhvideo.'_1', $hinhanhvideo, 8, 4);
+            $list_news_anh_video_2 = self::getNewsByBox($hinhanhvideo.'_2', $hinhanhvideo, 9, 4);
 
             $list_time_line = Timeline::all();
 
@@ -162,7 +162,15 @@ class HomeController extends Controller
       }
       return $minutes_countdown; 
     }
-    public function getNewsByBox($alias, $news_cat_id, $limit){
-      return $this->news->getNewsByBox($alias,$news_cat_id,$limit);  
+    function getNewsByBox($key_cache, $alias, $news_cat_id, $limit){
+      if (Cache::has($key_cache)) {
+        $data = Cache::get($key_cache);
+        dd('1');
+      } else {
+        $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
+        Cache::put($key_cache, $data);
+        dd('2');
+      }
+      return $data;  
     }
 }
