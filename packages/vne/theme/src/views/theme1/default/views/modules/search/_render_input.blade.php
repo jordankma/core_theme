@@ -11,7 +11,7 @@
         <label>{{ $element['title'] }}</label>
         <div class="input">
             <select class="form-control" id="{{ $element['params'] }}" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif >
-                <option></option>
+                <option>{{ $element['title'] }}</option>
                 @if(!empty($element['data_view']))
                 @foreach ($element['data_view'] as $element2)
                     <option value="{{ $element2['key'] }}">{{ $element2['value'] }}</option>

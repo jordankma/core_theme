@@ -3,6 +3,36 @@
 	{{-- .timeline .timeline-list::after{
 		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }})
 	} --}}
+	<style>
+		.timeline .timeline-list .item {
+			margin-right: 20px;
+		}
+		.timeline .timeline-list .item .inner{
+			opacity: 1;
+		}
+		.timeline .timeline-list .item:nth-child(2n+1) .inner::after {
+			content: '';
+			position: absolute;
+			bottom: -3px;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			border-left: 3px solid transparent;
+			border-right: 3px solid transparent;
+			border-top: 3px solid #02a1e3;
+		}
+		.timeline .timeline-list .item:nth-child(2n) .inner::after {
+			content: '';
+			position: absolute;
+			bottom: -3px;
+			left: 50%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			border-left: 3px solid transparent;
+			border-right: 3px solid transparent;
+			border-top: 3px solid #02a1e3;
+		}
+	</style>
 @stop
 @section('content')
 <main class="main">

@@ -38,8 +38,8 @@
 				<!-- pagination end -->
 				<div class="content">
 					<div class="row title">
-						<div class="col-2 col-md-1"></div>
-						<div class="col-6 col-md-6">Thành phố</div>
+						<div class="col-2 col-md-1">STT</div>
+						<div class="col-6 col-md-6">Tỉnh/TP</div>
 						<div class="col-4 col-md-5">Số lượng</div>
 					</div>
 					<ol class="list">

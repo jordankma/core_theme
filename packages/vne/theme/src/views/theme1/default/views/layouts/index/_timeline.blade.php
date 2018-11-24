@@ -10,7 +10,10 @@
 				<li class="item">
 					<div class="inner">
 						<div class="title"> {{ $element->titles }} </div>
-						<div class="date"> {{ $element->starttime }} -> {{ $element->endtime }}</div>
+						<div class="date"> 
+							Từ {{ date_format(date_create($element->starttime),"d-m-Y") }} 
+							đến {{ date_format( date_create($element->endtime),"d-m-Y") }}
+						</div>
 					</div>
 				</li>
 			@endforeach

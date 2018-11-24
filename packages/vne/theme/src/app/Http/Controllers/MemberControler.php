@@ -47,7 +47,7 @@ class MemberController extends Controller
         if (!$validator->fails()) {
           $member_id = $request->input('member_id');
           $check_reg = $request->input('check_reg');
-          $url = config('app.url');
+          $url = $this->url;
           // $url = 'http://gthd.vnedutech.vn';
           if($check_reg == null){
             $data_reponse = json_decode(file_get_contents($url . '/api/contest/get/check_reg?member_id=' . $member_id),true);
@@ -129,8 +129,7 @@ class MemberController extends Controller
       $data = json_encode($data_request);
       $data_encrypt = $this->my_simple_crypt($data);
       $client = new Client();
-      $url = config('app.url');
-      $url = 'http://gthd.vnedutech.vn';
+      $url = $this->url;
       $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [
         'form_params'=> [
             'data' => $data_encrypt

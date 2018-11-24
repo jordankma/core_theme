@@ -35,7 +35,7 @@
 						<li class="detail-col-4">Lớp</li>
 						<li class="detail-col-5">Trường</li>
 						<li class="detail-col-6">Quận/Huyện</li>
-						<li class="detail-col-7">Thành phố</li>
+						<li class="detail-col-7">Tỉnh/TP</li>
 					</ul>
 					<div class="detail-list">
 						<ul class="detail-row item">

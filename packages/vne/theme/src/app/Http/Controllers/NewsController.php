@@ -31,7 +31,7 @@ class NewsController extends Controller
     {
         parent::__construct();
         $this->news = $newsRepository;
-        $url = config('app.url');
+        $url = $this->url;
         Session::put('url.intended', URL::full());
         $this->setJsonRankBoard();
         $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
