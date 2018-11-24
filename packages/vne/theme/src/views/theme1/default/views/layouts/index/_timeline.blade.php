@@ -3,16 +3,20 @@
 		<h2 class="headline"><a href="">Timeline cuộc thi</a></h2>
 		<ul class="timeline-list">
 			@if(!empty($list_time_line))
+			@php 
+				$date_now = new Datetime();
+				$date_now_string = $date_now->format('Y-m-d H:i:s');
+			@endphp
 			@foreach ($list_time_line as $element)
-				@if($loop->index==0)
+				{{-- @if($loop->index==0)
 					@continue
-				@endif
-				<li class="item">
+				@endif --}}
+				<li class="item @if($element->starttime > $date_now_string) item-new @endif">
 					<div class="inner">
 						<div class="title"> {{ $element->titles }} </div>
 						<div class="date"> 
-							Từ {{ date_format(date_create($element->starttime),"d-m-Y") }} 
-							đến {{ date_format( date_create($element->endtime),"d-m-Y") }}
+							Từ {{ date_format(date_create($element->starttime),"d/m/Y") }} <br> 
+							Đến {{ date_format( date_create($element->endtime),"d/m/Y") }}
 						</div>
 					</div>
 				</li>

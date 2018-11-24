@@ -4,33 +4,37 @@
 		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }})
 	} --}}
 	<style>
-		.timeline .timeline-list .item {
-			margin-right: 20px;
+		.timeline .timeline-list .item-new .inner .title {
+			background: #bfbdbdbf;
+		}
+		.timeline .timeline-list .item-new .inner{
+			background: #969c9c8a;
 		}
 		.timeline .timeline-list .item .inner{
 			opacity: 1;
 		}
+		.timeline .timeline-list .item .inner .date{
+			opacity: 1;
+		}
+		.timeline .timeline-list .item:nth-child(2n) .inner{
+			bottom: -150px;
+		}
+		.timeline .timeline-list .item:nth-child(2n+1) .inner{
+			top:-50px;
+		}
 		.timeline .timeline-list .item:nth-child(2n+1) .inner::after {
-			content: '';
-			position: absolute;
 			bottom: -3px;
-			left: 50%;
-			-webkit-transform: translateX(-50%);
-			transform: translateX(-50%);
-			border-left: 3px solid transparent;
-			border-right: 3px solid transparent;
 			border-top: 3px solid #02a1e3;
 		}
 		.timeline .timeline-list .item:nth-child(2n) .inner::after {
-			content: '';
-			position: absolute;
-			bottom: -3px;
-			left: 50%;
-			-webkit-transform: translateX(-50%);
-			transform: translateX(-50%);
-			border-left: 3px solid transparent;
-			border-right: 3px solid transparent;
+			top: -3px;
 			border-top: 3px solid #02a1e3;
+		}
+		.timeline .timeline-list .item-new:nth-child(2n+1) .inner::after {
+			border-top: 3px solid #bfbdbdbf;
+		}
+		.timeline .timeline-list .item-new:nth-child(2n) .inner::after {
+			border-top: 3px solid #bfbdbdbf;
 		}
 	</style>
 @stop

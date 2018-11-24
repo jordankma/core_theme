@@ -38,29 +38,29 @@ class HomeController extends Controller
             $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
 
             $thongbaobtc = config('site.news_box.thongbaobtc');
-            $list_thong_bao_btc = self::getNewsByBox($thongbaobtc, $thongbaobtc,null,5);
+            $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
 
             $tinnong = config('site.news_box.tinnong');
-            $list_news_hot = self::getNewsByBox($tinnong, $tinnong , null, 5);
+            $list_news_hot = self::getNewsByBoxFromCache($tinnong, $tinnong , null, 5);
             
             $sukien = config('site.news_box.sukien');
-            $list_news_event = self::getNewsByBox($sukien, $sukien, null, 4);
+            $list_news_event = self::getNewsByBoxFromCache($sukien, $sukien, null, 4);
             
             $honoivechungtoi = config('site.news_box.honoivechungtoi');
-            $list_news_honoivechungtoi = self::getNewsByBox($honoivechungtoi, $honoivechungtoi, null, 4);
+            $list_news_honoivechungtoi = self::getNewsByBoxFromCache($honoivechungtoi, $honoivechungtoi, null, 4);
 
             $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-            $list_news_hanh_trinh_truong = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_1', $hanhtrinhgiaothonghocduong, 4, 4);
-            $list_news_hanh_trinh_tinh = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_2', $hanhtrinhgiaothonghocduong, 5, 4);
-            $list_news_hanh_trinh_toanquoc = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_3', $hanhtrinhgiaothonghocduong, 6, 4);
-            $list_news_hanh_trinh_khac = self::getNewsByBox($hanhtrinhgiaothonghocduong.'_4' , $hanhtrinhgiaothonghocduong,7,4);
+            $list_news_hanh_trinh_truong = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_1', $hanhtrinhgiaothonghocduong, 4, 4);
+            $list_news_hanh_trinh_tinh = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_2', $hanhtrinhgiaothonghocduong, 5, 4);
+            $list_news_hanh_trinh_toanquoc = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_3', $hanhtrinhgiaothonghocduong, 6, 4);
+            $list_news_hanh_trinh_khac = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_4' , $hanhtrinhgiaothonghocduong,7,4);
             
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
-            $list_news_anh_video_1 = self::getNewsByBox($hinhanhvideo.'_1', $hinhanhvideo, 8, 4);
-            $list_news_anh_video_2 = self::getNewsByBox($hinhanhvideo.'_2', $hinhanhvideo, 9, 4);
+            $list_news_anh_video_1 = self::getNewsByBoxFromCache($hinhanhvideo.'_1', $hinhanhvideo, 8, 4);
+            $list_news_anh_video_2 = self::getNewsByBoxFromCache($hinhanhvideo.'_2', $hinhanhvideo, 9, 4);
 
             $list_time_line = Timeline::all();
-
+            // dd($list_time_line);
             $id_don_vi_dong_hanh = config('site.don_vi_dong_hanh_id');
             $list_don_vi_dong_hanh = Companionunit::where('comtype',$id_don_vi_dong_hanh)->get();
 
@@ -162,14 +162,14 @@ class HomeController extends Controller
       }
       return $minutes_countdown; 
     }
-    function getNewsByBox($key_cache, $alias, $news_cat_id, $limit){
+    function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
       if (Cache::has($key_cache)) {
         $data = Cache::get($key_cache);
-        // dd('1');
+        dd('1');
       } else {
         $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
         Cache::put($key_cache, $data);
-        // dd('2');
+        dd('2');
       }
       return $data;  
     }
