@@ -7,14 +7,12 @@ $(document).ready(function () {
         cache: false,
         success: function (data, status) {
             var data = data.data;
-            var str = '<option></option>';
-            if(data.length>0){
-                for(i = 0; i<data.length; i++) {
-                    str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
-                }  
-            }
-            $('#province').html('');
-            $('#province').append(str);   
+            var str = '<option>Chọn Tỉnh/TP</option>';
+            for(i = 0; i<data.length; i++) {
+                str += '<option value="' + data[i]._id + '" >' + data[i].province + '</option>';
+            }  
+            $('#province_id').html('');
+            $('#province_id').append(str);   
         },
         error: function(data, status){
             console.log('fails');
@@ -60,11 +58,9 @@ $(document).ready(function () {
                 var data = data.data;
                 console.log(data);
                 var str = '<option></option>';
-                if(data.length>0){
-                    for(i = 0; i<data.length; i++) {
-                        str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
-                    }
-                }   
+                for(i = 0; i<data.length; i++) {
+                    str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
+                }
                 $('#district_id').html('');
                 $('#district_id').append(str);
             }
@@ -89,11 +85,9 @@ $(document).ready(function () {
             success: function (data, status) {
                 var data = data.data;
                 var str = '<option value="0" >Chọn trường</option>';
-                if(data.length>0){
-                    for(i = 0; i<data.length; i++) {
-                        str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
-                    }   
-                }
+                for(i = 0; i<data.length; i++) {
+                    str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
+                }  
                 $('#school_id').html('');
                 $('#school_id').append(str);
             }

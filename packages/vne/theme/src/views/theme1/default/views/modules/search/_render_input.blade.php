@@ -10,7 +10,11 @@
     <div class="form-group col-md-4">
         <label>{{ $element['title'] }}</label>
         <div class="input">
-            <select class="form-control" id="{{ $element['params'] }}" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif >
+            <select class="form-control select-box" data-name="{{ $element['params_hidden'] }}" @if(isset($element['api'])) data-api="{{ $element['api'] }}" @endif
+            data-params="{{ $element['params'] }}" data-type="{{ $element['type'] }}" 
+            data-parent-field="{{ $element['parent_field'] }}"  id="{{ $element['params'] }}" 
+            name="{{ $element['params'] }}" 
+            @if($element['is_require'] == true) required="" @endif >
                 <option>{{ $element['title'] }}</option>
                 @if(!empty($element['data_view']))
                 @foreach ($element['data_view'] as $element2)

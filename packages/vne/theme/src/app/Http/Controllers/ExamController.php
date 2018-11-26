@@ -55,8 +55,10 @@ class ExamController extends Controller
         $schedule = array();
         try {
             $link_get_schedule = $this->url_api_prefix.'/vne/gettimeline';
+            
             $schedule = file_get_contents($link_get_schedule);
             $schedule = json_decode($schedule)->data;
+            // dd($schedule);
         } catch (\Throwable $th) {
             //throw $th;
         } 

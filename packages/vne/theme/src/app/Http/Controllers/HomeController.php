@@ -165,11 +165,11 @@ class HomeController extends Controller
     function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
       if (Cache::has($key_cache)) {
         $data = Cache::get($key_cache);
-        dd('1');
+        // dd('1');
       } else {
         $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
         Cache::put($key_cache, $data);
-        dd('2');
+        // dd('2');
       }
       return $data;  
     }

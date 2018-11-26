@@ -112,6 +112,9 @@ class MController extends BaseController
                     case 'info_footer_3':
                         $settingView['info_footer_3'] = $setting->value;
                         break;
+                    case 'info_footer_4':
+                        $settingView['info_footer_4'] = $setting->value;
+                        break;
                 }
             }
         }

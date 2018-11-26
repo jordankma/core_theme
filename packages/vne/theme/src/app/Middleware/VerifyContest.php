@@ -11,8 +11,8 @@ class VerifyContest
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		$url = config('app.url');
-		// $url = 'http://gthd.vnedutech.vn';
+		// $url = config('app.url');
+		$url = 'http://gthd.vnedutech.vn';
 		if(!$request->has('token')){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);	
 		}

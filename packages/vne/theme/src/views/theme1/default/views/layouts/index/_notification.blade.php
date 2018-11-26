@@ -3,10 +3,10 @@
 	<section class="section notification">
 		<div class="notification-item">
 			<div class="headline">
-				<h2><a href="">THÔNG BÁO CỦA BAN TỔ CHỨC</a></h2>
 				@php 
 					$thongbaobtc = config('site.news_box.thongbaobtc');
 				@endphp
+				<h2><a href="{{ route('frontend.news.list.box',$thongbaobtc) }}">THÔNG BÁO CỦA BAN TỔ CHỨC</a></h2>
 				<a class="btn" href="{{ route('frontend.news.list.box',$thongbaobtc) }}">Xem thêm</a>
 			</div>
 			<div class="list">

@@ -133,6 +133,10 @@
                         <div class="form-group">
                             <textarea name="info_footer_3" id="ckeditor3">{{ $info_footer_3 }}</textarea>
                         </div>
+                        <label>Thông tin liên hệ footer 4</label>
+                        <div class="form-group">
+                            <textarea name="info_footer_4" id="ckeditor4">{{ $info_footer_4 }}</textarea>
+                        </div>
                         
 
                         {{-- <label>GA Code</label>
@@ -194,6 +198,7 @@
             CKEDITOR.replace('ckeditor1',options);
             CKEDITOR.replace('ckeditor2',options);
             CKEDITOR.replace('ckeditor3',options);
+            CKEDITOR.replace('ckeditor4',options);
         })
     </script>
 @stop

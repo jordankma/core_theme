@@ -1,14 +1,21 @@
 <footer class="footer">
 	<div class="footer-top">
 		<div class="container">
-			<div class="carousel js-carousel-03">
-				@if(!empty($list_don_vi_tai_tro))
-				@foreach($list_don_vi_tai_tro as $element)
-				<div class="carousel-item">
-					<a href="{{ $element->link }}"><img src="{{ $element->img }}" alt=""></a>
+			<div class="row">
+				{{-- <div class="col-md-4">
+					{!! isset($SETTING['info_footer_4']) ? $SETTING['info_footer_4'] : '' !!}	
 				</div>
-				@endforeach
-				@endif
+				<div class="col-md-8"> --}}
+					<div class="carousel js-carousel-03">
+						@if(!empty($list_don_vi_tai_tro))
+						@foreach($list_don_vi_tai_tro as $element)
+						<div class="carousel-item">
+							<a href="{{ $element->link }}"><img src="{{ $element->img }}" alt=""></a>
+						</div>
+						@endforeach
+						@endif
+					</div>
+				{{-- </div> --}}
 			</div>
 		</div>
 	</div>
