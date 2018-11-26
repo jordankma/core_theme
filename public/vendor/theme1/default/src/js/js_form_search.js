@@ -11,12 +11,11 @@ $(document).ready(function () {
             params_search += "&" + parent_field_arr[i] + "=" + $(parent_field_arr[i]).val(); 
         }
         if( type=="api"){
-            var option_select = '"#" + params + "option:selected"'; 
-            var name = $(option_select).text();
-            console.log('name'+name);
+            var option_select = "#" + params + " option:selected"; 
+            var name_curent = $(option_select).text();
             var input_name = 'input[name=' + name + ']';
             console.log(input_name);
-            $(input_name).val(name);
+            $(input_name).val(name_curent);
 
             var url = api + params_search;
             $.ajax({
