@@ -1,41 +1,57 @@
 $(document).ready(function () {
-    $("body").on('click', '.select-box', function () {
-        var type = $(this).data("type");
-        var parent_field = $(this).data("parent-field");
-        var params = $(this).data("params");
-        var name = $(this).data("params_hidden");
-        var api = $(this).data("api");
+    $("body").one('click', '.select-box', function () {
+        var type = $(this).data("type");  //kieu api | data
+        var parent_field = $(this).data("parent-field"); //field cha 1 array
+        var params = $(this).data("params"); //id 
+        var params_hidden = $(this).data("params-hidden");
+        var api = $(this).data("api"); //api get data
         var parent_field_arr = parent_field.split(",");
-        var params_search = "";
-        for(var i = 0; i<parent_field_arr.length; i++) {
-            params_search += "&" + parent_field_arr[i] + "=" + $(parent_field_arr[i]).val(); 
+        if(parent_field != ''){
+            var option_select = "#" + params + " option:selected"; 
+            var name_curent = $(option_select).text();
+            var input_name = 'input[name=' + params_hidden + ']';
+            $(input_name).val(name_curent);
         }
-        if( type=="api"){
-            var name = $("#params option:selected").text();
-            var input_name = 'input[name=' + name + ']';
-            console.log(input_name);
-            $(input_name).val(name);
-
-            var url = api + params_search;
-            $.ajax({
-                url: url,
-                type: 'GET',
-                cache: false,
-                success: function (data, status) {
-                    alert('1');
-                    var data = data.data;
-                    console.log('11'.data);
-                    var str = '<option>'+ +'</option>';
-                    for(i = 0; i<data.length; i++) {
-                        str += '<option value="' + data[i].key + '" >' + data[i].value + '</option>';
-                    }  
-                    $('#params').html('');
-                    $('#params').append(str);
-                },
-                error: function(data, status){
-                    console.log('fails');
+        if( type=="api")
+        {
+            var params_search = "";
+            var value_parent = "";
+            var value_curent = "";
+            var flag = false; //true da thay doi false chua thay doi
+            for(var i = 0; i<parent_field_arr.length; i++) {
+                value_parent = $('#' + parent_field_arr[i] + ' option:selected').val() != '' ? $('#' + parent_field_arr[i] + ' option:selected').val() : '';
+                value_curent = $(this).data(parent_field_arr[i]);
+                if(value_parent != value_curent){
+                    flag = true; break;
                 }
-            }, 'json');
+            }
+            if(flag == true){
+                for(var i = 0; i<parent_field_arr.length; i++) {
+                    value_parent = $('#' + parent_field_arr[i] + ' option:selected').val() != '' ? $('#' + parent_field_arr[i] + ' option:selected').val() : '';
+                    value_curent = $(this).data(parent_field_arr[i]);
+                    $(this).attr('data-' + parent_field_arr[i], value_parent);
+                    params_search += "&" + parent_field_arr[i] + "=" + value_parent; 
+                } 
+                var url = api + params_search;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    success: function (data, status) {
+                        var data = data.data;
+                        var str = '<option>'+'</option>';
+                        for(i = 0; i<data.length; i++) {
+                            str += '<option value="' + data[i].key + '" >' + data[i].value + '</option>';
+                        }  
+                        var params_tmp = '#' + params;
+                        $(params_tmp).html('');
+                        $(params_tmp).append(str);
+                    },
+                    error: function(data, status){
+                        console.log('fails');
+                    }
+                }, 'json');   
+            }
         }
     });
 });

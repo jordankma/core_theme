@@ -10,7 +10,7 @@
     <div class="form-group col-md-4">
         <label>{{ $element['title'] }}</label>
         <div class="input">
-            <select class="form-control select-box" data-name="{{ $element['params_hidden'] }}" @if(isset($element['api'])) data-api="{{ $element['api'] }}" @endif
+            <select class="form-control select-box" data-params-hidden="{{ $element['params_hidden'] }}" @if(isset($element['api'])) data-api="{{ $element['api'] }}" @endif
             data-params="{{ $element['params'] }}" data-type="{{ $element['type'] }}" 
             data-parent-field="{{ $element['parent_field'] }}"  id="{{ $element['params'] }}" 
             name="{{ $element['params'] }}" 
@@ -22,6 +22,9 @@
                 @endforeach
                 @endif
             </select>
+            @if($element['params_hidden'] != null)
+                <input type="hidden" name="{{ $element['params_hidden'] }}">    
+            @endif
         </div>
     </div>
     @elseif($element['type_view'] == 2)

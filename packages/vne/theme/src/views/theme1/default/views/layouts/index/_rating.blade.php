@@ -1,5 +1,6 @@
 <div class="col-lg-4">
 	<!-- rating -->
+	@if(!empty($list_top_thi_sinh_dang_ky))
 	<section class="section rating v1">
 		<div class="rating-item">
 			<div class="wrapper">
@@ -30,11 +31,13 @@
 			</div>
 		</div>
 	</section>
+	@endif
 	<!-- rating end -->
 </div>
 
 <div class="col-lg-4">
 	<!-- rating -->
+	@if(!empty($list_top_thi_sinh_da_thi))
 	<section class="section rating v2">
 		<div class="rating-item">
 			<div class="wrapper">
@@ -65,17 +68,19 @@
 			</div>
 		</div>
 	</section>
+	@endif
 	<!-- rating end -->
 </div>
 
 <div class="col-lg-4">
 	<!-- rating right -->
+	@if($list_thi_sinh_dan_dau_tuan)
 	<section class="section rating-right">
 		<h2 class="headline">{{ $list_thi_sinh_dan_dau_tuan->title}}</h2>
 		<div class="list">
 			@if(!empty($list_thi_sinh_dan_dau_tuan->data_table ))
 			@foreach($list_thi_sinh_dan_dau_tuan->data_table as $element)
-			<div class="list-item">
+			<div class="list-item" style="padding-top:10px">
 				<div class="number"> {{ $loop->index+1 }} </div>
 				<div class="img">
 					<div class="img-cover">
@@ -94,5 +99,6 @@
 			@endif
 		</div>
 	</section>
+	@endif
 	<!-- rating right end -->
 </div>
