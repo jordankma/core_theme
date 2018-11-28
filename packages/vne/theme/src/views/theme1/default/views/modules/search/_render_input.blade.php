@@ -22,9 +22,9 @@
                 @endforeach
                 @endif
             </select>
-            @if($element['params_hidden'] != null)
+            {{-- @if($element['params_hidden'] != null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
-            @endif
+            @endif --}}
         </div>
     </div>
     @elseif($element['type_view'] == 2)

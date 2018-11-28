@@ -90,10 +90,12 @@ class SearchController extends Controller
       $collection = new Collection($list_member['data']);
       $perPage = 20;
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
+      $headers = $list_member['headers'];
       $data = [
         'list_member' => $paginatedSearchResults,
         'form_search' => $form_search,
-        'params' => $params
+        'params' => $params,
+        'headers' => $headers
       ];
       return view('VNE-THEME::modules.search.search_result',$data);
     }

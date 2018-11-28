@@ -72,7 +72,7 @@ class HomeController extends Controller
             $count_thi_sinh_dang_ky = 0;
             $count_thi_sinh_thi = 0;
             try {
-                $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board'));
+                $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board?limit=3'));
                 $list_top_thi_sinh_dang_ky = $list_top->data[0];
                 $list_top_thi_sinh_da_thi = $list_top->data[1];
                 $list_thi_sinh_dan_dau_tuan = $list_top->data[2]->data_child[0];
