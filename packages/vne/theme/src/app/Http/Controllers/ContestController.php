@@ -25,11 +25,13 @@ class ContestController extends Controller
     }
 
     public function getTryExam(Request $request){
+      $url = $this->url;
       $url_source_try = config('site.url_source_try');
       $game_token = $request->input('token');
-      $linkresult = 'http://timhieubiendao.daknong.vn';
-      $linkaudio = $url_source_try.'/res/sound/';
-      $linkhome = 'http://timhieubiendao.daknong.vn';
+      $member_id = $request->input('member_id');
+      $linkresult = $url . '?member_id=' . $member_id;
+      $linkaudio = '/res/sound/';
+      $linkhome = $url;
       $ip_port = 'http://123.30.174.148:4555/';
       $linkimg = 'http://quiz2.vnedutech.vn';
       $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
@@ -44,11 +46,13 @@ class ContestController extends Controller
     }
 
     public function getRealExam(Request $request){
+      $url = $this->url;
       $url_source_real = config('site.url_source_real');
       $game_token = $request->input('token');
-      $linkresult = 'http://gthd.vnedutech.vn';
+      $member_id = $request->input('member_id');
+      $linkresult = $url . '?member_id=' . $member_id;
       $linkaudio = '/res/sound/';
-      $linkhome = 'http://gthd.vnedutech.vn';
+      $linkhome = $url;
       $ip_port = 'http://java.cuocthi.vnedutech.vn/';
       $linkimg = 'http://quiz2.vnedutech.vn';
       $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';

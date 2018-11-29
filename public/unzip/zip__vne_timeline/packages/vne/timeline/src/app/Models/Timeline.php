@@ -12,7 +12,7 @@ class Timeline extends Model {
      *
      * @var string
      */
-    protected $connection = 'mysql_cuocthi';
+    protected $connection = 'mysql_contest';
 
     protected $table = 'vne_timeline';
 

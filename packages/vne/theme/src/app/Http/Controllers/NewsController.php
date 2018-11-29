@@ -24,7 +24,11 @@ class NewsController extends Controller
     );
     private $rank_board;
     function setJsonRankBoard(){
-        $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');  
+        try {
+            $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');
+        } catch (\Throwable $th) {
+            throw $th;
+        }  
     }
 
     public function __construct( NewsRepository $newsRepository)

@@ -211,10 +211,11 @@ class TimelineController extends Controller
             }
             return $data;
         });
+
         $header = ['STT', 'Tiêu Đề', 'Thời Gian Bắt Đầu', 'Thời Gian Kết Thúc', 'Nội Dung'];
         if ($timeline == null) {
-            return response()->json(['data' => ['table_header' => $header, 'data_table' => null]], 500)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
+            return response()->json(['success'=>'false','message'=>'Không có dữ liệu','data' => ['table_header' => $header, 'data_table' => '']], 200)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
         }
-        return response()->json(['data' => ['table_header' => $header, 'data_table' => $timeline]], 200)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
+        return response()->json(['success'=>'true','message'=>'success','data' => ['table_header' => $header, 'data_table' => $timeline]], 200)->header('Content-Type', 'application/json')->header('Accept', 'application/json; charset=utf-8');
     }
 }

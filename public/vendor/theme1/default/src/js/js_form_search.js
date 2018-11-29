@@ -10,7 +10,7 @@ $(document).ready(function () {
         _this.attr('disabled','');
         setTimeout(function(){ 
             _this.removeAttr('disabled','disabled');
-        }, 150);
+        }, 100);
         var type = _this.data("type");  //kieu api | data
         var parent_field = _this.data("parent-field"); //field cha 1 array
         var params = _this.data("params"); //id 

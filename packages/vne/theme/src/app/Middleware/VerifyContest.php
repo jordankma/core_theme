@@ -11,8 +11,17 @@ class VerifyContest
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		// $url = config('app.url');
-		$url = 'http://gthd.vnedutech.vn';
+		//check auto close contest
+		$type_exam = 'real';
+		$data_tmp = json_decode(self::checkEndExam($type_exam),true);
+		if($data_tmp['status'] == false){
+			$messages = $data_tmp['messages'];
+			return view('VNE-THEME::modules.contest.notification',compact('messages', $messages));
+		}
+		//end
+
+		$url = config('app.url');
+		// $url = 'http://gthd.vnedutech.vn';
 		if(!$request->has('token')){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);	
 		}
@@ -56,5 +65,36 @@ class VerifyContest
 		}
         return redirect()->route('index');
     }
-
+	function checkEndExam($type_exam){
+		$url = config('app.url');
+		$url = 'http://gthd.vnedutech.vn';
+		$status = false;
+		$messages = 'Vòng thi kết thúc!';
+		try {
+			$data_reponse = json_decode(file_get_contents($url . '/api/contest/get/exam_info?type=' . $type_exam),true);
+			$rounds = $data_reponse['data']['exam_info']['round'];
+			$current_time = time();
+			if(!empty($rounds)){
+				foreach ($rounds as $key => $value) {
+					$topics = $value['topic'];
+					if(!empty($topics)){
+						foreach ($topics as $key2 => $value2) {
+							$time = $value2['time'];
+							if($time['start'] <= $current_time && $time['end'] >= $current_time){
+								$status = true;			
+								$messages = $time['end_notify'];	
+							}	
+						}
+					}
+				}
+			}
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+		$data = [
+			'status' => $status,
+			'messages' => $messages
+		];
+		return json_encode($data);	
+	}
 }

@@ -49,7 +49,7 @@ $(document).ready(function () {
         var province_id = $(this).val();
         var province_name = $("#province_id option:selected").text();
         $('input[name=province_name]').val(province_name);
-        var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistrictbyprovince?provinceid='+ province_id;
+        var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getdistrictbyprovince?province_id='+ province_id;
         $.ajax({
             url: url,
             type: 'GET',
@@ -72,7 +72,7 @@ $(document).ready(function () {
         var district_name = $("#district_id option:selected").text();
         $('input[name=district_name]').val(district_name);
         // var url = $(this).data("api") + '?district_id=' + district_id;
-        var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschoolbydistrict?districtid='+ district_id;
+        var url = 'http://cuocthi.vnedutech.vn/resource/dev/get/vne/getschoolbydistrict?district_id='+ district_id;
         $.ajax({
             url: url,
             type: 'GET',

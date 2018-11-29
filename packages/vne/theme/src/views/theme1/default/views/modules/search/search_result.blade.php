@@ -25,47 +25,25 @@
 			{{$list_member->links()}}
 			<!-- pagination end -->
 			<div class="detail">
-				@if(!empty($list_member))
-				@foreach ($list_member as $element)
-				@if($loop->index==0)
-				<ul class="detail-row title">
-					<li class="detail-col-1">STT</li>
-					<li class="detail-col-2">Họ tên</li>
-					<li class="detail-col-3">Tên đăng nhập</li>
-					<li class="detail-col-4">Lớp</li>
-					<li class="detail-col-5">Trường</li>
-					<li class="detail-col-6">Quận/Huyện</li>
-					<li class="detail-col-7">Tỉnh/TP</li>
-					<li class="detail-col-8">Thời gian</li>
-					<li class="detail-col-9">Điểm</li>
-				</ul>
-				<div class="detail-list">
-					<ul class="detail-row item">
-						<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
-						<li class="detail-col-2">{{ $element['name'] }}</li>
-						<li class="detail-col-3">{{ $element['u_name'] }}</li>
-						<li class="detail-col-4">{{ $element['class_name'] }}</li>
-						<li class="detail-col-5">{{ $element['school_name'] }}</li>
-						<li class="detail-col-6">{{ $element['district_name'] }}</li>
-						<li class="detail-col-7">{{ $element['province_name'] }}</li>
-						<li class="detail-col-8">{{ $element['used_time'] }}</li>
-						<li class="detail-col-9">{{ $element['point_real'] }} điểm</li>
-					</ul>
-				@else 
-					<ul class="detail-row item">
-						<li class="detail-col-1">{{ (($params['page']-1)*20) + $loop->index + 1 }}</li>
-						<li class="detail-col-2">{{ $element['name'] }}</li>
-						<li class="detail-col-3">{{ $element['u_name'] }}</li>
-						<li class="detail-col-4">{{ $element['class_name'] }}</li>
-						<li class="detail-col-5">{{ $element['school_name'] }}</li>
-						<li class="detail-col-6">{{ $element['district_name'] }}</li>
-						<li class="detail-col-7">{{ $element['province_name'] }}</li>
-						<li class="detail-col-8">{{ $element['used_time'] }}</li>
-						<li class="detail-col-9">{{ $element['point_real'] }} điểm</li>
+				@if(!empty($headers))
+					<ul class="detail-row title">
+						@foreach ($headers as $key => $element)
+							<li class="detail-col-{{ $loop->index+ 1 }}">{{ $element }}</li>
+						@endforeach
 					</ul>
 				@endif
+				<div class="detail-list">
+					@if(!empty($list_member))
+					@foreach ($list_member as $key => $element)
+						<ul class="detail-row item">
+							@if(!empty($element))
+							@foreach ($element as $key2 => $element2)
+								<li class="detail-col-{{ $loop->index+ 1 }}">{{ $element2 }}</li>
+							@endforeach
+							@endif
+						</ul>
 					@endforeach
-					@endif
+					@endif		
 				</div>
 			</div>
 		</div>

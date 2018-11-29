@@ -30,13 +30,25 @@ class SearchController extends Controller
       $this->url_api_prefix = config('app.url').config('site.api_prefix');   
     }
     function setJsonCandidateForm(){
-      $this->candidate_form = file_get_contents($this->url . '/api/contest/get/load_form?type=candidate');  
+      try {
+        $this->candidate_form = file_get_contents($this->url . '/api/contest/get/load_form?type=candidate');
+      } catch (\Throwable $th) {
+        //throw $th;
+      }  
     }
     function setJsonResultForm(){
-      $this->result_form = file_get_contents($this->url .'/api/contest/get/load_form?type=result');  
+      try {
+        $this->result_form = file_get_contents($this->url .'/api/contest/get/load_form?type=result');
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
     }
     function setJsonRankBoard(){
-      $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');  
+      try {
+        $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
     }
     public function __construct()
     {
@@ -65,17 +77,20 @@ class SearchController extends Controller
       $collection = new Collection($list_member['data']);
       $perPage = 20;
       $paginatedSearchResults= new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.member'),'path' => 'danh-sach-thi-sinh?'. http_build_query($params)]);
+      $headers = $list_member['headers'];
       $data = [
         'list_member' => $paginatedSearchResults,
         'form_search' => $form_search,
+        'headers' => $headers,
         'params' => $params
       ];
       return view('VNE-THEME::modules.search.search_member', $data);
     }
 
-    public function listResult(Request $request){
+    public function listResult(  $request){
       $url = $this->url;
       $params = $request->all();
+      // dd($params);
       $params['page'] = $request->has('page') ? $request->input('page') : 1;
       //get form search
       $candidate_form = $this->candidate_form;
@@ -86,6 +101,7 @@ class SearchController extends Controller
       //end
       $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
+      
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $collection = new Collection($list_member['data']);
       $perPage = 20;
@@ -141,6 +157,20 @@ class SearchController extends Controller
       return view('VNE-THEME::modules.search.rating',$data);
     }
 
+    public function resultMember(Request $request){
+      $url = $this->url;
+      $member_id = $request->input('member_id');
+      $headers = array();
+      $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id='. $member_id);
+      $data_member = json_decode($data_member);
+      $headers = isset($data_member->headers) ? $data_member->headers : $headers;
+      $data = $data_member->data;
+      $data = [
+        'headers' => $headers,  
+        'data' => $data  
+      ];
+      return view('VNE-THEME::modules.search.result_member',$data);    
+    }
     function getDataTable($list_top, $data_child_params, $page){
       $data_table = array();
       if(!empty($list_top)){
@@ -154,4 +184,5 @@ class SearchController extends Controller
       }
       return json_decode($data_table);
     }
+    
 }
