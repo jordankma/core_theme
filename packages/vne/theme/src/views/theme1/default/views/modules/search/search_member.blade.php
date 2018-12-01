@@ -22,7 +22,7 @@
 		<div class="container">
 			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> thí sinh</div>
 			<!-- pagination -->
-			{{$list_member->links()}}
+			{!!$list_member->links()!!}
 			<!-- pagination end -->
 			<div class="detail">
 				@if(!empty($headers))

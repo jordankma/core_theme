@@ -16,7 +16,7 @@
 								<li class="list-item">
 									<div class="number">{{ $loop->index +1 }}</div>
 									<div class="info">
-										<div class="number-user"> {{ $element2[0] }} <span>thí sinh</span></div>
+										<div class="number-user"> {{ $element2[2] }} <span>thí sinh</span></div>
 										<div class="address"> {{ $element2[1] }} </div>
 									</div>
 								</li>
@@ -53,7 +53,7 @@
 								<li class="list-item">
 									<div class="number">{{ $loop->index +1 }}</div>
 									<div class="info">
-										<div class="number-user"> {{ $element2[0] }} <span>thí sinh</span></div>
+										<div class="number-user"> {{ $element2[2] }} <span>thí sinh</span></div>
 										<div class="address"> {{ $element2[1] }} </div>
 									</div>
 								</li>
@@ -76,10 +76,10 @@
 	<!-- rating right -->
 	@if($list_thi_sinh_dan_dau_tuan)
 	<section class="section rating-right">
-		<h2 class="headline">{{ $list_thi_sinh_dan_dau_tuan->title}}</h2>
+		<h2 class="headline">{{$list_thi_sinh_dan_dau_tuan->title}}</h2>
 		<div class="list">
-			@if(!empty($list_thi_sinh_dan_dau_tuan->data_table ))
-			@foreach($list_thi_sinh_dan_dau_tuan->data_table as $element)
+			@if(!empty($list_thi_sinh_dan_dau_tuan->data[0]->data_table ))
+			@foreach($list_thi_sinh_dan_dau_tuan->data[0]->data_table as $element)
 			<div class="list-item" style="padding-top:10px">
 				<div class="number"> {{ $loop->index+1 }} </div>
 				<div class="img">
@@ -90,9 +90,9 @@
 					</div>
 				</div>
 				<div class="info">
-					<h4 class="title">{{ $element[2] }}</h4>
-					<p class="date">{{ $element[3] }} - {{ $element[4] }}</p>
-					<p class="name-school">{{ $element[5] }} - {{ $element[6] }} - {{ $element[7] }}</p>
+					<h4 class="title">{{ $element[1] }}</h4>
+					<p class="date">{{ $element[2] }}</p>
+					<p class="name-school">{{ $element[3] }} - {{ $element[4] }}</p>
 				</div>
 			</div>
 			@endforeach

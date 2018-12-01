@@ -27,7 +27,7 @@ class NewsController extends Controller
         try {
             $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');
         } catch (\Throwable $th) {
-            throw $th;
+            // throw $th;
         }  
     }
 

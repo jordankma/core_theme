@@ -87,10 +87,9 @@ class SearchController extends Controller
       return view('VNE-THEME::modules.search.search_member', $data);
     }
 
-    public function listResult(  $request){
+    public function listResult(Request $request){
       $url = $this->url;
       $params = $request->all();
-      // dd($params);
       $params['page'] = $request->has('page') ? $request->input('page') : 1;
       //get form search
       $candidate_form = $this->candidate_form;
@@ -104,7 +103,7 @@ class SearchController extends Controller
       
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $collection = new Collection($list_member['data']);
-      $perPage = 20;
+      $perPage = 20; 
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
       $headers = $list_member['headers'];
       $data = [
