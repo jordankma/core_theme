@@ -31,6 +31,12 @@ class SearchController extends Controller
     }
     function setJsonCandidateForm(){
       try {
+        // if (Cache::has('candidate_form')) {
+        //   $this->candidate_form = Cache::get('candidate_form');
+        // } else {
+        //   $this->candidate_form = file_get_contents($this->url . '/api/contest/get/load_form?type=candidate');
+        //   Cache::put('candidate_form', $this->candidate_form,1440);
+        // } 
         $this->candidate_form = file_get_contents($this->url . '/api/contest/get/load_form?type=candidate');
       } catch (\Throwable $th) {
         //throw $th;
@@ -38,6 +44,12 @@ class SearchController extends Controller
     }
     function setJsonResultForm(){
       try {
+        // if (Cache::has('result_form')) {
+        //   $this->result_form = Cache::get('result_form');
+        // } else {
+        //   $this->result_form = file_get_contents($this->url .'/api/contest/get/load_form?type=result');
+        //   Cache::put('result_form', $this->result_form,1440);
+        // }
         $this->result_form = file_get_contents($this->url .'/api/contest/get/load_form?type=result');
       } catch (\Throwable $th) {
         //throw $th;
@@ -45,6 +57,12 @@ class SearchController extends Controller
     }
     function setJsonRankBoard(){
       try {
+        // if (Cache::has('rank_board')) {
+        //   $this->rank_board = Cache::get('rank_board');
+        // } else {
+        //   $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');
+        //   Cache::put('rank_board', $this->rank_board,15);
+        // }
         $this->rank_board = file_get_contents($this->url .'/api/contest/get/rank_board');
       } catch (\Throwable $th) {
         //throw $th;
@@ -55,12 +73,10 @@ class SearchController extends Controller
         parent::__construct();
         Session::put('url.intended', URL::full());
         $this->setUrlApiPrefix();
-        $this->setJsonCandidateForm();
-        $this->setJsonResultForm();
-        $this->setJsonRankBoard();
     }
 
     public function listMember(Request $request){
+      $this->setJsonCandidateForm();
       $url = $this->url;
       $params = $request->all();
       $params['page'] = $request->has('page') ? $request->input('page') : 1;
@@ -88,13 +104,15 @@ class SearchController extends Controller
     }
 
     public function listResult(Request $request){
+      self::setJsonResultForm();
       $url = $this->url;
       $params = $request->all();
       $params['page'] = $request->has('page') ? $request->input('page') : 1;
       //get form search
-      $candidate_form = $this->candidate_form;
-      $candidate_form_arr = json_decode($candidate_form,true);
-      $form_data = $candidate_form_arr['data']['load_default'];
+      $result_form = $this->result_form;
+      $result_form_arr = json_decode($result_form,true);
+      $form_data = $result_form_arr['data']['load_default'];
+      // dd($form_data);
       $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
       $form_search = $html->render();
       //end
@@ -116,6 +134,7 @@ class SearchController extends Controller
     }
 
     public function getTop(Request $request,$type){
+      $this->setJsonRankBoard();
       $title = '';
       $url = $this->url;
       $type = $type;

@@ -5,7 +5,7 @@
 		<div class="list-item">
 			@if(!empty($list_thi_sinh_moi->data))
 			@foreach ($list_thi_sinh_moi->data as $element)
-			<div class="user-item">
+			<div class="user-item" style="margin-top:30px">
 				<div class="wrapper">
 					<div class="img-cover avatar">
 						<span class="img-cover__wrapper">

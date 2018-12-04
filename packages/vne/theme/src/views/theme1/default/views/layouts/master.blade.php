@@ -18,7 +18,7 @@
 	</style>
 </head>
 
-<body class="home">
+<body @if(isset($type_page)) class="home" @endif>
 
 	<noscript>
 		<![if !(lte IE 9)]>
@@ -59,14 +59,19 @@
 
 		<div class="body-overlay js-body-overlay"></div>
 
-
+		<div class="hotline_home" style="position: fixed;bottom: 3px;right: 20px;z-index: 9999;">
+			<a class="btn btn-primary" style="font-size: 18px;color: #fff;line-height: 40px;border-radius: 90px;" href="tel:1900636444" onclick="goog_report_conversion('tel:1900636444')">
+				<i class="fa fa-1x fa-phone-square" aria-hidden="true"></i>
+				<span class="hotline_text">HOTLINE: </span>1900636444 
+			</a>
+        </div>
 	</div>
 
 	<!-- js -->
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/jquery-3.3.1.min.js?t=' . time()) }}"></script>
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/flipclock.min.js?t=' . time()) }}"></script>
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js?t=' . time()) }}"></script>
-	<script src="{{ asset('/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js?t=' . time()) }}"></script>
+	{{-- <script src="{{ asset('/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js?t=' . time()) }}"></script> --}}
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
 	@yield('footer_scripts')
 	<script type="text/javascript">

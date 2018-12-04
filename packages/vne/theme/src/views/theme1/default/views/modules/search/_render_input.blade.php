@@ -14,8 +14,8 @@
             data-params="{{ $element['params'] }}" data-type="{{ $element['type'] }}" 
             data-parent-field="{{ $element['parent_field'] }}"  id="{{ $element['params'] }}" 
             name="{{ $element['params'] }}" 
-            @if($element['is_require'] == true) required="" @endif >
-                <option>{{ $element['title'] }}</option>
+            @if($element['is_require'] == true) required="" @endif>
+                <option value="" disabled selected>{{ $element['hint_text'] }}</option>
                 @if(!empty($element['data_view']))
                 @foreach ($element['data_view'] as $element2)
                     <option value="{{ $element2['key'] }}">{{ $element2['value'] }}</option>

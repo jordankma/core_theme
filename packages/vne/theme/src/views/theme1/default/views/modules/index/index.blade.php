@@ -4,40 +4,6 @@
 	{{-- .timeline .timeline-list::after{
 		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }})
 	} --}}
-	<style>
-		.timeline .timeline-list .item-new .inner .title {
-			background: #bfbdbdbf;
-		}
-		.timeline .timeline-list .item-new .inner{
-			background: #969c9c8a;
-		}
-		.timeline .timeline-list .item .inner{
-			opacity: 1;
-		}
-		.timeline .timeline-list .item .inner .date{
-			opacity: 1;
-		}
-		.timeline .timeline-list .item:nth-child(2n) .inner{
-			bottom: -150px;
-		}
-		.timeline .timeline-list .item:nth-child(2n+1) .inner{
-			top:-50px;
-		}
-		.timeline .timeline-list .item:nth-child(2n+1) .inner::after {
-			bottom: -3px;
-			border-top: 3px solid #02a1e3;
-		}
-		.timeline .timeline-list .item:nth-child(2n) .inner::after {
-			top: -3px;
-			border-top: 3px solid #02a1e3;
-		}
-		.timeline .timeline-list .item-new:nth-child(2n+1) .inner::after {
-			border-top: 3px solid #bfbdbdbf;
-		}
-		.timeline .timeline-list .item-new:nth-child(2n) .inner::after {
-			border-top: 3px solid #bfbdbdbf;
-		}
-	</style>
 @stop
 @section('content')
 <main class="main">

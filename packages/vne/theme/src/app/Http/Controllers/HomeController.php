@@ -8,7 +8,8 @@ use Adtech\Application\Cms\Controllers\MController as Controller;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
-use Validator,Datetime,Session,URL,Schema,Cache;
+use Validator,Datetime,Session,URL,Schema;
+use Illuminate\Support\Facades\Cache;
 
 use Vne\Banner\App\Models\Banner;
 use Vne\Contact\App\Models\Contact;
@@ -35,7 +36,12 @@ class HomeController extends Controller
         $theme = config('site.theme');
         if($theme == 'theme1'){
             $id_position_banner_trangchu = config('site.banner_trang_chu_id');
-            $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
+            if (Cache::has('list_banner')) {
+              $list_banner = Cache::get('list_banner');
+            } else {
+              $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
+              Cache::put('list_banner', $list_banner,1440);
+            }
 
             $thongbaobtc = config('site.news_box.thongbaobtc');
             $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
@@ -58,12 +64,17 @@ class HomeController extends Controller
             $hinhanhvideo = config('site.news_box.hinhanhvideo');
             $list_news_anh_video_1 = self::getNewsByBoxFromCache($hinhanhvideo.'_1', $hinhanhvideo, 8, 4);
             $list_news_anh_video_2 = self::getNewsByBoxFromCache($hinhanhvideo.'_2', $hinhanhvideo, 9, 4);
-
-            $list_time_line = Timeline::all();
+            
+            if (Cache::has('list_time_line')) {
+              $list_time_line = Cache::get('list_time_line');
+            } else {
+              $list_time_line = Timeline::all();
+              Cache::put('list_time_line', $list_time_line,1440);
+            }
             // dd($list_time_line);
             $id_don_vi_dong_hanh = config('site.don_vi_dong_hanh_id');
             $list_don_vi_dong_hanh = Companionunit::where('comtype',$id_don_vi_dong_hanh)->get();
-
+            
             $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
             $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
 
@@ -85,12 +96,24 @@ class HomeController extends Controller
               //throw $th;
             }
             try {
-              $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
+              if (Cache::has('count_thi_sinh_dang_ky')) {
+                $count_thi_sinh_dang_ky = Cache::get('count_thi_sinh_dang_ky');
+              } else {
+                $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
+                Cache::put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,30);
+              }
+              // $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
             } catch (\Throwable $th) {
               //throw $th;
             }
             try {
-              $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/search_contest_result'))->total;
+              if (Cache::has('count_thi_sinh_thi')) {
+                $count_thi_sinh_thi = Cache::get('count_thi_sinh_thi');
+              } else {
+                $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
+                Cache::put('count_thi_sinh_thi', $count_thi_sinh_thi,30);
+              }
+              // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
             } catch (\Throwable $th) {
               //throw $th;
             }
@@ -117,7 +140,8 @@ class HomeController extends Controller
               'list_news_honoivechungtoi' => $list_news_honoivechungtoi,
               'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
               'count_thi_sinh_thi' => $count_thi_sinh_thi,
-              'minutes_countdown' => $minutes_countdown
+              'minutes_countdown' => $minutes_countdown,
+              'type_page' => 'index'
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -167,9 +191,11 @@ class HomeController extends Controller
         // dd('1');
       } else {
         $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
-        Cache::put($key_cache, $data);
+        Cache::put($key_cache, $data,1440);
         // dd('2');
       }
       return $data;  
     }
+
+    
 }

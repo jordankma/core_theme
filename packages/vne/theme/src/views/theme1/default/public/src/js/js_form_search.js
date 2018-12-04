@@ -6,6 +6,7 @@ $(document).ready(function () {
     //     $(params_tmp).html(str);
     // });
     $(".select-box").mouseover(function () {
+
         var _this = $(this);
         _this.attr('disabled','');
         setTimeout(function(){ 
@@ -16,14 +17,16 @@ $(document).ready(function () {
         var params = _this.data("params"); //id 
         var params_hidden = _this.data("params-hidden");
         var api = _this.data("api"); //api get data
-        if(parent_field != ''){
-            var option_select = "#" + params + " option:selected"; 
-            var name_curent = $(option_select).text();
-            var input_name = 'input[name=' + params_hidden + ']';
-            $(input_name).val(name_curent);
-        }
-        if( type=="api")
+        
+        console.log(api);
+        if( type=="api" && parent_field != '')
         {
+            if(parent_field != ''){
+                var option_select = "#" + params + " option:selected"; 
+                var name_curent = $(option_select).text();
+                var input_name = 'input[name="' + params_hidden + '"]';
+                $(input_name).val(name_curent);
+            }
             _this.attr('disabled');
             var parent_field_arr = parent_field.split(",");
             var params_search = "";
@@ -72,6 +75,32 @@ $(document).ready(function () {
                 };
                 loadSelect();
             }
+        }
+        else if(type=="api" && parent_field == ''){
+            var loadSelect = function(){
+                var url = api;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    cache: false,
+                    success: function (data, status) {
+                        var data = data.data;
+                        // var str = '<option>'+'</option>';
+                        var str = '';
+                        for(i = 0; i<data.length; i++) {
+                            str += '<option value="' + data[i].key + '" >' + data[i].value + '</option>';
+                        }  
+                        var params_tmp = '#' + params;
+                        $(params_tmp).text('');
+                        $(params_tmp).html(str); 
+                        _this.removeAttr('disabled');
+                    },
+                    error: function(data, status){
+                        _this.removeAttr('disabled');
+                    }
+                }, 'json');   
+            };
+            loadSelect();
         }
     });
 });

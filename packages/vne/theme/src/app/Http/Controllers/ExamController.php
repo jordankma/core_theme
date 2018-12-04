@@ -36,8 +36,7 @@ class ExamController extends Controller
     public function listExam(){
         $list_banner = array();
         $data = [
-            'list_banner' => $list_banner,
-            
+            'list_banner' => $list_banner
         ];
         return view('VNE-THEME::modules.index.index');
     }
