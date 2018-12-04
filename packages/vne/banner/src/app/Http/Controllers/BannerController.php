@@ -15,7 +15,7 @@ use Vne\Banner\App\Models\Position;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator;
-use DateTime;
+use DateTime,Cache;
 class BannerController extends Controller
 {
     private $messages = array(
@@ -73,6 +73,10 @@ class BannerController extends Controller
             $banners->created_at = new DateTime();
             $banners->updated_at = new DateTime();
             if ($banners->save()) {
+                Cache::forget('list_banner');
+                Cache::forget('banner_ngang_trang_chu_1');
+                Cache::forget('banner_ngang_trang_chu_2');
+                Cache::forget('banner_ngang_trang_chu_3');
                 activity('banner')
                     ->performedOn($banners)
                     ->withProperties($request->all())
@@ -140,7 +144,10 @@ class BannerController extends Controller
             $banners->create_by = $this->user->email;
             $banners->updated_at = new DateTime();
             if ($banners->save()) {
-
+                Cache::forget('list_banner');
+                Cache::forget('banner_ngang_trang_chu_1');
+                Cache::forget('banner_ngang_trang_chu_2');
+                Cache::forget('banner_ngang_trang_chu_3');
                 activity('banner')
                     ->performedOn($banners)
                     ->withProperties($request->all())
@@ -186,6 +193,10 @@ class BannerController extends Controller
             $banner = $this->banner->find($banner_id);
             if (null != $banner) {
                 $this->banner->delete($banner_id);
+                Cache::forget('list_banner');
+                Cache::forget('banner_ngang_trang_chu_1');
+                Cache::forget('banner_ngang_trang_chu_2');
+                Cache::forget('banner_ngang_trang_chu_3');
                 activity('banner')
                     ->performedOn($banner)
                     ->withProperties($request->all())

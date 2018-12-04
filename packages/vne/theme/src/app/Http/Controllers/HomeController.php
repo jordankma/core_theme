@@ -42,6 +42,29 @@ class HomeController extends Controller
               $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
               Cache::put('list_banner', $list_banner,1440);
             }
+            $id_position_banner_ngang_trangchu_1 = config('site.banner_ngang_trang_chu_id_1');
+            $id_position_banner_ngang_trangchu_2 = config('site.banner_ngang_trang_chu_id_2');
+            $id_position_banner_ngang_trangchu_3 = config('site.banner_ngang_trang_chu_id_3');
+
+            if (Cache::has('banner_ngang_trang_chu_1')) {
+              $banner_ngang_trang_chu_1 = Cache::get('banner_ngang_trang_chu_1');
+            } else {
+              $banner_ngang_trang_chu_1 = Banner::where('position',$id_position_banner_ngang_trangchu_1)->first();
+              Cache::put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
+            }
+            if (Cache::has('banner_ngang_trang_chu_2')) {
+              $banner_ngang_trang_chu_2 = Cache::get('banner_ngang_trang_chu_2');
+            } else {
+              $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->first();
+              Cache::put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
+            }
+            if (Cache::has('banner_ngang_trang_chu_3')) {
+              $banner_ngang_trang_chu_3 = Cache::get('banner_ngang_trang_chu_3');
+            } else {
+              $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->first();
+              Cache::put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
+            }
+            
 
             $thongbaobtc = config('site.news_box.thongbaobtc');
             $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
@@ -141,6 +164,9 @@ class HomeController extends Controller
               'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
               'count_thi_sinh_thi' => $count_thi_sinh_thi,
               'minutes_countdown' => $minutes_countdown,
+              'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
+              'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
+              'banner_ngang_trang_chu_3' => $banner_ngang_trang_chu_3,
               'type_page' => 'index'
             ];
             return view('VNE-THEME::modules.index.index',$data); 

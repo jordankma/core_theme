@@ -32,19 +32,45 @@
 		<div class="row">
 
 			@include('VNE-THEME::layouts.index._logo_group')
-
-			@include('VNE-THEME::layouts.index._adv')
+			@if(!empty($banner_ngang_trang_chu_1))
+			<div class="col-12">
+				<!-- adv -->
+				<div class="section adv">
+					<a href="{{ $banner_ngang_trang_chu_1->link }}" target="_blank">
+						<img src="{{ $banner_ngang_trang_chu_1->image }}">
+					</a>
+				</div>
+				<!-- adv end -->
+			</div>
+			@endif
 
 			@include('VNE-THEME::layouts.index._timeline')
-			
 
-			@include('VNE-THEME::layouts.index._adv')
+			@if(!empty($banner_ngang_trang_chu_2))
+			<div class="col-12">
+				<!-- adv -->
+				<div class="section adv">
+					<a href="{{ $banner_ngang_trang_chu_2->link }}" target="_blank">
+						<img src="{{ $banner_ngang_trang_chu_2->image }}">
+					</a>
+				</div>
+				<!-- adv end -->
+			</div>
+			@endif
 
 			@include('VNE-THEME::layouts.index._notification')
 
-			
-
-			@include('VNE-THEME::layouts.index._adv')
+			@if(!empty($banner_ngang_trang_chu_3))
+			<div class="col-12">
+				<!-- adv -->
+				<div class="section adv">
+					<a href="{{ $banner_ngang_trang_chu_3->link }}" target="_blank">
+						<img src="{{ $banner_ngang_trang_chu_3->image }}">
+					</a>
+				</div>
+				<!-- adv end -->
+			</div>
+			@endif
 
 			@include('VNE-THEME::layouts.index._rating')
 
