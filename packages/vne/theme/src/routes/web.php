@@ -4,6 +4,11 @@ Route::group(array('prefix' => $adminPrefix), function() {
     // Route::group(['middleware' => ['verify']], function () {
 
         //trang chu
+        Route::get('/clear-cache', function(){
+            Cache::forget('list_time_line');
+            Cache::forget('count_thi_sinh_dang_ky');
+            Cache::forget('count_thi_sinh_thi');
+        });
         Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
 
         //trang lien he
@@ -46,4 +51,5 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('thi-thu', 'ContestController@getTryExam')->name('vne.get.try.exam');
         Route::get('thi-that', 'ContestController@getRealExam')->name('vne.get.real.exam');
     });
+    
 });
