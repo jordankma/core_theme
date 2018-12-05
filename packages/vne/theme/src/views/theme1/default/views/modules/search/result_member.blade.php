@@ -13,27 +13,31 @@
     </section>
     <section class="result search-results">
         <div class="container">
-            <div class="detail" style="background: #f1f1f1;">
-                @if(!empty($headers))
-                <ul class="detail-row title">
-                    @foreach ($headers as $element)
-                        <li class="detail-col-5">{{ $element }}</li>
-                    @endforeach
-                </ul>
-                @endif
-                <div class="detail-list">
-                    @if(!empty($data))
-                    @foreach($data as $key => $element)
-                        <ul class="detail-row item">
-                            @if(!empty($element))
-                            @foreach($element as $key2 => $element2)
-                                <li class="detail-col-5">{{ $element2 }}</li>
+            <div class="table-responsive detail">
+                <table class="table">
+                    @if(!empty($headers))
+                    <thead>
+                        <tr>
+                            @foreach ($headers as $element)
+                                <th>{{ $element }}</th>
                             @endforeach
-                            @endif
-                        </ul>
-                    @endforeach
+                        </tr>
+                    </thead>
                     @endif
-                </div>
+                    <tbody>
+                        @if(!empty($data))
+                        @foreach($data as $key => $element)
+                            <tr>
+                                @if(!empty($element))
+                                @foreach($element as $key2 => $element2)
+                                    <td>{{ $element2 }}</td>
+                                @endforeach
+                                @endif
+                            </tr>
+                        @endforeach
+                        @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>

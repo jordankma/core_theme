@@ -24,27 +24,31 @@
 			<!-- pagination -->
 			{{$list_member->links()}}
 			<!-- pagination end -->
-			<div class="detail">
-				@if(!empty($headers))
-					<ul class="detail-row title">
+			<div class="table-responsive detail">
+				<table class="table">
+					@if(!empty($headers))
+					<thead>
+						<tr>
 						@foreach ($headers as $key => $element)
-							<li class="detail-col-{{ $loop->index+ 1 }}">{{ $element }}</li>
+							<th>{{ $element }}</th>
 						@endforeach
-					</ul>
-				@endif
-				<div class="detail-list">
-					@if(!empty($list_member))
-					@foreach ($list_member as $key => $element)
-						<ul class="detail-row item">
-							@if(!empty($element))
-							@foreach ($element as $key2 => $element2)
-								<li class="detail-col-{{ $loop->index+ 1 }}">{{ $element2 }}</li>
-							@endforeach
-							@endif
-						</ul>
-					@endforeach
-					@endif		
-				</div>
+						</tr>
+					</thead>
+					@endif
+					<tbody>
+						@if(!empty($list_member))
+						@foreach ($list_member as $key => $element)
+							<tr>
+								@if(!empty($element))
+								@foreach ($element as $key2 => $element2)
+									<td>{{ $element2 }}</td>
+								@endforeach
+								@endif
+							</tr>
+						@endforeach
+						@endif
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>

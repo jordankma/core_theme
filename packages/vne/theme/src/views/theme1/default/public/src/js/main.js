@@ -198,55 +198,6 @@ if (accordion) {
   }
 }
 
-// Search results
-var searchResults = $('.search-results');
-var searchResultsItems = $('.search-results .detail-list .item');
-var titleUsers = $('.detail .title .detail-col-3');
-var titleClasss = $('.detail .title .detail-col-4');
-var titleSchools = $('.detail .title .detail-col-5');
-var titleDistricts = $('.detail .title .detail-col-6');
-var titleCitys = $('.detail .title .detail-col-7');
-var infoUsers = $('.search-results .detail-list .item .detail-col-3');
-var infoclasss = $('.search-results .detail-list .item .detail-col-4');
-var infoSchoolss = $('.search-results .detail-list .item .detail-col-5');
-var infoDistricts = $('.search-results .detail-list .item .detail-col-6');
-var infoCitys = $('.search-results .detail-list .item .detail-col-7');
-
-if (searchResults) {
-  if ($(window).width() < 1024) {
-    for (var i = 0; i < searchResultsItems.length; i++) {
-      var searchResultsItem = searchResultsItems[i];
-      $('<div class="dropdown"><ul class="dropdown-title"></ul><ul class="dropdown-info"></ul></div>').appendTo(searchResultsItem);
-      var searchResultsItemDropdownInfos = $('.search-results .detail-list .item .dropdown .dropdown-info');
-      var searchResultsItemDropdownInfo = searchResultsItemDropdownInfos[i];
-      var infoUser = infoUsers[i];
-      var infoclass = infoclasss[i];
-      var infoSchools = infoSchoolss[i];
-      var infoDistrict = infoDistricts[i];
-      var infoCity = infoCitys[i];
-      searchResultsItemDropdownInfos[i].append(infoUser);
-      searchResultsItemDropdownInfos[i].append(infoclass);
-      searchResultsItemDropdownInfos[i].append(infoSchools);
-      searchResultsItemDropdownInfos[i].append(infoDistrict);
-      searchResultsItemDropdownInfos[i].append(infoCity);
-    }
-    var searchResultsItemDropdownTitles = $('.search-results .detail-list .item .dropdown .dropdown-title');
-    searchResultsItemDropdownTitles.append(titleUsers);
-    searchResultsItemDropdownTitles.append(titleClasss);
-    searchResultsItemDropdownTitles.append(titleSchools);
-    searchResultsItemDropdownTitles.append(titleDistricts);
-    searchResultsItemDropdownTitles.append(titleCitys);
-  }
-}
-
-if ($(window).width() <= 1024) {
-  // $('.menu-responsive .search-menu').prepend($('.form-search'));
-  $('.menu-responsive .search-menu').prepend($('.search'));
-  $('.menu-responsive>.group>.inner').append($('#nav1'));
-  $('.menu-responsive>.group>.inner').prepend($('#nav2'));
-  $('.menu-responsive .group .top').prepend($('#nav2 .nav-item:nth-child(1) .nav-link'));
-}
-
 // Countdown clock
 const elements = document.querySelector('[data-minutes]');
 
