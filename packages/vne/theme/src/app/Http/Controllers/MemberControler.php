@@ -121,21 +121,24 @@ class MemberController extends Controller
       }
       
       $data_request['birthday'] = $birthday;
-      $data_request['member_id'] = $request->input('member_id');
+      $data_request['member_id'] = (int)$request->input('member_id');
       $data_request['email'] = $request->input('email');
       $data_request['phone'] = $request->input('phone');
       $data_request['u_name'] = $request->input('u_name');
       
       $data = json_encode($data_request);
       $data_encrypt = $this->my_simple_crypt($data);
+      // dd($data_encrypt);
       $client = new Client();
       $url = $this->url;
+      
       $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [
         'form_params'=> [
             'data' => $data_encrypt
         ]
       ]); 
       $data = json_decode($res->getBody(),true);
+      // dd($data);
       if($data['status'] == true){
         return redirect()->route('index');   
       } else{
@@ -145,8 +148,8 @@ class MemberController extends Controller
 
     function my_simple_crypt( $string, $action = 'e' ) {
         // you may change these values to your own
-        $secret_key = $this->secret_key;
-        $secret_iv = $this->secret_iv;
+        $secret_key = env('SECRET_KEY');
+        $secret_iv = env('SECRET_IV');
         $output = false;
         $encrypt_method = "AES-256-CBC";
         $key = substr( hash( 'sha256', $secret_key ), 0 ,32);

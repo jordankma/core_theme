@@ -34,6 +34,11 @@ class ContestController extends Controller
       $linkhome = $url;
       $ip_port = 'http://123.30.174.148:4555/';
       $linkimg = 'http://quiz2.vnedutech.vn';
+      try {
+        $linkimg = config('app.static_quiz_url');
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
       $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
       $test = 'false';
       $m_level = '3';
@@ -50,7 +55,7 @@ class ContestController extends Controller
       $url_source_real = config('site.url_source_real');
       $game_token = $request->input('token');
       $member_id = $request->input('member_id');
-      $linkresult = $url . '?member_id=' . $member_id;
+      $linkresult = $url . '/ket-qua-thi-sinh?member_id=' . $member_id;
       $linkaudio = '/res/sound/';
       $linkhome = $url;
       $ip_port = 'http://java.cuocthi.vnedutech.vn/';

@@ -60,7 +60,8 @@
 		<div class="body-overlay js-body-overlay"></div>
 
 		<div class="hotline_home" style="position: fixed;bottom: 3px;right: 20px;z-index: 9999;">
-			<a class="btn btn-primary" style="font-size: 18px;color: #fff;line-height: 40px;border-radius: 90px;" href="tel:1900636444" onclick="goog_report_conversion('tel:1900636444')">
+			<a class="btn btn-primary" style="font-size: 18px;color: #fff;line-height: 40px;border-radius: 90px; background-color: #337ab4;
+			border-color: #337ab7;" href="tel:1900636444" onclick="goog_report_conversion('tel:1900636444')">
 				<i class="fa fa-1x fa-phone-square" aria-hidden="true"></i>
 				<span class="hotline_text">HOTLINE: </span>1900636444 
 			</a>
