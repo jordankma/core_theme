@@ -97,9 +97,6 @@ class HomeController extends Controller
             // dd($list_time_line);
             $id_don_vi_dong_hanh = config('site.don_vi_dong_hanh_id');
             $list_don_vi_dong_hanh = Companionunit::where('comtype',$id_don_vi_dong_hanh)->get();
-            
-            $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
-            $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
 
             $url = $this->url;
             $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
@@ -159,7 +156,6 @@ class HomeController extends Controller
               'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
               'list_thi_sinh_moi' => $list_thi_sinh_moi,
               'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
-              'list_don_vi_tai_tro' => $list_don_vi_tai_tro,
               'list_news_honoivechungtoi' => $list_news_honoivechungtoi,
               'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
               'count_thi_sinh_thi' => $count_thi_sinh_thi,

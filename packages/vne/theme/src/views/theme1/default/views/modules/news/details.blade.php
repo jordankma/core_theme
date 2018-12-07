@@ -10,7 +10,7 @@
 				<section class="section news-detail">
 					<div class="wrapper">
 						<h1 class="title">{{ $news->title }}</h1>
-						<p class="date">{{ $news->created_at }}</p>
+						<p class="date">{{ date_format($news->created_at,"d/m/Y H:i:s") }}</p>
 						<div class="content">
 							{!! $news->content !!}
 						</div>

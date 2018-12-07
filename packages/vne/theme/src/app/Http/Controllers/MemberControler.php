@@ -51,7 +51,7 @@ class MemberController extends Controller
           // $url = 'http://gthd.vnedutech.vn';
           if($check_reg == null){
             $data_reponse = json_decode(file_get_contents($url . '/api/contest/get/check_reg?member_id=' . $member_id),true);
-            if($data_reponse['status'] == true){
+            if($data_reponse['success'] == true){
               $check_reg = true;	
             }
           }
@@ -139,7 +139,7 @@ class MemberController extends Controller
       ]); 
       $data = json_decode($res->getBody(),true);
       // dd($data);
-      if($data['status'] == true){
+      if($data['success'] == true){
         return redirect()->route('index');   
       } else{
         return redirect()->route('frontend.member.register.show');

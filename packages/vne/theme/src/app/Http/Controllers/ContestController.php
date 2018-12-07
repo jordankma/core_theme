@@ -33,7 +33,7 @@ class ContestController extends Controller
       $linkaudio = '/res/sound/';
       $linkhome = $url;
       $ip_port = 'http://123.30.174.148:4555/';
-      $linkimg = 'http://quiz2.vnedutech.vn';
+      $linkimg = 'http://static.quiz2.vnedutech.vn';
       try {
         $linkimg = config('app.static_quiz_url');
       } catch (\Throwable $th) {
@@ -59,7 +59,12 @@ class ContestController extends Controller
       $linkaudio = '/res/sound/';
       $linkhome = $url;
       $ip_port = 'http://java.cuocthi.vnedutech.vn/';
-      $linkimg = 'http://quiz2.vnedutech.vn';
+      $linkimg = 'http://static.quiz2.vnedutech.vn/public';
+      try {
+        $linkimg = config('app.static_quiz_url') . '/public';
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
       $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
       $test = 'false';
       $m_level = '3';

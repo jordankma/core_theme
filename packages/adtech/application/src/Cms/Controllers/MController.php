@@ -12,6 +12,7 @@ use Session;
 use Cache;
 use Auth,URL;
 use GuzzleHttp\Client;
+use Vne\Companionunit\App\Models\Companionunit;
 // Member controller
 class MController extends BaseController
 {
@@ -36,6 +37,8 @@ class MController extends BaseController
 
     public function __construct()
     {
+        $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
+        $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
         // $this->url = config('app.url');
         $this->url = 'http://gthd.vnedutech.vn';
         $id = $this->_guard()->id();
@@ -133,6 +136,7 @@ class MController extends BaseController
             'skin'  => config('site.desktop.skin'),
             'mtemplate'  => config('site.mobile.template'),
             'mskin'  => config('site.mobile.skin'),
+            'list_don_vi_tai_tro' => $list_don_vi_tai_tro
         ];
 
         view()->share($share);
