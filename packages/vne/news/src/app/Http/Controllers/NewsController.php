@@ -371,6 +371,8 @@ class NewsController extends Controller
 		if ($news->news_id) {
             Cache::forget('cache_api_news');
             Cache::forget('cache_news');
+            Cache::forget($this->thongbaobtc);
+            Cache::forget($this->tinnong);
             Cache::forget($this->sukien);
             Cache::forget($this->honoivechungtoi);
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');

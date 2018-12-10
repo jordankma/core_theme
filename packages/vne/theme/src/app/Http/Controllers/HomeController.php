@@ -71,6 +71,7 @@ class HomeController extends Controller
 
             $tinnong = config('site.news_box.tinnong');
             $list_news_hot = self::getNewsByBoxFromCache($tinnong, $tinnong , null, 5);
+            // dd($list_news_hot);
             
             $sukien = config('site.news_box.sukien');
             $list_news_event = self::getNewsByBoxFromCache($sukien, $sukien, null, 4);

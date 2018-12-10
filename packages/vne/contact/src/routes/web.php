@@ -13,6 +13,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
 $apiPrefix = config('site.api_prefix');
 Route::group(array('prefix' => $apiPrefix), function() {
 	Route::group(array('prefix' => 'contact'), function() {
+    	Route::get('get-text', 'ApiContactController@getTextContact');
     	Route::post('send', 'ApiContactController@postSendContact');
     });
 });
