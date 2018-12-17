@@ -121,6 +121,10 @@
                         <div class="form-group">
                             <textarea name="info_page_contact" id="ckeditor">{{ $info_page_contact }}</textarea>
                         </div>
+                        <label>Thông tin liên hệ trang contact mobile</label>
+                        <div class="form-group">
+                            <textarea name="info_page_contact_mobile" id="ckeditor0">{{ $info_page_contact_mobile }}</textarea>
+                        </div>
                         <label>Thông tin liên hệ footer 1</label>
                         <div class="form-group">
                             <textarea name="info_footer_1" id="ckeditor1">{{ $info_footer_1 }}</textarea>
@@ -195,6 +199,7 @@
                 filebrowserUploadUrl: '/admin/laravel-filemanager/upload?type=Files&_token=',
             };
             CKEDITOR.replace('ckeditor',options);
+            CKEDITOR.replace('ckeditor0',options);
             CKEDITOR.replace('ckeditor1',options);
             CKEDITOR.replace('ckeditor2',options);
             CKEDITOR.replace('ckeditor3',options);

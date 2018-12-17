@@ -14,6 +14,7 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Vne\\Timeline\\' => array($baseDir . '/packages/vne/timeline/src'),
     'Vne\\Theme\\' => array($baseDir . '/packages/vne/theme/src'),
+    'Vne\\Notification\\' => array($baseDir . '/packages/vne/notification/src'),
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
     'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),
     'Vne\\Contact\\' => array($baseDir . '/packages/vne/contact/src'),

@@ -94,6 +94,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         array (
             'Vne\\Timeline\\' => 13,
             'Vne\\Theme\\' => 10,
+            'Vne\\Notification\\' => 17,
             'Vne\\News\\' => 9,
             'Vne\\Member\\' => 11,
             'Vne\\Contact\\' => 12,
@@ -272,6 +273,10 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Theme\\' => 
         array (
             0 => __DIR__ . '/../..' . '/packages/vne/theme/src',
+        ),
+        'Vne\\Notification\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/vne/notification/src',
         ),
         'Vne\\News\\' => 
         array (
@@ -13891,6 +13896,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'VneBannerTable' => __DIR__ . '/../..' . '/packages/vne/banner/src/database/migrations/2018_06_30_160658_vne_banner_table.php',
         'VneCatHasBoxCreate' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_10_08_061629_vne_cat_has_box_create.php',
         'VneContactCreate' => __DIR__ . '/../..' . '/packages/vne/contact/src/database/migrations/2018_09_13_090428_vne_contact_create.php',
+        'VneLogSentTable' => __DIR__ . '/../..' . '/packages/vne/notification/src/database/migrations/2018_07_18_090648_dhcd_log_sent_table.php',
         'VneNewsBoxCreate' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_09_12_090602_vne_news_box_create.php',
         'VneNewsCatTable' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_06_19_172547_vne_news_cat_table.php',
         'VneNewsHasBoxCreate' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_09_12_090728_vne_news_has_box_create.php',
@@ -13898,6 +13904,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'VneNewsHasTagTable' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_06_20_063829_vne_news_has_tag_table.php',
         'VneNewsTable' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_06_19_172533_vne_news_table.php',
         'VneNewsTagTable' => __DIR__ . '/../..' . '/packages/vne/news/src/database/migrations/2018_06_20_063652_vne_news_tag_table.php',
+        'VneNotificationTable' => __DIR__ . '/../..' . '/packages/vne/notification/src/database/migrations/2018_07_13_224456_dhcd_notification_table.php',
         'Vne\\Banner\\App\\Http\\Controllers\\ApiBannerController' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Http/Controllers/ApiBannerController.php',
         'Vne\\Banner\\App\\Http\\Controllers\\BannerController' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Http/Controllers/BannerController.php',
         'Vne\\Banner\\App\\Http\\Controllers\\PositionController' => __DIR__ . '/../..' . '/packages/vne/banner/src/app/Http/Controllers/PositionController.php',
@@ -13955,6 +13962,13 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\News\\App\\Repositories\\NewsRepository' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Repositories/NewsRepository.php',
         'Vne\\News\\App\\Repositories\\NewsTagRepository' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Repositories/NewsTagRepository.php',
         'Vne\\News\\NewsServiceProvider' => __DIR__ . '/../..' . '/packages/vne/news/src/NewsServiceProvider.php',
+        'Vne\\Notification\\App\\Http\\Controllers\\LogSentController' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Http/Controllers/LogSentController.php',
+        'Vne\\Notification\\App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Http/Controllers/NotificationController.php',
+        'Vne\\Notification\\App\\Models\\LogSent' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Models/LogSent.php',
+        'Vne\\Notification\\App\\Models\\Notification' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Models/Notification.php',
+        'Vne\\Notification\\App\\Repositories\\LogSentRepository' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Repositories/LogSentRepository.php',
+        'Vne\\Notification\\App\\Repositories\\NotificationRepository' => __DIR__ . '/../..' . '/packages/vne/notification/src/app/Repositories/NotificationRepository.php',
+        'Vne\\Notification\\NotificationServiceProvider' => __DIR__ . '/../..' . '/packages/vne/notification/src/NotificationServiceProvider.php',
         'Vne\\Theme\\App\\ApiHash' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/ApiHash.php',
         'Vne\\Theme\\App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/ContactController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\ContestController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/ContestController.php',

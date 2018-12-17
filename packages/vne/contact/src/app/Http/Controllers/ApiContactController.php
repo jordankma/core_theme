@@ -47,8 +47,8 @@ class ApiContactController extends Controller
         if (count($settings) > 0) {
             foreach ($settings as $setting) {
                 switch ($setting->name) {
-                    case 'info_page_contact':
-                    $info_contact = base64_encode($setting->value);
+                    case 'info_page_contact_mobile':
+                        $info_contact = base64_encode($setting->value);
                         break;
                 }
             }

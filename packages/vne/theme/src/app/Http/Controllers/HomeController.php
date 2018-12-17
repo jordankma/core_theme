@@ -71,7 +71,6 @@ class HomeController extends Controller
 
             $tinnong = config('site.news_box.tinnong');
             $list_news_hot = self::getNewsByBoxFromCache($tinnong, $tinnong , null, 5);
-            // dd($list_news_hot);
             
             $sukien = config('site.news_box.sukien');
             $list_news_event = self::getNewsByBoxFromCache($sukien, $sukien, null, 4);
@@ -111,6 +110,7 @@ class HomeController extends Controller
             } catch (\Throwable $th) {
               //throw $th;
             }
+            // dd($list_top_thi_sinh_da_thi);
             try {
               $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
             } catch (\Throwable $th) {
@@ -211,11 +211,9 @@ class HomeController extends Controller
     function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
       if (Cache::has($key_cache)) {
         $data = Cache::get($key_cache);
-        // dd('1');
       } else {
         $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
         Cache::put($key_cache, $data,1440);
-        // dd('2');
       }
       return $data;  
     }
