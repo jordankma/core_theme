@@ -6,6 +6,8 @@
 	<section class="registration">
 		<div class="container">
 			<div class="inner">
+				<h3 style="text-align: center; font-size:20px">ĐĂNG KÝ THÔNG TIN TÀI KHOẢN</h3>
+				<p style="color:red;text-align: center">Bạn cần đăng ký thông tin tài khoản để tham gia cuộc thi</p>
 				<form action="{{ route('frontend.member.register.update') }}" method="post" id="form-register-member">
                     <input type="hidden" name="member_id" id="member_id">
                     <input type="hidden" name="u_name" id="u_name">
@@ -15,18 +17,18 @@
                     <div class="form-group">
                         <label> {{ $item['title'] }}</label>
 						<div class="input">
-                            <select class="form-control autoload" data-key="{{$key}}" @if($element['is_require'] == true) required @endif>
+						<select class="form-control autoload" data-key="{{$key}}" required name="{{ $item['params'] }}" id="{{ $item['params'] }}">
 								<option></option>
 								@if(!empty($item['form_data']))
 								@foreach ($item['form_data'] as $key2 => $item2)
-                                    <option value="{{ $item2['key'] }}" data-key="{{$key}}" data-key2="{{$key2}}">{{ $item2['value'] }}</option>
+                                    <option value="{{ $item2['id'] }}" data-key="{{$key}}" data-key2="{{$key2}}">{{ $item2['title'] }}</option>
 								@endforeach
 								@endif
 							</select>
-							<input type="hidden" name="object_name" value="">
+							<input type="hidden" name="target_name" value="">
 						</div>
                     </div>
-                    <div id="area-type-{{$key}}">
+                    <div id="area-type-{{$key}}" style="margin-top:20px">
                         
                     </div>     
                     @endforeach
@@ -45,6 +47,7 @@
 @section('footer_scripts')
 	<script type="text/javascript">
 		var bearer_token = '{{ env("BEARER_TOKEN") }}';
+		var route_get_form_register = '{{route("frontend.member.get.form.register")}}';
 	</script>
     <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
 @stop

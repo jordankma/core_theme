@@ -70,6 +70,7 @@ class MemberController extends Controller
             'config' => $register_form_array['config'],
             'form_data_default' => $form_data_default
           ];
+          // dd($register_form_array['data']['auto_load']);
           return view('VNE-THEME::modules.member.register',$data);
         } else{
           return redirect()->route('index');
@@ -84,7 +85,7 @@ class MemberController extends Controller
         if (!$validator->fails()) {
           $key = $request->input('key');
           $key2 = $request->input('key2');
-          $this->getRegisterForm();
+          // $this->getRegisterForm();
           $register_form = $this->register_form;
           $register_form_array = json_decode($register_form,true);
           if(!empty($register_form_array)){

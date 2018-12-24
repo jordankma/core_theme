@@ -3,7 +3,10 @@
     <div class="form-group">
         <label> {{ $element['title'] }} </label>
         <div class="input">
-            <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
+            <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" 
+            class="form-control" placeholder="{{ $element['hint_text'] }}" 
+            @if($element['is_require'] == true) required="" @endif
+            @if($element['type'] == 'date') min="1995-01-01" max="2008-31-12" @endif>
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
@@ -49,8 +52,9 @@
         <div class="input">
             @if(!empty($element['data_view']))
             @foreach ($element['data_view'] as $element4)
-                <label><input type="checkbox" name="{{ $element['params'] }}[]" value="{{$element4['key']}}">{{ $element4['value'] }}</label>
+                <label><input type="checkbox" @if(count($element['data_view']) == 1) name="{{ $element['params'] }}" @else name="{{ $element['params'] }}[]" @endif value="{{$element4['key']}}">{{ $element4['value'] }}</label>
             @endforeach
+            <p style="color:red">{{ $element['hint_text'] }}</p>
             @endif
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    

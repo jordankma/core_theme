@@ -35,10 +35,12 @@ $(document).ready(function () {
         var key = $(this).data('key');
         var key2 = $(".autoload option:selected").data('key2');
         var id_area_append = 'area-type-' + key;
-        $.get("/get-form-register?key="+key +"&key2="+key2 , function(data, status){
+        var url = route_get_form_register + "?key="+key +"&key2="+key2;
+        $.get(url , function(data, status){
             $(id_area_append).html('');
             setTimeout(function() {
                 console.log(id_area_append);
+                $('#' + id_area_append).html('');
                 $('#' + id_area_append).append(data.str);
             }, 500);
         });
@@ -56,7 +58,6 @@ $(document).ready(function () {
             cache: false,
             success: function (data, status) {
                 var data = data.data;
-                console.log(data);
                 var str = '<option></option>';
                 for(i = 0; i<data.length; i++) {
                     str += '<option value="' + data[i]._id + '" >' + data[i].district + '</option>';
@@ -102,5 +103,9 @@ $(document).ready(function () {
         var class_name = $("#class_id option:selected").text();
         console.log(class_name);
         $('input[name=class_name]').val(class_name);
+    });
+    $("body").on('change', '#target', function () {
+        var class_name = $("#target option:selected").text();
+        $('input[name=target_name]').val(class_name);
     });
 });
