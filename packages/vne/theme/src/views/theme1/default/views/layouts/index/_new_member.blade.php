@@ -3,7 +3,7 @@
 	<section class="section new-user">
 		<h2 class="headline">Thành viên mới nhất</h2>
 		<div class="list-item">
-			@if(!empty($list_thi_sinh_moi->data))
+			{{-- @if(!empty($list_thi_sinh_moi->data))
 			@foreach ($list_thi_sinh_moi->data as $element)
 			<div class="user-item" style="margin-top:30px">
 				<div class="wrapper">
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			@endforeach
-			@endif
+			@endif --}}
 		</div>
 	</section>
 	<!-- new user end -->

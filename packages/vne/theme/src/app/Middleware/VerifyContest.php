@@ -11,14 +11,7 @@ class VerifyContest
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		//check auto close contest
-		$type_exam = 'real';
-		$data_tmp = json_decode(self::checkEndExam($type_exam),true);
-		if($data_tmp['status'] == false){
-			$messages = $data_tmp['messages'];
-			return view('VNE-THEME::modules.contest.notification',compact('messages', $messages));
-		}
-		//end
+		
 
 		$url = config('app.url');
 		// $url = 'http://gthd.vnedutech.vn';
@@ -57,6 +50,14 @@ class VerifyContest
 			}
 			// dd($check_reg);
 			if($check_reg == true){
+				//check auto close contest
+				$type_exam = 'real';
+				$data_tmp = json_decode(self::checkEndExam($type_exam),true);
+				if($data_tmp['status'] == false){
+					$messages = $data_tmp['messages'];
+					return view('VNE-THEME::modules.contest.notification',compact('messages', $messages));
+				}
+				//end
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);
 			} else{

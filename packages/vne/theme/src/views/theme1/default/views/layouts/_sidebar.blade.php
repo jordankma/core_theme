@@ -12,6 +12,7 @@
 							<ul class="list">
 								@if(!empty($element->data_table))
 								@foreach ($element->data_table as $element2)
+								@if(!empty($element2))
 								<li class="list-item">
 									<div class="number">{{ $loop->index +1 }}</div>
 									<div class="info">
@@ -19,6 +20,7 @@
 										<div class="address"> {{ $element2[1] }} </div>
 									</div>
 								</li>
+								@endif
 								@endforeach
 								@endif
 							</ul>
@@ -47,6 +49,7 @@
 							<ul class="list">
 								@if(!empty($element->data_table))
 								@foreach ($element->data_table as $element2)
+								@if(!empty($element2))
 								<li class="list-item">
 									<div class="number">{{ $loop->index +1 }}</div>
 									<div class="info">
@@ -54,6 +57,7 @@
 										<div class="address"> {{ $element2[1] }} </div>
 									</div>
 								</li>
+								@endif
 								@endforeach
 								@endif
 							</ul>

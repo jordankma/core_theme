@@ -126,7 +126,6 @@ class MemberController extends Controller
       $data_request['email'] = $request->input('email');
       $data_request['phone'] = $request->input('phone');
       $data_request['u_name'] = $request->input('u_name');
-      
       $data = json_encode($data_request);
       $data_encrypt = $this->my_simple_crypt($data);
       // dd($data_encrypt);
