@@ -182,10 +182,13 @@ class SearchController extends Controller
       $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id='. $member_id);
       $data_member = json_decode($data_member);
       $headers = isset($data_member->headers) ? $data_member->headers : $headers;
-      $data = $data_member->data;
+      $data = $data_member;
+      $user_info = $data_member->user_info;
+      dd($data_member);
       $data = [
         'headers' => $headers,  
-        'data' => $data  
+        'data' => $data,  
+        'user_info' => $user_info  
       ];
       return view('VNE-THEME::modules.search.result_member',$data);    
     }

@@ -48,7 +48,10 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					{{-- @if($USER_INFO != null) --}}
 						<div id="online-now" style="display: none;visibility: hidden;"> 
 							<li class="nav-item" id="text-user-name"><i class="fa fa-user"></i></li>
-							<li class="nav-item" id="button-logout"><i class="fa fa-edit"></i> Đăng xuất </li>	
+							<li class="nav-item" id="">
+								<i class="fa fa-edit"></i> 
+								<a href="{{ 'http://eid.vnedutech.vn/logout?site=' . config('app.url') }}" >Đăng xuất</a> 
+							</li>	
 						</div>
 					{{-- @else --}}
 						<div id="offline-now" style="display: none;visibility: hidden;">
@@ -56,6 +59,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 								$url_login = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 								$url_register = "http://eid.vnedutech.vn/register?site=" . config('app.url');
 							@endphp
+							{{-- <li class="nav-item"><a href="http://eid.vnedutech.vn/login"><i class="fa fa-user"></i>Quên mật khẩu</li> --}}
 							<li class="nav-item"><a href="{{ $url_login }}"><i class="fa fa-user"></i>Đăng nhập</li>
 							<li class="nav-item {{-- js-toggle-registration --}}"><a href="{{ $url_register }}"><i class="fa fa-edit"></i>Đăng ký </a></li>
 						</div>

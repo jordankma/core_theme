@@ -5,9 +5,11 @@
     <section class="info" >
         <div class="container">
             <div class="detail" style="background: #fff; padding: 10px;">
-                <p> Họ tên :  </p>
-                <p> Tên tài khoản :  </p>
-                <p> Ngày sinh :  </p>
+                @if(!empty($user_info))
+                @foreach ($user_info as $item)
+                    <p> {{ $item->key }} : {{ $item->value }} </p>    
+                @endforeach
+                @endif
             </div>
         </div>	
     </section>
