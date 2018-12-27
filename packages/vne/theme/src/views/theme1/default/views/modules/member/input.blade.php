@@ -52,7 +52,7 @@
         <div class="input">
             @if(!empty($element['data_view']))
             @foreach ($element['data_view'] as $element4)
-                <label><input type="checkbox" @if(count($element['data_view']) == 1) name="{{ $element['params'] }}" @else name="{{ $element['params'] }}[]" @endif value="{{$element4['key']}}">{{ $element4['value'] }}</label>
+                <label><input type="checkbox" @if($element['is_require'] == true) required="" @endif @if(count($element['data_view']) == 1) name="{{ $element['params'] }}" @else name="{{ $element['params'] }}[]" @endif value="{{$element4['key']}}">{{ $element4['value'] }}</label>
             @endforeach
             <p style="color:red">{{ $element['hint_text'] }}</p>
             @endif

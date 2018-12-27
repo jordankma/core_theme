@@ -6,9 +6,9 @@
         <div class="container">
             <div class="detail" style="background: #fff; padding: 10px;">
                 @if(!empty($user_info))
-                @foreach ($user_info as $item)
+                {{-- @foreach ($user_info as $item)
                     <p> {{ $item->key }} : {{ $item->value }} </p>    
-                @endforeach
+                @endforeach --}}
                 @endif
             </div>
         </div>	

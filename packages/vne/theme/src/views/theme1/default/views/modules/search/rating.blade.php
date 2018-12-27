@@ -45,11 +45,13 @@
 					<ol class="list">
 						@if(!empty($data_table->data))
 						@foreach($data_table->data as $element)
+						@if(!empty($element))
 						<li class="row">
 							<div class="col-2 col-md-1 top"><img src="src/images/cuo-vang.png" alt="">{{ $element[0] }}</div>
 							<div class="col-6 col-md-6 name-city">{{ $element[1] }}</div>
 							<div class="col-4 col-md-5 number">{{ $element[2] }}</div>
 						</li>
+						@endif
 						@endforeach
 						@endif
 					</ol>

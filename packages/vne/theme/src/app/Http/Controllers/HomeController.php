@@ -32,9 +32,14 @@ class HomeController extends Controller
         Session::put('url.intended', URL::full());
     }
 
-    public function index(){
+    public function index(Request $request){
         $theme = config('site.theme');
         if($theme == 'theme1'){
+            Session::forget('notifi_verify');
+            if($request->has('message')){
+              $message = $request->input('message');
+              Session::put('notifi_verify',$message); 
+            }
             $id_position_banner_trangchu = config('site.banner_trang_chu_id');
             if (Cache::has('list_banner')) {
               $list_banner = Cache::get('list_banner');

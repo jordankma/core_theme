@@ -48,6 +48,21 @@
 	<script type="text/javascript">
 		var bearer_token = '{{ env("BEARER_TOKEN") }}';
 		var route_get_form_register = '{{route("frontend.member.get.form.register")}}';
+		document.addEventListener("DOMContentLoaded", function() {
+			var elements = document.getElementsByTagName("INPUT");
+			for (var i = 0; i < elements.length; i++) {
+				elements[i].oninvalid = function(e) {
+					e.target.setCustomValidity("");
+					if (!e.target.validity.valid) {
+						e.target.setCustomValidity("Trường này không được bỏ trống");
+					}
+				};
+				elements[i].oninput = function(e) {
+					e.target.setCustomValidity("");
+				};
+			}
+		})
 	</script>
-    <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
+	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
+	
 @stop

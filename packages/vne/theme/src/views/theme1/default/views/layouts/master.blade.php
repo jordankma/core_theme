@@ -15,6 +15,9 @@
 			display: inline-block !important;
 			overflow: hidden !important;
 		}
+		.timeline .timeline-list::after{
+			background:url("{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }}")
+		}
 	</style>
 </head>
 
@@ -25,8 +28,7 @@
 		<div class="noscript-message">
 			<div class="noscript-message__content">
 				<p>Trinh duyệt của bạn không hỗ trợ hoặc đã tắt JavaScript, bạn vui lòng cập nhận trình đuyệt web hoặc mở
-					JavaScript trong
-					phần cài đặt.</p>
+					JavaScript trong phần cài đặt.</p>
 			</div>
 		</div>
 		<![endif]>
@@ -54,6 +56,7 @@
 		<!-- popup -->
 		@include('VNE-THEME::layouts._modal_login')
 		@include('VNE-THEME::layouts._modal_register')
+		@include('VNE-THEME::layouts._modal_notification')
 		
 		<!-- popup end -->
 
@@ -78,6 +81,14 @@
 	<script type="text/javascript">
 		var route_logout = '{{ route('vne.member.logout')}}';
 		checkLogin();
+		var message_notifi_verify = '{{ Session::get('notifi_verify') }}';
+		if(message_notifi_verify != ''){
+			$('.js-message').css('opacity',1);
+			$('.js-message .inner-message').text(message_notifi_verify);
+		}
+		$('body').click(function(){
+			$('.js-message').css('opacity',0);
+		});
 		function checkLogin() {
 	        $.ajax({
 	            url: 'http://eid.vnedutech.vn/get-status-login',
