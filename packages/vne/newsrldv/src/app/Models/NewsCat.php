@@ -1,6 +1,6 @@
 <?php
 
-namespace Vne\News\App\Models;
+namespace Vne\Newsrldv\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +13,7 @@ class NewsCat extends Model
      */
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $table = 'vne_news_cat';
+    protected $table = 'vne_rldv_news_cat';
 
     protected $primaryKey = 'news_cat_id';
 

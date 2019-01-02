@@ -27,7 +27,9 @@
           "name": "Update",
           "routes": [
             "vne.news.news.show",
-            "vne.news.news.update"
+            "vne.news.news.update",
+            "vne.news.news.status",
+            "vne.news.news.confirm-status"
           ]
         },
         {

@@ -1,27 +1,27 @@
 <?php
 
-namespace Vne\News\App\Http\Controllers;
+namespace Vne\Newsrldv\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Illuminate\Support\Collection;
-use Vne\News\App\Http\Requests\NewsCatRequest;
-use Vne\News\App\Http\Requests\NewsRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsCatRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsRequest;
 
-use Vne\News\App\Repositories\NewsRepository;
-use Vne\News\App\Repositories\NewsCatRepository;
-use Vne\News\App\Repositories\NewsTagRepository;
-use Vne\News\App\Repositories\NewsBoxRepository;
-use Vne\News\App\Repositories\NewsHasTagRepository;
-use Vne\News\App\Repositories\NewsHasCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsRepository;
+use Vne\Newsrldv\App\Repositories\NewsCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsBoxRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasCatRepository;
 
-use Vne\News\App\Models\News;
-use Vne\News\App\Models\NewsCat;
-use Vne\News\App\Models\NewsTag;
-use Vne\News\App\Models\NewsBox;
-use Vne\News\App\Models\NewsHasTag;
-use Vne\News\App\Models\NewsHasCat;
-use Vne\News\App\Models\NewsHasBox;
+use Vne\Newsrldv\App\Models\News;
+use Vne\Newsrldv\App\Models\NewsCat;
+use Vne\Newsrldv\App\Models\NewsTag;
+use Vne\Newsrldv\App\Models\NewsBox;
+use Vne\Newsrldv\App\Models\NewsHasTag;
+use Vne\Newsrldv\App\Models\NewsHasCat;
+use Vne\Newsrldv\App\Models\NewsHasBox;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
@@ -75,7 +75,7 @@ class NewsController extends Controller
     		'news_box'=> $request->news_box,
     		'is_hot'=> $request->is_hot
     	];
-		return view('VNE-NEWS::modules.news.news.manager',compact('list_news_cat','list_news_box','params'));
+		return view('VNE-NEWSRLDV::modules.news.news.manager',compact('list_news_cat','list_news_box','params'));
 	}
 	public function create(){
 		// $list_news_cat = $this->news_cat->all();
@@ -88,7 +88,7 @@ class NewsController extends Controller
 			'list_news_tag' => $list_news_tag,
             'list_news_box' => $list_news_box
 		];
-		return view('VNE-NEWS::modules.news.news.create',$data);
+		return view('VNE-NEWSRLDV::modules.news.news.create',$data);
 	}
 	public function add(NewsRequest $request){
 		$create_by = $this->user->contact_name;
@@ -204,9 +204,9 @@ class NewsController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Add news - name: :properties.name, news_id: ' . $news->news_id);
-            return redirect()->route('vne.news.news.manager')->with('success', trans('VNE-NEWS::language.messages.success.create'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.create'));
         } else {
-            return redirect()->route('vne.news.news.manager')->with('error', trans('VNE-NEWS::language.messages.error.create'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.create'));
         }
 	}
 
@@ -257,7 +257,7 @@ class NewsController extends Controller
 			'list_key_word_seo_string' => $list_key_word_seo_string,
 		    'list_gallery' => $list_gallery        
         ];
-		return view('VNE-NEWS::modules.news.news.edit',$data);
+		return view('VNE-NEWSRLDV::modules.news.news.edit',$data);
 	}	
 	public function update($news_id,NewsRequest $request){
         
@@ -385,9 +385,9 @@ class NewsController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Edit news - name: :properties.name, news_id: ' . $news->news_id);
-            return redirect()->route('vne.news.news.manager')->with('success', trans('VNE-NEWS::language.messages.success.update'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.update'));
         } else {
-            return redirect()->route('vne.news.news.manager')->with('error', trans('VNE-NEWS::language.messages.error.update'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.update'));
         }		
 	}
 
@@ -405,9 +405,9 @@ class NewsController extends Controller
                     ['log_name', $model],
                     ['subject_id', $request->input('news_id')]
                 ])->get();
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -437,9 +437,9 @@ class NewsController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Delete News Cat - news_id: :properties.news_id, name: ' . $news->name);
-            return redirect()->route('vne.news.news.manager')->with('success', trans('VNE-NEWS::language.messages.success.delete'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.delete'));
         } else {
-            return redirect()->route('vne.news.news.manager')->with('error', trans('VNE-NEWS::language.messages.error.delete'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.delete'));
         }
     }
     public function getModalDelete(Request $request)
@@ -452,10 +452,58 @@ class NewsController extends Controller
         ], $this->messages);
         if (!$validator->fails()) {
             try {
-                $confirm_route = route('vne.news.news.delete', ['news_id' => $request->news_id]);
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                $confirm_route = route('vne.newsrldv.news.delete', ['news_id' => $request->news_id]);
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+            }
+        } else {
+            return $validator->messages();
+        }
+    }
+
+    public function status(Request $request)
+    {
+        $news_id = $request->news_id;
+        $news = $this->news->find($news_id);
+        if (null != $news) {
+            $news->status = ($news->status == 1) ? 0 : 1;
+            $news->save();
+            Cache::forget('cache_api_news');
+            Cache::forget('cache_news');
+            Cache::forget($this->sukien);
+            Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_4');
+            Cache::forget($this->hinhanhvideo . '_1');
+            Cache::forget($this->hinhanhvideo . '_2');
+
+            activity('news')
+                ->performedOn($news)
+                ->withProperties($request->all())
+                ->log('User: :causer.email - Status News  - news_id: :properties.news_id, name: ' . $news->name);
+            return redirect()->route('vne.newsrldv.news.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.status'));
+        } else {
+            return redirect()->route('vne.newsrldv.news.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.status'));
+        }
+    }
+
+    public function getModalStatus(Request $request)
+    {
+        $model = 'news';
+        $type = 'status';
+        $confirm_route = $error = null;
+        $validator = Validator::make($request->all(), [
+            'news_id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+            try {
+                $confirm_route = route('vne.newsrldv.news.status', ['news_id' => $request->news_id]);
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+            } catch (GroupNotFoundException $e) {
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -481,14 +529,14 @@ class NewsController extends Controller
             ->addIndexColumn()
             ->addColumn('actions', function ($list_news) {
                 $actions = '';
-                if ($this->user->canAccess('vne.news.news.log')) {
-                    $actions .= '<a href=' . route('vne.news.news.log', ['type' => 'news', 'news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.news.log')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.news.log', ['type' => 'news', 'news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log news cat"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.news.show')) {
-                    $actions .= '<a href=' . route('vne.news.news.show', ['news_id' => $list_news->news_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.news.show')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.news.show', ['news_id' => $list_news->news_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update news cat"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.news.confirm-delete')) {
-                    $actions .=  '<a href=' . route('vne.news.news.confirm-delete', ['news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.news.confirm-delete')) {
+                    $actions .=  '<a href=' . route('vne.newsrldv.news.confirm-delete', ['news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete news cat"></i></a>';
                 }
                 return $actions;
             })
@@ -505,6 +553,21 @@ class NewsController extends Controller
             	$image = '<img src="'.$list_news->image.'"  height="80" width="100">';
             	return $image;
             })
+            ->addColumn('status', function ($list_news) {
+                $status = '';
+                if($list_news->status == 0){
+                    if ($this->user->canAccess('vne.newsrldv.news.confirm-status')) {
+                        $status .= '<a href=' . route('vne.newsrldv.news.confirm-status', ['news_id' => $list_news->news_id]) . '
+                    data-toggle="modal" data-target="#status_confirm"> <span class="label label-default"> Chờ duyệt</span></a>';   
+                    }
+                } else{
+                    if ($this->user->canAccess('vne.newsrldv.news.confirm-status')) {
+                        $status .= '<a href=' . route('vne.newsrldv.news.confirm-status', ['news_id' => $list_news->news_id]) . ' 
+                        data-toggle="modal" data-target="#status_confirm"> <span class="label label-success"> Đã duyệt</span></a>';
+                    }
+                }
+                return $status;
+            })
             ->addColumn('news_cat', function ($list_news) {
                 $news_cat = '';
                 if($list_news->news_cat){
@@ -519,12 +582,12 @@ class NewsController extends Controller
                 }
             	return $news_cat;
             })
-            ->rawColumns(['actions','is_hot','image'])
+            ->rawColumns(['actions','is_hot','image','status'])
             ->make();
     }
     public function searchNews(){
     	$list_news_cat = $this->news_cat->all();
-		return view('VNE-NEWS::modules.news.news.manager_search',compact('list_news_cat'));
+		return view('VNE-NEWSRLDV::modules.news.news.manager_search',compact('list_news_cat'));
     }
 
     function getCate() {

@@ -13,6 +13,8 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Route::get('delete', 'NewsController@delete')->name('vne.news.news.delete');
             Route::get('confirm-delete', 'NewsController@getModalDelete')->name('vne.news.news.confirm-delete');
 
+            Route::get('status', 'NewsController@status')->name('vne.news.news.status');
+            Route::get('confirm-status', 'NewsController@getModalStatus')->name('vne.news.news.confirm-status');
             Route::get('alias', 'NewsController@alias')->name('alias');
         });
         //route news cat

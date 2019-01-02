@@ -44,7 +44,7 @@ class HomeController extends Controller
             if (Cache::has('list_banner')) {
               $list_banner = Cache::get('list_banner');
             } else {
-              $list_banner = Banner::where('position',$id_position_banner_trangchu)->get();
+              $list_banner = Banner::where('position',$id_position_banner_trangchu)->orderBy('priority', 'desc')->get();
               Cache::put('list_banner', $list_banner,1440);
             }
             $id_position_banner_ngang_trangchu_1 = config('site.banner_ngang_trang_chu_id_1');

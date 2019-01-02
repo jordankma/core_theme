@@ -13,6 +13,11 @@
             @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
+    @if($element['params'] == 'facebook')
+    <p style="font-weight: bold">Bước 2: Đăng ký thông tin nhận thưởng của thí sinh. </p> 
+    <p style="color:red">Giải thưởng tiền mặt của thí sinh sẽ được Ban Tổ chức gửi về theo tài khoản 
+    thí sinh đăng ký dưới đây. Tài khoản có thể là của thí sinh, cha, mẹ hoặc người giám hộ hợp pháp. </p>
+    @endif
     @elseif($element['type_view'] == 1)
     <div class="form-group">
         <label>{{ $element['title'] }}</label>
@@ -47,6 +52,10 @@
         </div>
     </div>
     @elseif($element['type_view'] == 3)
+    @if($element['params'] == 'accept_rule')
+    <p style="font-weight: bold">Bước 3: Xác nhận đăng ký: </p>
+    <p style="color:red">{{ $element['hint_text'] }}</p>
+    @endif
     <div class="form-group">
         <label>{{ $element['title'] }}</label>
         <div class="input">
@@ -54,7 +63,6 @@
             @foreach ($element['data_view'] as $element4)
                 <label><input type="checkbox" @if($element['is_require'] == true) required="" @endif @if(count($element['data_view']) == 1) name="{{ $element['params'] }}" @else name="{{ $element['params'] }}[]" @endif value="{{$element4['key']}}">{{ $element4['value'] }}</label>
             @endforeach
-            <p style="color:red">{{ $element['hint_text'] }}</p>
             @endif
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    

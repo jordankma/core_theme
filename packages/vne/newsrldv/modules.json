@@ -1,70 +1,176 @@
 {
-  "package": "package",
-  "module": "module",
+  "package": "vne",
+  "module": "news",
   "description": "Permission route by group",
   "details": [
     {
-      "name": "Controller 01",
+      "name": "Quản lý news",
       "groups": [
         {
           "name": "View list",
           "routes": [
-            "package.module.controller.method",
-            "router name 02"
+            "vne.newsrldv.news.manager",
+            "vne.newsrldv.news.data",
+            "vne.newsrldv.news.log"
           ]
         },
         {
           "name": "Create",
           "routes": [
-            "router name 03",
-            "router name 04"
+            "vne.newsrldv.news.create",
+            "vne.newsrldv.news.add",
+            "vne.newsrldv.news.alias",
+            "vne.newsrldv.tag.ajax.add"
           ]
         },
         {
           "name": "Update",
           "routes": [
-            "router name 05",
-            "router name 06"
+            "vne.newsrldv.news.show",
+            "vne.newsrldv.news.update"
           ]
         },
         {
           "name": "Delete",
           "routes": [
-            "router name 07",
-            "router name 08"
+            "vne.newsrldv.news.delete",
+            "vne.newsrldv.news.confirm-delete"
           ]
         }
       ]
     },
     {
-      "name": "Controller 02",
+      "name": "Quản lý news_cat",
       "groups": [
         {
           "name": "View list",
           "routes": [
-            "router name 11",
-            "router name 12"
+            "vne.newsrldv.cat.manager",
+            "vne.newsrldv.cat.data",
+            "vne.newsrldv.cat.log"
           ]
         },
         {
           "name": "Create",
           "routes": [
-            "router name 13",
-            "router name 14"
+            "vne.newsrldv.cat.create",
+            "vne.newsrldv.cat.add"
           ]
         },
         {
           "name": "Update",
           "routes": [
-            "router name 15",
-            "router name 16"
+            "vne.newsrldv.cat.show",
+            "vne.newsrldv.cat.update"
           ]
         },
         {
           "name": "Delete",
           "routes": [
-            "router name 17",
-            "router name 18"
+            "vne.newsrldv.cat.delete",
+            "vne.newsrldv.cat.confirm-delete"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quản lý news_tag",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.newsrldv.tag.manager",
+            "vne.newsrldv.tag.data",
+            "vne.newsrldv.tag.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "vne.newsrldv.tag.create",
+            "vne.newsrldv.tag.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "vne.newsrldv.tag.show",
+            "vne.newsrldv.tag.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.newsrldv.tag.delete",
+            "vne.newsrldv.tag.confirm-delete"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quản lý trang tĩnh",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.newsrldv.page.manager",
+            "vne.newsrldv.page.data",
+            "vne.newsrldv.page.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "vne.newsrldv.page.create",
+            "vne.newsrldv.page.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "vne.newsrldv.page.show",
+            "vne.newsrldv.page.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.newsrldv.page.delete",
+            "vne.newsrldv.page.confirm-delete"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quản lý box",
+      "groups": [
+        {
+          "name": "View list",
+          "routes": [
+            "vne.newsrldv.box.manager",
+            "vne.newsrldv.box.data",
+            "vne.newsrldv.box.log"
+          ]
+        },
+        {
+          "name": "Create",
+          "routes": [
+            "vne.newsrldv.box.create",
+            "vne.newsrldv.box.add"
+          ]
+        },
+        {
+          "name": "Update",
+          "routes": [
+            "vne.newsrldv.box.show",
+            "vne.newsrldv.box.update"
+          ]
+        },
+        {
+          "name": "Delete",
+          "routes": [
+            "vne.newsrldv.box.delete",
+            "vne.newsrldv.box.confirm-delete"
           ]
         }
       ]

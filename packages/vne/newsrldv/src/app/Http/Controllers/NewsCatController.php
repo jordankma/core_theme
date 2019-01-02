@@ -1,23 +1,23 @@
 <?php
 
-namespace Vne\News\App\Http\Controllers;
+namespace Vne\Newsrldv\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Illuminate\Support\Collection;
-use Vne\News\App\Http\Requests\NewsCatRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsCatRequest;
 
-use Vne\News\App\Repositories\NewsRepository;
-use Vne\News\App\Repositories\NewsCatRepository;
-use Vne\News\App\Repositories\NewsTagRepository;
-use Vne\News\App\Repositories\NewsHasTagRepository;
-use Vne\News\App\Repositories\NewsHasCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsRepository;
+use Vne\Newsrldv\App\Repositories\NewsCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasCatRepository;
 
-use Vne\News\App\Models\News;
-use Vne\News\App\Models\NewsCat;
-use Vne\News\App\Models\NewsTag;
-use Vne\News\App\Models\NewsHasTag;
-use Vne\News\App\Models\NewsHasCat;
+use Vne\Newsrldv\App\Models\News;
+use Vne\Newsrldv\App\Models\NewsCat;
+use Vne\Newsrldv\App\Models\NewsTag;
+use Vne\Newsrldv\App\Models\NewsHasTag;
+use Vne\Newsrldv\App\Models\NewsHasCat;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
@@ -39,7 +39,7 @@ class NewsCatController extends Controller
         $this->_user = Auth::user();
     }
 	public function manager(){
-		return view('VNE-NEWS::modules.news.news_cat.manager');
+		return view('VNE-NEWSRLDV::modules.news.news_cat.manager');
 	}
 	/**
      * @return view add news cat 
@@ -50,7 +50,7 @@ class NewsCatController extends Controller
 	public function create(){
         self::getCate();
         $list_news_cat = $this->_newsCatList;
-		return view('VNE-NEWS::modules.news.news_cat.create',compact('list_news_cat'));
+		return view('VNE-NEWSRLDV::modules.news.news_cat.create',compact('list_news_cat'));
 	}
 	/**
      * @return view add list cat
@@ -74,9 +74,9 @@ class NewsCatController extends Controller
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Add NewsCat - name: :properties.name, news_cat_id: ' . $news_cat->news_cat_id);
 
-            return redirect()->route('vne.news.cat.manager')->with('success', trans('vne-news::language.messages.success.create'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.create'));
         } else {
-            return redirect()->route('vne.news.cat.manager')->with('error', trans('vne-news::language.messages.error.create'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.create'));
         }
 	}
 	/**
@@ -106,7 +106,7 @@ class NewsCatController extends Controller
 		$news_cat = $this->news_cat->find($news_cat_id);
         self::getCate();
         $list_news_cat = $this->_newsCatList;
-		return view('VNE-NEWS::modules.news.news_cat.edit',compact('news_cat','list_news_cat'));
+		return view('VNE-NEWSRLDV::modules.news.news_cat.edit',compact('news_cat','list_news_cat'));
 	}	
 	public function update(NewsCatRequest $request){
 		$news_cat = $this->news_cat->find($request->news_cat_id);
@@ -119,9 +119,9 @@ class NewsCatController extends Controller
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Update News Cat - news_cat_id: :properties.news_cat_id, name: :properties.name');
 
-            return redirect()->route('vne.news.cat.manager')->with('success', trans('VNE-NEWS::language.messages.success.update'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.update'));
         } else {
-            return redirect()->route('vne.news.cat.manager')->with('error', trans('VNE-NEWS::language.messages.error.update'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.update'));
         }
 	}
     public function delete(Request $request)
@@ -139,9 +139,9 @@ class NewsCatController extends Controller
                 ->performedOn($news_cat)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Delete News Cat - news_cat_id: :properties.news_cat_id, name: ' . $news_cat->name);
-            return redirect()->route('vne.news.cat.manager')->with('success', trans('VNE-NEWS::language.messages.success.delete'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.delete'));
         } else {
-            return redirect()->route('vne.news.cat.manager')->with('error', trans('VNE-NEWS::language.messages.error.delete'));
+            return redirect()->route('vne.newsrldv.cat.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.delete'));
         }
     }
     public function getModalDelete(Request $request)
@@ -157,13 +157,13 @@ class NewsCatController extends Controller
             $count = NewsHasCat::where('news_cat_id','=',$new_cat_id)->count();
             if($count>0){
                 $error = "Chuyên đề này đang có tin tức không thể xóa!";
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route')); 
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route')); 
             }
             try {
-                $confirm_route = route('vne.news.cat.delete', ['news_cat_id' => $new_cat_id]);
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                $confirm_route = route('vne.newsrldv.cat.delete', ['news_cat_id' => $new_cat_id]);
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -183,9 +183,9 @@ class NewsCatController extends Controller
                     ['log_name', $model],
                     ['subject_id', $request->input('news_cat_id')]
                 ])->get();
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -209,14 +209,14 @@ class NewsCatController extends Controller
             })
             ->addColumn('actions', function ($list_news_cat) {
                 $actions = '';
-                if ($this->user->canAccess('vne.news.cat.log')) {
-                    $actions .= '<a href=' . route('vne.news.cat.log', ['type' => 'news', 'news_cat_id' => $list_news_cat->news_cat_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.cat.log')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.cat.log', ['type' => 'news', 'news_cat_id' => $list_news_cat->news_cat_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log news cat"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.cat.show')) {
-                    $actions .= '<a href=' . route('vne.news.cat.show', ['news_cat_id' => $list_news_cat->news_cat_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.cat.show')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.cat.show', ['news_cat_id' => $list_news_cat->news_cat_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update news cat"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.cat.confirm-delete')) {
-                    $actions .='<a href=' . route('vne.news.cat.confirm-delete', ['news_cat_id' => $list_news_cat->news_cat_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete news cat"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.cat.confirm-delete')) {
+                    $actions .='<a href=' . route('vne.newsrldv.cat.confirm-delete', ['news_cat_id' => $list_news_cat->news_cat_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete news cat"></i></a>';
                 }
                 return $actions;
             })

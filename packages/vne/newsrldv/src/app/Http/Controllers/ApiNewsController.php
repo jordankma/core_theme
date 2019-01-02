@@ -1,27 +1,27 @@
 <?php
 
-namespace Vne\News\App\Http\Controllers;
+namespace Vne\Newsrldv\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Illuminate\Support\Collection;
-use Vne\News\App\Http\Requests\NewsCatRequest;
-use Vne\News\App\Http\Requests\NewsRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsCatRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsRequest;
 
-use Vne\News\App\Repositories\NewsRepository;
-use Vne\News\App\Repositories\NewsCatRepository;
-use Vne\News\App\Repositories\NewsTagRepository;
-use Vne\News\App\Repositories\NewsBoxRepository;
-use Vne\News\App\Repositories\NewsHasTagRepository;
-use Vne\News\App\Repositories\NewsHasCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsRepository;
+use Vne\Newsrldv\App\Repositories\NewsCatRepository;
+use Vne\Newsrldv\App\Repositories\NewsTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsBoxRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasTagRepository;
+use Vne\Newsrldv\App\Repositories\NewsHasCatRepository;
 
-use Vne\News\App\Models\News;
-use Vne\News\App\Models\NewsCat;
-use Vne\News\App\Models\NewsTag;
-use Vne\News\App\Models\NewsBox;
-use Vne\News\App\Models\NewsHasTag;
-use Vne\News\App\Models\NewsHasCat;
-use Vne\News\App\Models\NewsHasBox;
+use Vne\Newsrldv\App\Models\News;
+use Vne\Newsrldv\App\Models\NewsCat;
+use Vne\Newsrldv\App\Models\NewsTag;
+use Vne\Newsrldv\App\Models\NewsBox;
+use Vne\Newsrldv\App\Models\NewsHasTag;
+use Vne\Newsrldv\App\Models\NewsHasCat;
+use Vne\Newsrldv\App\Models\NewsHasBox;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;

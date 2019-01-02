@@ -1,6 +1,6 @@
 <?php
 
-namespace Vne\News\App\Http\Requests;
+namespace Vne\Newsrldv\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

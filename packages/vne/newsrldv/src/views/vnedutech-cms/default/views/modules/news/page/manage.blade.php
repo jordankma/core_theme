@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 {{-- Page title --}}
-@section('title'){{ $title = trans('vne-news::language.titles.page.list') }}@stop
+@section('title'){{ $title = trans('vne-newsrldv::language.titles.page.list') }}@stop
 
 {{-- page level styles --}}
 @section('header_styles')
@@ -35,9 +35,9 @@
                         {{ $title }}
                     </h4>
                     <div class="pull-right">
-                         @if ($USER_LOGGED->canAccess('vne.news.page.create'))
-                        <a href="{{ route('vne.news.page.create') }}" class="btn btn-sm btn-default">
-                            <span class="glyphicon glyphicon-plus"></span> {{ trans('vne-news::language.buttons.create') }}
+                         @if ($USER_LOGGED->canAccess('vne.newsrldv.page.create'))
+                        <a href="{{ route('vne.newsrldv.page.create') }}" class="btn btn-sm btn-default">
+                            <span class="glyphicon glyphicon-plus"></span> {{ trans('vne-newsrldv::language.buttons.create') }}
                         </a>
                         @endif
                     </div>
@@ -48,10 +48,10 @@
                         <table class="table table-bordered" id="table">
                             <thead>
                             <tr class="filters">
-                                <th class="fit-content">{{ trans('vne-news::language.table.id') }}</th>
-                                <th>{{ trans('vne-news::language.table.list_news.title') }}</th>
-                                <th style="width: 120px">{{ trans('vne-news::language.table.created_at') }}</th>
-                                <th>{{ trans('vne-news::language.table.action') }}</th>
+                                <th class="fit-content">{{ trans('vne-newsrldv::language.table.id') }}</th>
+                                <th>{{ trans('vne-newsrldv::language.table.list_news.title') }}</th>
+                                <th style="width: 120px">{{ trans('vne-newsrldv::language.table.created_at') }}</th>
+                                <th>{{ trans('vne-newsrldv::language.table.action') }}</th>
                             </tr>
                             </thead>
                         </table>
@@ -72,7 +72,7 @@
             var table = $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('vne.news.page.data') }}',
+                ajax: '{{ route('vne.newsrldv.page.data') }}',
                 columns: [
                     { data: 'DT_Row_Index', name: 'news_id' },
                     { data: 'title', name: 'title' },

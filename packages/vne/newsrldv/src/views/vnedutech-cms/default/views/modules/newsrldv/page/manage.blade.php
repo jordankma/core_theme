@@ -1,12 +1,12 @@
 @extends('layouts.default')
 
 {{-- Page title --}}
-@section('title'){{ $title = trans('vne-newsrldv::language.titles.demo.manage') }}@stop
+@section('title'){{ $title = trans('vne-newsrldv::language.titles.page.list') }}@stop
 
 {{-- page level styles --}}
 @section('header_styles')
-    <link href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css' }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css' }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/css/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/css/pages/tables.css') }}" rel="stylesheet" type="text/css"/>
 @stop
 
 
@@ -16,8 +16,8 @@
         <h1>{{ $title }}</h1>
         <ol class="breadcrumb">
             <li>
-                <a href="{{ route('backend.homepage') }}"> <i class="livicon" data-name="home" data-size="16"
-                                                             data-color="#000"></i>
+                <a href="{{ route('backend.homepage') }}"> 
+                    <i class="livicon" data-name="home" data-size="16" data-color="#000"></i>
                     {{ trans('adtech-core::labels.home') }}
                 </a>
             </li>
@@ -30,13 +30,16 @@
         <div class="row">
             <div class="panel panel-primary ">
                 <div class="panel-heading clearfix">
-                    <h4 class="panel-title pull-left"><i class="livicon" data-name="users" data-size="16"
-                                                         data-loop="true" data-c="#fff" data-hc="white"></i>
+                    <h4 class="panel-title pull-left">
+                        <i class="livicon" data-name="users" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
                         {{ $title }}
                     </h4>
                     <div class="pull-right">
-                        <a href="{{ route('vne.newsrldv.demo.create') }}" class="btn btn-sm btn-default"><span
-                                    class="glyphicon glyphicon-plus"></span> {{ trans('vne-newsrldv::language.buttons.create') }}</a>
+                         @if ($USER_LOGGED->canAccess('vne.newsrldv.page.create'))
+                        <a href="{{ route('vne.newsrldv.page.create') }}" class="btn btn-sm btn-default">
+                            <span class="glyphicon glyphicon-plus"></span> {{ trans('vne-newsrldv::language.buttons.create') }}
+                        </a>
+                        @endif
                     </div>
                 </div>
                 <br/>
@@ -45,10 +48,9 @@
                         <table class="table table-bordered" id="table">
                             <thead>
                             <tr class="filters">
-                                <th class="fit-content">{{ trans('adtech-core::common.sequence') }}</th>
-                                <th>{{ trans('vne-newsrldv::language.table.demo.name') }}</th>
+                                <th class="fit-content">{{ trans('vne-newsrldv::language.table.id') }}</th>
+                                <th>{{ trans('vne-newsrldv::language.table.list_news.title') }}</th>
                                 <th style="width: 120px">{{ trans('vne-newsrldv::language.table.created_at') }}</th>
-                                <th style="width: 120px">{{ trans('vne-newsrldv::language.table.updated_at') }}</th>
                                 <th>{{ trans('vne-newsrldv::language.table.action') }}</th>
                             </tr>
                             </thead>
@@ -62,20 +64,19 @@
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js' }}"></script>
-    <script type="text/javascript" src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js' }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
     <script>
         $(function () {
             var table = $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('vne.newsrldv.demo.data') }}',
+                ajax: '{{ route('vne.newsrldv.page.data') }}',
                 columns: [
-                    { data: 'DT_Row_Index', name: 'id' },
-                    { data: 'name', name: 'name' },
+                    { data: 'DT_Row_Index', name: 'news_id' },
+                    { data: 'title', name: 'title' },
                     { data: 'created_at', name: 'created_at'},
-                    { data: 'updated_at', name: 'updated_at'},
                     { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
                 ]
             });

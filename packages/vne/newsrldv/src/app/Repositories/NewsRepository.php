@@ -1,10 +1,10 @@
 <?php
 
-namespace Vne\News\App\Repositories;
+namespace Vne\Newsrldv\App\Repositories;
 
 use Adtech\Application\Cms\Repositories\Eloquent\Repository;
 use DB;
-use Vne\News\App\Models\News;
+use Vne\Newsrldv\App\Models\News;
 
 class NewsRepository extends Repository
 {
@@ -14,14 +14,14 @@ class NewsRepository extends Repository
      */
     public function model()
     {
-        return 'Vne\News\App\Models\News';
+        return 'Vne\Newsrldv\App\Models\News';
     }
 
     public function findAll() {
 
         DB::statement(DB::raw('set @rownum=0'));
         $result = $this->model::query();
-        $result->select('vne_news.*', DB::raw('@rownum  := @rownum  + 1 AS rownum'));
+        $result->select('vne_rldv_news.*', DB::raw('@rownum  := @rownum  + 1 AS rownum'));
 
         return $result;
     }
@@ -42,16 +42,16 @@ class NewsRepository extends Repository
         if (!empty($params['news_cat']) && $params['news_cat'] != null) {
             $q->with('getCats')
             ->whereHas('getCats', function ($query) use ($params) {
-                $query->where('vne_news_cat.news_cat_id', $params['news_cat']);
+                $query->where('vne_rldv_news_cat.news_cat_id', $params['news_cat']);
             });
         }
         if (!empty($params['news_box']) && $params['news_box'] != null) {
             $q->with('getBoxs')
             ->whereHas('getBoxs', function ($query) use ($params) {
-                $query->where('vne_news_box.news_box_id', $params['news_box']);
+                $query->where('vne_rldv_news_box.news_box_id', $params['news_box']);
             });
         }
-        $data = $q->select('vne_news.*', DB::raw('@rownum  := @rownum  + 1 AS rownum'))->get(); 
+        $data = $q->select('vne_rldv_news.*', DB::raw('@rownum  := @rownum  + 1 AS rownum'))->get(); 
         return $data;
     }
 
@@ -63,13 +63,13 @@ class NewsRepository extends Repository
         if (!empty($params['news_cat_id']) && $params['news_cat_id'] != null) {
             $q->with('getCats')
             ->whereHas('getCats', function ($query) use ($params) {
-                $query->whereIn('vne_news_cat.news_cat_id', $params['news_cat_id']);
+                $query->whereIn('vne_rldv_news_cat.news_cat_id', $params['news_cat_id']);
             });
         }
         if (!empty($params['news_tag_id']) && $params['news_tag_id'] != null) {
             $q->with('getTags')
             ->whereHas('getTags', function ($query) use ($params) {
-                $query->whereIn('vne_news_tag.news_tag_id', $params['news_tag_id']);
+                $query->whereIn('vne_rldv_news_tag.news_tag_id', $params['news_tag_id']);
             });
         }
         $data = $q->paginate(10); 
@@ -80,22 +80,22 @@ class NewsRepository extends Repository
         $q = News::orderBy('is_hot','asc')->orderBy('news_id', 'desc');
         if($limit==null){
             $q->whereHas('getBoxs', function ($query) use ($alias) {
-                $query->where('vne_news_box.alias', $alias);
+                $query->where('vne_rldv_news_box.alias', $alias);
             });   
             if($news_cat_id != null){
                 $q->whereHas('getCats', function ($query) use ($news_cat_id) {
-                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                    $query->where('vne_rldv_news_cat.news_cat_id', $news_cat_id);
                 });
             }
             $result = $q->get();
         } 
         else {
             $q->with('getBoxs')->whereHas('getBoxs', function ($query) use ($alias) {
-                $query->where('vne_news_box.alias', $alias);
+                $query->where('vne_rldv_news_box.alias', $alias);
             });
             if($news_cat_id != null){
                 $q->whereHas('getCats', function ($query) use ($news_cat_id) {
-                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                    $query->where('vne_rldv_news_cat.news_cat_id', $news_cat_id);
                 });
             }
             $result = $q->paginate($limit, ['*'], $alias);
@@ -108,22 +108,22 @@ class NewsRepository extends Repository
         $q = News::orderBy('news_id', 'desc');
         if($limit==null){
             $q->whereHas('getBoxs', function ($query) use ($alias) {
-                $query->where('vne_news_box.alias', $alias);
+                $query->where('vne_rldv_news_box.alias', $alias);
             });   
             if($news_cat_id != null){
                 $q->whereHas('getCats', function ($query) use ($news_cat_id) {
-                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                    $query->where('vne_rldv_news_cat.news_cat_id', $news_cat_id);
                 });
             }
             $result = $q->get();
         } 
         else {
             $q->with('getBoxs')->whereHas('getBoxs', function ($query) use ($alias) {
-                $query->where('vne_news_box.alias', $alias);
+                $query->where('vne_rldv_news_box.alias', $alias);
             });
             if($news_cat_id != null){
                 $q->whereHas('getCats', function ($query) use ($news_cat_id) {
-                    $query->where('vne_news_cat.news_cat_id', $news_cat_id);
+                    $query->where('vne_rldv_news_cat.news_cat_id', $news_cat_id);
                 });
             }
             $result = $q->paginate($limit);
@@ -135,7 +135,7 @@ class NewsRepository extends Repository
     public function getNewsByCate($alias,$limit) {
         
         $result = News::whereHas('getCats', function ($query) use ($alias) {
-            $query->where('vne_news_cat.alias', $alias);
+            $query->where('vne_rldv_news_cat.alias', $alias);
         })->paginate($limit, ['*'], $alias);
         return $result;
     }

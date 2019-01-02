@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VneNewsCatTable extends Migration
+class VneRldvNewsTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class VneNewsCatTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_cuocthi')->create('vne_news_cat', function (Blueprint $table) {
-            $table->increments('news_cat_id');
-            $table->integer('parent')->comment('id cua chuyen muc cha');
+        Schema::connection('mysql_cuocthi')->create('vne_rldv_news_tag', function (Blueprint $table) {
+            $table->increments('news_tag_id');
             $table->string('name');
             $table->string('alias');
-            $table->tinyInteger('status')->comment('1 duyet 0 cho duyet')->default(1); 
+            $table->tinyInteger('status')->default(1); 
             $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
@@ -32,6 +31,6 @@ class VneNewsCatTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_cat');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_rldv_news_tag');
     }
 }

@@ -463,6 +463,53 @@ class NewsController extends Controller
             return $validator->messages();
         }
     }
+    public function status(Request $request)
+    {
+        $news_id = $request->news_id;
+        $news = $this->news->find($news_id);
+        if (null != $news) {
+            $news->status = ($news->status == 1) ? 0 : 1;
+            $news->save();
+            Cache::forget('cache_api_news');
+            Cache::forget('cache_news');
+            Cache::forget($this->sukien);
+            Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
+            Cache::forget($this->hanhtrinhgiaothonghocduong . '_4');
+            Cache::forget($this->hinhanhvideo . '_1');
+            Cache::forget($this->hinhanhvideo . '_2');
+
+            activity('news')
+                ->performedOn($news)
+                ->withProperties($request->all())
+                ->log('User: :causer.email - Status News  - news_id: :properties.news_id, name: ' . $news->name);
+            return redirect()->route('vne.news.news.manager')->with('success', trans('VNE-NEWS::language.messages.success.status'));
+        } else {
+            return redirect()->route('vne.news.news.manager')->with('error', trans('VNE-NEWS::language.messages.error.status'));
+        }
+    }
+
+    public function getModalStatus(Request $request)
+    {
+        $model = 'news';
+        $type = 'status';
+        $confirm_route = $error = null;
+        $validator = Validator::make($request->all(), [
+            'news_id' => 'required|numeric',
+        ], $this->messages);
+        if (!$validator->fails()) {
+            try {
+                $confirm_route = route('vne.news.news.status', ['news_id' => $request->news_id]);
+                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+            } catch (GroupNotFoundException $e) {
+                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+            }
+        } else {
+            return $validator->messages();
+        }
+    }
 	//Table Data to index page
     public function data(Request $request)
     {
@@ -507,6 +554,21 @@ class NewsController extends Controller
             	$image = '<img src="'.$list_news->image.'"  height="80" width="100">';
             	return $image;
             })
+            ->addColumn('status', function ($list_news) {
+                $status = '';
+                if($list_news->status == 0){
+                    if ($this->user->canAccess('vne.news.news.confirm-status')) {
+                        $status .= '<a href=' . route('vne.news.news.confirm-status', ['news_id' => $list_news->news_id]) . '
+                    data-toggle="modal" data-target="#status_confirm"> <span class="label label-default"> Chờ duyệt</span></a>';   
+                    }
+                } else{
+                    if ($this->user->canAccess('vne.news.news.confirm-status')) {
+                        $status .= '<a href=' . route('vne.news.news.confirm-status', ['news_id' => $list_news->news_id]) . ' 
+                        data-toggle="modal" data-target="#status_confirm"> <span class="label label-success"> Đã duyệt</span></a>';
+                    }
+                }
+                return $status;
+            })
             ->addColumn('news_cat', function ($list_news) {
                 $news_cat = '';
                 if($list_news->news_cat){
@@ -521,7 +583,7 @@ class NewsController extends Controller
                 }
             	return $news_cat;
             })
-            ->rawColumns(['actions','is_hot','image'])
+            ->rawColumns(['actions','is_hot','image','status'])
             ->make();
     }
     public function searchNews(){

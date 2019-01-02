@@ -122,6 +122,7 @@
                                         <th>{{ trans('vne-news::language.table.list_news.image') }}</th>
                                         <th>{{ trans('vne-news::language.table.list_news.author') }}</th>
                                         <th>{{ trans('vne-news::language.table.list_news.category') }}</th>
+                                        <th>{{ trans('vne-news::language.table.list_news.status') }}</th>
                                         <th class="fit-content">{{ trans('vne-news::language.table.action') }}</th>
                                     </tr>
                                 </thead>
@@ -178,6 +179,7 @@
                     { data: 'image', name: 'image' },
                     { data: 'create_by', name: 'create_by' },
                     { data: 'news_cat', name: 'news_cat' },
+                    { data: 'status', name: 'status' },
                     { data: 'actions', name: 'actions', orderable: false, searchable: false}
                 ],
                 language: $.parseJSON('{!! $DATATABLE_TRANS !!}')
@@ -198,6 +200,12 @@
         </div>
     </div>
     <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="user_log_title"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="status_confirm" tabindex="-1" role="dialog" aria-labelledby="news_status_confirm_title"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content"></div>

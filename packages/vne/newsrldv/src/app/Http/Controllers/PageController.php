@@ -1,16 +1,16 @@
 <?php
 
-namespace Vne\News\App\Http\Controllers;
+namespace Vne\Newsrldv\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Illuminate\Support\Collection;
 
-use Vne\News\App\Http\Requests\NewsRequest;
+use Vne\Newsrldv\App\Http\Requests\NewsRequest;
 
-use Vne\News\App\Repositories\NewsRepository;
+use Vne\Newsrldv\App\Repositories\NewsRepository;
 
-use Vne\News\App\Models\News;
+use Vne\Newsrldv\App\Models\News;
 
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
@@ -44,10 +44,10 @@ class PageController extends Controller
      * Chức năng : get list news
      */
 	public function manager(Request $request){
-		return view('VNE-NEWS::modules.news.page.manage');
+		return view('VNE-NEWSRLDV::modules.news.page.manage');
 	}
 	public function create(){
-		return view('VNE-NEWS::modules.news.page.create');
+		return view('VNE-NEWSRLDV::modules.news.page.create');
 	}
 	public function add(NewsRequest $request){
 		$create_by = $this->user->contact_name;
@@ -72,9 +72,9 @@ class PageController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Add page - name: :properties.name, news_id: ' . $news->news_id);
-            return redirect()->route('vne.news.page.manager')->with('success', trans('VNE-NEWS::language.messages.success.create'));
+            return redirect()->route('vne.newsrldv.page.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.create'));
         } else {
-            return redirect()->route('vne.news.page.manager')->with('error', trans('VNE-NEWS::language.messages.error.create'));
+            return redirect()->route('vne.newsrldv.page.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.create'));
         }
 	}
 
@@ -85,7 +85,7 @@ class PageController extends Controller
 		$data = [
 			'news' => $news     
         ];
-		return view('VNE-NEWS::modules.news.page.edit',$data);
+		return view('VNE-NEWSRLDV::modules.news.page.edit',$data);
 	}	
 	public function update(Request $request){
 		$news_id = $request->input('news_id');
@@ -106,9 +106,9 @@ class PageController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Edit page - name: :properties.name, news_id: ' . $news->news_id);
-            return redirect()->route('vne.news.page.manager')->with('success', trans('VNE-NEWS::language.messages.success.update'));
+            return redirect()->route('vne.newsrldv.page.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.update'));
         } else {
-            return redirect()->route('vne.news.page.manager')->with('error', trans('VNE-NEWS::language.messages.error.update'));
+            return redirect()->route('vne.newsrldv.page.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.update'));
         }		
 	}
 
@@ -126,9 +126,9 @@ class PageController extends Controller
                     ['log_name', $model],
                     ['subject_id', $request->input('news_id')]
                 ])->get();
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route', 'logs'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_table', compact('error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -146,9 +146,9 @@ class PageController extends Controller
                 ->performedOn($news)
                 ->withProperties($request->all())
                 ->log('User: :causer.email - Delete News Cat - news_id: :properties.news_id, name: ' . $news->name);
-            return redirect()->route('vne.news.news.manager')->with('success', trans('VNE-NEWS::language.messages.success.delete'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('success', trans('VNE-NEWSRLDV::language.messages.success.delete'));
         } else {
-            return redirect()->route('vne.news.news.manager')->with('error', trans('VNE-NEWS::language.messages.error.delete'));
+            return redirect()->route('vne.newsrldv.news.manager')->with('error', trans('VNE-NEWSRLDV::language.messages.error.delete'));
         }
     }
     public function getModalDelete(Request $request)
@@ -161,10 +161,10 @@ class PageController extends Controller
         ], $this->messages);
         if (!$validator->fails()) {
             try {
-                $confirm_route = route('vne.news.news.delete', ['news_id' => $request->news_id]);
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                $confirm_route = route('vne.newsrldv.news.delete', ['news_id' => $request->news_id]);
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             } catch (GroupNotFoundException $e) {
-                return view('VNE-NEWS::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
+                return view('VNE-NEWSRLDV::modules.news.modal.modal_confirmation', compact('type','error', 'model', 'confirm_route'));
             }
         } else {
             return $validator->messages();
@@ -178,14 +178,14 @@ class PageController extends Controller
         	->addIndexColumn()
             ->addColumn('actions', function ($list_news) {
                 $actions = '';
-                if ($this->user->canAccess('vne.news.page.log')) {
-                    $actions .= '<a href=' . route('vne.news.page.log', ['type' => 'page', 'news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log page"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.page.log')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.page.log', ['type' => 'page', 'news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log page"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.page.show')) {
-                    $actions .= '<a href=' . route('vne.news.page.show', ['news_id' => $list_news->news_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update page"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.page.show')) {
+                    $actions .= '<a href=' . route('vne.newsrldv.page.show', ['news_id' => $list_news->news_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update page"></i></a>';
                 }
-                if ($this->user->canAccess('vne.news.page.confirm-delete')) {
-                    $actions .=  '<a href=' . route('vne.news.page.confirm-delete', ['news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete page"></i></a>';
+                if ($this->user->canAccess('vne.newsrldv.page.confirm-delete')) {
+                    $actions .=  '<a href=' . route('vne.newsrldv.page.confirm-delete', ['news_id' => $list_news->news_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete page"></i></a>';
                 }
                 return $actions;
             })

@@ -1,22 +1,22 @@
 <?php
 
-namespace Vne\Newsrldv\App\Models;
+namespace Vne\Mail\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Demo extends Model {
+class Tmail extends Model {
     use SoftDeletes;
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'tbl_demo';
+    protected $table = 't_mail';
 
-    protected $primaryKey = 'demo_id';
+    protected $primaryKey = 't_mail_id';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['title'];
 
     protected $dates = ['deleted_at'];
 }

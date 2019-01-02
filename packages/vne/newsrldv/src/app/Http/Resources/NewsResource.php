@@ -1,5 +1,5 @@
 <?php
-namespace Vne\News\App\Http\Resources;
+namespace Vne\Newsrldv\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

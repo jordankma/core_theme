@@ -7,6 +7,10 @@ return [
     	"delete"=>[
         	"title" => "Xóa tin tức",
         	"body" => "Bạn có chắc muốn xóa tin này?"
+    	],
+    	"status"=>[
+        	"title" => "Duyệt tin tức",
+        	"body" => "Bạn có chắc muốn duyệt tin này?"
     	]
     ],
     "news_tag" => [

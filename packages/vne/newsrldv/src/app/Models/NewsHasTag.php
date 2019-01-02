@@ -1,6 +1,6 @@
 <?php
 
-namespace Vne\News\App\Models;
+namespace Vne\Newsrldv\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class NewsHasTag extends Model
      *
      * @var string
      */
-    protected $table = 'vne_news_has_tag';
+    protected $table = 'vne_rldv_news_has_tag';
 
     protected $primaryKey = 'news_has_tag_id';
 

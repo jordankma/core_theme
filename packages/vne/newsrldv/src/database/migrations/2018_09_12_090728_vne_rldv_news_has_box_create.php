@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VneNewsHasBoxCreate extends Migration
+class VneRldvNewsHasBoxCreate extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class VneNewsHasBoxCreate extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_cuocthi')->create('vne_news_has_box', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_rldv_news_has_box', function (Blueprint $table) {
             $table->increments('news_has_box_id');
             $table->integer('news_id', false, true)->index();
             $table->integer('news_box_id', false, true)->index();
@@ -21,8 +21,8 @@ class VneNewsHasBoxCreate extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('news_id')->references('news_id')->on('vne_news');
-            $table->foreign('news_box_id')->references('news_box_id')->on('vne_news_box');
+            $table->foreign('news_id')->references('news_id')->on('vne_rldv_news');
+            $table->foreign('news_box_id')->references('news_box_id')->on('vne_rldv_news_box');
         });
     }
 
@@ -33,6 +33,6 @@ class VneNewsHasBoxCreate extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news_has_box');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_rldv_news_has_box');
     }
 }

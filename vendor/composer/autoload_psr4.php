@@ -15,6 +15,7 @@ return array(
     'Vne\\Timeline\\' => array($baseDir . '/packages/vne/timeline/src'),
     'Vne\\Theme\\' => array($baseDir . '/packages/vne/theme/src'),
     'Vne\\Notification\\' => array($baseDir . '/packages/vne/notification/src'),
+    'Vne\\Newsrldv\\' => array($baseDir . '/packages/vne/newsrldv/src'),
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
     'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),
     'Vne\\Contact\\' => array($baseDir . '/packages/vne/contact/src'),

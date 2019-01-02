@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class VneNewsTable extends Migration
+class VneRldvNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class VneNewsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_cuocthi')->create('vne_news', function (Blueprint $table) {
+        Schema::connection('mysql_cuocthi')->create('vne_rldv_news', function (Blueprint $table) {
             $table->increments('news_id');
             $table->string('create_by')->comment('email cua nguoi dang tin');
             $table->string('news_cat')->comment('json chua cac chuyen muc')->nullable();
@@ -35,7 +35,7 @@ class VneNewsTable extends Migration
             $table->string('key_word_seo')->comment('json cac tu khoa seo')->nullable();
             $table->string('desc_seo')->comment('mo ta cua seo')->nullable();
             $table->tinyInteger('visible', false, true)->comemt('an hien tin 1:hien 0:an')->default(1);
-            $table->tinyInteger('status', false, true)->comment('trang thai')->default(1);
+            $table->tinyInteger('status', false, true)->comment('trang thai 1 duyet 0 chua duyet')->default(0);
             
             $table->timestamps();
             $table->softDeletes();
@@ -49,6 +49,6 @@ class VneNewsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news');
+        Schema::connection('mysql_cuocthi')->dropIfExists('vne_rldv_news');
     }
 }

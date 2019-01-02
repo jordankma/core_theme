@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 {{-- Page title --}}
-@section('title'){{ $title = trans('vne-news::language.titles.news.list') }} @stop
+@section('title'){{ $title = trans('vne-newsrldv::language.titles.news.list') }} @stop
 {{-- page styles --}}
 @section('header_styles')
     <link href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/vendors/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -38,20 +38,20 @@
                 <div class="panel-heading clearfix">
                     {{ $title}}
                     <div class="pull-right">
-                        @if ($USER_LOGGED->canAccess('vne.news.news.create'))
-                            <a href="{{ route('vne.news.news.create') }}" class="btn btn-sm btn-default">
+                        @if ($USER_LOGGED->canAccess('vne.newsrldv.news.create'))
+                            <a href="{{ route('vne.newsrldv.news.create') }}" class="btn btn-sm btn-default">
                                 <span class="glyphicon glyphicon-plus"></span> {{ trans('adtech-core::buttons.create') }}</a>
                         @endif
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" name='search-form' id='search-form' action="{{route('vne.news.news.manager')}}" method="get">
+                    <form class="form-horizontal" name='search-form' id='search-form' action="{{route('vne.newsrldv.news.manager')}}" method="get">
                         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"/> --}}
                         <input type="hidden" name="visible" value="1"/>
                         <fieldset>
                             <div class='col-md-2'>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="name">{{ trans('vne-news::language.table.list_news.title') }}</label>
+                                    <label class="col-md-4 control-label" for="name">{{ trans('vne-newsrldv::language.table.list_news.title') }}</label>
                                     <div class="col-md-8">
                                         <input id="name" name="name" type="text"  value="{{isset($request->name)?$request->name:null}}" class="form-control">
                                     </div>                                  
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-md-5 control-label" >{{ trans('vne-news::language.table.list_news.category') }}</label>
+                                    <label class="col-md-5 control-label" >{{ trans('vne-newsrldv::language.table.list_news.category') }}</label>
                                     <div class="col-md-7">
                                         <select class="form-control" name="news_cat">
                                             <option></option>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label class="col-md-5 control-label" >{{ trans('vne-news::language.table.list_news.box') }}</label>
+                                    <label class="col-md-5 control-label" >{{ trans('vne-newsrldv::language.table.list_news.box') }}</label>
                                     <div class="col-md-7">
                                         <select class="form-control" name="news_box">
                                             <option></option>
@@ -117,12 +117,13 @@
                                 <thead >
                                     <tr>                                             
                                         <th class="fit-content">#</th>
-                                        <th>{{ trans('vne-news::language.table.list_news.title') }}</th>
-                                        <th>{{ trans('vne-news::language.table.list_news.alias') }}</th>
-                                        <th>{{ trans('vne-news::language.table.list_news.image') }}</th>
-                                        <th>{{ trans('vne-news::language.table.list_news.author') }}</th>
-                                        <th>{{ trans('vne-news::language.table.list_news.category') }}</th>
-                                        <th class="fit-content">{{ trans('vne-news::language.table.action') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.title') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.alias') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.image') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.author') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.category') }}</th>
+                                        <th>{{ trans('vne-newsrldv::language.table.list_news.status') }}</th>
+                                        <th class="fit-content">{{ trans('vne-newsrldv::language.table.action') }}</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -170,7 +171,7 @@
             var table = $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('vne.news.news.data', ['name' => $params['name'],'news_time'=>$params['news_time'],'news_cat'=>$params['news_cat'],'is_hot'=>$params['is_hot'],'news_box'=>$params['news_box']]) !!}',
+                ajax: '{!! route('vne.newsrldv.news.data', ['name' => $params['name'],'news_time'=>$params['news_time'],'news_cat'=>$params['news_cat'],'is_hot'=>$params['is_hot'],'news_box'=>$params['news_box']]) !!}',
                 columns: [
                     { data: 'DT_Row_Index', name: 'news_id' },
                     { data: 'title', name: 'title' },
@@ -178,6 +179,7 @@
                     { data: 'image', name: 'image' },
                     { data: 'create_by', name: 'create_by' },
                     { data: 'news_cat', name: 'news_cat' },
+                    { data: 'status', name: 'status' },
                     { data: 'actions', name: 'actions', orderable: false, searchable: false}
                 ],
                 language: $.parseJSON('{!! $DATATABLE_TRANS !!}')
@@ -192,6 +194,12 @@
     </script>
 
     <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="status_confirm" tabindex="-1" role="dialog" aria-labelledby="news_status_confirm_title"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content"></div>

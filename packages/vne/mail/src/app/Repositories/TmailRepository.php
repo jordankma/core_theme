@@ -1,15 +1,15 @@
 <?php
 
-namespace Vne\Newsrldv\App\Repositories;
+namespace Vne\Mail\App\Repositories;
 
 use Adtech\Application\Cms\Repositories\Eloquent\Repository;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class DemoRepository
- * @package Vne\Newsrldv\Repositories
+ * @package Vne\Mail\Repositories
  */
-class DemoRepository extends Repository
+class TmailRepository extends Repository
 {
 
     /**
@@ -17,7 +17,7 @@ class DemoRepository extends Repository
      */
     public function model()
     {
-        return 'Vne\Newsrldv\App\Models\Demo';
+        return 'Vne\Mail\App\Models\Tmail';
     }
 
     public function findAll() {
