@@ -52,7 +52,7 @@
         </div>
     </div>
     @elseif($element['type_view'] == 3)
-    @if($element['params'] == 'accept_rule')
+    @if($element['params'] == 'indenty_number')
     <p style="font-weight: bold">Bước 3: Xác nhận đăng ký: </p>
     <p style="color:red">{{ $element['hint_text'] }}</p>
     @endif

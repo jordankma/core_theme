@@ -98,6 +98,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
             'Vne\\Newsrldv\\' => 13,
             'Vne\\News\\' => 9,
             'Vne\\Member\\' => 11,
+            'Vne\\Mail\\' => 9,
             'Vne\\Contact\\' => 12,
             'Vne\\Companionunit\\' => 18,
             'Vne\\Banner\\' => 11,
@@ -290,6 +291,10 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Member\\' => 
         array (
             0 => __DIR__ . '/../..' . '/packages/vne/member/src',
+        ),
+        'Vne\\Mail\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/vne/mail/src',
         ),
         'Vne\\Contact\\' => 
         array (
@@ -1229,7 +1234,9 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'CreateAdtechCoreRolesTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100000_create_adtech_core_roles_table.php',
         'CreateAdtechCoreUsersRoleTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100002_create_adtech_core_users_role_table.php',
         'CreateAdtechCoreUsersTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100001_create_adtech_core_users_table.php',
+        'CreateGMailTable' => __DIR__ . '/../..' . '/packages/vne/mail/src/database/migrations/2018_12_27_093049_create_g_mail_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/packages/adtech/core/src/database/migrations/2017_04_20_100003_create_password_resets_table.php',
+        'CreateTMailTable' => __DIR__ . '/../..' . '/packages/vne/mail/src/database/migrations/2018_12_27_093034_create_t_mail_table.php',
         'CreateTableCompanionunit' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/database/migrations/2018_10_23_102708_create_table_companionunit.php',
         'CreateTableGroup' => __DIR__ . '/../..' . '/packages/vne/companionunit/src/database/migrations/2018_10_31_152327_create_table_group.php',
         'CreateTableTimeline' => __DIR__ . '/../..' . '/packages/vne/timeline/src/database/migrations/2018_10_24_111536_create_table_timeline.php',
@@ -13942,6 +13949,15 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Contact\\App\\Models\\Contact' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Models/Contact.php',
         'Vne\\Contact\\App\\Repositories\\ContactRepository' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Repositories/ContactRepository.php',
         'Vne\\Contact\\ContactServiceProvider' => __DIR__ . '/../..' . '/packages/vne/contact/src/ContactServiceProvider.php',
+        'Vne\\Mail\\App\\Http\\Controllers\\DemoController' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Http/Controllers/DemoController.php',
+        'Vne\\Mail\\App\\Http\\Controllers\\SentController' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Http/Controllers/SentController.php',
+        'Vne\\Mail\\App\\Models\\Demo' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Models/Demo.php',
+        'Vne\\Mail\\App\\Models\\Gmail' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Models/GmailModel.php',
+        'Vne\\Mail\\App\\Models\\Tmail' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Models/TmailModel.php',
+        'Vne\\Mail\\App\\Repositories\\DemoRepository' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Repositories/DemoRepository.php',
+        'Vne\\Mail\\App\\Repositories\\GmailRepository' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Repositories/GmailRepository.php',
+        'Vne\\Mail\\App\\Repositories\\TmailRepository' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Repositories/TmailRepository.php',
+        'Vne\\Mail\\MailServiceProvider' => __DIR__ . '/../..' . '/packages/vne/mail/src/MailServiceProvider.php',
         'Vne\\Member\\App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Http/Controllers/AuthController.php',
         'Vne\\Member\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Http/Controllers/MemberController.php',
         'Vne\\Member\\App\\Middleware\\AuthMiddleware' => __DIR__ . '/../..' . '/packages/vne/member/src/app/Middleware/AuthMiddleware.php',
@@ -13976,7 +13992,6 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\News\\App\\Repositories\\NewsTagRepository' => __DIR__ . '/../..' . '/packages/vne/news/src/app/Repositories/NewsTagRepository.php',
         'Vne\\News\\NewsServiceProvider' => __DIR__ . '/../..' . '/packages/vne/news/src/NewsServiceProvider.php',
         'Vne\\Newsrldv\\App\\Http\\Controllers\\ApiNewsController' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Controllers/ApiNewsController.php',
-        'Vne\\Newsrldv\\App\\Http\\Controllers\\DemoController' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Controllers/DemoController.php',
         'Vne\\Newsrldv\\App\\Http\\Controllers\\NewsBoxController' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Controllers/NewsBoxController.php',
         'Vne\\Newsrldv\\App\\Http\\Controllers\\NewsCatController' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Controllers/NewsCatController.php',
         'Vne\\Newsrldv\\App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Controllers/NewsController.php',
@@ -13987,7 +14002,6 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Newsrldv\\App\\Http\\Requests\\NewsRequest' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Requests/NewsRequest.php',
         'Vne\\Newsrldv\\App\\Http\\Requests\\NewsTagRequest' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Requests/NewsTagRequest.php',
         'Vne\\Newsrldv\\App\\Http\\Resources\\NewsResource' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Http/Resources/NewsResource.php',
-        'Vne\\Newsrldv\\App\\Models\\Demo' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/Demo.php',
         'Vne\\Newsrldv\\App\\Models\\News' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/News.php',
         'Vne\\Newsrldv\\App\\Models\\NewsBox' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/NewsBox.php',
         'Vne\\Newsrldv\\App\\Models\\NewsCat' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/NewsCat.php',
@@ -13995,7 +14009,6 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Newsrldv\\App\\Models\\NewsHasCat' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/NewsHasCat.php',
         'Vne\\Newsrldv\\App\\Models\\NewsHasTag' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/NewsHasTag.php',
         'Vne\\Newsrldv\\App\\Models\\NewsTag' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Models/NewsTag.php',
-        'Vne\\Newsrldv\\App\\Repositories\\DemoRepository' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Repositories/DemoRepository.php',
         'Vne\\Newsrldv\\App\\Repositories\\NewsBoxRepository' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Repositories/NewsBoxRepository.php',
         'Vne\\Newsrldv\\App\\Repositories\\NewsCatRepository' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Repositories/NewsCatRepository.php',
         'Vne\\Newsrldv\\App\\Repositories\\NewsHasCatRepository' => __DIR__ . '/../..' . '/packages/vne/newsrldv/src/app/Repositories/NewsHasCatRepository.php',

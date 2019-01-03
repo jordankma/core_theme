@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label>{{trans('vne-news::language.form.text.content')}} </label><br>
                                     <div class='box-body pad form-group'>
-                                        <textarea name="content" id="ckeditor" placeholder="{{trans('vne-news::language.form.content_placeholder')}}"></textarea>
+                                        <textarea name="content" id="ckeditor" placeholder="{{trans('vne-news::language.form.content')}}"></textarea>
                                     </div>
                                 </div>
                             </div>

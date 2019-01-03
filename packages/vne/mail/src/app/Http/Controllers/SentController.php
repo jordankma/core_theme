@@ -21,7 +21,7 @@ class SentController extends Controller
         'required' => "Bắt buộc",
         'numeric'  => "Phải là số"
     );
-
+    private $domain_get_data = 'http://cuocthi.vnedutech.vn';
     public function __construct(TmailRepository $tmailRepository,GmailRepository $gmailRepository)
     {
         parent::__construct();
@@ -29,8 +29,17 @@ class SentController extends Controller
         $this->gmail = $gmailRepository;
     }
 
-    public function manage()
+    public function createHddtw()
     {
-        return view('VNE-MAIL::modules.mail.demo.manage');
+        $list_province = array();
+        try {
+            $list_province = json_decode(file_get_contents($this->domain_get_data .'/resource/dev/get/vne/getallprovince'),true);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $data = [
+            'list_province' => $list_province
+        ];
+        return view('VNE-MAIL::modules.mail.sent.hddtw', $data);
     }
 }

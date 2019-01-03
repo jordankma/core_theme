@@ -2,9 +2,15 @@
 
 return [
     "titles" => [
-        "demo" => [
-            "manage" => "Manage demo"
+        "mail" => [
+            "manage" => "Danh sách mail",
+            "create" => "Gửi mail",
+            "update" => "Cập nhật"
         ]
+    ],
+    "label" => [
+        "title" => "Tiêu đề",
+        "content" => "Nội dung"
     ],
     "table" => [
         "id" => "#",
@@ -20,7 +26,9 @@ return [
         "discard" => "Discard"
     ],
     "placeholder" => [
-        "demo" => [
+        "mail" => [
+            "title" => "Nhập tiêu đề",
+            "content" => "Nhập nội dung",
             "name_here" => "Name here..."
         ]
     ],
