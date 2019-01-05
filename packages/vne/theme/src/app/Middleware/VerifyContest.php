@@ -36,7 +36,6 @@ class VerifyContest
 		} catch (\Throwable $th) {
 			throw $th;
 		}
-		// dd($check_login);
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
@@ -48,7 +47,6 @@ class VerifyContest
 			} catch (\Throwable $th) {
 				//throw $th;
 			}
-			// dd($check_reg);
 			if($check_reg == true){
 				//check auto close contest
 				$type_exam = 'real';
@@ -68,7 +66,7 @@ class VerifyContest
     }
 	function checkEndExam($type_exam){
 		$url = config('app.url');
-		$url = 'http://gthd.vnedutech.vn';
+		// $url = 'http://gthd.vnedutech.vn';
 		$status = false;
 		$messages = 'Vòng thi kết thúc!';
 		try {
