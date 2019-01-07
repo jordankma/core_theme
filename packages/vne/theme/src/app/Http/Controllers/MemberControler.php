@@ -41,7 +41,9 @@ class MemberController extends Controller
     }
 
     public function showRegisterMember(Request $request){
-        return redirect()->route('index');
+        if(env('GTHD_OPEN',false) == false){
+          return redirect()->route('index');
+        }
         $validator = Validator::make($request->all(), [
             'member_id' => 'required|numeric'
         ], $this->messages);
@@ -105,7 +107,9 @@ class MemberController extends Controller
     }
 
     public function updateRegisterMember(Request $request){
-      return redirect()->route('index');
+      if(env('GTHD_OPEN',false) == false){
+        return redirect()->route('index');
+      }
       $date_birthday = new DateTime($request->input('birthday'));
       $birthday = date_format($date_birthday,"d-m-Y");
       $field_list = file_get_contents($this->url . '/api/contest/get/list_field');

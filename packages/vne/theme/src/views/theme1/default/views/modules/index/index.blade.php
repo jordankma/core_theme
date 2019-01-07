@@ -19,8 +19,10 @@
 					<h2 class="headline">Cuộc thi GIAO THÔNG HỌC ĐƯỜNG </h2>
 					<div data-minutes="{{ $minutes_countdown }}"></div>
 					<div class="button-group">
-						{{-- <a class="btn" href="{{ route('vne.get.real.exam') }}" id="btn-real-exam">Vào thi</a> --}}
-						{{-- <a class="btn" href="{{ route('vne.get.try.exam') }}" id="btn-try-exam">Thi thử</a> --}}
+						@if(env('GTHD_OPEN',false) == true)
+						<a class="btn" href="{{ route('vne.get.real.exam') }}" id="btn-real-exam">Vào thi</a>
+						<a class="btn" href="{{ route('vne.get.try.exam') }}" id="btn-try-exam">Thi thử</a>
+						@endif
 					</div>
 				</section>
 				<!-- Countdown clock end -->
