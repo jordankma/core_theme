@@ -28,7 +28,7 @@
 		<![if !(lte IE 9)]>
 		<div class="noscript-message">
 			<div class="noscript-message__content">
-				<p>Trinh duyệt của bạn không hỗ trợ hoặc đã tắt JavaScript, bạn vui lòng cập nhận trình đuyệt web hoặc mở
+				<p>Trình duyệt của bạn không hỗ trợ hoặc đã tắt JavaScript, bạn vui lòng cập nhận trình đuyệt web hoặc mở
 					JavaScript trong phần cài đặt.</p>
 			</div>
 		</div>
