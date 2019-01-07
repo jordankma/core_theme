@@ -19,6 +19,7 @@
 			background:url("{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }}")
 		}
 	</style>
+	{!! isset($SETTING['ga_code']) ? $SETTING['ga_code'] : '' !!}
 </head>
 
 <body @if(isset($type_page)) class="home" @endif>
@@ -33,7 +34,6 @@
 		</div>
 		<![endif]>
 	</noscript>
-
 	<div id="app">
 
 		<!-- header -->
@@ -64,9 +64,11 @@
 
 		<div class="hotline_home" style="position: fixed;bottom: 3px;right: 20px;z-index: 9999;">
 			<a class="btn btn-primary" style="font-size: 18px;color: #fff;line-height: 40px;border-radius: 90px; background-color: #337ab4;
-			border-color: #337ab7;" href="tel:1900636444" onclick="goog_report_conversion('tel:1900636444')">
+			border-color: #337ab7;" href="tel:{{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }}" onclick="goog_report_conversion('tel:{{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }}')">
 				<i class="fa fa-1x fa-phone-square" aria-hidden="true"></i>
-				<span class="hotline_text">HOTLINE: </span>1900636444 
+				<span class="hotline_text">HOTLINE: </span>
+				<span> {{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }} </span>
+				-<span> {{ isset($SETTING['phone']) ? $SETTING['phone'] : '' }}</span>
 			</a>
         </div>
 	</div>
@@ -129,26 +131,26 @@
 	            }
 	        });
 		}
-		$('body').on('click', "#button-logout", function (event) {
-	    	event.preventDefault();	
-	    	$.ajax({
-	            url: 'http://eid.vnedutech.vn/logout',
-	            method: 'get',
-	            xhrFields: {
-	                withCredentials: true
-	            },
-	            headers: {
-	                'X-Requested-With': 'XMLHttpRequest'
-	            },
-	            success: function (data) {
-	            	var url = '{{ route('vne.member.logout')}}';
-	            	window.location.assign(url);
-	            },
-	            error: function (data) {
-	                console.log('Fail')
-	            }
-	        });
-	    });
+		// $('body').on('click', "#button-logout", function (event) {
+	    // 	event.preventDefault();	
+	    // 	$.ajax({
+	    //         url: 'http://eid.vnedutech.vn/logout',
+	    //         method: 'get',
+	    //         xhrFields: {
+	    //             withCredentials: true
+	    //         },
+	    //         headers: {
+	    //             'X-Requested-With': 'XMLHttpRequest'
+	    //         },
+	    //         success: function (data) {
+	    //         	var url = '{{ route('vne.member.logout')}}';
+	    //         	window.location.assign(url);
+	    //         },
+	    //         error: function (data) {
+	    //             console.log('Fail')
+	    //         }
+	    //     });
+	    // });
 	</script>
 </body>
 

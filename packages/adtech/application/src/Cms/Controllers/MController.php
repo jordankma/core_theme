@@ -70,6 +70,9 @@ class MController extends BaseController
                     case 'logo':
                         $settingView['logo'] = $setting->value;
                         break;
+                    case 'slogan':
+                        $settingView['slogan'] = $setting->value;
+                        break;
                     case 'logo_mini':
                         $settingView['logo_mini'] = $setting->value;
                         break;

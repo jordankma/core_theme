@@ -157,11 +157,13 @@ class SearchController extends Controller
         $title = $list_top_thi_sinh_dang_ky->title;
         $list_top = $list_top_thi_sinh_dang_ky->data_child;
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
+        $data_header = self::getDataHeader($list_top, $data_child_params, $page);
       } 
       elseif($type=='candidate'){
         $title = $list_top_thi_sinh_da_thi->title;
         $list_top = $list_top_thi_sinh_da_thi->data_child;
         $data_table = self::getDataTable($list_top, $data_child_params, $page);
+        $data_header = self::getDataHeader($list_top, $data_child_params, $page);
       }
       $data = [
         'title' => $title,
@@ -170,7 +172,8 @@ class SearchController extends Controller
         'data_table' => $data_table,
         'page' => $page,
         'data_child_params' => $data_child_params,
-        'url_get_by_page' => $url_get_by_page
+        'url_get_by_page' => $url_get_by_page,
+        'data_header' => $data_header
       ];
       return view('VNE-THEME::modules.search.rating',$data);
     }
@@ -203,6 +206,18 @@ class SearchController extends Controller
         }
       }
       return json_decode($data_table);
+    }
+
+    function getDataHeader($list_top, $data_child_params, $page){
+      $data_header = array();
+      if(!empty($list_top)){
+        foreach ($list_top as $key => $value) {
+          if( $value->params == $data_child_params){
+            $data_header = $value->table_header;
+          }    
+        }
+      }
+      return $data_header;
     }
     
 }

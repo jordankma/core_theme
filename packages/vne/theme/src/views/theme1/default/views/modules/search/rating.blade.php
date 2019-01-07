@@ -1,5 +1,12 @@
 @extends('VNE-THEME::layouts.master')
 @section('content')
+@section('header_styles')
+	<style>
+		.pagination .page-item {
+			display: inline-block;
+		}
+	</style>
+@stop
 <!-- main -->
 <main class="main">
 	<!-- ratings -->
@@ -38,9 +45,19 @@
 				<!-- pagination end -->
 				<div class="content">
 					<div class="row title">
-						<div class="col-2 col-md-1">STT</div>
-						<div class="col-6 col-md-6">Tỉnh/TP</div>
-						<div class="col-4 col-md-5">Số lượng</div>
+						@if(!empty($data_header))
+						@foreach($data_header as $element)
+						@if($loop->index==0)
+						<div class="col-2 col-md-1">{{ $element }}</div>
+						@endif
+						@if($loop->index==1)
+						<div class="col-6 col-md-6">{{ $element }}</div>
+						@endif
+						@if($loop->index==2)
+						<div class="col-4 col-md-5">{{ $element }}</div>
+						@endif
+						@endforeach
+						@endif
 					</div>
 					<ol class="list">
 						@if(!empty($data_table->data))

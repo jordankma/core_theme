@@ -1,7 +1,30 @@
 @foreach ($form_data as $element)
     @if($element['type_view'] == 0)
+    @if($element['params'] == 'facebook')
+    @if(!empty($autoload))
+    @foreach ($autoload as $key => $item)
     <div class="form-group">
-        <label> {{ $element['title'] }} </label>
+        <label> {{ $item['title'] }} <small class="text-muted" style="color:red">*</small></label>
+        <div class="input">
+        <select class="form-control autoload" data-key="{{$key}}" required name="{{ $item['params'] }}" id="{{ $item['params'] }}">
+                <option></option>
+                @if(!empty($item['form_data']))
+                @foreach ($item['form_data'] as $key2 => $item2)
+                    <option value="{{ $item2['id'] }}" data-key="{{$key}}" data-key2="{{$key2}}">{{ $item2['title'] }}</option>
+                @endforeach
+                @endif
+            </select>
+            <input type="hidden" name="target_name" value="">
+        </div>
+    </div>
+    <div id="area-type-{{$key}}" style="margin-top:20px">
+        
+    </div>     
+    @endforeach
+    @endif
+    @endif
+    <div class="form-group">
+        <label> {{ $element['title'] }} @if($element['is_require'] == true) <small class="text-muted" style="color:red">*</small> @endif </label>
         <div class="input">
             <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" 
             class="form-control" placeholder="{{ $element['hint_text'] }}" 
@@ -10,7 +33,6 @@
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
-            @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
     @if($element['params'] == 'facebook')
@@ -20,7 +42,7 @@
     @endif
     @elseif($element['type_view'] == 1)
     <div class="form-group">
-        <label>{{ $element['title'] }}</label>
+        <label>{{ $element['title'] }} @if($element['is_require'] == true) <small class="text-muted" style="color:red">*</small> @endif </label>
         <div class="input">
             <select class="form-control" id="{{ $element['params'] }}" name="{{ $element['params'] }}" @if($element['is_require'] == true) required="" @endif >
                 <option></option>
@@ -33,12 +55,11 @@
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
-            @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
     @elseif($element['type_view'] == 2)
     <div class="form-group">
-        <label>{{ $element['title'] }}</label>
+        <label>{{ $element['title'] }} @if($element['is_require'] == true) <small class="text-muted" style="color:red">*</small> @endif</label>
         <div class="input">
             @if(!empty($element['data_view']))
             @foreach ($element['data_view'] as $element3)
@@ -48,7 +69,6 @@
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
-            @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
     @elseif($element['type_view'] == 3)
@@ -60,10 +80,9 @@
         - Nếu quá thời gian quy định mà thí sinh chưa cập nhật hoặc đính chính thông tin tài khoản nhận thưởng thì giải thưởng của thí sinh sẽ bị hủy. <br>
         ** Tôi đồng ý với những điều khoản đã nêu trên <br>
     </p>
-    {{-- <p style="color:red">{{ $element['hint_text'] }}</p> --}}
     @endif
     <div class="form-group">
-        <label>{{ $element['title'] }}</label>
+        <label>{{ $element['title'] }} @if($element['is_require'] == true) <small class="text-muted" style="color:red">*</small> @endif </label>
         <div class="input">
             @if(!empty($element['data_view']))
             @foreach ($element['data_view'] as $element4)
@@ -73,7 +92,6 @@
             @if($element['params_hidden'] !=null)
                 <input type="hidden" name="{{ $element['params_hidden'] }}">    
             @endif
-            @if($element['is_require'] == true) <small class="text-muted">*</small> @endif
         </div>
     </div>
     @endif

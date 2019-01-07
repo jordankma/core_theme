@@ -41,7 +41,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 		<div class="container">
 			<div class="inner">
 				<div class="contact">
-					<span class="phone"><i class="fa fa-phone"></i> Hotline: {{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }}</span>
+					<span class="phone"><i class="fa fa-phone"></i> Hotline: {{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }} - {{ isset($SETTING['phone']) ? $SETTING['phone'] : '' }}</span>
 					<span class="email"><i class="fa fa-email"></i> Email: {{ isset($SETTING['email']) ? $SETTING['email'] : '' }}</span>
 				</div> <!-- /top bar -->
 				<ul class="nav" id="menu-info">

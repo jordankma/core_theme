@@ -42,6 +42,7 @@ $(document).ready(function () {
                 console.log(id_area_append);
                 $('#' + id_area_append).html('');
                 $('#' + id_area_append).append(data.str);
+                // $('.btn-save').disabled = false;
             }, 500);
         });
     });

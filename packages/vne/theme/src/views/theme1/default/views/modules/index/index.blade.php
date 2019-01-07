@@ -7,7 +7,9 @@
 @stop
 @section('content')
 <main class="main">
-
+	<div class="container">
+		<marquee id="marquee" behavior="scroll" direction="left" style="font-size: 22px">{{ $SETTING['slogan'] }} </marquee>
+	</div>
 	<div class="hero-countdown" style="background-image: url({{ asset('/vendor/' . $group_name . '/' . $skin . '/images/bg-banner1.png?t=' . time()) }});">
 		<div class="container">
 			<div class="row no-spacing">

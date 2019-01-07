@@ -108,6 +108,11 @@
                             {!! Form::text('email', $email, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.email_here'))) !!}
                         </div>
 
+                        <label>Ga code</label>
+                        <div class="form-group">
+                            {!! Form::text('ga_code', $ga_code, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.ga_code_here'))) !!}
+                        </div>
+
                         <label>Phone number</label>
                         <div class="form-group">
                             {!! Form::text('phone', $phone, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.phone_here'))) !!}

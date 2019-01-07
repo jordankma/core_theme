@@ -74,7 +74,7 @@ class SettingController extends Controller
 //        $languageArr = config('translatable.locales');
         $languageArr = Locale::where('status', 1)->get();
         $settings = Setting::where('domain_id', $this->domainDefault)->get();
-        $title = $logo = $logo_mini = $logo_link = $favicon = 
+        $title = $logo = $logo_mini = $logo_link = $favicon =
         $company_name = $address = $email = $phone = $hotline = 
         $ga_code = $chat_code = $slogan = $app_version = $info_page_contact = $info_page_contact_mobile = 
         $info_footer_1 = $info_footer_2 = $info_footer_3 = $info_footer_4 ='';
