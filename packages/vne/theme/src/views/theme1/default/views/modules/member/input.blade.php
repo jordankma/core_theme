@@ -78,7 +78,6 @@
         - Tôi cam đoan thông tin tài khoản vừa đăng ký là chính xác. <br>
         - Tôi đồng ý nhận giải thưởng của cuộc thi thông qua tài khoản trên và chịu hoàn toàn trách nhiệm nếu cung cấp sai thông tin tài khoản nhận thưởng. <br>
         - Nếu quá thời gian quy định mà thí sinh chưa cập nhật hoặc đính chính thông tin tài khoản nhận thưởng thì giải thưởng của thí sinh sẽ bị hủy. <br>
-        ** Tôi đồng ý với những điều khoản đã nêu trên <br>
     </p>
     @endif
     <div class="form-group">

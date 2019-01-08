@@ -18,6 +18,9 @@
 		.timeline .timeline-list::after{
 			background:url("{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }}")
 		}
+		button, input, optgroup, select, textarea{
+			line-height:normal;
+		}
 	</style>
 	{!! isset($SETTING['ga_code']) ? $SETTING['ga_code'] : '' !!}
 </head>
@@ -79,7 +82,6 @@
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js?t=' . time()) }}"></script>
 	{{-- <script src="{{ asset('/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js?t=' . time()) }}"></script> --}}
 	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time()) }}"></script>
-	@yield('footer_scripts')
 	<script type="text/javascript">
 		var route_logout = '{{ route('vne.member.logout')}}';
 		checkLogin();
@@ -152,6 +154,7 @@
 	    //     });
 	    // });
 	</script>
+	@yield('footer_scripts')
 </body>
 
 </html>

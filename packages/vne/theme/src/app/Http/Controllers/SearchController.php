@@ -141,9 +141,9 @@ class SearchController extends Controller
       $page = $request->has('page') ? $request->input('page') : 1;
       $data_child_params = 
         ($request->has('data_child_params') && $request->input('data_child_params')) 
-        ? $request->input('data_child_params') : 'school';
+        ? $request->input('data_child_params') : 'province';
       //url get by page
-      $url_get_by_page = $request->url() . '?top_type=' . $data_child_params;
+      $url_get_by_page = $request->url() . '?data_child_params=' . $data_child_params;
       try {
         $rank_board = json_decode($this->rank_board);
         $list_top_thi_sinh_dang_ky = $rank_board->data[0];

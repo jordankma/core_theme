@@ -61,7 +61,24 @@
     <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js?t=' . time()) }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-            
+			var getUrlParameter = function getUrlParameter(sParam) {
+				var sPageURL = window.location.search.substring(1),
+					sURLVariables = sPageURL.split('&'),
+					sParameterName,
+					i;
+
+				for (i = 0; i < sURLVariables.length; i++) {
+					sParameterName = sURLVariables[i].split('=');
+
+					if (sParameterName[0] === sParam) {
+						return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+					}
+				}
+			};
+			var u_name = getUrlParameter('u_name');
+			setTimeout(function(){
+				$("input[name='u_name']").val(u_name); 
+			}, 500);
             
 		});
 	</script>

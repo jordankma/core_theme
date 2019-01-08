@@ -58,7 +58,7 @@ $(document).ready(function () {
                         cache: false,
                         success: function (data, status) {
                             var data = data.data;
-                            // var str = '<option>'+'</option>';
+                            var str = '<option>'+'</option>';
                             var str = '';
                             for(i = 0; i<data.length; i++) {
                                 str += '<option value="' + data[i].key + '" >' + data[i].value + '</option>';
