@@ -120,7 +120,7 @@
 	                	
 						var url_cap_nhat_thong_tin = $('.btn-update-info').attr('href') + '?member_id=' + data.data.user_id;	
 	                	$('.btn-update-info').attr('href',url_cap_nhat_thong_tin);
-	                }
+	                } 
 	                else{
 	                	$('#offline-now').css('display','block');	
 	                	$('#offline-now').css('visibility','visible');

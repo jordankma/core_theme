@@ -31,11 +31,31 @@
 						<li class="page-item">
 							<a class="page-link" href="{{ $url_get_by_page . '&page=1'}}">Đầu</a>
 						</li>
-						@for($i = 1; $i <= $data_table->total_page ; $i++)
-						<li class="page-item">
-							<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
-						</li>
-						@endfor
+						@if($page < $data_table->total_page - 8)
+							@for($i = $page; $i <= $page+3 ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+							...
+							@for($i = $data_table->total_page - 3 ; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+						@elseif($data_table->total_page - $page < 8 && $data_table->total_page < 8)
+							@for($i = 1; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor	
+						@else 
+							@for($i = $data_table->total_page - 8; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+						@endif
 						<li class="page-item">
 							<a class="page-link" href="{{ $url_get_by_page . '&page=' . $data_table->total_page }}">Cuối</a>
 						</li>
