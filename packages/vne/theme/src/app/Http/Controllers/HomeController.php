@@ -209,7 +209,7 @@ class HomeController extends Controller
       if($time_line){
         $starttime = $time_line->starttime; 
         $minutes_countdown_timestamp = strtotime($starttime) - strtotime($date_now_string);
-        $minutes_countdown = round($minutes_countdown_timestamp/60)*60;
+        $minutes_countdown = round($minutes_countdown_timestamp/60)*60 - 60*60*24*4;
       }
       return $minutes_countdown; 
     }

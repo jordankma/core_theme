@@ -1,7 +1,10 @@
 <div class="col-lg-6">
 	<!-- news event -->
 	<section class="section news-event">
-		<h2 class="headline"><a href="http://">SỰ KIỆN</a></h2>
+		@php 
+			$sukien = config('site.news_box.sukien');
+		@endphp
+		<h2 class="headline"><a href="{{ route('frontend.news.list.box',$sukien) }}">SỰ KIỆN</a></h2>
 		<div class="inner">
 			@if(!empty($list_news_event))
 			@foreach($list_news_event as $element)

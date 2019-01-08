@@ -1,7 +1,10 @@
 <div class="col-12">
 				<!-- group news -->
 				<section class="section news-group">
-					<h2 class="headline"><a href="http://">HÀNH TRÌNH GIAO THÔNG HỌC ĐƯỜNG</a></h2>
+					@php 
+						$hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
+					@endphp
+					<h2 class="headline"><a href="{{ route('frontend.news.list.box',$hanhtrinhgiaothonghocduong) }}">HÀNH TRÌNH GIAO THÔNG HỌC ĐƯỜNG</a></h2>
 					<div class="accordion js-accordion">
 						<ul class="buttons js-accordion-buttons">
 							<li class="active">Vòng cấp trường</li>

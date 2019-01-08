@@ -19,6 +19,8 @@
 				<!-- Countdown clock -->
 				<section class="col-lg-4 no-spacing section countdown-clock">
 					<h2 class="headline">Cuộc thi GIAO THÔNG HỌC ĐƯỜNG </h2>
+					<hr>
+					<h4>CUỘC THI CÒN LẠI </h4>
 					<div data-minutes="{{ $minutes_countdown }}"></div>
 					<div class="button-group">
 						@if(env('GTHD_OPEN',false) == true)

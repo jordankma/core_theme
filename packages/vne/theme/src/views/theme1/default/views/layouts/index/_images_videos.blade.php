@@ -1,7 +1,10 @@
 <div class="col-12">
 	<!-- images videos -->
 	<section class="section images-videos">
-		<h2 class="headline"><a href="http://">HÌNH ẢNH - VIDEO NỔI BẬT</a></h2>
+		@php 
+			$hinhanhvideo = config('site.news_box.hinhanhvideo');
+		@endphp
+		<h2 class="headline"><a href="{{ route('frontend.news.list.box',$hinhanhvideo) }}">HÌNH ẢNH - VIDEO NỔI BẬT</a></h2>
 		<div class="accordion js-accordion">
 			<ul class="buttons js-accordion-buttons">
 				<li class="active">Video Nổi bật</li>
