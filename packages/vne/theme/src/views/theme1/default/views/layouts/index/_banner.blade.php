@@ -4,7 +4,7 @@
 		@foreach($list_banner as $banner)
 		<div class="img-cover carousel-item">
 			<a href="{{ $banner->link }}" class="img-cover__wrapper">
-				<img src="{{ $banner->image }}" alt="">
+				<img src="{{ config('site.url_static') . $banner->image }}" alt="">
 			</a>
 		</div>
 		@endforeach

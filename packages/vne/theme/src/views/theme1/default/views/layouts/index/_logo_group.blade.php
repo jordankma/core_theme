@@ -8,7 +8,7 @@
 				@foreach($list_don_vi_dong_hanh as $element)
 				<a class="carousel-item" href="{{ $element->comlink }}">
 					<div class="logo">
-						<img src="{{ $element->img }}" alt="">
+						<img src="{{ config('site.url_static') . $element->img }}" alt="">
 					</div>
 					<h3 class="name">{{ $element->comname }}</h3>
 				</a>

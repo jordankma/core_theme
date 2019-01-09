@@ -1,6 +1,6 @@
 <div class="form-user form-login js-login">
 	<div class="logo">
-		<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/egroup-logo.png?t=' . time()) }}" alt="">
+		<img src="{{ config('site.url_static') .'/vendor/' . $group_name . '/' . $skin . '/src/images/egroup-logo.png?t=' . time() }}" alt="">
 	</div>
 	<form action="{{ route('vne.member.login') }}" id="form-login" class="form" method="post">
 		<input type="hidden" name="_token" value="{!! csrf_token() !!}">

@@ -84,7 +84,7 @@
 				<div class="img">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time()) }}" alt="">
+							<img src="{{ config('site.url_static') .'/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time() }}" alt="">
 						</a>
 					</div>
 				</div>

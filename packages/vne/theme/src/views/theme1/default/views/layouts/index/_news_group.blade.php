@@ -21,7 +21,7 @@
 										<figure class="news-item">
 											<div class="img-cover">
 												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
-													<img src="{{ $element->image }}" alt="">
+													<img src="{{ config('site.url_static') . $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
@@ -48,7 +48,7 @@
 										<figure class="news-item">
 											<div class="img-cover">
 												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
-													<img src="{{ $element->image }}" alt="">
+													<img src="{{ config('site.url_static') . $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
@@ -75,7 +75,7 @@
 										<figure class="news-item">
 											<div class="img-cover">
 												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
-													<img src="{{ $element->image }}" alt="">
+													<img src="{{ config('site.url_static') . $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">
@@ -102,7 +102,7 @@
 										<figure class="news-item">
 											<div class="img-cover">
 												<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
-													<img src="{{ $element->image }}" alt="">
+													<img src="{{ config('site.url_static') . $element->image }}" alt="">
 												</a>
 											</div>
 											<div class="content">

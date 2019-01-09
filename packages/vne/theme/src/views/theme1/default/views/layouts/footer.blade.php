@@ -6,7 +6,7 @@
 				ĐƠN VỊ BẢO TRỢ TRUYỀN THÔNG
 				@foreach($list_don_vi_tai_tro as $element)
 				<div class="carousel-item">
-					<a href="{{ $element->link }}"><img src="{{ $element->img }}" alt=""></a>
+					<a href="{{ $element->comlink }}"><img src="{{ config('site.url_static') . $element->img }}" alt=""></a>
 				</div>
 				@endforeach
 				@endif

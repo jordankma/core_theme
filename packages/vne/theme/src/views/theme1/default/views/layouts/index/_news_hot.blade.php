@@ -17,7 +17,7 @@
 				<div class="content">
 					<div class="img-cover">
 						<a href="#" class="img-cover__wrapper">
-							<img src="{{ $element->image }}" alt="">
+							<img src="{{ config('site.url_static') . $element->image }}" alt="">
 						</a>
 					</div>
 					<div class="wrapper">

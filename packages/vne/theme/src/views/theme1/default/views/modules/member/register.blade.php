@@ -45,6 +45,6 @@
 			}
 		})
 	</script>
-	<script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time()) }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js?t=' . time() }}"></script>
 	
 @stop

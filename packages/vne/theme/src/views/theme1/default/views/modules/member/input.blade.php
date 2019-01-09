@@ -37,8 +37,9 @@
     </div>
     @if($element['params'] == 'facebook')
     <p style="font-weight: bold">Bước 2: Đăng ký thông tin nhận thưởng của thí sinh. </p> 
-    <p style="color:red">Giải thưởng tiền mặt của thí sinh sẽ được Ban Tổ chức gửi về theo tài khoản 
-    thí sinh đăng ký dưới đây. Tài khoản có thể là của thí sinh, cha, mẹ hoặc người giám hộ hợp pháp. </p>
+    <p style="color:red">Giải thưởng tiền mặt của thí sinh sẽ được BTC gửi về theo 
+        tài khoản ngân hàng hoặc địa chỉ nhà riêng, người đại diện nhận thưởng của thí sinh. 
+        BTC không chịu trách nhiệm khi thí sinh cung cấp sai những thông tin đã khai báo </p>
     @endif
     @elseif($element['type_view'] == 1)
     <div class="form-group">
