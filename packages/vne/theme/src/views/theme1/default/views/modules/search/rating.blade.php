@@ -84,7 +84,7 @@
 						@foreach($data_table->data as $element)
 						@if(!empty($element))
 						<li class="row">
-							<div class="col-2 col-md-1 top"><img src="src/images/cuo-vang.png" alt="">{{ $element[0] }}</div>
+							<div class="col-2 col-md-1 top"> @if($loop->index ==0) <img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/images/cuo-vang.png'}}" alt=""> @endif {{ $element[0] }}</div>
 							<div class="col-6 col-md-6 name-city">{{ $element[1] }}</div>
 							<div class="col-4 col-md-5 number">{{ $element[2] }}</div>
 						</li>

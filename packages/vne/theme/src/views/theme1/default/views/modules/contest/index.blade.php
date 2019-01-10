@@ -1,3 +1,5 @@
+
+{{-- {!! isset($SETTING['ga_code']) ? $SETTING['ga_code'] : '' !!} --}}
 <div class="wrapper">
     <div id="main-exam">
         <div id="play-game" class="">
@@ -19,4 +21,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
