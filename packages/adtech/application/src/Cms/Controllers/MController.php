@@ -40,7 +40,7 @@ class MController extends BaseController
         $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
         $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
         // $this->url = config('app.url');
-        $this->url = 'http://gthd.vnedutech.vn';
+        $this->url = 'http://giaothonghocduong.com.vn';
         $id = $this->_guard()->id();
         $this->theme = config('site.theme');
         $this->user = $this->_guard()->user();

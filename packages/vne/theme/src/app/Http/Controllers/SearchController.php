@@ -126,38 +126,20 @@ class SearchController extends Controller
       $perPage = 20; 
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
       $list_member_foreach = array();
-      // if(!empty($paginatedSearchResults)){
-      //   foreach ($paginatedSearchResults as $key => $value) {
-      //     if($key==0){
-      //       $list_member_foreach[] = $value;
-      //     }else{
-      //       foreach ($list_member_foreach as $key2 => $value2) {
-              
-      //         if($value[2] != $value2[2]){
-      //           $list_member_foreach[] = $value; 
-      //           break;
-      //         }
-      //       }  
-      //     }
-      //   }
-      // }
-      // dd($paginatedSearchResults);
-      // foreach ($paginatedSearchResults as $key3 => $value3) {
-      //   if($key3 == 0){
-      //     $list_member_foreach = $value3;
-      //   }
-      // }
-      // if(!empty($paginatedSearchResults)){
-      //   // $list_member_foreach 
-      //   foreach ($list_member_foreach as $key => $value) {
-      //     foreach ($paginatedSearchResults as $key2 => $value2) {
-      //       if($value[2] != $value2[2]){
-      //         $list_member_foreach[] = $value2; 
-      //         break;
-      //       } 
-      //     }
-      //   }
-      // }
+      if(!empty($paginatedSearchResults)){
+        foreach ($paginatedSearchResults as $key => $value) {
+          if($key==0){
+            $list_member_foreach[] = $value;
+          }else{
+            foreach ($list_member_foreach as $key2 => $value2) {
+              if($value[2] != $value2[2]){
+                $list_member_foreach[] = $value; 
+                break;
+              }
+            }  
+          }
+        }
+      }
       // dd($list_member_foreach);
       $headers = $list_member['headers'];
       $data = [
