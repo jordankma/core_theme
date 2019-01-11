@@ -112,9 +112,11 @@ class SearchController extends Controller
       $result_form = $this->result_form;
       $result_form_arr = json_decode($result_form,true);
       $form_data = $result_form_arr['data']['load_default'];
-      // dd($form_data);
-      $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
-      $form_search = $html->render();
+      $form_search = '';
+      if(!empty($form_data)){
+        $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
+        $form_search = $html->render();
+      }
       //end
       $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
@@ -123,12 +125,29 @@ class SearchController extends Controller
       $collection = new Collection($list_member['data']);
       $perPage = 20; 
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
+      $list_member_foreach = array();
+      if(!empty($paginatedSearchResults)){
+        foreach ($paginatedSearchResults as $key => $value) {
+          if($key==0){
+            $list_member_foreach[] = $value;
+          }else{
+            foreach ($list_member_foreach as $key2 => $value2) {
+              if($value[2] != $value2[2]){
+                $list_member_foreach[] = $value; 
+                break;
+              }
+            }  
+          }
+        }
+      }
+      // dd($list_member_foreach);
       $headers = $list_member['headers'];
       $data = [
         'list_member' => $paginatedSearchResults,
         'form_search' => $form_search,
         'params' => $params,
-        'headers' => $headers
+        'headers' => $headers,
+        'list_member_foreach' => $list_member_foreach
       ];
       return view('VNE-THEME::modules.search.search_result',$data);
     }

@@ -4,11 +4,14 @@
 <main class="main">
     <section class="info" >
         <div class="container">
-            <div class="detail" style="background: #fff; padding: 10px;">
+            <div class="detail" style="background: #fff; padding: 10px;margin-top:40px">
+                <h3>Thông tin thí sinh</h3>
                 @if(!empty($user_info))
-                {{-- @foreach ($user_info as $item)
-                    <p> {{ $item->key }} : {{ $item->value }} </p>    
-                @endforeach --}}
+                @foreach ($user_info as $item)
+                    <p style="display: inline-block; margin-left:40px">
+                        {{ isset($item->title) ? $item->title : ''  }}: {{ isset($item->title) ? $item->value : '' }}
+                    </p>
+                @endforeach
                 @endif
             </div>
         </div>	

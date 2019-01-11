@@ -109,21 +109,25 @@
 	            },
 	            success: function (data) {
 	                if (data.authorized !== false) {
-	                	$('input[name=member_id]').val(data.data.user_id);
+						var member_id = data.data.user_id;
+	                	$('input[name=member_id]').val(member_id);
 	                	$('input[name=u_name]').val(data.data.username);
 	                	$('#online-now').css('display','block');	
 	                	$('#online-now').css('visibility','visible');
 	                	$('#offline-now').css('display','none');	
 	                	$('#offline-now').css('visibility','hidden');
 	                	$('#text-user-name').append(data.data.username);
+	                	$('#text-user-name').attr('href','/ket-qua-thi-sinh?member_id='+ member_id);
 
 	                	var url_thi_thu = $('#btn-try-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-try-exam').attr('href',url_thi_thu);
 	                	var url_thi_that = $('#btn-real-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-real-exam').attr('href',url_thi_that);
 	                	
-						var url_cap_nhat_thong_tin = $('.btn-update-info').attr('href') + '?member_id=' + data.data.user_id;	
+						var url_cap_nhat_thong_tin = $('.btn-update-info').attr('href') + '?member_id=' + member_id;	
 	                	$('.btn-update-info').attr('href',url_cap_nhat_thong_tin);
+
+						document.cookie = "member_id=" + member_id;
 	                } 
 	                else{
 	                	$('#offline-now').css('display','block');	

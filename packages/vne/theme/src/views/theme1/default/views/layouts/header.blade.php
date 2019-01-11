@@ -47,7 +47,10 @@ function showCategories($categories, $parent_id = 0, $char = '')
 				<ul class="nav" id="menu-info">
 					{{-- @if($USER_INFO != null) --}}
 						<div id="online-now" style="display: none;visibility: hidden;"> 
-							<li class="nav-item" id="text-user-name"><i class="fa fa-user"></i></li>
+							<li class="nav-item" >
+								<i class="fa fa-user"></i>
+								<a href="" id="text-user-name"></a> 
+							</li>
 							<li class="nav-item" id="">
 								<i class="fa fa-edit"></i> 
 								<a href="{{ 'http://eid.vnedutech.vn/logout?site=' . config('app.url') }}" >Đăng xuất</a> 
