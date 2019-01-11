@@ -36,8 +36,8 @@
 					</thead>
 					@endif
 					<tbody>
-						@if(!empty($list_member))
-						@foreach ($list_member as $key => $element)
+						@if(!empty($list_member_foreach))
+						@foreach ($list_member_foreach as $key => $element)
 							<tr>
 								@if(!empty($element))
 								@foreach ($element as $key2 => $element2)

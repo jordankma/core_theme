@@ -4,15 +4,13 @@ namespace Vne\Theme\App\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Auth;
+use Auth,Cookie;
 use GuzzleHttp\Client;
 class VerifyContest
 {
 	// private $header = ;
     public function handle($request, Closure $next)
     {
-		
-
 		$url = config('app.url');
 		// $url = 'http://gthd.vnedutech.vn';
 		if(!$request->has('token')){
@@ -21,21 +19,23 @@ class VerifyContest
 		$token = $request->input('token');
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
-		try {
-			$client = new Client([
-				'headers'  => [
-					'Authorization' => 'Bearer ' . env('BEARER_TOKEN'),
-					'Accept' => 'application/json'
-			]]);
-			$res = $client->get('http://eid.vnedutech.vn/api/verify?token=' . $token);
-			$data_reponse_eid = json_decode($res->getBody(),true);
-			if($data_reponse_eid['success'] == true){
-				$check_login =	true;
-				$member_id = $data_reponse_eid['data']['user_id'];
-			}
-		} catch (\Throwable $th) {
-			throw $th;
-		}
+		// try {
+		// 	$client = new Client([
+		// 		'headers'  => [
+		// 			'Authorization' => 'Bearer ' . env('BEARER_TOKEN'),
+		// 			'Accept' => 'application/json'
+		// 	]]);
+		// 	$res = $client->get('http://eid.vnedutech.vn/api/verify?token=' . $token);
+		// 	$data_reponse_eid = json_decode($res->getBody(),true);
+		// 	if($data_reponse_eid['success'] == true){
+		// 		$check_login =	true;
+		// 		$member_id = $data_reponse_eid['data']['user_id'];
+		// 	}
+		// } catch (\Throwable $th) {
+		// 	throw $th;
+		// }
+		$member_id = Cookie::get('member_id');
+		$check_login =	true;
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
