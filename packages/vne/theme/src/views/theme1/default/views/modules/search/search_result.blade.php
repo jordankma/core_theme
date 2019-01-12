@@ -1,8 +1,15 @@
 @extends('VNE-THEME::layouts.master')
 @section('content')
 <main class="main">
-	<!-- search -->
 	<section class="section search">
+		<div class="container">
+			<h3 style="color:red; margin:0 auto;margin-left:30px;margin-top:30px;margin-bottom:400px;text-transform: uppercase">
+				Kết quả đang cập nhật, mời bạn quay lại sau!
+			</h3>
+		</div>
+	</section>
+	<!-- search -->
+	{{-- <section class="section search">
 		<div class="container">
 			<div class="search-wrapper">
 				<div class="headline"><i class="fa fa-search"></i> Tìm kiếm kết quả</div>
@@ -52,7 +59,7 @@
 			</div>
 		</div>
 	</section>
-	<!-- search results end -->
+	<!-- search results end --> --}}
 
 
 </main>

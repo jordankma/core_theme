@@ -132,11 +132,18 @@ class NewsRepository extends Repository
         return $result;
     }
 
-    public function getNewsByCate($alias,$limit) {
+    public function getNewsByCate($alias,$limit=5) {
         
         $result = News::whereHas('getCats', function ($query) use ($alias) {
             $query->where('vne_news_cat.alias', $alias);
         })->paginate($limit, ['*'], $alias);
+        return $result;
+    }
+    public function getNewsByCateApi($alias,$limit=5) {
+        
+        $result = News::whereHas('getCats', function ($query) use ($alias) {
+            $query->where('vne_news_cat.alias', $alias);
+        })->paginate($limit);
         return $result;
     }
 }

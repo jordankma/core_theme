@@ -85,5 +85,6 @@ Route::group(array('prefix' => $apiPrefix), function() {
         Route::get('list', 'ApiNewsController@getListNewsApi');
         Route::get('detail', 'ApiNewsController@getDetailNewsApi');
         Route::get('list-by-box', 'ApiNewsController@getListNewsByBoxApi');
+        Route::get('list-by-cate', 'ApiNewsController@getListNewsByCateApi');
     });
 });
