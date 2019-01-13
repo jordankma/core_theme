@@ -29,7 +29,7 @@
 					@endforeach
 					@endif
 				</div>
-				<a href="{{ route('frontend.get.top',$list_top_thi_sinh_dang_ky->params)}}" class="btn btn-light">Xem thêm</a>
+				{{-- <a href="{{ route('frontend.get.top',$list_top_thi_sinh_dang_ky->params)}}" class="btn btn-light">Xem thêm</a> --}}
 			</div>
 		</div>
 	</section>
@@ -68,7 +68,7 @@
 					@endforeach
 					@endif
 				</div>
-				<a href="{{ route('frontend.get.top',$list_top_thi_sinh_da_thi->params) }}" class="btn btn-light">Xem thêm</a>
+				{{-- <a href="{{ route('frontend.get.top',$list_top_thi_sinh_da_thi->params) }}" class="btn btn-light">Xem thêm</a> --}}
 			</div>
 		</div>
 	</section>

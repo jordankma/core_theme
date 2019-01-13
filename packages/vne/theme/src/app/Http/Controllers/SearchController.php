@@ -104,49 +104,46 @@ class SearchController extends Controller
     }
 
     public function listResult(Request $request){
-      // self::setJsonResultForm();
-      // $url = $this->url;
-      // $params = $request->all();
-      // $params['page'] = $request->has('page') ? $request->input('page') : 1;
-      // //get form search
-      // $result_form = $this->result_form;
-      // $result_form_arr = json_decode($result_form,true);
-      // $form_data = $result_form_arr['data']['load_default'];
-      // $form_search = '';
-      // if(!empty($form_data)){
-      //   $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
-      //   $form_search = $html->render();
-      // }
-      // //end
-      // $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
-      // $list_member = json_decode($list_member, true);
+      self::setJsonResultForm();
+      $url = $this->url;
+      $params = $request->all();
+      $params['page'] = $request->has('page') ? $request->input('page') : 1;
+      //get form search
+      $result_form = $this->result_form;
+      $result_form_arr = json_decode($result_form,true);
+      $form_data = $result_form_arr['data']['load_default'];
+      $form_search = '';
+      if(!empty($form_data)){
+        $html = view('VNE-THEME::modules.search._render_input', compact('form_data'));
+        $form_search = $html->render();
+      }
+      //end
+      $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
+      $list_member = json_decode($list_member, true);
       
-      // $currentPage = LengthAwarePaginator::resolveCurrentPage();
-      // $collection = new Collection($list_member['data']);
-      // $perPage = 20; 
-      // $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
+      $currentPage = LengthAwarePaginator::resolveCurrentPage();
+      $collection = new Collection($list_member['data']);
+      $perPage = 20; 
+      $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
 
-      // $list_member_foreach = array();
-      // $arr_temp = array();
-      // if(!empty($paginatedSearchResults)){
-      //   foreach ($paginatedSearchResults as $key => $value) {
-      //     if(!in_array($value[2],$arr_temp)){
-      //       $list_member_foreach[] = $value;
-      //       $arr_temp[] = $value[2];   
-      //     }
-      //   }
-      // }
+      $list_member_foreach = array();
+      $arr_temp = array();
+      if(!empty($paginatedSearchResults)){
+        foreach ($paginatedSearchResults as $key => $value) {
+          if(!in_array($value[2],$arr_temp)){
+            $list_member_foreach[] = $value;
+            $arr_temp[] = $value[2];   
+          }
+        }
+      }
       
-      // $headers = $list_member['headers'];
-      // $data = [
-      //   'list_member' => $paginatedSearchResults,
-      //   'form_search' => $form_search,
-      //   'params' => $params,
-      //   'headers' => $headers,
-      //   'list_member_foreach' => $list_member_foreach
-      // ];
+      $headers = $list_member['headers'];
       $data = [
-
+        'list_member' => $paginatedSearchResults,
+        'form_search' => $form_search,
+        'params' => $params,
+        'headers' => $headers,
+        'list_member_foreach' => $list_member_foreach
       ];
       return view('VNE-THEME::modules.search.search_result',$data);
     }
