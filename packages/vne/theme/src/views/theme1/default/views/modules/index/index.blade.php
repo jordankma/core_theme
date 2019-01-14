@@ -26,6 +26,8 @@
 						@if(env('GTHD_OPEN',false) == true)
 						<a class="btn" href="{{ route('vne.get.real.exam') }}" id="btn-real-exam">Vào thi</a>
 						<a class="btn" href="{{ route('vne.get.try.exam') }}" id="btn-try-exam">Thi thử</a>
+						@else 
+							<p style="text-transform: uppercase; color:red;font-weight: 1000"> Hệ thống thi đang cập nhật mời bạn quay lại sau ít phút! </p>
 						@endif
 					</div>
 				</section>
