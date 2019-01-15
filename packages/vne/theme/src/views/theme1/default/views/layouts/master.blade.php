@@ -8,7 +8,7 @@
 	<title>@yield('title')</title>
 	<link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? config('site.url_static') . $SETTING['favicon'] : '' }}" type="image/png" sizes="32x32">
 	<!-- css -->
-	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css?t=' . time() }}">
+	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css' }}">
 	@yield('header_styles')
 	<style type="text/css">
 		#menu-info .nav-item{
@@ -16,7 +16,7 @@
 			overflow: hidden !important;
 		}
 		.timeline .timeline-list::after{
-			background:url("{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }}")
+			background:url("{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png') }}")
 		}
 		button, input, optgroup, select, textarea{
 			line-height:normal;
@@ -62,8 +62,7 @@
 		<!-- slideout end -->
 
 		<!-- popup -->
-		@include('VNE-THEME::layouts._modal_login')
-		@include('VNE-THEME::layouts._modal_register')
+		
 		@include('VNE-THEME::layouts._modal_notification')
 		
 		<!-- popup end -->
@@ -82,11 +81,11 @@
 	</div>
 
 	<!-- js -->
-	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/jquery-3.3.1.min.js?t=' . time() }}"></script>
-	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/flipclock.min.js?t=' . time() }}"></script>
-	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js?t=' . time() }}"></script>
-	{{-- <script src="{{ config('site.url_static') . '/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js?t=' . time() }}"></script> --}}
-	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?t=' . time() }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/jquery-3.3.1.min.js' }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/flipclock.min.js' }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js'}}"></script>
+	{{-- <script src="{{ config('site.url_static') . '/vendor/vnedutech-cms/default/vendors/bootstrapvalidator/js/bootstrapValidator.min.js' }}"></script> --}}
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/main.js' }}"></script>
 	<script type="text/javascript">
 		var route_logout = '{{ route('vne.member.logout')}}';
 		checkLogin();

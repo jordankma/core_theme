@@ -78,7 +78,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 		<div class="container">
 			<div class="wrapper">
 				<div class="branb">
-					<a class="logo" href="{{ route('index') }}"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/logo_bak.png?t=' . time() }}" alt=""></a>
+					<a class="logo" href="{{ route('index') }}"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/logo_bak.png' }}" alt=""></a>
 				</div>
 				@php 
 					showCategories($MENU_LEFT); 

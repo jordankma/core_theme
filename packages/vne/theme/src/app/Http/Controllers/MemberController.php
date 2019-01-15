@@ -108,6 +108,7 @@ class MemberController extends Controller
     }
 
     public function updateRegisterMember(Request $request){
+      
       if(env('GTHD_OPEN',false) == false){
         return redirect()->route('index');
       }
@@ -135,7 +136,6 @@ class MemberController extends Controller
       $data_request['u_name'] = $request->input('u_name');
       $data = json_encode($data_request);
       $data_encrypt = $this->my_simple_crypt($data);
-      // dd($data_encrypt);
       $client = new Client();
       $url = $this->url;
       
@@ -145,7 +145,7 @@ class MemberController extends Controller
         ]
       ]); 
       $data = json_decode($res->getBody(),true);
-      // dd($data);
+      dd($data);
       if($data['success'] == true){
         return redirect()->route('index');   
       } else{

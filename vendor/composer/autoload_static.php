@@ -14028,7 +14028,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Theme\\App\\Http\\Controllers\\ContestController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/ContestController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\ExamController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/ExamController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/HomeController.php',
-        'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/MemberControler.php',
+        'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/MemberController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/NewsController.php',
         'Vne\\Theme\\App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Http/Controllers/SearchController.php',
         'Vne\\Theme\\App\\Middleware\\VerifyContest' => __DIR__ . '/../..' . '/packages/vne/theme/src/app/Middleware/VerifyContest.php',

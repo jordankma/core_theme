@@ -37,7 +37,10 @@
                 {!! Form::open(array('url' => route('adtech.core.setting.update'), 'method' => 'put', 'class' => 'bf', 'files'=> true)) !!}
                 <div class="row">
                     <div class="col-sm-8">
-
+                        <div class="form-group">
+                            <input type="checkbox" name="open_fix" id='open-fix' @if($open_fix == 'on') checked @endif> 
+                            <label for="open-fix">Mở trang bảo trì</label>
+                        </div>
                         <label>App Version</label>
                         <div class="form-group">
                             {!! Form::text('app_version', $app_version, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.app_version_here'))) !!}
@@ -112,7 +115,14 @@
                         <div class="form-group">
                             {!! Form::text('ga_code', $ga_code, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.ga_code_here'))) !!}
                         </div>
-
+                        <label>Tiêu đề thông báo timeline</label>
+                        <div class="form-group">
+                            {!! Form::text('title_timeline', $title_timeline, array('class' => 'form-control')) !!}
+                        </div>
+                        <label>Thời gian cộng timeline</label>
+                        <div class="form-group">
+                            {!! Form::number('time_timeline', $time_timeline, array('class' => 'form-control')) !!}
+                        </div>
                         <label>Phone number</label>
                         <div class="form-group">
                             {!! Form::text('phone', $phone, array('class' => 'form-control', 'placeholder'=> trans('adtech-core::common.setting.phone_here'))) !!}

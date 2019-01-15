@@ -23,7 +23,7 @@ class MController extends BaseController
     protected $_menuList;
     protected $_menuTop;
     protected $domainDefault;
-    public $url;
+    public $url,$list_setting;
     private $header = [
         'headers'  => [
             'X-Requested-With' => 'XMLHttpRequest'
@@ -39,7 +39,7 @@ class MController extends BaseController
     {
         $id_don_vi_tai_tro = config('site.don_vi_tai_tro_id');
         $list_don_vi_tai_tro = Companionunit::where('comtype',$id_don_vi_tai_tro)->get();
-        // $this->url = config('app.url');
+        $this->url = config('app.url');
         $this->url = 'http://giaothonghocduong.com.vn';
         $id = $this->_guard()->id();
         $this->theme = config('site.theme');
@@ -121,9 +121,19 @@ class MController extends BaseController
                     case 'info_footer_4':
                         $settingView['info_footer_4'] = $setting->value;
                         break;
+                    case 'title_timeline':
+                        $settingView['title_timeline'] = $setting->value;
+                        break;
+                    case 'time_timeline':
+                        $settingView['time_timeline'] = $setting->value;
+                        break;
+                    case 'open_fix':
+                        $settingView['open_fix'] = $setting->value;
+                        break;
                 }
             }
         }
+        $this->list_setting = $settingView; 
 
         $share = [
             'USER_LOGGED' => $this->user,
@@ -141,7 +151,6 @@ class MController extends BaseController
             'mskin'  => config('site.mobile.skin'),
             'list_don_vi_tai_tro' => $list_don_vi_tai_tro
         ];
-
         view()->share($share);
     }
 

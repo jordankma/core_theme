@@ -34,6 +34,14 @@ class HomeController extends Controller
 
     public function index(Request $request){
         $theme = config('site.theme');
+        $list_setting = $this->list_setting;
+        $title_timeline = isset($list_setting['title_timeline']) ? $list_setting['title_timeline'] : '';
+        $time_timeline = isset($list_setting['time_timeline']) ? $list_setting['time_timeline'] : 0;
+        $open_fix = isset($list_setting['open_fix']) ? $list_setting['open_fix'] : '';
+        if($open_fix=='on' && !$request->has('test')){
+          return view('VNE-THEME::modules.index.404'); 
+        }
+
         if($theme == 'theme1'){
             Session::forget('notifi_verify');
             if($request->has('message')){
@@ -143,7 +151,7 @@ class HomeController extends Controller
             } catch (\Throwable $th) {
               //throw $th;
             }
-            $minutes_countdown = self::getMinuteCountDown();
+            $minutes_countdown = self::getMinuteCountDown($time_timeline);
             // dd($minutes_countdown);
             $data = [
               'list_banner' => $list_banner,
@@ -169,7 +177,8 @@ class HomeController extends Controller
               'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
               'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
               'banner_ngang_trang_chu_3' => $banner_ngang_trang_chu_3,
-              'type_page' => 'index'
+              'type_page' => 'index',
+              'title_timeline' => $title_timeline
             ];
             return view('VNE-THEME::modules.index.index',$data); 
         }
@@ -199,8 +208,8 @@ class HomeController extends Controller
             return view('VNE-THEME::modules.index.index',$data);    
         }
     }
-
-    public function getMinuteCountDown(){
+    
+    public function getMinuteCountDown($time){
       $minutes_countdown = 0;
       
       $date_now = new Datetime();
@@ -209,7 +218,7 @@ class HomeController extends Controller
       if($time_line){
         $starttime = $time_line->starttime; 
         $minutes_countdown_timestamp = strtotime($starttime) - strtotime($date_now_string);
-        $minutes_countdown = round($minutes_countdown_timestamp/60)*60 - 60*60*24*4;
+        $minutes_countdown = round($minutes_countdown_timestamp/60)*60 + 60*60*$time;
       }
       return $minutes_countdown; 
     }

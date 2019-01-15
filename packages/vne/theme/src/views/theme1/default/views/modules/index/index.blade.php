@@ -2,7 +2,7 @@
 @section('title') {{ 'Trang chủ'}} @stop
 @section('header_styles')
 	{{-- .timeline .timeline-list::after{
-		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png?t=' . time()) }})
+		background:url({{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/cup1.png') }})
 	} --}}
 @stop
 @section('content')
@@ -10,7 +10,7 @@
 	<div class="container">
 		<marquee id="marquee" behavior="scroll" direction="left" style="font-size: 22px">{{ $SETTING['slogan'] }} </marquee>
 	</div>
-	<div class="hero-countdown" style="background-image: url({{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/bg-banner1.png?t=' . time() }});">
+	<div class="hero-countdown" style="background-image: url({{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/bg-banner1.png' }});">
 		<div class="container">
 			<div class="row no-spacing">
 				<!-- hero -->
@@ -20,14 +20,14 @@
 				<section class="col-lg-4 no-spacing section countdown-clock">
 					<h2 class="headline">Cuộc thi GIAO THÔNG HỌC ĐƯỜNG </h2>
 					<hr>
-					<h4>TUẦN THI THỨ 1 CÒN LẠI</h4>
+					<h4>{{ isset($SETTING['title_timeline']) ? $SETTING['title_timeline'] : '' }}</h4>
 					<div data-minutes="{{ $minutes_countdown }}"></div>
 					<div class="button-group">
 						@if(env('GTHD_OPEN',false) == true)
 						<a class="btn" href="{{ route('vne.get.real.exam') }}" id="btn-real-exam">Vào thi</a>
 						<a class="btn" href="{{ route('vne.get.try.exam') }}" id="btn-try-exam">Thi thử</a>
 						@else 
-							<p style="text-transform: uppercase; color:red;font-weight: 1000"> Hệ thống thi đang cập nhật mời bạn quay lại sau ít phút! </p>
+							<p style="text-transform: uppercase;font-weight: 1000"> Hệ thống thi đang cập nhật mời bạn quay lại sau 15 phút! </p>
 						@endif
 					</div>
 				</section>
@@ -100,8 +100,8 @@
 				<section class="section social">
 					<h2 class="headline">GTHĐ TRÊN CÁC MẠNG XÃ HỘI</h2>
 					<ul class="list">
-						<li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-facebook.png?t=' . time()) }}" alt=""></a></li>
-						{{-- <li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-youtube.png?t=' . time()) }}" alt=""></a></li> --}}
+						<li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-facebook.png') }}" alt=""></a></li>
+						{{-- <li><a href="https://www.facebook.com/CuocThiGiaoThongHocDuong/"><img src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/images/social-youtube.png') }}" alt=""></a></li> --}}
 					</ul>
 				</section>
 				<!-- social end -->

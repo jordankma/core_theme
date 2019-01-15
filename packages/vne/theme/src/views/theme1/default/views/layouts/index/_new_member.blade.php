@@ -9,7 +9,7 @@
 				<div class="wrapper">
 					<div class="img-cover avatar">
 						<span class="img-cover__wrapper">
-							<img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/user.jpg?t=' . time() }}" alt="">
+							<img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/user.jpg'}}" alt="">
 						</span>
 					</div>
 					<div class="info">

@@ -77,7 +77,8 @@ class SettingController extends Controller
         $title = $logo = $logo_mini = $logo_link = $favicon =
         $company_name = $address = $email = $phone = $hotline = 
         $ga_code = $chat_code = $slogan = $app_version = $info_page_contact = $info_page_contact_mobile = 
-        $info_footer_1 = $info_footer_2 = $info_footer_3 = $info_footer_4 ='';
+        $info_footer_1 = $info_footer_2 = $info_footer_3 = $info_footer_4 = $title_timeline = $time_timeline =
+        $open_fix = '';
 
         if (count($settings) > 0) {
             foreach ($settings as $setting) {
@@ -142,6 +143,15 @@ class SettingController extends Controller
                     case 'info_footer_4':
                         $info_footer_4 = $setting->value;
                         break;
+                    case 'title_timeline':
+                        $title_timeline = $setting->value;
+                        break;
+                    case 'time_timeline':
+                        $time_timeline = $setting->value;
+                        break;
+                    case 'open_fix':
+                        $open_fix = $setting->value;
+                        break;
                 }
             }
         }
@@ -171,7 +181,10 @@ class SettingController extends Controller
             'info_footer_1' => $info_footer_1,
             'info_footer_2' => $info_footer_2,
             'info_footer_3' => $info_footer_3,
-            'info_footer_4' => $info_footer_4
+            'info_footer_4' => $info_footer_4,
+            'title_timeline' => $title_timeline,
+            'time_timeline' => $time_timeline,
+            'open_fix' => $open_fix
         ];
         return view('ADTECH-CORE::modules.core.setting.manage', $data);
     }
@@ -210,6 +223,7 @@ class SettingController extends Controller
     public function update(Request $request)
     {
         $inputs = $request->all();
+        $inputs['open_fix'] = isset($inputs['open_fix']) ? $inputs['open_fix'] : '';
         if (count($inputs) > 0) {
             foreach ($inputs as $k => $input) {
                 if ($k != '_method' && $k != '_token') {

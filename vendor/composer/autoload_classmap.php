@@ -13317,7 +13317,7 @@ return array(
     'Vne\\Theme\\App\\Http\\Controllers\\ContestController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/ContestController.php',
     'Vne\\Theme\\App\\Http\\Controllers\\ExamController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/ExamController.php',
     'Vne\\Theme\\App\\Http\\Controllers\\HomeController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/HomeController.php',
-    'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/MemberControler.php',
+    'Vne\\Theme\\App\\Http\\Controllers\\MemberController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/MemberController.php',
     'Vne\\Theme\\App\\Http\\Controllers\\NewsController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/NewsController.php',
     'Vne\\Theme\\App\\Http\\Controllers\\SearchController' => $baseDir . '/packages/vne/theme/src/app/Http/Controllers/SearchController.php',
     'Vne\\Theme\\App\\Middleware\\VerifyContest' => $baseDir . '/packages/vne/theme/src/app/Middleware/VerifyContest.php',
