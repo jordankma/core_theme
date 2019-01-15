@@ -145,11 +145,14 @@ class MemberController extends Controller
         ]
       ]); 
       $data = json_decode($res->getBody(),true);
-      dd($data);
       if($data['success'] == true){
         return redirect()->route('index');   
       } else{
-        return redirect()->route('frontend.member.register.show');
+        $messages = isset($data['messages']) ? $data['messages'] : '';
+        $data = [
+          'messages' => $messages  
+        ];
+        return redirect()->route('frontend.member.register.show',$data);
       }
     }
 

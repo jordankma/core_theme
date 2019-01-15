@@ -5,6 +5,7 @@
 	<!-- registration -->
 	<section class="registration">
 		<div class="container">
+			@if(!isset($messages))
 			<div class="inner">
 				<h3 style="text-align: center; font-size:20px">ĐĂNG KÝ THÔNG TIN TÀI KHOẢN</h3>
 				<p style="color:red;text-align: center">Bạn cần đăng ký thông tin tài khoản để tham gia cuộc thi</p>
@@ -20,6 +21,12 @@
 					</div>
 				</form>
 			</div>
+			@else
+			<div class="inner">
+				<h3 style="text-align: center; font-size:20px">ĐĂNG KÝ THÔNG TIN TÀI KHOẢN</h3>
+				<p style="color:red;text-align: center">{{ $messages }}</p>
+			</div>
+			@endif
 		</div>
 	</section>
 	<!-- registration end -->
