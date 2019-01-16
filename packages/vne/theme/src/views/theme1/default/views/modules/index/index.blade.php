@@ -45,7 +45,7 @@
 				<!-- adv -->
 				<div class="section adv">
 					<a href="{{ $banner_ngang_trang_chu_1->link }}" target="_blank">
-						<img src="{{ $banner_ngang_trang_chu_1->image }}">
+						<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_1->image }}">
 					</a>
 				</div>
 				<!-- adv end -->
@@ -59,7 +59,7 @@
 				<!-- adv -->
 				<div class="section adv">
 					<a href="{{ $banner_ngang_trang_chu_2->link }}" target="_blank">
-						<img src="{{ $banner_ngang_trang_chu_2->image }}">
+						<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_2->image }}">
 					</a>
 				</div>
 				<!-- adv end -->
@@ -73,7 +73,7 @@
 				<!-- adv -->
 				<div class="section adv">
 					<a href="{{ $banner_ngang_trang_chu_3->link }}" target="_blank">
-						<img src="{{ $banner_ngang_trang_chu_3->image }}">
+						<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_3->image }}">
 					</a>
 				</div>
 				<!-- adv end -->

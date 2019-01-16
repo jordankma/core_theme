@@ -86,7 +86,7 @@ $(document).ready(function () {
             },
             success: function (data, status) {
                 var data = data.data;
-                var str = '<option value="0" >Chọn trường</option>';
+                // var str = '<option value="0" >Chọn trường</option>';
                 for(i = 0; i<data.length; i++) {
                     str += '<option value="' + data[i]._id + '" >' + data[i].schoolname + '</option>';
                 }  
