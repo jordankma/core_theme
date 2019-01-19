@@ -139,7 +139,6 @@ class MemberController extends Controller
       $data_encrypt = $this->my_simple_crypt($data);
       $client = new Client();
       $url = $this->url;
-      
       $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [
         'form_params'=> [
             'data' => $data_encrypt
