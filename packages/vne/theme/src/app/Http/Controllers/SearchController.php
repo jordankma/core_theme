@@ -76,6 +76,15 @@ class SearchController extends Controller
     }
 
     public function listMember(Request $request){
+      $list_setting = $this->list_setting;
+      $open_search = isset($list_setting['open_search']) ? $list_setting['open_search'] : '';
+      $data = [
+        'open_search' => $open_search
+      ];
+      if($open_search == 'on'){
+        return view('VNE-THEME::modules.search.search_member', $data);  
+      }
+
       $this->setJsonCandidateForm();
       $url = $this->url;
       $params = $request->all();
@@ -98,12 +107,23 @@ class SearchController extends Controller
         'list_member' => $paginatedSearchResults,
         'form_search' => $form_search,
         'headers' => $headers,
-        'params' => $params
+        'params' => $params,
+        'open_search' => $open_search
       ];
       return view('VNE-THEME::modules.search.search_member', $data);
     }
 
     public function listResult(Request $request){
+      //check dong search khong
+      $list_setting = $this->list_setting;
+      $open_search = isset($list_setting['open_search']) ? $list_setting['open_search'] : '';
+      $data = [
+        'open_search' => $open_search
+      ];
+      if($open_search == 'on'){
+        return view('VNE-THEME::modules.search.search_member', $data);  
+      }
+      //end
       self::setJsonResultForm();
       $url = $this->url;
       $params = $request->all();
@@ -125,7 +145,6 @@ class SearchController extends Controller
       $collection = new Collection($list_member['data']);
       $perPage = 20; 
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
-
       $list_member_foreach = array();
       $arr_temp = array();
       if(!empty($paginatedSearchResults)){
@@ -143,7 +162,8 @@ class SearchController extends Controller
         'form_search' => $form_search,
         'params' => $params,
         'headers' => $headers,
-        'list_member_foreach' => $list_member_foreach
+        'list_member_foreach' => $list_member_foreach,
+        'open_search' => $open_search
       ];
       return view('VNE-THEME::modules.search.search_result',$data);
     }

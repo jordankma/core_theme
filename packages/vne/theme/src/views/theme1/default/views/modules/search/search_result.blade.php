@@ -1,14 +1,16 @@
 @extends('VNE-THEME::layouts.master')
 @section('content')
 <main class="main">
-	{{-- <section class="section search">
+	@if($open_search == 'on')
+	<section class="section search">
 		<div class="container">
 			<h3 style="color:red; margin:0 auto;margin-left:30px;margin-top:30px;margin-bottom:400px;text-transform: uppercase">
-				Hệ thống đang cập nhật kết quả! Tính năng tra cứu sẽ được mở vào 15h00 ngày 17/01/2019.
+				Hệ thống đang cập nhật kết quả! Tính năng tra cứu sẽ được mở khi hệ thống cập nhật hoàn thành!
 			</h3>
 		</div>
-	</section> --}}
+	</section>
 	<!-- search -->
+	@else
 	<section class="section search">
 		<div class="container">
 			<div class="search-wrapper">
@@ -60,7 +62,7 @@
 		</div>
 	</section>
 	<!-- search results end -->
-
+	@endif
 
 </main>
 @stop

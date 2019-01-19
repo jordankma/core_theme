@@ -112,6 +112,7 @@
 						var member_id = data.data.user_id;
 	                	$('input[name=member_id]').val(member_id);
 	                	$('input[name=u_name]').val(data.data.username);
+	                	$('input[name=token]').val(data.data.token);
 	                	$('#online-now').css('display','block');	
 	                	$('#online-now').css('visibility','visible');
 	                	$('#offline-now').css('display','none');	

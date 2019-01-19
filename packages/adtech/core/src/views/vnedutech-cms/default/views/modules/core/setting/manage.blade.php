@@ -37,9 +37,15 @@
                 {!! Form::open(array('url' => route('adtech.core.setting.update'), 'method' => 'put', 'class' => 'bf', 'files'=> true)) !!}
                 <div class="row">
                     <div class="col-sm-8">
-                        <div class="form-group">
-                            <input type="checkbox" name="open_fix" id='open-fix' @if($open_fix == 'on') checked @endif> 
-                            <label for="open-fix">Mở trang bảo trì</label>
+                        <div class="row">
+                            <div class="col-sm-3 form-group">
+                                <input type="checkbox" name="open_fix" id='open-fix' @if($open_fix == 'on') checked @endif> 
+                                <label for="open-fix">Tắt/Mở trang bảo trì</label>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <input type="checkbox" name="open_search" id='open-search' @if($open_search == 'on') checked @endif> 
+                                <label for="open-search">Tắt/Mở trang search</label>
+                            </div>
                         </div>
                         <label>App Version</label>
                         <div class="form-group">

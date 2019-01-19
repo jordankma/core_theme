@@ -130,6 +130,9 @@ class MController extends BaseController
                     case 'open_fix':
                         $settingView['open_fix'] = $setting->value;
                         break;
+                    case 'open_search':
+                        $settingView['open_search'] = $setting->value;
+                        break;
                 }
             }
         }
@@ -158,7 +161,7 @@ class MController extends BaseController
         if (Cache::has('menus_frontend_' . $domain_id)) {
             $menus = Cache::get('menus_frontend_' . $domain_id);
         } else {
-            $menus = Menu::where('domain_id', $domain_id)->where('type', 1)->orderBy('parent')->orderBy('sort')->get();
+            $menus = Menu::where('domain_id', $domain_id)->where('group','Web')->where('type', 1)->orderBy('parent')->orderBy('sort')->get();
             Cache::put('menus_frontend_' . $domain_id, $menus);
         }
 

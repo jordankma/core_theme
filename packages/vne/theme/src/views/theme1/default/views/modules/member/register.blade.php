@@ -12,6 +12,7 @@
 				<form action="{{ route('frontend.member.register.update') }}" method="post" id="form-register-member">
                     <input type="hidden" name="member_id" id="member_id">
 					<input type="hidden" name="u_name" id="u_name">
+					<input type="hidden" name="token" id="token">
 					<p style="font-weight: bold"> Bước 1: Đăng ký thông tin thí sinh. </p> 
 					<p style="color:red"> Bạn cần nhập chính xác các thông tin dưới đây.Thông tin đăng ký của 
 					thí sinh chỉ được nhập 01 lần duy nhất và không thể chỉnh sửa </p>
