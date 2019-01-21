@@ -147,11 +147,12 @@ class SearchController extends Controller
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
       $list_member_foreach = array();
       $arr_temp = array();
+      $arr_temp_time = array();
       if(!empty($paginatedSearchResults)){
         foreach ($paginatedSearchResults as $key => $value) {
           if(!in_array($value[2],$arr_temp)){
             $list_member_foreach[] = $value;
-            $arr_temp[] = $value[2];   
+            $arr_temp[] = $value[2] . '-' . $value[count($value)-1];
           }
         }
       }
