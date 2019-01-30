@@ -128,9 +128,9 @@ class MemberController extends Controller
             }                  
         }
       }
-      
+      $member_id = (int)$request->input('member_id');
       $data_request['birthday'] = $birthday;
-      $data_request['member_id'] = (int)$request->input('member_id');
+      $data_request['member_id'] = $member_id;
       $data_request['email'] = $request->input('email');
       $data_request['phone'] = $request->input('phone');
       $data_request['u_name'] = $request->input('u_name');
@@ -147,12 +147,12 @@ class MemberController extends Controller
       $data = json_decode($res->getBody(),true);
       if($data['success'] == true){
         return redirect()->route('index');   
-      } else{
+      } else if ($data['success'] == false) {
         $messages = isset($data['messages']) ? $data['messages'] : '';
         $data = [
           'messages' => $messages  
         ];
-        return redirect()->route('frontend.member.register.show',$data);
+        return redirect()->route('frontend.member.register.show',['member_id' => $member_id])->with('messages' , $messages);
       }
     }
 
