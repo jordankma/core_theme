@@ -19,6 +19,7 @@ class VerifyContest
 		$token = $request->input('token');
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
+		$type_exam = $request->input('type_exam','real');
 		// try {
 		// 	$client = new Client([
 		// 		'headers'  => [
@@ -48,15 +49,17 @@ class VerifyContest
 				//throw $th;
 			}
 			if($check_reg == true){
-				//check auto close contest
-				$type_exam = 'real';
-				$data_tmp = json_decode(self::checkEndExam($type_exam),true);
-				$arr_pass = [4098680,12493754];
-				if($data_tmp['status'] == false && !in_array($member_id,$arr_pass)){
-					$messages = $data_tmp['messages'];
-					return view('VNE-THEME::modules.contest.notification',compact('messages', $messages));
+				if($type_exam == 'real'){
+					//check auto close contest
+					$type_exam = 'real';
+					$data_tmp = json_decode(self::checkEndExam($type_exam),true);
+					$arr_pass = [4098680,12493754];
+					if($data_tmp['status'] == false && !in_array($member_id,$arr_pass)){
+						$messages = $data_tmp['messages'];
+						return view('VNE-THEME::modules.contest.notification',compact('messages', $messages));
+					}
+					//end
 				}
-				//end
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);
 			} else{
