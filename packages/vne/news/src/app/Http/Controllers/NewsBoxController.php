@@ -80,7 +80,7 @@ class NewsBoxController extends Controller
 	public function update(Request $request){
         $news_box = $this->news_box->find($request->news_box_id);
         $news_box->name = $request->name;
-		$news_box->name = $request->alias;
+		$news_box->alias = $request->alias;
 		if ($news_box->save()) {
             activity('news_box')
                 ->performedOn($news_box)

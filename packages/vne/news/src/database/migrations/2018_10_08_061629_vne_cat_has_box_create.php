@@ -13,7 +13,7 @@ class VneCatHasBoxCreate extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_cuocthi')->create('vne_cat_has_box', function (Blueprint $table) {
+        Schema::create('vne_cat_has_box', function (Blueprint $table) {
             $table->increments('cat_has_box_id');
             $table->integer('news_cat_id', false, true)->index();
             $table->integer('news_box_id', false, true)->index();
@@ -33,6 +33,6 @@ class VneCatHasBoxCreate extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_cuocthi')->dropIfExists('vne_cat_has_box');
+        Schema::dropIfExists('vne_cat_has_box');
     }
 }

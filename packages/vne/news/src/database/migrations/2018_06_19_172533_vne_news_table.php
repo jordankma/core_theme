@@ -13,7 +13,7 @@ class VneNewsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql_cuocthi')->create('vne_news', function (Blueprint $table) {
+        Schema::create('vne_news', function (Blueprint $table) {
             $table->increments('news_id');
             $table->string('create_by')->comment('email cua nguoi dang tin');
             $table->string('news_cat')->comment('json chua cac chuyen muc')->nullable();
@@ -49,6 +49,6 @@ class VneNewsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql_cuocthi')->dropIfExists('vne_news');
+        Schema::dropIfExists('vne_news');
     }
 }

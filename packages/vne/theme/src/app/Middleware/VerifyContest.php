@@ -20,6 +20,7 @@ class VerifyContest
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
 		$type_exam = $request->input('type_exam','real');
+		
 		// try {
 		// 	$client = new Client([
 		// 		'headers'  => [

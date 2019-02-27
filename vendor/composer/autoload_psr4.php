@@ -19,6 +19,7 @@ return array(
     'Vne\\News\\' => array($baseDir . '/packages/vne/news/src'),
     'Vne\\Member\\' => array($baseDir . '/packages/vne/member/src'),
     'Vne\\Mail\\' => array($baseDir . '/packages/vne/mail/src'),
+    'Vne\\Hocvalamtheobac\\' => array($baseDir . '/packages/vne/hocvalamtheobac/src'),
     'Vne\\Contact\\' => array($baseDir . '/packages/vne/contact/src'),
     'Vne\\Companionunit\\' => array($baseDir . '/packages/vne/companionunit/src'),
     'Vne\\Banner\\' => array($baseDir . '/packages/vne/banner/src'),

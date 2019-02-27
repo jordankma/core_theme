@@ -99,6 +99,7 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
             'Vne\\News\\' => 9,
             'Vne\\Member\\' => 11,
             'Vne\\Mail\\' => 9,
+            'Vne\\Hocvalamtheobac\\' => 20,
             'Vne\\Contact\\' => 12,
             'Vne\\Companionunit\\' => 18,
             'Vne\\Banner\\' => 11,
@@ -295,6 +296,10 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Mail\\' => 
         array (
             0 => __DIR__ . '/../..' . '/packages/vne/mail/src',
+        ),
+        'Vne\\Hocvalamtheobac\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src',
         ),
         'Vne\\Contact\\' => 
         array (
@@ -13949,6 +13954,16 @@ class ComposerStaticInitb229d5ef3443da02055ee88f0c732d54
         'Vne\\Contact\\App\\Models\\Contact' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Models/Contact.php',
         'Vne\\Contact\\App\\Repositories\\ContactRepository' => __DIR__ . '/../..' . '/packages/vne/contact/src/app/Repositories/ContactRepository.php',
         'Vne\\Contact\\ContactServiceProvider' => __DIR__ . '/../..' . '/packages/vne/contact/src/ContactServiceProvider.php',
+        'Vne\\Hocvalamtheobac\\App\\ApiHash' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/ApiHash.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/ContactController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\ContestController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/ContestController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\ExamController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/ExamController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/HomeController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\MemberController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/MemberController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/NewsController.php',
+        'Vne\\Hocvalamtheobac\\App\\Http\\Controllers\\SearchController' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Http/Controllers/SearchController.php',
+        'Vne\\Hocvalamtheobac\\App\\Middleware\\VerifyContest' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/app/Middleware/VerifyContest.php',
+        'Vne\\Hocvalamtheobac\\HocvalamtheobacServiceProvider' => __DIR__ . '/../..' . '/packages/vne/hocvalamtheobac/src/HocvalamtheobacServiceProvider.php',
         'Vne\\Mail\\App\\Http\\Controllers\\DemoController' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Http/Controllers/DemoController.php',
         'Vne\\Mail\\App\\Http\\Controllers\\SentController' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Http/Controllers/SentController.php',
         'Vne\\Mail\\App\\Models\\Demo' => __DIR__ . '/../..' . '/packages/vne/mail/src/app/Models/Demo.php',
