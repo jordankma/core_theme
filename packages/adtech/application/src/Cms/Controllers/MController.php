@@ -137,7 +137,6 @@ class MController extends BaseController
             }
         }
         $this->list_setting = $settingView; 
-
         $share = [
             'USER_LOGGED' => $this->user,
             'USER_LOGGED_EMAIL' => $email,

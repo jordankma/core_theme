@@ -82,7 +82,6 @@ class MemberController extends Controller
     }
 
     public function getFormRegister(Request $request){
-      // return redirect()->route('index');
       $validator = Validator::make($request->all(), [
             'key' => 'required|numeric',
             'key2' => 'required|numeric'

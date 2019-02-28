@@ -1,3 +1,4 @@
+@if(!empty($list_thong_bao_btc))
 <section class="section notification">
     <div class="notification-item">
         @php 
@@ -5,8 +6,7 @@
         @endphp
         <h2 class="headline"><a href="{{ route('frontend.news.list.box',$thongbaobtc) }}">Thông báo BTC</a></h2>
         <div class="list">
-            @if(!empty($list_news_event))
-            @foreach($list_news_event as $element)
+            @foreach($list_thong_bao_btc as $element)
             @php 
                 $alias = $element->title_alias . '.html';
             @endphp
@@ -15,7 +15,7 @@
                 <p class="date">Ngày: {{ date_format($element->created_at,"d/m/Y") }}</p>
             </div>
             @endforeach
-			@endif
         </div>
     </div>
 </section>
+@endif

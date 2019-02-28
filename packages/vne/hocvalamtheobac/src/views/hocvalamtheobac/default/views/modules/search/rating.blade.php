@@ -1,149 +1,102 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
 @section('content')
+@section('header_styles')
+	<style>
+		.pagination .page-item {
+			display: inline-block;
+		}
+	</style>
+@stop
+<!-- main -->
 <main class="main">
-	<!-- breadcrumb -->
-	<nav class="section breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb-list">
-				<li class="breadcrumb-item">
-					<a class="breadcrumb-link" href="#">Trang chủ</a>
-				</li>
-				<li class="breadcrumb-item">
-					<a class="breadcrumb-link" href="#">Tra cứu</a>
-				</li>
-				<li class="breadcrumb-item">
-					<a class="breadcrumb-link" href="#">Bảng xếp hạng</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	<!-- breadcrumb end -->
-
 	<!-- ratings -->
 	<section class="section ratings">
 		<div class="container">
 			<div class="ratings-wrapper">
-				<h1 class="headline">Top thí sinh thi</h1>
-				<form class="ratings-search" action="">
-					<select class="form-control">
-						<option>Top thành phố đã thi</option>
+				<h1 class="headline">{{ $title}}</h1>
+				<form class="ratings-search" action="{{ route('frontend.get.top',$type) }}" method="GET">
+					<select class="form-control" name="data_child_params">
+						@if(!empty($list_top))
+						@foreach ($list_top as $element)
+							<option value="{{ $element->params }}" @if($element->params == $data_child_params) selected @endif>Top {{ $element->title }}</option>	
+						@endforeach
+						@endif
 					</select>
 					<button class="btn btn-primary" type="submit">Tìm kiếm</button>
 				</form>
+				<!-- pagination -->
+				@if($data_table->total_page > 1)
+				<nav class="pagination" style="padding-left: 30%;">
+					<ul class="">
+						<li class="page-item">
+							<a class="page-link" href="{{ $url_get_by_page . '&page=1'}}">Đầu</a>
+						</li>
+						@if($page < $data_table->total_page - 8)
+							@for($i = $page; $i <= $page+3 ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+							...
+							@for($i = $data_table->total_page - 3 ; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+						@elseif($data_table->total_page - $page < 8 && $data_table->total_page < 8)
+							@for($i = 1; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor	
+						@else 
+							@for($i = $data_table->total_page - 8; $i <= $data_table->total_page ; $i++)
+							<li class="page-item">
+								<a class="page-link @if($i == $page) active @endif" href="{{ $url_get_by_page . '&page=' . $i }}">{{ $i }}</a>
+							</li>
+							@endfor
+						@endif
+						<li class="page-item">
+							<a class="page-link" href="{{ $url_get_by_page . '&page=' . $data_table->total_page }}">Cuối</a>
+						</li>
+					</ul>
+				</nav>
+				@endif
+				<!-- pagination end -->
 				<div class="content">
 					<div class="row title">
-						<div class="col-2 col-md-1"></div>
-						<div class="col-6 col-md-6">Thành phố</div>
-						<div class="col-4 col-md-5">Số lượng</div>
+						@if(!empty($data_header))
+						@foreach($data_header as $element)
+						@if($loop->index==0)
+						<div class="col-2 col-md-1">{{ $element }}</div>
+						@endif
+						@if($loop->index==1)
+						<div class="col-6 col-md-6">{{ $element }}</div>
+						@endif
+						@if($loop->index==2)
+						<div class="col-4 col-md-5">{{ $element }}</div>
+						@endif
+						@endforeach
+						@endif
 					</div>
 					<ol class="list">
+						@if(!empty($data_table->data))
+						@foreach($data_table->data as $element)
+						@if(!empty($element))
 						<li class="row">
-							<div class="col-2 col-md-1 top"><img src="src/images/cuo-vang.png" alt=""></div>
-							<div class="col-6 col-md-6 name-city">Phú Thọ</div>
-							<div class="col-4 col-md-5 number">145.309</div>
+							<div class="col-2 col-md-1 top"> {{ $element[0] }}</div>
+							<div class="col-6 col-md-6 name-city">{{ $element[1] }}</div>
+							<div class="col-4 col-md-5 number">{{ $element[2] }}</div>
 						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top"><img src="src/images/cup-bac.png" alt=""></div>
-							<div class="col-6 col-md-6 name-city">Thái Nguyên</div>
-							<div class="col-4 col-md-5 number">51.177</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top"><img src="src/images/cup-dong.png" alt=""></div>
-							<div class="col-6 col-md-6 name-city">Hà Nội</div>
-							<div class="col-4 col-md-5 number">53.124</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">4</div>
-							<div class="col-6 col-md-6 name-city">Tp.Hồ Chí Minh</div>
-							<div class="col-4 col-md-5 number">18.672</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">5</div>
-							<div class="col-6 col-md-6 name-city">Nam Định</div>
-							<div class="col-4 col-md-5 number">26.975</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">6</div>
-							<div class="col-6 col-md-6 name-city">Nghệ An</div>
-							<div class="col-4 col-md-5 number">23.911</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">7</div>
-							<div class="col-6 col-md-6 name-city">Bắc Ninh</div>
-							<div class="col-4 col-md-5 number">23.463</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">8</div>
-							<div class="col-6 col-md-6 name-city">Bắc Giang</div>
-							<div class="col-4 col-md-5 number">22.701</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">9</div>
-							<div class="col-6 col-md-6 name-city">Quảng Ninh</div>
-							<div class="col-4 col-md-5 number">21.331</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">10</div>
-							<div class="col-6 col-md-6 name-city">Bình Định</div>
-							<div class="col-4 col-md-5 number">20.392</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">11</div>
-							<div class="col-6 col-md-6 name-city">Quảng Trị</div>
-							<div class="col-4 col-md-5 number">19.567</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">12</div>
-							<div class="col-6 col-md-6 name-city">Quảng Bình</div>
-							<div class="col-4 col-md-5 number">18.828</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">13</div>
-							<div class="col-6 col-md-6 name-city">Lào Cai</div>
-							<div class="col-4 col-md-5 number">14.942</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">14</div>
-							<div class="col-6 col-md-6 name-city">Bình Dương</div>
-							<div class="col-4 col-md-5 number">13.532</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">15</div>
-							<div class="col-6 col-md-6 name-city">Sơn La</div>
-							<div class="col-4 col-md-5 number">14.410</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">16</div>
-							<div class="col-6 col-md-6 name-city">Đà Nẵng</div>
-							<div class="col-4 col-md-5 number">10.890</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">17</div>
-							<div class="col-6 col-md-6 name-city">Hà Tĩnh</div>
-							<div class="col-4 col-md-5 number">11.251</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">18</div>
-							<div class="col-6 col-md-6 name-city">Đắk Lắk</div>
-							<div class="col-4 col-md-5 number">9.784</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">19</div>
-							<div class="col-6 col-md-6 name-city">Đồng Tháp</div>
-							<div class="col-4 col-md-5 number">7.514</div>
-						</li>
-						<li class="row">
-							<div class="col-2 col-md-1 top">20</div>
-							<div class="col-6 col-md-6 name-city">Quảng Nam</div>
-							<div class="col-4 col-md-5 number">6.797</div>
-						</li>
+						@endif
+						@endforeach
+						@endif
 					</ol>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- ratings end -->
-
-
 </main>
+<!-- main end -->
 @stop

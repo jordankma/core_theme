@@ -116,7 +116,7 @@ return [
         'url_message' => '',
     ],
     'news_box' => [
-        'thongbaobtc' => 'thong-bao-btc',
+        'thongbaobtc' => 'thong-bao-ban-to-chuc',
         'videonoibat' => 'video-noi-bat',
         'tintuc' => 'tin-tuc',
     ],
@@ -129,8 +129,10 @@ return [
         'tintuc' => 'tin-tuc'
     ],
     'banner' => [
-        'banner_ngang_trang_chu_1' => '1',
-        'banner_ngang_trang_chu_2' => '2',
-        'banner_ngang_trang_chu_3' => '3'
+        'id_banner_ngang_trang_chu_1' => '1',
+        'id_banner_ngang_trang_chu_2' => '2',
+        'id_banner_ngang_trang_chu_3' => '3',
+        'id_logo_ban_to_chuc_cuoc_thi' => '4',
+        'id_logo_don_vi_dong_hanh' => '5'
     ],
 ];

@@ -41,193 +41,115 @@ class HomeController extends Controller
         if($open_fix=='on' && !$request->has('test')){
           return view('VNE-HOCVALAMTHEOBAC::modules.index.404'); 
         }
-
-        if($theme == 'theme1'){
-            Session::forget('notifi_verify');
-            if($request->has('message')){
-              $message = $request->input('message');
-              Session::put('notifi_verify',$message); 
-            }
-            $id_position_banner_trangchu = config('site.banner_trang_chu_id');
-            if (Cache::has('list_banner')) {
-              $list_banner = Cache::get('list_banner');
-            } else {
-              $list_banner = Banner::where('position',$id_position_banner_trangchu)->orderBy('priority', 'desc')->get();
-              Cache::put('list_banner', $list_banner,1440);
-            }
-            $id_position_banner_ngang_trangchu_1 = config('site.banner_ngang_trang_chu_id_1');
-            $id_position_banner_ngang_trangchu_2 = config('site.banner_ngang_trang_chu_id_2');
-            $id_position_banner_ngang_trangchu_3 = config('site.banner_ngang_trang_chu_id_3');
-
-            if (Cache::has('banner_ngang_trang_chu_1')) {
-              $banner_ngang_trang_chu_1 = Cache::get('banner_ngang_trang_chu_1');
-            } else {
-              $banner_ngang_trang_chu_1 = Banner::where('position',$id_position_banner_ngang_trangchu_1)->first();
-              Cache::put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
-            }
-            if (Cache::has('banner_ngang_trang_chu_2')) {
-              $banner_ngang_trang_chu_2 = Cache::get('banner_ngang_trang_chu_2');
-            } else {
-              $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->first();
-              Cache::put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
-            }
-            if (Cache::has('banner_ngang_trang_chu_3')) {
-              $banner_ngang_trang_chu_3 = Cache::get('banner_ngang_trang_chu_3');
-            } else {
-              $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->first();
-              Cache::put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
-            }
-            
-
-            $thongbaobtc = config('site.news_box.thongbaobtc');
-            $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
-
-            $tinnong = config('site.news_box.tinnong');
-            $list_news_hot = self::getNewsByBoxFromCache($tinnong, $tinnong , null, 5);
-            
-            $sukien = config('site.news_box.sukien');
-            $list_news_event = self::getNewsByBoxFromCache($sukien, $sukien, null, 4);
-            
-            $honoivechungtoi = config('site.news_box.honoivechungtoi');
-            $list_news_honoivechungtoi = self::getNewsByBoxFromCache($honoivechungtoi, $honoivechungtoi, null, 4);
-
-            $hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
-            $list_news_hanh_trinh_truong = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_1', $hanhtrinhgiaothonghocduong, 4, 4);
-            $list_news_hanh_trinh_tinh = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_2', $hanhtrinhgiaothonghocduong, 5, 4);
-            $list_news_hanh_trinh_toanquoc = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_3', $hanhtrinhgiaothonghocduong, 6, 4);
-            $list_news_hanh_trinh_khac = self::getNewsByBoxFromCache($hanhtrinhgiaothonghocduong.'_4' , $hanhtrinhgiaothonghocduong,7,4);
-            
-            $hinhanhvideo = config('site.news_box.hinhanhvideo');
-            $list_news_anh_video_1 = self::getNewsByBoxFromCache($hinhanhvideo.'_1', $hinhanhvideo, 8, 4);
-            $list_news_anh_video_2 = self::getNewsByBoxFromCache($hinhanhvideo.'_2', $hinhanhvideo, 9, 4);
-            
-            if (Cache::has('list_time_line')) {
-              $list_time_line = Cache::get('list_time_line');
-            } else {
-              $list_time_line = Timeline::all();
-              Cache::put('list_time_line', $list_time_line,1440);
-            }
-            // dd($list_time_line);
-            $id_don_vi_dong_hanh = config('site.don_vi_dong_hanh_id');
-            $list_don_vi_dong_hanh = Companionunit::where('comtype',$id_don_vi_dong_hanh)->get();
-
-            $url = $this->url;
-            $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
-            $count_thi_sinh_dang_ky = 0;
-            $count_thi_sinh_thi = 0;
-            try {
-                $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board?limit=3'));
-                $list_top_thi_sinh_dang_ky = $list_top->data[0];
-                $list_top_thi_sinh_da_thi = $list_top->data[1];
-                $list_thi_sinh_dan_dau_tuan = $list_top->data[2];
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            // dd($list_top_thi_sinh_da_thi);
-            try {
-              $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              if (Cache::has('count_thi_sinh_dang_ky')) {
-                $count_thi_sinh_dang_ky = Cache::get('count_thi_sinh_dang_ky');
-              } else {
-                $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register');
-                Cache::put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
-              }
-              // $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            try {
-              if (Cache::has('count_thi_sinh_thi')) {
-                $count_thi_sinh_thi = Cache::get('count_thi_sinh_thi');
-              } else {
-                $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate');
-                Cache::put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
-              }
-              // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
-            } catch (\Throwable $th) {
-              //throw $th;
-            }
-            $minutes_countdown = self::getMinuteCountDown($time_timeline);
-            // dd($minutes_countdown);
-            $data = [
-              'list_banner' => $list_banner,
-              'list_thong_bao_btc' => $list_thong_bao_btc,
-              'list_news_hot' => $list_news_hot,
-              'list_news_event' => $list_news_event,
-              'list_news_hanh_trinh_truong' => $list_news_hanh_trinh_truong,
-              'list_news_hanh_trinh_tinh' => $list_news_hanh_trinh_tinh,
-              'list_news_hanh_trinh_toanquoc' => $list_news_hanh_trinh_toanquoc,
-              'list_news_hanh_trinh_khac' => $list_news_hanh_trinh_khac,
-              'list_news_anh_video_1' => $list_news_anh_video_1,
-              'list_news_anh_video_2' => $list_news_anh_video_2,
-              'list_time_line' => $list_time_line,
-              'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
-              'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
-              'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
-              'list_thi_sinh_moi' => $list_thi_sinh_moi,
-              'list_don_vi_dong_hanh' => $list_don_vi_dong_hanh,
-              'list_news_honoivechungtoi' => $list_news_honoivechungtoi,
-              'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
-              'count_thi_sinh_thi' => $count_thi_sinh_thi,
-              'minutes_countdown' => $minutes_countdown,
-              'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
-              'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
-              'banner_ngang_trang_chu_3' => $banner_ngang_trang_chu_3,
-              'type_page' => 'index',
-              'title_timeline' => $title_timeline
-            ];
-            return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data); 
+        
+        //get banner
+        $id_position_banner_ngang_trangchu_1 = config('site.banner.id_banner_ngang_trang_chu_1');
+        $id_position_banner_ngang_trangchu_2 = config('site.banner.id_banner_ngang_trang_chu_2');
+        $id_position_banner_ngang_trangchu_3 = config('site.banner.id_banner_ngang_trang_chu_3');
+        if (Cache::has('banner_ngang_trang_chu_1')) {
+          $banner_ngang_trang_chu_1 = Cache::get('banner_ngang_trang_chu_1');
+        } else {
+          $banner_ngang_trang_chu_1 = Banner::where('position',$id_position_banner_ngang_trangchu_1)->orderBy('priority', 'desc')->get();
+          Cache::put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
         }
-        elseif($theme == 'hocvalamtheobac'){
-          //get banner
-          $id_position_banner_ngang_trangchu_1 = config('site.banner_ngang_trang_chu_id_1');
-          $id_position_banner_ngang_trangchu_2 = config('site.banner_ngang_trang_chu_id_2');
-          $id_position_banner_ngang_trangchu_3 = config('site.banner_ngang_trang_chu_id_3');
-          if (Cache::has('banner_ngang_trang_chu_1')) {
-            $banner_ngang_trang_chu_1 = Cache::get('banner_ngang_trang_chu_1');
-          } else {
-            $banner_ngang_trang_chu_1 = Banner::where('position',$id_position_banner_ngang_trangchu_1)->orderBy('priority', 'desc')->get();
-            Cache::put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
-          }
-          if (Cache::has('banner_ngang_trang_chu_2')) {
-            $banner_ngang_trang_chu_2 = Cache::get('banner_ngang_trang_chu_2');
-          } else {
-            $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->orderBy('priority', 'desc')->first();
-            Cache::put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
-          }
-          if (Cache::has('banner_ngang_trang_chu_3')) {
-            $banner_ngang_trang_chu_3 = Cache::get('banner_ngang_trang_chu_3');
-          } else {
-            $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->orderBy('priority', 'desc')->first();
-            Cache::put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
-          }
-          //end get banner
-          //get tin tuc
-          $thongbaobtc = config('site.news_box.thongbaobtc');
-          $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
-          
-          $tintuc = config('site.news_box.tintuc');
-          $list_tintuc = self::getNewsByBoxFromCache($tintuc, $tintuc,null,5);
-
-          $videonoibat = config('site.news_box.videonoibat');
-          $list_videonoibat = self::getNewsByBoxFromCache($videonoibat, $videonoibat,null,5);
-
-          //end get tin tuc
-
-          $data = [
-              'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
-              'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
-              'banner_ngang_trang_chu_3' => $banner_ngang_trang_chu_3,
-              'list_thong_bao_btc' => $list_thong_bao_btc,
-              'list_tintuc' => $list_tintuc,
-              'list_videonoibat' => $list_videonoibat
-          ];
-          return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data);    
+        if (Cache::has('banner_ngang_trang_chu_2')) {
+          $banner_ngang_trang_chu_2 = Cache::get('banner_ngang_trang_chu_2');
+        } else {
+          $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->first();
+          Cache::put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
         }
+        if (Cache::has('banner_ngang_trang_chu_3')) {
+          $banner_ngang_trang_chu_3 = Cache::get('banner_ngang_trang_chu_3');
+        } else {
+          $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->first();
+          Cache::put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
+        }
+        //end get banner
+        //get logo group
+        $id_position_logo_ban_to_chuc_cuoc_thi = config('site.banner.id_logo_ban_to_chuc_cuoc_thi');
+        $id_position_logo_don_vi_dong_hanh = config('site.banner.id_logo_don_vi_dong_hanh');
+        
+        if (Cache::has('list_logo_ban_to_chuc_cuoc_thi')) {
+          $list_logo_ban_to_chuc_cuoc_thi = Cache::get('list_logo_ban_to_chuc_cuoc_thi');
+        } else {
+          $list_logo_ban_to_chuc_cuoc_thi = Banner::where('position',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
+          Cache::put('list_logo_ban_to_chuc_cuoc_thi', $list_logo_ban_to_chuc_cuoc_thi,1440);
+        }
+        if (Cache::has('list_logo_don_vi_dong_hanh')) {
+          $list_logo_don_vi_dong_hanh = Cache::get('list_logo_don_vi_dong_hanh');
+        } else {
+          $list_logo_don_vi_dong_hanh = Banner::where('position',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
+          Cache::put('list_logo_don_vi_dong_hanh', $list_logo_don_vi_dong_hanh,1440);
+        }
+        //end get logo group
+        //get tin tuc
+        $thongbaobtc = config('site.news_box.thongbaobtc');
+        $list_thong_bao_btc = self::getNewsByBoxFromCache($thongbaobtc, $thongbaobtc,null,5);
+
+        $tintuc = config('site.news_box.tintuc');
+        $list_tintuc = self::getNewsByBoxFromCache($tintuc, $tintuc,null,4);
+
+        $videonoibat = config('site.news_box.videonoibat');
+        $list_videonoibat = self::getNewsByBoxFromCache($videonoibat, $videonoibat,null,5);
+        //end get tin tuc
+        //get bang xep hang top
+        $url = $this->url;
+        $list_top_thi_sinh_dang_ky = $list_top_thi_sinh_da_thi = $list_thi_sinh_dan_dau_tuan = $list_thi_sinh_moi = array();
+        $count_thi_sinh_dang_ky = 0;
+        $count_thi_sinh_thi = 0;
+        try {
+            $list_top = json_decode(file_get_contents($url . '/api/contest/get/rank_board?limit=3'));
+            $list_top_thi_sinh_dang_ky = $list_top->data[0];
+            $list_top_thi_sinh_da_thi = $list_top->data[1];
+            $list_thi_sinh_dan_dau_tuan = $list_top->data[2];
+        } catch (\Throwable $th) {
+          //throw $th;
+        }
+        // dd($list_top_thi_sinh_da_thi);
+        try {
+          $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
+        } catch (\Throwable $th) {
+          //throw $th;
+        }
+        try {
+          if (Cache::has('count_thi_sinh_dang_ky')) {
+            $count_thi_sinh_dang_ky = Cache::get('count_thi_sinh_dang_ky');
+          } else {
+            $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register');
+            Cache::put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
+          }
+          // $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
+        } catch (\Throwable $th) {
+          //throw $th;
+        }
+        try {
+          if (Cache::has('count_thi_sinh_thi')) {
+            $count_thi_sinh_thi = Cache::get('count_thi_sinh_thi');
+          } else {
+            $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate');
+            Cache::put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
+          }
+          // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
+        } catch (\Throwable $th) {
+          //throw $th;
+        }
+        //end get bang xep hang top
+        $data = [
+          'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
+          'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
+          'banner_ngang_trang_chu_3' => $banner_ngang_trang_chu_3,
+          'list_thong_bao_btc' => $list_thong_bao_btc,
+          'list_tintuc' => $list_tintuc,
+          'list_videonoibat' => $list_videonoibat,
+          'last_page_tin_tuc' => $list_tintuc->lastPage(),
+          'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
+          'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
+          'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
+          'list_thi_sinh_moi' => $list_thi_sinh_moi,
+          'list_logo_ban_to_chuc_cuoc_thi' => $list_logo_ban_to_chuc_cuoc_thi,
+          'list_logo_don_vi_dong_hanh' => $list_logo_don_vi_dong_hanh
+        ];
+        return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data);    
     }
     
     public function getMinuteCountDown($time){
@@ -243,6 +165,7 @@ class HomeController extends Controller
       }
       return $minutes_countdown; 
     }
+
     function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
       if (Cache::has($key_cache)) {
         $data = Cache::get($key_cache);
@@ -253,5 +176,22 @@ class HomeController extends Controller
       return $data;  
     }
 
-    
+    public function getNewByBox(Request $request,$alias){
+      $list_news = $this->news->getNewsByBox($alias,null,4);
+      $list_news_json = array();
+      if(!empty($list_news)){
+          foreach ($list_news as $key => $news) {
+              $list_news_json[] = [
+                  'news_id' => $news->news_id,
+                  'title_alias' => $news->title_alias,
+                  'title' => $news->title,
+                  'image' => $news->image,
+                  'created_at' => date_format($news->created_at,"Y/m/d"),
+                  'desc' => $news->desc,
+                  'create_by' => $news->create_by
+              ];
+          }
+      }
+      return json_encode($list_news_json);
+    }  
 }

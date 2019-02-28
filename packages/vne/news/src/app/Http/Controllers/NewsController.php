@@ -58,6 +58,8 @@ class NewsController extends Controller
         $this->honoivechungtoi = config('site.news_box.honoivechungtoi');
         $this->hanhtrinhgiaothonghocduong = config('site.news_box.hanhtrinhgiaothonghocduong');
         $this->hinhanhvideo = config('site.news_box.hinhanhvideo');
+        $this->videonoibat = config('site.news_box.videonoibat');
+        $this->tintuc = config('site.news_box.tintuc');
     }
 	/**
      * @return view list news
@@ -194,6 +196,8 @@ class NewsController extends Controller
             Cache::forget($this->tinnong);
             Cache::forget($this->sukien);
             Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->videonoibat);
+            Cache::forget($this->tintuc);
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
@@ -375,6 +379,8 @@ class NewsController extends Controller
             Cache::forget($this->tinnong);
             Cache::forget($this->sukien);
             Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->videonoibat);
+            Cache::forget($this->tintuc);
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');
@@ -425,6 +431,8 @@ class NewsController extends Controller
             Cache::forget($this->tinnong);
             Cache::forget($this->sukien);
             Cache::forget($this->honoivechungtoi);
+            Cache::forget($this->videonoibat);
+            Cache::forget($this->tintuc);
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_1');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_2');
             Cache::forget($this->hanhtrinhgiaothonghocduong . '_3');

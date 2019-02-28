@@ -5,30 +5,16 @@
                 <div class="logo-list">
                     <h2 class="title">Ban tổ chức cuộc thi</h2>
                     <div class="carousel js-carousel-01">
-                        <a class="carousel-item" href="">
+                        @if(!empty($list_logo_ban_to_chuc_cuoc_thi))
+                        @foreach($list_logo_ban_to_chuc_cuoc_thi as $element)
+                        <a class="carousel-item" href="{{ $element->link }}">
                             <div class="logo">
-                                <img src="images/logo.jpg" alt="">
+                                <img src="{{ config('site.url_static') . $element->image }}" alt="">
                             </div>
-                            <h3 class="name">Bộ Giáo dục<br> và Đào tạo</h3>
+                            <h3 class="name">{{ $element->name }}</h3>
                         </a>
-                        <a class="carousel-item" href="">
-                            <div class="logo">
-                                <img src="images/logo1.jpg" alt="">
-                            </div>
-                            <h3 class="name">Ban Tuyên giáo<br> Trung ương</h3>
-                        </a>
-                        <a class="carousel-item" href="">
-                            <div class="logo">
-                                <img src="images/logo2.jpg" alt="">
-                            </div>
-                            <h3 class="name">Trung ương Đoàn TNCS Hồ Chí Minh</h3>
-                        </a>
-                        <a class="carousel-item" href="">
-                            <div class="logo">
-                                <img src="images/logo3.png" alt="">
-                            </div>
-                            <h3 class="name">Tập đoàn Giáo dục Egroup</h3>
-                        </a>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -36,19 +22,16 @@
                 <div class="logo-list">
                     <h2 class="title">Đơn vị đồng hành</h2>
                     <div class="carousel js-carousel-02">
-                        <a class="carousel-item" href="">
+                        @if(!empty($list_logo_don_vi_dong_hanh))
+                        @foreach($list_logo_don_vi_dong_hanh as $element)
+                        <a class="carousel-item" href="{{ $element->link }}">
                             <div class="logo">
-                                <img src="images/logo4.jpg" alt="">
+                                <img src="{{ config('site.url_static') . $element->image }}" alt="">
                             </div>
-                            <h3 class="name">Trường ĐH <br>Nguyễn Tất Thành</h3>
+                            <h3 class="name">{{ $element->name }}</h3>
                         </a>
-                        <a class="carousel-item" href="">
-                            <div class="logo">
-                                <img src="images/logo5.jpg" alt="">
-                            </div>
-                            <h3 class="name">Nhà xuất bản<br>
-                                áo dục Việt Nam</h3>
-                        </a>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

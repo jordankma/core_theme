@@ -1,7 +1,7 @@
 <!-- rating right -->
 <section class="section rating-right">
 	<div class="info">
-		<div class="icon"><img src="src/images/cup.png" alt=""></div>
+		<div class="icon"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/images/cup.png'}}" alt=""></div>
 		<div class="number">1.120.726</div>
 		<p>Thí sinh đăng ký</p>
 	</div>

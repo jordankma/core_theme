@@ -29,29 +29,19 @@
 				</div>
 				<div class="col-lg-7">
 					<div class="info">
-						<div class="info-item">
-							<h2 class="title">BỘ GIÁO DỤC VÀ ĐÀO TẠO VỤ CÔNG TÁC HỌC SINH - SINH VIÊN</h2>
-							<p><i class="fa fa-address"></i> 35 Đại Cồ Việt, Hà Nội</p>
-							<p><i class="fa fa-phone"></i> Hỗ trợ công tác tổ chức: 04.38694984</p>
-						</div>
-						<div class="info-item">
-							<h2 class="title">TẬP ĐOÀN GIÁO DỤC EGROUP</h2>
-							<p><i class="fa fa-address"></i> Tầng 3, Tòa Nhà 25T1, Hoàng Đạo Thúy, Trung Hòa, Cầu Giấy, Hà Nội</p>
-							<p><i class="fa fa-phone"></i> Hỗ trợ kỹ thuật: 1900636444 (8h - 22h hàng ngày)</p>
-							<p><i class="fa fa-email"></i> Email: hocvalamtheobac@egroup.vn</p>
-						</div>
+						{!! isset($SETTING['info_page_contact']) ? $SETTING['info_page_contact'] : '' !!}
 					</div>
-					<form action="" class="form-contact">
+					<form action="{{ route('frontend.contact.save')}}" class="form-contact" id="form-contact" method="post">
 						<h2 class="title">Liên hệ với chúng tôi:</h2>
 						<div class="row">
 							<div class="form-group col-md-6">
-								<input type="name" class="form-control" placeholder="Họ và tên">
+								<input type="text" name="name" class="form-control" placeholder="Họ và tên">
 							</div>
 							<div class="form-group col-md-6">
-								<input type="email" class="form-control" placeholder="Email">
+								<input type="email" name="email_contact" class="form-control" placeholder="Email">
 							</div>
 							<div class="form-group col-12">
-								<textarea class="form-control" rows="8" placeholder="Nội dung"></textarea>
+								<textarea class="form-control" name="content" rows="8" placeholder="Nội dung"></textarea>
 							</div>
 						</div>
 						<button class="btn btn-primary" type="submit">Gửi thông tin</button>

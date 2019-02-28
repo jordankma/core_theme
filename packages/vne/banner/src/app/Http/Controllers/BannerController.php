@@ -77,6 +77,8 @@ class BannerController extends Controller
                 Cache::forget('banner_ngang_trang_chu_1');
                 Cache::forget('banner_ngang_trang_chu_2');
                 Cache::forget('banner_ngang_trang_chu_3');
+                Cache::forget('list_logo_ban_to_chuc_cuoc_thi');
+                Cache::forget('list_logo_don_vi_dong_hanh');
                 activity('banner')
                     ->performedOn($banners)
                     ->withProperties($request->all())
@@ -148,6 +150,8 @@ class BannerController extends Controller
                 Cache::forget('banner_ngang_trang_chu_1');
                 Cache::forget('banner_ngang_trang_chu_2');
                 Cache::forget('banner_ngang_trang_chu_3');
+                Cache::forget('list_logo_ban_to_chuc_cuoc_thi');
+                Cache::forget('list_logo_don_vi_dong_hanh');
                 activity('banner')
                     ->performedOn($banners)
                     ->withProperties($request->all())
@@ -197,6 +201,8 @@ class BannerController extends Controller
                 Cache::forget('banner_ngang_trang_chu_1');
                 Cache::forget('banner_ngang_trang_chu_2');
                 Cache::forget('banner_ngang_trang_chu_3');
+                Cache::forget('list_logo_ban_to_chuc_cuoc_thi');
+                Cache::forget('list_logo_don_vi_dong_hanh');
                 activity('banner')
                     ->performedOn($banner)
                     ->withProperties($request->all())

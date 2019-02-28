@@ -10,7 +10,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Cache::forget('count_thi_sinh_thi');
         });
         Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
-
+        Route::get('tin-tuc-box/{alias?}', 'HomeController@getNewByBox')->name('vne.index.news.box');
         //trang lien he
         Route::get('lien-he', 'ContactController@showContact')->name('frontend.contact.show')->where('as','Frontend - Liên hệ');
         Route::post('lien-he', 'ContactController@saveContact')->name('frontend.contact.save');
@@ -45,7 +45,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('get-form-register', 'MemberController@getFormRegister')->name('frontend.member.get.form.register');
         Route::get('cap-nhat-thong-tin', 'MemberController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
         Route::post('cap-nhat-thong-tin', 'MemberController@updateRegisterMember')->name('frontend.member.register.update');
-
+        
     // });
     Route::group(['middleware' => ['verify.contest']], function () {
         Route::get('thi-thu', 'ContestController@getTryExam')->name('vne.get.try.exam');

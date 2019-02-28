@@ -142,26 +142,7 @@
 	            }
 	        });
 		}
-		// $('body').on('click', "#button-logout", function (event) {
-	    // 	event.preventDefault();	
-	    // 	$.ajax({
-	    //         url: 'http://eid.vnedutech.vn/logout',
-	    //         method: 'get',
-	    //         xhrFields: {
-	    //             withCredentials: true
-	    //         },
-	    //         headers: {
-	    //             'X-Requested-With': 'XMLHttpRequest'
-	    //         },
-	    //         success: function (data) {
-	    //         	var url = '{{ route('vne.member.logout')}}';
-	    //         	window.location.assign(url);
-	    //         },
-	    //         error: function (data) {
-	    //             console.log('Fail')
-	    //         }
-	    //     });
-	    // });
+		
 	</script>
 	@yield('footer_scripts')
 </body>
