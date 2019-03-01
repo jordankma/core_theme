@@ -33,7 +33,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::get('danh-sach-thi-sinh', 'SearchController@listMember')->name('frontend.exam.list.member')->where('as','Frontend - Danh sách thí sinh');
         Route::get('ket-qua', 'SearchController@listResult')->name('frontend.exam.list.result')->where('as','Frontend - Danh sách kết quả thí sinh');
         Route::get('ket-qua-thi-sinh', 'SearchController@resultMember')->name('frontend.exam.result.member');
-        Route::get('top/{type?}', 'SearchController@getTop')->name('frontend.get.top');
+        Route::get('top/{type?}', 'SearchController@getTop')->name('frontend.get.top')->where('as','Frontend - Top thí sinh');
         Route::get('top-dang-ky', 'SearchController@getTopRegister')->name('frontend.get.top.register');
         
         //trang thi
