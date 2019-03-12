@@ -10,11 +10,11 @@
 	<!-- css -->
 	<link rel="stylesheet" href="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css?t=' . time()) }}">
 	@yield('header_styles')
-	<style>
+	{{-- <style>
 		.nav-item{
 			display: inline-block !important;
 		}
-	</style>
+	</style> --}}
 	{!! isset($SETTING['ga_code']) ? $SETTING['ga_code'] : '' !!}
 </head>
 
