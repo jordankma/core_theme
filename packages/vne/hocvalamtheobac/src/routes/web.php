@@ -47,8 +47,11 @@ Route::group(array('prefix' => $adminPrefix), function() {
         Route::post('cap-nhat-thong-tin', 'MemberController@updateRegisterMember')->name('frontend.member.register.update');
         
     // });
-    Route::group(['middleware' => ['verify.contest']], function () {
+    Route::group(['middleware' => ['verify.contest.hvltb.try']], function () {
         Route::get('thi-thu', 'ContestController@getTryExam')->name('vne.get.try.exam');
+        
+    });
+    Route::group(['middleware' => ['verify.contest.hvltb.real']], function () {
         Route::get('thi-that', 'ContestController@getRealExam')->name('vne.get.real.exam');
     });
     

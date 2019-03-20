@@ -34,6 +34,7 @@ class ContestController extends Controller
       $linkhome = $url;
       $ip_port = 'http://123.30.174.148:4555/';
       $linkimg = 'http://static.quiz2.vnedutech.vn';
+      dd('3');
       try {
         $linkimg = config('app.static_quiz_url');
       } catch (\Throwable $th) {

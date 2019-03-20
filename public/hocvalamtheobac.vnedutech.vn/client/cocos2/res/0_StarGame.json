@@ -1,0 +1,395 @@
+{
+  "ID": "11db9d03-8d09-47c9-98f3-a4e92d62b545",
+  "Version": "3.10.0.0",
+  "Name": "0_StarGame",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "Tag": 14,
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/background.jpg",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 640.9703,
+              "Y": 399.1971
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5008,
+              "Y": 0.499
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 1.0
+            },
+            "LeftMargin": 0.9703,
+            "RightMargin": -0.9703,
+            "TopMargin": 0.8029,
+            "BottomMargin": -0.8029,
+            "Tag": 2,
+            "ActionTag": -1981505857,
+            "Size": {
+              "X": 1280.0,
+              "Y": 800.0
+            },
+            "Name": "spr_bg",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 26,
+            "ButtonText": "",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_batdau2.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_batdau2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_batdau1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 170,
+            "Scale9Height": 56,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 640.4395,
+              "Y": 97.435
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5003,
+              "Y": 0.1218
+            },
+            "PreSize": {
+              "X": 0.1562,
+              "Y": 0.0975
+            },
+            "LeftMargin": 540.4395,
+            "RightMargin": 539.5605,
+            "TopMargin": 663.565,
+            "BottomMargin": 58.435,
+            "Tag": 13,
+            "ActionTag": 1002380161,
+            "Size": {
+              "X": 200.0,
+              "Y": 78.0
+            },
+            "Name": "btn_Start",
+            "ctype": "ButtonObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg.jpg",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 640.8955,
+              "Y": 398.9785
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5007,
+              "Y": 0.4987
+            },
+            "PreSize": {
+              "X": 1.0,
+              "Y": 1.0
+            },
+            "LeftMargin": 0.8955,
+            "RightMargin": -0.8955,
+            "TopMargin": 1.0215,
+            "BottomMargin": -1.0215,
+            "Tag": 37,
+            "ActionTag": -1551343385,
+            "Size": {
+              "X": 1280.0,
+              "Y": 800.0
+            },
+            "Alpha": 242,
+            "Name": "spr_layout",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "art/bg_popup.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 1,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 641.5393,
+              "Y": 456.5659
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5012,
+              "Y": 0.5707
+            },
+            "PreSize": {
+              "X": 0.4,
+              "Y": 0.24
+            },
+            "LeftMargin": 385.5393,
+            "RightMargin": 382.4607,
+            "TopMargin": 247.4341,
+            "BottomMargin": 360.5659,
+            "Tag": 38,
+            "Children": [
+              {
+                "IsCustomSize": true,
+                "FontSize": 30,
+                "LabelText": "Bạn đã hết lượt thi!",
+                "FontResource": {
+                  "Type": "Normal",
+                  "Path": "font/UTM AvoBold.ttf",
+                  "Plist": ""
+                },
+                "HorizontalAlignmentType": "HT_Center",
+                "VerticalAlignmentType": "VT_Center",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 256.7466,
+                  "Y": 96.2936
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "CColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5015,
+                  "Y": 0.5015
+                },
+                "PreSize": {
+                  "X": 0.9766,
+                  "Y": 0.9375
+                },
+                "LeftMargin": 6.7466,
+                "RightMargin": 5.2534,
+                "TopMargin": 5.7064,
+                "BottomMargin": 6.2936,
+                "Tag": 82,
+                "ActionTag": -43307931,
+                "Size": {
+                  "X": 500.0,
+                  "Y": 180.0
+                },
+                "Name": "lbl_info",
+                "ctype": "TextObjectData"
+              }
+            ],
+            "ActionTag": -650818717,
+            "Size": {
+              "X": 512.0,
+              "Y": 192.0
+            },
+            "Name": "spr_info",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FontSize": 26,
+            "ButtonText": "",
+            "FontResource": {
+              "Type": "Normal",
+              "Path": "font/UVNVan_B.TTF",
+              "Plist": ""
+            },
+            "TextColor": {},
+            "DisabledFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_exit2.png",
+              "Plist": ""
+            },
+            "PressedFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_exit2.png",
+              "Plist": ""
+            },
+            "NormalFileData": {
+              "Type": "Normal",
+              "Path": "art/btn_exit1.png",
+              "Plist": ""
+            },
+            "Scale9Enable": true,
+            "Scale9OriginX": 15,
+            "Scale9OriginY": 11,
+            "Scale9Width": 170,
+            "Scale9Height": 56,
+            "OutlineColor": {
+              "G": 0,
+              "B": 0
+            },
+            "ShadowColor": {
+              "R": 110,
+              "G": 110,
+              "B": 110
+            },
+            "ShadowOffsetX": 2.0,
+            "ShadowOffsetY": -2.0,
+            "TouchEnable": true,
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 640.8956,
+              "Y": 300.5563
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5007,
+              "Y": 0.3757
+            },
+            "PreSize": {
+              "X": 0.1562,
+              "Y": 0.0975
+            },
+            "LeftMargin": 540.8956,
+            "RightMargin": 539.1044,
+            "TopMargin": 460.4437,
+            "BottomMargin": 261.5563,
+            "Tag": 40,
+            "ActionTag": -1397826099,
+            "Size": {
+              "X": 200.0,
+              "Y": 78.0
+            },
+            "Name": "btn_exit",
+            "ctype": "ButtonObjectData"
+          }
+        ],
+        "Size": {
+          "X": 1280.0,
+          "Y": 800.0
+        },
+        "Name": "Scene",
+        "ctype": "SingleNodeObjectData"
+      },
+      "UsedResources": [
+        "art/background.jpg",
+        "art/bg.jpg",
+        "art/bg_popup.png",
+        "art/btn_batdau1.png",
+        "art/btn_batdau2.png",
+        "art/btn_exit1.png",
+        "art/btn_exit2.png",
+        "font/UTM AvoBold.ttf",
+        "font/UVNVan_B.TTF"
+      ],
+      "ctype": "GameFileData"
+    }
+  },
+  "Type": "Scene"
+}

@@ -43,7 +43,9 @@ class HocvalamtheobacServiceProvider extends ServiceProvider
 
         /** load translations **/
         $this->loadTranslationsFrom(__DIR__ . '/translations', $this->package . '-' . $this->module);
-
+        /** register midleware */
+        $this->app['router']->middlewareGroup('verify.contest.hvltb.try', ['\Vne\Hocvalamtheobac\App\Middleware\VerifyContestTry']);
+        $this->app['router']->middlewareGroup('verify.contest.hvltb.real', ['\Vne\Hocvalamtheobac\App\Middleware\VerifyContestReal']);
         /** load views **/
         $groupName = config('site.theme');
         $groupName = $groupName ? $groupName : 'default';
@@ -68,5 +70,6 @@ class HocvalamtheobacServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
     }
 }

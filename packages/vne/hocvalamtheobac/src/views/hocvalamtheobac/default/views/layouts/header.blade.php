@@ -53,8 +53,14 @@ function showCategories($categories, $parent_id = 0, $char = '')
 						<li class="nav-item" style="display: inline-block">
 							<i class="ii ii-bachelor"></i><a href="http://">Vào thi</a>
 							<ul class="sub-menu">
-								<li class="nav-item"><i class="fa fa-edit"></i><a href="" class="nav-link">Thi Thử</a></li>
-								<li class="nav-item"><i class="ii ii-bachelor"></i><a href="" class="nav-link">Thi thật</a></li>
+								<li class="nav-item">
+									<i class="fa fa-edit"></i>
+									<a href="{{ route('vne.get.try.exam') }}" class="nav-link" id="btn-try-exam">Thi Thử</a>
+								</li>
+								<li class="nav-item">
+									<i class="ii ii-bachelor"></i>
+									<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">Thi thật</a>
+								</li>
 								<li class="nav-item"><i class="fa fa-clone"></i><a href="" class="nav-link">Tự luận</a></li>
 							</ul>
 						</li>

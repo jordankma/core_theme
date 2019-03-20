@@ -6,20 +6,19 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Auth,Cookie;
 use GuzzleHttp\Client;
-class VerifyContest
+class VerifyContestTry
 {
 	// private $header = ;
     public function handle($request, Closure $next)
     {
 		$url = config('app.url');
-		// $url = 'http://gthd.vnedutech.vn';
+		// $url = 'http://giaothonghocduong.com.vn';
 		if(!$request->has('token')){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);	
 		}
 		$token = $request->input('token');
 		$check_login = false; //da login chua
 		$check_reg = false; //da dang ky thong tin chua
-		$type_exam = $request->input('type_exam','real');
 		
 		// try {
 		// 	$client = new Client([
@@ -41,6 +40,7 @@ class VerifyContest
 		if($check_login == false){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);		
 		} else {
+			
 			try {
 				$data_reponse = json_decode(file_get_contents($url . '/api/contest/get/check_reg?member_id=' . $member_id),true);
 				if($data_reponse['success'] == true){
@@ -50,17 +50,6 @@ class VerifyContest
 				//throw $th;
 			}
 			if($check_reg == true){
-				if($type_exam == 'real'){
-					//check auto close contest
-					$type_exam = 'real';
-					$data_tmp = json_decode(self::checkEndExam($type_exam),true);
-					$arr_pass = [4098680,12493754];
-					if($data_tmp['status'] == false && !in_array($member_id,$arr_pass)){
-						$messages = $data_tmp['messages'];
-						return view('VNE-HOCVALAMTHEOBAC::modules.contest.notification',compact('messages', $messages));
-					}
-					//end
-				}
 				$request->merge([ 'member_id' => $member_id , 'check_reg' => $check_reg]);
 				return $next($request);
 			} else{

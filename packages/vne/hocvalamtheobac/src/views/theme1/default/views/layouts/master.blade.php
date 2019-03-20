@@ -120,9 +120,9 @@
 	                	$('#text-user-name').append(data.data.username);
 	                	$('#text-user-name').attr('href','/ket-qua-thi-sinh?member_id='+ member_id);
 
-	                	var url_thi_thu = $('#btn-try-exam').attr('href') + '?token=' + data.data.token + '&type_exam=try';	
+	                	var url_thi_thu = $('#btn-try-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-try-exam').attr('href',url_thi_thu);
-	                	var url_thi_that = $('#btn-real-exam').attr('href') + '?token=' + data.data.token + '&type_exam=real';	
+	                	var url_thi_that = $('#btn-real-exam').attr('href') + '?token=' + data.data.token;	
 	                	$('#btn-real-exam').attr('href',url_thi_that);
 	                	
 						var url_cap_nhat_thong_tin = $('.btn-update-info').attr('href') + '?member_id=' + member_id;	
