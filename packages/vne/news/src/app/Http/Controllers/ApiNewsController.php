@@ -59,13 +59,11 @@ class ApiNewsController extends Controller
         $data = array();
         if(!empty($list_news)){
             foreach ($list_news as $key => $value) {
-                $alias = $value->title_alias .'.html';
-                $url = route('frontend.news.details',$alias);
                 $data[] = [
                     'id' => $value->news_id,
                     'title' => base64_encode($value->title),
-                    'image' => $value->image,
-                    'url' => $url,
+                    'image' => ($value->image != '' || file_exists(substr($value->image, 1))) ? config('site.url_static') . $value->image : 'http://static.giaothonghocduong.com.vn/files/photos/phuon2.jpg',
+                    'url' => '',
                     'desc' => base64_encode($value->desc),
                     'like' => 0,
                     'view' => 0
@@ -121,13 +119,11 @@ class ApiNewsController extends Controller
             $data = array();
             if(!empty($list_news)){
                 foreach ($list_news as $key => $value) {
-                    $alias = $value->title_alias .'.html';
-                    $url = route('frontend.news.details',$alias);
                     $data[] = [
                         'id' => $value->news_id,
                         'title' => base64_encode($value->title),
-                        'image' => $value->image,
-                        'url' => $url,
+                        'image' => ($value->image != '' || file_exists(substr($value->image, 1))) ? config('site.url_static') . $value->image : 'http://static.giaothonghocduong.com.vn/files/photos/phuon2.jpg',
+                        'url' => '',
                         'desc' => base64_encode($value->desc),
                         'like' => 0,
                         'view' => 0
@@ -156,13 +152,11 @@ class ApiNewsController extends Controller
             $page = $totalpage = 0;
             if(count($list_news)>0){
                 foreach ($list_news as $key => $value) {
-                    $alias = $value->title_alias .'.html';
-                    $url = route('frontend.news.details',$alias);
                     $data[] = [
-                        'id' => $value->news_id,
+                        'id' => $value->news_id, 
                         'title' => base64_encode($value->title),
-                        'image' => $value->image,
-                        'url' => $url,
+                        'image' => ($value->image != '' || file_exists(substr($value->image, 1))) ? config('site.url_static') . $value->image : 'http://static.giaothonghocduong.com.vn/files/photos/phuon2.jpg',
+                        'url' => '',
                         'desc' => base64_encode($value->desc),
                         'like' => 0,
                         'view' => 0

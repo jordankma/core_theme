@@ -1,3 +1,4 @@
+@if(!empty($form_data))
 @foreach ($form_data as $element)
     @if($element['type_view'] == 0)
     <div class="form-group col-md-4">
@@ -51,3 +52,4 @@
     </div>
     @endif
 @endforeach
+@endif

@@ -92,9 +92,13 @@ class SearchController extends Controller
       //get form search
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
-      $form_data = $candidate_form_arr['data']['load_default'];
-      $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
-      $form_search = $html->render();
+
+      $form_search = '';
+      if(!empty($candidate_form_arr['data'])){
+        $form_data = $candidate_form_arr['data']['load_default'];
+        $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
+        $form_search = $html->render();
+      }
       //end
       $list_member = file_get_contents($url . '/api/contest/get/search_candidate?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
@@ -131,11 +135,13 @@ class SearchController extends Controller
       //get form search
       $result_form = $this->result_form;
       $result_form_arr = json_decode($result_form,true);
-      $form_data = $result_form_arr['data']['load_default'];
       $form_search = '';
-      if(!empty($form_data)){
-        $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
-        $form_search = $html->render();
+      if($result_form_arr['data']){
+        $form_data = $result_form_arr['data']['load_default'];
+        if(!empty($form_data)){
+          $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
+          $form_search = $html->render();
+        }
       }
       //end
       $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));

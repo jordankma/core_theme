@@ -64,14 +64,18 @@ class MemberController extends Controller
           $register_form = $this->register_form;
           $register_form_array = json_decode($register_form,true);
           //render form default
-          $form_data = $register_form_array['data']['load_default'];
-          $autoload = $register_form_array['data']['auto_load'];
-          $html = view('VNE-HOCVALAMTHEOBAC::modules.member.input', compact('form_data','autoload'));
-          $form_data_default = $html->render();
+          $form_data_default = $autoload = $config = '';
+          if($register_form_array['data']){
+            $form_data = $register_form_array['data']['load_default'];
+            $autoload = $register_form_array['data']['auto_load'];
+            $config = $register_form_array['config'];
+            $html = view('VNE-HOCVALAMTHEOBAC::modules.member.input', compact('form_data','autoload'));
+            $form_data_default = $html->render();
+          }
           //end
           $data = [
-            'autoload' => $register_form_array['data']['auto_load'],
-            'config' => $register_form_array['config'],
+            'autoload' => $autoload,
+            'config' => $config,
             'form_data_default' => $form_data_default
           ];
           // dd($register_form_array['data']['auto_load']);

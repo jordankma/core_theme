@@ -105,7 +105,7 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
           //throw $th;
         }
-        // dd($list_top_thi_sinh_da_thi);
+        // dd($list_thi_sinh_dan_dau_tuan);
         try {
           $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
         } catch (\Throwable $th) {
