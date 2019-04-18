@@ -44,7 +44,7 @@ class ApiBannerController extends Controller
                         'id' => $value->banner_id,
                         'name' => base64_encode($value->name),
                         'link' => $value->link,
-                        'image' => $value->image,
+                        'image' => ($value->image != '' || file_exists(substr($value->image, 1))) ? config('site.url_static') . $value->image : 'http://static.giaothonghocduong.com.vn/files/photos/phuon2.jpg',
                         'desc' => base64_encode($value->desc),
                         'close_at' => $value->close_at
                     ];
