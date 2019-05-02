@@ -29,7 +29,7 @@ class ContestTargetController extends Controller
     public function show(Request $request)
     {
         $city = [];
-        $target = ContestTarget::first();
+        $target = ContestTarget::all()->first();
         if(empty($target)){
             $target = new ContestTarget();
             $target->_id = 1;
@@ -46,7 +46,7 @@ class ContestTargetController extends Controller
             $target->age = [];
             $target->save();
         }
-        $client = new Client(config('site.url_cuocthi').'/resource/dev/get/vne/getprovince');
+        $client = new Client('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince');
         $headers = [
             'Authorization' => 'Bearer ' . $this->token,
             'Accept'        => 'application/json',
@@ -77,7 +77,7 @@ class ContestTargetController extends Controller
     }
 
     public function getHtmlType(){
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $res = [
             'html_type' => [],
             'type' => []
@@ -96,7 +96,7 @@ class ContestTargetController extends Controller
 
     public function manage(Request $request)
     {
-        $field_list = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+        $field_list = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
         if(!empty($field_list)){
             $flist = json_decode($field_list,true);
             $field_list = [];
@@ -143,7 +143,7 @@ class ContestTargetController extends Controller
         if(!empty($request->type)){
             if($request->type == 'district'){
                 if(!empty($request->city_id)){
-                    $res = json_decode(file_get_contents(config('site.url_cuocthi').'/admin/vne/getdistricts/' . $request->city_id));
+                    $res = json_decode(file_get_contents('http://cuocthi.vnedutech.vn/admin/vne/getdistricts/' . $request->city_id));
                 }
             }
         }
@@ -152,8 +152,8 @@ class ContestTargetController extends Controller
 
     public function update(Request $request)
     {
-        $field_list = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $field_list = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $html_type = [];
         $type = [];
         if(!empty($data_type)){
@@ -318,7 +318,7 @@ class ContestTargetController extends Controller
             echo '<pre>';print_r($target);echo '</pre>';die;
         }
         else{
-            $field_data = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+            $field_data = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
             if(!empty($field_data)){
                 $field_data = json_decode($field_data,true);
             }
@@ -330,7 +330,7 @@ class ContestTargetController extends Controller
     }
 
     public function getDetailField(Request $request){
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $html_type = [];
         $type = [];
         $type_id = 0;
@@ -394,35 +394,7 @@ class ContestTargetController extends Controller
             $data = $target->$target_type;
 //            echo '<pre>';print_r($target->$target_type);echo '</pre>';die;
             if($target_type == 'general'){
-                foreach ($data as $key2 => $value2){
-                    if($value2['id'] == $id){
-                        $data[$key2]['id'] = $request->id;
-                        $data[$key2]['title'] = $request->label;
-                        $data[$key2]['hint_text'] = $request->hint_text;
-                        $data[$key2]['type'] = $request->type;
-                        if(!empty($request->type) && ($request->type == 'api')){
-                            $data[$key2]['api'] = $request->api;
-                        }
-                        $data[$key2]['params'] = $request->varible;
-                        $data[$key2]['type_view'] = $request->type_name;
-                        $data[$key2]['type_id'] = $request->type_id;
-                        $data[$key2]['is_require'] = !empty($request->is_require)?true:false;
-                        $data[$key2]['is_search'] = !empty($request->is_search)?true:false;
-                        $data[$key2]['show_on_info'] = !empty($request->show_on_info)?true:false;
-                        $data[$key2]['show_on_result'] = !empty($request->show_on_result)?true:false;
-                        if(!empty($request->dataview)){
-                            $data_view = [];
-                            foreach ($request->dataview['key'] as $key1 => $value1){
-                                $data_view[$key1] = [
-                                    'key' => $value1,
-                                    'value' => $request->dataview['value'][$key1]
-                                ];
-                            }
-                            $data[$key2]['data_view'] = $data_view;
-                        }
 
-                    }
-                }
             }
             else{
 

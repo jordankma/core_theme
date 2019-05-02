@@ -69,8 +69,8 @@
                         <table class="table table-condensed">
                             <thead>
                                 <th>Uname</th>
+                                <th>Ngày sinh</th>
                                 <th>Phone user</th>
-                                <th>Phone EID</th>
                                 <th>Chủ tk</th>
                                 <th>số tk</th>
                                 <th>ngân hàng</th>
@@ -79,22 +79,24 @@
                                 <th>CMT</th>
                                 <th>Đ/c</th>
                                 <th>email</th>
+
                             </thead>
                             <tbody>
 
                                 @foreach($user_info as $key => $value)
                                     <tr>
-                                        <td>{{ !empty($value->birthday)?$value->birthday:'' }}</td>
-                                        <td>{{ !empty($value->phone_user)?$value->phone_user:'' }}</td>
-                                        <td>{{ !empty($value->phone)?$value->phone:'' }}</td>
-                                        <td>{{ !empty($value->account_holder)?$value->account_holder:'' }}</td>
-                                        <td>{{ !empty($value->account_number)?$value->account_number:'' }}</td>
-                                        <td>{{ !empty($value->bank_name)?$value->bank_name:'' }}</td>
-                                        <td>{{ !empty($value->bank_agency)?$value->bank_agency:'' }}</td>
-                                        <td>{{ !empty($value->account_phone)?$value->account_phone:'' }}</td>
-                                        <td>{{ !empty($value->indenty_number)?$value->indenty_number:'' }}</td>
-                                        <td>{{ !empty($value->address)?$value->address:'' }}</td>
-                                        <td>{{ !empty($value->email)?$value->email:'' }}</td>
+                                        <td>{{ $value->u_name ?? '' }}</td>
+                                        <td>{{ $value->birthday ?? '' }}</td>
+                                        <td>{{ $value->phone_user ?? '' }}</td>
+                                        <td>{{ $value->account_holder ?? '' }}</td>
+                                        <td>{{ $value->account_number ?? '' }}</td>
+                                        <td>{{ $value->bank_name ?? '' }}</td>
+                                        <td>{{ $value->bank_agency ?? '' }}</td>
+                                        <td>{{ $value->account_phone ?? '' }}</td>
+                                        <td>{{ $value->indenty_number ?? '' }}</td>
+                                        <td>{{ $value->address ?? '' }}</td>
+                                        <td>{{ $value->email ?? '' }}</td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -178,12 +180,6 @@
     {{--</script>--}}
 
     <script>
-        var round_list = @json($round_list);
-        var topic_list = @json($topic_list);
-        $('body').on('hidden.bs.modal', '.modal', function () {
-            $(this).removeData('bs.modal');
-        });
-
         $('body').on('change','#province_id', function () {
             $('#district_id').html('');
             $('#district_id').append('<option>Tất cả Quận/ huyện</option>');
@@ -277,7 +273,22 @@
             } ).draw();
 
         });
-
+        
+        $('body').on('click','.reset_exam', function () {
+            var round_id = $(this).attr('c-data');
+            var topic_id = $(this).attr('d-data');
+            var repeat_time = $(this).attr('repeat-data');
+            var member_id = $(this).attr('data-user');
+            var route = '{{ route('contest.contestmanage.contest_user.reset_exam') }}';
+            $.post(route, {member_id: member_id, round_id: round_id, topic_id: topic_id, repeat_time: repeat_time}, function (res) {
+                if(res.success){
+                    alert('Reset thành công');
+                }
+                else{
+                    alert('Có lỗi xảy ra');
+                }
+            });
+        });
 
         {{--$(function () {--}}
             {{--var column_data = new Array();--}}
@@ -339,6 +350,8 @@
         } );
         function format ( d ) {
             // `d` is the original data object for the row
+            var round_list = @json($round_list);
+            var topic_list = @json($topic_list);
             var html = '<table class="table table-striped" style="padding-left:50px;"><thead>' +
                 '<th width="20%">Vòng thi</th>' +
                 '<th width="20%">Tuần thi</th>' +
@@ -355,7 +368,7 @@
                             '<td>'+ item.repeat_time + '</td>' +
                             '<td>'+ item.total_point + '</td>' +
                             '<td>'+ convert_time(item.used_time) + '</td>' +
-                            '<td><a class="btn btn-default reset_exam" d-data="'+ item.u_name +'" c-data="'+ item.member_id +'" round-data="'+ item.round_id +'" topic-data="'+ item.topic_id +'" repeat-data="'+ item.repeat_time +'" href="javascript:void(0)">Reset lượt thi này</a></td>' +
+                            '<td><a href="javascript:void(0)" class="reset_exam" c-data="'+ item.round_id +'"  d-data="'+ item.topic_id +'" repeat-data="'+ item.repeat_time +'" data-user="'+ item.member_id +'" >Reset lượt thi</a></td>' +
                             '</tr>';
                 });
             }
@@ -379,20 +392,10 @@
 
     </script>
 
-    <div class="modal fade" id="confirm-reset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title"
+         aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    Xác nhận xóa lượt thi này?
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-danger btn-ok">Delete</a>
-                </div>
-            </div>
+            <div class="modal-content"></div>
         </div>
     </div>
     <div class="modal fade" id="log" tabindex="-1" role="dialog" aria-labelledby="user_log_title"
@@ -417,39 +420,64 @@
         </div>
     </div>
 
-    <script>
-        $('body').on('click','.reset_exam', function () {
-            var round_id = $(this).attr('round-data');
-            var topic_id = $(this).attr('topic-data');
-            var repeat_time = $(this).attr('repeat-data');
-            var member_id = $(this).attr('c-data');
-            var u_name = $(this).attr('d-data');
 
-            var html = '<p>Thí sinh: ' + u_name + '</p>' +
-                '<p>Vòng thi: ' + round_list[round_id] + '</p>' +
-                '<p>Tuần thi: ' + topic_list[topic_id] + '</p>' +
-                '<p>Lượt thi: ' + repeat_time + '</p>';
-            $('#confirm-reset .modal-body').html(html);
-            $('#confirm-reset').attr('round_id', round_id);
-            $('#confirm-reset').attr('topic_id', topic_id);
-            $('#confirm-reset').attr('repeat_time', repeat_time);
-            $('#confirm-reset').attr('member_id', member_id);
-            $('#confirm-reset').modal();
 
-        });
-        
-        $('body').on('click', '.btn-ok', function () {
-            var round_id = $('#confirm-reset').attr('round_id');
-            var topic_id = $('#confirm-reset').attr('topic_id');
-            var repeat_time = $('#confirm-reset').attr('repeat_time');
-            var member_id = $('#confirm-reset').attr('member_id');
-            var route = '{{ route('contest.contestmanage.contest_user.reset_exam') }}';
-            $.post(route, {round_id: round_id, topic_id: topic_id, repeat_time:repeat_time, member_id: member_id}, function (res) {
-                if(res.success == true){
-                    alert('Xóa thành công!');
-                    window.location.reload();
-                }
-            });
-        });
-    </script>
+    {{--<script>--}}
+        {{--$(function () {--}}
+            {{--$('body').on('hidden.bs.modal', '.modal', function () {--}}
+                {{--$(this).removeData('bs.modal');--}}
+            {{--});--}}
+            {{--$('body').on('click','.show',function () {--}}
+
+            {{--});--}}
+            {{--$('#vne_fm').filemanager();--}}
+        {{--});--}}
+
+        {{--(function ($) {--}}
+
+            {{--$.fn.filemanager = function (type, options) {--}}
+                {{--type = type || 'file';--}}
+                {{--var parent = this;--}}
+                {{--this.on('click', function (e) {--}}
+                    {{--if( $(parent).attr('data-choice') === 'files'){--}}
+                        {{--type = 'file';--}}
+                        {{--$("#isIcon").val(1);--}}
+                    {{--}--}}
+                    {{--if( $(parent).attr('data-choice') === 'icon'){--}}
+                        {{--$("#isIcon").val(2);--}}
+                    {{--}--}}
+                    {{--var route_prefix = (options && options.prefix) ? options.prefix : '/file-manager/manage';--}}
+                    {{--localStorage.setItem('target_input', $(this).data('input'));--}}
+                    {{--localStorage.setItem('target_preview', $(this).data('preview'));--}}
+                    {{--window.open(route_prefix + '?type=' + type , 'FileManager', 'width=900,height=600');--}}
+                    {{--if ($("#mutil").val() === 'remove' && $(parent).attr('data-choice') === 'files') {--}}
+                        {{--return true;--}}
+                    {{--} else {--}}
+                        {{--window.SetUrl = function (url, file_path) {--}}
+                            {{--console.log(url);--}}
+                            {{--//set the value of the desired input to image url--}}
+                            {{--var target_input = $('#' + localStorage.getItem('target_input'));--}}
+                            {{--target_input.val(file_path).trigger('change');--}}
+
+                            {{--//set or change the preview image src--}}
+                            {{--var target_preview = $('#' + localStorage.getItem('target_preview'));--}}
+                            {{--target_preview.attr('src', url).trigger('change');--}}
+                        {{--};--}}
+                        {{--return false;--}}
+
+                    {{--}--}}
+                {{--});--}}
+            {{--}--}}
+
+        {{--})(jQuery);--}}
+        {{--$(window).bind('storage', function (e) {--}}
+            {{--if(e.originalEvent.key == 'file_select'){--}}
+                {{--var preview_url = '{{ $preview_url }}';--}}
+                {{--var target_input =   localStorage.getItem('target_input');--}}
+                {{--var target_preview =   localStorage.getItem('target_preview');--}}
+                {{--$('#' + target_input).val(e.originalEvent.newValue);--}}
+                {{--$('#' + target_preview).attr("src",preview_url + e.originalEvent.newValue);--}}
+            {{--}--}}
+        {{--});--}}
+    {{--</script>--}}
 @stop

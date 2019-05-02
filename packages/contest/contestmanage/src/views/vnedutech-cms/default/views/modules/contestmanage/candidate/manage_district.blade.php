@@ -228,7 +228,8 @@
                     }
                 });
             }
-            var route = '{{ route('contest.contestmanage.candidate.data') }}'
+            {{--var route = '{{ route('contest.contestmanage.candidate.data') }}';--}}
+            var route = 'http://gthd.vnedutech.vn/api/contest/contestmanage/candidate/data';
             var column_data = new Array();
             // column_data.push({
             //     "className":      'details-control',

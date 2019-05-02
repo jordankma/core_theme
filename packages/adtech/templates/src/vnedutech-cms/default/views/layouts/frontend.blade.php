@@ -9,7 +9,7 @@
         @show
     </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? asset($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
+    <link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? config('site.url_static') . ($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

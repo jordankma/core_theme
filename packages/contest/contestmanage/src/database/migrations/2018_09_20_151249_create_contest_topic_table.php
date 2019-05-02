@@ -21,8 +21,6 @@ class CreateContestTopicTable extends Migration
             $table->enum('topic_type',['test','real']);
             $table->text('description')->nullable();
             $table->text('rule_text')->nullable();
-            $table->enum('lucky_star_status',['0','1']);
-            $table->text('lucky_star_config')->nullable();
             $table->text('topic_round');
             $table->unsignedInteger('order');
             $table->unsignedInteger('round_id');

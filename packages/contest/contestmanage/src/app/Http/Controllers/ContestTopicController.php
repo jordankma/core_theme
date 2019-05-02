@@ -64,23 +64,6 @@ class ContestTopicController extends Controller
         $topic->exam_repeat_time = $request->exam_repeat_time;
         $topic->exam_repeat_time_wait = !empty($request->exam_repeat_time_wait)?$request->exam_repeat_time_wait:0;
         $topic->total_time_limit = !empty($request->total_time_limit)?$request->total_time_limit:0;
-        $lucky_star = $request->lucky_star;
-        $topic->lucky_star_status = !empty($lucky_star['status'])?"1":"0";
-        $lucky_star_config = [];
-        if(!empty($lucky_star['status'])){
-            if(!empty($lucky_star['order'])){
-                foreach ($lucky_star['order'] as $key => $value){
-                    $star = new \stdClass();
-                    $star->order = (int)$value;
-                    $star->bonus_point = (int)$lucky_star['bonus_point'][$key];
-                    $star->minus_point = (int)$lucky_star['minus_point'][$key];
-                    $lucky_star_config[] = $star;
-                }
-            }
-        }
-        if(!empty($lucky_star_config)){
-            $topic->lucky_star_config = json_encode($lucky_star_config);
-        }
         $topic_round = [];
 
         if(!empty($request->topic_round)){

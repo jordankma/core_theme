@@ -1,8 +1,5 @@
 <?php
 $adminPrefix = config('site.admin_prefix');
-Route::get('info', function (){
-           echo '<pre>';print_r(phpinfo());echo '</pre>';die;
-        });
 Route::get('api/contest/contestmanage/candidate/data', 'CandidateController@data')->name('api.contest.contestmanage.candidate.data');
 Route::group(['prefix' => 'api/contest/get', 'as' => 'api.contest.get'], function () {
     Route::get('data', 'ApiController@data')->name('data');
@@ -32,18 +29,14 @@ Route::group(['prefix' => 'api/contest/get', 'as' => 'api.contest.get'], functio
     Route::get('remove_timestamp', 'ExamController@removeTimestamp')->name('remove_timestamp');
     Route::get('round_list', 'ApiController@listRound')->name('round_list');
     Route::get('topic_list', 'ApiController@listTopic')->name('topic_list');
-    Route::get('sync_eid', 'ApiController@syncEid')->name('sync_eid');
-    Route::get('update_token', 'CandidateController@updateToken')->name('update_token');
+    Route::get('sync_es', 'CandidateController@syncEs')->name('sync_es');
 
 });
-Route::group(['prefix' => 'api/contest/post', 'as' => 'api.contest.post.'], function () {
+Route::group(['prefix' => 'api/contest/post', 'as' => 'api.contest.get'], function () {
     Route::post('list_data', 'ApiController@getListData')->name('list_data');
-    Route::post('reload_cache_contest', 'ApiController@reloadCacheContest')->name('reload_cache_contest');
     Route::post('require', 'ApiController@composerRequire')->name('require');
     Route::post('candidate_register', 'CandidateController@register')->name('candidate_register');
     Route::post('candidate_update', 'CandidateController@update')->name('candidate_update');
-    Route::post('sync_eid', 'ApiController@syncEid')->name('sync_eid');
-    Route::post('update_token', 'CandidateController@updateToken')->name('update_token');
     Route::group(['prefix' => 'search', 'as' => 'search'], function () {
         Route::post('candidate', 'ApiController@searchCandidate')->name('candidate');
         Route::post('result', 'ExamController@searchResult')->name('result');
@@ -217,7 +210,20 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Route::put('update', 'CandidateController@update')->name('update');
             Route::get('delete', 'CandidateController@delete')->name('delete');
             Route::get('confirm-delete', 'CandidateController@getModalDelete')->name('confirm-delete');
-            Route::get('test-es', 'CandidateController@testEs')->name('test-es');
+
+            Route::get('next_round_filter', 'CandidateController@nextRoundFilter')->name('next_round_filter');
+            Route::get('data_next_round', 'CandidateController@dataNextRound')->name('data_next_round');
+            Route::get('test_next_round', 'CandidateController@testNextRound')->name('test_next_round');
+            Route::get('list_next_round', 'CandidateController@listNextRound')->name('list_next_round');
+            Route::get('import_next_round', 'CandidateController@importNextRound')->name('import_next_round');
+            Route::get('data_import_next_round', 'CandidateController@dataImportNextRound')->name('data_import_next_round');
+            Route::post('import_next_round_data', 'CandidateController@importNextRoundData')->name('import_next_round_data');
+            Route::get('data_list_next_round', 'CandidateController@dataListNextRound')->name('data_list_next_round');
+            Route::get('export_next_round', 'CandidateController@exportNextRound')->name('export_next_round');
+            Route::get('sync_point', 'CandidateController@syncPoint')->name('sync_point');
+            Route::get('get_sync_es', 'CandidateController@getSyncEs')->name('get_sync_es');
+            Route::get('sync_es', 'CandidateController@syncEs')->name('sync_es');
+
         });
 
         Route::group(['prefix' => 'contest/contestmanage/contest_target', 'as' => 'contest.contestmanage.contest_target.'], function () {

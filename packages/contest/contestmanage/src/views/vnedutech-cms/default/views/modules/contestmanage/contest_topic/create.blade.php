@@ -119,18 +119,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="panel panel-primary">
-                                <div class="panel-body">
-                                    <p class="text-on-pannel text-primary"><strong> Ngôi sao hy vọng </strong></p>
-                                    <label>Trạng thái</label>
-                                    <div class="form-group">
-                                        <input type="checkbox" name="lucky_star[status]" id="lucky_star_status" class="allow_permission" data-size="mini" unchecked>
-                                    </div>
-                                    <div id="lucky_star_container">
 
-                                    </div>
-                                </div>
-                            </div>
                             <label>Cấu hình</label>
                             <div class="form-group" id="config_container">
                                 {{--<div class="form-group" id="config-1">--}}
@@ -324,40 +313,8 @@
         $("[name='permission_locked']").bootstrapSwitch();
         $('input[type="checkbox"].allow_permission').bootstrapSwitch({
             onSwitchChange:function(event, state) {
-               if(state == true){
-                   $('#lucky_star_container').html('');
-                   var html = '<label>Số lượng sao tối đa  (*)</label>' +
-                       '<div class="form-group {{ $errors->first('lucky_star[max_number]', 'has-error') }}">'+
-                       '{!! Form::number("lucky_star[max_number]",null, array("class" => "form-control", "id" => "lucky_star_max")) !!}'+
-                       '<span class="help-block">{{ $errors->first('lucky_star["max_number"]', ':message') }}</span>'+
-                       '</div><div id="lucky_star_detail"></div>';
-                   $('#lucky_star_container').html(html);
-               }
-               else{
-                   $('#lucky_star_container').html('');
-               }
             }
         });
-
-        $('body').on('change','#lucky_star_max', function () {
-            if($(this).val() > 10){
-                $(this).val(10);
-            }
-            else if($(this).val() <= 0){
-                $(this).val(1);
-            }
-            var html = '<div class="form-group"><div class="col-md-4">Lượt dùng sao</div><div class="col-md-4">Điểm cộng</div><div class="col-md-4">Điểm trừ</div></div>';
-            for (var i =0;i < $(this).val(); i++){
-                html += '<div class="form-group">' +
-                    '<div class="col-md-4"><input type="number" class="form-control" name="lucky_star[order][]" value="'+ (i+1) +'"> </div>' +
-                    '<div class="col-md-4"><input type="number" class="form-control" name="lucky_star[bonus_point][]" placeholder="Nhập điểm cộng"></div>' +
-                    '<div class="col-md-4"><input type="number" class="form-control" name="lucky_star[minus_point][]" placeholder="Nhập điểm trừ"></div>' +
-                    '</div>';
-            }
-            $('#lucky_star_detail').html(html);
-        })
-
-
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
@@ -456,7 +413,6 @@
                 }
             });
         });
-
         $( document ).ajaxComplete(function() {
         });
     </script>

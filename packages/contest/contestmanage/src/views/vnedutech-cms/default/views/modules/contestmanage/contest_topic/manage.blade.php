@@ -37,9 +37,6 @@
                     <div class="pull-right">
                         <a href="{{ route('contest.contestmanage.contest_topic.create') }}" class="btn btn-sm btn-default"><span
                                     class="glyphicon glyphicon-plus"></span> {{ trans('contest-contestmanage::language.buttons.create') }}</a>
-
-                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn_clear_cache"><span
-                                    class="glyphicon glyphicon-plus"></span> Xóa cache</a>
                     </div>
                 </div>
                 <br/>
@@ -142,28 +139,6 @@
             $('body').on('hidden.bs.modal', '.modal', function () {
                 $(this).removeData('bs.modal');
             });
-        });
-        $('body').on('click', '.btn_clear_cache', function () {
-            var contest = @json($CURRENT_CONTEST);
-            if(contest){
-                var route = '{{ route('api.contest.post.reload_cache_contest') }}';
-                var domain = contest.domain_name;
-                $.post(route,{domain_name: domain}, function (res) {
-                    if(res){
-                        alert('Xóa thành công!');
-                    }
-                })
-                // $.get('', function (res) {
-                //     $.get('http://'+ contest.domain_name +'/api/contest/get/exam_info?type=test&reload_cache=1', function (res1) {
-                //         if(res1.success == true){
-                //             alert('Xóa thành công!');
-                //         }
-                //
-                //     });
-                // });
-                // }
-            }
-
         });
         $('body').on('click','.show_config', function () {
             var route = '{{ route('contest.contestmanage.contest_season.get_config') }}';

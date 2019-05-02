@@ -68,6 +68,10 @@ class Exports implements FromQuery, WithHeadings, ShouldAutoSize, WithMapping
             }
             return $query->orderBy('total_point','DESC')->orderBy('used_time',"ASC");
         }
+        elseif($this->module == 'next_round'){
+            $query = ContestResult::query()->where('province_id',(int)$data['province_id']);
+            return $query->orderBy('school_id','ASC')->orderBy('total_point','DESC')->orderBy('used_time',"ASC");
+        }
 
     }
 

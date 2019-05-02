@@ -40,7 +40,9 @@ class ExamController extends Controller
     {
         $cond = [];
         $name = null;
+        $arrLog = [];
 
+        $arrLog[] = 'start - ' . time();
 //        $cond['finish_exam'] = true;
         if (!empty($request->province_id) && $request->province_id != 0) {
             $cond['province_id'] = (int)$request->province_id;
@@ -67,28 +69,26 @@ class ExamController extends Controller
             $cond['u_name'] = $request->u_name;
         }
         if (!empty($request->name)) {
-            $name = $request->name;
+            $cond['name'] = $request->name;
         }
 
         $limit = !empty($request->limit) ? (((int)$request->limit > 50)?50:(int)$request->limit) : 20;
+        $page = !empty($request->page) ? (int)$request->page  : 1;
 
-        if($name){
-            $result = ContestResult::where($cond)
-                ->where('name','like','%'.$name.'%')
-                ->where('finish_time','!=',null)
-                ->orderBy('total_point', 'desc')
-                ->orderBy('used_time', 'asc')
-                ->paginate((int)$limit);
-
-        }
-        else{
-            $result = ContestResult::where($cond)
-                ->where('finish_time','!=',null)
-                ->orderBy('total_point', 'desc')
-                ->orderBy('used_time', 'asc')
-                ->paginate((int)$limit);
-        }
-
+//        if($name){
+////            $result = ContestResult::where($cond)
+////                ->where('name','like','%'.$name.'%')
+//////                ->where('finish_time','!=',null)
+////                ->orderBy('total_point', 'desc')
+////                ->orderBy('used_time', 'asc')
+////                ->paginate((int)$limit);
+////            $cond['name'] = $name;
+//
+//        }
+//        else{
+            $result = ContestResult::paginateSearch($cond, $page, $limit);
+//        }
+        $arrLog[] = 'end query - ' . time();
         if(!empty($cond)){
             $res = $result->withPath(config('app.url').'/admin/api/contest/search_contest_result?'. http_build_query($cond));
         }
@@ -97,10 +97,10 @@ class ExamController extends Controller
         }
         $res_data = json_decode($res->toJson());
         $headers = [];
-        $table_data = Cache::tags([config('site.cache_tag'),'table_data'])->rememberForever('search_result', function () {
+        $table_data = Cache::tags(['table_data'])->rememberForever('search_result', function () {
             return RankBoard::where(['type' => 'search', 'params' => 'result'])->first();
         });
-
+        $arrLog[] = 'end cautruc bang - ' . time();
         if(!empty($table_data)){
             foreach ($table_data->header as $key3 => $item3) {
                 $headers[] = $item3['title'];
@@ -109,7 +109,7 @@ class ExamController extends Controller
                 $data_array = [];
                 $idx = 1;
                 if(!empty($request->page)){
-                    $idx = ((int)$request->page -1) * $limit;
+                    $idx = ((int)$request->page -1) * $limit +1;
                 }
                 foreach ($res_data->data as $key => $item) {
                     $data_array[$key] =[];
@@ -143,6 +143,8 @@ class ExamController extends Controller
             $res_data->title = $table_data->title;
             $res_data->success = true;
         }
+        $arrLog[] = 'end api - ' . time();
+        $res_data->logs = $arrLog;
         return response()->json($res_data);
     }
 
@@ -484,7 +486,7 @@ class ExamController extends Controller
         if(!empty($result)){
             $res_data = json_decode($result->toJson());
         }
-        $table_data = Cache::tags([config('site.cache_tag'),'table_data'])->rememberForever('top_result', function () {
+        $table_data = Cache::tags(['table_data'])->rememberForever('top_result', function () {
             return RankBoard::where(['type' => 'top', 'params' => 'result'])->first();
         });
         if(!empty($table_data)){
@@ -550,6 +552,9 @@ class ExamController extends Controller
         if (!empty($request->school_id)) {
             $match['school_id'] = (int)$request->school_id;
         }
+        if (!empty($request->target)) {
+            $match['target'] = $request->target;
+        }
         if(!empty($match)){
             array_unshift($aggregate, ['$match' => $match]);
         }
@@ -595,6 +600,7 @@ class ExamController extends Controller
         $count_aggregate[] = [
             '$count' => 'total'
         ];
+        DB::connection('mongodb')->disableQueryLog();
         $total_record = UserContestInfo::raw(function ($collection) use ( $top, $count_aggregate) {
             return $collection->aggregate($count_aggregate);
         });
@@ -624,17 +630,20 @@ class ExamController extends Controller
             $data_arr = [];
             $idx = !empty($skip)?$skip:0;
             foreach ($data as $key => $value){
-                $idx++;
-                $data_arr[$key] = [];
-                foreach ($value->getAttributes() as $key1 => $value1){
-                    if($key1 == '_id'){
-                        $data_arr[$key][] = $idx;
-                    }
-                    else{
-                        $data_arr[$key][] = !empty($value1)?$value1:"";
-                    }
+                if($value->_id != 0 && $value->name != ""){
+                    $idx++;
+                    $data_arr[$key] = [];
+                    foreach ($value->getAttributes() as $key1 => $value1){
+                        if($key1 == '_id'){
+                            $data_arr[$key][] = $idx;
+                        }
+                        else{
+                            $data_arr[$key][] = !empty($value1)?$value1:"";
+                        }
 
+                    }
                 }
+
             }
             $data = $data_arr;
         }

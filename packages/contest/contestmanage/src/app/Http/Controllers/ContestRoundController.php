@@ -43,7 +43,6 @@ class ContestRoundController extends Controller
         $round = new ContestRound();
         $round->display_name = base64_encode($request->name);
         $round->round_name = str_slug($request->name);
-        $round->round_type =$request->round_type;
         $round->description = base64_encode($request->description);
         $round->rule = base64_encode($request->rules);
         $round->end_notify = base64_encode($request->end_notify);
@@ -150,7 +149,6 @@ class ContestRoundController extends Controller
         $round = $this->contestRound->find($request->round_id);
         $round->display_name = base64_encode($request->name);
         $round->round_name = str_slug($request->name);
-        $round->round_type =$request->round_type;
         $round->description = base64_encode($request->description);
         $round->rule = base64_encode($request->rules);
         $round->end_notify = base64_encode($request->end_notify);

@@ -89,14 +89,18 @@ class ContestUserController extends Controller
         $res = [
             'success' => false,
         ];
-        if(!empty($request->member_id) && !empty($request->round_id) && !empty($request->topic_id)){
+        if(!empty($request->member_id) && !empty($request->round_id) && !empty($request->topic_id) && !empty($request->repeat_time)){
+            $contest_id = (int)config('app.contest_id');
             $member_id = (int)$request->member_id;
             $round_id = (int)$request->round_id;
             $topic_id = (int)$request->topic_id;
-            $repeat_time= !empty($request->repeat_time)?(int)$request->repeat_time:1;
+            $repeat_time = (int)$request->repeat_time;
             $config_host = config('database.connections.mongodb_nodejs.host');
             if(is_array($config_host)){
                 $host = $config_host[0];
+            }
+            else{
+                $host = $config_host;
             }
             $port = config('database.connections.mongodb_nodejs.port');
             $user = config('database.connections.mongodb_nodejs.username');
@@ -104,15 +108,15 @@ class ContestUserController extends Controller
             $db = config('database.connections.mongodb_nodejs.database');
             try {
                 $collection1 = (new Client('mongodb://' . $user . ':' . $pass . '@' . $host . ':' . $port . '/' . $db))->selectDatabase($db)->selectCollection('tralois');
-                $collection1->deleteMany(['user_id' => $member_id,'contest_id' =>7, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
+                $collection1->deleteMany(['user_id' => $member_id,'contest_id' => $contest_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
                 $collection2 = (new Client('mongodb://' . $user . ':' . $pass . '@' . $host . ':' . $port . '/' . $db))->selectDatabase($db)->selectCollection('cauhois');
-                $collection2->deleteMany(['user_id' => $member_id,'contest_id' =>7, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
+                $collection2->deleteMany(['user_id' => $member_id,'contest_id' => $contest_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
                 $collection3 = (new Client('mongodb://' . $user . ':' . $pass . '@' . $host . ':' . $port . '/' . $db))->selectDatabase($db)->selectCollection('bodes');
-                $collection3->deleteMany(['user_id' => $member_id,'contest_id' =>7, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
+                $collection3->deleteMany(['user_id' => $member_id,'contest_id' => $contest_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'bode_stt' => $repeat_time]);
                 $collection4 = (new Client('mongodb://' . $user . ':' . $pass . '@' . $host . ':' . $port . '/' . $db))->selectDatabase($db)->selectCollection('results');
-                $collection4->deleteMany(['member_id' => $member_id,'contest_id' =>7, 'round_id' => $round_id, 'topic_id' => $topic_id, 'repeat_time' => $repeat_time]);
+                $collection4->deleteMany(['member_id' => $member_id,'contest_id' => $contest_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'repeat_time' => $repeat_time]);
                 ContestResult::where(['member_id' =>$member_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'repeat_time' => $repeat_time])->delete();
-                ExamData::where(['member_id' =>$member_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'repeat_time' => $repeat_time])->delete();
+//                ExamData::where(['member_id' =>$member_id, 'round_id' => $round_id, 'topic_id' => $topic_id, 'repeat_time' => $repeat_time])->delete();
                 $res = [
                     'success' => true,
                 ];
@@ -165,6 +169,7 @@ class ContestUserController extends Controller
         return Datatables::of($query)->setTotalRecords($total)
             ->addColumn('actions', function ($user) {
             $actions = '<a href=' . route('contest.contestmanage.contest_user.log', ['type' => 'contest_user', 'id' => $user->member_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log"></i></a>
+                        <a href="javascript:void(0)" class="reset_exam" c-data="'.$user->member_id.'"><i class="livicon" data-name="refresh" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="reset lượt thi"></i></a>
                        <a href=' . route('contest.contestmanage.contest_user.show', ['round_id' => $user->member_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="xem chi tiết"></i></a>';
             return $actions;
             })

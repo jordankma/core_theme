@@ -13,7 +13,6 @@ use Contest\Contestmanage\App\Models\ContestTopic;
 use Contest\Contestmanage\App\Models\FormLoad;
 use Contest\Contestmanage\App\Models\RankBoard;
 use Contest\Contestmanage\App\Models\UserContestInfo;
-use Contest\Contestmanage\App\Models\UserContestInfo_Es;
 use Contest\Contestmanage\App\Repositories\ContestRoundRepository;
 use Contest\Contestmanage\App\Repositories\ContestSeasonRepository;
 use Contest\Contestmanage\App\Repositories\ContestTopicRepository;
@@ -174,8 +173,6 @@ class ApiController extends Controller
                                         "display_name" => $value1->display_name,
                                         "topic_type" => $value1->type,
                                         "type" => $value1->topic_type,
-                                        "lucky_star_status" => ($value1->lucky_star_status == "1")?true:false,
-                                        "lucky_star_config" => !empty($value1->lucky_star_config)?json_decode($value1->lucky_star_config):null,
                                         "rule_text" => $value1->rule_text,
                                         "time" => [
                                             "start" => $topic_start,
@@ -188,7 +185,7 @@ class ApiController extends Controller
                                         "topic_exam_repeat_condition" => $value1->topic_exam_repeat_condition,
                                         "exam_repeat_time_wait" => $value1->exam_repeat_time_wait,
                                         "total_time_limit" => $value1->total_time_limit,
-                                        "question_pack_id" => !empty($value1->question_pack_id)?json_decode($value1->question_pack_id):null,
+                                        "question_pack_id" => $value1->question_pack_id,
                                         "topic_round" => $topic_round_arr
                                     ];
                                     if(!empty($value1->question_pack_id)){
@@ -220,10 +217,10 @@ class ApiController extends Controller
                     $data = [
                         'exam_info' => $arr
                     ];
-                    if(Cache::tags([config('site.cache_tag'),'exam_info'])->has('test')){
-                        Cache::tags([config('site.cache_tag'),'exam_info'])->forget('test');
+                    if(Cache::tags(['exam_info'])->has('test')){
+                        Cache::tags(['exam_info'])->forget('test');
                     }
-                    Cache::tags([config('site.cache_tag'),'exam_info'])->forever('test',$data);
+                    Cache::tags(['exam_info'])->forever('test',$data);
                 }
                 elseif($request->type == 'real'){
                     if(!empty($request->token)){
@@ -275,8 +272,6 @@ class ApiController extends Controller
                                             "display_name" => $value1->display_name,
                                             "topic_type" => $value1->type,
                                             "type" => $value1->topic_type,
-                                            "lucky_star_status" => ($value1->lucky_star_status == "1")?true:false,
-                                            "lucky_star_config" => !empty($value1->lucky_star_config)?json_decode($value1->lucky_star_config):null,
                                             "rule_text" => $value1->rule_text,
                                             "time" => [
                                                 "start" => $topic_start,
@@ -286,7 +281,7 @@ class ApiController extends Controller
                                             "exam_repeat_time" => $value1->exam_repeat_time,
                                             "exam_repeat_time_wait" => $value1->exam_repeat_time_wait,
                                             "total_time_limit" => $value1->total_time_limit,
-                                            "question_pack_id" => !empty($value1->question_pack_id)?json_decode($value1->question_pack_id):null,
+                                            "question_pack_id" => $value1->question_pack_id,
                                             "topic_point_method" => $value1->topic_point_method,
                                             "topic_point_condition" => $value1->topic_point_condition,
                                             "topic_exam_repeat_condition" => $value1->topic_exam_repeat_condition,
@@ -367,8 +362,6 @@ class ApiController extends Controller
                                             "display_name" => $value1->display_name,
                                             "topic_type" => $value1->type,
                                             "type" => $value1->topic_type,
-                                            "lucky_star_status" => ($value1->lucky_star_status == "1")?true:false,
-                                            "lucky_star_config" => !empty($value1->lucky_star_config)?json_decode($value1->lucky_star_config):null,
                                             "rule_text" => $value1->rule_text,
                                             "time" => [
                                                 "start" => $topic_start,
@@ -378,7 +371,7 @@ class ApiController extends Controller
                                             "exam_repeat_time" => $value1->exam_repeat_time,
                                             "exam_repeat_time_wait" => $value1->exam_repeat_time_wait,
                                             "total_time_limit" => $value1->total_time_limit,
-                                            "question_pack_id" => !empty($value1->question_pack_id)?json_decode($value1->question_pack_id):null,
+                                            "question_pack_id" => $value1->question_pack_id,
                                             "topic_point_method" => $value1->topic_point_method,
                                             "topic_point_condition" => $value1->topic_point_condition,
                                             "topic_exam_repeat_condition" => $value1->topic_exam_repeat_condition,
@@ -419,15 +412,15 @@ class ApiController extends Controller
                             'exam_info' => $arr
                         ];
                     }
-                    if(Cache::tags([config('site.cache_tag'),'exam_info'])->has('real')){
-                        Cache::tags([config('site.cache_tag'),'exam_info'])->forget('real');
+                    if(Cache::tags(['exam_info'])->has('real')){
+                        Cache::tags(['exam_info'])->forget('real');
                     }
-                    Cache::tags([config('site.cache_tag'),'exam_info'])->forever('real', $data);
+                    Cache::tags(['exam_info'])->forever('real', $data);
                 }
             }
 
-            if(Cache::tags([config('site.cache_tag'),'exam_info'])->has($request->type)){
-                $res['data'] = Cache::tags([config('site.cache_tag'),'exam_info'])->get($request->type);
+            if(Cache::tags(['exam_info'])->has($request->type)){
+                $res['data'] = Cache::tags(['exam_info'])->get($request->type);
                 $res['success'] = true;
             }
         }
@@ -691,13 +684,13 @@ class ApiController extends Controller
                 }
                 $res['success'] = true;
             }
-            if(Cache::tags([config('site.cache_tag'),'load_form'])->has($tag)){
-                Cache::tags([config('site.cache_tag'),'load_form'])->forget($tag);
+            if(Cache::tags(['load_form'])->has($tag)){
+                Cache::tags(['load_form'])->forget($tag);
             }
-            Cache::tags([config('site.cache_tag'),'load_form'])->forever($tag,$res);
+            Cache::tags(['load_form'])->forever($tag,$res);
         }
-        if(Cache::tags([config('site.cache_tag'),'load_form'])->has($tag)){
-            $res = Cache::tags([config('site.cache_tag'),'load_form'])->get($tag);
+        if(Cache::tags(['load_form'])->has($tag)){
+            $res = Cache::tags(['load_form'])->get($tag);
         }
         return response()->json($res);
     }
@@ -717,7 +710,7 @@ class ApiController extends Controller
             }
         }
         elseif(!empty($request->u_name)){
-            $member = UserContestInfo::where('u_name', $request->u_name);
+            $member = UserContestInfo::where('u_name', (string)$request->u_name)->first();
             if(!empty($member)){
                 $res['success'] = true;
             }
@@ -741,13 +734,13 @@ class ApiController extends Controller
         $limit = 5;
         if(!empty($request->reload_cache)){
             $list = UserContestInfo::orderBy('_id','desc')->take($limit)->get();
-            if(Cache::tags(config('site.cache_tag'))->has('recent_reg')){
-                Cache::tags(config('site.cache_tag'))->forget('recent_reg');
+            if(Cache::has('recent_reg')){
+                Cache::forget('recent_reg');
             }
-            Cache::tags(config('site.cache_tag'))->forever('recent_reg',$list);
+            Cache::forever('recent_reg',$list);
         }
-        if(Cache::tags(config('site.cache_tag'))->has('recent_reg')){
-            $res['data'] = Cache::tags(config('site.cache_tag'))->get('recent_reg');
+        if(Cache::has('recent_reg')){
+            $res['data'] = Cache::get('recent_reg');
             $res['success'] = true;
         }
 
@@ -777,17 +770,18 @@ class ApiController extends Controller
             $cond['u_name'] = $request->u_name;
         }
         $limit = !empty($request->limit) ? (int)$request->limit : 20;
+        $page = !empty($request->page) ? (int)$request->page : 1;
         if (!empty($request->name)) {
-            $result = UserContestInfo::where($cond)->where('name','like','%'.$request->name.'%')->paginate($limit);
+           $cond['name'] = $request->name;
         }
-        else{
-            $result = UserContestInfo::where($cond)->paginate($limit);
-        }
+
+//            $result = UserContestInfo::where($cond)->paginate($limit);
+            $result = (new UserContestInfo())->paginateSearch($cond, $page,$limit);
         if(!empty($cond)){
-            $res =  $result->withPath(config('app.url').'/admin/api/contest/search_contest_result?'. http_build_query($cond));
+            $res =  $result->withPath(config('app.url').'/api/contest/get/search_candidate?'. http_build_query($cond));
         }
         else{
-            $res =  $result->withPath(config('app.url').'/admin/api/contest/search_contest_result');
+            $res =  $result->withPath(config('app.url').'/api/contest/get/search_candidate');
         }
 
         $res_data = json_decode($res->toJson());
@@ -879,13 +873,13 @@ class ApiController extends Controller
 
                 }
             }
-            if(Cache::tags(config('site.cache_tag'))->has('rank_board')){
-                Cache::tags(config('site.cache_tag'))->forget('rank_board');
+            if(Cache::has('rank_board')){
+                Cache::forget('rank_board');
             }
-            Cache::tags(config('site.cache_tag'))->forever('rank_board', $data);
+            Cache::forever('rank_board', $data);
         }
-        if(Cache::tags(config('site.cache_tag'))->has('rank_board')) {
-            $resp['data'] = Cache::tags(config('site.cache_tag'))->get('rank_board');
+        if(Cache::has('rank_board')) {
+            $resp['data'] = Cache::get('rank_board');
             $resp['success'] = true;
         }
        return response()->json($resp);
@@ -958,14 +952,14 @@ class ApiController extends Controller
                         $result = $data[0]->member_id;
                     }
                 }
-                if(Cache::tags([config('site.cache_tag'),'total'])->has($request->type)){
-                    Cache::tags([config('site.cache_tag'),'total'])->forget($request->type);
+                if(Cache::tags(['total'])->has($request->type)){
+                    Cache::tags(['total'])->forget($request->type);
                 }
-                Cache::tags([config('site.cache_tag'),'total'])->forever($request->type,$result);
+                Cache::tags(['total'])->forever($request->type,$result);
             }
 
-            if(Cache::tags([config('site.cache_tag'),'total'])->has($request->type)){
-                $result = Cache::tags([config('site.cache_tag'),'total'])->get($request->type);
+            if(Cache::tags(['total'])->has($request->type)){
+                $result = Cache::tags(['total'])->get($request->type);
             }
 
             return $result;
@@ -1023,47 +1017,5 @@ class ApiController extends Controller
         }
 
         return $res;
-    }
-
-    public function syncEid(){
-        $data = UserContestInfo::where('sync_eid','exists',false)->take(500)->get();
-        $collection = (new \MongoDB\Client('mongodb://eid:vL8Lc7qpVAyv2paW@123.30.187.164:27017/eid'))->selectDatabase('eid')->selectCollection('users');
-        if($data->count() >0){
-            foreach ($data as $key => $item) {
-                $eid = $collection->findOne(['_id' => $item->member_id]);
-                if(!empty($eid)){
-                    $item->phone = !empty($eid->phone)?$eid->phone:'';
-                    $item->email = !empty($eid->email_address)?$eid->email_address:'';
-                    $item->sync_eid = true;
-                    try{
-                        $item->save();
-                        echo '<pre>';print_r($item->member_id . ' - done');echo '</pre>';
-                    }
-                    catch (\Exception $e){
-                        echo '<pre>';print_r($e->getMessage());echo '</pre>';
-                    }
-                }
-                else{
-                    echo '<pre>';print_r($item->member_id . ' - not found');echo '</pre>';
-                }
-            }
-        }
-        else{
-            echo '<pre>';print_r('all done');echo '</pre>';
-        }
-    }
-
-    public function reloadCacheContest(Request $request){
-        if(!empty($request->domain_name)){
-
-            $client = new Client();
-            $url = 'http://'.$request->domain_name.'/api/contest/get/exam_info?type=real&reload_cache=1';
-            $res = $client->request('GET', $url);
-            $client1 = new Client();
-            $url1 = 'http://'.$request->domain_name.'/api/contest/get/exam_info?type=test&reload_cache=1';
-            $res1 = $client1->request('GET', $url1);
-            return $res1->getBody()->getContents();
-
-        }
     }
 }

@@ -4,7 +4,9 @@ namespace Contest\Contestmanage\App;
 use Contest\Contestmanage\App\Models\ContestResult;
 use Contest\Contestmanage\App\Models\ContestRound;
 use Contest\Contestmanage\App\Models\ContestTopic;
+use Contest\Contestmanage\App\Models\NextRoundBuffer;
 use Contest\Contestmanage\App\Models\UserContestInfo;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -16,10 +18,12 @@ class ExportFromCollection implements  FromCollection, WithHeadings, ShouldAutoS
 {
     use Exportable;
 
-    public function __construct($data, $module = 'candidate')
+    public function __construct($data, $module = 'candidate',$heading = null, $mapping = null)
     {
         $this->data = $data;
         $this->module = $module;
+        $this->heading = $heading;
+        $this->mapping = $mapping;
     }
 
     public function collection()
@@ -88,143 +92,159 @@ class ExportFromCollection implements  FromCollection, WithHeadings, ShouldAutoS
     //            return $query->orderBy('point_real','DESC');
             return $result;
         }
+        if($this->module == 'next_round'){
+            DB::connection('mysql_cuocthi')->disableQueryLog();
+            $result = NextRoundBuffer::where('province_id',(int)$data['province_id'])->orderBy('school_id','ASC')->orderBy('total_point','DESC')->orderBy('used_time',"ASC")->get();
+            return $result;
+        }
     }
 
     public function headings(): array
     {
-        $data = $this->data;
-        if ($this->module == 'candidate') {
-            if((int)$data['table_id'] == 1) {
-                return [
-                    'Họ tên',
-                    'Tài khoản',
-                    'Ngày sinh',
-                    'Giới tính',
-                    'Điện thoại',
-                    'Email',
-                    'Tỉnh/ TP',
-                    'Quận/ huyện',
-                    'Trường',
-                    'Lớp',
-                ];
-            }
-            else{
-                return [
-                    'Họ tên',
-                    'Tài khoản',
-                    'Ngày sinh',
-                    'Giới tính',
-                    'Điện thoại',
-                    'Email',
-                    'Tỉnh/ TP',
-                    'Quận/ huyện',
-                    'Đơn vị'
-                ];
-            }
-        } elseif ($this->module == 'result') {
+        if(!empty($this->heading)){
+            return $this->heading;
+        }
+        else {
+            $data = $this->data;
+            if ($this->module == 'candidate') {
+                if ((int)$data['table_id'] == 1) {
+                    return [
+                        'Họ tên',
+                        'Tài khoản',
+                        'Ngày sinh',
+                        'Giới tính',
+                        'Điện thoại',
+                        'Email',
+                        'Tỉnh/ TP',
+                        'Quận/ huyện',
+                        'Trường',
+                        'Lớp',
+                    ];
+                } else {
+                    return [
+                        'Họ tên',
+                        'Tài khoản',
+                        'Ngày sinh',
+                        'Giới tính',
+                        'Điện thoại',
+                        'Email',
+                        'Tỉnh/ TP',
+                        'Quận/ huyện',
+                        'Đơn vị'
+                    ];
+                }
+            } elseif ($this->module == 'result') {
 
-            if((int)$data['table_id'] == 1){
-                return [
-                    'Họ tên',
-                    'Tài khoản',
-                    'Ngày sinh',
-                    'Vòng thi',
-                    'Tuần thi',
-                    'Lần thi',
-                    'Điểm',
-                    'Thời gian',
-                    'Giới tính',
-                    'Điện thoại',
-                    'Email',
-                    'Tỉnh/ TP',
-                    'Quận/ huyện',
-                    'Trường',
-                    'Lớp'
-                ];
-            }
-            else{
-                return [
-                    'Họ tên',
-                    'Tài khoản',
-                    'Ngày sinh',
-                    'Vòng thi',
-                    'Tuần thi',
-                    'Lần thi',
-                    'Điểm',
-                    'Thời gian',
-                    'Giới tính',
-                    'Điện thoại',
-                    'Email',
-                    'Tỉnh/ TP',
-                    'Quận/ huyện',
-                    'Đơn vị'
-                ];
-            }
+                if ((int)$data['table_id'] == 1) {
+                    return [
+                        'Họ tên',
+                        'Tài khoản',
+                        'Ngày sinh',
+                        'Vòng thi',
+                        'Tuần thi',
+                        'Lần thi',
+                        'Điểm',
+                        'Thời gian',
+                        'Giới tính',
+                        'Điện thoại',
+                        'Email',
+                        'Tỉnh/ TP',
+                        'Quận/ huyện',
+                        'Trường',
+                        'Lớp'
+                    ];
+                } else {
+                    return [
+                        'Họ tên',
+                        'Tài khoản',
+                        'Ngày sinh',
+                        'Vòng thi',
+                        'Tuần thi',
+                        'Lần thi',
+                        'Điểm',
+                        'Thời gian',
+                        'Giới tính',
+                        'Điện thoại',
+                        'Email',
+                        'Tỉnh/ TP',
+                        'Quận/ huyện',
+                        'Đơn vị'
+                    ];
+                }
 
+            }
         }
 
     }
 
     public function map($invoice): array
     {
-        $data = $this->data;
-        if ($this->module == 'candidate') {
-            if((int)$data['table_id'] == 1) {
-                return [
-                    $invoice->name,
-                    $invoice->u_name,
-                    $invoice->birthday,
-                    $invoice->gender == 'male' ? 'Nam' : 'Nữ',
-                    $invoice->phone,
-                    $invoice->email,
-                    $invoice->city_name,
-                    $invoice->district_name,
-                    $invoice->school_name,
-                    $invoice->class_id,
-                ];
+        $arr_map = [];
+        if(!empty($this->mapping)){
+            foreach ($this->mapping as $key => $value){
+                $arr_map[] = ($value == 'used_time') ? self::convertTime($invoice->$value) : $invoice->$value;
             }
-            else{
-                return [
-                    $invoice->name,
-                    $invoice->u_name,
-                    $invoice->birthday,
-                    $invoice->gender == 'male' ? 'Nam' : 'Nữ',
-                    $invoice->phone,
-                    $invoice->email,
-                    $invoice->city_name,
-                    $invoice->district_name,
-                    $invoice->don_vi,
-                ];
-            }
-        } elseif ($this->module == 'result') {
-            $round = ContestRound::where('round_type', 'real')->pluck('display_name', 'round_id');
-            $topic = ContestTopic::where('topic_type', 'real')->pluck('display_name', 'topic_id');
-
-            return [
-                $invoice->candidate->name,
-                $invoice->candidate->u_name,
-                $invoice->candidate->birthday,
-                $round[$invoice->round_id],
-                $topic[$invoice->topic_id],
-                $invoice->repeat_time,
-                $invoice->total_point,
-                $this->convertTime($invoice->used_time),
-                $invoice->candidate->gender == 'male' ? 'Nam' : 'Nữ',
-                $invoice->candidate->phone,
-                $invoice->candidate->email,
-                $invoice->candidate->province_name,
-                $invoice->candidate->district_name,
-                $invoice->candidate->school_name,
-                $invoice->candidate->class_id,
-            ];
+            return $arr_map;
         }
+       else {
+           $data = $this->data;
+           if ($this->module == 'candidate') {
+               if ((int)$data['table_id'] == 1) {
+                   return [
+                       $invoice->name,
+                       $invoice->u_name,
+                       $invoice->birthday,
+                       $invoice->gender == 'male' ? 'Nam' : 'Nữ',
+                       $invoice->phone,
+                       $invoice->email,
+                       $invoice->city_name,
+                       $invoice->district_name,
+                       $invoice->school_name,
+                       $invoice->class_id,
+                   ];
+               } else {
+                   return [
+                       $invoice->name,
+                       $invoice->u_name,
+                       $invoice->birthday,
+                       $invoice->gender == 'male' ? 'Nam' : 'Nữ',
+                       $invoice->phone,
+                       $invoice->email,
+                       $invoice->city_name,
+                       $invoice->district_name,
+                       $invoice->don_vi,
+                   ];
+               }
+           } elseif ($this->module == 'result') {
+               $round = ContestRound::where('round_type', 'real')->pluck('display_name', 'round_id');
+               $topic = ContestTopic::where('topic_type', 'real')->pluck('display_name', 'topic_id');
+
+               return [
+                   $invoice->candidate->name,
+                   $invoice->candidate->u_name,
+                   $invoice->candidate->birthday,
+                   $round[$invoice->round_id],
+                   $topic[$invoice->topic_id],
+                   $invoice->repeat_time,
+                   $invoice->total_point,
+                   $this->convertTime($invoice->used_time),
+                   $invoice->candidate->gender == 'male' ? 'Nam' : 'Nữ',
+                   $invoice->candidate->phone,
+                   $invoice->candidate->email,
+                   $invoice->candidate->province_name,
+                   $invoice->candidate->district_name,
+                   $invoice->candidate->school_name,
+                   $invoice->candidate->class_id,
+               ];
+           }
+       }
 
     }
     public function convertTime($time){
         $min = (int)($time/60000);
         $sec = (int)(($time - ($min*60000))/1000);
         $tik = substr($time,-3);
-        return $min . "'" . $sec . '"'.$tik;
+        return $min . ":" . $sec . '.'.$tik;
     }
 }
 ?>

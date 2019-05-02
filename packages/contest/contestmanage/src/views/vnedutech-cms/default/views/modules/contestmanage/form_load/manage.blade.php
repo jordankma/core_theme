@@ -72,12 +72,12 @@
                 serverSide: true,
                 ajax: '{{ route('contest.contestmanage.form_load.data') }}',
                 columns: [
-                    { data: '_id', name: '_id' },
+                    { data: 'DT_Row_Index', name: '_id' },
                     { data: 'title', name: 'title' },
                     { data: 'alias', name: 'alias' },
                     { data: 'field', name: 'field', "render": function (data, type, row, meta) {
-                        return '<a href="javascript:void(0)" class="label label-primary view_field" c-data="'+ row['alias'] +'"><span class="glyphicon glyphicon-list-alt"></span> Xem chi tiết</a>';
-                    } },
+                            return '<a href="javascript:void(0)" class="label label-primary view_field" c-data="'+ row['alias'] +'"><span class="glyphicon glyphicon-list-alt"></span> Xem chi tiết</a>';
+                        } },
                     { data: 'actions', name: 'actions', orderable: false, searchable: false, className: 'fit-content'}
                 ]
             });
@@ -86,11 +86,6 @@
                     $(this).updateLivicon();
                 });
             });
-            table.on( 'order.dt search.dt', function () {
-                table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
 
         });
 

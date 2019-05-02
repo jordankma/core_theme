@@ -44,26 +44,6 @@
         .a_action{
             margin-left: 15px;
         }
-        #custom_area{
-        }
-
-        .remove_custom, .remove_custom_field, .remove_custom_group{
-            margin-left: 15px;
-            color: red;
-        }
-        .panel_custom{
-            background-color: #dedede;
-        }
-        .panel_custom .text-on-pannel{
-            background-color: transparent;
-
-        }
-        .panel_custom > .panel-body > .text-on-pannel{
-            border: 1px solid #337ab7;
-        }
-        .input-title{
-            display: inline;
-        }
     </style>
 @stop
 <!--end of page css-->
@@ -110,7 +90,7 @@
                                     <div class="col-md-2">Hiển thị trong kết quả</div>
                                     <div class="col-md-2">Thao tác</div>
                                 </div>
-                                <div id="general_field" class="field_container">
+                                <div id="general_field">
                                     @if(!empty($target->general))
                                         @foreach($target->general as $key => $value)
                                             <div class="form-group" id="{{ $value['id'] }}">
@@ -158,11 +138,7 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <p><a href="javascript:void(0)" class="btn btn-default more_field" data-type="general" c-data="general_field"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường thông tin</a></p>
-                                <div class="custom_area">
-
-                                </div>
-                                <p><a href="javascript:void(0)" class="btn btn-default custom_field" data-type="general" c-data="general_field"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường tùy chọn</a></p>
+                                <a href="javascript:void(0)" class="btn btn-default more_field" data-type="general" c-data="general_field"><span class="glyphicon glyphicon-plus-sign"></span> Thêm</a>
                             </div>
                         </div>
 
@@ -351,41 +327,7 @@
         $(document).on('click', '.remove_config' ,function() {
             $(this).parent().remove();
         });
-        var param_array = Array();
-        $('body').on('click','.custom_field', function () {
-            var data_type = $(this).attr('data-type');
-            var parent_type = $(this).attr('c-data');
-            if(data_type == 'target'){
-                var target_id = $(this).attr('d-data');
-                var html = '<div class="col-md-3"><input type="text" class="form-control custom_field_name" placeholder="Nhập tên field" required></div>' +
-                    '<div class="col-md-3"><input type="text" class="form-control custom_field_param" placeholder="Nhập tên biến định danh" required></div>' +
-                    '<div class="col-md-3"><input type="number" class="form-control custom_field_number" placeholder="Nhập số lượng phần tử" required></div>' +
-                    '<div class="col-md-3"><button type="button" class="btn btn-success btn_create_custom_field" data-type="'+ data_type +'" d-data="'+ target_id +'" c-data="'+ parent_type +'">Tạo trường tùy chọn</button>' +
-                    '<a href="javascript:void(0)" class="remove_custom_create"><span class="glyphicon glyphicon-remove"></span></a></div>';
-            }
-            else{
-                var html = '<div class="col-md-3"><input type="text" class="form-control custom_field_name" placeholder="Nhập tên field" required></div>' +
-                    '<div class="col-md-3"><input type="text" class="form-control custom_field_param" placeholder="Nhập tên biến định danh" required></div>' +
-                    '<div class="col-md-3"><input type="number" class="form-control custom_field_number" placeholder="Nhập số lượng phần tử" required></div>' +
-                    '<div class="col-md-3"><button type="button" class="btn btn-success btn_create_custom_field" data-type="'+ data_type +'" c-data="'+ parent_type +'">Tạo trường tùy chọn</button>' +
-                    '<a href="javascript:void(0)" class="remove_custom_create"><span class="glyphicon glyphicon-remove"></span></a></div>';
-            }
-
-
-
-           if(data_type == 'target'){
-               var div_id = $(this).attr('d-data');
-               $('#'+ div_id+' .custom_area').addClass('row');
-               $('#'+ div_id+' .custom_area').html(html);
-           }
-           else{
-               $('.custom_area').addClass('row');
-               $('.custom_area').html(html);
-           }
-
-        });
-
-        $('body').on('click', '#more_config' ,function() {
+        $(document).on('click', '#more_config' ,function() {
             var idx = $('#config_list').find('.form-group').length;
             idx++;
             var html =
@@ -408,114 +350,16 @@
             var target_name = $('.target_name').val();
             var target_varible = $('.target_varible').val();
 
-            var html = '<div class="panel panel-primary" id="target_'+ target_varible +'">' +
+            var html = '<div class="panel panel-primary" >' +
                             '<div class="panel-body">' +
                                 '<p class="text-on-pannel text-primary"><strong> '+ target_name +' </strong></p>' +
                                 '<input type="hidden" value="'+ target_name +'" name="target['+ target_varible +'][name]">' +
                                 '<div class="target_field" id="' + target_varible + '">' +
-                                '<div class="custom_area"></div> ' +
                                 '</div>' +
                                 '<a href="javascript:void(0)" class="btn btn-default more_field" data-type="target" data-name="'+ target_name +'" c-data="' + target_varible + '"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường thông tin</a>' +
-                            '<div class="custom_area"> </div>' +
-                                '<p><a href="javascript:void(0)" class="btn btn-default custom_field" data-type="target" c-data="target_'+ target_varible +'" d-data="' + target_varible + '"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường tùy chọn</a></p>' +
                             '</div>' +
                         '</div>';
             $('#target_container').append(html);
-        });
-
-        $('body').on('click', '.btn_create_custom_field', function () {
-            var name = $(this).parent().parent().find('.custom_field_name').val();
-            var param = $(this).parent().parent().find('.custom_field_param').val();
-            var number = $(this).parent().parent().find('.custom_field_number').val();
-            var data_type = $(this).attr('data-type');
-            if(name != '' && param != '' && number != ''){
-                if(parseInt(number) < 2){
-                    alert('Số phần tử phải lớn hơn 1');
-                }
-                else{
-                    console.log(param);
-                    console.log(param_array);
-                    console.log(param_array.indexOf(param));
-                    if(param_array.indexOf(param) == -1) {
-                        param_array.push(param);
-                        if(data_type == 'general'){
-                            var html = '<div class="panel panel-primary panel_custom" id="'+ param +'_panel">' +
-                                '<div class="panel-body">' +
-                                '<p class="text-on-pannel text-primary"><strong> ' + name + ' </strong> <a href="javascript:void(0)" c-data="' + param + '_panel" class="remove_custom pull-right"><span class="glyphicon glyphicon-remove"></span></a></p>' +
-                                '<input type="hidden" value="' + name + '" name="general[' + param + '][title]">' +
-                                '<input type="hidden" value="' + param + '" name="general[' + param + '][params]">' +
-                                '<input type="hidden" value="auto" name="general[' + param + '][type]">' +
-                                '<input type="hidden" value="1" name="general[' + param + '][type_id]">' +
-                                '<input type="hidden" value="string" name="general[' + param + '][data_type]">' +
-                                '<input type="hidden" value="4" name="general[' + param + '][type_view]">' +
-                                '<div id="' + param + '_container">';
-
-                            for (var i = 1; i <= parseInt(number); i++) {
-                                html += '<div class="panel panel-primary" id="' + param + '_' + i + '" >' +
-                                    '<div class="panel-body">' +
-                                    '<div class="text-on-pannel text-primary">' +
-                                    '<div class="pull-left">' +
-                                    '<input type="hidden" name="general[' + param + '][data_view][' + param + '_' + i + '][params]" value="' + param + '_' + i + '" > ' +
-                                    '<input type="text" class="form-control col-md-3" name="general[' + param + '][data_view][' + param + '_' + i + '][title]" placeholder="Nhập tên hiển thị"> ' +
-                                    '</div>' +
-                                    '<a href="javascript:void(0)" c-data="' + param + '_' + i + '" class="remove_custom_group pull-right">' +
-                                    '<span class="glyphicon glyphicon-remove"></span></a></div>' +
-                                    '<div class="field_container">' +
-                                    '</div> ' +
-                                    '<a href="javascript:void(0)" class="btn btn-default more_field" data-type="custom" parent-param="'+ param +'" parent-type="general" data-name="' + name + '" c-data="' + param + '_' + i + '"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường thông tin</a>' +
-                                    '</div></div>';
-                            }
-
-                            html += '</div>' +
-                                '</div>' +
-                                '</div>';
-                            $('#general_field').append(html);
-                        }
-                        else{
-                            var div_id = $(this).attr('c-data');
-                            var con_id = $(this).attr('d-data');
-                             var html = '<div class="panel panel-primary panel_custom" id="'+ param +'_panel">' +
-                                '<div class="panel-body">' +
-                                '<p class="text-on-pannel text-primary"><strong> ' + name + ' </strong> <a href="javascript:void(0)" c-data="' + param + '_panel" class="remove_custom pull-right"><span class="glyphicon glyphicon-remove"></span></a></p>' +
-                                '<input type="hidden" value="' + name + '" name="target[' + param + '][title]">' +
-                                '<input type="hidden" value="' + param + '" name="target[' + param + '][params]">' +
-                                '<input type="hidden" value="auto" name="target[' + param + '][type]">' +
-                                '<input type="hidden" value="1" name="target[' + param + '][type_id]">' +
-                                '<input type="hidden" value="string" name="target[' + param + '][data_type]">' +
-                                '<input type="hidden" value="4" name="target[' + param + '][type_view]">' +
-                                '<div id="' + param + '_container">';
-
-                            for (var i = 1; i <= parseInt(number); i++) {
-                                html += '<div class="panel panel-primary" id="' + param + '_' + i + '" >' +
-                                    '<div class="panel-body">' +
-                                    '<div class="text-on-pannel text-primary">' +
-                                    '<div class="pull-left">' +
-                                    '<input type="hidden" name="target[' + param + '][data_view][' + param + '_' + i + '][params]" value="' + param + '_' + i + '" > ' +
-                                    '<input type="text" class="form-control col-md-3" name="target[' + param + '][data_view][' + param + '_' + i + '][title]" placeholder="Nhập tên hiển thị"> ' +
-                                    '</div>' +
-                                    '<a href="javascript:void(0)" c-data="' + param + '_' + i + '" class="remove_custom_group pull-right">' +
-                                    '<span class="glyphicon glyphicon-remove"></span></a></div>' +
-                                    '<div class="field_container">' +
-                                    '</div> ' +
-                                    '<a href="javascript:void(0)" class="btn btn-default more_field" data-type="custom" target-param="'+ con_id +'" parent-param="'+ param +'" parent-type="target" data-name="' + name + '" c-data="' + param + '_' + i + '"><span class="glyphicon glyphicon-plus-sign"></span> Thêm trường thông tin</a>' +
-                                    '</div></div>';
-                            }
-
-                            html += '</div>' +
-                                '</div>' +
-                                '</div>';
-                            $('#' + div_id).find('#' + con_id).append(html);
-                        }
-
-                    }
-                    else{
-                        alert('Tên biến đã tồn tại!');
-                    }
-                }
-            }
-            else{
-                alert('Vui lòng điền đủ thông tin!');
-            }
         });
 
         $('body').on('click', '.more_field', function () {
@@ -525,47 +369,27 @@
                 var name = $(this).attr('data-name');
                 $('#field_list').attr('data-name', name);
             }
-            else if(type == "custom"){
-                var parent_type = $(this).attr('parent-type');
-                var parent_param = $(this).attr('parent-param');
-                $('#field_list').attr('parent-type', parent_type);
-                $('#field_list').attr('parent-param', parent_param);
-            }
             $('#field_list').attr('c-data', varible);
             $('#field_list').attr('data-type', type);
             $('#field_list').modal();
-        });
-
+        })
         $('body').on('click', '.choose', function () {
             var id = $('#field_list').attr('c-data');
             var field_id = $(this).attr('c-data');
             var idx = $('#' + id).find('.form-group').length;
             var type = $('#field_list').attr('data-type');
             var varible = '';
-            var parent_type = '';
-            var parent_param = '';
             if(type == 'target'){
                 varible = id;
             }
-            else if(type == "custom"){
-                varible = id;
-                parent_type = $('#field_list').attr('parent-type');
-                parent_param = $('#field_list').attr('parent-param');
-            }
-            var html  = genInputField(field_id, idx, type, varible, parent_type, parent_param);
-
+            var html  = genInputField(field_id, idx, type, varible);
 
             $('#target_thead').removeClass('hidden');
-            if(type =='custom'){
-                $('#' +id).find('.field_container').append(html);
-            }
-            else{
-                $('#' +id).append(html);
-            }
+            $('#' +id).append(html);
             loadBSwitch();
             $('#field_list').modal('hide');
         });
-        function genInputField(field_id, idx, type, varible, parent_type, parent_param) {
+        function genInputField(field_id, idx, type, varible) {
             var field_list = @json($field_list);
             var field_data = field_list[field_id];
             var is_require, is_search, show_on_info, show_on_result = '';
@@ -603,34 +427,6 @@
                     '</div>'+
                     '<div class="col-md-2">' +
                     '<input type="checkbox" name="'+ type +'['+ field_data.varible +'][show_on_result]" class="allow_permission" data-size="mini" '+ show_on_result +'>' +
-                    '</div>' +
-                    '<div class="col-md-2">' +
-                    // '<a class="edit_field a_action" href="javascript:void(0)" c-data="'+ field_data.field_id +'" title="Sửa field"><span class="glyphicon glyphicon-pencil"></span></a>' +
-                    '<a class="show_field a_action" href="javascript:void(0)" c-data="'+ field_data.field_id +'" title="Xem chi tiết"><span class="glyphicon glyphicon-eye-open"></span></a>' +
-                    '<a class="remove_field a_action" href="javascript:void(0)" c-data="'+ field_data.field_id +'" title="Xóa field" style="color:red"><span class="glyphicon glyphicon-trash"></span></a>' +
-                    '</div>' +
-                    '</div>';
-            }
-            else if(type == 'custom'){
-                html = '<div class="form-group" id="'+ field_data.field_id +'">' +
-                    '<div class="col-md-2">' +
-                    '<input type="hidden" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][field_id]"  value="'+ field_data.field_id +'"/>' +
-                    '<input type="text" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][label]" value="'+ field_data.label +'" class="form-control"/>' +
-                    '</div>'+
-                    '<div class="col-md-1">' +
-                    '<input type="text" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][order]" value="'+ (idx + 1) +'" class="form-control"/>' +
-                    '</div>'+
-                    '<div class="col-md-1">' +
-                    '<input type="checkbox" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][is_require]" class="allow_permission" data-size="mini" '+ is_require +'>' +
-                    '</div>'+
-                    '<div class="col-md-2">' +
-                    '<input type="checkbox" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][is_search]" class="allow_permission" data-size="mini" '+ is_search +'>' +
-                    '</div>'+
-                    '<div class="col-md-2">' +
-                    '<input type="checkbox" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][show_on_info]" class="allow_permission" data-size="mini" '+ show_on_info +'>' +
-                    '</div>'+
-                    '<div class="col-md-2">' +
-                    '<input type="checkbox" name="'+ parent_type +'['+parent_param+'][data_view]['+ varible +'][data_view]['+ field_data.varible +'][show_on_result]" class="allow_permission" data-size="mini" '+ show_on_result +'>' +
                     '</div>' +
                     '<div class="col-md-2">' +
                     // '<a class="edit_field a_action" href="javascript:void(0)" c-data="'+ field_data.field_id +'" title="Sửa field"><span class="glyphicon glyphicon-pencil"></span></a>' +
@@ -764,19 +560,5 @@
                 '</div>';
             return html;
         }
-        $('body').on('click','.remove_custom', function () {
-            var div_id = $(this).attr('c-data');
-            var param = $(this).attr('d-data');
-            param_array.splice(param_array.indexOf(param),1);
-            $('#' + div_id).remove();
-        });
-        $('body').on('click','.remove_custom_create', function () {
-            $('#custom_area').html('');
-            $('#custom_area').removeClass('row');
-        });
-        $('body').on('click','.remove_custom_group', function () {
-           var div_id = $(this).attr('c-data');
-           $('#' + div_id).remove();
-        });
     </script>
 @stop

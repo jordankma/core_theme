@@ -41,7 +41,8 @@ return [
         "candidate" => [
             "manage" => "Danh sách thí sinh",
             "create" => "Thêm thí sinh",
-            "update" => "Sửa thí sinh"
+            "update" => "Sửa thí sinh",
+            "list_next_round" => "Danh sách thí sinh được vào vòng sau"
         ],
         "contest_target" => [
             "manage" => "Danh sách đối tượng",
@@ -50,6 +51,7 @@ return [
         ],
         "result" => [
             "manage" => "Tra cứu kết quả thi",
+            "next_round_filter" => "Lọc thí sinh vào vòng sau"
         ],
         "rank_board" => [
             "manage" => "Danh sách BXH",
@@ -207,6 +209,9 @@ return [
         "add" => "Thêm",
         "group_exam" => [
             'add' => "Thêm thí sinh"
+        ],
+        "candidate" => [
+            "import_next_round" => "Nhập danh sách đã lọc từ excel"
         ]
     ],
     "placeholder" => [
@@ -294,7 +299,7 @@ return [
         "candidate" => [
             "table" => "Tất cả",
             "district" => "Tất cả",
-            "school" => "Tất cả",
+            "school" => "Tất cả"
         ],
         "result" => [
             "table" => "Tất cả",

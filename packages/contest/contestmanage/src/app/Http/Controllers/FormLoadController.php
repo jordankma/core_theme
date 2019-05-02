@@ -27,11 +27,11 @@ class FormLoadController extends Controller
     public function __construct(FormLoadRepository $formLoadRepository)
     {
         parent::__construct();
-        $this->formLoad = $formLoadRepository;
+        $this->form = $formLoadRepository;
     }
 
     public function create(){
-        $field_list = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+        $field_list = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
         if(!empty($field_list)){
             $flist = json_decode($field_list,true);
             $field_list = [];
@@ -68,8 +68,8 @@ class FormLoadController extends Controller
         $general = [];
         $target = [];
 
-        $field_list = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $field_list = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $html_type = [];
         $type = [];
         if(!empty($data_type)){
@@ -177,7 +177,7 @@ class FormLoadController extends Controller
             $target->age = [];
             $target->save();
         }
-        $client = new Client(config('site.url_cuocthi').'/resource/dev/get/vne/getprovince');
+        $client = new Client('http://cuocthi.vnedutech.vn/resource/dev/get/vne/getprovince');
         $headers = [
             'Authorization' => 'Bearer ' . $this->token,
             'Accept'        => 'application/json',
@@ -208,12 +208,12 @@ class FormLoadController extends Controller
     }
 
     public function data(){
-        return DataTables::of($this->formLoad->findAll())
-            ->addColumn('actions', function ($form_load) {
+        return DataTables::of($this->form->findAll())
+            ->addColumn('actions', function ($form) {
                 $actions = '';
-                $actions .= '<a href=' . route('contest.contestmanage.form_load.log', ['type' => 'contest_season', 'id' => $form_load->_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log season"></i></a>                      
-                <a href=' . route('contest.contestmanage.form_load.show', ['season_id' => $form_load->_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update season"></i></a>
-                <a href=' . route('contest.contestmanage.form_load.confirm-delete', ['season_id' => $form_load->_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete season"></i></a>';
+                $actions .= '<a href=' . route('contest.contestmanage.form_load.log', ['type' => 'contest_season', 'id' => $form->_id]) . ' data-toggle="modal" data-target="#log"><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#F99928" data-hc="#F99928" title="log season"></i></a>                      
+                <a href=' . route('contest.contestmanage.form_load.show', ['season_id' => $form->_id]) . '><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update season"></i></a>
+                <a href=' . route('contest.contestmanage.form_load.confirm-delete', ['season_id' => $form->_id]) . ' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="trash" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete season"></i></a>';
 
                 return $actions;
             })
@@ -222,7 +222,7 @@ class FormLoadController extends Controller
     }
 
     public function getHtmlType(){
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $res = [
             'html_type' => [],
             'type' => []
@@ -250,7 +250,7 @@ class FormLoadController extends Controller
         if(!empty($request->type)){
             if($request->type == 'district'){
                 if(!empty($request->city_id)){
-                    $res = json_decode(file_get_contents(config('site.url_cuocthi').'/admin/vne/getdistricts/' . $request->city_id));
+                    $res = json_decode(file_get_contents('http://cuocthi.vnedutech.vn/admin/vne/getdistricts/' . $request->city_id));
                 }
             }
         }
@@ -260,8 +260,8 @@ class FormLoadController extends Controller
     public function update(Request $request)
     {
 //        echo '<pre>';print_r($request->all());echo '</pre>';die;
-        $field_list = file_get_contents(config('site.url_cuocthi').'/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $field_list = file_get_contents('http://cuocthi.vnedutech.vn/resource/'.(new ApiHash(env('SECRET_KEY'),env('SECRET_IV')))->encrypt('dev/get/user_field?time='.(time()*1000)));
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $html_type = [];
         $type = [];
         if(!empty($data_type)){
@@ -386,7 +386,7 @@ class FormLoadController extends Controller
 
 
     public function getDetailField(Request $request){
-        $data_type = file_get_contents(config('site.url_cuocthi').'/api/contest/get/type_config');
+        $data_type = file_get_contents('http://cuocthi.vnedutech.vn/api/contest/get/type_config');
         $html_type = [];
         $type = [];
         $type_id = 0;

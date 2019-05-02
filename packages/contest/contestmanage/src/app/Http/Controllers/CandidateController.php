@@ -4,7 +4,6 @@ namespace Contest\Contestmanage\App\Http\Controllers;
 
 use Adtech\Application\Cms\Controllers\Controller as Controller;
 use Contest\Contestmanage\App\ApiHash;
-use Contest\Contestmanage\App\ContestEnvironment;
 use Contest\Contestmanage\App\ContestFunc;
 use Contest\Contestmanage\App\ExportFromCollection;
 use Contest\Contestmanage\App\Exports;
@@ -17,19 +16,21 @@ use Contest\Contestmanage\App\Models\ContestTopic;
 use Contest\Contestmanage\App\Models\Counters;
 use Contest\Contestmanage\App\Models\FormLoad;
 use Contest\Contestmanage\App\Models\GroupExam;
+use Contest\Contestmanage\App\Models\NextRoundBuffer;
+use Contest\Contestmanage\App\Models\School;
 use Contest\Contestmanage\App\Models\SeasonConfig;
 use Contest\Contestmanage\App\Models\UserContestInfo;
 use Contest\Contestmanage\App\Models\UserContestInfo_Es;
+use Contest\Contestmanage\App\Models\UserNextRound;
 use Contest\Contestmanage\App\Models\UserSearchRole;
+use Contest\Contestmanage\App\NextRoundImport;
 use Contest\Contestmanage\App\Repositories\CandidateRepository;
 use Contest\Contestmanage\App\Repositories\ContestConfigRepository;
 use Contest\Contestmanage\App\Repositories\ContestSeasonRepository;
 use Contest\Contestmanage\App\Repositories\ContestTargetRepository;
 use Contest\Contestmanage\App\Repositories\FormLoadRepository;
 use Contest\Contestmanage\App\Repositories\GroupExamRepository;
-use Contest\Contestmanage\App\Repositories\SeasonConfigRepository;
 use Dhcd\Contest\App\Repositories\ContestRepository;
-use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,7 @@ use Tebru\Gson\Element\JsonElement;
 use Tebru\Gson\Gson;
 use Tebru\Gson\Internal\TypeAdapter\JsonElementTypeAdapter;
 use Validator;
+use Cache;
 use Yajra\Datatables\Datatables;
 
 class CandidateController extends Controller
@@ -53,7 +55,8 @@ class CandidateController extends Controller
         'numeric' => "Phải là số"
     );
 
-    public function __construct(FormLoadRepository $formLoadRepository ,ContestSeasonRepository $contestSeasonRepository, CandidateRepository $candidateRepository, GroupExamRepository $groupExamRepository, ContestTargetRepository $targetRepository)
+    public function __construct(FormLoadRepository $formLoadRepository ,ContestSeasonRepository $contestSeasonRepository, CandidateRepository $candidateRepository,
+                                GroupExamRepository $groupExamRepository, ContestTargetRepository $targetRepository)
     {
         parent::__construct();
         $this->candidate = $candidateRepository;
@@ -62,7 +65,6 @@ class CandidateController extends Controller
         $this->target = $targetRepository;
         $this->store_path = 'export/excel/';
         $this->form_load = $formLoadRepository;
-        $this->field_list = [];
         if($this->admin_type == 'search'){
             $search_roles = UserSearchRole::where('u_name',$this->user->email)->first();
             if(!empty($search_roles)){
@@ -117,7 +119,6 @@ class CandidateController extends Controller
         catch (\Exception $e){
 
         }
-
         $season = $this->contestSeason->getCurrentSeason();
 
 //        $hash = new ApiHash(env('SECRET_KEY'),env('SECRET_IV'));
@@ -183,7 +184,7 @@ class CandidateController extends Controller
                                                     $user_info->$key = (int)$value;
                                                 }
                                                 elseif($key == 'province_id'){
-                                                    if($value == 0){
+                                                    if($value == 0 || $value == "0"){
                                                         $res = [
                                                             'success' => false,
                                                             'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
@@ -197,7 +198,7 @@ class CandidateController extends Controller
 
                                                 }
                                                 elseif($key == 'school_id'){
-                                                    if($value == 0){
+                                                    if($value == 0 || $value == "0"){
                                                         $res = [
                                                             'success' => false,
                                                             'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
@@ -211,7 +212,7 @@ class CandidateController extends Controller
                                                     }
                                                 }
                                                 elseif($key == 'class_id'){
-                                                    if($value == 0){
+                                                    if($value == 0 || $value == "0"){
                                                         $res = [
                                                             'success' => false,
                                                             'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
@@ -225,7 +226,7 @@ class CandidateController extends Controller
                                                     }
                                                 }
                                                 elseif($key == 'district_id'){
-                                                    if($value == 0){
+                                                    if($value == 0 || $value == "0"){
                                                         $res = [
                                                             'success' => false,
                                                             'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
@@ -238,7 +239,7 @@ class CandidateController extends Controller
                                                     }
                                                 }
                                                 elseif($key == 'table_id'){
-                                                    if($value == 0){
+                                                    if($value == 0 || $value == "0"){
                                                         $res = [
                                                             'success' => false,
                                                             'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
@@ -248,6 +249,19 @@ class CandidateController extends Controller
                                                     }
                                                     else {
                                                         $user_info->$key = (int)$value;
+                                                    }
+                                                }
+                                                elseif($key == 'province_name' || $key == 'district_name' || $key == 'school_name'){
+                                                    if($value == "" || $value == null){
+                                                        $res = [
+                                                            'success' => false,
+                                                            'messages' => 'Có thông tin chưa đúng, vui lòng thử lại!',
+                                                            'data' => null
+                                                        ];
+                                                        return response()->json($res);
+                                                    }
+                                                    else {
+                                                        $user_info->$key = $value;
                                                     }
                                                 }
                                                 elseif($key == 'status'){
@@ -268,7 +282,7 @@ class CandidateController extends Controller
                                             if($check_info2 > 0){
                                                 $res = [
                                                     'success' => false,
-                                                    'messages' => "Thông tin đăng ký thi của bạn đã tồn tại, đề nghị sử dụng tài khoản bạn lập trước đó để tham gia cuộc thi.",
+                                                    'messages' => "Thông tin đăng ký đã tồn tại trên hệ thống!",
                                                     'data' => array()
                                                 ];
                                                 return response()->json($res);
@@ -276,19 +290,19 @@ class CandidateController extends Controller
                                             else{
                                                 try {
                                                     $user_info->save();
-                                                    $res_data = [];
-                                                    foreach ($user_info->getAttributes() as $key3 => $value3){
-                                                        $data_item = new \stdClass();
-                                                        $data_item->title = !empty(($this->field_list)[$key3])?($this->field_list)[$key3]:$key3;
-                                                        $data_item->value = $value3;
-                                                        $res_data[] = $data_item;
-                                                    }
+                                                    $user_info->addToIndex();
                                                     $res = [
                                                         'success' => true,
                                                         'messages' => null,
-                                                        'data' => $res_data
+                                                        'data' => array()
                                                     ];
+                                                    $field = ContestTarget::first();
+                                                    if(!empty($field->general)){
+                                                        foreach ($field->general as $key3 => $value3) {
 
+                                                        }
+                                                    }
+                                                    return response()->json($res);
                                                 }
                                                 catch (\Exception $e) {
                                                     $res = [
@@ -296,8 +310,8 @@ class CandidateController extends Controller
                                                         'messages' => $e->getMessage(),
                                                         'data' => null
                                                     ];
+                                                    return response()->json($res);
                                                 }
-                                                return response()->json($res);
                                             }
 
                                         }
@@ -345,9 +359,10 @@ class CandidateController extends Controller
         elseif(!empty($request->getContent())){
             $data = $request->getContent();
             $user_info = new UserContestInfo();
-//            $user_info->nextID();
+            $user_info->nextID();
 //            $info = $hash->decrypt($data);
             $info = $hash->decrypt(str_replace('\n','',$data));
+
             if(!empty($info)){
 //                parse_str($info, $data);
                 $data = json_decode($info, true);
@@ -406,7 +421,6 @@ class CandidateController extends Controller
                             }
                         }
                         $user_info->season = !empty($season)?$season->season_id:1;
-
                         try {
                             $user_info->save();
                             foreach ($user_info->getAttributes() as $key3 => $value3){
@@ -446,7 +460,6 @@ class CandidateController extends Controller
                             ];
                             return response()->json($res);
                         }
-
                     }
                 }
                 else{
@@ -507,6 +520,7 @@ class CandidateController extends Controller
 
     public function manage()
     {
+//        UserContestInfo_Es::putMapping();
         $filter_data = $this->form_load->getFilterField('backend','search_candidate');
         $result_data = $this->form_load->getResultField('backend','search_candidate');
         if($this->admin_type == 'search'){
@@ -787,16 +801,18 @@ class CandidateController extends Controller
         elseif($this->admin_type == 'province'){
 
         }
-
         $start = (int)$request->start;
         $length = !empty($request->length)?(int)$request->length:10;
-        $query = UserContestInfo::query()->where($params);
-        if(!empty($request->name)){
-            $query = UserContestInfo::query()->where($params)->where('name','like','%'.$request->name.'%');
-        }
+//        $query = UserContestInfo::query()->where($params);
+//        $query = UserContestInfo::searchByQuery(['match' => $params],null,null,$length,$start);
+        $query = UserContestInfo::customSearch($params,$start,$length);
+//        echo '<pre>';print_r($query->chunk(10));echo '</pre>';
+//        if(!empty($request->name)){
+//            $query = UserContestInfo::query()->where($params)->where('name','like','%'.$request->name.'%');
+//        }
 
-        $total = $query->count();
-        $query = $query->skip($start)->take($length)->get();
+        $total = $query->totalHits();
+//        $query = $query->take($length)->all();
         $request->merge(['start' => 0]);
         return Datatables::of($query)->setTotalRecords($total)->make(true);
     }
@@ -1096,6 +1112,51 @@ class CandidateController extends Controller
         }
     }
 
+    public function exportNextRound(Request $request){
+        $req = $request->all();
+        $heading = ['STT','Tỉnh/TP','Quận/huyện','Trường','Lớp','Username','Họ tên','Ngày sinh','Điểm cao nhất','Thời gian thi','Cấp'];
+        $mapping = ['id','province_name','district_name','school_name','class_id','u_name','name','birthday','total_point','used_time','target'];
+        if(!empty($request->province_id)){
+            $store_path = $this->store_path.'/next_round/';
+            try {
+                $current_date = date('Ymd', time());
+                $name = 'export_' . $current_date. '.xlsx';
+
+                if ($this->storeExcelFromCollection( $req, $name, 'next_round', $heading, $mapping)) {
+                    shell_exec('cd ../ && zip -r storage/app/' . $store_path . $name . ' storage/app/' . $store_path . $name);
+                    return Storage::download($store_path . $name, $name);
+                }
+            } catch (\Exception $e) {
+                echo "<pre>";
+                print_r($e->getMessage());
+                echo "</pre>";
+                die;
+            }
+        }
+    }
+    public function exportUserNotEnoughInfo(Request $request){
+        $req = $request->all();
+        $heading = ['STT','Tỉnh/TP','Quận/huyện','Trường','Lớp','Username','Họ tên','Ngày sinh','Bảng'];
+        $mapping = ['member_id','province_name','district_name','school_name','class_id','u_name','name','birthday','target'];
+
+        $store_path = $this->store_path.'/next_round/';
+        try {
+            $current_date = date('Ymd', time());
+            $name = 'export_' . $current_date. '.xlsx';
+
+            if ($this->storeExcelFromCollection( $req, $name, 'user_not_enough_info', $heading, $mapping)) {
+                shell_exec('cd ../ && zip -r storage/app/' . $store_path . $name . ' storage/app/' . $store_path . $name);
+                return Storage::download($store_path . $name, $name);
+            }
+        } catch (\Exception $e) {
+            echo "<pre>";
+            print_r($e->getMessage());
+            echo "</pre>";
+            die;
+        }
+
+    }
+
     public function storeExcel($data, $name, $module,$heading,$map)
     {
         ob_start();
@@ -1103,6 +1164,9 @@ class CandidateController extends Controller
         if($module =='candidate'){
 //            $export = new Exports( $data, 'candidate');
             $export = new Exports( $data, 'candidate',$heading,$map);
+        }
+        elseif ($module =='next_round'){
+            $export = new Exports( $data, 'next_round',$heading,$map);
         }
         else{
             $export = new Exports( $data, 'result',$heading,$map);
@@ -1114,10 +1178,9 @@ class CandidateController extends Controller
     public function storeExcelFromCollection($data, $name, $module,$heading,$map)
     {
         ob_start();
-        $store_path = $this->store_path.'/'.$module;
-        if($module =='candidate'){
-//            $export = new Exports( $data, 'candidate');
-            $export = new ExportFromCollection( $data, 'candidate');
+        $store_path = $this->store_path.'/'.$module.'/';
+        if(!empty($module)){
+            $export = new ExportFromCollection( $data, $module,$heading,$map);
         }
         else{
             $export = new ExportFromCollection( $data, 'result');
@@ -1171,39 +1234,683 @@ class CandidateController extends Controller
         return view('CONTEST-CONTESTMANAGE::modules.contestmanage.candidate.set_exam',$data_view);
     }
 
-    public function testEs(){
-       $client = ClientBuilder::create()->build();
-       $result = $client->search([
-           "index" => "giaothonghocduong",
-           "body" => [
-               "query" => [
-                   "match" => [
-                       "_all" => "design"
-                   ]
-               ]
-           ]
-       ]);
-       echo '<pre>';print_r($result);echo '</pre>';die;
-//        UserContestInfo_Es::addAllToIndex();
+    public function nextRoundFilter(Request $request){
+        $schools = [];
+        if(!empty($request->level)){
+            $schools = School::where('schoollevel', (int)$request->level)->get()->toArray();
+        }
+        elseif(Cache::tags(config('site.cache_tag'))->has('school_distinct')){
+            $schools = Cache::tags(config('site.cache_tag'))->get('school_distinct');
+        }
+        else{
+            $schools = ContestResult::distinct('school_id')->get()->toArray();
+            Cache::tags(config('site.cache_tag'))->forever('school_distinct', $schools);
+        }
+        if(!empty($request->page)){
+            $take = 1000;
+            $skip = ((int)$request->page - 1)*$take;
+            if($request->page == 1){
+                $skip = 2;
+            }
+            $schools = array_slice($schools,$skip,$take);
+        }
+
+//        $schools = ContestResult::distinct('member_id')->take(100)->get()->count();
+//        echo '<pre>';print_r($schools);echo '</pre>';die;
+//        echo '<pre>';print_r($list);echo '</pre>';die;
+//        $schools = [];
+//        if(!empty($request->page)){
+//            $limit = 10000;
+//            $skip = ((int)$request->page -1) * 10000;
+//            $schools = School::select('_id')->whereIn('schoollevel',[2,3])->skip($skip)->take($limit)->get()->toArray();
+//        }
+        $data_view = [
+            'schools' => $schools
+        ];
+        return view('CONTEST-CONTESTMANAGE::modules.contestmanage.candidate.next_round_filter',$data_view);
     }
 
-    public function updateToken(Request $request){
-        $res = [
-            'data' => [],
-            'success' => false,
-            'messages'
-        ];
-        if(!empty($request->member_id) && !empty($request->token)){
-            $user_info = UserContestInfo::where('member_id', $request->member_id)->first();
-            if(!empty($user_info)){
-                $user_info->token = $request->token;
-                if($user_info->update){
-                    $res['success'] = true;
-                }
+    public function checkUserExamStatus(Request $request){
+        if(!empty($request->round_id)){
 
+        }
+    }
+
+    public function dataNextRound(Request $request){
+        $res = [
+            'success' => true,
+            'data' => [],
+            'messages' => ''
+        ];
+        $data = [];
+        $aggregate = [];
+        $match = [];
+        if(!empty($request->id)){
+//            $test = ContestResult::where('school_id', (int)$request->id)->orderBy('total_point', 'desc')->orderBy('used_time','desc');
+            $match['school_id'] = (int)$request->id;
+            array_unshift($aggregate, ['$match' => $match]);
+            $aggregate[] = [
+                '$sort' => [
+                    'total_point' => -1,
+                    'used_time' => 1
+                ]
+            ];
+            $aggregate[] = [
+                '$in' => ['$class_id' => [10,11,12]]
+            ];
+            $aggregate[] = [
+                '$group' => [
+                    '_id' => '$member_id',
+                    'topic' => [
+                        '$addToSet' => '$topic_id'
+                    ],
+                    'point' => [
+                        '$max' => '$total_point'
+                    ],
+                    'time' => [
+                        '$push' => '$$ROOT'
+                    ],
+                    'name' => [
+                        '$first' => '$name'
+                    ],
+                    'u_name' => [
+                        '$first' => '$u_name'
+                    ],
+                    'birthday' => [
+                        '$first' => '$birthday'
+                    ],
+                    'email' => [
+                        '$first' => '$email'
+                    ],
+                    'phone_user' => [
+                        '$first' => '$phone_user'
+                    ],
+                    'province_id' => [
+                        '$first' => '$province_id'
+                    ],
+                    'province_name' => [
+                        '$first' => '$province_name'
+                    ],
+                    'district_id' => [
+                        '$first' => '$district_id'
+                    ],
+                    'district_name' => [
+                        '$first' => '$district_name'
+                    ],
+                    'school_id' => [
+                        '$first' => '$school_id'
+                    ],
+                    'class_id' => [
+                        '$first' => '$class_id'
+                    ],
+                    'school_name' => [
+                        '$first' => '$school_name'
+                    ],
+                    'target' => [
+                        '$first' => '$target'
+                    ]
+                ]
+            ];
+            $aggregate[] = [
+                '$project' => [
+                    '_id' => 1,
+                    'topic_count' => [
+                        '$size' => '$topic'
+                    ],
+                    'total_point' => '$point',
+                    'used_time' => ['$arrayElemAt' => ['$time.used_time',0]],
+                    'name' => 1,
+                    'u_name' => 1,
+                    'birthday' => 1,
+                    'email' => 1,
+                    'phone_user' => 1,
+                    'province_id' => 1,
+                    'province_name' => 1,
+                    'district_id' => 1,
+                    'district_name' => 1,
+                    'school_id' => 1,
+                    'class_id' => 1,
+                    'school_name' => 1,
+                    'target' => 1
+                ]
+            ];
+            $aggregate[] = [
+                '$sort' => [
+                    'total_point' => -1,
+                    'used_time' => 1
+                ]
+            ];
+            $aggregate[] = [
+                '$match' => [
+                    'topic_count' => ['$gt' => 1]
+                ]
+            ];
+            $aggregate[] = [
+                '$limit' => 5
+            ];
+//            $list = ContestResult::where('school_id', (int)$request->id)->orderBy('total_point', 'desc')->orderBy('used_time','desc')->take(50)->get();
+//            $list = ContestResult::query()->where('school_id', (int)$request->id)->orderBy('total_point', 'desc')->orderBy('used_time','asc');
+            $list = ContestResult::raw(function ($collection) use ( $aggregate) {
+//            $list = $test->raw(function ($collection) use ( $aggregate) {
+                return $collection->aggregate($aggregate);
+            });
+            if(!empty($list)){
+                foreach ($list as $key => $value){
+                    $data[] = [
+                        'member_id' => $value->_id ?? null,
+//                            'round_id' => $value->round_id ?? null,
+//                            'topic_id' => $value->topic_id ?? null,
+                        'name' => $value->name ?? null,
+                        'u_name' => $value->u_name ?? null,
+                        'total_point' => $value->total_point ?? null,
+                        'used_time' => $value->used_time ?? null,
+                        'repeat_time' => $value->repeat_time ?? null,
+                        'birthday' => $value->birthday ?? null,
+                        'email' => $value->email ?? null,
+                        'phone' => $value->phone ?? null,
+                        'topic_count' => $value->topic_count ?? null,
+                        'phone_user' => $value->phone_user ?? null,
+                        'province_id' => $value->province_id ?? null,
+                        'province_name' => $value->province_name ?? null,
+                        'district_id' => $value->district_id ?? null,
+                        'district_name' => $value->district_name ?? null,
+                        'school_id' => $value->school_id ?? null,
+                        'class_id' => $value->class_id ?? null,
+                        'school_name' => $value->school_name ?? null,
+                        'target' => $value->target ?? null,
+                        'level' => 2
+                    ];
+                }
+                try{
+                    NextRoundBuffer::insert($data);
+                    $res['success'] = true;
+                    $res['messages'] = $request->id.' - done';
+                }
+                catch (\Exception $e){
+                    $res['messages'] = $request->id.' - error - '. $e->getMessage();
+                }
             }
 
         }
         return response()->json($res);
+    }
+
+    public function listNextRound(Request $request){
+        $provinces = '[
+                {
+                    "key": "1",
+                    "value": "Thanh Hóa"
+                },
+                {
+                    "key": "2",
+                    "value": "Nghệ An"
+                },
+                {
+                    "key": "7",
+                    "value": "Hà Giang"
+                },
+                {
+                    "key": "3",
+                    "value": "Hà Tĩnh"
+                },
+                {
+                    "key": "10",
+                    "value": "Lạng Sơn"
+                },
+                {
+                    "key": "4",
+                    "value": "Quảng Bình"
+                },
+                {
+                    "key": "18",
+                    "value": "Tiền Giang"
+                },
+                {
+                    "key": "5",
+                    "value": "Quảng Trị"
+                },
+                {
+                    "key": "9",
+                    "value": "Bắc Kạn"
+                },
+                {
+                    "key": "15",
+                    "value": "Quảng Ninh"
+                },
+                {
+                    "key": "13",
+                    "value": "Bắc Giang"
+                },
+                {
+                    "key": "19",
+                    "value": "An Giang"
+                },
+                {
+                    "key": "16",
+                    "value": "Long An"
+                },
+                {
+                    "key": "20",
+                    "value": "Bến Tre"
+                },
+                {
+                    "key": "54",
+                    "value": "Yên Bái"
+                },
+                {
+                    "key": "52",
+                    "value": "Bình Thuận"
+                },
+                {
+                    "key": "8",
+                    "value": "Cao Bằng"
+                },
+                {
+                    "key": "6",
+                    "value": "Thừa Thiên Huế"
+                },
+                {
+                    "key": "55",
+                    "value": "Điện Biên"
+                },
+                {
+                    "key": "53",
+                    "value": "Lào Cai"
+                },
+                {
+                    "key": "58",
+                    "value": "Sơn La"
+                },
+                {
+                    "key": "57",
+                    "value": "Lai Châu"
+                },
+                {
+                    "key": "59",
+                    "value": "Kon Tum"
+                },
+                {
+                    "key": "56",
+                    "value": "Hòa Bình"
+                },
+                {
+                    "key": "60",
+                    "value": "Gia Lai"
+                },
+                {
+                    "key": "14",
+                    "value": "Phú Thọ"
+                },
+                {
+                    "key": "21",
+                    "value": "Vĩnh Long"
+                },
+                {
+                    "key": "63",
+                    "value": "Lâm Đồng"
+                },
+                {
+                    "key": "61",
+                    "value": "Đắk Lắk"
+                },
+                {
+                    "key": "62",
+                    "value": "Đắk Nông"
+                },
+                {
+                    "key": "17",
+                    "value": "Đồng Tháp"
+                },
+                {
+                    "key": "11",
+                    "value": "Tuyên Quang"
+                },
+                {
+                    "key": "37",
+                    "value": "Thái Bình"
+                },
+                {
+                    "key": "22",
+                    "value": "Trà Vinh"
+                },
+                {
+                    "key": "25",
+                    "value": "Sóc Trăng"
+                },
+                {
+                    "key": "29",
+                    "value": "Bắc Ninh"
+                },
+                {
+                    "key": "48",
+                    "value": "Bình Định"
+                },
+                {
+                    "key": "23",
+                    "value": "Hậu Giang"
+                },
+                {
+                    "key": "46",
+                    "value": "Quảng Nam"
+                },
+                {
+                    "key": "30",
+                    "value": "Hà Nam"
+                },
+                {
+                    "key": "49",
+                    "value": "Phú Yên"
+                },
+                {
+                    "key": "47",
+                    "value": "Quảng Ngãi"
+                },
+                {
+                    "key": "24",
+                    "value": "Kiên Giang"
+                },
+                {
+                    "key": "26",
+                    "value": "Bạc Liêu"
+                },
+                {
+                    "key": "34",
+                    "value": "Hưng Yên"
+                },
+                {
+                    "key": "50",
+                    "value": "Khánh Hòa"
+                },
+                {
+                    "key": "32",
+                    "value": "Hải Dương"
+                },
+                {
+                    "key": "51",
+                    "value": "Ninh Thuận"
+                },
+                {
+                    "key": "33",
+                    "value": "Hải Phòng"
+                },
+                {
+                    "key": "45",
+                    "value": "Đà Nẵng"
+                },
+                {
+                    "key": "40",
+                    "value": "Bình Dương"
+                },
+                {
+                    "key": "31",
+                    "value": "Hà Nội"
+                },
+                {
+                    "key": "42",
+                    "value": "Tây Ninh"
+                },
+                {
+                    "key": "35",
+                    "value": "Nam Định"
+                },
+                {
+                    "key": "38",
+                    "value": "Vĩnh Phúc"
+                },
+                {
+                    "key": "27",
+                    "value": "Cà Mau"
+                },
+                {
+                    "key": "39",
+                    "value": "Bình Phước"
+                },
+                {
+                    "key": "41",
+                    "value": "Đồng Nai"
+                },
+                {
+                    "key": "12",
+                    "value": "Thái Nguyên"
+                },
+                {
+                    "key": "28",
+                    "value": "Cần Thơ"
+                },
+                {
+                    "key": "43",
+                    "value": "Bà Rịa - Vũng Tàu"
+                },
+                {
+                    "key": "36",
+                    "value": "Ninh Bình"
+                },
+                {
+                    "key": "44",
+                    "value": "Tp.Hồ Chí Minh"
+                }
+            ]';
+        return view('CONTEST-CONTESTMANAGE::modules.contestmanage.candidate.list_next_round',['provinces' => json_decode($provinces), 'rounds' => ContestRound::pluck('round_name','round_id')]);
+    }
+
+    public function dataListNextRound(Request $request)
+    {
+
+        if (!empty($request->province_id) && $request->province_id != 0) {
+            $province_id = (int)$request->province_id;
+
+            $result = [];
+            $schools = NextRoundBuffer::where('province_id', $province_id)->distinct()->select('school_id')->get()->toArray();
+            if(!empty($schools)){
+                foreach ($schools as $item){
+                    $exams = DB::connection('mysql_cuocthi')->table('contest_buffers')->where('school_id', (int)$item['school_id'])->groupBy('member_id')->orderBy('total_point','desc')->orderBy('used_time','asc')->get()->toArray();
+                    if(!empty($exams)){
+                        foreach ($exams as $exam){
+//                            $result[] = ContestResult::where('member_id', (int)$exam['member_id'])->orderBy('total_point','desc')->orderBy('used_time','desc')->first()->toArray();
+                            $result[] = $exam;
+                        }
+                    }
+                }
+            }
+
+//        $request->merge(['start' => 0]);
+            return Datatables::make($result)
+                ->editColumn('used_time', function ($res) {
+                    return (new ContestFunc())->convertExamTime($res->used_time);
+                })->make(true);
+        }
+    }
+
+    public function dataUserNotEnoughInfo(Request $request)
+    {
+
+        $result = UserContestInfo::where('target','$exist',false)->orWhere('target', null)
+            ->orWhere(function ($query){
+                return $query->where('target','group_a')->where('nation','$exists',false);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_a')->where('nation',null);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_a')->where('nation','nation_1')->where('province_name',null);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_a')->where('nation','nation_1')->where('school_name',null);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_a')->where('nation','nation_1')->where('province_name','$exists',false);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_b')->where('job','$exists',false);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_b')->where('job',null);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_b')->where('job','job_1')->where('school_name',null);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_b')->where('province_name','$exists',false);
+            })
+            ->orWhere(function ($query){
+                return $query->where('target','group_b')->where('province_name',null);
+            })
+            ->get();
+
+//        $request->merge(['start' => 0]);
+            return Datatables::make($result)->make(true);
+
+    }
+
+    public function syncPoint(Request $request){
+       $list = NextRoundBuffer::where('is_sync',1)->take(1000)->get();
+       if(!empty($list)){
+            foreach ($list as $item){
+                if(!empty($item->member_id)){
+                    $result = ContestResult::where('member_id', (int)$item->member_id)->orderBy('total_point','desc')->orderBy('used_time','asc')->first();
+                    if(!empty($result)){
+                        $item->total_point = $result->total_point;
+                        $item->used_time = $result->used_time;
+                        $item->is_sync = 2;
+                        if($item->update()){
+                            echo '<pre>';print_r($item->id . ' - done');echo '</pre>';
+                        }
+                    }
+                }
+            }
+       }
+       else{
+           echo '<pre>';print_r('all done');echo '</pre>';
+       }
+    }
+
+    public function importNextRoundData(Request $request){
+        $res = [
+            'success' => false,
+            'data' => [],
+            'messages' => ''
+        ];
+        $import_data = [];
+        if ($request->hasFile('file_upload')) {
+            $file = $request->file_upload;
+            if ($file->getMimeType() == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $file->getMimeType() == 'application/vnd.ms-excel') {
+                if ($file->getClientOriginalExtension() == 'xls' || $file->getClientOriginalExtension() == 'xlsx') {
+                    if ($file->getSize() < 10000000) {
+                        $data = (new NextRoundImport())->toArray($file);
+                        $data = $data[0];
+                        if(count($data) > 1) {
+                            foreach ($data as $key => $item) {
+                                $user_info = UserContestInfo::where('u_name', (string)$item[0])->first();
+                                if(!empty($user_info)){
+                                    $import_item = [];
+                                    foreach ($user_info->getAttributes() as $key2 => $value2){
+                                        $import_item[$key2] = $value2;
+                                    }
+                                    $import_item['round_id'] = (int)$request->round_id;
+                                    unset($import_item['_id']);
+                                    unset($import_item['created_at']);
+                                    unset($import_item['updated_at']);
+                                    $import_data[] = $import_item;
+                                }
+                                else{
+                                    $res['messages'] = 'Không tim thấy User tại dòng thứ '. ($key +1 );
+                                    return response()->json($res);
+                                }
+                            }
+                            if(!empty($import_data)){
+                                try{
+                                    if(UserNextRound::insert($import_data)){
+                                        $res['success'] = true;
+                                    }
+                                }
+                                catch (\Exception $e){
+                                    $res['messages'] = 'Có lỗi xảy ra, vui lòng thử lại';
+                                }
+                            }
+                        }
+                        else{
+                            $res['messages'] = 'Danh sách rỗng, vui lòng kiểm tra lại';
+                        }
+
+                    }
+                    else{
+                        $res['messages'] = 'Dung lượng file quá lớn, vui lòng upload file với dung lượng < 10MB';
+                    }
+                }
+                else{
+                    $res['messages'] = 'File không hợp lệ, vui lòng chỉ upload file excel';
+                }
+            }
+            else{
+                $res['messages'] = 'File không hợp lệ, vui lòng chỉ upload file excel';
+            }
+        }
+        else{
+            $res['messages'] = 'Vui lòng nhập file excel';
+        }
+        return response()->json($res);
+    }
+
+    public function dataImportNextRound(Request $request){
+        $params = [];
+        if(!empty($request->province_id)){
+            $params['province_id'] = (int) $request->province_id;
+        }
+        $start = (int)$request->start;
+        $length = !empty($request->length)?(int)$request->length:10;
+        $query = UserNextRound::query()->where($params);
+        $total = $query->count();
+        $query = $query->skip($start)->take($length)->get();
+        $request->merge(['start' => 0]);
+        return Datatables::of($query)->setTotalRecords($total)->make(true);
+    }
+
+    public function getSyncEs(){
+//        UserContestInfo::createIndex(20);
+        return view('CONTEST-CONTESTMANAGE::modules.contestmanage.candidate.sync_es');
+    }
+
+    public function syncEs(Request $request){
+        if(!empty($request->type)) {
+            if (!empty($request->page)) {
+                $limit = !empty($request->limit) ? (int)$request->limit : 2000;
+                if ($request->type == 'result') {
+                    $list = ContestResult::where('sync_es', null)->take($limit)->get();
+                }
+                elseif($request->type == 'candidate'){
+                    $list = UserContestInfo::where('sync_es', 1)->take($limit)->get();
+                }
+
+
+                if (!empty($list)) {
+                    try {
+                        $list->addToIndex();
+                        $arr = [];
+                        foreach ($list as $item){
+                            $arr[] = $item->_id;
+                        }
+                        if ($request->type == 'result') {
+                            ContestResult::whereIn('_id',$arr)->update(['sync_es' => 2]);
+                        }
+                        elseif($request->type == 'candidate'){
+                            UserContestInfo::whereIn('_id',$arr)->update(['sync_es' => 2]);
+                        }
+                        echo "<pre>";
+                        print_r($request->page . ' - done');
+                        echo "</pre>";
+                    } catch (\Exception $e) {
+                        echo "<pre>";
+                        print_r($e->getMessage());
+                        echo "</pre>";
+                        die;
+                    }
+                } else {
+                    echo "<pre>";
+                    print_r('all done');
+                    echo "</pre>";
+                    die;
+                }
+            }
+        }
     }
 }
