@@ -66,21 +66,10 @@ class HomeController extends Controller
         }
         //end get banner
         //get logo group
-        $id_position_logo_ban_to_chuc_cuoc_thi = config('site.banner.id_logo_ban_to_chuc_cuoc_thi');
-        $id_position_logo_don_vi_dong_hanh = config('site.banner.id_logo_don_vi_dong_hanh');
-        
-        if (Cache::has('list_logo_ban_to_chuc_cuoc_thi')) {
-          $list_logo_ban_to_chuc_cuoc_thi = Cache::get('list_logo_ban_to_chuc_cuoc_thi');
-        } else {
-          $list_logo_ban_to_chuc_cuoc_thi = Banner::where('position',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
-          Cache::put('list_logo_ban_to_chuc_cuoc_thi', $list_logo_ban_to_chuc_cuoc_thi,1440);
-        }
-        if (Cache::has('list_logo_don_vi_dong_hanh')) {
-          $list_logo_don_vi_dong_hanh = Cache::get('list_logo_don_vi_dong_hanh');
-        } else {
-          $list_logo_don_vi_dong_hanh = Banner::where('position',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
-          Cache::put('list_logo_don_vi_dong_hanh', $list_logo_don_vi_dong_hanh,1440);
-        }
+        $id_position_logo_ban_to_chuc_cuoc_thi = config('site.comunit.id_logo_ban_to_chuc_cuoc_thi');
+        $id_position_logo_don_vi_dong_hanh = config('site.comunit.id_logo_don_vi_dong_hanh');
+        $list_logo_ban_to_chuc_cuoc_thi = Companionunit::where('comtype',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
+        $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
         //end get logo group
         //get tin tuc
         $thongbaobtc = config('site.news_box.thongbaobtc');
@@ -147,7 +136,8 @@ class HomeController extends Controller
           'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
           'list_thi_sinh_moi' => $list_thi_sinh_moi,
           'list_logo_ban_to_chuc_cuoc_thi' => $list_logo_ban_to_chuc_cuoc_thi,
-          'list_logo_don_vi_dong_hanh' => $list_logo_don_vi_dong_hanh
+          'list_logo_don_vi_dong_hanh' => $list_logo_don_vi_dong_hanh,
+          'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky
         ];
         return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data);    
     }

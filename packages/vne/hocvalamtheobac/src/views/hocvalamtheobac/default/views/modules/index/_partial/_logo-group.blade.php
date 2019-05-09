@@ -9,9 +9,9 @@
                         @foreach($list_logo_ban_to_chuc_cuoc_thi as $element)
                         <a class="carousel-item" href="{{ $element->link }}">
                             <div class="logo">
-                                <img src="{{ config('site.url_static') . $element->image }}" alt="">
+                                <img src="{{ config('site.url_static') . $element->img }}" alt="">
                             </div>
-                            <h3 class="name">{{ $element->name }}</h3>
+                            <h3 class="name">{{ $element->comname }}</h3>
                         </a>
                         @endforeach
                         @endif
@@ -26,9 +26,9 @@
                         @foreach($list_logo_don_vi_dong_hanh as $element)
                         <a class="carousel-item" href="{{ $element->link }}">
                             <div class="logo">
-                                <img src="{{ config('site.url_static') . $element->image }}" alt="">
+                                <img src="{{ config('site.url_static') . $element->img }}" alt="">
                             </div>
-                            <h3 class="name">{{ $element->name }}</h3>
+                            <h3 class="name">{{ $element->comname }}</h3>
                         </a>
                         @endforeach
                         @endif

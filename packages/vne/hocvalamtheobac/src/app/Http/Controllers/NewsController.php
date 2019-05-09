@@ -47,10 +47,35 @@ class NewsController extends Controller
         } catch (\Throwable $th) {
           //throw $th;
         }
+        $count_thi_sinh_thi = $count_thi_sinh_dang_ky = 0;
+        try {
+            if (Cache::has('count_thi_sinh_thi')) {
+                $count_thi_sinh_thi = Cache::get('count_thi_sinh_thi');
+            } else {
+                $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate');
+                Cache::put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
+            }
+            // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
+            } catch (\Throwable $th) {
+            //throw $th;
+        }
+        try {
+            if (Cache::has('count_thi_sinh_dang_ky')) {
+                $count_thi_sinh_dang_ky = Cache::get('count_thi_sinh_dang_ky');
+            } else {
+                $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register');
+                Cache::put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
+            }
+            // $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
+            } catch (\Throwable $th) {
+            //throw $th;
+        }
         $share = [
             'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
             'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
-            'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan
+            'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
+            'count_thi_sinh_thi' => $count_thi_sinh_thi,
+            'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky
         ];
         view()->share($share);
     }

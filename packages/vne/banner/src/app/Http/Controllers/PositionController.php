@@ -134,11 +134,11 @@ class PositionController extends Controller
         $type = 'delete';
         $confirm_route = $error = null;
         $validator = Validator::make($request->all(), [
-            'banner_id' => 'required|numeric',
+            'id' => 'required|numeric',
         ], $this->messages);
         if (!$validator->fails()) {
             try {
-                $confirm_route = route('vne.banner.position.delete', ['banner_id' => $request->input('banner_position_id')]);
+                $confirm_route = route('vne.banner.position.delete', ['banner_position_id' => $request->input('banner_position_id')]);
                 return view('VNE-BANNER::modules.banner.modal.modal_confirmation', compact('error','type', 'model', 'confirm_route'));
             } catch (GroupNotFoundException $e) {
                 return view('VNE-BANNER::modules.banner.modal.modal_confirmation', compact('error','type', 'model', 'confirm_route'));
