@@ -13,6 +13,7 @@ use GuzzleHttp\Client;
 use Vne\Hocvalamtheobac\App\ApiHash;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Cache;
 class SearchController extends Controller
 {
     protected $secret_key = '8bgCi@gsLbtGhO)1';
@@ -76,6 +77,26 @@ class SearchController extends Controller
     }
 
     public function listMember(Request $request){
+        $target = [];
+        if(Cache::tags(config('site.cache_tag'))->has('contest_target')){
+            $target = Cache::tags(config('site.cache_tag'))->get('contest_target');
+        }
+        else {
+            try {
+                $target = file_get_contents($this->url . '/api/contest/get/contest_target');
+                if(!empty($target)){
+                    $target = json_decode($target);
+                    if(!empty($target->data)){
+                        $target = $target->data;
+                        Cache::tags(config('site.cache_tag'))->forever('contest_target', $target);
+                    }
+                }
+
+            } catch (\Exception $e) {
+
+            }
+        }
+
       $list_setting = $this->list_setting;
       $open_search = isset($list_setting['open_search']) ? $list_setting['open_search'] : '';
       $data = [
@@ -92,13 +113,9 @@ class SearchController extends Controller
       //get form search
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
-
-      $form_search = '';
-      if(!empty($candidate_form_arr['data'])){
-        $form_data = $candidate_form_arr['data']['load_default'];
-        $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
-        $form_search = $html->render();
-      }
+      $form_data = $candidate_form_arr['data']['load_default'];
+      $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
+      $form_search = $html->render();
       //end
       $list_member = file_get_contents($url . '/api/contest/get/search_candidate?'. http_build_query($params));
       $list_member = json_decode($list_member, true);
@@ -108,11 +125,13 @@ class SearchController extends Controller
       $paginatedSearchResults= new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.member'),'path' => 'danh-sach-thi-sinh?'. http_build_query($params)]);
       $headers = $list_member['headers'];
       $data = [
-        'list_member' => $paginatedSearchResults,
+        'paginator' => $paginatedSearchResults,
         'form_search' => $form_search,
         'headers' => $headers,
         'params' => $params,
-        'open_search' => $open_search
+        'open_search' => $open_search,
+        'target' => $target,
+          'link_limit' => 7
       ];
       return view('VNE-HOCVALAMTHEOBAC::modules.search.search_member', $data);
     }
@@ -135,21 +154,20 @@ class SearchController extends Controller
       //get form search
       $result_form = $this->result_form;
       $result_form_arr = json_decode($result_form,true);
+      $form_data = $result_form_arr['data']['load_default'];
+      $target_data =  !empty($result_form_arr['data']['auto_load'])?$result_form_arr['data']['auto_load'][0]['form_data']:null;
       $form_search = '';
-      if($result_form_arr['data']){
-        $form_data = $result_form_arr['data']['load_default'];
-        if(!empty($form_data)){
-          $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
-          $form_search = $html->render();
-        }
+      if(!empty($form_data)){
+        $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data','params'));
+        $form_search = $html->render();
       }
       //end
-      $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?'. http_build_query($params));
-      $list_member = json_decode($list_member, true);
-      
+        $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?' . http_build_query($params));
+        $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $collection = new Collection($list_member['data']);
-      $perPage = 20; 
+      $perPage = 20;
+      unset($params['page']);
       $paginatedSearchResults = new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.result'),'path' => 'ket-qua?'. http_build_query($params)]);
       $list_member_foreach = array();
       $arr_temp = array();
@@ -165,70 +183,83 @@ class SearchController extends Controller
       
       $headers = $list_member['headers'];
       $data = [
-        'list_member' => $paginatedSearchResults,
+        'paginator' => $paginatedSearchResults,
         'form_search' => $form_search,
         'params' => $params,
         'headers' => $headers,
         'list_member_foreach' => $list_member_foreach,
-        'open_search' => $open_search
+        'open_search' => $open_search,
+        'target_data' => $target_data,
+          'link_limit' => 7
       ];
       return view('VNE-HOCVALAMTHEOBAC::modules.search.search_result',$data);
     }
 
     public function getTop(Request $request,$type){
-      $this->setJsonRankBoard();
-      $title = '';
-      $url = $this->url;
-      $type = $type;
-      $page = $request->has('page') ? $request->input('page') : 1;
-      $data_child_params = 
-        ($request->has('data_child_params') && $request->input('data_child_params')) 
-        ? $request->input('data_child_params') : 'province';
-      //url get by page
-      $url_get_by_page = $request->url() . '?data_child_params=' . $data_child_params;
-      try {
-        $rank_board = json_decode($this->rank_board);
-        $list_top_thi_sinh_dang_ky = $rank_board->data[0];
-        $list_top_thi_sinh_da_thi = $rank_board->data[1];    
-      } catch (\Throwable $th) {
-        //throw $th;
-        return redirect()->route('index');
-      }
-      
-      if($type=='register'){
-        $title = $list_top_thi_sinh_dang_ky->title;
-        $list_top = $list_top_thi_sinh_dang_ky->data_child;
-        $data_table = self::getDataTable($list_top, $data_child_params, $page);
-        $data_header = self::getDataHeader($list_top, $data_child_params, $page);
-      } 
-      elseif($type=='candidate'){
-        $title = $list_top_thi_sinh_da_thi->title;
-        $list_top = $list_top_thi_sinh_da_thi->data_child;
-        $data_table = self::getDataTable($list_top, $data_child_params, $page);
-        $data_header = self::getDataHeader($list_top, $data_child_params, $page);
-      }
-      $data = [
-        'title' => $title,
-        'type' => $type,
-        'list_top' => $list_top,
-        'data_table' => $data_table,
-        'page' => $page,
-        'data_child_params' => $data_child_params,
-        'url_get_by_page' => $url_get_by_page,
-        'data_header' => $data_header
-      ];
-      return view('VNE-HOCVALAMTHEOBAC::modules.search.rating',$data);
+        $target = $request->target ?? null;
+        $this->setJsonRankBoard();
+        $title = '';
+        $url = $this->url;
+        $page = $request->has('page') ? $request->input('page') : 1;
+        $data_child_params =
+            ($request->has('data_child_params') && $request->input('data_child_params'))
+                ? $request->input('data_child_params') : 'province';
+        //url get by page
+        $url_get_by_page = $request->url() . '?data_child_params=' . $data_child_params;
+        if(!empty($target)){
+            $url_get_by_page .= '&target='.$target;
+        }
+        try {
+            $rank_board = json_decode($this->rank_board);
+            $list_top_thi_sinh_dang_ky = $rank_board->data[0];
+            $list_top_thi_sinh_da_thi = $rank_board->data[1];
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('index');
+        }
+
+        if($type=='register'){
+            $title = $list_top_thi_sinh_dang_ky->title;
+            $list_top = $list_top_thi_sinh_dang_ky->data_child;
+            $data_table = self::getDataTable($list_top, $data_child_params, $page,$target);
+            $data_header = self::getDataHeader($list_top, $data_child_params, $page);
+        }
+        elseif($type=='candidate'){
+            $title = $list_top_thi_sinh_da_thi->title;
+            $list_top = $list_top_thi_sinh_da_thi->data_child;
+            $data_table = self::getDataTable($list_top, $data_child_params, $page,$target);
+            $data_header = self::getDataHeader($list_top, $data_child_params, $page);
+        }
+        $data = [
+            'title' => $title,
+            'type' => $type,
+            'params' => $request->all(),
+            'list_top' => $list_top,
+            'data_table' => $data_table,
+            'page' => $page,
+            'data_child_params' => $data_child_params,
+            'url_get_by_page' => $url_get_by_page,
+            'data_header' => $data_header
+        ];
+        return view('VNE-HOCVALAMTHEOBAC::modules.search.rating',$data);
     }
 
     public function resultMember(Request $request){
       $url = $this->url;
       $member_id = $request->input('member_id');
       $headers = array();
-      $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id='. $member_id);
-      $data_member = json_decode($data_member);
-      $headers = isset($data_member->headers) ? $data_member->headers : $headers;
-      $data = $data_member->data;
-      $user_info = $data_member->user_info;
+      $data = [];
+      $user_info = [];
+      try {
+          $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id=' . $member_id);
+          $data_member = json_decode($data_member);
+          $headers = isset($data_member->headers) ? $data_member->headers : $headers;
+          $data = $data_member->data;
+          $user_info = $data_member->user_info;
+      }
+      catch (\Exception $e){
+
+      }
       $data = [
         'headers' => $headers,  
         'data' => $data,  
@@ -236,18 +267,24 @@ class SearchController extends Controller
       ];
       return view('VNE-HOCVALAMTHEOBAC::modules.search.result_member',$data);    
     }
-    function getDataTable($list_top, $data_child_params, $page){
-      $data_table = array();
-      if(!empty($list_top)){
-        foreach ($list_top as $key => $value) {
-          if( $value->params == $data_child_params){
-            $api = $value->api;
-            $url_api_get_data_table = $api . '&page=' . $page . '&top=20';
-            $data_table = file_get_contents($url_api_get_data_table);
-          }    
+    function getDataTable($list_top, $data_child_params, $page,$target=null){
+        $data_table = array();
+        if(!empty($list_top)){
+            foreach ($list_top as $key => $value) {
+                if( $value->params == $data_child_params){
+                    $api = $value->api;
+                    if(!empty($target)){
+                        $url_api_get_data_table = $api . '&page=' . $page . '&top=20&target='.$target;
+                    }
+                    else{
+                        $url_api_get_data_table = $api . '&page=' . $page;
+                    }
+
+                    $data_table = file_get_contents($url_api_get_data_table);
+                }
+            }
         }
-      }
-      return json_decode($data_table);
+        return json_decode($data_table);
     }
 
     function getDataHeader($list_top, $data_child_params, $page){

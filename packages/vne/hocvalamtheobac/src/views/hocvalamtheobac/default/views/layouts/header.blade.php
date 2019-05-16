@@ -25,7 +25,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
             // Hiển thị tiêu đề chuyên mục
             $url = ($item->route_name != '#') ? ($item->route_params) ? route($item->route_name, [$item->route_params]) : route($item->route_name) : '#';
             echo '<li class="nav-item">';
-            echo '<a href="'.$url.'" class="nav-link">'.$item->name.'</a>';
+            echo '<a href="'.$url.'" class="nav-link">'.$item->menuLocale->name.'</a>';
             // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
             showCategories($categories, $item->menu_id, $char.'|---');
             echo '</li>';
@@ -61,7 +61,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 									<i class="ii ii-bachelor"></i>
 									<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">Thi thật</a>
 								</li>
-								<li class="nav-item"><i class="fa fa-clone"></i><a href="" class="nav-link">Tự luận</a></li>
+								{{-- <li class="nav-item"><i class="fa fa-clone"></i><a href="" class="nav-link">Tự luận</a></li> --}}
 							</ul>
 						</li>
 

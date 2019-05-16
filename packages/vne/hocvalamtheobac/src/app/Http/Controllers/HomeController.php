@@ -46,30 +46,43 @@ class HomeController extends Controller
         $id_position_banner_ngang_trangchu_1 = config('site.banner.id_banner_ngang_trang_chu_1');
         $id_position_banner_ngang_trangchu_2 = config('site.banner.id_banner_ngang_trang_chu_2');
         $id_position_banner_ngang_trangchu_3 = config('site.banner.id_banner_ngang_trang_chu_3');
-        if (Cache::has('banner_ngang_trang_chu_1')) {
-          $banner_ngang_trang_chu_1 = Cache::get('banner_ngang_trang_chu_1');
+        if (Cache::tags([config('site.cache_tag')])->has('banner_ngang_trang_chu_1')) {
+          $banner_ngang_trang_chu_1 = Cache::tags([config('site.cache_tag')])->get('banner_ngang_trang_chu_1');
         } else {
           $banner_ngang_trang_chu_1 = Banner::where('position',$id_position_banner_ngang_trangchu_1)->orderBy('priority', 'desc')->get();
-          Cache::put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
+          Cache::tags([config('site.cache_tag')])->put('banner_ngang_trang_chu_1', $banner_ngang_trang_chu_1,1440);
         }
-        if (Cache::has('banner_ngang_trang_chu_2')) {
-          $banner_ngang_trang_chu_2 = Cache::get('banner_ngang_trang_chu_2');
+        if (Cache::tags([config('site.cache_tag')])->has('banner_ngang_trang_chu_2')) {
+          $banner_ngang_trang_chu_2 = Cache::tags([config('site.cache_tag')])->get('banner_ngang_trang_chu_2');
         } else {
-          $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->first();
-          Cache::put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
+          $banner_ngang_trang_chu_2 = Banner::where('position',$id_position_banner_ngang_trangchu_2)->get();
+          Cache::tags([config('site.cache_tag')])->put('banner_ngang_trang_chu_2', $banner_ngang_trang_chu_2,1440);
         }
-        if (Cache::has('banner_ngang_trang_chu_3')) {
-          $banner_ngang_trang_chu_3 = Cache::get('banner_ngang_trang_chu_3');
+        if (Cache::tags([config('site.cache_tag')])->has('banner_ngang_trang_chu_3')) {
+          $banner_ngang_trang_chu_3 = Cache::tags([config('site.cache_tag')])->get('banner_ngang_trang_chu_3');
         } else {
-          $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->first();
-          Cache::put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
+          $banner_ngang_trang_chu_3 = Banner::where('position',$id_position_banner_ngang_trangchu_3)->get();
+          Cache::tags([config('site.cache_tag')])->put('banner_ngang_trang_chu_3', $banner_ngang_trang_chu_3,1440);
         }
         //end get banner
         //get logo group
         $id_position_logo_ban_to_chuc_cuoc_thi = config('site.comunit.id_logo_ban_to_chuc_cuoc_thi');
         $id_position_logo_don_vi_dong_hanh = config('site.comunit.id_logo_don_vi_dong_hanh');
-        $list_logo_ban_to_chuc_cuoc_thi = Companionunit::where('comtype',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
-        $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
+        if (Cache::tags([config('site.cache_tag')])->has('list_logo_ban_to_chuc_cuoc_thi')) {
+          $list_logo_ban_to_chuc_cuoc_thi = Cache::tags([config('site.cache_tag')])->get('list_logo_ban_to_chuc_cuoc_thi');
+        } else {
+          $list_logo_ban_to_chuc_cuoc_thi = Companionunit::where('comtype',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
+          Cache::tags([config('site.cache_tag')])->put('list_logo_ban_to_chuc_cuoc_thi', $list_logo_ban_to_chuc_cuoc_thi,1440);
+        }
+        if (Cache::tags([config('site.cache_tag')])->has('list_logo_don_vi_dong_hanh')) {
+          $list_logo_don_vi_dong_hanh = Cache::tags([config('site.cache_tag')])->get('list_logo_don_vi_dong_hanh');
+        } else {
+          $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
+          Cache::tags([config('site.cache_tag')])->put('list_logo_don_vi_dong_hanh', $list_logo_don_vi_dong_hanh,1440);
+        }
+        // $list_logo_ban_to_chuc_cuoc_thi = Companionunit::where('comtype',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
+        // $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
+        
         //end get logo group
         //get tin tuc
         $thongbaobtc = config('site.news_box.thongbaobtc');
@@ -101,22 +114,22 @@ class HomeController extends Controller
           //throw $th;
         }
         try {
-          if (Cache::has('count_thi_sinh_dang_ky')) {
-            $count_thi_sinh_dang_ky = Cache::get('count_thi_sinh_dang_ky');
+          if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_dang_ky')) {
+            $count_thi_sinh_dang_ky = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_dang_ky');
           } else {
             $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register');
-            Cache::put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
+            Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
           }
-          // $count_thi_sinh_dang_ky = json_decode(file_get_contents($url . '/api/contest/get/search_candidate'))->total;
         } catch (\Throwable $th) {
           //throw $th;
         }
+        // dd($count_thi_sinh_dang_ky);
         try {
-          if (Cache::has('count_thi_sinh_thi')) {
-            $count_thi_sinh_thi = Cache::get('count_thi_sinh_thi');
+          if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_thi')) {
+            $count_thi_sinh_thi = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_thi');
           } else {
             $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate');
-            Cache::put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
+            Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
           }
           // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
         } catch (\Throwable $th) {
@@ -157,11 +170,11 @@ class HomeController extends Controller
     }
 
     function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
-      if (Cache::has($key_cache)) {
-        $data = Cache::get($key_cache);
+      if (Cache::tags([config('site.cache_tag')])->has($key_cache)) {
+        $data = Cache::tags([config('site.cache_tag')])->get($key_cache);
       } else {
         $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
-        Cache::put($key_cache, $data,1440);
+        Cache::tags([config('site.cache_tag')])->put($key_cache, $data,1440);
       }
       return $data;  
     }

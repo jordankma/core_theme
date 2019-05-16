@@ -1,10 +1,9 @@
-@if(!empty($form_data))
 @foreach ($form_data as $element)
     @if($element['type_view'] == 0)
     <div class="form-group col-md-4">
         <label> {{ $element['title'] }} </label>
         <div class="input">
-            <input type="{{ $element['type'] }}" name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
+            <input type="{{ $element['type'] }}" @if(!empty($params[$element['params']])) value="{{ $params[$element['params']] }}" @endif name="{{ $element['params'] }}" class="form-control" placeholder="{{ $element['hint_text'] }}" @if($element['is_require'] == true) required="" @endif>
         </div>
     </div>
     @elseif($element['type_view'] == 1)
@@ -19,7 +18,7 @@
                 <option value="" disabled selected>{{ $element['hint_text'] }}</option>
                 @if(!empty($element['data_view']))
                 @foreach ($element['data_view'] as $element2)
-                    <option value="{{ $element2['key'] }}">{{ $element2['value'] }}</option>
+                    <option value="{{ $element2['key'] }}"  @if(!empty($params[$element['params']]) && $params[$element['params']] == $element2['key']) selected @endif>{{ $element2['value'] }}</option>
                 @endforeach
                 @endif
             </select>
@@ -52,4 +51,3 @@
     </div>
     @endif
 @endforeach
-@endif

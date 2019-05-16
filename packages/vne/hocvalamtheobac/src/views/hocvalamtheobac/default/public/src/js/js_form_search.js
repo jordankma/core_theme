@@ -5,7 +5,7 @@ $(document).ready(function () {
     //     $(params_tmp).text('');
     //     $(params_tmp).html(str);
     // });
-    $(".select-box").mouseover(function () {
+    $("body").on('mouseover','.select-box',function () {
 
         var _this = $(this);
         _this.attr('disabled','');
@@ -58,8 +58,8 @@ $(document).ready(function () {
                         cache: false,
                         success: function (data, status) {
                             var data = data.data;
-                            var str = '<option>'+'</option>';
-                            var str = '';
+                            // var str = '<option>'+'</option>';
+                            var str = '<option value="">Tất cả</option>';
                             for(i = 0; i<data.length; i++) {
                                 str += '<option value="' + data[i].key + '" >' + data[i].value + '</option>';
                             }  

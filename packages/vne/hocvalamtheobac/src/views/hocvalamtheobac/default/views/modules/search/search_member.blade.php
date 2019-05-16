@@ -29,9 +29,11 @@
 	<!-- search results -->
 	<section class="section search-results">
 		<div class="container">
-			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> thí sinh</div>
+			<div class="results">Tổng số: <span> {{$paginator->total()}}</span> thí sinh</div>
 			<!-- pagination -->
-			{!!$list_member->links()!!}
+
+		@include('VNE-HOCVALAMTHEOBAC::modules.search._paginator')
+		<!-- pagination end -->
 			<!-- pagination end -->
 			<div class="table-responsive detail">
 				<table class="table">
@@ -45,8 +47,8 @@
 					</thead>
 					@endif
 					<tbody>
-						@if(!empty($list_member))
-						@foreach ($list_member as $key => $element)
+						@if(!empty($paginator))
+						@foreach ($paginator as $key => $element)
 							<tr>
 								@if(!empty($element))
 								@foreach ($element as $key2 => $element2)

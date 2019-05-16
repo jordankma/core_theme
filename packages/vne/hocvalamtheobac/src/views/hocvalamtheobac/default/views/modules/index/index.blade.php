@@ -11,13 +11,15 @@
 
 	<!-- adv -->
 	@if(!empty($banner_ngang_trang_chu_2))
+	@foreach($banner_ngang_trang_chu_2 as $item)
 	<div class="section adv">
 		<div class="container">
-			<a href="{{ $banner_ngang_trang_chu_2->link }}" target="_blank">
-				<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_2->image }}">
+			<a href="{{ $item->link }}" target="_blank">
+				<img src="{{ config('site.url_static') . $item->image }}">
 			</a>
 		</div>
 	</div>
+	@endforeach
 	@endif
 	<!-- adv end -->
 
@@ -32,11 +34,13 @@
 
 				<!-- adv -->
 				@if(!empty($banner_ngang_trang_chu_3))
+				@foreach($banner_ngang_trang_chu_2 as $item)
 				<div class="section adv">
-					<a href="{{ $banner_ngang_trang_chu_3->link }}" target="_blank">
-						<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_3->image }}">
+					<a href="{{ $item->link }}" target="_blank">
+						<img src="{{ config('site.url_static') . $item->image }}">
 					</a>
 				</div>
+				@endforeach
 				@endif
 				<!-- adv end -->
 

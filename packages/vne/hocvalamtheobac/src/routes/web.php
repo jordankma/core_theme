@@ -5,9 +5,16 @@ Route::group(array('prefix' => $adminPrefix), function() {
 
         //trang chu
         Route::get('/clear-cache', function(){
-            Cache::forget('list_time_line');
-            Cache::forget('count_thi_sinh_dang_ky');
-            Cache::forget('count_thi_sinh_thi');
+            Cache::tags(config('site.cache_tag'))->forget('list_time_line');
+            Cache::tags(config('site.cache_tag'))->forget('count_thi_sinh_dang_ky');
+            Cache::tags(config('site.cache_tag'))->forget('count_thi_sinh_thi');
+            Cache::tags(config('site.cache_tag'))->forget('menus_frontend');
+            Cache::tags(config('site.cache_tag'))->forget('banner_ngang_trang_chu_1');
+            Cache::tags(config('site.cache_tag'))->forget('banner_ngang_trang_chu_2');
+            Cache::tags(config('site.cache_tag'))->forget('banner_ngang_trang_chu_3');
+            Cache::tags(config('site.cache_tag'))->forget('list_logo_ban_to_chuc_cuoc_thi');
+            Cache::tags(config('site.cache_tag'))->forget('list_logo_don_vi_dong_hanh');
+            Cache::tags(config('site.cache_tag'))->forget('menus_frontend');
         });
         Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
         Route::get('tin-tuc-box/{alias?}', 'HomeController@getNewByBox')->name('vne.index.news.box');
@@ -43,6 +50,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
 
         // trang cap nhat thong tin
         Route::get('get-form-register', 'MemberController@getFormRegister')->name('frontend.member.get.form.register');
+        Route::get('get-form-register-2', 'MemberController@getFormRegister2')->name('frontend.member.get.form.register.2');
         Route::get('cap-nhat-thong-tin', 'MemberController@showRegisterMember')->name('frontend.member.register.show')->where('as','Frontend - Đăng ký member');
         Route::post('cap-nhat-thong-tin', 'MemberController@updateRegisterMember')->name('frontend.member.register.update');
         

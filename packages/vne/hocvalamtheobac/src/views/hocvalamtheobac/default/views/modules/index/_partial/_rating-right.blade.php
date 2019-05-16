@@ -1,7 +1,7 @@
 <section class="section rating-right">
     <div class="info">
         <div class="icon"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/images/cup.png' }}" alt=""></div>
-        <div class="number">{{ $count_thi_sinh_dang_ky }}</div>
+        {{-- <div class="number">{{ $count_thi_sinh_dang_ky }}</div> --}}
         <p>Thí sinh đăng ký</p>
     </div>
     <h2 class="headline">{{ isset($list_thi_sinh_dan_dau_tuan->title) ? $list_thi_sinh_dan_dau_tuan->title : '' }}</h2>

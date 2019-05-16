@@ -33,4 +33,9 @@ class Menu extends Model
     {
         return $this->hasMany('Adtech\Core\App\Models\Domain');
     }
+
+    public function menuLocale()
+    {
+        return $this->hasOne('Adtech\Core\App\Models\MenuLocale','menu_id');
+    }
 }
