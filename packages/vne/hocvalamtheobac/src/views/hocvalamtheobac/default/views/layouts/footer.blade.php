@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-3 branb">
 				<img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/logo.png' }}" alt="">
-				<p>CUỘC THI TUỔI TRẺ HỌC VÀ LÀM THEO TƯ TƯỞNG ĐẠO ĐỨC, PHONG CÁCH HỒ CHÍ MINH NĂM 2018</p>
+				<p>CUỘC THI TUỔI TRẺ HỌC VÀ LÀM THEO TƯ TƯỞNG ĐẠO ĐỨC, PHONG CÁCH HỒ CHÍ MINH NĂM 2019</p>
 			</div>
 			<div class="col-lg-9 info">
 				<div class="headline">THƯỜNG TRỰC BAN TỔ CHỨC:</div>

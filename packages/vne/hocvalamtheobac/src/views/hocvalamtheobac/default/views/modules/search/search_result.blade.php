@@ -86,7 +86,7 @@
 </main>
 @stop
 @section('footer_scripts')
-    <script src="{{ config('site.url_static').'/vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js' }}"></script>
+    <script src="{{ config('site.url_static').'vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js' }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
             var target_data = @json($target_data);
@@ -159,6 +159,14 @@
                                             $('#auto_area').append(html);
                                         }
                                     }
+                                });
+                            }
+                            else if(item.form_data.length==4){
+                                $('#auto_area').html('');
+								console.log(item.form_data);
+                                $.each(item.form_data, function (key1, item1) {
+									var html1 =  genInput(item1);
+									$('#auto_area').append(html1);
                                 });
                             }
                             else if(item.form_data){

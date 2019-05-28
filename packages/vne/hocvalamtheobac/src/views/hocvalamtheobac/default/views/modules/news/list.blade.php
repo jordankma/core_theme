@@ -24,7 +24,7 @@
 									<div class="info">
 										<div class="date"><span>{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span></div>
 										<div class="description">{{ $element->desc }}</div>
-										<div class="copyright"><i class="ii ii-bachelor-blue"></i> {{ $element->create_by }}</div>
+										{{-- <div class="copyright"><i class="ii ii-bachelor-blue"></i> {{ $element->create_by }}</div> --}}
 									</div>
 								</div>
 							</figure>

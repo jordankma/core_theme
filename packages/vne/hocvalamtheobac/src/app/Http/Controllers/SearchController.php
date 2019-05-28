@@ -114,6 +114,8 @@ class SearchController extends Controller
       $candidate_form = $this->candidate_form;
       $candidate_form_arr = json_decode($candidate_form,true);
       $form_data = $candidate_form_arr['data']['load_default'];
+      // dd($candidate_form_arr['data']);
+      $target_data =  !empty($candidate_form_arr['data']['auto_load'])?$candidate_form_arr['data']['auto_load'][0]['form_data']:null;
       $html = view('VNE-HOCVALAMTHEOBAC::modules.search._render_input', compact('form_data'));
       $form_search = $html->render();
       //end
@@ -124,6 +126,7 @@ class SearchController extends Controller
       $perPage = 20;
       $paginatedSearchResults= new LengthAwarePaginator($collection, $list_member['total'], $perPage, $currentPage,['url' => route('frontend.exam.list.member'),'path' => 'danh-sach-thi-sinh?'. http_build_query($params)]);
       $headers = $list_member['headers'];
+      // dd($target_data);
       $data = [
         'paginator' => $paginatedSearchResults,
         'form_search' => $form_search,
@@ -131,6 +134,7 @@ class SearchController extends Controller
         'params' => $params,
         'open_search' => $open_search,
         'target' => $target,
+        'target_data' => $target_data,
           'link_limit' => 7
       ];
       return view('VNE-HOCVALAMTHEOBAC::modules.search.search_member', $data);
@@ -162,8 +166,8 @@ class SearchController extends Controller
         $form_search = $html->render();
       }
       //end
-        $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?' . http_build_query($params));
-        $list_member = json_decode($list_member, true);
+      $list_member = file_get_contents($url . '/api/contest/get/search_contest_result?' . http_build_query($params));
+      $list_member = json_decode($list_member, true);
       $currentPage = LengthAwarePaginator::resolveCurrentPage();
       $collection = new Collection($list_member['data']);
       $perPage = 20;
@@ -182,6 +186,7 @@ class SearchController extends Controller
       }
       
       $headers = $list_member['headers'];
+      dd($target_data);
       $data = [
         'paginator' => $paginatedSearchResults,
         'form_search' => $form_search,
@@ -195,7 +200,7 @@ class SearchController extends Controller
       return view('VNE-HOCVALAMTHEOBAC::modules.search.search_result',$data);
     }
 
-    public function getTop(Request $request,$type){
+    public function getTop(Request $request,$type = 'register'){
         $target = $request->target ?? null;
         $this->setJsonRankBoard();
         $title = '';

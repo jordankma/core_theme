@@ -2,7 +2,7 @@
 <section class="section rating-right">
     <div class="info">
         <div class="icon"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/images/cup.png' }}" alt=""></div>
-        <div class="number">{{ $count_thi_sinh_dang_ky }}</div>
+        {!! $count_thi_sinh_dang_ky !!}
         <p>Thí sinh đăng ký</p>
     </div>
     <h2 class="headline">{{ isset($list_thi_sinh_dan_dau_tuan->title) ? $list_thi_sinh_dan_dau_tuan->title : '' }}</h2>
@@ -33,36 +33,39 @@
 <!-- rating right end -->
 
 <!-- video right -->
+@if(!empty($list_videonoibat))
 <section class="section video-right">
-	<h3 class="headline">Video nổi bật</h3>
-	<div class="video-item">
-		<div class="img-cover">
-			<a href="#" class="img-cover__wrapper">
-				<img src="images/video.png" alt="">
-			</a>
-		</div>
-		<h4 class="title"><a href="http://">Video phát động cuộc thi “Tìm hiểu về biển, đảo
-				Việt Nam” năm 2018</a></h4>
-	</div>
-	<ul class="list">
-		<li class="list-item">
-			<h5 class="title"><a href="">Giới thiệu cuộc thi “Tìm hiểu về biển, đảo Việt
-					Nam” năm 2018</a></h5>
-			<p class="date">29/11/2016</p>
-		</li>
-		<li class="list-item">
-			<h5 class="title"><a href="">VTV1 đưa tin về lễ trao giải các vòng thi trắc nghiệm cuộc thi "Tìm hiểu về
-					biển, đảo
-					Việt Nam" năm 2018</a></h5>
-			<p class="date">29/11/2016</p>
-		</li>
-		<li class="list-item">
-			<h5 class="title"><a href="">Biển đảo Việt Nam nguồn cội tự bao giờ</a></h5>
-			<p class="date">29/11/2016</p>
-		</li>
-	</ul>
-	<a href="" class="btn btn-light">Xem thêm</a>
+    <h3 class="headline">Video nổi bật</h3>
+    @php 
+        $videonoibat = config('site.news_box.videonoibat');
+    @endphp
+    @foreach($list_videonoibat as $element)
+    @php 
+        $alias = $element->title_alias . '.html';
+    @endphp
+    @if($loop->index == 0)
+    <div class="video-item">
+        <div class="img-cover">
+            <a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
+                <img src="{{ config('site.url_static') . $element->image }}" alt="">
+            </a>
+        </div>
+        <h4 class="title"><a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a></h4>
+    </div>
+    <ul class="list">
+    @else
+        <li class="list-item">
+            <h5 class="title"><a href="{{ URL::to('chi-tiet',$alias) }}">{{ $element->title }}</a></h5>
+            <p class="date">{{ date_format($element->created_at,"d/m/Y H:i:s") }}</p>
+        </li>
+    @endif
+    @if($loop->last)
+    </ul>
+    @endif
+    @endforeach
+    <a href="{{ route('frontend.news.list.box',$videonoibat) }}" class="btn btn-light">Xem thêm</a>
 </section>
+@endif
 <!-- video right end -->
 
 <!-- facebook right -->
@@ -74,10 +77,9 @@
 <!-- facebook right end -->
 
 <!-- advertising right -->
-<section class="section advertising-right">
+{{-- <section class="section advertising-right">
 	<div class="advertising-item">
 		<a href=""><img src="images/adv.png" alt=""></a>
 	</div>
-
-</section>
+</section> --}}
 <!-- advertising right end -->

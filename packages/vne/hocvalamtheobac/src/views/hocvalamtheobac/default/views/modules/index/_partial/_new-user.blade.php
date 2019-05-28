@@ -12,10 +12,10 @@
                         </span>
                     </div>
                     <div class="info">
-                        <h3 class="name">{{ $element->name }}</h3>
-                    <p class="address">{{ (isset($element->class_name) && $element->class_name != '') ? $element->class_name : ''  }} 
-                                    - {{ (isset($element->school_name) && $element->school_name != '') ? $element->school_name : '' }} 
-                                    - {{ (isset($element->province_name) && $element->province_name != '') ? $element->province_name : '' }}
+                        <h3 class="name" style="font-size:12px">{{ $element->name }}</h3>
+                        <p style="margin:0px; font-size:10px"> {{ (isset($element->class_name) && $element->class_name != '') ? $element->class_name : ''  }}  </p>
+                        <p style="margin:0px; font-size:10px"> {{ (isset($element->school_name) && $element->school_name != '') ? $element->school_name : '' }} </p>
+                        <p style="margin:0px; font-size:10px"> {{ (isset($element->province_name) && $element->province_name != '') ? $element->province_name : '' }} </p>
                     </div>
                 </div>
             </div>

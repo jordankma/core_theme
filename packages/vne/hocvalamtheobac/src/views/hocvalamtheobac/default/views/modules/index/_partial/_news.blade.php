@@ -14,13 +14,13 @@
 				<div class="content">
 					<div class="img-cover">
 						<a href="{{ URL::to('chi-tiet',$alias) }}" class="img-cover__wrapper">
-							<img src="{{ $element->image }}" alt="">
+							<img src="{{ config('site.url_static') . $element->image }}" alt="">
 						</a>
 					</div>
 					<div class="info">
 						<div class="date">{{ date_format($element->created_at,"d/m/Y") }}</div>
 						<div class="description">{{ $element->desc }}</div>
-						<div class="copyright"><i class="ii ii-bachelor-blue"></i> {{ $element->create_by }}</div>
+						{{-- <div class="copyright"><i class="ii ii-bachelor-blue"></i> {{ $element->create_by }}</div> --}}
 					</div>
 				</div>
 			</figure>

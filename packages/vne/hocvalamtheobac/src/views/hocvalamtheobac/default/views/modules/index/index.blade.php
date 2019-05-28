@@ -71,13 +71,12 @@
 				</section>
 				<!-- facebook right end -->
 
-				<!-- advertising right -->
-				<section class="section advertising-right">
+				<!-- advertisin right -->
+				{{-- <section class="section advertising-right">
 					<div class="advertising-item">
-						<a href=""><img src="images/adv.png" alt=""></a>
+						<a href=""><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/adv.png'}}" alt=""></a>
 					</div>
-
-				</section>
+				</section> --}}
 				<!-- advertising right end -->
 
 			</div>

@@ -75,6 +75,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 							$url_login = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 							$url_register = "http://eid.vnedutech.vn/register?site=" . config('app.url');
 						@endphp
+						<li class="nav-item" style="display: inline-block"><i class="ii ii-bachelor"></i><a href="{{ $url_login }}">Vào thi</a></li>
 						<li class="nav-item" style="display: inline-block"><i class="fa fa-user"></i><a href="{{ $url_login }}">Đăng nhập</a></li>
 						<li class="nav-item" style="display: inline-block"><i class="fa fa-edit"></i><a href="{{ $url_register }}">Đăng ký</a></li>
 					</div>
@@ -92,10 +93,10 @@ function showCategories($categories, $parent_id = 0, $char = '')
 					<a class="logo" href="{{ route('index') }}"><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/logo.png' }}" alt=""></a>
 					<div class="text">
 						<div class="inner">
-							<p>CUỘC THI TUỔI TRẺ HỌC TẬP VÀ LÀM THEO</p>
-							<p>TƯ TƯỞNG, ĐẠO ĐỨC, PHONG CÁCH</p>
-							<p>HỒ CHÍ MINH</p>
-							<p>LẦN THỨ IV, NĂM 2018</p>
+							<p style="margin-bottom:5px">CUỘC THI TUỔI TRẺ HỌC TẬP VÀ LÀM THEO</p>
+							<p style="margin-bottom:5px">TƯ TƯỞNG, ĐẠO ĐỨC, PHONG CÁCH</p>
+							<p style="margin-bottom:5px">HỒ CHÍ MINH</p>
+							<p>LẦN THỨ V, NĂM 2019</p>
 						</div>
 					</div>
 				</div>
