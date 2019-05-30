@@ -1,4 +1,4 @@
-<section class="section logo-group">
+<section class="logo-group">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -7,7 +7,7 @@
                     <div class="carousel js-carousel-01">
                         @if(!empty($list_logo_ban_to_chuc_cuoc_thi))
                         @foreach($list_logo_ban_to_chuc_cuoc_thi as $element)
-                        <a class="carousel-item" href="{{ $element->link }}">
+                        <a class="carousel-item" href="{{ $element->comlink }}">
                             <div class="logo">
                                 <img src="{{ config('site.url_static') . $element->img }}" alt="">
                             </div>
@@ -24,7 +24,7 @@
                     <div class="carousel js-carousel-02">
                         @if(!empty($list_logo_don_vi_dong_hanh))
                         @foreach($list_logo_don_vi_dong_hanh as $element)
-                        <a class="carousel-item" href="{{ $element->link }}">
+                        <a class="carousel-item" href="{{ $element->comlink }}">
                             <div class="logo">
                                 <img src="{{ config('site.url_static') . $element->img }}" alt="">
                             </div>

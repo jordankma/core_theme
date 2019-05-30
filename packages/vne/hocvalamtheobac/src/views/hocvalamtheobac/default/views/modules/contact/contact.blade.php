@@ -1,4 +1,12 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Trang liên hệ' }} @stop
+@section('header_styles')
+	<style>
+		.form-control{
+			width:100%;
+		}
+	</style>
+@stop
 @section('content')
 <main class="main">
 
@@ -27,7 +35,7 @@
 							<div class="form-group col-md-6">
 								<input type="email" name="email_contact" class="form-control" placeholder="Email">
 							</div>
-							<div class="form-group col-12">
+							<div class="form-group col-12" style="margin: 20px 0px;">
 								<textarea class="form-control" name="content" rows="8" placeholder="Nội dung"></textarea>
 							</div>
 						</div>

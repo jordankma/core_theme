@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Danh sách kết quả' }} @stop
 @section('content')
 <main class="main">
 	@if($open_search == 'on')
@@ -53,7 +54,7 @@
             @include('VNE-HOCVALAMTHEOBAC::modules.search._paginator')
             <!-- pagination end -->
 			<div class="table-responsive detail">
-				<table class="table">
+				<table class="table" style="text-align: left; background: #ccc;">
 					@if(!empty($headers))
 					<thead>
 						<tr>

@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Danh sách thí sinh' }} @stop
 @section('content')
 <main class="main">
 	@if($open_search == 'on')
@@ -53,7 +54,7 @@
 		<!-- pagination end -->
 			<!-- pagination end -->
 			<div class="table-responsive detail">
-				<table class="table">
+				<table class="table" style="text-align: left; background: #ccc;">
 					@if(!empty($headers))
 					<thead>
 						<tr>
@@ -87,7 +88,7 @@
 @stop
 @section('footer_scripts')
 	{{-- <script src="{{ asset('/vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js') }}"></script> --}}
-	<script src="{{ config('site.url_static').'vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js?version=3' }}"></script>
+	<script src="{{ config('site.url_static').'vendor/' . $group_name . '/' . $skin . '/src/js/js_form_search.js?v=5' }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var getUrlParameter = function getUrlParameter(sParam) {

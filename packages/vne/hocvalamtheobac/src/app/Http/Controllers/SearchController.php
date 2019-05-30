@@ -186,7 +186,7 @@ class SearchController extends Controller
       }
       
       $headers = $list_member['headers'];
-      dd($target_data);
+      // dd($target_data);
       $data = [
         'paginator' => $paginatedSearchResults,
         'form_search' => $form_search,

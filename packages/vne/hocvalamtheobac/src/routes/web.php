@@ -14,7 +14,11 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Cache::tags(config('site.cache_tag'))->forget('banner_ngang_trang_chu_3');
             Cache::tags(config('site.cache_tag'))->forget('list_logo_ban_to_chuc_cuoc_thi');
             Cache::tags(config('site.cache_tag'))->forget('list_logo_don_vi_dong_hanh');
+            Cache::tags(config('site.cache_tag'))->forget('list_logo_don_vi_tai_tro');
             Cache::tags(config('site.cache_tag'))->forget('frontend_setting');
+            Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.thongbaobtc'));
+            Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.tintuc'));
+            Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.videonoibat'));
         });
         Route::get('/', 'HomeController@index')->name('index')->where('as','Frontend - Trang chủ');
         Route::get('tin-tuc-box/{alias?}', 'HomeController@getNewByBox')->name('vne.index.news.box');

@@ -135,4 +135,9 @@ return [
         'id_logo_ban_to_chuc_cuoc_thi' => '4',
         'id_logo_don_vi_dong_hanh' => '5'
     ],
+    'comunit' => [
+        'id_logo_ban_to_chuc_cuoc_thi' => '1',
+        'id_logo_don_vi_dong_hanh' => '2',
+        'id_logo_don_vi_tai_tro' => '3',
+    ],
 ];

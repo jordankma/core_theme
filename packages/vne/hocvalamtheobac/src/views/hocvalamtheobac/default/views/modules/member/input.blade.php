@@ -27,9 +27,10 @@
             <label> {{ $element['title'] }} @if($element['is_require'] == true) <small class="text-muted" style="color:red">*</small> @endif </label>
             <div class="input">
                 <input type="{{ $element['type'] }}" name="{{ $element['params'] }}"
-                       class="form-control" placeholder="{{ $element['hint_text'] }}"
+                       class="form-control @if($element['type'] == 'date1') datepicker @endif" placeholder="{{ $element['hint_text'] }}"
                        @if($element['is_require'] == true) required="" @endif
-                       @if($element['type'] == 'date') min="1983-01-01" max="2001-31-12" @endif>
+                       @if($element['type'] == 'date1') min="1983-01-01" max="2001-31-12" @endif>
+                       @if($element['type'] == 'date1')<p style="color:red">  Chọn hoặc nhập ngày sinh theo định dạng ngày/tháng/năm (10/10/1995) </p>@endif
                 @if($element['params_hidden'] !=null)
                     <input type="hidden" name="{{ $element['params_hidden'] }}">
                 @endif

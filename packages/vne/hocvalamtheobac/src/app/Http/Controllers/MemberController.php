@@ -272,8 +272,10 @@ class MemberController extends Controller
             }
 
         }
-        $date_birthday = new DateTime($request->input('birthday'));
-        $birthday = date_format($date_birthday,"d-m-Y");
+
+        // $date_birthday = new DateTime($request->input('birthday'));
+        // $birthday = date_format($date_birthday,"d-m-Y");
+        $birthday = $request->input('birthday');
         $field_list = file_get_contents($this->url . '/api/contest/get/list_field');
         $field_list_arr = json_decode($field_list,true);
         $data_request = $request->all();

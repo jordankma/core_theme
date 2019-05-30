@@ -4,7 +4,7 @@
         @php 
 			$thongbaobtc = config('site.news_box.thongbaobtc');
         @endphp
-        <h2 class="headline"><a href="{{ route('frontend.news.list.box',$thongbaobtc) }}">Thông báo BTC</a></h2>
+        <h2 class="headline"><a href="{{ route('frontend.news.list.box',$thongbaobtc) }}" style="text-decoration: none">Thông báo BTC</a></h2>
         <div class="list">
             @foreach($list_thong_bao_btc as $element)
             @php 

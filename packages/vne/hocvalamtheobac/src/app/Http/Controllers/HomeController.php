@@ -68,6 +68,7 @@ class HomeController extends Controller
         //get logo group
         $id_position_logo_ban_to_chuc_cuoc_thi = config('site.comunit.id_logo_ban_to_chuc_cuoc_thi');
         $id_position_logo_don_vi_dong_hanh = config('site.comunit.id_logo_don_vi_dong_hanh');
+        $id_position_logo_don_vi_tai_tro = config('site.comunit.id_logo_don_vi_tai_tro');
         if (Cache::tags([config('site.cache_tag')])->has('list_logo_ban_to_chuc_cuoc_thi')) {
           $list_logo_ban_to_chuc_cuoc_thi = Cache::tags([config('site.cache_tag')])->get('list_logo_ban_to_chuc_cuoc_thi');
         } else {
@@ -77,8 +78,14 @@ class HomeController extends Controller
         if (Cache::tags([config('site.cache_tag')])->has('list_logo_don_vi_dong_hanh')) {
           $list_logo_don_vi_dong_hanh = Cache::tags([config('site.cache_tag')])->get('list_logo_don_vi_dong_hanh');
         } else {
-          $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
+          $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->get();
           Cache::tags([config('site.cache_tag')])->put('list_logo_don_vi_dong_hanh', $list_logo_don_vi_dong_hanh,1440);
+        }
+        if (Cache::tags([config('site.cache_tag')])->has('list_logo_don_vi_tai_tro')) {
+          $list_logo_don_vi_tai_tro = Cache::tags([config('site.cache_tag')])->get('list_logo_don_vi_tai_tro');
+        } else {
+          $list_logo_don_vi_tai_tro = Companionunit::where('comtype',$id_position_logo_don_vi_tai_tro)->get();
+          Cache::tags([config('site.cache_tag')])->put('list_logo_don_vi_tai_tro', $list_logo_don_vi_tai_tro,1440);
         }
         // $list_logo_ban_to_chuc_cuoc_thi = Companionunit::where('comtype',$id_position_logo_ban_to_chuc_cuoc_thi)->take(4)->get();
         // $list_logo_don_vi_dong_hanh = Companionunit::where('comtype',$id_position_logo_don_vi_dong_hanh)->take(2)->get();
@@ -108,11 +115,11 @@ class HomeController extends Controller
           //throw $th;
         }
         // dd($list_thi_sinh_dan_dau_tuan);
-        try {
-          $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
-        } catch (\Throwable $th) {
-          //throw $th;
-        }
+        // try {
+        //   $list_thi_sinh_moi = json_decode(file_get_contents($url . '/api/contest/get/recent_reg'));
+        // } catch (\Throwable $th) {
+        //   //throw $th;
+        // }
         try {
           if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_dang_ky')) {
             $count_thi_sinh_dang_ky = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_dang_ky');
@@ -147,10 +154,11 @@ class HomeController extends Controller
           'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
           'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
           'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
-          'list_thi_sinh_moi' => $list_thi_sinh_moi,
+          // 'list_thi_sinh_moi' => $list_thi_sinh_moi,
           'list_logo_ban_to_chuc_cuoc_thi' => $list_logo_ban_to_chuc_cuoc_thi,
           'list_logo_don_vi_dong_hanh' => $list_logo_don_vi_dong_hanh,
-          'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky
+          'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
+          'list_logo_don_vi_tai_tro' => $list_logo_don_vi_tai_tro
         ];
         return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data);    
     }

@@ -1,4 +1,13 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Danh sách tin tức' }} @stop
+@section('header_styles')
+	<style>
+		.active span{
+			background: #c21775;
+			color: #fff;
+		}
+	</style>
+@stop
 @section('content')
 <main class="main">
 	<div class="container container-main">
@@ -13,7 +22,7 @@
 							@php $alias = $element->title_alias .'.html'; @endphp
 							<figure class="news-item">
 								<h2 class="title">
-									<a href="{{ URL::to('chi-tiet', $alias) }}">Nội dung tìm hiểu của cuộc thi: Các chủ trương, quan điểm của Đảng, Nhà nước về biển đảo Việt Nam</a>
+									<a href="{{ URL::to('chi-tiet', $alias) }}">{{ $element->title }}</a>
 								</h2>
 								<div class="content">
 									<div class="img-cover">
@@ -22,7 +31,7 @@
 										</a>
 									</div>
 									<div class="info">
-										<div class="date"><span>{{ date_format($element->created_at,"d/m/Y H:i:s") }}</span></div>
+										<div class="date"><span>{{ date_format($element->created_at,"d/m/Y") }}</span></div>
 										<div class="description">{{ $element->desc }}</div>
 										{{-- <div class="copyright"><i class="ii ii-bachelor-blue"></i> {{ $element->create_by }}</div> --}}
 									</div>

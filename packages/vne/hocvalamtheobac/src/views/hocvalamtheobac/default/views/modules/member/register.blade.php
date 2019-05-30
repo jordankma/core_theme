@@ -1,5 +1,8 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Đăng ký thông tin' }} @stop
 @section('header_styles')
+	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/bootstrap-datetimepicker/bootstrap-datetimepicker-standalone.css' }}">
+	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css' }}">
 	<style>
 		#loading {
 			background-color:white;
@@ -27,14 +30,16 @@
 @section('content')
 <main class="main">
 	<div id="loading" style="display:none">
-		<img src="{{ config('site.url_static') }}/files/photos/image/loading.gif" alt="Đang tải..."/>
+		<img src="{{ config('site.url_static')  . '/files/photos/image/loading.gif' }}" alt="Đang tải..."/>
 	</div>
 	<!-- registration -->
 	<section class="registration">
 		<div class="container">
-			@if(!Session::has('messages'))
 			<div class="inner">
 				<h3 style="text-align: center; font-size:20px">ĐĂNG KÝ THÔNG TIN TÀI KHOẢN</h3>
+				@if(Session::has('messages'))
+					<p style="color:red;text-align: center">{{ Session::get('messages') }}</p>
+				@endif
 				<p style="font-style: italic;text-align: center">(Bạn cần đăng ký thông tin tài khoản để tham gia cuộc thi)</p>
 				@if(Session::has('error'))
 				<p style="color:#fff;text-align: center;background: rgba(255, 0, 0, 0.7)">{{ Session::get('error') }}</p>
@@ -52,12 +57,12 @@
 					</div>
 				</form>
 			</div>
-			@else
+			{{-- @else
 			<div class="inner">
 				<h3 style="text-align: center; font-size:20px">ĐĂNG KÝ THÔNG TIN TÀI KHOẢN</h3>
 				<p style="color:red;text-align: center">{{ Session::get('messages') }}</p>
 			</div>
-			@endif
+			@endif --}}
 		</div>
 	</section>
 	<!-- registration end -->
@@ -65,6 +70,8 @@
 </main>
 @stop
 @section('footer_scripts')
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/bootstrap-datetimepicker/moment.min.js' }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js' }}"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
             $(document).ajaxStart(function() {
@@ -96,6 +103,13 @@
 				};
 			}
 		})
+		const datepicker = $('.datepicker');
+		if (datepicker) {
+			datepicker.datetimepicker({
+				defaultDate: "10/10/1995",
+				format: 'DD/MM/YYYY'
+			});
+		}
 	</script>
 	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/js_form.js' }}"></script>
 	

@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Xếp hạng' }} @stop
 @section('content')
 @section('header_styles')
 	<style>

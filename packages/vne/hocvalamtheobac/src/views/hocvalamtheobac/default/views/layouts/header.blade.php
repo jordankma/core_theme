@@ -41,7 +41,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 		<div class="container">
 			<div class="inner">
 				<div class="contact">
-					<p class="phone">Hỗ trợ:{{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }} - {{ isset($SETTING['phone']) ? $SETTING['phone'] : '' }}</p>
+					<p class="phone">Hỗ trợ: {{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }} - {{ isset($SETTING['phone']) ? $SETTING['phone'] : '' }}</p>
 					<p class="email">Email: {{ isset($SETTING['email']) ? $SETTING['email'] : '' }}</p>
 				</div> <!-- /top bar -->
 				<ul class="nav">
@@ -51,17 +51,16 @@ function showCategories($categories, $parent_id = 0, $char = '')
 							<a href="" id="text-user-name"></a> 
 						</li>
 						<li class="nav-item" style="display: inline-block">
-							<i class="ii ii-bachelor"></i><a href="http://">Vào thi</a>
+							<i class="ii ii-bachelor"></i><a href="#">Vào thi</a>
 							<ul class="sub-menu">
 								<li class="nav-item">
 									<i class="fa fa-edit"></i>
 									<a href="{{ route('vne.get.try.exam') }}" class="nav-link" id="btn-try-exam">Thi Thử</a>
 								</li>
-								<li class="nav-item">
+								{{-- <li class="nav-item">
 									<i class="ii ii-bachelor"></i>
 									<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">Thi thật</a>
-								</li>
-								{{-- <li class="nav-item"><i class="fa fa-clone"></i><a href="" class="nav-link">Tự luận</a></li> --}}
+								</li> --}}
 							</ul>
 						</li>
 
@@ -70,7 +69,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 							<a href="{{ 'http://eid.vnedutech.vn/logout?site=' . config('app.url') }}" >Đăng xuất</a> 
 						</li>	
 					</div>
-					<div id="offline-now" style="display: flex; visibility: visible;">
+					<div id="offline-now" style="display: flex; visibility: hidden;">
 						@php 
 							$url_login = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 							$url_register = "http://eid.vnedutech.vn/register?site=" . config('app.url');
