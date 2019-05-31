@@ -5,7 +5,7 @@ namespace Vne\Hocvalamtheobac\App\Http\Controllers;
 use Illuminate\Http\Request;
 use Adtech\Application\Cms\Controllers\MController as Controller;
 
-
+use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\Models\Activity;
 use Yajra\Datatables\Datatables;
 use Validator,Datetime,Session,URL,Schema;
@@ -70,12 +70,15 @@ class NewsController extends Controller
             } catch (\Throwable $th) {
             //throw $th;
         }
+        $videonoibat = config('site.news_box.videonoibat');
+        $list_videonoibat = self::getNewsByBoxFromCache($videonoibat, $videonoibat,null,5);
         $share = [
             'list_top_thi_sinh_dang_ky' => $list_top_thi_sinh_dang_ky,
             'list_top_thi_sinh_da_thi' => $list_top_thi_sinh_da_thi,
             'list_thi_sinh_dan_dau_tuan' => $list_thi_sinh_dan_dau_tuan,
             'count_thi_sinh_thi' => $count_thi_sinh_thi,
-            'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky
+            'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
+            'list_videonoibat' => $list_videonoibat
         ];
         view()->share($share);
     }
@@ -107,5 +110,15 @@ class NewsController extends Controller
             'news' => $news     
         ];
         return view('VNE-HOCVALAMTHEOBAC::modules.news.details',$data);
+    }
+
+    function getNewsByBoxFromCache($key_cache, $alias, $news_cat_id, $limit){
+        if (Cache::tags([config('site.cache_tag')])->has($key_cache)) {
+          $data = Cache::tags([config('site.cache_tag')])->get($key_cache);
+        } else {
+          $data = $this->news->getNewsByBox($alias, $news_cat_id, $limit);
+          Cache::tags([config('site.cache_tag')])->put($key_cache, $data,1440);
+        }
+        return $data;  
     }
 }

@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Học và làm theo bác' }} @stop
 @section('content')
 <main class="main">
 	<!-- hero -->
@@ -11,13 +12,15 @@
 
 	<!-- adv -->
 	@if(!empty($banner_ngang_trang_chu_2))
+	@foreach($banner_ngang_trang_chu_2 as $item)
 	<div class="section adv">
 		<div class="container">
-			<a href="{{ $banner_ngang_trang_chu_2->link }}" target="_blank">
-				<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_2->image }}">
+			<a href="{{ $item->link }}" target="_blank">
+				<img src="{{ config('site.url_static') . $item->image }}">
 			</a>
 		</div>
 	</div>
+	@endforeach
 	@endif
 	<!-- adv end -->
 
@@ -31,12 +34,14 @@
 				<!-- notification end -->
 
 				<!-- adv -->
-				@if(!empty($banner_ngang_trang_chu_3))
+				@if(!empty($banner_ngang_trang_chu_2))
+				@foreach($banner_ngang_trang_chu_2 as $item)
 				<div class="section adv">
-					<a href="{{ $banner_ngang_trang_chu_3->link }}" target="_blank">
-						<img src="{{ config('site.url_static') . $banner_ngang_trang_chu_3->image }}">
+					<a href="{{ $item->link }}" target="_blank">
+						<img src="{{ config('site.url_static') . $item->image }}">
 					</a>
 				</div>
+				@endforeach
 				@endif
 				<!-- adv end -->
 
@@ -61,19 +66,16 @@
 
 				<!-- facebook right -->
 				<section class="section facebook-right">
-					<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=270&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=226666764204714"
-						width="100%" height="270" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"
-						allow="encrypted-media"></iframe>
+					<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhocvalamtheobac%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=368588296958531" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 				</section>
 				<!-- facebook right end -->
 
-				<!-- advertising right -->
-				<section class="section advertising-right">
+				<!-- advertisin right -->
+				{{-- <section class="section advertising-right">
 					<div class="advertising-item">
-						<a href=""><img src="images/adv.png" alt=""></a>
+						<a href=""><img src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/adv.png'}}" alt=""></a>
 					</div>
-
-				</section>
+				</section> --}}
 				<!-- advertising right end -->
 
 			</div>

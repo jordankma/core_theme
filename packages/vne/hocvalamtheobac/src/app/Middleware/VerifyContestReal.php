@@ -71,7 +71,7 @@ class VerifyContestReal
 		$url = config('app.url');
 		// $url = 'http://gthd.vnedutech.vn';
 		$status = false;
-		$messages = 'Vòng thi kết thúc!';
+		$messages = 'Vòng thi chưa diễn ra!';
 		try {
 			$data_reponse = json_decode(file_get_contents($url . '/api/contest/get/exam_info?type=' . $type_exam),true);
 			$rounds = $data_reponse['data']['exam_info']['round'];

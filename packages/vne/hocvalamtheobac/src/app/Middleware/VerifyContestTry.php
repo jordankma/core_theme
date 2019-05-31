@@ -12,7 +12,7 @@ class VerifyContestTry
     public function handle($request, Closure $next)
     {
 		$url = config('app.url');
-		$url = 'http://giaothonghocduong.com.vn';
+		// $url = 'http://giaothonghocduong.com.vn';
 		if(!$request->has('token')){
 			return redirect("http://eid.vnedutech.vn/login?site=" . $url);	
 		}

@@ -27,40 +27,42 @@
 	<!-- search end -->
 
 	<!-- search results -->
-	<section class="section search-results">
-		<div class="container">
-			<div class="results">Tổng số: <span> {{$list_member->total()}}</span> thí sinh</div>
-			<!-- pagination -->
-			{!!$list_member->links()!!}
+		<section class="section search-results">
+			<div class="container">
+				<div class="results">Tổng số: <span> {{$paginator->total()}}</span> thí sinh</div>
+				<!-- pagination -->
+
+			@include('VNE-THEME::modules.search._paginator')
 			<!-- pagination end -->
-			<div class="table-responsive detail">
-				<table class="table">
-					@if(!empty($headers))
-					<thead>
-						<tr>
-						@foreach ($headers as $key => $element)
-							<th>{{ $element }}</th>
-						@endforeach
-						</tr>
-					</thead>
-					@endif
-					<tbody>
-						@if(!empty($list_member))
-						@foreach ($list_member as $key => $element)
+				<!-- pagination end -->
+				<div class="table-responsive detail">
+					<table class="table">
+						@if(!empty($headers))
+							<thead>
 							<tr>
-								@if(!empty($element))
-								@foreach ($element as $key2 => $element2)
-									<td>{{ $element2 }}</td>
+								@foreach ($headers as $key => $element)
+									<th>{{ $element }}</th>
 								@endforeach
-								@endif
 							</tr>
-						@endforeach
+							</thead>
 						@endif
-					</tbody>
-				</table>
+						<tbody>
+						@if(!empty($paginator))
+							@foreach ($paginator as $key => $element)
+								<tr>
+									@if(!empty($element))
+										@foreach ($element as $key2 => $element2)
+											<td>{{ $element2 }}</td>
+										@endforeach
+									@endif
+								</tr>
+							@endforeach
+						@endif
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<!-- search results end -->
 	@endif
 

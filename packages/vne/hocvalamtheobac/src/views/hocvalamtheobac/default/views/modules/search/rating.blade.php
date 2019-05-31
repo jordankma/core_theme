@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ 'Xếp hạng' }} @stop
 @section('content')
 @section('header_styles')
 	<style>
@@ -21,6 +22,11 @@
 							<option value="{{ $element->params }}" @if($element->params == $data_child_params) selected @endif>Top {{ $element->title }}</option>	
 						@endforeach
 						@endif
+					</select>
+					<select class="form-control" name="target">
+						<option value="">Chọn bảng</option>
+						<option value="group_a" @if(!empty($params['target']) && $params['target'] == 'group_a') selected @endif>Bảng A (Sinh viên Việt Nam trong và ngoài nước)</option>
+						<option value="group_b" @if(!empty($params['target']) && $params['target'] == 'group_b') selected @endif>Bảng B (Giáo viên và Giảng viên dưới 35 tuổi)</option>
 					</select>
 					<button class="btn btn-primary" type="submit">Tìm kiếm</button>
 				</form>

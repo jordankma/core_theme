@@ -1,4 +1,4 @@
-@if(!empty($list_videonoibat))
+@if(count($list_videonoibat) > 0)
 <section class="section video-right">
     <h3 class="headline">Video nổi bật</h3>
     @php 

@@ -1,4 +1,5 @@
 @extends('VNE-HOCVALAMTHEOBAC::layouts.master')
+@section('title') {{ $news->title }} @stop
 @section('content')
 <main class="main">
 	<div class="container container-main">
@@ -8,7 +9,7 @@
 				<section class="section news-detail">
 					<div class="wrapper">
 						<h1 class="title">{{ $news->title }}</h1>
-						<p class="date">{{ date_format($news->created_at,"d/m/Y H:i:s") }}</p>
+						<p class="date">{{ date_format($news->created_at,"d/m/Y") }}</p>
 						<div class="content">
 							{!! $news->content !!}
 						</div>

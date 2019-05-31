@@ -25,28 +25,23 @@ class ContestController extends Controller
     }
 
     public function getTryExam(Request $request){
-      $url = $this->url;
-      $url_source_try = config('site.url_source_try');
-      $game_token = $request->input('token');
-      $member_id = $request->input('member_id');
-      $linkresult = $url . '?member_id=' . $member_id;
-      $linkaudio = '/res/sound/';
-      $linkhome = $url;
-      $ip_port = 'http://123.30.174.148:4555/';
-      $linkimg = 'http://static.quiz2.vnedutech.vn';
-      try {
-        $linkimg = config('app.static_quiz_url');
-      } catch (\Throwable $th) {
-        //throw $th;
-      }
-      $linkquest = 'http://quiz2.vnedutech.vn/json/contest/5/9_file.json?v=1539684969';
-      $test = 'false';
-      $m_level = '3';
-      $type = '2';
-      $url = $url_source_try . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
-      $data = [
-        'url' => $url
-      ];
+        $url = $this->url;
+        $url_source_try = config('site.url_source_try');
+        $game_token = $request->input('token');
+        $member_id = $request->input('member_id');
+        $linkaudio = '/res/sound/';
+        $linkhome = $url;
+        $linkimg = 'http://static.quiz2.vnedutech.vn';
+        try {
+            $linkimg = config('app.static_quiz_url');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        $linkquest = 'http://quiz2.vnedutech.vn/json/contest/73/399_file.json?v=1558949709';
+        $url = $url_source_try . '/index.php?game_token=' . $game_token  . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome  . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest ;
+        $data = [
+            'url' => $url
+        ];
       return view('VNE-HOCVALAMTHEOBAC::modules.contest.index',$data);
     }
 
