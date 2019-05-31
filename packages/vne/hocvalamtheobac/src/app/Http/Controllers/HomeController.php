@@ -124,24 +124,24 @@ class HomeController extends Controller
           if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_dang_ky')) {
             $count_thi_sinh_dang_ky = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_dang_ky');
           } else {
-            $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register');
+            $count_thi_sinh_dang_ky = file_get_contents($url . '/api/contest/get/total?type=register&reload_cache=1');
             Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_dang_ky', $count_thi_sinh_dang_ky,10);
           }
         } catch (\Throwable $th) {
           //throw $th;
         }
         // dd($count_thi_sinh_dang_ky);
-        try {
-          if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_thi')) {
-            $count_thi_sinh_thi = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_thi');
-          } else {
-            $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate');
-            Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
-          }
-          // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
-        } catch (\Throwable $th) {
-          //throw $th;
-        }
+        // try {
+        //   if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_thi')) {
+        //     $count_thi_sinh_thi = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_thi');
+        //   } else {
+        //     $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate&reload_cache=1');
+        //     Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
+        //   }
+        //   // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
+        // } catch (\Throwable $th) {
+        //   //throw $th;
+        // }
         //end get bang xep hang top
         $data = [
           'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,

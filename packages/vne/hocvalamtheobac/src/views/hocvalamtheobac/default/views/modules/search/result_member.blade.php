@@ -19,7 +19,7 @@
     <section class="result search-results">
         <div class="container">
             <div class="table-responsive detail">
-                <table class="table">
+                <table class="table" style="text-align: left; background: #ccc;">
                     @if(!empty($headers))
                     <thead>
                         <tr>
