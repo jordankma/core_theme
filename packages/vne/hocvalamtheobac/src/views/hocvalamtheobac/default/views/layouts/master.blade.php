@@ -34,8 +34,10 @@
 		</div>
 		<![endif]>
 	</noscript>
-
-	<div id="app" style="background-image: url({{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/bg-body.png' }});">
+	@php 
+		$url_background = isset($SETTING['background']) ? config('site.url_static') . $SETTING['background'] : config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/images/bg-body.png';
+	@endphp
+	<div id="app" style="background-image: url({{ $url_background }});">
 
 		<!-- header -->
 		@include('VNE-HOCVALAMTHEOBAC::layouts.header')
