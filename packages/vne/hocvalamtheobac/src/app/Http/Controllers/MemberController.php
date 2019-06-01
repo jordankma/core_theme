@@ -300,6 +300,7 @@ class MemberController extends Controller
         $data_request['created_time'] = time();
         $data = json_encode($data_request);
         $data_encrypt = $this->my_simple_crypt($data);
+        // dd($data_encrypt);
         $client = new Client();
         $url = $this->url;
         $res = $client->request('POST', $url.'/api/contest/post/candidate_register', [

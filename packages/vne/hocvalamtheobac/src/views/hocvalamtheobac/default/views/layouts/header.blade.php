@@ -53,30 +53,36 @@ function showCategories($categories, $parent_id = 0, $char = '')
 						<li class="nav-item" style="display: inline-block">
 							<i class="ii ii-bachelor"></i><a href="#">Vào thi</a>
 							<ul class="sub-menu">
-								<li class="nav-item">
-									<i class="fa fa-edit"></i>
-									<a href="{{ route('vne.get.try.exam') }}" class="nav-link" id="btn-try-exam">Thi Thử</a>
-								</li>
-								{{-- <li class="nav-item">
-									<i class="ii ii-bachelor"></i>
-									<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">Thi thật</a>
-								</li> --}}
+								<a href="{{ route('vne.get.try.exam') }}" class="nav-link" id="btn-try-exam" style="color:#fff">
+									<li class="nav-item">
+										<i class="fa fa-edit"></i>
+										Thi Thử
+									</li>
+								</a>
+									<li class="nav-item">
+										<i class="ii ii-bachelor"></i>
+										<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">
+											Thi thật
+										</a>
+									</li>
+								
 							</ul>
 						</li>
-
-						<li class="nav-item" id="" style="display: inline-block">
-							<i class="fa fa-edit"></i> 
-							<a href="{{ 'http://eid.vnedutech.vn/logout?site=' . config('app.url') }}" >Đăng xuất</a> 
-						</li>	
+						<a href="{{ 'http://eid.vnedutech.vn/logout?site=' . config('app.url') }}" style="color:#fff">
+							<li class="nav-item" id="" style="display: inline-block">
+								<i class="fa fa-edit"></i> 
+								Đăng xuất 
+							</li>	
+						</a>
 					</div>
 					<div id="offline-now" style="display: flex; visibility: hidden;">
 						@php 
 							$url_login = "http://eid.vnedutech.vn/login?site=" . config('app.url');
 							$url_register = "http://eid.vnedutech.vn/register?site=" . config('app.url');
 						@endphp
-						<li class="nav-item" style="display: inline-block"><i class="ii ii-bachelor"></i><a href="{{ $url_login }}">Vào thi</a></li>
-						<li class="nav-item" style="display: inline-block"><i class="fa fa-user"></i><a href="{{ $url_login }}">Đăng nhập</a></li>
-						<li class="nav-item" style="display: inline-block"><i class="fa fa-edit"></i><a href="{{ $url_register }}">Đăng ký</a></li>
+						<a href="{{ $url_login }}" style="color:#fff"> <li class="nav-item" style="display: inline-block"><i class="ii ii-bachelor"></i>Vào thi</li></a>
+						<a href="{{ $url_login }}" style="color:#fff"> <li class="nav-item" style="display: inline-block"><i class="fa fa-user"></i>Đăng nhập</li> </a>
+						<a href="{{ $url_register }}" style="color:#fff"> <li class="nav-item" style="display: inline-block"><i class="fa fa-edit"></i>Đăng ký</li> </a>
 					</div>
 				</ul> <!-- nav -->
 			</div>

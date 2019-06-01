@@ -11,11 +11,31 @@
 	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css?v=2' }}">
 	@yield('header_styles')
 	<style>
-		/* .nav-item{
-			display: inline-block !important;
-		} */
 		.sub-menu{
 			width: 200px;
+		}
+		.hotline-fix a {
+				text-transform: uppercase;
+				text-decoration: none;
+				padding: 8px 15px;
+				border-radius: 999px;
+				background: #2a9fff;
+				color: #fff;
+				-webkit-transition: all 0.3s ease-in-out;
+				transition: all 0.3s ease-in-out;
+				font-size: 20px;
+		}
+		.hotline-fix a:hover {
+			background: #d2232f;
+			-webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,0.2);
+			box-shadow: 0 0 5px 2px rgba(0,0,0,0.2);
+		}
+		.hotline-fix {
+			display: block;
+			position: fixed;
+			bottom: 10px;
+			left: 10px;
+			z-index: 9999;
 		}
 	</style>
 	{!! isset($SETTING['ga_code']) ? $SETTING['ga_code'] : '' !!}
@@ -64,7 +84,9 @@
 
 		<div class="body-overlay js-body-overlay"></div>
 
-
+		<div class="hotline-fix">
+			<a href="">Hotline: {{ isset($SETTING['hotline']) ? $SETTING['hotline'] : '' }} - {{ isset($SETTING['phone']) ? $SETTING['phone'] : '' }}</a>
+		</div>
 	</div>
 	<!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>

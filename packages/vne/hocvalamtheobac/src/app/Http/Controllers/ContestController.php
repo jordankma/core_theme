@@ -53,7 +53,7 @@ class ContestController extends Controller
       $linkresult = $url . '/ket-qua-thi-sinh?member_id=' . $member_id;
       $linkaudio = '/res/sound/';
       $linkhome = $url;
-      $ip_port = 'http://java.cuocthi.vnedutech.vn/';
+      $ip_port = 'http://contest-assd.vnedutech.vn/api/v1/';
       $linkimg = 'http://static.quiz2.vnedutech.vn/public';
       try {
         $linkimg = config('app.static_quiz_url') . '/public';
@@ -64,7 +64,11 @@ class ContestController extends Controller
       $test = 'false';
       $m_level = '3';
       $type = '2';
-      $url = $url_source_real . '/index.php?game_token=' . $game_token . '&linkresult=' . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' . $m_level . '&type=' . $type;
+      $contest_id = 14;
+      $url = $url_source_real . '/index.php?game_token=' . $game_token . '&linkresult=' 
+            . $linkresult . '&linkaudio=' . $linkaudio . '&linkhome=' . $linkhome . '&ip_port=' . $ip_port 
+            . '&linkimg=' . $linkimg . '&linkquest=' . $linkquest . '&test=' . $test . '&m_level=' 
+            . $m_level . '&type=' . $type. '&contest_id=' . $contest_id;
       $data = [
         'url' => $url
       ];
