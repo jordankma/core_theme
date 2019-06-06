@@ -8,6 +8,7 @@
 
 	<!-- logo list -->
 	@include('VNE-HOCVALAMTHEOBAC::modules.index._partial._logo-group')
+	@include('VNE-HOCVALAMTHEOBAC::modules.index._partial._js-timeline')
 	<!-- logo list end -->
 
 	<!-- adv -->

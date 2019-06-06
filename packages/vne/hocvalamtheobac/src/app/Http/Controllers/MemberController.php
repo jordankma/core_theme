@@ -51,6 +51,7 @@ class MemberController extends Controller
         //render form default
         $form_data = $register_form_array['data']['load_default'];
         $autoload = $register_form_array['data']['auto_load'];
+        
         if(!empty($request->type) && ($request->type == 'app')) {
             $validator = Validator::make($request->all(), [
                 'token' => 'required'
@@ -205,10 +206,12 @@ class MemberController extends Controller
         catch(\Exception $e){
 
         }
+        // dd($request->all());
         if(!empty($load_form)){
             $load_form = json_decode($load_form);
             $default = $load_form->data->load_default;
             $target = $load_form->data->auto_load;
+            
             if(!empty($default)){
                 foreach ($default as $key4 => $item4){
                     if($item4->is_require == 1){
@@ -219,7 +222,9 @@ class MemberController extends Controller
                     }
                 }
             }
+            
             if(!empty($target[0])){
+                
                 if(empty($request->target)){
                     return redirect()->back()->with('error', "Vui lòng cập nhật đủ thông tin!");
                 }
@@ -230,10 +235,12 @@ class MemberController extends Controller
                             $fields = $value5->form_data;
                             foreach ($fields as $key6 => $value6){
                                 $field_param = $value6->params;
+
                                 if(empty($request->$field_param)){
                                     return redirect()->back()->with('error', "Vui lòng cập nhật đủ thông tin!");
                                 }
                                 if ($value6->type == 'auto') {
+                                    
                                     $sub_fields = $value6->data_view;
                                     foreach ($sub_fields as $key7 => $value7){
                                         if($value7->params == $request->$field_param){
@@ -242,11 +249,13 @@ class MemberController extends Controller
                                                 foreach ($sub_params as $key8 => $value8){
                                                     $s_param = $value8->params;
                                                     if(empty($request->$s_param)){
+                                                        // dd($s_param);
                                                         return redirect()->back()->with('error', "Vui lòng cập nhật đủ thông tin!");
                                                     }
                                                     if(!empty($value8->params_hidden) && ($value8->params_hidden != "")){
                                                         $param_hidden = $value8->params_hidden;
                                                         if(empty($request->$param_hidden)){
+                                                            // dd('2');
                                                             return redirect()->back()->with('error', "Vui lòng cập nhật đủ thông tin!");
                                                         }
                                                     }
@@ -257,6 +266,7 @@ class MemberController extends Controller
 
                                 }
                                 else {
+//                                    dd('3');
                                     if(!empty($value6->params_hidden) && ($value6->params_hidden != "")){
                                         $param_hidden = $value6->params_hidden;
                                         if(empty($request->$param_hidden)){

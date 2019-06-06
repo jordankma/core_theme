@@ -1,6 +1,10 @@
 @if(!empty($list_tintuc))
 <section class="section news">
 	<div class="news-wrapper">
+		@php 
+			$tintuc = config('site.news_box.tintuc');
+        @endphp
+		<h2 class="headline"><a href="{{ route('frontend.news.list.box',$tintuc) }}" style="text-decoration: none">Tin tức - Sự kiện</a></h2>
 		<div class="news-list">
 			@foreach ($list_tintuc as $element)
 			@php 

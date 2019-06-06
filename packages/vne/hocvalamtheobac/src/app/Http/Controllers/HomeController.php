@@ -130,19 +130,27 @@ class HomeController extends Controller
         } catch (\Throwable $th) {
           //throw $th;
         }
-        // dd($count_thi_sinh_dang_ky);
-        // try {
-        //   if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_thi')) {
-        //     $count_thi_sinh_thi = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_thi');
-        //   } else {
-        //     $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate&reload_cache=1');
-        //     Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
-        //   }
-        //   // $count_thi_sinh_thi = json_decode(file_get_contents($url . '/api/contest/get/search_contest_result'))->total;
-        // } catch (\Throwable $th) {
-        //   //throw $th;
-        // }
+        try {
+          if (Cache::tags([config('site.cache_tag')])->has('count_thi_sinh_thi')) {
+            $count_thi_sinh_thi = Cache::tags([config('site.cache_tag')])->get('count_thi_sinh_thi');
+          } else {
+            $count_thi_sinh_thi = file_get_contents($url . '/api/contest/get/total?type=candidate&reload_cache=1');
+            Cache::tags([config('site.cache_tag')])->put('count_thi_sinh_thi', $count_thi_sinh_thi,10);
+          }
+        } catch (\Throwable $th) {
+          //throw $th;
+        }
         //end get bang xep hang top
+
+        //get timeline
+        if (Cache::has('list_time_line')) {
+          $list_time_line = Cache::tags([config('site.cache_tag')])->get('list_time_line');
+        } else {
+          $list_time_line = Timeline::get();
+          Cache::tags([config('site.cache_tag')])->put('list_time_line', $list_time_line,1440);
+        }
+        $list_time_line = Timeline::all();
+        //end get timeline
         $data = [
           'banner_ngang_trang_chu_1' => $banner_ngang_trang_chu_1,
           'banner_ngang_trang_chu_2' => $banner_ngang_trang_chu_2,
@@ -158,7 +166,9 @@ class HomeController extends Controller
           'list_logo_ban_to_chuc_cuoc_thi' => $list_logo_ban_to_chuc_cuoc_thi,
           'list_logo_don_vi_dong_hanh' => $list_logo_don_vi_dong_hanh,
           'count_thi_sinh_dang_ky' => $count_thi_sinh_dang_ky,
-          'list_logo_don_vi_tai_tro' => $list_logo_don_vi_tai_tro
+          'count_thi_sinh_thi' => $count_thi_sinh_thi,
+          'list_logo_don_vi_tai_tro' => $list_logo_don_vi_tai_tro,
+          'list_time_line' => $list_time_line
         ];
         return view('VNE-HOCVALAMTHEOBAC::modules.index.index',$data);    
     }

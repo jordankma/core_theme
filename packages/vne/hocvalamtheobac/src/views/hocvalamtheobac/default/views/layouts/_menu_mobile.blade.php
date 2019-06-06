@@ -1,4 +1,4 @@
-<div class="nav-trigger js-trigger">
+<div class="nav-trigger js-trigger" style="top: 15px; left: 15px;">
 	<span class="bar"></span>
 	<span class="bar"></span>
 	<span class="bar"></span>

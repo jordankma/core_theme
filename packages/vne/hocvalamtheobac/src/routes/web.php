@@ -16,6 +16,7 @@ Route::group(array('prefix' => $adminPrefix), function() {
             Cache::tags(config('site.cache_tag'))->forget('list_logo_don_vi_dong_hanh');
             Cache::tags(config('site.cache_tag'))->forget('list_logo_don_vi_tai_tro');
             Cache::tags(config('site.cache_tag'))->forget('frontend_setting');
+            Cache::tags(config('site.cache_tag'))->forget('list_time_line');
             Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.thongbaobtc'));
             Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.tintuc'));
             Cache::tags(config('site.cache_tag'))->forget(config('site.news_box.videonoibat'));

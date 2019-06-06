@@ -200,51 +200,64 @@ class SearchController extends Controller
       return view('VNE-HOCVALAMTHEOBAC::modules.search.search_result',$data);
     }
 
-    public function getTop(Request $request,$type = 'register'){
-        $target = $request->target ?? null;
-        $this->setJsonRankBoard();
-        $title = '';
-        $url = $this->url;
-        $page = $request->has('page') ? $request->input('page') : 1;
+    public function getTop(Request $request,$type = 'register')
+    {
         $data_child_params =
             ($request->has('data_child_params') && $request->input('data_child_params'))
                 ? $request->input('data_child_params') : 'province';
-        //url get by page
+        $target = $request->target ?? null;
+        $title = '';
+        $url = $this->url;
+        $page = $request->has('page') ? $request->input('page') : 1;
         $url_get_by_page = $request->url() . '?data_child_params=' . $data_child_params;
-        if(!empty($target)){
-            $url_get_by_page .= '&target='.$target;
+        if (Cache::tags([config('site.cache_tag'), 'top_register'])->has($data_child_params . '_' . $target)) {
+            $data_cache = Cache::tags([config('site.cache_tag'), 'top_register'])->get($data_child_params . '_' . $target);
+                $data_page = $data_cache[$page] ?? [];
         }
-        try {
-            $rank_board = json_decode($this->rank_board);
-            $list_top_thi_sinh_dang_ky = $rank_board->data[0];
-            $list_top_thi_sinh_da_thi = $rank_board->data[1];
-        } catch (\Throwable $th) {
-            //throw $th;
-            return redirect()->route('index');
+        else {
+            $data_cache = [];
+            $this->setJsonRankBoard();
+            //url get by page
+
+            if (!empty($target)) {
+                $url_get_by_page .= '&target=' . $target;
+            }
+            try {
+                $rank_board = json_decode($this->rank_board);
+            } catch (\Throwable $th) {
+                //throw $th;
+                return redirect()->route('index');
+            }
+            if ($type == 'register') {
+                $list_data = $rank_board->data[0] ?? [];
+            }
+            elseif ($type == 'candidate') {
+                $list_data = $rank_board->data[1] ?? [];
+            }
+            $title = $list_data->title;
+            $list_top = $list_data->data_child;
+            for ($i = 1;$i <= 10;$i++){
+                $data_cache[$i] = [
+                    'data_table' => self::getDataTable($list_top, $data_child_params, $i, $target),
+                    'data_header' => self::getDataHeader($list_top, $data_child_params, $i),
+                    'title' => $title,
+                    'list_top' => $list_top,
+                ];
+            }
+            Cache::tags([config('site.cache_tag'), 'top_register'])->put($data_child_params . '_' . $target,$data_cache,7200);
+            $data_page = $data_cache[$page];
         }
 
-        if($type=='register'){
-            $title = $list_top_thi_sinh_dang_ky->title;
-            $list_top = $list_top_thi_sinh_dang_ky->data_child;
-            $data_table = self::getDataTable($list_top, $data_child_params, $page,$target);
-            $data_header = self::getDataHeader($list_top, $data_child_params, $page);
-        }
-        elseif($type=='candidate'){
-            $title = $list_top_thi_sinh_da_thi->title;
-            $list_top = $list_top_thi_sinh_da_thi->data_child;
-            $data_table = self::getDataTable($list_top, $data_child_params, $page,$target);
-            $data_header = self::getDataHeader($list_top, $data_child_params, $page);
-        }
         $data = [
-            'title' => $title,
+            'title' => $data_page['title'],
             'type' => $type,
             'params' => $request->all(),
-            'list_top' => $list_top,
-            'data_table' => $data_table,
+            'list_top' => $data_page['list_top'],
+            'data_table' => $data_page['data_table'],
             'page' => $page,
             'data_child_params' => $data_child_params,
             'url_get_by_page' => $url_get_by_page,
-            'data_header' => $data_header
+            'data_header' => $data_page['data_header']
         ];
         return view('VNE-HOCVALAMTHEOBAC::modules.search.rating',$data);
     }
@@ -252,11 +265,12 @@ class SearchController extends Controller
     public function resultMember(Request $request){
       $url = $this->url;
       $member_id = $request->input('member_id');
+      $result_id = $request->input('result_id');
       $headers = array();
       $data = [];
       $user_info = [];
       try {
-          $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id=' . $member_id);
+          $data_member = file_get_contents($url . '/api/contest/get/contest_result?user_id=' . $member_id.'&result_id='.$result_id);
           $data_member = json_decode($data_member);
           $headers = isset($data_member->headers) ? $data_member->headers : $headers;
           $data = $data_member->data;

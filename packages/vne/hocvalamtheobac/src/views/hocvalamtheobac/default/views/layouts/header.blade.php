@@ -59,6 +59,7 @@ function showCategories($categories, $parent_id = 0, $char = '')
 										Thi Thử
 									</li>
 								</a>
+								{{-- //thi that --}}
 									<li class="nav-item">
 										<i class="ii ii-bachelor"></i>
 										<a href="{{ route('vne.get.real.exam') }}" class="nav-link" id="btn-real-exam">

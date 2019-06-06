@@ -8,7 +8,7 @@
 	<title>@yield('title')</title>
 	<link rel="icon" href="{{ (!empty($SETTING['favicon'])) ? asset($SETTING['favicon']) : '' }}" type="image/png" sizes="32x32">
 	<!-- css -->
-	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css?v=2' }}">
+	<link rel="stylesheet" href="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/css/main.min.css?v=' . env('CACHE_VERSION',1) }}">
 	@yield('header_styles')
 	<style>
 		.sub-menu{
@@ -117,7 +117,7 @@
 	<!-- js -->
 	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/jquery-3.3.1.min.js' }}"></script>
 	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/vendor/slick.min.js' }}"></script>
-	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?v=2' }}"></script>
+	<script src="{{ config('site.url_static') . '/vendor/' . $group_name . '/' . $skin . '/src/js/main.js?v=' . env('CACHE_VERSION',1) }}"></script>
 	@yield('footer_scripts')
 	<script type="text/javascript">
 		checkLogin();

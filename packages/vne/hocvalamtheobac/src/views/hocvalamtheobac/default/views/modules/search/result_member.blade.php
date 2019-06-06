@@ -9,7 +9,8 @@
                 @if(!empty($user_info))
                 @foreach ($user_info as $item)
                     <p style="display: inline-block; margin-left:40px">
-                        {{ isset($item->title) ? $item->title : ''  }}: {{ isset($item->title) ? $item->value : '' }}
+                        {{ isset($item->value) && $item->value !='null' ? $item->title : ''  }}
+                         {{  isset($item->value) && $item->value !='null' ? ':' . $item->value : '' }}
                     </p>
                 @endforeach
                 @endif
